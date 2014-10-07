@@ -7,22 +7,29 @@ import org.junit.Test;
 import com.popbill.api.JoinForm;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
-import com.popbill.api.taxinvoice.TaxinvoiceService;
+import com.popbill.api.TaxinvoiceService;
+import com.popbill.api.taxinvoice.TaxinvoiceServiceImp;
 
 public class BaseServiceTEST {
 
 	private final String testLinkID = "TESTER";
 	private final String testSecretKey = "PSVh7+mTe1b2av+PeZEiDdwuAXq2LU1JeiMfWFhbL00=";
 
+	private TaxinvoiceService taxinvoiceService;
+	
+	public BaseServiceTEST() {
+		TaxinvoiceServiceImp service = new TaxinvoiceServiceImp();
+
+		service.setLinkID(testLinkID);
+		service.setSecretKey(testSecretKey);
+		service.setTest(true);
+		
+		taxinvoiceService = service;
+	}
+	
 	@Test
 	public void getPopbillURL_TEST() throws PopbillException {
-
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+		
 		String url = taxinvoiceService.getPopbillURL("1231212312", "userid",
 				"LOGIN");
 
@@ -34,12 +41,6 @@ public class BaseServiceTEST {
 
 	@Test
 	public void joinMember_TEST() throws PopbillException {
-
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
 
 		JoinForm joinInfo = new JoinForm();
 
@@ -69,12 +70,7 @@ public class BaseServiceTEST {
 	@Test
 	public void getBalance_TEST() throws PopbillException {
 
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+		
 		double balance = taxinvoiceService.getBalance("1231212312");
 
 		System.out.println(balance);
@@ -82,12 +78,6 @@ public class BaseServiceTEST {
 
 	@Test
 	public void getPartnerBalance_TEST() throws PopbillException {
-
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
 
 		double balance = taxinvoiceService.getPartnerBalance("1231212312");
 

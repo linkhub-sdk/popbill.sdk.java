@@ -13,27 +13,35 @@ import org.junit.Test;
 import com.popbill.api.AttachedFile;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.TaxinvoiceService;
 import com.popbill.api.taxinvoice.EmailPublicKey;
 import com.popbill.api.taxinvoice.MgtKeyType;
 import com.popbill.api.taxinvoice.Taxinvoice;
 import com.popbill.api.taxinvoice.TaxinvoiceDetail;
 import com.popbill.api.taxinvoice.TaxinvoiceInfo;
 import com.popbill.api.taxinvoice.TaxinvoiceLog;
-import com.popbill.api.taxinvoice.TaxinvoiceService;
+import com.popbill.api.taxinvoice.TaxinvoiceServiceImp;
 
 public class TaxinvoiceServiceTEST {
 
 	private final String testLinkID = "TESTER";
 	private final String testSecretKey = "PSVh7+mTe1b2av+PeZEiDdwuAXq2LU1JeiMfWFhbL00=";
 
+	private TaxinvoiceService taxinvoiceService;
+	
+	public TaxinvoiceServiceTEST() {
+		TaxinvoiceServiceImp service = new TaxinvoiceServiceImp();
+
+		service.setLinkID(testLinkID);
+		service.setSecretKey(testSecretKey);
+		service.setTest(true);
+		
+		taxinvoiceService = service;
+	}
+	
 	@Test
 	public void getUnitCost_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+		
 		float UnitCost = taxinvoiceService.getUnitCost("1231212312");
 
 		System.out.println(UnitCost);
@@ -42,12 +50,7 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void getPopbillURL_TEST() throws PopbillException {
 
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+		
 		EmailPublicKey[] resultList = taxinvoiceService
 				.getEmailPublicKeys("1231212312");
 
@@ -56,12 +59,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void getCertificateExpireDate_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+		
 		Date ExpireDate = taxinvoiceService
 				.getCertificateExpireDate("4108600477");
 
@@ -72,12 +70,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void getURL_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+		
 		String url = taxinvoiceService.getURL("1231212312", "userid", "LOGIN");
 
 		assertNotNull(url);
@@ -86,12 +79,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void checkMgtKeyInUse_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+			
 		boolean useYN = taxinvoiceService.checkMgtKeyInUse("1231212312",
 				MgtKeyType.SELL, "1234");
 
@@ -100,12 +88,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void register_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+		
 		Taxinvoice taxinvoice = new Taxinvoice();
 
 		taxinvoice.setWriteDate("20141002"); // 필수, 기재상 작성일자
@@ -196,12 +179,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void update_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+		
 		Taxinvoice taxinvoice = new Taxinvoice();
 
 		taxinvoice.setWriteDate("20141002"); // 필수, 기재상 작성일자
@@ -292,7 +270,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void delete_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
+		TaxinvoiceServiceImp taxinvoiceService = new TaxinvoiceServiceImp();
 
 		taxinvoiceService.setLinkID(testLinkID);
 		taxinvoiceService.setSecretKey(testSecretKey);
@@ -308,7 +286,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void send_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
+		TaxinvoiceServiceImp taxinvoiceService = new TaxinvoiceServiceImp();
 
 		taxinvoiceService.setLinkID(testLinkID);
 		taxinvoiceService.setSecretKey(testSecretKey);
@@ -325,7 +303,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void cancelSend_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
+		TaxinvoiceServiceImp taxinvoiceService = new TaxinvoiceServiceImp();
 
 		taxinvoiceService.setLinkID(testLinkID);
 		taxinvoiceService.setSecretKey(testSecretKey);
@@ -342,11 +320,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void accept_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
+		
 
 		Response response = taxinvoiceService.accept("1231212312",
 				MgtKeyType.BUY, "1234", "승인 메모", "userid");
@@ -359,12 +333,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void deny_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+		
 		Response response = taxinvoiceService.deny("1231212312",
 				MgtKeyType.BUY, "1234", "거부 메모", "userid");
 
@@ -376,12 +345,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void issue_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+		
 		Response response = taxinvoiceService.issue("1231212312",
 				MgtKeyType.SELL, "1234", "발행메모", false, "userid");
 
@@ -393,12 +357,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void cancelIssue_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		Response response = taxinvoiceService.cancelIssue("1231212312",
 				MgtKeyType.SELL, "1234", "발행 취소 메모");
 
@@ -410,12 +369,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void request_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		Response response = taxinvoiceService.request("1231212312",
 				MgtKeyType.BUY, "1234", "역)발행요청 메모");
 
@@ -427,12 +381,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void cancelRequest_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		Response response = taxinvoiceService.cancelRequest("1231212312",
 				MgtKeyType.BUY, "1234", "역)발행요청 취소 메모");
 
@@ -444,12 +393,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void refuse_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		Response response = taxinvoiceService.refuse("1231212312",
 				MgtKeyType.SELL, "1234", "역)발행요청 거부 메모");
 
@@ -461,12 +405,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void sendToNTS_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		Response response = taxinvoiceService.sendToNTS("1231212312",
 				MgtKeyType.SELL, "1234");
 
@@ -478,12 +417,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void sendEmail_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		Response response = taxinvoiceService.sendEmail("1231212312",
 				MgtKeyType.SELL, "1234", "test@test.com");
 
@@ -495,12 +429,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void sendSMS_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		Response response = taxinvoiceService.sendSMS("1231212312",
 				MgtKeyType.SELL, "1234", "11122224444", "11133334444",
 				"문자메시지 내용");
@@ -513,12 +442,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void sendFAX_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		Response response = taxinvoiceService.sendFAX("1231212312",
 				MgtKeyType.SELL, "1234", "11122224444", "11133334444");
 
@@ -530,12 +454,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void getInfo_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		TaxinvoiceInfo taxinvoiceInfo = taxinvoiceService.getInfo("1231212312",
 				MgtKeyType.SELL, "1234");
 
@@ -545,13 +464,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void getDetailInfo_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
-		Taxinvoice taxinvoice = taxinvoiceService.getDetailInfo("1231212312",
+			Taxinvoice taxinvoice = taxinvoiceService.getDetailInfo("1231212312",
 				MgtKeyType.SELL, "1234");
 
 		assertNotNull(taxinvoice);
@@ -560,12 +473,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void getLogs_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		TaxinvoiceLog[] logs = taxinvoiceService.getLogs("1231212312",
 				MgtKeyType.SELL, "1234");
 
@@ -575,12 +483,6 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void getPopUpURL_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
 		String url = taxinvoiceService.getPopUpURL("1231212312",
 				MgtKeyType.SELL, "1234", "userid");
 
@@ -591,12 +493,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void getPrintURL_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		String url = taxinvoiceService.getPrintURL("1231212312",
 				MgtKeyType.SELL, "1234", "userid");
 
@@ -606,11 +503,6 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void getEPrintURL_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
 
 		String url = taxinvoiceService.getEPrintURL("1231212312",
 				MgtKeyType.SELL, "1234", "userid");
@@ -621,12 +513,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void getMailURL_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		String url = taxinvoiceService.getMailURL("1231212312",
 				MgtKeyType.SELL, "1234", "userid");
 
@@ -636,12 +523,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void getMassPrintURL_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		String[] MgtKeyList = new String[] { "1234", "123", "12345" };
 
 		String url = taxinvoiceService.getMassPrintURL("1231212312",
@@ -653,12 +535,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void getInfos_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+		
 		String[] MgtKeyList = new String[] { "1234", "123", "12345" };
 
 		TaxinvoiceInfo[] infoList = taxinvoiceService.getInfos("1231212312",
@@ -671,12 +548,7 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void attachFile_TEST() throws IOException, PopbillException {
 
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		InputStream FileData = new FileInputStream(
 				"/Users/cream/Desktop/test.jpg");
 
@@ -692,12 +564,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void getFiles_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+	
 		AttachedFile[] files = taxinvoiceService.getFiles("1231212312",
 				MgtKeyType.SELL, "1234");
 
@@ -708,12 +575,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void deleteFile_TEST() throws PopbillException {
-		TaxinvoiceService taxinvoiceService = new TaxinvoiceService();
-
-		taxinvoiceService.setLinkID(testLinkID);
-		taxinvoiceService.setSecretKey(testSecretKey);
-		taxinvoiceService.setTest(true);
-
+		
 		String FileID = "56A00CC6-F54C-45F5-A497-C1E5927EFA43.PBF";
 
 		Response response = taxinvoiceService.deleteFile("1231212312",
