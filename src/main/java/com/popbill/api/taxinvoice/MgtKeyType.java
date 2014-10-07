@@ -16,6 +16,7 @@ package com.popbill.api.taxinvoice;
 
 /**
  * Enum for MgtKeyType.
+ * 
  * @author KimSeonjun
  * @see http://www.popbill.com
  * @version 1.0.0

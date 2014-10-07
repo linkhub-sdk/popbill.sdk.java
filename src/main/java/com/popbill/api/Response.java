@@ -16,6 +16,7 @@ package com.popbill.api;
 
 /**
  * Base Response of Popbill Service.
+ * 
  * @author KimSeongjun
  * @see http://www.popbill.com
  * @version 1.0.0
@@ -23,20 +24,23 @@ package com.popbill.api;
 public class Response {
 	private long code;
 	private String message;
-	
+
 	/**
 	 * returns Response Code.
+	 * 
 	 * @return code of response.
 	 */
 	public long getCode() {
 		return code;
 	}
+
 	/**
 	 * returns Response Message.
+	 * 
 	 * @return message of response.
 	 */
 	public String getMessage() {
 		return message;
 	}
-	
+
 }
