@@ -20,7 +20,6 @@ import java.io.Serializable;
  * Class for TaxinvoiceAddContact which means 추가담당자.
  * 
  * @author KimSeongjun
- * @see http://www.popbill.com
  * @version 1.0.0
  */
 public class TaxinvoiceAddContact implements Serializable {

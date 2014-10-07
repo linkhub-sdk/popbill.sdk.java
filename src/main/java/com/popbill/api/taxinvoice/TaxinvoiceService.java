@@ -31,7 +31,6 @@ import com.popbill.api.Response;
  * Taxinvoice Service Proxy Class. Implementation of Popbill Taxinvoice API.
  * 
  * @author KimSeongjun
- * @see http://www.popbill.com
  * @version 1.0.0
  */
 public class TaxinvoiceService extends BaseService {

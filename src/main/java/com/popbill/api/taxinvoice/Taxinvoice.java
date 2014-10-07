@@ -21,7 +21,6 @@ import java.util.List;
  * Class for Taxinvoice Information.
  * 
  * @author KimSeongjun
- * @see http://www.popbill.com
  * @version 1.0.0
  */
 public class Taxinvoice implements Serializable {
@@ -113,7 +112,7 @@ public class Taxinvoice implements Serializable {
 	}
 
 	/**
-	 * 작성일자 설
+	 * 작성일자 설정
 	 * 
 	 * @param writeDate
 	 *            작성일자

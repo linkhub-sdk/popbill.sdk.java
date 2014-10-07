@@ -18,7 +18,6 @@ package com.popbill.api.taxinvoice;
  * Class for Taxinvoice' outline information.
  * 
  * @author KimSeongjun
- * @see http://www.popbill.com
  * @version 1.0.0
  */
 public class TaxinvoiceInfo {

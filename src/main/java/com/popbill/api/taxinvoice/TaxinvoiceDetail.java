@@ -20,7 +20,6 @@ import java.io.Serializable;
  * Class for Taxinvoice's DetailList. AKA 상세항목.
  * 
  * @author KimSeongjun
- * @see http://www.popbill.com
  * @version 1.0.0
  */
 public class TaxinvoiceDetail implements Serializable {

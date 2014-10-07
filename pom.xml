@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>kr.co.linkhub</groupId>
-	<artifactId>popbill.api</artifactId>
+	<artifactId>popbill-sdk</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
@@ -73,6 +73,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
+				<version>2.3</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -85,6 +86,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.1</version>
 				<configuration>
 					<excludePackageNames>*.test</excludePackageNames>
 					<minmemory>128m</minmemory>

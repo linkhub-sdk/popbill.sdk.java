@@ -20,7 +20,6 @@ import kr.co.linkhub.auth.LinkhubException;
  * Popbill Operation Exception.
  * 
  * @author KimSeongjun
- * @see http://www.popbill.com
  * @version 1.0.0
  */
 public class PopbillException extends Exception {

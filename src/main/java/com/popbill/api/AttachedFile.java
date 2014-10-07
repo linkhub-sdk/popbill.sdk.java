@@ -18,7 +18,6 @@ package com.popbill.api;
  * Class for Popbill AttachedFile Info .
  * 
  * @author KimSeongjun
- * @see http://www.popbill.com
  * @version 1.0.0
  */
 public class AttachedFile {

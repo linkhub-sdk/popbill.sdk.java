@@ -18,7 +18,6 @@ package com.popbill.api;
  * Base Response of Popbill Service.
  * 
  * @author KimSeongjun
- * @see http://www.popbill.com
  * @version 1.0.0
  */
 public class Response {

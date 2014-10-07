@@ -18,7 +18,6 @@ package com.popbill.api.taxinvoice;
  * Class for Email and publickKey can be used for InterOperation.
  * 
  * @author KimSeongjun
- * @see http://www.popbill.com
  * @version 1.0.0
  */
 public class EmailPublicKey {

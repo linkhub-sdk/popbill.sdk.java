@@ -41,7 +41,6 @@ import com.google.gson.Gson;
  * Abstract class for Popbill Services.
  * 
  * @author KimSeongjun
- * @see http://www.popbill.com
  * @version 1.0.0
  */
 public abstract class BaseService {
@@ -258,7 +257,7 @@ public abstract class BaseService {
 	 * Convert Object to Json String.
 	 * 
 	 * @param Graph
-	 * @return
+	 * @return jsonString
 	 */
 	protected String toJsonString(Object Graph) {
 		return _gsonParser.toJson(Graph);
@@ -269,7 +268,7 @@ public abstract class BaseService {
 	 * 
 	 * @param json
 	 * @param clazz
-	 * @return
+	 * @return Object of Clazz
 	 */
 	protected <T> T fromJsonString(String json, Class<T> clazz) {
 		return _gsonParser.fromJson(json, clazz);
@@ -282,7 +281,7 @@ public abstract class BaseService {
 	 * @param PostData
 	 * @param UserID
 	 * @param clazz
-	 * @return
+	 * @return returned object
 	 * @throws PopbillException
 	 */
 	protected <T> T httppost(String url, String CorpNum, String PostData,
@@ -298,7 +297,7 @@ public abstract class BaseService {
 	 * @param UserID
 	 * @param Action
 	 * @param clazz
-	 * @return
+	 * @return returned object
 	 * @throws PopbillException
 	 */
 	protected <T> T httppost(String url, String CorpNum, String PostData,
@@ -399,7 +398,7 @@ public abstract class BaseService {
 	 * @param files
 	 * @param UserID
 	 * @param clazz
-	 * @return
+	 * @return returned object
 	 * @throws PopbillException
 	 */
 	protected <T> T httppostFiles(String url, String CorpNum, String form,
@@ -520,7 +519,7 @@ public abstract class BaseService {
 	 * @param CorpNum
 	 * @param UserID
 	 * @param clazz
-	 * @return
+	 * @return returned object
 	 * @throws PopbillException
 	 */
 	protected <T> T httpget(String url, String CorpNum, String UserID,

@@ -18,7 +18,6 @@ package com.popbill.api;
  * JoinForm Structure. for joinMember().
  * 
  * @author KimSeongjun
- * @see http://www.popbill.com
  * @version 1.0.0
  */
 public class JoinForm {
