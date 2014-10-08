@@ -449,7 +449,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 공급자 문자전송여부
 	 */
-	public Boolean isInvoicerSMSSendYN() {
+	public Boolean getInvoicerSMSSendYN() {
 		return invoicerSMSSendYN;
 	}
 
@@ -829,7 +829,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 공급받는자 역발행요청시 문자전송여부
 	 */
-	public Boolean isInvoiceeSMSSendYN() {
+	public Boolean getInvoiceeSMSSendYN() {
 		return invoiceeSMSSendYN;
 	}
 
@@ -848,7 +848,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 사업자번호
 	 */
-	public String gettrusteeCorpNum() {
+	public String getTrusteeCorpNum() {
 		return trusteeCorpNum;
 	}
 
@@ -858,7 +858,7 @@ public class Taxinvoice implements Serializable {
 	 * @param trusteeCorpNum
 	 *            수탁자 사업자번호
 	 */
-	public void settrusteeCorpNum(String trusteeCorpNum) {
+	public void setTrusteeCorpNum(String trusteeCorpNum) {
 		this.trusteeCorpNum = trusteeCorpNum;
 	}
 
@@ -867,7 +867,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 연동관리번호
 	 */
-	public String gettrusteeMgtKey() {
+	public String getTtrusteeMgtKey() {
 		return trusteeMgtKey;
 	}
 
@@ -877,7 +877,7 @@ public class Taxinvoice implements Serializable {
 	 * @param trusteeMgtKey
 	 *            수탁자 연동관리번호
 	 */
-	public void settrusteeMgtKey(String trusteeMgtKey) {
+	public void setTrusteeMgtKey(String trusteeMgtKey) {
 		this.trusteeMgtKey = trusteeMgtKey;
 	}
 
@@ -886,7 +886,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 종사업장 식별번호
 	 */
-	public String gettrusteeTaxRegID() {
+	public String getTrusteeTaxRegID() {
 		return trusteeTaxRegID;
 	}
 
@@ -896,7 +896,7 @@ public class Taxinvoice implements Serializable {
 	 * @param trusteeTaxRegID
 	 *            수탁자 종사업장 식별번호 설정
 	 */
-	public void settrusteeTaxRegID(String trusteeTaxRegID) {
+	public void setTrusteeTaxRegID(String trusteeTaxRegID) {
 		this.trusteeTaxRegID = trusteeTaxRegID;
 	}
 
@@ -905,7 +905,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 상호
 	 */
-	public String gettrusteeCorpName() {
+	public String getTrusteeCorpName() {
 		return trusteeCorpName;
 	}
 
@@ -915,7 +915,7 @@ public class Taxinvoice implements Serializable {
 	 * @param trusteeCorpName
 	 *            수탁자 상호
 	 */
-	public void settrusteeCorpName(String trusteeCorpName) {
+	public void setTrusteeCorpName(String trusteeCorpName) {
 		this.trusteeCorpName = trusteeCorpName;
 	}
 
@@ -924,7 +924,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 대표자 성명
 	 */
-	public String gettrusteeCEOName() {
+	public String getTrusteeCEOName() {
 		return trusteeCEOName;
 	}
 
@@ -934,7 +934,7 @@ public class Taxinvoice implements Serializable {
 	 * @param trusteeCEOName
 	 *            수탁자 대표자 성명
 	 */
-	public void settrusteeCEOName(String trusteeCEOName) {
+	public void setTrusteeCEOName(String trusteeCEOName) {
 		this.trusteeCEOName = trusteeCEOName;
 	}
 
@@ -943,7 +943,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 주소
 	 */
-	public String gettrusteeAddr() {
+	public String getTrusteeAddr() {
 		return trusteeAddr;
 	}
 
@@ -953,7 +953,7 @@ public class Taxinvoice implements Serializable {
 	 * @param trusteeAddr
 	 *            수탁자 주소
 	 */
-	public void settrusteeAddr(String trusteeAddr) {
+	public void setTrusteeAddr(String trusteeAddr) {
 		this.trusteeAddr = trusteeAddr;
 	}
 
@@ -962,7 +962,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 업태
 	 */
-	public String gettrusteeBizType() {
+	public String getTrusteeBizType() {
 		return trusteeBizType;
 	}
 
@@ -972,7 +972,7 @@ public class Taxinvoice implements Serializable {
 	 * @param trusteeBizType
 	 *            수탁자 업태
 	 */
-	public void settrusteeBizType(String trusteeBizType) {
+	public void setTrusteeBizType(String trusteeBizType) {
 		this.trusteeBizType = trusteeBizType;
 	}
 
@@ -981,7 +981,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 업종
 	 */
-	public String gettrusteeBizClass() {
+	public String getTrusteeBizClass() {
 		return trusteeBizClass;
 	}
 
@@ -991,7 +991,7 @@ public class Taxinvoice implements Serializable {
 	 * @param trusteeBizClass
 	 *            수탁자 업종 설정
 	 */
-	public void settrusteeBizClass(String trusteeBizClass) {
+	public void setTrusteeBizClass(String trusteeBizClass) {
 		this.trusteeBizClass = trusteeBizClass;
 	}
 
@@ -1000,7 +1000,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 담당자 성명
 	 */
-	public String gettrusteeContactName() {
+	public String getTrusteeContactName() {
 		return trusteeContactName;
 	}
 
@@ -1010,7 +1010,7 @@ public class Taxinvoice implements Serializable {
 	 * @param trusteeContactName
 	 *            수탁자 담당자 성명
 	 */
-	public void settrusteeContactName(String trusteeContactName) {
+	public void setTrusteeContactName(String trusteeContactName) {
 		this.trusteeContactName = trusteeContactName;
 	}
 
@@ -1019,7 +1019,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 담당자 부서명
 	 */
-	public String gettrusteeDeptName() {
+	public String getTrusteeDeptName() {
 		return trusteeDeptName;
 	}
 
@@ -1029,7 +1029,7 @@ public class Taxinvoice implements Serializable {
 	 * @param trusteeDeptName
 	 *            수탁자 담당자 부서명
 	 */
-	public void settrusteeDeptName(String trusteeDeptName) {
+	public void setTrusteeDeptName(String trusteeDeptName) {
 		this.trusteeDeptName = trusteeDeptName;
 	}
 
@@ -1038,7 +1038,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 담당자 연락처
 	 */
-	public String gettrusteeTEL() {
+	public String getTrusteeTEL() {
 		return trusteeTEL;
 	}
 
@@ -1048,7 +1048,7 @@ public class Taxinvoice implements Serializable {
 	 * @param trusteeTEL
 	 *            수탁자 담당자 연락처
 	 */
-	public void settrusteeTEL(String trusteeTEL) {
+	public void setTrusteeTEL(String trusteeTEL) {
 		this.trusteeTEL = trusteeTEL;
 	}
 
@@ -1057,7 +1057,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 담당자 휴대전화
 	 */
-	public String gettrusteeHP() {
+	public String getTrusteeHP() {
 		return trusteeHP;
 	}
 
@@ -1067,7 +1067,7 @@ public class Taxinvoice implements Serializable {
 	 * @param trusteeHP
 	 *            수탁자 담당자 휴대전화
 	 */
-	public void settrusteeHP(String trusteeHP) {
+	public void setTrusteeHP(String trusteeHP) {
 		this.trusteeHP = trusteeHP;
 	}
 
@@ -1076,7 +1076,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 담당자 이메일주소
 	 */
-	public String gettrusteeEmail() {
+	public String getTrusteeEmail() {
 		return trusteeEmail;
 	}
 
@@ -1086,7 +1086,7 @@ public class Taxinvoice implements Serializable {
 	 * @param trusteeEmail
 	 *            수탁자 담당자 이메일주소
 	 */
-	public void settrusteeEmail(String trusteeEmail) {
+	public void setTrusteeEmail(String trusteeEmail) {
 		this.trusteeEmail = trusteeEmail;
 	}
 
@@ -1095,7 +1095,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 발행시 문자전송여부
 	 */
-	public Boolean istrusteeSMSSendYN() {
+	public Boolean getTrusteeSMSSendYN() {
 		return trusteeSMSSendYN;
 	}
 
@@ -1105,7 +1105,7 @@ public class Taxinvoice implements Serializable {
 	 * @param trusteeSMSSendYN
 	 *            수탁자 발행시 문자전송여부
 	 */
-	public void settrusteeSMSSendYN(Boolean trusteeSMSSendYN) {
+	public void setTrusteeSMSSendYN(Boolean trusteeSMSSendYN) {
 		this.trusteeSMSSendYN = trusteeSMSSendYN;
 	}
 
@@ -1409,7 +1409,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 사업자등록증 이미지 첨부여부
 	 */
-	public Boolean isBusinessLicenseYN() {
+	public Boolean getBusinessLicenseYN() {
 		return businessLicenseYN;
 	}
 
@@ -1428,7 +1428,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 통장사본 이미지 첨부여부
 	 */
-	public Boolean isBankBookYN() {
+	public Boolean getBankBookYN() {
 		return bankBookYN;
 	}
 
