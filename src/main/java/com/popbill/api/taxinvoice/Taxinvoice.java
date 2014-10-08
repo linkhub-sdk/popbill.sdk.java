@@ -867,7 +867,7 @@ public class Taxinvoice implements Serializable {
 	 * 
 	 * @return 수탁자 연동관리번호
 	 */
-	public String getTtrusteeMgtKey() {
+	public String getTrusteeMgtKey() {
 		return trusteeMgtKey;
 	}
 
