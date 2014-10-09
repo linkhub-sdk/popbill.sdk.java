@@ -10,7 +10,6 @@ import org.junit.Test;
 import com.popbill.api.MessageService;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
-import com.popbill.api.message.Message;
 import com.popbill.api.message.MessageServiceImp;
 import com.popbill.api.message.MessageType;
 import com.popbill.api.message.SentMessage;
