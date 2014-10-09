@@ -564,11 +564,8 @@ public abstract class BaseServiceImp implements BaseService {
 
 	protected class UnitCostResponse {
 
-		private float unitCost;
+		public float unitCost;
 
-		public float getUnitSost() {
-			return unitCost;
-		}
 	}
 
 	protected class UploadFile {
@@ -583,7 +580,7 @@ public abstract class BaseServiceImp implements BaseService {
 	protected class URLResponse {
 		public String url;
 	}
-
+	
 	private static String fromStream(InputStream input) throws IOException {
 
 		InputStreamReader is = new InputStreamReader(input,

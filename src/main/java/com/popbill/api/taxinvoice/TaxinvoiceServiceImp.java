@@ -43,7 +43,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#getUnitCost(java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#getUnitCost(java.lang.String)
 	 */
 	@Override
 	public float getUnitCost(String CorpNum) throws PopbillException {
@@ -54,7 +54,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#getCertificateExpireDate(java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#getCertificateExpireDate(java.lang.String)
 	 */
 	@Override
 	public Date getCertificateExpireDate(String CorpNum)
@@ -74,7 +74,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#getURL(java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#getURL(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public String getURL(String CorpNum, String UserID, String TOGO)
@@ -87,7 +87,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#checkMgtKeyInUse(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#checkMgtKeyInUse(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
 	 */
 	@Override
 	public boolean checkMgtKeyInUse(String CorpNum, MgtKeyType KeyType,
@@ -111,7 +111,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#getEmailPublicKeys(java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#getEmailPublicKeys(java.lang.String)
 	 */
 	@Override
 	public EmailPublicKey[] getEmailPublicKeys(String CorpNum)
@@ -122,7 +122,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#register(java.lang.String, com.popbill.api.taxinvoice.Taxinvoice)
+	 * @see com.popbill.api.TaxinvoiceService#register(java.lang.String, com.popbill.api.taxinvoice.Taxinvoice)
 	 */
 	@Override
 	public Response register(String CorpNum, Taxinvoice taxinvoice)
@@ -131,7 +131,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#register(java.lang.String, com.popbill.api.taxinvoice.Taxinvoice, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#register(java.lang.String, com.popbill.api.taxinvoice.Taxinvoice, java.lang.String)
 	 */
 	@Override
 	public Response register(String CorpNum, Taxinvoice taxinvoice,
@@ -140,7 +140,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#register(java.lang.String, com.popbill.api.taxinvoice.Taxinvoice, java.lang.String, boolean)
+	 * @see com.popbill.api.TaxinvoiceService#register(java.lang.String, com.popbill.api.taxinvoice.Taxinvoice, java.lang.String, boolean)
 	 */
 	@Override
 	public Response register(String CorpNum, Taxinvoice taxinvoice,
@@ -159,7 +159,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#update(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, com.popbill.api.taxinvoice.Taxinvoice)
+	 * @see com.popbill.api.TaxinvoiceService#update(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, com.popbill.api.taxinvoice.Taxinvoice)
 	 */
 	@Override
 	public Response update(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -169,7 +169,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#update(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, com.popbill.api.taxinvoice.Taxinvoice, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#update(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, com.popbill.api.taxinvoice.Taxinvoice, java.lang.String)
 	 */
 	@Override
 	public Response update(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -188,7 +188,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#delete(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#delete(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
 	 */
 	@Override
 	public Response delete(String CorpNum, MgtKeyType KeyType, String MgtKey)
@@ -197,7 +197,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#delete(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#delete(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response delete(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -212,7 +212,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#send(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#send(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response send(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -221,7 +221,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#send(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#send(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response send(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -238,7 +238,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#cancelSend(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#cancelSend(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response cancelSend(String CorpNum, MgtKeyType KeyType,
@@ -248,7 +248,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#cancelSend(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#cancelSend(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response cancelSend(String CorpNum, MgtKeyType KeyType,
@@ -265,7 +265,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#accept(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#accept(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response accept(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -274,7 +274,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#accept(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#accept(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response accept(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -291,7 +291,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#deny(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#deny(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response deny(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -300,7 +300,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#deny(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#deny(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response deny(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -317,7 +317,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#issue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#issue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response issue(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -326,7 +326,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#issue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#issue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response issue(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -335,7 +335,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#issue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, boolean, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#issue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, boolean, java.lang.String)
 	 */
 	@Override
 	public Response issue(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -345,7 +345,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#issue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#issue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String)
 	 */
 	@Override
 	public Response issue(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -368,7 +368,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#cancelIssue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#cancelIssue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response cancelIssue(String CorpNum, MgtKeyType KeyType,
@@ -378,7 +378,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#cancelIssue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#cancelIssue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response cancelIssue(String CorpNum, MgtKeyType KeyType,
@@ -395,7 +395,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#request(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#request(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response request(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -405,7 +405,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#request(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#request(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response request(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -422,7 +422,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#refuse(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#refuse(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response refuse(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -432,7 +432,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#refuse(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#refuse(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response refuse(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -449,7 +449,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#cancelRequest(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#cancelRequest(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response cancelRequest(String CorpNum, MgtKeyType KeyType,
@@ -459,7 +459,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#cancelRequest(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#cancelRequest(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response cancelRequest(String CorpNum, MgtKeyType KeyType,
@@ -476,7 +476,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#sendToNTS(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#sendToNTS(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
 	 */
 	@Override
 	public Response sendToNTS(String CorpNum, MgtKeyType KeyType, String MgtKey)
@@ -485,7 +485,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#sendToNTS(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#sendToNTS(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response sendToNTS(String CorpNum, MgtKeyType KeyType,
@@ -500,7 +500,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#sendEmail(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#sendEmail(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response sendEmail(String CorpNum, MgtKeyType KeyType,
@@ -509,7 +509,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#sendEmail(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#sendEmail(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response sendEmail(String CorpNum, MgtKeyType KeyType,
@@ -531,7 +531,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#sendSMS(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#sendSMS(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response sendSMS(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -542,7 +542,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#sendSMS(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#sendSMS(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response sendSMS(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -566,7 +566,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#sendFAX(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#sendFAX(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response sendFAX(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -575,7 +575,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#sendFAX(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#sendFAX(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response sendFAX(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -598,7 +598,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#getDetailInfo(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#getDetailInfo(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
 	 */
 	@Override
 	public Taxinvoice getDetailInfo(String CorpNum, MgtKeyType KeyType,
@@ -613,7 +613,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#getInfo(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#getInfo(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
 	 */
 	@Override
 	public TaxinvoiceInfo getInfo(String CorpNum, MgtKeyType KeyType,
@@ -628,7 +628,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#getInfos(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String[])
+	 * @see com.popbill.api.TaxinvoiceService#getInfos(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String[])
 	 */
 	@Override
 	public TaxinvoiceInfo[] getInfos(String CorpNum, MgtKeyType KeyType,
@@ -645,7 +645,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#getLogs(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#getLogs(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
 	 */
 	@Override
 	public TaxinvoiceLog[] getLogs(String CorpNum, MgtKeyType KeyType,
@@ -661,7 +661,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#getPopUpURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#getPopUpURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public String getPopUpURL(String CorpNum, MgtKeyType KeyType,
@@ -678,7 +678,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#getMailURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#getMailURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public String getMailURL(String CorpNum, MgtKeyType KeyType, String MgtKey,
@@ -695,7 +695,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#getPrintURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#getPrintURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public String getPrintURL(String CorpNum, MgtKeyType KeyType,
@@ -712,7 +712,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#getEPrintURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#getEPrintURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public String getEPrintURL(String CorpNum, MgtKeyType KeyType,
@@ -729,7 +729,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#getMassPrintURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String[], java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#getMassPrintURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String[], java.lang.String)
 	 */
 	@Override
 	public String getMassPrintURL(String CorpNum, MgtKeyType KeyType,
@@ -748,7 +748,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#attachFile(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.io.InputStream)
+	 * @see com.popbill.api.TaxinvoiceService#attachFile(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.io.InputStream)
 	 */
 	@Override
 	public Response attachFile(String CorpNum, MgtKeyType KeyType,
@@ -758,7 +758,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#attachFile(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.io.InputStream, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#attachFile(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.io.InputStream, java.lang.String)
 	 */
 	@Override
 	public Response attachFile(String CorpNum, MgtKeyType KeyType,
@@ -787,7 +787,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#getFiles(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#getFiles(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
 	 */
 	@Override
 	public AttachedFile[] getFiles(String CorpNum, MgtKeyType KeyType,
@@ -802,7 +802,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#deleteFile(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#deleteFile(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response deleteFile(String CorpNum, MgtKeyType KeyType,
@@ -811,7 +811,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	}
 
 	/* (non-Javadoc)
-	 * @see com.popbill.api.taxinvoice.TaxinvoiceService#deleteFile(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#deleteFile(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Response deleteFile(String CorpNum, MgtKeyType KeyType,
@@ -827,10 +827,6 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		return httppost("/Taxinvoice/" + KeyType.name() + "/" + MgtKey
 				+ "/Files/" + FileID, CorpNum, null, UserID, "DELETE",
 				Response.class);
-	}
-
-	protected class UnitCostResponse {
-		public float unitCost;
 	}
 
 	protected class CertResponse {

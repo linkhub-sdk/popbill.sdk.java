@@ -39,7 +39,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return 단가 (ex. 200.0)
 	 * @throws PopbillException
 	 */
-	public abstract float getUnitCost(String CorpNum) throws PopbillException;
+	public float getUnitCost(String CorpNum) throws PopbillException;
 
 	/**
 	 * 연동회원이 등록한 공인인증서의 만료일시 확인.
@@ -49,7 +49,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return 만료일시
 	 * @throws PopbillException
 	 */
-	public abstract Date getCertificateExpireDate(String CorpNum)
+	public Date getCertificateExpireDate(String CorpNum)
 			throws PopbillException;
 
 	/**
@@ -64,7 +64,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
 	 * @throws PopbillException
 	 */
-	public abstract String getURL(String CorpNum, String UserID, String TOGO)
+	public String getURL(String CorpNum, String UserID, String TOGO)
 			throws PopbillException;
 
 	/**
@@ -79,7 +79,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return 사용여부 true : 사용중 , false : 미사용중.
 	 * @throws PopbillException
 	 */
-	public abstract boolean checkMgtKeyInUse(String CorpNum,
+	public boolean checkMgtKeyInUse(String CorpNum,
 			MgtKeyType KeyType, String MgtKey) throws PopbillException;
 
 	/**
@@ -90,7 +90,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return EmailPublicKey 배열 반환
 	 * @throws PopbillException
 	 */
-	public abstract EmailPublicKey[] getEmailPublicKeys(String CorpNum)
+	public EmailPublicKey[] getEmailPublicKeys(String CorpNum)
 			throws PopbillException;
 
 	/**
@@ -103,7 +103,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response register(String CorpNum, Taxinvoice taxinvoice)
+	public Response register(String CorpNum, Taxinvoice taxinvoice)
 			throws PopbillException;
 
 	/**
@@ -118,7 +118,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response register(String CorpNum, Taxinvoice taxinvoice,
+	public Response register(String CorpNum, Taxinvoice taxinvoice,
 			String UserID) throws PopbillException;
 
 	/**
@@ -135,7 +135,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response register(String CorpNum, Taxinvoice taxinvoice,
+	public Response register(String CorpNum, Taxinvoice taxinvoice,
 			String UserID, boolean writeSpecification) throws PopbillException;
 
 	/**
@@ -152,7 +152,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response update(String CorpNum, MgtKeyType KeyType,
+	public Response update(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, Taxinvoice taxinvoice) throws PopbillException;
 
 	/**
@@ -171,7 +171,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response update(String CorpNum, MgtKeyType KeyType,
+	public Response update(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, Taxinvoice taxinvoice, String UserID)
 			throws PopbillException;
 
@@ -187,7 +187,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response delete(String CorpNum, MgtKeyType KeyType,
+	public Response delete(String CorpNum, MgtKeyType KeyType,
 			String MgtKey) throws PopbillException;
 
 	/**
@@ -204,7 +204,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response delete(String CorpNum, MgtKeyType KeyType,
+	public Response delete(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String UserID) throws PopbillException;
 
 	/**
@@ -221,7 +221,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response send(String CorpNum, MgtKeyType KeyType,
+	public Response send(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo) throws PopbillException;
 
 	/**
@@ -240,7 +240,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response send(String CorpNum, MgtKeyType KeyType,
+	public Response send(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, String UserID) throws PopbillException;
 
 	/**
@@ -257,7 +257,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response cancelSend(String CorpNum, MgtKeyType KeyType,
+	public Response cancelSend(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo) throws PopbillException;
 
 	/**
@@ -276,7 +276,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response cancelSend(String CorpNum, MgtKeyType KeyType,
+	public Response cancelSend(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, String UserID) throws PopbillException;
 
 	/**
@@ -293,7 +293,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response accept(String CorpNum, MgtKeyType KeyType,
+	public Response accept(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo) throws PopbillException;
 
 	/**
@@ -312,7 +312,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response accept(String CorpNum, MgtKeyType KeyType,
+	public Response accept(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, String UserID) throws PopbillException;
 
 	/**
@@ -329,7 +329,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response deny(String CorpNum, MgtKeyType KeyType,
+	public Response deny(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo) throws PopbillException;
 
 	/**
@@ -348,7 +348,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response deny(String CorpNum, MgtKeyType KeyType,
+	public Response deny(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, String UserID) throws PopbillException;
 
 	/**
@@ -365,7 +365,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response issue(String CorpNum, MgtKeyType KeyType,
+	public Response issue(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo) throws PopbillException;
 
 	/**
@@ -384,7 +384,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response issue(String CorpNum, MgtKeyType KeyType,
+	public Response issue(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, String UserID) throws PopbillException;
 
 	/**
@@ -405,7 +405,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response issue(String CorpNum, MgtKeyType KeyType,
+	public Response issue(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, boolean ForceIssue, String UserID)
 			throws PopbillException;
 
@@ -429,7 +429,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response issue(String CorpNum, MgtKeyType KeyType,
+	public Response issue(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, String EmailSubject,
 			boolean ForceIssue, String UserID) throws PopbillException;
 
@@ -447,7 +447,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response cancelIssue(String CorpNum, MgtKeyType KeyType,
+	public Response cancelIssue(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo) throws PopbillException;
 
 	/**
@@ -466,7 +466,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response cancelIssue(String CorpNum, MgtKeyType KeyType,
+	public Response cancelIssue(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, String UserID) throws PopbillException;
 
 	/**
@@ -483,7 +483,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response request(String CorpNum, MgtKeyType KeyType,
+	public Response request(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo) throws PopbillException;
 
 	/**
@@ -502,7 +502,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response request(String CorpNum, MgtKeyType KeyType,
+	public Response request(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, String UserID) throws PopbillException;
 
 	/**
@@ -519,7 +519,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response refuse(String CorpNum, MgtKeyType KeyType,
+	public Response refuse(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo) throws PopbillException;
 
 	/**
@@ -538,7 +538,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response refuse(String CorpNum, MgtKeyType KeyType,
+	public Response refuse(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, String UserID) throws PopbillException;
 
 	/**
@@ -555,7 +555,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response cancelRequest(String CorpNum, MgtKeyType KeyType,
+	public Response cancelRequest(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo) throws PopbillException;
 
 	/**
@@ -574,7 +574,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response cancelRequest(String CorpNum, MgtKeyType KeyType,
+	public Response cancelRequest(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, String UserID) throws PopbillException;
 
 	/**
@@ -589,7 +589,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response sendToNTS(String CorpNum, MgtKeyType KeyType,
+	public Response sendToNTS(String CorpNum, MgtKeyType KeyType,
 			String MgtKey) throws PopbillException;
 
 	/**
@@ -606,7 +606,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response sendToNTS(String CorpNum, MgtKeyType KeyType,
+	public Response sendToNTS(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String UserID) throws PopbillException;
 
 	/**
@@ -623,7 +623,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response sendEmail(String CorpNum, MgtKeyType KeyType,
+	public Response sendEmail(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Receiver) throws PopbillException;
 
 	/**
@@ -642,7 +642,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response sendEmail(String CorpNum, MgtKeyType KeyType,
+	public Response sendEmail(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Receiver, String UserID)
 			throws PopbillException;
 
@@ -664,7 +664,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response sendSMS(String CorpNum, MgtKeyType KeyType,
+	public Response sendSMS(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Sender, String Receiver, String Contents)
 			throws PopbillException;
 
@@ -688,7 +688,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Response sendSMS(String CorpNum, MgtKeyType KeyType,
+	public Response sendSMS(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Sender, String Receiver, String Contents,
 			String UserID) throws PopbillException;
 
@@ -708,7 +708,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response response
 	 * @throws PopbillException
 	 */
-	public abstract Response sendFAX(String CorpNum, MgtKeyType KeyType,
+	public Response sendFAX(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Sender, String Receiver)
 			throws PopbillException;
 
@@ -730,7 +730,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response response
 	 * @throws PopbillException
 	 */
-	public abstract Response sendFAX(String CorpNum, MgtKeyType KeyType,
+	public Response sendFAX(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Sender, String Receiver, String UserID)
 			throws PopbillException;
 
@@ -746,7 +746,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract Taxinvoice getDetailInfo(String CorpNum,
+	public Taxinvoice getDetailInfo(String CorpNum,
 			MgtKeyType KeyType, String MgtKey) throws PopbillException;
 
 	/**
@@ -761,7 +761,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
-	public abstract TaxinvoiceInfo getInfo(String CorpNum, MgtKeyType KeyType,
+	public TaxinvoiceInfo getInfo(String CorpNum, MgtKeyType KeyType,
 			String MgtKey) throws PopbillException;
 
 	/**
@@ -776,7 +776,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return TaxinvoiceInfo 배열.
 	 * @throws PopbillException
 	 */
-	public abstract TaxinvoiceInfo[] getInfos(String CorpNum,
+	public TaxinvoiceInfo[] getInfos(String CorpNum,
 			MgtKeyType KeyType, String[] MgtKeyList) throws PopbillException;
 
 	/**
@@ -791,7 +791,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return TaxinvoiceLog 배열.
 	 * @throws PopbillException
 	 */
-	public abstract TaxinvoiceLog[] getLogs(String CorpNum, MgtKeyType KeyType,
+	public TaxinvoiceLog[] getLogs(String CorpNum, MgtKeyType KeyType,
 			String MgtKey) throws PopbillException;
 
 	/**
@@ -808,7 +808,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return 팝빌 URL.
 	 * @throws PopbillException
 	 */
-	public abstract String getPopUpURL(String CorpNum, MgtKeyType KeyType,
+	public String getPopUpURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String UserID) throws PopbillException;
 
 	/**
@@ -825,7 +825,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return 팝빌 URL.
 	 * @throws PopbillException
 	 */
-	public abstract String getMailURL(String CorpNum, MgtKeyType KeyType,
+	public String getMailURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String UserID) throws PopbillException;
 
 	/**
@@ -842,7 +842,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return 팝빌 URL.
 	 * @throws PopbillException
 	 */
-	public abstract String getPrintURL(String CorpNum, MgtKeyType KeyType,
+	public String getPrintURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String UserID) throws PopbillException;
 
 	/**
@@ -859,7 +859,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return 팝빌 URL.
 	 * @throws PopbillException
 	 */
-	public abstract String getEPrintURL(String CorpNum, MgtKeyType KeyType,
+	public String getEPrintURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String UserID) throws PopbillException;
 
 	/**
@@ -876,7 +876,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return 팝빌 URL
 	 * @throws PopbillException
 	 */
-	public abstract String getMassPrintURL(String CorpNum, MgtKeyType KeyType,
+	public String getMassPrintURL(String CorpNum, MgtKeyType KeyType,
 			String[] MgtKeyList, String UserID) throws PopbillException;
 
 	/**
@@ -895,7 +895,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response attachFile(String CorpNum, MgtKeyType KeyType,
+	public Response attachFile(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String DisplayName, InputStream FileData)
 			throws PopbillException;
 
@@ -917,7 +917,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response attachFile(String CorpNum, MgtKeyType KeyType,
+	public Response attachFile(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String DisplayName, InputStream FileData,
 			String UserID) throws PopbillException;
 
@@ -933,7 +933,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return AttachedFile 배열.
 	 * @throws PopbillException
 	 */
-	public abstract AttachedFile[] getFiles(String CorpNum, MgtKeyType KeyType,
+	public AttachedFile[] getFiles(String CorpNum, MgtKeyType KeyType,
 			String MgtKey) throws PopbillException;
 
 	/**
@@ -950,7 +950,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response deleteFile(String CorpNum, MgtKeyType KeyType,
+	public Response deleteFile(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String FileID) throws PopbillException;
 
 	/**
@@ -969,7 +969,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public abstract Response deleteFile(String CorpNum, MgtKeyType KeyType,
+	public Response deleteFile(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String FileID, String UserID)
 			throws PopbillException;
 
