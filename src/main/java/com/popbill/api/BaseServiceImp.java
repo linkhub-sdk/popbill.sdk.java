@@ -415,7 +415,7 @@ public abstract class BaseServiceImp implements BaseService {
 
 			if ((form == null || form.isEmpty()) == false) {
 				String formBody = "--" + boundary + CRLF;
-				formBody += "content-disposition: form-data; name=\"form=\""
+				formBody += "content-disposition: form-data; name=\"form\""
 						+ CRLF;
 				formBody += "content-type: Application/json; charset=utf-8"
 						+ CRLF + CRLF;
@@ -443,9 +443,12 @@ public abstract class BaseServiceImp implements BaseService {
 				while ((read = f.fileData.read(buffer, 0, buffer.length)) > 0) {
 					output.write(buffer, 0, read);
 				}
+				
+				output.write(CRLF.getBytes(Charset
+						.forName("UTF-8")));
 			}
 
-			String boundaryFooter = CRLF + "--" + boundary + "--" + CRLF;
+			String boundaryFooter = "--" + boundary + "--" + CRLF;
 			byte[] btboundaryFooter = boundaryFooter.getBytes(Charset
 					.forName("UTF-8"));
 

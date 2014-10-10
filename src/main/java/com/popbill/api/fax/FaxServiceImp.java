@@ -104,7 +104,9 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
 			String receiveName, File[] files, Date reserveDT, String UserID)
 			throws PopbillException {
-
+		
+		if(receiveNum == null || receiveNum.isEmpty()) throw new PopbillException(-99999999,"수신번호가 입력되지 않았습니다.");
+		
 		Receiver receiver = new Receiver();
 		receiver.setReceiveNum(receiveNum);
 		receiver.setReceiveName(receiveName);
@@ -129,6 +131,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		SendRequest request = new SendRequest();
 		
 		request.snd = sendNum;
+		request.rcvs = receivers;
+		
 		if (reserveDT != null)
 			request.sndDT = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(reserveDT);
 		
