@@ -32,5 +32,5 @@ public enum MgtKeyType {
 	/**
 	 * 수탁
 	 */
-	TRUST
+	TRUSTEE
 }
