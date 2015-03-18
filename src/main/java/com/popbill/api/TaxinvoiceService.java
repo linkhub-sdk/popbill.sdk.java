@@ -846,7 +846,7 @@ public interface TaxinvoiceService extends BaseService {
 			String MgtKey, String UserID) throws PopbillException;
 
 	/**
-	 * 세금계산서 팝빌 인쇄화면(공급받는자요) URL 확인.
+	 * 세금계산서 팝빌 인쇄화면(공급받는자용) URL 확인.
 	 * 
 	 * @param CorpNum
 	 *            연동회원 사업자번호
