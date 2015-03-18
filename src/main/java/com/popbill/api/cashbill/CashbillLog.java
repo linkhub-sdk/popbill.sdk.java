@@ -21,7 +21,7 @@ package com.popbill.api.cashbill;
  * @version 1.0.0
  */
 public class CashbillLog {
-	private Integer docLogTpye;
+	private Integer docLogType;
 	private String log;
 	private String procType;
 	private String procMemo;
@@ -34,8 +34,8 @@ public class CashbillLog {
 	 * 
 	 * @return the docLogTpye
 	 */
-	public Integer getDocLogTpye() {
-		return docLogTpye;
+	public Integer getDocLogType() {
+		return docLogType;
 	}
 	
 	/**

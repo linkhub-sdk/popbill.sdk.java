@@ -21,12 +21,12 @@ package com.popbill.api.statement;
  * @version 1.0.0
  */
 public class StatementLog {
-	private Integer docLogTpye;
+	private Integer docLogType;
 	private String log;
 	private String procType;
 	private String procCorpName;
 	private String procContactName;
-	private String procMeme;
+	private String procMemo;
 	private String regDT;
 	private String ip;
 	
@@ -35,8 +35,8 @@ public class StatementLog {
 	 * 
 	 * @return the docLogTpye
 	 */
-	public Integer getDocLogTpye() {
-		return docLogTpye;
+	public Integer getDocLogType() {
+		return docLogType;
 	}
 	/**
 	 * 기록 확인
@@ -75,8 +75,8 @@ public class StatementLog {
 	 * 
 	 * @return the procMeme
 	 */
-	public String getProcMeme() {
-		return procMeme;
+	public String getProcMemo() {
+		return procMemo;
 	}
 	/**
 	 * 등록일시 확인
