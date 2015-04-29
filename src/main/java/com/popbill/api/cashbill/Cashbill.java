@@ -459,7 +459,6 @@ public class Cashbill implements Serializable {
 	}
 	
 	/**
-	 * 
 	 * @return the confirmNum
 	 */
 	public String getConfirmNum() {
@@ -472,5 +471,13 @@ public class Cashbill implements Serializable {
 	public String getOrgConfirmNum() {
 		return orgConfirmNum;
 	}
-
+	
+	/**
+	 * 원본 현금영수증 국세청 승인번호 설정
+	 * 
+	 * @param orgConfirmNum
+	 */
+	public void setOrgConfirmNum(String orgConfirmNum) {
+		this.orgConfirmNum = orgConfirmNum;
+	}
 }

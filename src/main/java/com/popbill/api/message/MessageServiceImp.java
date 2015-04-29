@@ -14,7 +14,11 @@
  */
 package com.popbill.api.message;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -233,6 +237,70 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 		return httpget("/Message/" + receiptNum + "/Cancel", CorpNum, UserID,
 				Response.class);
 	}
+	
+	
+	@Override
+	public String sendMMS(String CorpNum, String sender, String receiver,
+			String receiverName, String subject, String content, File file,
+			Date reserveDT, String UserID) throws PopbillException {
+		
+		Message message = new Message();
+
+		message.setSender(sender);
+		message.setReceiver(receiver);
+		message.setReceiverName(receiverName);
+		message.setContent(content);
+		message.setSubject(subject);
+
+		return sendMMS(CorpNum, new Message[] { message },file, reserveDT, UserID);
+	}
+
+	@Override
+	public String sendMMS(String CorpNum, Message[] Messages, File file,
+			Date reserveDT, String UserID) throws PopbillException {
+		
+		return sendMMS(CorpNum, null, null, null, Messages, file, reserveDT, UserID);
+	}
+
+	@Override
+	public String sendMMS(String CorpNum, String sender, String subject,
+			String content, Message[] Messages, File file, Date reserveDT,
+			String UserID) throws PopbillException {
+		
+		if (Messages == null || Messages.length == 0)
+			throw new PopbillException(-99999999, "전송할 메시지가 입력되지 않았습니다.");
+
+		SendRequest request = new SendRequest();
+		request.snd = sender;
+		request.content = content;
+		request.subject = subject;
+
+		if (reserveDT != null)
+			request.sndDT = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA)
+					.format(reserveDT);
+
+		request.msgs = Messages;
+
+		String PostData = toJsonString(request);
+		
+		List<UploadFile> uploadFiles = new ArrayList<UploadFile>();
+		
+		UploadFile uf = new UploadFile();
+		uf.fieldName = "file";
+		uf.fileName = file.getName();
+		try {
+			uf.fileData = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			throw new PopbillException(-99999999,"전송할 파일을 찾을 수 없습니다.",e);
+		}
+		uploadFiles.add(uf);
+
+		ReceiptResponse response = httppostFiles("/MMS", CorpNum,
+				PostData, uploadFiles, UserID, ReceiptResponse.class);
+
+		return response.receiptNum;
+	}
+	
 
 	private String sendMessage(MessageType MsgType, String CorpNum,
 			String sender, String subject, String content, Message[] Messages,
@@ -276,4 +344,6 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	protected class ReceiptResponse {
 		public String receiptNum;
 	}
+
+
 }

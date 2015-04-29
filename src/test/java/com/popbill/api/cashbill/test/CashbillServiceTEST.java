@@ -14,7 +14,7 @@ import com.popbill.api.cashbill.CashbillServiceImp;
 
 public class CashbillServiceTEST {
 	private final String testLinkID = "TESTER";
-	private final String testSecretKey = "cmiKpBBUtTmhdsBRlRpjTD/ADdFynTJtmna9Yn24phc=";
+	private final String testSecretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
 	
 	private CashbillService cashbillService;
 	
@@ -50,15 +50,16 @@ public class CashbillServiceTEST {
 		
 		Cashbill cashbill = new Cashbill();
 		
-		cashbill.setMgtKey("20150318-02");
-		cashbill.setTradeType("승인거래");
-		cashbill.setFranchiseCorpNum("1234567890");
+		cashbill.setMgtKey("20150424-01");
+		cashbill.setTradeType("취소거래");
+		cashbill.setFranchiseCorpNum("4352343543");
 		cashbill.setFranchiseCorpName("발행자 상호");
 		cashbill.setFranchiseCEOName("발행자 대표자");
 		cashbill.setFranchiseAddr("발행자 주소");
 		cashbill.setFranchiseTEL("07075103710");
-		cashbill.setIdentityNum("01043245117");
-		cashbill.setCustomerName("고개명");
+		cashbill.setOrgConfirmNum("790099657");
+		cashbill.setIdentityNum("01041680206");
+		cashbill.setCustomerName("고객명");
 		cashbill.setItemName("상품명");
 		cashbill.setOrderNumber("주문번호");
 		cashbill.setEmail("test@test.com");
@@ -72,7 +73,7 @@ public class CashbillServiceTEST {
 		cashbill.setTaxationType("과세");
 		cashbill.setSmssendYN(false);
 		
-		Response response = cashbillService.register("1234567890", cashbill, "testkorea");
+		Response response = cashbillService.register("4352343543", cashbill, "weicome1");
 		assertNotNull(response);
 		System.out.println(response.getMessage());
 	}
