@@ -223,6 +223,27 @@ public interface TaxinvoiceService extends BaseService {
 	 */
 	public Response send(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo) throws PopbillException;
+	
+	/**
+	 * 정발행 세금계산서 발행예정 처리.
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param KeyType
+	 *            연동관리번호 종류
+	 * @param MgtKey
+	 *            연동관리번호
+	 * @param Memo
+	 *            처리 메모
+	 * @param EmailSubject
+	 * 			  이메일 제목
+	 * @param UserID
+	 *            회원 아이디
+	 * @return Response 응답
+	 * @throws PopbillException
+	 */
+	public Response send(String CorpNum, MgtKeyType KeyType,
+			String MgtKey, String Memo, String EmailSubject, String UserID) throws PopbillException;
 
 	/**
 	 * 정발행 세금계산서 발행예정 처리.

@@ -226,12 +226,25 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	@Override
 	public Response send(String CorpNum, MgtKeyType KeyType, String MgtKey,
 			String Memo, String UserID) throws PopbillException {
+		return send(CorpNum, KeyType, MgtKey, Memo, null,UserID);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#send(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Response send(String CorpNum, MgtKeyType KeyType, String MgtKey,
+			String Memo,String EmailSubject, String UserID) throws PopbillException {
 		if (KeyType == null)
 			throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
 
-		String PostData = toJsonString(new MemoRequest(Memo));
+		SendRequest request = new SendRequest();
+		request.memo = Memo;
+		request.emailSubject = EmailSubject;
+		
+		String PostData = toJsonString(request);
 
 		return httppost("/Taxinvoice/" + KeyType.name() + "/" + MgtKey,
 				CorpNum, PostData, UserID, "SEND", Response.class);
@@ -841,6 +854,11 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		public String memo;
 	}
 
+	protected class SendRequest {
+		public String memo;
+		public String emailSubject;
+	}
+	
 	protected class IssueRequest {
 		public String memo;
 		public String emailSubject;
