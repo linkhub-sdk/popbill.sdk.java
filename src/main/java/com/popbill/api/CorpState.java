@@ -16,8 +16,8 @@ public class CorpState implements Serializable {
 	 */
 	private static final long serialVersionUID = -8511669128205982297L;
 	private String corpNum;
-	private Integer type;
-	private Integer state;
+	private String type;
+	private String state;
 	private String stateDate;
 	private String checkDate;
 	
@@ -36,7 +36,7 @@ public class CorpState implements Serializable {
 	 * 		3 : 부가가치세 간이과세자
 	 * 		4 : 비영리법인 또는 국가기관, 고유번호가 부여된 단체
 	 */
-	public Integer getType() {
+	public String getType() {
 		return type;
 	}
 	/**
@@ -47,7 +47,7 @@ public class CorpState implements Serializable {
 	 * 		2 : 폐업
 	 * 		3 : 휴업
 	 */
-	public Integer getState() {
+	public String getState() {
 		return state;
 	}
 	/**
