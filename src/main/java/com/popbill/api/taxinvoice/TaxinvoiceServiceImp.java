@@ -851,7 +851,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	@Override 
 	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, 
 			String SDate, String EDate, String[] State, String[] Type, String[] TaxType,
-			Boolean LateOnly, Integer Page, Integer PerPage) throws PopbillException {
+			Boolean LateOnly, Integer Page, Integer PerPage, String Order) throws PopbillException {
 		
 		if (KeyType == null)
 			throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
@@ -879,8 +879,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 			uri += "&LateOnly=0";
 		}
 		
-		uri += "&Page="+Integer.toString(Page);
-		uri += "&PerPage="+Integer.toString(PerPage);
+		uri += "&Page=" + Integer.toString(Page);
+		uri += "&PerPage=" + Integer.toString(PerPage);
+		uri += "&Order=" + Order;
 		
 		return httpget(uri, CorpNum, null, TISearchResult.class);
 	}

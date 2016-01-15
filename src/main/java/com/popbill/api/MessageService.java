@@ -595,10 +595,10 @@ public interface MessageService extends BaseService {
 	 * 			페이지번호 
 	 * @param PerPage
 	 * 			페이지당 검색갯수 
-	 * @return
+	 * @return 전송내역조회결과 MSGSearchResult
 	 * @throws PopbillException
 	 */
 	public MSGSearchResult search(String CorpNum, String SDate, String EDate, 
 			String[] State, String[] Item, Boolean ReserveYN, Boolean SenderYN, 
-			int Page, int PerPage) throws PopbillException;
+			int Page, int PerPage, String Order) throws PopbillException;
 }

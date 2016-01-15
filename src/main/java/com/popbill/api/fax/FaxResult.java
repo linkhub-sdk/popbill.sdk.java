@@ -36,6 +36,7 @@ public class FaxResult {
 	private String resultDT;
 	private Integer sendResult;
 	private String[] fileNames;
+	private String receiptDT;
 
 	/**
 	 * 전송상태 확인 0 : 접수 1 : 업로드중 2 : 전송중 3 : 완료 4 : 실패 (DB항목 오류) 5 : 실패 (전송중 오류) 6
@@ -173,5 +174,16 @@ public class FaxResult {
 	public String[] getFileNames() {
 		return fileNames;
 	}
+
+	/**
+	 * 팩스전송 접수일시 확인 
+	 * 
+	 * @return 팩스전송 접수일시 
+	 */
+	public String getReceiptDT() {
+		return receiptDT;
+	}
+
+
 
 }

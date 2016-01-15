@@ -11,6 +11,7 @@ import org.junit.Test;
 import com.popbill.api.FaxService;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.fax.FAXSearchResult;
 import com.popbill.api.fax.FaxResult;
 import com.popbill.api.fax.FaxServiceImp;
 
@@ -82,7 +83,7 @@ public class FaxServiceTEST {
 		
 		assertNotNull(results);
 		
-		System.out.println(results[0].getFileNames()[1]);
+		System.out.println(results[0].getFileNames()[1] + " "+results[0].getReceiptDT());
 		
 	}
 	
@@ -97,6 +98,22 @@ public class FaxServiceTEST {
 		
 		System.out.println(response.getMessage());
 		
+	}
+	
+	@Test
+	public void search_TEST() throws PopbillException{
+		String SDate = "20151001";
+		String EDate = "20160115";
+		String[] State = {"1","2","3","4"};
+		Boolean ReserveYN = false;
+		Boolean SenderOnlyYN = false;
+		int Page = 1;
+		int PerPage = 10;
+		String Order = "A";
+		FAXSearchResult response = faxService.search("1234567890", SDate, EDate, State, ReserveYN, SenderOnlyYN, Page, PerPage, Order);
+		
+		assertNotNull(response);
+		System.out.println(response.getTotal()+" "+response.getList().get(0).getReceiptDT());
 	}
 	
 	public static Date addMinutes(Date date, int minutes)

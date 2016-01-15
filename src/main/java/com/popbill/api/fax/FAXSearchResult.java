@@ -12,20 +12,20 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.popbill.api.message;
+package com.popbill.api.fax;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * Class for Message Search Information.
+ * Class for FAX Search Information.
  * 
  * @author JeongYohan
  * @version 1.0.0
  */
-public class MSGSearchResult implements Serializable {
 
-	private static final long serialVersionUID = 2108299769673244915L;
+public class FAXSearchResult implements Serializable{
+	private static final long serialVersionUID = 5237615431260290014L;
 	
 	private String code;
 	private String total;
@@ -33,13 +33,13 @@ public class MSGSearchResult implements Serializable {
 	private String pageNum;
 	private String pageCount;
 	private String message;
-		
-	private List<SentMessage> list;
+	
+	private List<FaxResult> list;
 
 	/**
 	 * 응답코드 확인 
 	 * 
-	 * @return the code
+	 * @return 응답코드 
 	 */
 	public String getCode() {
 		return code;
@@ -48,7 +48,7 @@ public class MSGSearchResult implements Serializable {
 	/**
 	 * 전체 검색갯수 확인 
 	 * 
-	 * @return the total
+	 * @return 검색개수 
 	 */
 	public String getTotal() {
 		return total;
@@ -57,7 +57,7 @@ public class MSGSearchResult implements Serializable {
 	/**
 	 * 페이지당 목록갯수 확인 
 	 * 
-	 * @return the perPage
+	 * @return 페이지당 목록수 
 	 */
 	public String getPerPage() {
 		return perPage;
@@ -66,37 +66,36 @@ public class MSGSearchResult implements Serializable {
 	/**
 	 * 페이지번호 확인 
 	 * 
-	 * @return the pageNum
+	 * @return 페이지번호 
 	 */
 	public String getPageNum() {
 		return pageNum;
 	}
 
 	/**
-	 * 페이지갯수 확인 
-	 * @return the pageCount
+	 * 전체 페이지수 확인 
+	 * 
+	 * @return 전체 페이지수 
 	 */
 	public String getPageCount() {
 		return pageCount;
 	}
 
 	/**
-	 * 응답 메시지 확인 
+	 * 응답메시지 확인 
 	 * 
-	 * @return the message
+	 * @return 응답메시지 
 	 */
 	public String getMessage() {
 		return message;
 	}
 
 	/**
-	 * 문자전송내역 목록 확인 
+	 * 팩스전송내역 리스트 확인 
 	 * 
-	 * @return the list
+	 * @return 팩스전송내역 리스트 
 	 */
-	public List<SentMessage> getList() {
+	public List<FaxResult> getList() {
 		return list;
 	}
-
-
 }

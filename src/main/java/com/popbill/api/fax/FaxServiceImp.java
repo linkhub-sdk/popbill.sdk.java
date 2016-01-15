@@ -195,6 +195,37 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		return httpget("/FAX/" + receiptNum + "/Cancel", CorpNum, UserID,
 				Response.class);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#search(java.lang.String, java.lang.String, java.lang.String, java.lang.String[], java.lang.Boolean, java.lang.Boolean, int, int, java.lang.String)
+	 */
+	@Override
+	public FAXSearchResult search(String CorpNum, String SDate, String EDate,
+			String[] State, Boolean ReserveYN, Boolean SenderOnlyYN, int Page,
+			int PerPage, String Order) throws PopbillException {
+		if (SDate == null)
+			throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
+		if (EDate == null)
+			throw new PopbillException(-99999999, "종료일자가 입력되지 않았습니다.");
+		
+		String uri = "/FAX/Search?SDate=" + SDate;
+		uri += "&EDate=" + EDate;
+		uri += "&State=" + Arrays.toString(State)
+				.replaceAll("\\[|\\]|\\s", "");
+		
+		if (ReserveYN) {
+			uri += "&ReserveYN=1";
+		} else {
+			uri += "&ReserveYN=0";
+		}
+		
+		uri += "&Page=" + Page;
+		uri += "&PerPage=" + PerPage;
+		uri += "&Order=" + Order;
+		
+		return httpget(uri, CorpNum, null, FAXSearchResult.class);
+	}
 
 	protected class SendRequest {
 		public String snd;
@@ -207,4 +238,6 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	protected class ReceiptResponse {
 		public String receiptNum;
 	}
+
+
 }

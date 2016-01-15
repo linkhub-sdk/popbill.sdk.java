@@ -465,7 +465,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 */
 	public MSGSearchResult search(String CorpNum, String SDate, String EDate, 
 			String[] State, String[] Item, Boolean ReserveYN, Boolean SenderYN, 
-			int Page, int PerPage) throws PopbillException{
+			int Page, int PerPage, String Order) throws PopbillException{
 		if (SDate == null)
 			throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
 		if (EDate == null)
@@ -493,7 +493,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 		
 		uri += "&Page=" + Integer.toString(Page);
 		uri += "&PerPage=" + Integer.toString(PerPage);
-		
+		uri += "&Order=" + Order;
 		
 		MSGSearchResult response = httpget(uri, CorpNum, null,
 				MSGSearchResult.class);

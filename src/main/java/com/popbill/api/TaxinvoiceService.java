@@ -1019,13 +1019,16 @@ public interface TaxinvoiceService extends BaseService {
 	 * 			페이지 번호 
 	 * @param PerPage
 	 * 			페이지당 검색갯수 
+	 * @param Order
+	 * 			정렬방향 
 	 * @return Search Result. see TISearchResult 
 	 * @throws PopbillException
 	 */
 	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, 
 			String DType, String SDate, String EDate, 
 			String[] State, String[] Type, String[] TaxType, 
-			Boolean LateOnly, Integer Page, Integer PerPage) throws PopbillException;
+			Boolean LateOnly, Integer Page, Integer PerPage,
+			String Order) throws PopbillException;
 	
 	/**
 	 * 세금계산서 즉시발행 

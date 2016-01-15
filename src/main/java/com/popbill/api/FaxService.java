@@ -17,6 +17,7 @@ package com.popbill.api;
 import java.io.File;
 import java.util.Date;
 
+import com.popbill.api.fax.FAXSearchResult;
 import com.popbill.api.fax.FaxResult;
 import com.popbill.api.fax.Receiver;
 
@@ -171,4 +172,31 @@ public interface FaxService extends BaseService {
 	 */
 	public Response cancelReserve(String CorpNum, String receiptNum,
 			String UserID) throws PopbillException;
+	
+	/**
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param SDate
+	 * 			시작일자 
+	 * @param EDate
+	 * 			종료일자 
+	 * @param State
+	 * 			전송상태 
+	 * @param ReserveYN
+	 * 			예약전송여부 
+	 * @param SenderOnlyYN
+	 * 			개인조회 여부 
+	 * @param Page
+	 * 			페이지 번호 
+	 * @param PerPage
+	 * 			페이지당 목록갯수 
+	 * @param Order
+	 * 			정렬방향 
+	 * @return 팩스전송내역. see com.popbill.api.fax.FAXSearchResult
+	 * @throws PopbillException
+	 */
+	public FAXSearchResult search(String CorpNum, String SDate, String EDate,
+			String[] State, Boolean ReserveYN, Boolean SenderOnlyYN, 
+			int Page, int PerPage, String Order) throws PopbillException;
 }

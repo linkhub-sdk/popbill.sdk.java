@@ -152,7 +152,7 @@ public class MessageServiceTEST {
 		assertNotNull(messages);
 		
 		System.out.println(messages.length);
-		System.out.println(messages[0].getSendResult());		
+		System.out.println(messages[0].getSendResult() + " "+messages[0].getReceiptDT());		
 	}
 	public static Date addMinutes(Date date, int minutes)
     {
@@ -172,12 +172,13 @@ public class MessageServiceTEST {
 		Boolean SenderYN = false;
 		int Page = 1;
 		int PerPage = 50;
+		String Order = "A";
 		
-		MSGSearchResult response = messageService.search("1234567890", SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage);
+		MSGSearchResult response = messageService.search("1234567890", SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order);
 		
 		assertNotNull(response);
 		
-		System.out.println(response.getTotal() + " " + response.getList().get(0).getTranNet());
+		System.out.println(response.getTotal() + " " + response.getList().get(0).getTranNet() +" "+response.getList().get(0).getReceiptDT());
 	}
 	
 	@Test
