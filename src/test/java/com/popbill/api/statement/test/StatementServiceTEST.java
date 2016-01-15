@@ -499,6 +499,34 @@ public class StatementServiceTEST {
 		
 		assertNotNull(response);
 	}
+	
+	@Test
+	public void attachStatement_TEST() throws PopbillException {
+		int ItemCode = 121;
+		String MgtKey = "20160115-05";
+		int SubItemCode = 121;
+		String SubMgtKey = "20160115-06";
+		
+		Response response = statementService.attachStatement("1234567890", ItemCode, MgtKey, SubItemCode, SubMgtKey);
+		assertNotNull(response);
+		
+		System.out.println("["+response.getCode()+"] "+ response.getMessage());
+		
+	}
+	
+	@Test
+	public void deachStatement_TEST() throws PopbillException {
+		int ItemCode = 121;
+		String MgtKey = "20160115-05";
+		int SubItemCode = 121;
+		String SubMgtKey = "20160115-06";
+		
+		Response response = statementService.detachStatement("1234567890", ItemCode, MgtKey, SubItemCode, SubMgtKey);
+		assertNotNull(response);
+		
+		System.out.println("["+response.getCode()+"] "+ response.getMessage());
+		
+	}
 }
 
 

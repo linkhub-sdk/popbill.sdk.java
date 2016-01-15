@@ -703,6 +703,45 @@ public interface StatementService extends BaseService{
 	public Response registIssue(String CorpNum, Statement statement,
 			String Memo, String UserID)
 			throws PopbillException;
+	
+	/**
+	 * 다른 전자명세서 첨부 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param ItemCode
+	 * 			명세서 코드 
+	 * @param MgtKey
+	 * 			명세서 관리번호 
+	 * @param SubItemCode
+	 * 			첨부할 명세서 코드 
+	 * @param SubMgtKey
+	 * 			첨부할 명세서 관리번호 
+	 * @return Response.
+	 * @throws PopbillException
+	 */
+	public Response attachStatement(String CorpNum, int ItemCode, String MgtKey,
+			int SubItemCode, String SubMgtKey) throws PopbillException;
+	
+	
+	/**
+	 * 다른 전자명세서 첨부해제 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param ItemCode
+	 * 			명세서 코드 
+	 * @param MgtKey
+	 * 			명세서 관리번호 
+	 * @param SubItemCode
+	 * 			첨부해제할 명세서 코드 
+	 * @param SubMgtKey
+	 * 			첨부해제할 명세서 관리번호 
+	 * @return Response.
+	 * @throws PopbillException
+	 */
+	public Response detachStatement(String CorpNum, int ItemCode, String MgtKey,
+			int SubItemCode, String SubMgtKey) throws PopbillException;
 }
 
 

@@ -576,6 +576,41 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 		return httppost("/Statement",
 				CorpNum, PostData, UserID, "ISSUE", Response.class);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.StatementService#attachStatement(java.lang.String, int, java.lang.String, int, java.lang.String)
+	 */
+	@Override
+	public Response attachStatement(String CorpNum, int ItemCode, String MgtKey,
+				int SubItemCode, String SubMgtKey) throws PopbillException{
+		DocRequest request = new DocRequest();
+		request.ItemCode = SubItemCode;
+		request.MgtKey = SubMgtKey;
+				
+		String PostData = toJsonString(request);
+		
+		return httppost("/Statement/" + ItemCode + "/" + MgtKey + "/AttachStmt/",
+				CorpNum, PostData, null, Response.class);
+		
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.StatementService#detachStatement(java.lang.String, int, java.lang.String, int, java.lang.String)
+	 */
+	@Override
+	public Response detachStatement(String CorpNum, int ItemCode, String MgtKey,
+				int SubItemCode, String SubMgtKey) throws PopbillException{
+		DocRequest request = new DocRequest();
+		request.ItemCode = SubItemCode;
+		request.MgtKey = SubMgtKey;
+				
+		String PostData = toJsonString(request);
+		
+		return httppost("/Statement/" + ItemCode + "/" + MgtKey + "/DetachStmt/",
+				CorpNum, PostData, null, Response.class);
+	}
 		
 	protected class MemoRequest {
 		public MemoRequest(String memo) {
@@ -593,6 +628,11 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 	
 	protected class ReceiptResponse {
 		public String receiptNum;
+	}
+	
+	protected class DocRequest{
+		public int ItemCode;
+		public String MgtKey;
 	}
 
 }

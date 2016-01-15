@@ -1028,6 +1028,7 @@ public interface TaxinvoiceService extends BaseService {
 			Boolean LateOnly, Integer Page, Integer PerPage) throws PopbillException;
 	
 	/**
+	 * 세금계산서 즉시발행 
 	 * 
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
@@ -1042,6 +1043,7 @@ public interface TaxinvoiceService extends BaseService {
 			Boolean WriteSpecification) throws PopbillException; 
 			
 	/**
+	 * 세금계산서 즉시발행 
 	 * 
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
@@ -1058,6 +1060,7 @@ public interface TaxinvoiceService extends BaseService {
 			String Memo, Boolean ForceIssue) throws PopbillException;
 	
 	/**
+	 * 세금계산서 즉시발행 
 	 * 
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
@@ -1079,6 +1082,7 @@ public interface TaxinvoiceService extends BaseService {
 			String DealInvoiceKey) throws PopbillException;
 	
 	/**
+	 * 세금계산서 즉시발행 
 	 * 
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
@@ -1103,5 +1107,43 @@ public interface TaxinvoiceService extends BaseService {
 			Boolean WriteSpecification, String Memo, Boolean ForceIssue,
 			String DealInvoiceKey, String EmailSubject, String UserID)
 			throws PopbillException;
+	
+	/**
+	 * 전자명세서 첨부 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param KeyType
+	 * 			발행유형 
+	 * @param MgtKey
+	 * 			세금계산서 관리번호 
+	 * @param SubItemCode
+	 * 			첨부할 명세서 코드 
+	 * @param SubMgtKey
+	 * 			첨부할 명세서 관리번호 
+	 * @return Response. 
+	 * @throws PopbillException
+	 */
+	public Response attachStatement(String CorpNum, MgtKeyType KeyType,
+			String MgtKey, int SubItemCode, String SubMgtKey) throws PopbillException;
+	/**
+	 * 전자명세서 첨부해제 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param KeyType
+	 * 			발행유형 
+	 * @param MgtKey
+	 * 			세금계산서 관리번호 
+	 * @param SubItemCode
+	 * 			첨부해제할 명세서 코드 
+	 * @param SubMgtKey
+	 * 			첨부해제할 명세서 관리번호 
+	 * @return Response. 
+	 * @throws PopbillException
+	 */
+	public Response detachStatement(String CorpNum, MgtKeyType KeyType,
+			String MgtKey, int SubItemCode, String SubMgtKey) throws PopbillException;
+	
 	
 }

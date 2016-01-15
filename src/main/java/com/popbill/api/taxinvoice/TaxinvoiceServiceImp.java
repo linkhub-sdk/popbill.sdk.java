@@ -952,6 +952,42 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		return httppost("/Taxinvoice", CorpNum, PostData, 
 				UserID, "ISSUE", Response.class);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#attachStatement(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, int, java.lang.String)
+	 */
+	@Override 
+	public Response attachStatement(String CorpNum, MgtKeyType KeyType, String MgtKey,
+			int SubItemCode, String SubMgtKey) throws PopbillException {
+		
+		DocRequest request = new DocRequest();
+		request.ItemCode = Integer.toString(SubItemCode);
+		request.MgtKey = SubMgtKey;
+		
+		String PostData = toJsonString(request);
+		
+		return httppost("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "/AttachStmt",
+				CorpNum, PostData, null, "", Response.class);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#detachStatement(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, int, java.lang.String)
+	 */
+	@Override 
+	public Response detachStatement(String CorpNum, MgtKeyType KeyType, String MgtKey,
+			int SubItemCode, String SubMgtKey) throws PopbillException {
+		
+		DocRequest request = new DocRequest();
+		request.ItemCode = Integer.toString(SubItemCode);
+		request.MgtKey = SubMgtKey;
+		
+		String PostData = toJsonString(request);
+		
+		return httppost("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "/DetachStmt",
+				CorpNum, PostData, null, "", Response.class);
+	}
 
 	protected class CertResponse {
 		public String certificateExpiration;
@@ -980,6 +1016,11 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		public String receiver;
 		public String sender = null;
 		public String contents = null;
+	}
+	
+	protected class DocRequest {
+		public String ItemCode;
+		public String MgtKey;
 	}
 	
 	
