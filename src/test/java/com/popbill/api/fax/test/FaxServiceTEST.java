@@ -17,7 +17,7 @@ import com.popbill.api.fax.FaxServiceImp;
 public class FaxServiceTEST {
 
 	private final String testLinkID = "TESTER";
-	private final String testSecretKey = "CBn0ItMJUFt036KQLgZXOhlPfYUTh1C/pkiq/+FhycE=";
+	private final String testSecretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
 
 	private FaxService faxService;
 	
@@ -76,13 +76,13 @@ public class FaxServiceTEST {
 	@Test
 	public void getFaxResult_TEST() throws PopbillException {
 		
-		String receiptNum = "014101010184200001";
+		String receiptNum = "015122413083700001";
 		
-		FaxResult[] results = faxService.getFaxResult("1231212312", receiptNum);
+		FaxResult[] results = faxService.getFaxResult("1234567890", receiptNum);
 		
 		assertNotNull(results);
 		
-		System.out.println(results[0].getSendPageCnt());
+		System.out.println(results[0].getFileNames()[1]);
 		
 	}
 	
