@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
+import java.util.zip.GZIPInputStream;
 
 import kr.co.linkhub.auth.LinkhubException;
 import kr.co.linkhub.auth.Token;
@@ -127,7 +128,7 @@ public abstract class BaseServiceImp implements BaseService {
 
 		return tokenBuilder;
 	}
-
+	
 	private String getSessionToken(String CorpNum, String ForwardIP)
 			throws PopbillException {
 
@@ -135,6 +136,7 @@ public abstract class BaseServiceImp implements BaseService {
 			throw new PopbillException(-99999999, "회원 사업자번호가 입력되지 않았습니다.");
 
 		Token token = null;
+		Date UTCTime = null;
 
 		if (tokenTable.containsKey(CorpNum))
 			token = tokenTable.get(CorpNum);
@@ -142,12 +144,26 @@ public abstract class BaseServiceImp implements BaseService {
 		boolean expired = true;
 
 		if (token != null) {
+			
 			SimpleDateFormat format = new SimpleDateFormat(
 					"yyyy-MM-dd'T'HH:mm:ss.sss'Z'");
 			format.setTimeZone(TimeZone.getTimeZone("UTC"));
+			
+			SimpleDateFormat subFormat = new SimpleDateFormat(
+					"yyyy-MM-dd'T'HH:mm:ss'Z'");
+			subFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+			
+			try {
+				UTCTime = subFormat.parse(getTokenbuilder().getTime());
+				
+			} catch (LinkhubException le){
+				throw new PopbillException(le);
+			} catch (ParseException e){
+			}
+			
 			try {
 				Date expiration = format.parse(token.getExpiration());
-				expired = expiration.before(new Date());
+				expired = expiration.before(UTCTime);
 			} catch (ParseException e) {
 			}
 		}
@@ -225,7 +241,65 @@ public abstract class BaseServiceImp implements BaseService {
 		return httpget("/Join?CorpNum=" + CorpNum + "&LID=" + LinkID, null,
 				null, Response.class);
 	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.BaseService#listContact(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public ContactInfo[] listContact(String CorpNum, String UserID) 
+			throws PopbillException {
+			
+		return httpget("/IDs", CorpNum, UserID, ContactInfo[].class);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.BaseService#updateContactMember(java.lang.String, com.popbill.api.ContactInfo, java.lang.String)
+	 */
+	@Override
+	public Response updateContact(String CorpNum, ContactInfo contactInfo, String UserID) throws PopbillException {
+		String postData = toJsonString(contactInfo);
 
+		return httppost("/IDs", CorpNum, postData, UserID, Response.class);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.BaseService#registContactMember(java.lang.String, com.popbill.api.ContactInfo, java.lang.String)
+	 */
+	@Override
+	public Response registContact(String CorpNum, ContactInfo contactInfo, String UserID) throws PopbillException {
+		String postData = toJsonString(contactInfo);
+
+		return httppost("/IDs/New", CorpNum, postData, UserID, Response.class);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.BaseService#checkID(java.lang.String)
+	 */
+	@Override
+	public Response checkID(String CheckID) throws PopbillException {
+		
+		return httpget("/IDCheck?ID="+CheckID, null, null, Response.class);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.BaseService#getCorpInfo(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public CorpInfo getCorpInfo(String CorpNum, String UserID) throws PopbillException {
+		
+		return httpget("/CorpInfo", CorpNum, UserID, CorpInfo.class);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.BaseService#updateCorpInfo(java.lang.String, com.popbill.api.CorpInfo, java.lang.String)
+	 */
+	@Override
+	public Response updateCorpInfo(String CorpNum, CorpInfo corpInfo, String UserID) throws PopbillException {
+		String postData = toJsonString(corpInfo);
+
+		return httppost("/CorpInfo", CorpNum, postData, UserID, Response.class);
+	}
+	
 	/**
 	 * Convert Object to Json String.
 	 * 
@@ -299,6 +373,9 @@ public abstract class BaseServiceImp implements BaseService {
 
 		httpURLConnection.setRequestProperty("Content-Type",
 				"application/json; charset=utf8");
+		
+		httpURLConnection.setRequestProperty("Accept-Encoding",
+				"gzip");
 
 		if (UserID != null && UserID.isEmpty() == false) {
 			httpURLConnection.setRequestProperty("x-pb-userid", UserID);
@@ -336,7 +413,11 @@ public abstract class BaseServiceImp implements BaseService {
 
 		try {
 			InputStream input = httpURLConnection.getInputStream();
-			Result = fromStream(input);
+			if (httpURLConnection.getContentEncoding().equals("gzip")) {
+				Result = fromGzipStream(input);
+			}else {
+				Result = fromStream(input);
+			}
 			input.close();
 		} catch (IOException e) {
 
@@ -399,6 +480,9 @@ public abstract class BaseServiceImp implements BaseService {
 		if (UserID != null && UserID.isEmpty() == false) {
 			httpURLConnection.setRequestProperty("x-pb-userid", UserID);
 		}
+		
+		httpURLConnection.setRequestProperty("Accept-Encoding",
+				"gzip");
 
 		try {
 			httpURLConnection.setRequestMethod("POST");
@@ -465,7 +549,11 @@ public abstract class BaseServiceImp implements BaseService {
 
 		try {
 			InputStream input = httpURLConnection.getInputStream();
-			Result = fromStream(input);
+			if (httpURLConnection.getContentEncoding().equals("gzip")) {
+				Result = fromGzipStream(input);
+			}else {
+				Result = fromStream(input);
+			}
 			input.close();
 		} catch (IOException e) {
 
@@ -519,12 +607,19 @@ public abstract class BaseServiceImp implements BaseService {
 		if (UserID != null && UserID.isEmpty() == false) {
 			httpURLConnection.setRequestProperty("x-pb-userid", UserID);
 		}
+		
+		httpURLConnection.setRequestProperty("Accept-Encoding",
+				"gzip");
 
 		String Result = "";
 
 		try {
 			InputStream input = httpURLConnection.getInputStream();
-			Result = fromStream(input);
+			if (httpURLConnection.getContentEncoding().equals("gzip")) {
+				Result = fromGzipStream(input);
+			}else {
+				Result = fromStream(input);
+			}
 			input.close();
 		} catch (IOException e) {
 
@@ -588,6 +683,23 @@ public abstract class BaseServiceImp implements BaseService {
 
 		InputStreamReader is = new InputStreamReader(input,
 				Charset.forName("UTF-8"));
+		StringBuilder sb = new StringBuilder();
+		BufferedReader br = new BufferedReader(is);
+
+		String read = br.readLine();
+
+		while (read != null) {
+			sb.append(read);
+			read = br.readLine();
+		}
+
+		return sb.toString();
+	}
+	
+	private static String fromGzipStream(InputStream input) throws IOException {
+
+		GZIPInputStream zipReader = new GZIPInputStream(input);
+		InputStreamReader is = new InputStreamReader(zipReader);
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br = new BufferedReader(is);
 

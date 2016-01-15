@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import org.junit.Test;
@@ -16,6 +17,7 @@ import com.popbill.api.Response;
 import com.popbill.api.TaxinvoiceService;
 import com.popbill.api.taxinvoice.EmailPublicKey;
 import com.popbill.api.taxinvoice.MgtKeyType;
+import com.popbill.api.taxinvoice.TISearchResult;
 import com.popbill.api.taxinvoice.Taxinvoice;
 import com.popbill.api.taxinvoice.TaxinvoiceDetail;
 import com.popbill.api.taxinvoice.TaxinvoiceInfo;
@@ -25,7 +27,7 @@ import com.popbill.api.taxinvoice.TaxinvoiceServiceImp;
 public class TaxinvoiceServiceTEST {
 
 	private final String testLinkID = "TESTER";
-	private final String testSecretKey = "PSVh7+mTe1b2av+PeZEiDdwuAXq2LU1JeiMfWFhbL00=";
+	private final String testSecretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
 
 	private TaxinvoiceService taxinvoiceService;
 	
@@ -455,11 +457,11 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void getInfo_TEST() throws PopbillException {
 	
-		TaxinvoiceInfo taxinvoiceInfo = taxinvoiceService.getInfo("1231212312",
-				MgtKeyType.SELL, "1234");
+		TaxinvoiceInfo taxinvoiceInfo = taxinvoiceService.getInfo("1234567890",
+				MgtKeyType.SELL, "20160114-01");
 
 		assertNotNull(taxinvoiceInfo);
-		System.out.println(taxinvoiceInfo);
+		System.out.println("[getInfo API] - "+taxinvoiceInfo.getLateIssueYN());
 	}
 
 	@Test
@@ -586,5 +588,118 @@ public class TaxinvoiceServiceTEST {
 		System.out.println(response.getMessage());
 
 	}
+	
+	@Test
+	public void search_TEST() throws PopbillException{
+		TISearchResult response = new TISearchResult();
+		
+		String DType = "I";
+		String SDate = "20160110";
+		String EDate = "20160114";
+		String[] State = {"100", "2**", "3**"};
+		String[] Type = {"N", "M"};
+		String[] TaxType = {"T","Z"};
+		Boolean LateOnly = false;
+		int Page = 1;
+		int PerPage = 30;
+				
+		
+		response = taxinvoiceService.Search("1234567890", MgtKeyType.SELL, DType, 
+				SDate, EDate, State, Type, TaxType, LateOnly, Page, PerPage);
+		
+		assertNotNull(response);
+		
+		
+		System.out.println("Search API - " + response.getTotal() + " " + response.getList().get(2).getInvoiceeCorpNum());
+	}
+	
+	@Test
+	
+	public void RegistIssue_TEST() throws PopbillException {
+		Taxinvoice taxinvoice = new Taxinvoice();
 
+		taxinvoice.setWriteDate("20160115"); // 필수, 기재상 작성일자
+		taxinvoice.setChargeDirection("정과금"); // 필수, {정과금, 역과금}
+		taxinvoice.setIssueType("정발행"); // 필수, {정발행, 역발행, 위수탁}
+		taxinvoice.setPurposeType("영수"); // 필수, {영수, 청구}
+		taxinvoice.setIssueTiming("직접발행"); // 필수, {직접발행, 승인시자동발행}
+		taxinvoice.setTaxType("과세"); // 필수, {과세, 영세, 면세}
+
+		taxinvoice.setInvoicerCorpNum("1234567890");
+		taxinvoice.setInvoicerTaxRegID("0000"); // 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
+		taxinvoice.setInvoicerCorpName("공급자 상호");
+		taxinvoice.setInvoicerMgtKey("20160115-06"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
+												// 동일한 형태로 추가 기재.
+		taxinvoice.setInvoicerCEOName("공급자 대표자 성명");
+		taxinvoice.setInvoicerAddr("공급자 주소");
+		taxinvoice.setInvoicerBizClass("공급자 업종");
+		taxinvoice.setInvoicerBizType("공급자 업태,업태2");
+		taxinvoice.setInvoicerContactName("공급자 담당자명");
+		taxinvoice.setInvoicerEmail("test@test.com");
+		taxinvoice.setInvoicerTEL("070-7070-0707");
+		taxinvoice.setInvoicerHP("010-000-2222");
+		taxinvoice.setInvoicerSMSSendYN(false); // 발행시 문자발송기능 사용시 활용
+
+		taxinvoice.setInvoiceeType("사업자");
+		taxinvoice.setInvoiceeCorpNum("8888888888");
+		taxinvoice.setInvoiceeCorpName("공급받는자 상호");
+		taxinvoice.setInvoiceeMgtKey(null); // 문서관리번호 1~24자리까지 공급받는자 사업자번호별 중복없는
+											// 고유번호 할당
+		taxinvoice.setInvoiceeCEOName("공급받는자 대표자 성명");
+		taxinvoice.setInvoiceeAddr("공급받는자 주소");
+		taxinvoice.setInvoiceeBizClass("공급받는자 업종");
+		taxinvoice.setInvoiceeBizType("공급받는자 업태");
+		taxinvoice.setInvoiceeContactName1("공급받는자 담당자명");
+		taxinvoice.setInvoiceeEmail1("frenchofkiss@gmail.com");
+
+		taxinvoice.setSupplyCostTotal("100000"); // 필수 공급가액 합계"
+		taxinvoice.setTaxTotal("10000"); // 필수 세액 합계
+		taxinvoice.setTotalAmount("110000"); // 필수 합계금액. 공급가액 + 세액
+
+		taxinvoice.setModifyCode(null); // 수정세금계산서 작성시 1~6까지 선택기재.
+		taxinvoice.setOriginalTaxinvoiceKey(""); // 수정세금계산서 작성시 원본세금계산서의
+													// ItemKey기재. ItemKey는 문서확인.
+		taxinvoice.setSerialNum("123");
+		taxinvoice.setCash(""); // 현금
+		taxinvoice.setChkBill(""); // 수표
+		taxinvoice.setNote(""); // 어음
+		taxinvoice.setCredit(""); // 외상미수금
+		taxinvoice.setRemark1("비고1");
+		taxinvoice.setRemark2("비고2");
+		taxinvoice.setRemark3("비고3");
+		taxinvoice.setKwon((short) 1);
+		taxinvoice.setHo((short) 1);
+
+		taxinvoice.setBusinessLicenseYN(false); // 사업자등록증 이미지 첨부시 설정.
+		taxinvoice.setBankBookYN(false); // 통장사본 이미지 첨부시 설정.
+
+		taxinvoice.setDetailList(new ArrayList<TaxinvoiceDetail>());
+
+		TaxinvoiceDetail detail = new TaxinvoiceDetail();
+
+		detail.setSerialNum((short) 1); // 일련번호
+		detail.setPurchaseDT("20160115"); // 거래일자
+		detail.setItemName("품목명");
+		detail.setSpec("규격");
+		detail.setQty("1"); // 수량
+		detail.setUnitCost("100000"); // 단가
+		detail.setSupplyCost("100000"); // 공급가액
+		detail.setTax("10000"); // 세액
+		detail.setRemark("품목비고");
+
+		taxinvoice.getDetailList().add(detail);
+
+		detail = new TaxinvoiceDetail();
+
+		detail.setSerialNum((short) 2);
+		detail.setItemName("품목명");
+
+		taxinvoice.getDetailList().add(detail);
+
+		Response response = taxinvoiceService.registIssue("1234567890", taxinvoice, true, "즉시발행 메모야", true, "201600001", "메일제목이라네", "testkorea");
+		
+		assertNotNull(response);
+
+		System.out.println("["+response.getCode()+"] "+response.getMessage());
+	}
 }

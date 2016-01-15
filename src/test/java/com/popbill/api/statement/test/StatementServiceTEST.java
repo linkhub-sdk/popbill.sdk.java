@@ -23,7 +23,7 @@ import com.popbill.api.statement.StatementServiceImp;
 
 public class StatementServiceTEST {
 	private final String testLinkID = "TESTER";
-	private final String testSecretKey = "cmiKpBBUtTmhdsBRlRpjTD/ADdFynTJtmna9Yn24phc=";
+	private final String testSecretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
 	
 	private StatementService statementService;
 	
@@ -363,7 +363,142 @@ public class StatementServiceTEST {
 	}
 	
 	
+	@Test
+	public void FAXSend_TEST() throws PopbillException{
+		Statement statement = new Statement();
+		
+		statement.setWriteDate("20160115");
+		statement.setPurposeType("영수");
+		statement.setTaxType("과세");
+		statement.setFormCode("");
+		statement.setItemCode((short) 121);
+		statement.setMgtKey("20160115-01");
+		statement.setSenderCorpNum("1234567890");
+		statement.setSenderCorpName("공급자 상호");
+		statement.setSenderAddr("공급자 주소");
+		statement.setSenderCEOName("공급자 대표자 성명");
+		statement.setSenderTaxRegID("");
+		statement.setSenderBizClass("업종");
+		statement.setSenderBizType("업태");
+		statement.setSenderContactName("공급자 담당자명");
+		statement.setSenderEmail("test@test.com");
+        statement.setSenderTEL("070-7070-0707");
+        
+        statement.setSenderHP("010-000-2222");
+        statement.setReceiverCorpNum("8888888888");
+        statement.setReceiverCorpName("공급받는자 상호");
+        statement.setReceiverCEOName("공급받는자 대표자 성명");
+        statement.setReceiverAddr("공급받는자 주소");
+        statement.setReceiverBizClass("공급받는자 업종");
+        statement.setReceiverBizType("공급받는자 업태");
+        statement.setReceiverContactName("공급받는자 담당자명");
+        statement.setReceiverEmail("test@receiver.com");
+
+        statement.setSupplyCostTotal("200000");         //필수 공급가액 합계
+        statement.setTaxTotal("20000");                 //필수 세액 합계
+        statement.setTotalAmount("220000");             //필수 합계금액.  공급가액 + 세액
+
+        statement.setSerialNum("123");                 //기재상 일련번호 항목
+        statement.setRemark1("비고1");
+        statement.setRemark2("비고2");
+        statement.setRemark3("비고3");
+
+        statement.setBusinessLicenseYN(false); //사업자등록증 이미지 첨부시 설정.
+        statement.setBankBookYN(false);         //통장사본 이미지 첨부시 설정.
+        
+                
+        Map<String, String> propertyBag = new HashMap<String, String>();
+        
+        propertyBag.put("Balance", "15000");
+        propertyBag.put("Deposit", "5000");
+        propertyBag.put("CBalance", "20000");
+        
+        statement.setDetailList(new ArrayList<StatementDetail>());
+        StatementDetail detail = new StatementDetail();
+        detail.setSerialNum((short) 1);
+        detail.setItemName("품명");
+        detail.setPurchaseDT("20150317");
+        detail.setQty("1");
+        detail.setSupplyCost("200000");
+        detail.setTax("20000");
+        
+        statement.getDetailList().add(detail);
+        
+		statement.setPropertyBag(propertyBag);
+		String response = statementService.FAXSend("1234567890", statement, "07075103710", "0264429700", "testkorea");
+		System.out.println(response);
+		
+		assertNotNull(response);
+	}
 	
+	@Test 
+	public void RegistIssue_TEST() throws PopbillException{
+		Statement statement = new Statement();
+		
+		statement.setWriteDate("20160115");
+		statement.setPurposeType("영수");
+		statement.setTaxType("과세");
+		statement.setFormCode("");
+		statement.setItemCode((short) 121);
+		statement.setMgtKey("20160115-06");
+		statement.setSenderCorpNum("1234567890");
+		statement.setSenderCorpName("공급자 상호");
+		statement.setSenderAddr("공급자 주소");
+		statement.setSenderCEOName("공급자 대표자 성명");
+		statement.setSenderTaxRegID("");
+		statement.setSenderBizClass("업종");
+		statement.setSenderBizType("업태");
+		statement.setSenderContactName("공급자 담당자명");
+		statement.setSenderEmail("test@test.com");
+        statement.setSenderTEL("070-7070-0707");
+        
+        statement.setSenderHP("010-000-2222");
+        statement.setReceiverCorpNum("8888888888");
+        statement.setReceiverCorpName("공급받는자 상호");
+        statement.setReceiverCEOName("공급받는자 대표자 성명");
+        statement.setReceiverAddr("공급받는자 주소");
+        statement.setReceiverBizClass("공급받는자 업종");
+        statement.setReceiverBizType("공급받는자 업태");
+        statement.setReceiverContactName("공급받는자 담당자명");
+        statement.setReceiverEmail("test@test.com");
+
+        statement.setSupplyCostTotal("200000");         //필수 공급가액 합계
+        statement.setTaxTotal("20000");                 //필수 세액 합계
+        statement.setTotalAmount("220000");             //필수 합계금액.  공급가액 + 세액
+
+        statement.setSerialNum("123");                 //기재상 일련번호 항목
+        statement.setRemark1("비고1");
+        statement.setRemark2("비고2");
+        statement.setRemark3("비고3");
+
+        statement.setBusinessLicenseYN(false); //사업자등록증 이미지 첨부시 설정.
+        statement.setBankBookYN(false);         //통장사본 이미지 첨부시 설정.
+        
+                
+        Map<String, String> propertyBag = new HashMap<String, String>();
+        
+        propertyBag.put("Balance", "15000");
+        propertyBag.put("Deposit", "5000");
+        propertyBag.put("CBalance", "20000");
+        
+        statement.setDetailList(new ArrayList<StatementDetail>());
+        StatementDetail detail = new StatementDetail();
+        detail.setSerialNum((short) 1);
+        detail.setItemName("품명");
+        detail.setPurchaseDT("20150317");
+        detail.setQty("1");
+        detail.setSupplyCost("200000");
+        detail.setTax("20000");
+        
+        statement.getDetailList().add(detail);
+        
+		statement.setPropertyBag(propertyBag);
+		
+		Response response = statementService.registIssue("1234567890", statement, "전자명세서 즉시발행 메모", "testkorea");
+		System.out.println("[" + response.getCode() + "] " + response.getMessage());
+		
+		assertNotNull(response);
+	}
 }
 
 

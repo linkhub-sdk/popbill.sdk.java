@@ -225,6 +225,39 @@ public class CashbillServiceTEST {
 		assertNotNull(response);
 		System.out.println(response.getMessage());
 	}
+	
+	@Test
+	public void registIssue_TEST() throws PopbillException {
+		
+		Cashbill cashbill = new Cashbill();
+		
+		cashbill.setMgtKey("20160115-03");
+		cashbill.setTradeType("승인거래");
+		cashbill.setFranchiseCorpNum("1234567890");
+		cashbill.setFranchiseCorpName("발행자 상호");
+		cashbill.setFranchiseCEOName("발행자 대표자");
+		cashbill.setFranchiseAddr("발행자 주소");
+		cashbill.setFranchiseTEL("07075103710");
+		
+		cashbill.setIdentityNum("01043245117");
+		cashbill.setCustomerName("고객명");
+		cashbill.setItemName("상품명");
+		cashbill.setOrderNumber("주문번호");
+		cashbill.setEmail("test@test.com");
+		cashbill.setHp("01043245117");
+		cashbill.setFax("07075103710");
+		cashbill.setServiceFee("0");
+		cashbill.setSupplyCost("10000");
+		cashbill.setTax("1000");
+		cashbill.setTotalAmount("11000");
+		cashbill.setTradeUsage("소득공제용");
+		cashbill.setTaxationType("과세");
+		cashbill.setSmssendYN(false);
+		
+		Response response = cashbillService.registIssue("1234567890", cashbill, "즉시발행 메모");
+		assertNotNull(response);
+		System.out.println("[" + response.getCode() + "] "+ response.getMessage());
+	}
 }
 
 

@@ -626,6 +626,83 @@ public interface StatementService extends BaseService{
 	public Response deleteFile(String CorpNum, int ItemCode, 
 			String MgtKey, String FileID, String UserID) 
 			throws PopbillException;
+	
+	
+	/**
+	 * 명세서 1건 선팩스전송 
+
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param statement		
+	 * 			명세서 정보.(see. com.popbill.api.statement.Statement)
+	 * @return receiptNum 
+	 * 			팩스전송 접수번호 
+	 * @throws PopbillException
+	 */
+	public String FAXSend(String CorpNum, Statement statement, String SendNum, String receiveNum) 
+			throws PopbillException;
+	/**
+	 * 명세서 1건 선팩스전송 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param statement		
+	 * 			명세서 정보.(see. com.popbill.api.statement.Statement)
+	 * @param UserID
+	 * 			연동회원아이디
+	 * @return receiptNum 
+	 * 			팩스전송 접수번호 
+	 * @throws PopbillException
+	 */
+	public String FAXSend(String CorpNum, Statement statement, 
+			String sendNum, String receiveNum,
+			String UserID) throws PopbillException;
+	
+	/**
+	 * 명세서 즉시밣행 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param statement
+	 * 			전자명세서 객체. see com.popbill.api.statement
+	 * @return Response 
+	 * @throws PopbillException
+	 */
+	public Response registIssue(String CorpNum, Statement statement) 
+			throws PopbillException;
+
+	/**
+	 * 명세서 즉시발행 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param statement
+	 * 			전자명세서 객체. see com.popbill.api.statement
+	 * @param Memo
+	 * 			메모  
+	 * @return Response 
+	 * @throws PopbillException
+	 */
+	public Response registIssue(String CorpNum, Statement statement,
+			String Memo) throws PopbillException;
+	
+	/**
+	 * 명세서 즉시발행 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param statement
+	 * 			전자명세서 객체. see com.popbill.api.statement
+	 * @param Memo
+	 * 			메모  
+	 * @param UserID
+	 * 			연동회원 아이디 
+	 * @return Response 
+	 * @throws PopbillException
+	 */
+	public Response registIssue(String CorpNum, Statement statement,
+			String Memo, String UserID)
+			throws PopbillException;
 }
 
 

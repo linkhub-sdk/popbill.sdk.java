@@ -841,6 +841,117 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 				+ "/Files/" + FileID, CorpNum, null, UserID, "DELETE",
 				Response.class);
 	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#Search(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, 
+	 * 													java.lang.String, java.lang.String, java.lang.String[], java.lang.String[],
+	 * 													boolean, integer, integer)
+	 */
+	
+	@Override 
+	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, 
+			String SDate, String EDate, String[] State, String[] Type, String[] TaxType,
+			Boolean LateOnly, Integer Page, Integer PerPage) throws PopbillException {
+		
+		if (KeyType == null)
+			throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+		if (DType == null || DType.isEmpty())
+			throw new PopbillException(-99999999, "검색일자 유형이 입력되지 않았습니다.");
+		if (SDate == null || SDate.isEmpty())
+			throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
+		if (EDate == null || EDate.isEmpty())
+			throw new PopbillException(-99999999, "종료일자가 입력되지 않았습니다.");
+		
+		String uri = "/Taxinvoice/" + KeyType;
+		uri += "?DType=" + DType;
+		uri += "&SDate=" + SDate;
+		uri += "&EDate=" + EDate;
+		uri += "&State=" + Arrays.toString(State)
+				.replaceAll("\\[|\\]|\\s", "");
+		uri += "&Type=" + Arrays.toString(Type)
+				.replaceAll("\\[|\\]|\\s", "");
+		uri += "&TaxType=" + Arrays.toString(TaxType)
+				.replaceAll("\\[|\\]|\\s", "");
+		
+		if(LateOnly){
+			uri += "&LateOnly=1";
+		} else{
+			uri += "&LateOnly=0";
+		}
+		
+		uri += "&Page="+Integer.toString(Page);
+		uri += "&PerPage="+Integer.toString(PerPage);
+		
+		return httpget(uri, CorpNum, null, TISearchResult.class);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#registIssue(java.lang.String, com.popbill.api.Taxinvoice, Boolean)
+	 */
+	@Override
+	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
+			Boolean WriteSpecification) throws PopbillException {
+		
+		return registIssue(CorpNum, taxinvoice, WriteSpecification, null, false, null, null, null);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#registIssue(java.lang.String, com.popbill.api.Taxinvoice, String, Boolean)
+	 */
+	@Override
+	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
+			String Memo, Boolean ForceIssue) throws PopbillException {
+		
+		return registIssue(CorpNum, taxinvoice, false, Memo, ForceIssue, null, null, null);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#registIssue(java.lang.String, com.popbill.api.Taxinvoice, Boolean, java.lang.string,
+	 * 														Boolean, java.lang.String)
+	 */
+	@Override
+	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
+			Boolean WriteSpecification, String Memo, Boolean ForceIssue,
+			String DealInvoiceKey) throws PopbillException {
+		
+		return registIssue(CorpNum, taxinvoice, WriteSpecification, Memo, ForceIssue, DealInvoiceKey, null, null);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#registIssue(java.lang.String, com.popbill.api.Taxinvoice, Boolean, java.lang.string,
+	 * 														Boolean, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
+			Boolean WriteSpecification, String Memo, Boolean ForceIssue,
+			String DealInvoiceKey, String EmailSubject, String UserID)
+			throws PopbillException {
+		
+		if (taxinvoice == null)
+			throw new PopbillException(-99999999, "세금계산서 정보가 입력되지 않았습니다.");
+
+		if (WriteSpecification) 
+			taxinvoice.setWriteSpecification(true);
+		
+		if (Memo != null)
+			taxinvoice.setMemo(Memo);
+		
+		if (ForceIssue) 
+			taxinvoice.setForceIssue(true);
+		
+		
+		if (DealInvoiceKey != null)
+			taxinvoice.setDealInvoiceMgtKey(DealInvoiceKey);
+		
+		if (EmailSubject != null)
+			taxinvoice.setEmailSubject(EmailSubject);
+		
+		String PostData = toJsonString(taxinvoice);
+
+		
+		return httppost("/Taxinvoice", CorpNum, PostData, 
+				UserID, "ISSUE", Response.class);
+	}
 
 	protected class CertResponse {
 		public String certificateExpiration;
@@ -870,5 +981,6 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		public String sender = null;
 		public String contents = null;
 	}
-
+	
+	
 }

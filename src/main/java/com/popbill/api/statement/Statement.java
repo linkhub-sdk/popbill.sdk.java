@@ -29,6 +29,10 @@ public class Statement implements Serializable {
 
 	private static final long serialVersionUID = -7213142041575114213L;
 	
+	private String sendNum;
+	private String receiveNum;
+	private String memo;
+	
 	private Short itemCode;
 	private String mgtKey;
 	private String formCode;
@@ -852,5 +856,35 @@ public class Statement implements Serializable {
 	 */
 	public void setPropertyBag(Map<String, String> propertyBag) {
 		this.propertyBag = propertyBag;
+	}
+	
+	/**
+	 * 선팩스전송시 발신번호 설정
+	 *  
+	 * @param sendNum 
+	 * 			발신번호 
+	 */
+	public void setSendNum(String sendNum) {
+		this.sendNum = sendNum;
+	}
+	
+	/**
+	 * 선팩스전송시 수신번호 설정 
+	 * 
+	 * @param receiveNum
+	 *			수신팩스번호 
+	 */
+	public void setReceiveNum(String receiveNum) {
+		this.receiveNum = receiveNum;
+	}
+	
+	/**
+	 * 즉시발행 메모 설정  
+	 * 
+	 * @param memo
+	 * 			메모 
+	 */
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 }

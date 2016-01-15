@@ -512,6 +512,70 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 				CorpNum, null, UserID, "DELETE", Response.class);
 		
 	}
+	
+	
+	@Override
+	public String FAXSend(String CorpNum, Statement statement, String sendNum, String receiveNum)
+			throws PopbillException{
+		return FAXSend(CorpNum, statement, sendNum, receiveNum, null);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.StatementService#FAXSend(java.lang.String, com.popbill.api.statement.Statement, java.lang.String)
+	 */
+	@Override
+	public String FAXSend(String CorpNum, Statement statement, String sendNum, String receiveNum, String UserID)
+			throws PopbillException {
+		if (sendNum == null || sendNum.isEmpty())
+			throw new PopbillException(-99999999, "발신번호가 입력되지 않았습니다.");
+		if (receiveNum == null || receiveNum.isEmpty())
+			throw new PopbillException(-99999999, "수신팩스번호가 입력되지 않았습니다.");
+		
+		statement.setSendNum(sendNum);
+		statement.setReceiveNum(receiveNum);
+		
+		String PostData = toJsonString(statement);
+		
+		ReceiptResponse response = httppost("/Statement",
+				CorpNum, PostData, UserID, "FAX", ReceiptResponse.class);
+		
+		return response.receiptNum;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.StatementService#registIssue(java.lang.String, com.popbill.api.statement.Statement)
+	 */
+	@Override
+	public Response registIssue(String CorpNum, Statement statement) throws PopbillException{
+		return registIssue(CorpNum, statement, null);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.StatementService#registIssue(java.lang.String, com.popbill.api.statement.Statement, 
+	 * 				java.lang.String)
+	 */
+	@Override
+	public Response registIssue(String CorpNum, Statement statement, String memo)
+			throws PopbillException{
+		return registIssue(CorpNum, statement, memo, null);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.StatementService#registIssue(java.lang.String, com.popbill.api.statement.Statement, 
+	 * 				java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Response registIssue(String CorpNum, Statement statement, String memo, 
+			String UserID) throws PopbillException {
+			
+		statement.setMemo(memo);
+		
+		String PostData = toJsonString(statement);
+		
+		return httppost("/Statement",
+				CorpNum, PostData, UserID, "ISSUE", Response.class);
+	}
 		
 	protected class MemoRequest {
 		public MemoRequest(String memo) {
@@ -525,6 +589,10 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 		public String receiver;
 		public String sender = null;
 		public String contents = null;
+	}
+	
+	protected class ReceiptResponse {
+		public String receiptNum;
 	}
 
 }

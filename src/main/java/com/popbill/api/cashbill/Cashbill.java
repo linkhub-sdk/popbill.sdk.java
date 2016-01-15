@@ -25,6 +25,7 @@ import java.io.Serializable;
 public class Cashbill implements Serializable {	
 	private static final long serialVersionUID = 1162308900637310379L;
 	
+	private String memo;
 	private String mgtKey;
 	private String tradeDate;
 	private String tradeUsage;
@@ -479,5 +480,15 @@ public class Cashbill implements Serializable {
 	 */
 	public void setOrgConfirmNum(String orgConfirmNum) {
 		this.orgConfirmNum = orgConfirmNum;
+	}
+
+	/**
+	 * 즉시발행 메모 설정 
+	 * 
+	 * @param memo
+	 * 			메모 
+	 */
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 }

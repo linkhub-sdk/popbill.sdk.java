@@ -433,4 +433,50 @@ public interface CashbillService extends BaseService{
 	public String getPopUpURL(String CorpNum, String MgtKey, 
 			String UserID) throws PopbillException;
 	
+	
+	/**
+	 * 현금영수증 즉시발행 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param cashbill
+	 * 			현금영수증 객체 see com.popbill.api.cashbill.Cashbill
+	 * @return Response 응답. 
+	 * @throws PopbillException
+	 */
+	public Response registIssue(String CorpNum, Cashbill cashbill)
+			throws PopbillException;
+	
+	
+	/**
+	 * 현금영수증 즉시발행 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param cashbill
+	 * 			현금영수증 객체 see com.popbill.api.cashbill.Cashbill 
+	 * @param Memo
+	 * 			메모
+	 * @return Response 응답. 
+	 * @throws PopbillException
+	 */
+	public Response registIssue(String CorpNum, Cashbill cashbill, String Memo)
+			throws PopbillException;
+	
+	/**
+	 * 현금영수증 즉시발행 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param cashbill
+	 * 			현금영수증 객체 see com.popbill.api.cashbill.Cashbill 
+	 * @param Memo
+	 * 			메모 
+	 * @param UserID
+	 * 			연동회원 아이디 
+	 * @return Response 응답. 
+	 * @throws PopbillException
+	 */
+	public Response registIssue(String CorpNum, Cashbill cashbill, String Memo,
+			String UserID) throws PopbillException;
 }

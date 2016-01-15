@@ -37,6 +37,7 @@ public class SentMessage implements Serializable {
 	private String sendDT;
 	private String resultDT;
 	private String sendResult;
+	private String tranNet;
 
 	/**
 	 * 전송상태 확인 0 : 접수 1 : 대기중 2 : 처리중 3 : 완료 4 : 취소
@@ -136,5 +137,15 @@ public class SentMessage implements Serializable {
 	public String getSendResult() {
 		return sendResult;
 	}
+
+	/**
+	 * 전송처리 이동통신사명 확인 
+	 * 
+	 * @return 통신사명 
+	 */
+	public String getTranNet() {
+		return tranNet;
+	}
+
 
 }

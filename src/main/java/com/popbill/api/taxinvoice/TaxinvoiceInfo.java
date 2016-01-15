@@ -58,6 +58,8 @@ public class TaxinvoiceInfo {
 	private String ntssendErrCode;
 
 	private String stateMemo;
+	
+	private String lateIssueYN;
 
 	/**
 	 * 팝빌 관리번호 확인
@@ -327,6 +329,13 @@ public class TaxinvoiceInfo {
 	 */
 	public String getStateMemo() {
 		return stateMemo;
+	}
+	/**
+	 * 지연발행 여부 
+	 * @return 지연발행 여부 
+	 */
+	public String getLateIssueYN(){
+		return lateIssueYN;
 	}
 
 }

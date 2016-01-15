@@ -25,7 +25,12 @@ import java.util.List;
  */
 public class Taxinvoice implements Serializable {
 	private static final long serialVersionUID = -4724810536341548575L;
-
+	private Boolean writeSpecification;
+	private Boolean forceIssue;
+	private String memo;
+	private String emailSubject;
+	private String dealInvoiceMgtKey;
+	
 	private String writeDate;
 	private String chargeDirection;
 	private String issueType;
@@ -1506,5 +1511,55 @@ public class Taxinvoice implements Serializable {
 	 */
 	public void setOriginalTaxinvoiceKey(String originalTaxinvoiceKey) {
 		this.originalTaxinvoiceKey = originalTaxinvoiceKey;
+	}
+
+	/**
+	 * 세금계산서 즉시발행시 지연발행 강제여부 설정
+	 * 
+	 * @param forceIssue
+	 * 			지연발행 세금계산서 강제여부
+	 */
+	public void setForceIssue(Boolean forceIssue) {
+		this.forceIssue = forceIssue;
+	}
+
+	/**
+	 * 즉시발행시 메모 설정 
+	 * 
+	 * @param memo
+	 * 			즉시발행 메모 
+	 */
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	/**
+	 * 즉시발행시 안내메일 제목 설정 
+	 * 
+	 * @param emailSubject
+	 * 			발행안내메일 제목, 미기재시 기본제목으로 전송 
+	 */
+	public void setEmailSubject(String emailSubject) {
+		this.emailSubject = emailSubject;
+	}
+
+	/**
+	 * 거래명세서 동시작성시 거래명세서 관리번호 설정 
+	 * 
+	 * @param dealInvoiceMgtKey
+	 * 			거래명세서 관리번호 
+	 */
+	public void setDealInvoiceMgtKey(String dealInvoiceMgtKey) {
+		this.dealInvoiceMgtKey = dealInvoiceMgtKey;
+	}
+
+	/**
+	 * 거래명세서 동시작성 여부 설정
+	 *  
+	 * @param writeSpecification 
+	 * 			거래명세서 동시작성여부 
+	 */
+	public void setWriteSpecification(Boolean writeSpecification) {
+		this.writeSpecification = writeSpecification;
 	}
 }

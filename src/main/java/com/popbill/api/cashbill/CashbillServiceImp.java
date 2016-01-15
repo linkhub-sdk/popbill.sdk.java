@@ -441,6 +441,38 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		return response.url;
 	}
 	
+	@Override
+	public Response registIssue(String CorpNum, Cashbill cashbill) throws PopbillException{
+		return registIssue(CorpNum, cashbill, null, null);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#registIssue(java.lang.String, com.popbill.api.cashbill.Cashbill, java.lang.String)
+	 */
+	@Override
+	public Response registIssue(String CorpNum, Cashbill cashbill, String memo)
+			throws PopbillException {
+		return registIssue(CorpNum, cashbill, memo, null);
+	}
+	/* (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#registIssue(java.lang.String, com.popbill.api.cashbill.Cashbill, 
+	 * 				java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Response registIssue(String CorpNum, Cashbill cashbill, String memo,
+			String UserID) throws PopbillException {
+		if (cashbill == null)
+			throw new PopbillException(-99999999, "현금영수증정보가 입력되지 않았습니다.");
+		if (!(memo == null))
+			cashbill.setMemo(memo);
+		
+		String PostData = toJsonString(cashbill);
+		
+		return httppost("/Cashbill", CorpNum, PostData, 
+				UserID, "ISSUE", Response.class);
+	}
+	
 	protected class MemoRequest {
 		public MemoRequest(String memo){
 			this.memo = memo;

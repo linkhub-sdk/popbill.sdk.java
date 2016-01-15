@@ -19,6 +19,7 @@ import java.util.Date;
 
 import com.popbill.api.taxinvoice.EmailPublicKey;
 import com.popbill.api.taxinvoice.MgtKeyType;
+import com.popbill.api.taxinvoice.TISearchResult;
 import com.popbill.api.taxinvoice.Taxinvoice;
 import com.popbill.api.taxinvoice.TaxinvoiceInfo;
 import com.popbill.api.taxinvoice.TaxinvoiceLog;
@@ -424,7 +425,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param UserID
 	 *            회원 아이디
 	 * @return Response 응답.
-	 * @throws PopbillException
+	 * @throws PopbillException7
 	 */
 	public Response issue(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, boolean ForceIssue, String UserID)
@@ -993,5 +994,114 @@ public interface TaxinvoiceService extends BaseService {
 	public Response deleteFile(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String FileID, String UserID)
 			throws PopbillException;
-
+	/**
+	 * 세금계산서 목록조회 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param KeyType
+	 * 			연동문서 종류 
+	 * @param DType
+	 * 			검색일자 유형 
+	 * @param SDate
+	 * 			시작일자 
+	 * @param EDate
+	 * 			종료일자 
+	 * @param State
+	 * 			상태코드 배열 
+	 * @param Type
+	 * 			문서유형 배열 
+	 * @param TaxType
+	 * 			과세형태 배열 
+	 * @param LateOnly
+	 * 			지연발행 여부 
+	 * @param Page
+	 * 			페이지 번호 
+	 * @param PerPage
+	 * 			페이지당 검색갯수 
+	 * @return Search Result. see TISearchResult 
+	 * @throws PopbillException
+	 */
+	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, 
+			String DType, String SDate, String EDate, 
+			String[] State, String[] Type, String[] TaxType, 
+			Boolean LateOnly, Integer Page, Integer PerPage) throws PopbillException;
+	
+	/**
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param taxinvoice
+	 * 			세금계산서 객체 
+	 * @param WriteSpecification
+	 * 			거래명세서 동시작성 여부 
+	 * @return Response 응답.
+	 * @throws PopbillException
+	 */
+	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
+			Boolean WriteSpecification) throws PopbillException; 
+			
+	/**
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param taxinvoice
+	 * 			세금계산서 객체 
+	 * @param Memo
+	 * 			즉시발행 메모 
+	 * @param ForceIssue
+	 * 			지연발행 강제여부 
+	 * @return Response 응답. 
+	 * @throws PopbillException
+	 */
+	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
+			String Memo, Boolean ForceIssue) throws PopbillException;
+	
+	/**
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param taxinvoice
+	 * 			세금계산서 객체 
+	 * @param WriteSpecification
+	 * 			거래명세서 동시작성 여부 
+	 * @param Memo
+	 * 			즉시발행 메모 
+	 * @param ForceIssue
+	 * 			지연발행 강제여부 
+	 * @param DealInvoiceKey
+	 * 			거래명세서 관리번호 
+	 * @return Response 응답. 
+	 * @throws PopbillException
+	 */
+	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
+			Boolean WriteSpecification, String Memo, Boolean ForceIssue,
+			String DealInvoiceKey) throws PopbillException;
+	
+	/**
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param taxinvoice
+	 * 			세금계산서 객체 
+	 * @param WriteSpecification
+	 * 			거래명세서 동시작성 여부 
+	 * @param Memo
+	 * 			즉시발행 메모 
+	 * @param ForceIssue
+	 * 			지연발행 강제여부 
+	 * @param DealInvoiceKey
+	 * 			거래명세서 관리번호 
+	 * @param EmailSubject
+	 * 			안내메일 제목 
+	 * @param UserID
+	 * 			팝빌회원 아이디 
+	 * @return
+	 * @throws PopbillException
+	 */
+	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
+			Boolean WriteSpecification, String Memo, Boolean ForceIssue,
+			String DealInvoiceKey, String EmailSubject, String UserID)
+			throws PopbillException;
+	
 }
