@@ -266,19 +266,4 @@ public class StatementInfo {
 	public boolean isReceiverPrintYN() {
 		return receiverPrintYN;
 	}
-
-	/**
-	 * @param senderPrintYN the senderPrintYN to set
-	 */
-	public void setSenderPrintYN(boolean senderPrintYN) {
-		this.senderPrintYN = senderPrintYN;
-	}
-
-	/**
-	 * @param receiverPrintYN the receiverPrintYN to set
-	 */
-	public void setReceiverPrintYN(boolean receiverPrintYN) {
-		this.receiverPrintYN = receiverPrintYN;
-	}
-
 }
