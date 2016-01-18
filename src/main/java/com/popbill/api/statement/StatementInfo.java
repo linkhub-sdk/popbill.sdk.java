@@ -34,8 +34,10 @@ public class StatementInfo {
 	private String writeDate;
 	private String senderCorpName;
 	private String senderCorpNum;
+	private boolean senderPrintYN;
 	private String receiverCorpName;
 	private String receiverCorpNum;
+	private boolean receiverPrintYN;
 	
 	private String supplyCostTotal;
 	private String taxTotal;
@@ -245,6 +247,38 @@ public class StatementInfo {
 	 */
 	public String getRegDT() {
 		return regDT;
+	}
+
+	/**
+	 * 발신자 인쇄여부 확인 
+	 * 
+	 * @return 발신자 인쇄여부 
+	 */
+	public boolean isSenderPrintYN() {
+		return senderPrintYN;
+	}
+
+	/**
+	 * 수신자 인쇄여부 확인 
+	 * 
+	 * @return 수신자 인쇄여부 
+	 */
+	public boolean isReceiverPrintYN() {
+		return receiverPrintYN;
+	}
+
+	/**
+	 * @param senderPrintYN the senderPrintYN to set
+	 */
+	public void setSenderPrintYN(boolean senderPrintYN) {
+		this.senderPrintYN = senderPrintYN;
+	}
+
+	/**
+	 * @param receiverPrintYN the receiverPrintYN to set
+	 */
+	public void setReceiverPrintYN(boolean receiverPrintYN) {
+		this.receiverPrintYN = receiverPrintYN;
 	}
 
 }

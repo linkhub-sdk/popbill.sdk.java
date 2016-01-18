@@ -11,6 +11,7 @@ import org.junit.Test;
 import com.popbill.api.MessageService;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.message.AutoDeny;
 import com.popbill.api.message.MSGSearchResult;
 import com.popbill.api.message.Message;
 import com.popbill.api.message.MessageServiceImp;
@@ -295,5 +296,14 @@ public class MessageServiceTEST {
 		String receiptNum = messageService.sendMMS("1234567890", null, null, null, Messages, file, null, true, "testkorea");
 		assertNotNull(receiptNum);
 		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void getAutoDenyList_TEST() throws PopbillException{
+		AutoDeny[] response = messageService.getAutoDenyList("1234567890");
+		assertNotNull(response);
+		System.out.println(response[0].getNumber() + " " + response[0].getRegDT());
+		System.out.println(response[1].getNumber() + " " + response[1].getRegDT());
+		
 	}
 }

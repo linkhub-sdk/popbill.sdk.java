@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 
 import org.junit.Test;
@@ -458,10 +457,10 @@ public class TaxinvoiceServiceTEST {
 	public void getInfo_TEST() throws PopbillException {
 	
 		TaxinvoiceInfo taxinvoiceInfo = taxinvoiceService.getInfo("1234567890",
-				MgtKeyType.SELL, "20160114-01");
+				MgtKeyType.SELL, "20160115-06");
 
 		assertNotNull(taxinvoiceInfo);
-		System.out.println("[getInfo API] - "+taxinvoiceInfo.getLateIssueYN());
+		System.out.println("[getInfo API] - "+taxinvoiceInfo.getLateIssueYN()+ " "+taxinvoiceInfo.isInvoicerPrintYN());
 	}
 
 	@Test
@@ -724,7 +723,7 @@ public class TaxinvoiceServiceTEST {
 		
 		Response response = null;
 		
-		//response = taxinvoiceService.detachStatement("1234567890", MgtKeyType.SELL, "20160116-01", itemCode, MgtKey);
+		response = taxinvoiceService.detachStatement("1234567890", MgtKeyType.SELL, "20160116-01", itemCode, MgtKey);
 
 		assertNotNull(response);
 		

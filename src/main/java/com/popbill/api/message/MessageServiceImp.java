@@ -501,6 +501,18 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 		return response;
 	}
 	
+
+	@Override
+	public AutoDeny[] getAutoDenyList(String CorpNum) throws PopbillException {
+		// TODO Auto-generated method stub
+		
+		String uri = "/Message/Denied";
+		
+		AutoDeny[] response = httpget(uri, CorpNum, null, AutoDeny[].class);
+		
+		return response;
+	}
+	
 	protected class SendRequest {
 		public String snd;
 		public String content;
@@ -514,6 +526,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	protected class ReceiptResponse {
 		public String receiptNum;
 	}
+
 
 
 }

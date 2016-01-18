@@ -30,12 +30,15 @@ public class TaxinvoiceInfo {
 	private String invoicerCorpName;
 	private String invoicerCorpNum;
 	private String invoicerMgtKey;
+	private boolean invoicerPrintYN;
 	private String invoiceeCorpName;
 	private String invoiceeCorpNum;
 	private String invoiceeMgtKey;
+	private boolean invoiceePrintYN;
 	private String trusteeCorpName;
 	private String trusteeCorpNum;
 	private String trusteeMgtKey;
+	private boolean trusteePrintYN;
 
 	private String supplyCostTotal;
 	private String taxTotal;
@@ -330,12 +333,46 @@ public class TaxinvoiceInfo {
 	public String getStateMemo() {
 		return stateMemo;
 	}
+	
 	/**
-	 * 지연발행 여부 
+	 * 세금계산서 지연발행 여부 확인 
+	 * 
 	 * @return 지연발행 여부 
 	 */
 	public String getLateIssueYN(){
 		return lateIssueYN;
 	}
+
+	/**
+	 * 공급자 인쇄여부 확인 
+	 * 
+	 * @return 공급자 인쇄여부 
+	 */
+	public boolean isInvoicerPrintYN() {
+		return invoicerPrintYN;
+	}
+	
+
+	/**
+	 * 공급받는자 인쇄여부 확인
+	 * 
+	 * @return 공급받는자 인쇄여부
+	 * 
+	 */
+	public boolean isInvoiceePrintYN() {
+		return invoiceePrintYN;
+	}
+
+	/**
+	 * 수탁자 인쇄여부 확인 
+	 * 
+	 * @return 수탁자 인쇄여부 
+	 */
+	public boolean isTrusteePrintYN() {
+		return trusteePrintYN;
+	}
+
+
+
 
 }

@@ -17,6 +17,7 @@ package com.popbill.api;
 import java.io.File;
 import java.util.Date;
 
+import com.popbill.api.message.AutoDeny;
 import com.popbill.api.message.MSGSearchResult;
 import com.popbill.api.message.Message;
 import com.popbill.api.message.MessageType;
@@ -576,6 +577,7 @@ public interface MessageService extends BaseService {
 			String UserID) throws PopbillException;
 	
 	/**
+	 * 문자전송내역 조회 
 	 * 
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
@@ -601,4 +603,14 @@ public interface MessageService extends BaseService {
 	public MSGSearchResult search(String CorpNum, String SDate, String EDate, 
 			String[] State, String[] Item, Boolean ReserveYN, Boolean SenderYN, 
 			int Page, int PerPage, String Order) throws PopbillException;
+	
+	/**
+	 * 080 수신거부목록 확인 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @return 080수신거부목록 
+	 * @throws PopbillException
+	 */
+	public AutoDeny[] getAutoDenyList(String CorpNum) throws PopbillException;
 }

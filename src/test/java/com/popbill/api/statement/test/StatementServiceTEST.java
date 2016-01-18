@@ -275,10 +275,10 @@ public class StatementServiceTEST {
 	}
 	@Test
 	public void getInfo_TEST() throws PopbillException {
-		StatementInfo statementInfo = statementService.getInfo("1234567890", 121, "20150318-01");
+		StatementInfo statementInfo = statementService.getInfo("1234567890", 121, "20160112-01");
 		
 		assertNotNull(statementInfo);
-		System.out.println("Get Info : " +statementInfo.getInvoiceNum()+" "+statementInfo.getStateCode());
+		System.out.println("Get Info : " +statementInfo.getInvoiceNum()+" "+statementInfo.getStateCode()+" "+statementInfo.isSenderPrintYN());
 	}
 	@Test
 	public void getInfos_TEST() throws PopbillException {
