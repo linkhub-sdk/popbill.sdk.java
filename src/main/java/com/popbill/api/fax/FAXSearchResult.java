@@ -46,7 +46,7 @@ public class FAXSearchResult implements Serializable{
 	}
 
 	/**
-	 * 전체 검색갯수 확인 
+	 * 전체 검색개수 확인 
 	 * 
 	 * @return 검색개수 
 	 */
@@ -55,9 +55,9 @@ public class FAXSearchResult implements Serializable{
 	}
 
 	/**
-	 * 페이지당 목록갯수 확인 
+	 * 페이지당 목록개수 확인 
 	 * 
-	 * @return 페이지당 목록수 
+	 * @return 페이지당 목록개수 
 	 */
 	public String getPerPage() {
 		return perPage;

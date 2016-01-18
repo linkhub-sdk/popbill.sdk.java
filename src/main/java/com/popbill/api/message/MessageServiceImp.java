@@ -485,7 +485,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 			uri += "&ReserveYN=0";
 		}
 		
-		if ( ReserveYN ) {
+		if ( SenderYN ) {
 			uri += "&SenderYN=1";
 		} else {
 			uri += "&SenderYN=0";

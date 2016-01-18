@@ -14,6 +14,7 @@
  */
 package com.popbill.api;
 
+import com.popbill.api.cashbill.CBSearchResult;
 import com.popbill.api.cashbill.Cashbill;
 import com.popbill.api.cashbill.CashbillInfo;
 import com.popbill.api.cashbill.CashbillLog;
@@ -479,4 +480,35 @@ public interface CashbillService extends BaseService{
 	 */
 	public Response registIssue(String CorpNum, Cashbill cashbill, String Memo,
 			String UserID) throws PopbillException;
+	
+
+	/**
+	 * 현금영수증 목록 조회 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param DType
+	 * 			검색일자 유
+	 * @param SDate
+	 * 			시작일자 
+	 * @param EDate
+	 * 			종료일자 
+	 * @param State
+	 * 			현금영수증 상태코드 배열 
+	 * @param TradeType
+	 * 			현금영수증 형태 배열 
+	 * @param TradeUsage
+	 * 			거래용도 배열 
+	 * @param TaxationType
+	 * 			과세형태 배열 
+	 * @param Page
+	 * 			페이지번호 
+	 * @param PerPage
+	 * 			페이지당 검색개수 
+	 * @return CBSearchList, see com.popbill.api.cashbill.CBSearchResult
+	 * @throws PopbillException
+	 */
+	public CBSearchResult search(String CorpNum, String DType, String SDate, 
+			String EDate, String[] State, String[] TradeType, String[] TradeUsage,
+			String[] TaxationType, int Page, int PerPage, String Order) throws PopbillException;
 }

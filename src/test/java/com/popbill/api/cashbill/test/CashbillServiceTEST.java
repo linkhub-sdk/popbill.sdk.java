@@ -2,11 +2,14 @@ package com.popbill.api.cashbill.test;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 
 import com.popbill.api.CashbillService;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.cashbill.CBSearchResult;
 import com.popbill.api.cashbill.Cashbill;
 import com.popbill.api.cashbill.CashbillInfo;
 import com.popbill.api.cashbill.CashbillLog;
@@ -257,6 +260,48 @@ public class CashbillServiceTEST {
 		Response response = cashbillService.registIssue("1234567890", cashbill, "즉시발행 메모");
 		assertNotNull(response);
 		System.out.println("[" + response.getCode() + "] "+ response.getMessage());
+	}
+	
+	@Test
+	public void search_TEST() throws PopbillException{
+		String CorpNum = "1234567890";
+		String DType = "T";
+		String SDate = "20151201";
+		String EDate = "20160118";
+		
+		String[] State = {"100", "2**", "3**"};
+		String[] TradeType = {"N", "C"};
+		String[] TradeUsage = {"P", "C"};
+		String[] TaxationType = {"T", "N"};
+		
+		int Page = 1;
+		int PerPage = 20;
+		String Order = "D";
+		
+		String uri = "/Cashbill/Search?DType=" + DType;
+		
+		uri += "&SDate=" + SDate;
+		uri += "&EDate=" + EDate;
+		uri += "&State=" + Arrays.toString(State)
+				.replaceAll("\\[|\\]|\\s", "");
+		uri += "&TradeType=" + Arrays.toString(TradeType)
+				.replaceAll("\\[|\\]|\\s", "");
+		uri += "&TradeUsage=" + Arrays.toString(TradeUsage)
+				.replaceAll("\\[|\\]|\\s", "");
+		uri += "&TaxationType=" + Arrays.toString(TaxationType)
+				.replaceAll("\\[|\\]|\\s", "");
+		
+		uri += "&Page=" + Page;
+		uri += "&PerPage="+ PerPage;
+		uri += "&Order=" + Order;
+		
+		System.out.println(uri);
+		
+		CBSearchResult response = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TaxationType, Page, PerPage, Order);
+		
+		assertNotNull(response);
+		
+		System.out.println(response.getMessage()+ " " +response.getList().get(0).getIssueDT() +" " +response.getList().size());
 	}
 }
 

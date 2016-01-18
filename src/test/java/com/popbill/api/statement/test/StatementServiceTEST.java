@@ -20,6 +20,7 @@ import com.popbill.api.statement.StatementDetail;
 import com.popbill.api.statement.StatementInfo;
 import com.popbill.api.statement.StatementLog;
 import com.popbill.api.statement.StatementServiceImp;
+import com.popbill.api.statement.StmtSearchResult;
 
 public class StatementServiceTEST {
 	private final String testLinkID = "TESTER";
@@ -525,7 +526,24 @@ public class StatementServiceTEST {
 		assertNotNull(response);
 		
 		System.out.println("["+response.getCode()+"] "+ response.getMessage());
+	}
+
+	@Test
+	public void Search_TEST() throws PopbillException{
+		String CorpNum = "1234567890";
+		String DType = "I";
+		String SDate = "20160101";
+		String EDate = "20160118";
+		String[] State = {"100", "3**"};
+		int[] ItemCode = {121,122,123,124,125,126};
+		int Page = 1;
+		int PerPage = 50;
+		String Order = "A";
 		
+		StmtSearchResult response = statementService.search(CorpNum, DType, SDate, EDate, State, ItemCode, Page, PerPage, Order);
+		
+		assertNotNull(response);
+		System.out.println(response.getMessage()+" "+response.getList().get(0).getMgtKey()+ " "+response.getList().size());
 	}
 }
 

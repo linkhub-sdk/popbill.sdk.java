@@ -611,6 +611,33 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 		return httppost("/Statement/" + ItemCode + "/" + MgtKey + "/DetachStmt/",
 				CorpNum, PostData, null, Response.class);
 	}
+	
+	@Override
+	public StmtSearchResult search(String CorpNum, String DType, String SDate, 
+			String EDate, String[] State, int[] ItemCode, int Page, int PerPage, 
+			String Order) throws PopbillException {
+		if (DType == null || DType.isEmpty())
+			throw new PopbillException(-99999999, "검색일자유형이 입력되지 않았습니다.");
+		if (SDate == null || SDate.isEmpty())
+			throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
+		if (EDate == null || EDate.isEmpty())
+			throw new PopbillException(-99999999, "종료일자가 입력되지 않았습니다.");
+		
+		String uri = "/Statement/Search?DType=" + DType;
+		uri += "&SDate=" + SDate;
+		uri += "&EDate=" + EDate;
+		uri += "&State=" + Arrays.toString(State)
+				.replaceAll("\\[|\\]|\\s", "");
+		uri += "&ItemCode=" + Arrays.toString(ItemCode)
+				.replaceAll("\\[|\\]|\\s", "");
+		uri += "&Page=" + Integer.toString(Page);
+		uri += "&PerPage="+ Integer.toString(PerPage);
+		uri += "&Order=" + Order;
+		
+		StmtSearchResult response = httpget(uri, CorpNum, null, StmtSearchResult.class);
+		return response;
+		
+	}
 		
 	protected class MemoRequest {
 		public MemoRequest(String memo) {

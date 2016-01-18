@@ -21,6 +21,7 @@ import com.popbill.api.BaseServiceImp;
 import com.popbill.api.CashbillService;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.statement.StmtSearchResult;
 
 /**
  *  Implementation of Popbill CashbillService Interface
@@ -473,6 +474,45 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 				UserID, "ISSUE", Response.class);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#search(java.lang.String, java.lang.String, java.lang.String, 
+	 * 												java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[], 
+	 * 												java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public CBSearchResult search(String CorpNum, String DType, String SDate,
+			String EDate, String[] State, String[] TradeType,
+			String[] TradeUsage, String[] TaxationType, int Page,
+			int PerPage, String Order) throws PopbillException {
+		if (DType == null || DType.isEmpty())
+			throw new PopbillException(-99999999, "검색일자유형이  입력되지 않았습니다.");
+		if (SDate == null || SDate.isEmpty())
+			throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
+		if (EDate == null || EDate.isEmpty())
+			throw new PopbillException(-99999999, "종료일자가 입력되지 않았습니다.");
+		
+		String uri = "/Cashbill/Search?DType=" + DType;
+		
+		uri += "&SDate=" + SDate;
+		uri += "&EDate=" + EDate;
+		uri += "&State=" + Arrays.toString(State)
+				.replaceAll("\\[|\\]|\\s", "");
+		uri += "&TradeType=" + Arrays.toString(TradeType)
+				.replaceAll("\\[|\\]|\\s", "");
+		uri += "&TradeUsage=" + Arrays.toString(TradeUsage)
+				.replaceAll("\\[|\\]|\\s", "");
+		uri += "&TaxationType=" + Arrays.toString(TaxationType)
+				.replaceAll("\\[|\\]|\\s", "");
+		
+		uri += "&Page=" + Integer.toString(Page);
+		uri += "&PerPage="+ Integer.toString(PerPage);
+		uri += "&Order=" + Order;
+		
+		CBSearchResult response = httpget(uri, CorpNum, null, CBSearchResult.class);
+		return response;
+	}
+	
 	protected class MemoRequest {
 		public MemoRequest(String memo){
 			this.memo = memo;
@@ -486,6 +526,8 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		public String sender = null;
 		public String contents = null;
 	}
+
+
 
 	
 

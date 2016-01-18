@@ -39,25 +39,25 @@ public class MSGSearchResult implements Serializable {
 	/**
 	 * 응답코드 확인 
 	 * 
-	 * @return the code
+	 * @return 응답코드 
 	 */
 	public String getCode() {
 		return code;
 	}
 
 	/**
-	 * 전체 검색갯수 확인 
+	 * 전체 검색개수 확인 
 	 * 
-	 * @return the total
+	 * @return 전체 검색개수 
 	 */
 	public String getTotal() {
 		return total;
 	}
 
 	/**
-	 * 페이지당 목록갯수 확인 
+	 * 페이지당 목록개수 확인 
 	 * 
-	 * @return the perPage
+	 * @return 페이지당 목록개수 
 	 */
 	public String getPerPage() {
 		return perPage;
@@ -66,24 +66,24 @@ public class MSGSearchResult implements Serializable {
 	/**
 	 * 페이지번호 확인 
 	 * 
-	 * @return the pageNum
+	 * @return 페이지 번호 
 	 */
 	public String getPageNum() {
 		return pageNum;
 	}
 
 	/**
-	 * 페이지갯수 확인 
-	 * @return the pageCount
+	 * 페이지개수 확인 
+	 * @return 페이지개수 
 	 */
 	public String getPageCount() {
 		return pageCount;
 	}
 
 	/**
-	 * 응답 메시지 확인 
+	 * 응답메시지 확인 
 	 * 
-	 * @return the message
+	 * @return 응답메시지 
 	 */
 	public String getMessage() {
 		return message;
@@ -92,7 +92,7 @@ public class MSGSearchResult implements Serializable {
 	/**
 	 * 문자전송내역 목록 확인 
 	 * 
-	 * @return the list
+	 * @return 문자전송내역 목록 
 	 */
 	public List<SentMessage> getList() {
 		return list;

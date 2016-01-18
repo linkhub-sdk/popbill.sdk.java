@@ -25,6 +25,7 @@ import java.io.InputStream;
 import com.popbill.api.statement.Statement;
 import com.popbill.api.statement.StatementInfo;
 import com.popbill.api.statement.StatementLog;
+import com.popbill.api.statement.StmtSearchResult;
 
 public interface StatementService extends BaseService{
 
@@ -742,6 +743,34 @@ public interface StatementService extends BaseService{
 	 */
 	public Response detachStatement(String CorpNum, int ItemCode, String MgtKey,
 			int SubItemCode, String SubMgtKey) throws PopbillException;
+	
+	/**
+	 * 전자명세서 목록 조회 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param DType
+	 * 			검색일자 유형 
+	 * @param SDate
+	 * 			시작일자 
+	 * @param EDate
+	 * 			종료일자 
+	 * @param State
+	 * 			전자명세서상태 배열 
+	 * @param ItemCode
+	 * 			전자명세서코드 배열 
+	 * @param Page
+	 * 			페이지 번호 
+	 * @param PerPage
+	 * 			페이지당 목록 갯수 
+	 * @param Order
+	 * 			정렬방향 
+	 * @return 전자명세서 목록조회 결과. see com.popbill.api.statement.StmtSearchResuilt
+	 * @throws PopbillException
+	 */
+	public StmtSearchResult search(String CorpNum, String DType, String SDate,
+			String EDate, String[] State, int[] ItemCode, int Page,
+			int PerPage, String Order) throws PopbillException;
 }
 
 

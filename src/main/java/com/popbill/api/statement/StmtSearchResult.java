@@ -12,20 +12,19 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package com.popbill.api.taxinvoice;
+package com.popbill.api.statement;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * Class for Taxinvoice Search Information.
+ * Class for Statement Search Information.
  * 
  * @author JeongYohan
  * @version 1.0.0
  */
-
-public class TISearchResult implements Serializable {
-	private static final long serialVersionUID = -7380593516190369080L;
+public class StmtSearchResult implements Serializable{
+	private static final long serialVersionUID = 6031168488060894405L;
 	
 	private String code;
 	private String total;
@@ -33,8 +32,8 @@ public class TISearchResult implements Serializable {
 	private String pageNum;
 	private String pageCount;
 	private String message;
-	
-	private List<TaxinvoiceInfo> list;
+		
+	private List<StatementInfo> list;
 
 	/**
 	 * 응답코드 확인 
@@ -46,43 +45,44 @@ public class TISearchResult implements Serializable {
 	}
 
 	/**
-	 * 전체검색 개수 확인
+	 * 전체 검색개수 확인 
 	 * 
-	 * @return 전체검색 개수 
+	 * @return 전체 검색개수 
 	 */
 	public String getTotal() {
 		return total;
 	}
 
 	/**
-	 * 페이지당목록 개수 확인
-	 * @return 페이지당목록 개수
-	 */ 
+	 * 페이지당 목록개수 확인 
+	 * 
+	 * @return 페이지당 목록개수 
+	 */
 	public String getPerPage() {
 		return perPage;
 	}
 
 	/**
-	 * 페이지 번호 확인
+	 * 페이지번호 확인 
 	 * 
-	 * @return 페이지 번호
+	 * @return 페이지번호 
 	 */
 	public String getPageNum() {
 		return pageNum;
 	}
 
 	/**
-	 * 페이지 개수 확인
+	 * 페이지개수 확인 
 	 * 
-	 * @return 페이지 개수
+	 * @return 페이지개수 
 	 */
 	public String getPageCount() {
 		return pageCount;
 	}
 
 	/**
-	 * 요청응답 메시지 확인
-	 * 
+	 * 응답메시지 확인
+	 *  
 	 * @return 응답메시지 
 	 */
 	public String getMessage() {
@@ -90,11 +90,11 @@ public class TISearchResult implements Serializable {
 	}
 
 	/**
-	 * 세금계산서 상태정보 리스트
+	 * 전자명세서정보 리스트 확인 
 	 * 
-	 * @return 세금계산서 상태정보 리스트 
+	 * @return 전자명세서 정보리스트  
 	 */
-	public List<TaxinvoiceInfo> getList() {
+	public List<StatementInfo> getList() {
 		return list;
-	}	
+	}
 }

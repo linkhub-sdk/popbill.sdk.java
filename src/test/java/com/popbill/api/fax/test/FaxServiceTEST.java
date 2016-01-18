@@ -102,18 +102,18 @@ public class FaxServiceTEST {
 	
 	@Test
 	public void search_TEST() throws PopbillException{
-		String SDate = "20151001";
+		String SDate = "20150101";
 		String EDate = "20160115";
 		String[] State = {"1","2","3","4"};
 		Boolean ReserveYN = false;
 		Boolean SenderOnlyYN = false;
-		int Page = 1;
+		int Page = 5;
 		int PerPage = 10;
 		String Order = "A";
 		FAXSearchResult response = faxService.search("1234567890", SDate, EDate, State, ReserveYN, SenderOnlyYN, Page, PerPage, Order);
 		
 		assertNotNull(response);
-		System.out.println(response.getTotal()+" "+response.getList().get(0).getReceiptDT());
+		System.out.println(response.getTotal()+" "+response.getList().get(0).getReceiptDT()+" "+response.getPageNum());
 	}
 	
 	public static Date addMinutes(Date date, int minutes)

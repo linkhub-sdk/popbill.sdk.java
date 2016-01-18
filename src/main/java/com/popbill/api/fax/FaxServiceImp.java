@@ -220,8 +220,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 			uri += "&ReserveYN=0";
 		}
 		
-		uri += "&Page=" + Page;
-		uri += "&PerPage=" + PerPage;
+		uri += "&Page=" + Integer.toString(Page);
+		uri += "&PerPage=" + Integer.toString(PerPage);
 		uri += "&Order=" + Order;
 		
 		return httpget(uri, CorpNum, null, FAXSearchResult.class);
