@@ -461,7 +461,8 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	
 	/*
 	 * (non-Javadoc)
-	 * @see com.popbill.api.MessageService#Search(java.lang.String, java.lang.String, java.lang.String, java.lang.String[], java.lang.String[], java.lang.Boolean, java.lang.Boolean, int, int)
+	 * @see com.popbill.api.MessageService#search(java.lang.String, java.lang.String, java.lang.String, java.lang.String[], 
+	 * 												java.lang.String[], java.lang.Boolean, java.lang.Boolean, int, int, java.lang.String)
 	 */
 	public MSGSearchResult search(String CorpNum, String SDate, String EDate, 
 			String[] State, String[] Item, Boolean ReserveYN, Boolean SenderYN, 
@@ -495,22 +496,13 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 		uri += "&PerPage=" + Integer.toString(PerPage);
 		uri += "&Order=" + Order;
 		
-		MSGSearchResult response = httpget(uri, CorpNum, null,
-				MSGSearchResult.class);
-		
-		return response;
+		return httpget(uri, CorpNum, null, MSGSearchResult.class);
 	}
 	
 
 	@Override
-	public AutoDeny[] getAutoDenyList(String CorpNum) throws PopbillException {
-		// TODO Auto-generated method stub
-		
-		String uri = "/Message/Denied";
-		
-		AutoDeny[] response = httpget(uri, CorpNum, null, AutoDeny[].class);
-		
-		return response;
+	public AutoDeny[] getAutoDenyList(String CorpNum) throws PopbillException {	
+		return httpget("/Message/Denied", CorpNum, null, AutoDeny[].class);
 	}
 	
 	protected class SendRequest {

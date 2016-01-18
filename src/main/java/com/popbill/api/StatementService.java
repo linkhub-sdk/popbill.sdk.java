@@ -13,12 +13,6 @@
  * permissions and limitations under the License.
  */
 package com.popbill.api;
-/**
- * Statement Service Interface.
- * 
- * @author JeongYoHan
- * @version 1.0.0
- */
 
 import java.io.InputStream;
 
@@ -27,6 +21,12 @@ import com.popbill.api.statement.StatementInfo;
 import com.popbill.api.statement.StatementLog;
 import com.popbill.api.statement.StmtSearchResult;
 
+/**
+ * Statement Service Interface.
+ * 
+ * @author JeongYoHan
+ * @version 1.0.0
+ */
 public interface StatementService extends BaseService{
 
 	/**
@@ -630,8 +630,9 @@ public interface StatementService extends BaseService{
 	
 	
 	/**
-	 * 명세서 1건 선팩스전송 
-
+	 * 명세서 1건 선팩스전송
+	 * 전자명세서를 발송하지 않고 팩스만 전송.
+	 * 
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param statement		
@@ -642,15 +643,17 @@ public interface StatementService extends BaseService{
 	 */
 	public String FAXSend(String CorpNum, Statement statement, String SendNum, String receiveNum) 
 			throws PopbillException;
+	
 	/**
 	 * 명세서 1건 선팩스전송 
-	 * 
+	 * 전자명세서를 발송하지 않고 팩스만 전송.
+	 *  
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param statement		
 	 * 			명세서 정보.(see. com.popbill.api.statement.Statement)
 	 * @param UserID
-	 * 			연동회원아이디
+	 * 			연동회원 아이디
 	 * @return receiptNum 
 	 * 			팩스전송 접수번호 
 	 * @throws PopbillException
@@ -711,11 +714,11 @@ public interface StatementService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param ItemCode
-	 * 			명세서 코드 
+	 * 			명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증 
 	 * @param MgtKey
 	 * 			명세서 관리번호 
 	 * @param SubItemCode
-	 * 			첨부할 명세서 코드 
+	 * 			첨부할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증 
 	 * @param SubMgtKey
 	 * 			첨부할 명세서 관리번호 
 	 * @return Response.
@@ -731,11 +734,11 @@ public interface StatementService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param ItemCode
-	 * 			명세서 코드 
+	 * 			명세서 코드,  121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증 
 	 * @param MgtKey
 	 * 			명세서 관리번호 
 	 * @param SubItemCode
-	 * 			첨부해제할 명세서 코드 
+	 * 			첨부해제할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증 
 	 * @param SubMgtKey
 	 * 			첨부해제할 명세서 관리번호 
 	 * @return Response.
@@ -750,19 +753,19 @@ public interface StatementService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param DType
-	 * 			검색일자 유형 
+	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자 
 	 * @param SDate
-	 * 			시작일자 
+	 * 			시작일자(yyyyMMdd)
 	 * @param EDate
-	 * 			종료일자 
+	 * 			종료일자(yyyyMMdd)
 	 * @param State
 	 * 			전자명세서상태 배열 
 	 * @param ItemCode
-	 * 			전자명세서코드 배열 
+	 * 			전자명세서코드 배열, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증 
 	 * @param Page
 	 * 			페이지 번호 
 	 * @param PerPage
-	 * 			페이지당 목록 갯수 
+	 * 			페이지당 목록 개수, 기본값 500, 최대 1000 
 	 * @param Order
 	 * 			정렬방향 
 	 * @return 전자명세서 목록조회 결과. see com.popbill.api.statement.StmtSearchResuilt
@@ -772,23 +775,3 @@ public interface StatementService extends BaseService{
 			String EDate, String[] State, int[] ItemCode, int Page,
 			int PerPage, String Order) throws PopbillException;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

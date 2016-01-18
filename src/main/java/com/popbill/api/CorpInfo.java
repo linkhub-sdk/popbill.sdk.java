@@ -17,7 +17,7 @@ package com.popbill.api;
 
 
 /**
- * Class for Corporation State Information.
+ * Class for Corporation Information.
  * 
  * @author JeongYohan
  * @version 1.0.0

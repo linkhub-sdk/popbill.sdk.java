@@ -30,7 +30,7 @@ public class AutoDeny implements Serializable{
 	private String regDT;
 	
 	/**
-	 * 080 수신거부번호 확인 
+	 * 080수신거부번호 확인 
 	 * 
 	 * @return 수신거부번호 
 	 */
@@ -39,7 +39,7 @@ public class AutoDeny implements Serializable{
 	}
 	
 	/**
-	 * 수신거부 등록일시 확인 
+	 * 080수신거부 등록일시 확인 
 	 * 
 	 * @return 등록일시 
 	 */

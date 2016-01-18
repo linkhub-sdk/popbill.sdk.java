@@ -115,23 +115,7 @@ public class BaseServiceTEST {
 				.addScope("member")
 				.addScope("110");
 		
-		Date UTCTime = null;
-	
-		SimpleDateFormat format = new SimpleDateFormat(
-				"yyyy-MM-dd'T'HH:mm:ss.sss'Z'");
-		format.setTimeZone(TimeZone.getTimeZone("UTC"));
-		
-		SimpleDateFormat format2 = new SimpleDateFormat(
-				"yyyy-MM-dd'T'HH:mm:ss'Z'");
-		format2.setTimeZone(TimeZone.getTimeZone("UTC"));
-					
-		try {
-			UTCTime = format2.parse("2016-01-14T03:05:37Z");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+			
 		try {
 			token = tokenBuilder.build("1234567890", "");
 		} catch (LinkhubException e1) {
@@ -141,10 +125,27 @@ public class BaseServiceTEST {
 				
 		Date expiration = null;
 		
+		Date UTCTime = null;
+		
+		SimpleDateFormat format = new SimpleDateFormat(
+				"yyyy-MM-dd'T'HH:mm:ss.sss'Z'");
+		format.setTimeZone(TimeZone.getTimeZone("UTC"));
+		
+		SimpleDateFormat format2 = new SimpleDateFormat(
+				"yyyy-MM-dd'T'HH:mm:ss'Z'");
+		format2.setTimeZone(TimeZone.getTimeZone("UTC"));
+					
+		try {
+			UTCTime = format2.parse("2016-01-18T14:05:37Z");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		try {
 			expiration = format.parse(token.getExpiration());
 			expired = expiration.before(UTCTime);
-			
+			System.out.println(token.getExpiration()+ " "+UTCTime+ " "+ expired);
 			assertNotNull(expiration);
 			
 		} catch (ParseException e) {

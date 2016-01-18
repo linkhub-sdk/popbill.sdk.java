@@ -873,12 +873,14 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		uri += "&TaxType=" + Arrays.toString(TaxType)
 				.replaceAll("\\[|\\]|\\s", "");
 		
-		if(LateOnly){
-			uri += "&LateOnly=1";
-		} else{
-			uri += "&LateOnly=0";
+		if (LateOnly != null){
+			if (LateOnly){
+				uri += "&LateOnly=1";
+			} else{
+				uri += "&LateOnly=0";
+			}
 		}
-		
+			
 		uri += "&Page=" + Integer.toString(Page);
 		uri += "&PerPage=" + Integer.toString(PerPage);
 		uri += "&Order=" + Order;

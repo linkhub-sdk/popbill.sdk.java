@@ -202,7 +202,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	 */
 	@Override
 	public FAXSearchResult search(String CorpNum, String SDate, String EDate,
-			String[] State, Boolean ReserveYN, Boolean SenderOnlyYN, int Page,
+			String[] State, Boolean ReserveYN, Boolean SenderOnly, int Page,
 			int PerPage, String Order) throws PopbillException {
 		if (SDate == null)
 			throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
@@ -218,6 +218,12 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 			uri += "&ReserveYN=1";
 		} else {
 			uri += "&ReserveYN=0";
+		}
+		
+		if (SenderOnly) {
+			uri +="&SenderOnly=1";
+		} else {
+			uri += "&SenderOnly=0";
 		}
 		
 		uri += "&Page=" + Integer.toString(Page);

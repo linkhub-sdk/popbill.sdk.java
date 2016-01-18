@@ -441,7 +441,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param cashbill
-	 * 			현금영수증 객체 see com.popbill.api.cashbill.Cashbill
+	 * 			현금영수증 정보. (see com.popbill.api.cashbill.Cashbill)
 	 * @return Response 응답. 
 	 * @throws PopbillException
 	 */
@@ -455,7 +455,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param cashbill
-	 * 			현금영수증 객체 see com.popbill.api.cashbill.Cashbill 
+	 * 			현금영수증 정보. (see com.popbill.api.cashbill.Cashbill)
 	 * @param Memo
 	 * 			메모
 	 * @return Response 응답. 
@@ -470,7 +470,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param cashbill
-	 * 			현금영수증 객체 see com.popbill.api.cashbill.Cashbill 
+	 * 			현금영수증 정보. (see com.popbill.api.cashbill.Cashbill) 
 	 * @param Memo
 	 * 			메모 
 	 * @param UserID
@@ -488,24 +488,24 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param DType
-	 * 			검색일자 유
+	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자 
 	 * @param SDate
-	 * 			시작일자 
+	 * 			시작일자 (yyyyMMdd) 
 	 * @param EDate
-	 * 			종료일자 
+	 * 			종료일자 (yyyyMMdd) 
 	 * @param State
 	 * 			현금영수증 상태코드 배열 
 	 * @param TradeType
-	 * 			현금영수증 형태 배열 
+	 * 			현금영수증 형태 배열, N-일반현금영수증, C-취소현금영수증
 	 * @param TradeUsage
-	 * 			거래용도 배열 
+	 * 			거래용도 배열, P-소득공제용, C-지출증빙용
 	 * @param TaxationType
-	 * 			과세형태 배열 
+	 * 			과세형태 배열, T-과세, N-비과세 
 	 * @param Page
-	 * 			페이지번호 
+	 * 			페이지번호, 기본값 1 
 	 * @param PerPage
-	 * 			페이지당 검색개수 
-	 * @return CBSearchList, see com.popbill.api.cashbill.CBSearchResult
+	 * 			페이지당 검색개수, 기본값 500, 최대 1000
+	 * @return 현금영수증 목록조회 결과. (see com.popbill.api.cashbill.CBSearchResult)
 	 * @throws PopbillException
 	 */
 	public CBSearchResult search(String CorpNum, String DType, String SDate, 

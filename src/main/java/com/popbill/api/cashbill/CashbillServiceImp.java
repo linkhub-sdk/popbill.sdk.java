@@ -465,7 +465,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			String UserID) throws PopbillException {
 		if (cashbill == null)
 			throw new PopbillException(-99999999, "현금영수증정보가 입력되지 않았습니다.");
-		if (!(memo == null))
+		if (memo != null)
 			cashbill.setMemo(memo);
 		
 		String PostData = toJsonString(cashbill);
@@ -509,8 +509,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		uri += "&PerPage="+ Integer.toString(PerPage);
 		uri += "&Order=" + Order;
 		
-		CBSearchResult response = httpget(uri, CorpNum, null, CBSearchResult.class);
-		return response;
+		return httpget(uri, CorpNum, null, CBSearchResult.class);
 	}
 	
 	protected class MemoRequest {
@@ -526,11 +525,4 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		public String sender = null;
 		public String contents = null;
 	}
-
-
-
-	
-
-	
-
 }

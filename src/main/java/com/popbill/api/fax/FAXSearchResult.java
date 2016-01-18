@@ -48,7 +48,7 @@ public class FAXSearchResult implements Serializable{
 	/**
 	 * 전체 검색개수 확인 
 	 * 
-	 * @return 검색개수 
+	 * @return 전체 검색개수 
 	 */
 	public String getTotal() {
 		return total;

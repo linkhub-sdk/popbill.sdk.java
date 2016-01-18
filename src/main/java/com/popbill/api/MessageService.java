@@ -582,22 +582,24 @@ public interface MessageService extends BaseService {
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param SDate
-	 * 			시작일자 
+	 * 			시작일자(yyyyMMdd)
 	 * @param EDate
-	 * 			종료일자 
+	 * 			종료일자(yyyyMMdd)
 	 * @param State
 	 * 			전송상태 배열, 1-대기, 2-성공, 3-실패, 4-취소 
 	 * @param Item
-	 * 			검색대상 배열, SMS, LMS ,MMS 
+	 * 			검색대상 배열, SMS-단문, LMS-장문 ,MMS-포토  
 	 * @param ReserveYN
-	 * 			예약여부 
+	 * 			예약여부, true-예약전송조회, false-전체조회 
 	 * @param SenderYN
-	 * 			개인조회여부 
+	 * 			개인조회여부, true-개인조회, false-전체조회
 	 * @param Page
 	 * 			페이지번호 
 	 * @param PerPage
-	 * 			페이지당 검색갯수 
-	 * @return 전송내역조회결과 MSGSearchResult
+	 * 			페이지당 검색갯수, 기본값 500, 최대값 1000 
+	 * @param Order
+	 * 			정렬방향, D-내림차순, A-오름차순
+	 * @return 전송내역 조회 (see, com.popbill.api.message.MSGSearchResult)
 	 * @throws PopbillException
 	 */
 	public MSGSearchResult search(String CorpNum, String SDate, String EDate, 

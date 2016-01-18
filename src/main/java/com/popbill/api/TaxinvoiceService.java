@@ -1002,26 +1002,26 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param KeyType
 	 * 			연동문서 종류 
 	 * @param DType
-	 * 			검색일자 유형 
+	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자 
 	 * @param SDate
-	 * 			시작일자 
+	 * 			시작일자(yyyyMMdd)
 	 * @param EDate
-	 * 			종료일자 
+	 * 			종료일자(yyyyMMdd)
 	 * @param State
 	 * 			상태코드 배열 
 	 * @param Type
-	 * 			문서유형 배열 
+	 * 			문서유형 배열, N-일반세금계산서, M-수정세금계산서 
 	 * @param TaxType
-	 * 			과세형태 배열 
+	 * 			과세형태 배열, T-과세, N-면세, Z-영세
 	 * @param LateOnly
-	 * 			지연발행 여부 
+	 * 			지연발행 여부, null-전체조회, 0:정상발행분 조회, 1:지연발행분 조회
 	 * @param Page
 	 * 			페이지 번호 
 	 * @param PerPage
-	 * 			페이지당 검색갯수 
+	 * 			페이지당 검색갯수, 기본값 500, 최대값 1000
 	 * @param Order
-	 * 			정렬방향 
-	 * @return Search Result. see TISearchResult 
+	 * 			정렬방향, D-내림차순, A-오름차순  
+	 * @return 세금계산서 목록조회 결과. (see com.popbill.api.taxinvoice.TISearchResult) 
 	 * @throws PopbillException
 	 */
 	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, 
@@ -1036,7 +1036,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param taxinvoice
-	 * 			세금계산서 객체 
+	 * 			세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
 	 * @param WriteSpecification
 	 * 			거래명세서 동시작성 여부 
 	 * @return Response 응답.
@@ -1051,9 +1051,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param taxinvoice
-	 * 			세금계산서 객체 
+	 * 			세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
 	 * @param Memo
-	 * 			즉시발행 메모 
+	 * 			즉시발행 메모, 최대 200자 
 	 * @param ForceIssue
 	 * 			지연발행 강제여부 
 	 * @return Response 응답. 
@@ -1068,15 +1068,15 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param taxinvoice
-	 * 			세금계산서 객체 
+	 * 			세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
 	 * @param WriteSpecification
 	 * 			거래명세서 동시작성 여부 
 	 * @param Memo
-	 * 			즉시발행 메모 
+	 * 			즉시발행 메모, 최대 200자
 	 * @param ForceIssue
 	 * 			지연발행 강제여부 
 	 * @param DealInvoiceKey
-	 * 			거래명세서 관리번호 
+	 * 			거래명세서 관리번호, 최대 24자 
 	 * @return Response 응답. 
 	 * @throws PopbillException
 	 */
@@ -1090,17 +1090,17 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param taxinvoice
-	 * 			세금계산서 객체 
+	 * 			세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
 	 * @param WriteSpecification
 	 * 			거래명세서 동시작성 여부 
 	 * @param Memo
-	 * 			즉시발행 메모 
+	 * 			즉시발행 메모, 최대 200자 
 	 * @param ForceIssue
 	 * 			지연발행 강제여부 
 	 * @param DealInvoiceKey
-	 * 			거래명세서 관리번호 
+	 * 			거래명세서 관리번호, 최대 24자 
 	 * @param EmailSubject
-	 * 			안내메일 제목 
+	 * 			안내메일 제목, 최대 300자 
 	 * @param UserID
 	 * 			팝빌회원 아이디 
 	 * @return
@@ -1121,7 +1121,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param MgtKey
 	 * 			세금계산서 관리번호 
 	 * @param SubItemCode
-	 * 			첨부할 명세서 코드 
+	 * 			첨부할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증 
 	 * @param SubMgtKey
 	 * 			첨부할 명세서 관리번호 
 	 * @return Response. 
@@ -1139,7 +1139,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param MgtKey
 	 * 			세금계산서 관리번호 
 	 * @param SubItemCode
-	 * 			첨부해제할 명세서 코드 
+	 * 			첨부해제할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증 
 	 * @param SubMgtKey
 	 * 			첨부해제할 명세서 관리번호 
 	 * @return Response. 

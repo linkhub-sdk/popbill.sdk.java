@@ -634,9 +634,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 		uri += "&PerPage="+ Integer.toString(PerPage);
 		uri += "&Order=" + Order;
 		
-		StmtSearchResult response = httpget(uri, CorpNum, null, StmtSearchResult.class);
-		return response;
-		
+		return httpget(uri, CorpNum, null, StmtSearchResult.class);
 	}
 		
 	protected class MemoRequest {

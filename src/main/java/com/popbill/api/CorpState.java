@@ -10,10 +10,6 @@ import java.io.Serializable;
  */
 public class CorpState implements Serializable {
 	
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -8511669128205982297L;
 	private String corpNum;
 	private String type;

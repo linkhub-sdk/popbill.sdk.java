@@ -154,17 +154,13 @@ public abstract class BaseServiceImp implements BaseService {
 			subFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 			
 			try {
+				Date expiration = format.parse(token.getExpiration());
 				UTCTime = subFormat.parse(getTokenbuilder().getTime());
+				expired = expiration.before(UTCTime);
 				
 			} catch (LinkhubException le){
 				throw new PopbillException(le);
 			} catch (ParseException e){
-			}
-			
-			try {
-				Date expiration = format.parse(token.getExpiration());
-				expired = expiration.before(UTCTime);
-			} catch (ParseException e) {
 			}
 		}
 
@@ -697,8 +693,8 @@ public abstract class BaseServiceImp implements BaseService {
 	}
 	
 	private static String fromGzipStream(InputStream input) throws IOException {
-
 		GZIPInputStream zipReader = new GZIPInputStream(input);
+		
 		InputStreamReader is = new InputStreamReader(zipReader);
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br = new BufferedReader(is);

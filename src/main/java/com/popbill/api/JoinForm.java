@@ -50,7 +50,7 @@ public class JoinForm {
 	 * 회원아이디 설정
 	 * 
 	 * @param iD
-	 *            회원아이디
+	 *      회원아이디, 6자이상 20자미만, 영문(대/소문자), 숫자, '_', '-' 조합으로 구성 
 	 */
 	public void setID(String iD) {
 		ID = iD;
@@ -69,6 +69,7 @@ public class JoinForm {
 	 * 회원 비밀번호 설정
 	 * 
 	 * @param pWD
+	 * 		최대 20자리 
 	 */
 	public void setPWD(String pWD) {
 		PWD = pWD;
@@ -124,8 +125,8 @@ public class JoinForm {
 	/**
 	 * 대표자성명 설정
 	 * 
-	 * @param cEOName
-	 *            대표자 성명
+	 * @param CEOName
+	 *        대표자 성명, 최대 30자리
 	 */
 	public void setCEOName(String cEOName) {
 		CEOName = cEOName;
@@ -144,7 +145,7 @@ public class JoinForm {
 	 * 상호 설정
 	 * 
 	 * @param corpName
-	 *            상호
+	 *        상호, 최대 70자리 
 	 */
 	public void setCorpName(String corpName) {
 		CorpName = corpName;
@@ -163,7 +164,7 @@ public class JoinForm {
 	 * 주소 설정
 	 * 
 	 * @param addr
-	 *            주소
+	 *      주소, 최대 300자리 
 	 */
 	public void setAddr(String addr) {
 		Addr = addr;
@@ -182,7 +183,7 @@ public class JoinForm {
 	 * 우편번호 설정
 	 * 
 	 * @param zipCode
-	 *            우편번호
+	 *        우편번호, 최대 10자리 
 	 */
 	public void setZipCode(String zipCode) {
 		ZipCode = zipCode;
@@ -201,7 +202,7 @@ public class JoinForm {
 	 * 업태 설정
 	 * 
 	 * @param bizType
-	 *            업태
+	 *       업태, 최대 40자리 
 	 */
 	public void setBizType(String bizType) {
 		BizType = bizType;
@@ -220,7 +221,7 @@ public class JoinForm {
 	 * 업종 설정
 	 * 
 	 * @param bizClass
-	 *            업종
+	 *       업종, 최대 40자리 
 	 */
 	public void setBizClass(String bizClass) {
 		BizClass = bizClass;
@@ -239,7 +240,7 @@ public class JoinForm {
 	 * 담당자명 설정
 	 * 
 	 * @param contactName
-	 *            담당자명
+	 *        담당자명, 최대 30자리 
 	 */
 	public void setContactName(String contactName) {
 		ContactName = contactName;
@@ -248,7 +249,7 @@ public class JoinForm {
 	/**
 	 * 담당자 연락처 확인
 	 * 
-	 * @return 담당자 연락
+	 * @return 담당자 연락처 
 	 */
 	public String getContactTEL() {
 		return ContactTEL;
@@ -258,7 +259,7 @@ public class JoinForm {
 	 * 담당자 연락처 설정
 	 * 
 	 * @param contactTEL
-	 *            담당자 연락처
+	 *        담당자 연락처, 최대 20자리 
 	 */
 	public void setContactTEL(String contactTEL) {
 		ContactTEL = contactTEL;
@@ -277,7 +278,7 @@ public class JoinForm {
 	 * 담당자 휴대전화 설정
 	 * 
 	 * @param contactHP
-	 *            담당자 휴대전화
+	 *        담당자 휴대전화, 최대 20자리 
 	 */
 	public void setContactHP(String contactHP) {
 		ContactHP = contactHP;
@@ -296,7 +297,7 @@ public class JoinForm {
 	 * 담당자 팩스번호 설정
 	 * 
 	 * @param contactFAX
-	 *            담당자 팩스번호
+	 *        담당자 팩스번호, 최대 20자리 
 	 */
 	public void setContactFAX(String contactFAX) {
 		ContactFAX = contactFAX;
@@ -315,7 +316,7 @@ public class JoinForm {
 	 * 담당자 이메일 설정
 	 * 
 	 * @param contactEmail
-	 *            담당자 이메일
+	 *        담당자 이메일, 최대 70자리 
 	 */
 	public void setContactEmail(String contactEmail) {
 		ContactEmail = contactEmail;

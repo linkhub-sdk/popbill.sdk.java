@@ -598,7 +598,7 @@ public class TaxinvoiceServiceTEST {
 		String[] State = {"100", "2**", "3**"};
 		String[] Type = {"N", "M"};
 		String[] TaxType = {"T","Z"};
-		Boolean LateOnly = false;
+		Boolean LateOnly = null;
 		int Page = 1;
 		int PerPage = 30;
 		String Order = "A";

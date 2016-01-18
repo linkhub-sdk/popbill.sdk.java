@@ -68,7 +68,7 @@ public interface FaxService extends BaseService {
 	 * @param file
 	 *            전송파일
 	 * @param reserveDT
-	 *            예약일시
+	 *            예약일시, (형태 yyyyMMddHHmmss)
 	 * @param UserID
 	 *            연동회원 아이디
 	 * @return receiptNum 접수번호
@@ -90,7 +90,7 @@ public interface FaxService extends BaseService {
 	 * @param file
 	 *            전송파일
 	 * @param reserveDT
-	 *            예약일시
+	 *            예약일시, (형태 yyyyMMddHHmmss)
 	 * @param UserID
 	 *            연동회원 아이디
 	 * @return receiptNum 접수번호
@@ -113,7 +113,7 @@ public interface FaxService extends BaseService {
 	 * @param files
 	 *            전송파일 Stream 배열
 	 * @param reserveDT
-	 *            예약일시
+	 *            예약일시, (형태 yyyyMMddHHmmss)
 	 * @param UserID
 	 *            연동회원 아이디
 	 * @return receiptNum 접수번호
@@ -135,7 +135,7 @@ public interface FaxService extends BaseService {
 	 * @param files
 	 *            전송파일 Stream 배열
 	 * @param reserveDT
-	 *            예약일시
+	 *            예약일시, (형태 yyyyMMddHHmmss)
 	 * @param UserID
 	 *            연동회원 아이디
 	 * @return receiptNum 접수번호
@@ -151,8 +151,8 @@ public interface FaxService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param receiptNum
-	 *            발송시 접수번호
-	 * @return FaxResult 배열
+	 *            팩스전송 접수번호
+	 * @return FaxResult 배열. (see com.popbill.api.fax.FaxResult)
 	 * @throws PopbillException
 	 */
 	public FaxResult[] getFaxResult(String CorpNum, String receiptNum)
@@ -164,7 +164,7 @@ public interface FaxService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param receiptNum
-	 *            발송시 접수번호
+	 *            팩스전송 접수번호
 	 * @param UserID
 	 *            연동회원 아이디
 	 * @return Response 응답
@@ -178,9 +178,9 @@ public interface FaxService extends BaseService {
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param SDate
-	 * 			시작일자 
+	 * 			시작일자 (yyyyMMdd)
 	 * @param EDate
-	 * 			종료일자 
+	 * 			종료일자 (yyyyMMdd)
 	 * @param State
 	 * 			전송상태 
 	 * @param ReserveYN
@@ -188,11 +188,11 @@ public interface FaxService extends BaseService {
 	 * @param SenderOnlyYN
 	 * 			개인조회 여부 
 	 * @param Page
-	 * 			페이지 번호 
+	 * 			페이지 번호, 기본값 1
 	 * @param PerPage
-	 * 			페이지당 목록갯수 
+	 * 			페이지당 목록갯수, 기본값 500, 최대값 1000
 	 * @param Order
-	 * 			정렬방향 
+	 * 			정렬방향, D-내림차순, A-오름차순 
 	 * @return 팩스전송내역. see com.popbill.api.fax.FAXSearchResult
 	 * @throws PopbillException
 	 */
