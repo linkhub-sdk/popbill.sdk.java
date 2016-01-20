@@ -695,7 +695,7 @@ public abstract class BaseServiceImp implements BaseService {
 	private static String fromGzipStream(InputStream input) throws IOException {
 		GZIPInputStream zipReader = new GZIPInputStream(input);
 		
-		InputStreamReader is = new InputStreamReader(zipReader);
+		InputStreamReader is = new InputStreamReader(zipReader, "UTF-8");
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br = new BufferedReader(is);
 
