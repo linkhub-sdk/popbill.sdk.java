@@ -128,7 +128,7 @@ public class BaseServiceTEST {
 		Date UTCTime = null;
 		
 		SimpleDateFormat format = new SimpleDateFormat(
-				"yyyy-MM-dd'T'HH:mm:ss.sss'Z'");
+				"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 		format.setTimeZone(TimeZone.getTimeZone("UTC"));
 		
 		SimpleDateFormat format2 = new SimpleDateFormat(
