@@ -19,6 +19,7 @@ import java.util.List;
 
 import com.popbill.api.BaseServiceImp;
 import com.popbill.api.CashbillService;
+import com.popbill.api.ChargeInfo;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.statement.StmtSearchResult;
@@ -512,6 +513,15 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		return httpget(uri, CorpNum, null, CBSearchResult.class);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#getChargeInfo(java.lang.String)
+	 */
+	@Override
+	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
+		return httpget("/Cashbill/ChargeInfo", CorpNum, null, ChargeInfo.class);
+	}
+	
 	protected class MemoRequest {
 		public MemoRequest(String memo){
 			this.memo = memo;
@@ -525,4 +535,6 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		public String sender = null;
 		public String contents = null;
 	}
+
+
 }

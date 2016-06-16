@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.popbill.api.BaseServiceImp;
+import com.popbill.api.ChargeInfo;
 import com.popbill.api.CloseDownService;
 import com.popbill.api.CorpState;
 import com.popbill.api.PopbillException;
@@ -75,5 +76,13 @@ public class CloseDownServiceImp extends BaseServiceImp implements CloseDownServ
 		return httppost("/CloseDown",
 				MemberCorpNum,PostData, null, CorpState[].class);
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.CloseDownService#getChargeInfo(java.lang.String)
+	 */
+	@Override
+	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
+		return httpget("/CloseDown/ChargeInfo",CorpNum, null, ChargeInfo.class);
+	}
 }

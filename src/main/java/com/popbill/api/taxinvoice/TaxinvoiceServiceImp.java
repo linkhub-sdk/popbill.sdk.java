@@ -24,6 +24,7 @@ import java.util.List;
 
 import com.popbill.api.AttachedFile;
 import com.popbill.api.BaseServiceImp;
+import com.popbill.api.ChargeInfo;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.TaxinvoiceService;
@@ -853,6 +854,22 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 			String SDate, String EDate, String[] State, String[] Type, String[] TaxType,
 			Boolean LateOnly, Integer Page, Integer PerPage, String Order) throws PopbillException {
 		
+		return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, LateOnly, 
+				null, null, null, Page, PerPage, Order);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#Search(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[], java.lang.Boolean, java.lang.Boolean, java.lang.String, java.lang.String[], java.lang.Integer, java.lang.Integer, java.lang.String)
+	 */
+	@Override
+	public TISearchResult Search(String CorpNum, MgtKeyType KeyType,
+			String DType, String SDate, String EDate, String[] State,
+			String[] Type, String[] TaxType, Boolean LateOnly,
+			String TaxRegIDType, String[] TaxRegID, Boolean TaxRegIDYN,
+			Integer Page, Integer PerPage, String Order)
+			throws PopbillException {
+		
 		if (KeyType == null)
 			throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
 		if (DType == null || DType.isEmpty())
@@ -879,6 +896,19 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 			} else{
 				uri += "&LateOnly=0";
 			}
+		}
+		
+		if (TaxRegIDType != null){
+			uri +="&TaxRegIDType="+TaxRegIDType;
+		}
+		
+		uri += "&TaxRegID=" + Arrays.toString(TaxRegID)
+				.replaceAll("\\[|\\]|\\s", "");
+		
+		if (TaxRegIDYN != null){
+			uri += "&TaxRegIDYN=1";
+		} else {
+			uri += "&TaxRegIDYN=0";
 		}
 			
 		uri += "&Page=" + Integer.toString(Page);
@@ -991,6 +1021,16 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		return httppost("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "/DetachStmt",
 				CorpNum, PostData, null, "", Response.class);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#getChargeInfo(java.lang.String)
+	 */
+	@Override
+	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
+		return httpget("/Taxinvoice/ChargeInfo", CorpNum, null, ChargeInfo.class);
+	}
+	
 
 	protected class CertResponse {
 		public String certificateExpiration;
@@ -1025,6 +1065,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		public String ItemCode;
 		public String MgtKey;
 	}
-	
+
+
+
+
 	
 }

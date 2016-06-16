@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.popbill.api.BaseServiceImp;
+import com.popbill.api.ChargeInfo;
 import com.popbill.api.FaxService;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
@@ -232,6 +233,18 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		
 		return httpget(uri, CorpNum, null, FAXSearchResult.class);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#getChargeInfo(java.lang.String)
+	 */
+	
+	@Override
+	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
+		return httpget("/FAX/ChargeInfo", CorpNum, null, ChargeInfo.class);
+	}
+
+
 
 	protected class SendRequest {
 		public String snd;

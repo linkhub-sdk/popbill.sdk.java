@@ -43,9 +43,20 @@ public interface CloseDownService extends BaseService {
 	
 	/**
 	 * 휴폐업상태 다량 조회
-	 * @param MemberCorpNum 연동회원 사업자번호
-	 * @param CorpNumList 조회하고자 하는 사업자번호 목록.
+	 * @param MemberCorpNum 
+	 * 			연동회원 사업자번호
+	 * @param CorpNumList 
+	 * 			조회하고자 하는 사업자번호 목록.
 	 * @return 휴폐업상태정보 목록
 	 */
 	CorpState[] CheckCorpNum(String MemberCorpNum, String[] CorpNumList) throws PopbillException;
+	
+	/**
+	 * 과금정보 확인
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @return 과금정보 (see. com.popbill.api.ChargeInfo)
+	 * @throws PopbillException
+	 */
+	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException;
 }

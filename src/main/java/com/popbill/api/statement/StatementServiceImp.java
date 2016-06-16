@@ -23,6 +23,7 @@ import java.util.List;
 
 import com.popbill.api.AttachedFile;
 import com.popbill.api.BaseServiceImp;
+import com.popbill.api.ChargeInfo;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.StatementService;
@@ -612,6 +613,10 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 				CorpNum, PostData, null, Response.class);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.StatementService#search(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String[], int[], int, int, java.lang.String)
+	 */
 	@Override
 	public StmtSearchResult search(String CorpNum, String DType, String SDate, 
 			String EDate, String[] State, int[] ItemCode, int Page, int PerPage, 
@@ -636,6 +641,16 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 		
 		return httpget(uri, CorpNum, null, StmtSearchResult.class);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.StatementService#getChargeInfo(java.lang.String, int)
+	 */
+	@Override
+	public ChargeInfo getChargeInfo(String CorpNum, int ItemCode) throws PopbillException{
+		return httpget("/Statement/ChargeInfo/" + Integer.toString(ItemCode), CorpNum, null, ChargeInfo.class);
+	}
+
 		
 	protected class MemoRequest {
 		public MemoRequest(String memo) {
@@ -659,5 +674,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 		public int ItemCode;
 		public String MgtKey;
 	}
+
 
 }

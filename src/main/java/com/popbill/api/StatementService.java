@@ -774,4 +774,14 @@ public interface StatementService extends BaseService{
 	public StmtSearchResult search(String CorpNum, String DType, String SDate,
 			String EDate, String[] State, int[] ItemCode, int Page,
 			int PerPage, String Order) throws PopbillException;
+	/**
+	 * 과금정보 확
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param ItemCode
+	 * 			전자명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
+	 * @return 과금정보. see com.popbill.api.ChargeInfo
+	 * @throws PopbillException
+	 */
+	public ChargeInfo getChargeInfo(String CorpNum, int ItemCode) throws PopbillException;
 }

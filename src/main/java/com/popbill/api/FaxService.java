@@ -199,4 +199,14 @@ public interface FaxService extends BaseService {
 	public FAXSearchResult search(String CorpNum, String SDate, String EDate,
 			String[] State, Boolean ReserveYN, Boolean SenderOnlyYN, 
 			int Page, int PerPage, String Order) throws PopbillException;
+	
+	/**
+	 * 과금정보 조회
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @return 과금정보. see.com.popbill.api.ChargeInfo
+	 * @throws PopbillException
+	 */
+	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException;
 }

@@ -511,4 +511,14 @@ public interface CashbillService extends BaseService{
 	public CBSearchResult search(String CorpNum, String DType, String SDate, 
 			String EDate, String[] State, String[] TradeType, String[] TradeUsage,
 			String[] TaxationType, int Page, int PerPage, String Order) throws PopbillException;
+	/**
+	 *  과금정보 확인
+	 *  
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @return ChargeInfo 과금정보.
+	 * @throws PopbillException
+	 */
+	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException;
+	
 }

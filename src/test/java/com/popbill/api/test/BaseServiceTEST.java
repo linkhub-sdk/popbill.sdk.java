@@ -267,6 +267,7 @@ public class BaseServiceTEST {
 		System.out.println(corpInfo.getBizType());
 		System.out.println(corpInfo.getCeoname());
 		System.out.println(corpInfo.getCorpName());
+		
 	}
 	
 }

@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.popbill.api.BaseServiceImp;
+import com.popbill.api.ChargeInfo;
 import com.popbill.api.MessageService;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
@@ -499,10 +500,23 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 		return httpget(uri, CorpNum, null, MSGSearchResult.class);
 	}
 	
-
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.MessageService#getAutoDenyList(java.lang.String)
+	 */
 	@Override
 	public AutoDeny[] getAutoDenyList(String CorpNum) throws PopbillException {	
 		return httpget("/Message/Denied", CorpNum, null, AutoDeny[].class);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.MessageService#getChargeInfo(java.lang.String, com.popbill.api.message.MessageType)
+	 */
+	@Override
+	public ChargeInfo getChargeInfo(String CorpNum, MessageType MsgType)
+			throws PopbillException {
+		return httpget("/Message/ChargeInfo?Type=" + MsgType.name(), CorpNum, null, ChargeInfo.class);
 	}
 	
 	protected class SendRequest {
@@ -518,6 +532,8 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	protected class ReceiptResponse {
 		public String receiptNum;
 	}
+
+
 
 
 

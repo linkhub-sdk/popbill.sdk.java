@@ -22,8 +22,6 @@ import com.popbill.api.message.MSGSearchResult;
 import com.popbill.api.message.Message;
 import com.popbill.api.message.MessageType;
 import com.popbill.api.message.SentMessage;
-import com.popbill.api.taxinvoice.MgtKeyType;
-import com.popbill.api.taxinvoice.TISearchResult;
 
 /**
  * Message Service Interface.
@@ -615,4 +613,16 @@ public interface MessageService extends BaseService {
 	 * @throws PopbillException
 	 */
 	public AutoDeny[] getAutoDenyList(String CorpNum) throws PopbillException;
+	
+	/**
+	 * 과금정보 확인 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param MsgType
+	 * 			메시지 유형
+	 * @return 과금정보 (see, com.popbill.api.ChargeInfo)
+	 * @throws PopbillException
+	 */
+	public ChargeInfo getChargeInfo(String CorpNum, MessageType MsgType) throws PopbillException;
 }
