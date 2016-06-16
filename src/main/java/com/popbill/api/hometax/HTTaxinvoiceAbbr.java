@@ -17,6 +17,7 @@ public class HTTaxinvoiceAbbr implements Serializable {
 	private String taxType;
 	private String purposeType;
 	private Boolean modifyYN;
+	private String remark1;
 	
 	private String invoicerCorpNum;
 	private String invoicerCorpName;
@@ -39,6 +40,7 @@ public class HTTaxinvoiceAbbr implements Serializable {
 	private String itemName;
 	private String supplyCost;
 	private String tax;
+	private String remark;
 	private String orgNTSConfirmNum;
 	
 
@@ -283,6 +285,24 @@ public class HTTaxinvoiceAbbr implements Serializable {
 	 */
 	public String getTax() {
 		return tax;
+	}
+	
+	/**
+	 * 전자(세금)계산서 비고 항목 확인 
+	 * 
+	 * @return 전자(세금)계산서 비고 
+	 */
+	public String getRemark1() {
+		return remark1;
+	}
+	
+	/**
+	 * 품목 비고 확인   
+	 * 
+	 * @return 품목 비고  
+	 */
+	public String getRemark() {
+		return remark;
 	}
 	
 }
