@@ -28,7 +28,7 @@ public class ChargeInfo {
 	private String rateSystem;
 	
 	/**
-	 * 종량제 - 발행단가, 정액제 - 월정액 요금 반
+	 * 단가확인, 종량제 - 발행단가, 정액제 - 월정액 요금 반환 
 	 *  
 	 * @return 발행단가, 월정액요
 	 */
@@ -39,7 +39,7 @@ public class ChargeInfo {
 	/**
 	 * 과금유형 확인
 	 * 
-	 * @return "일반", "연동", "파트너" 중 반
+	 * @return "일반", "연동", "파트너" 중 반환 
 	 */
 	public String getChargeMethod() {
 		return chargeMethod;

@@ -35,32 +35,32 @@ public class CloseDownServiceTEST {
 	
 	}	
 	
-//	@Test
-//	public void getUnitCost_TEST() throws PopbillException {
-//		
-//		float UnitCost = closeDownService.getUnitCost("1231212312");
-//
-//		System.out.println(UnitCost);
-//	}
-//
-//	@Test
-//	public void CheckCorpNum() throws PopbillException {
-//		
-//		CorpState state =closeDownService.CheckCorpNum("1231212312", "1000000000");
-//		
-//		System.out.println(state.getState());
-//		
-//	}
-//	
-//	@Test
-//	public void CheckCorpNums() throws PopbillException {
-//		
-//		String[] CorpNumList = new String[] {"1231212312","1000000000"};
-//		
-//		CorpState[] state =closeDownService.CheckCorpNum("1231212312",CorpNumList);
-//		
-//		System.out.println(state[0].getState());
-//		
-//	}
+	@Test
+	public void getUnitCost_TEST() throws PopbillException {
+		
+		float UnitCost = closeDownService.getUnitCost("1231212312");
+
+		System.out.println(UnitCost);
+	}
+
+	@Test
+	public void CheckCorpNum() throws PopbillException {
+		
+		CorpState state =closeDownService.CheckCorpNum("1231212312", "1000000000");
+		
+		System.out.println(state.getState());
+		
+	}
+	
+	@Test
+	public void CheckCorpNums() throws PopbillException {
+		
+		String[] CorpNumList = new String[] {"1231212312","1000000000"};
+		
+		CorpState[] state =closeDownService.CheckCorpNum("1231212312",CorpNumList);
+		
+		System.out.println(state[0].getState());
+		
+	}
 
 }

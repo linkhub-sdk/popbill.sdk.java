@@ -67,7 +67,7 @@ public class HTTaxinvoiceServiceTEST {
 		String SDate = "20160601";
 		String EDate = "20160615";
 		
-		String jobID = hometaxTIService.requestJob("4108600477", QueryType.SELL, DType, SDate, EDate, "innopost");
+		String jobID = hometaxTIService.requestJob("1234567890", QueryType.SELL, DType, SDate, EDate, "innopost");
 		
 		assertNotNull(jobID);
 		System.out.println("\n\n======== requestJob Response ========");
@@ -77,7 +77,7 @@ public class HTTaxinvoiceServiceTEST {
 	@Test
 	public void getJobState_TEST() throws PopbillException {
 		
-		HTTaxinvoiceJobState jobState = hometaxTIService.getJobState("4108600477", "016061515000000002", "innoposttest");
+		HTTaxinvoiceJobState jobState = hometaxTIService.getJobState("1234567890", "016061515000000002", "testkorea");
 		
 		assertNotNull(jobState);
 		
@@ -98,7 +98,7 @@ public class HTTaxinvoiceServiceTEST {
 	
 	@Test
 	public void listActiveJob_TEST() throws PopbillException {
-		HTTaxinvoiceJobState[] jobList = hometaxTIService.listActiveJob("4108600477", "innoposttest");
+		HTTaxinvoiceJobState[] jobList = hometaxTIService.listActiveJob("1234567890", "testkorea");
 		assertNotNull(jobList);
 		
 		System.out.println("\n\n======== listActvieJob Response ========");
@@ -120,7 +120,7 @@ public class HTTaxinvoiceServiceTEST {
 		Integer PerPage = 50;
 		String Order = "D";
 		
-		HTTaxinvoiceSearchResult result = hometaxTIService.search("4108600477", "016061515000000002", Type, TaxType, 
+		HTTaxinvoiceSearchResult result = hometaxTIService.search("1234567890", "016061515000000002", Type, TaxType, 
 				PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID, Page, PerPage, Order);
 		
 		assertNotNull(result);
@@ -147,7 +147,7 @@ public class HTTaxinvoiceServiceTEST {
 		String[] TaxRegID = {"",""};
 		Boolean TaxRegIDYN = false;
 		
-		HTTaxinvoiceSummary result = hometaxTIService.summary("4108600477", "016061515000000002", Type, TaxType, 
+		HTTaxinvoiceSummary result = hometaxTIService.summary("1234567890", "016061515000000002", Type, TaxType, 
 				PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID);
 		
 		assertNotNull(result);
@@ -163,7 +163,7 @@ public class HTTaxinvoiceServiceTEST {
 	@Test
 	public void getTaxinvoice_TEST() throws PopbillException {
 		String NTSConfirmNum = "20160615410000290000020d"; // 국세청 승인번호 
-		HTTaxinvoice taxinvoiceInfo = hometaxTIService.getTaxinvoice("4108600477", NTSConfirmNum, "innoposttest");
+		HTTaxinvoice taxinvoiceInfo = hometaxTIService.getTaxinvoice("1234567890", NTSConfirmNum, "testkorea");
 		
 		assertNotNull(taxinvoiceInfo);
 		
@@ -234,7 +234,7 @@ public class HTTaxinvoiceServiceTEST {
 	@Test
 	public void getTaxinvoiceXML_TEST() throws PopbillException {
 		String NTSConfirmNum = "2016061541000029000001ee"; // 국세청 승인번호 
-		HTTaxinvoiceXMLResponse xmlInfo = hometaxTIService.getXML("4108600477", NTSConfirmNum, "innoposttest");
+		HTTaxinvoiceXMLResponse xmlInfo = hometaxTIService.getXML("1234567890", NTSConfirmNum, "testkorea");
 		
 		assertNotNull(xmlInfo);
 		
@@ -246,7 +246,7 @@ public class HTTaxinvoiceServiceTEST {
 	
 	@Test
 	public void getFlatRateState_TEST() throws PopbillException {
-		FlatRateState rateInfo = hometaxTIService.getFlatRateState("4108600477", "innoposttest");
+		FlatRateState rateInfo = hometaxTIService.getFlatRateState("1234567890", "testkorea");
 		
 		assertNotNull(rateInfo);
 		
@@ -263,7 +263,7 @@ public class HTTaxinvoiceServiceTEST {
 	}
 	@Test
 	public void getCertificatePopUpURL_TEST() throws PopbillException {
-		String url = hometaxTIService.getCertificatePopUpURL("4108600477", "innoposttest");
+		String url = hometaxTIService.getCertificatePopUpURL("1234567890", "testkorea");
 		
 		assertNotNull(url);
 		
@@ -273,7 +273,7 @@ public class HTTaxinvoiceServiceTEST {
 	
 	@Test
 	public void getCertificateExpireDate_TEST() throws PopbillException {
-		Date ExpireDate = hometaxTIService.getCertificateExpireDate("4108600477");
+		Date ExpireDate = hometaxTIService.getCertificateExpireDate("1234567890");
 		assertNotNull(ExpireDate);
 		
 		System.out.println(ExpireDate);
