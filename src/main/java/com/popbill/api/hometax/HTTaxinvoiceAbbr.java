@@ -32,7 +32,7 @@ public class HTTaxinvoiceAbbr implements Serializable {
 	private String invoiceeTaxRegID;
 	private String invoiceeEmail2;
 	
-	private String supplycostTotal;
+	private String supplyCostTotal;
 	private String taxTotal;
 	private String totalAmount;
 	private String purchaseDate;
@@ -227,8 +227,8 @@ public class HTTaxinvoiceAbbr implements Serializable {
 	 * 
 	 * @return 공급가액 
 	 */
-	public String getSupplycostTotal() {
-		return supplycostTotal;
+	public String getSupplyCostTotal() {
+		return supplyCostTotal;
 	}
 	
 	/**
