@@ -33,6 +33,15 @@ public class HTTaxinvoiceAbbr implements Serializable {
 	private String invoiceeTaxRegID;
 	private String invoiceeEmail2;
 	
+	private String trusteeCorpNum;
+	private String trusteeTaxRegID;
+	private String trusteeCorpName;
+	private String trusteeCEOName;
+	private String trusteeEmail;
+	
+	private String spec;
+	private String qty;
+	private String unitCost;
 	private String supplyCostTotal;
 	private String taxTotal;
 	private String totalAmount;
@@ -305,4 +314,76 @@ public class HTTaxinvoiceAbbr implements Serializable {
 		return remark;
 	}
 	
+	/**
+	 * 수탁자 사업자번호 확인 
+	 * 
+	 * @return 수탁자 사업자번호 
+	 */
+	public String getTrusteeCorpNum() {
+		return trusteeCorpNum;
+	}
+
+	/**
+	 * 수탁자 종사업장번호 확인 
+	 * 
+	 * @return 수탁자 종사업장번호 
+	 */
+	public String getTrusteeTaxRegID() {
+		return trusteeTaxRegID;
+	}
+	
+	/**
+	 * 수탁자 상호 확인 
+	 * 
+	 * @return 수탁자 상호 
+	 */
+	public String getTrusteeCorpName() {
+		return trusteeCorpName;
+	}
+	
+	/**
+	 * 수탁자 대표자 성명 확인
+	 * 
+	 * @return 수탁자 대표자 성명 
+	 */
+	public String getTrusteeCEOName() {
+		return trusteeCEOName;
+	}
+
+	/**
+	 * 수탁자 담당자 이메일 확인 
+	 * 
+	 * @return 수탁자 담당자 메일 
+	 */
+	public String getTrusteeEmail() {
+		return trusteeEmail;
+	}
+
+	/**
+	 * 품목 규격 확인
+	 * 
+	 * @return 품목 규격 
+	 */
+	public String getSpec() {
+		return spec;
+	}
+
+	/**
+	 * 품목 수량 확인 
+	 * 
+	 * @return 품목 수량 
+	 */
+	public String getQty() {
+		return qty;
+	}
+
+	/**
+	 * 품목 단가 확인 
+	 * 
+	 * @return 품목 단가 
+	 */
+	public String getUnitCost() {
+		return unitCost;
+	}
+
 }
