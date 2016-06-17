@@ -158,6 +158,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 		
 		if (JobID == null || JobID.isEmpty())
 			throw new PopbillException(-99999999, "작업아이디가 입력되지 않았습니다.");
+		
 		String uri = "/HomeTax/Taxinvoice/"+JobID;
 		
 		uri += "?Type=" + Arrays.toString(Type)
@@ -166,7 +167,9 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 				.replaceAll("\\[|\\]|\\s", "");
 		uri += "&PurposeType=" + Arrays.toString(PurposeType)
 				.replaceAll("\\[|\\]|\\s", "");
-		uri += "&TaxRegIDType=" + TaxRegIDType;
+		
+		if ( TaxRegIDType != null)
+			uri += "&TaxRegIDType=" + TaxRegIDType;
 		
 		if ( TaxRegIDYN ) {
 			uri += "&TaxRegIDYN=1";
