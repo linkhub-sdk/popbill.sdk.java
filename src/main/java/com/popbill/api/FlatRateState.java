@@ -46,7 +46,7 @@ public class FlatRateState {
 	 * 
 	 * @return 정액제 서비스 시작일시 (yyyyMmddHHmmss)
 	 */
-	public String getContraDT() {
+	public String getContractDT() {
 		return contractDT;
 	}
 	
