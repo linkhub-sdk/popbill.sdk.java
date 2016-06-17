@@ -144,9 +144,7 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 		uri += "&Page=" + Integer.toString(Page);
 		uri += "&PerPage=" + Integer.toString(PerPage);
 		uri += "&Order=" + Order;
-		
-		System.out.println(uri);
-		
+				
 		return httpget(uri, CorpNum, UserID, HTCashbillSearchResult.class);
 	}
 
