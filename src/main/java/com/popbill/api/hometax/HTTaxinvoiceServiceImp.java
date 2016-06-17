@@ -220,7 +220,9 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 				.replaceAll("\\[|\\]|\\s", "");
 		uri += "&PurposeType=" + Arrays.toString(PurposeType)
 				.replaceAll("\\[|\\]|\\s", "");
-		uri += "&TaxRegIDType=" + TaxRegIDType;
+		
+		if ( TaxRegIDType != null)
+			uri += "&TaxRegIDType=" + TaxRegIDType;
 		
 		if ( TaxRegIDYN ) {
 			uri += "&TaxRegIDYN=1";
@@ -230,8 +232,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 		
 		uri += "&TaxRegID=" + Arrays.toString(TaxRegID)
 				.replaceAll("\\[|\\]|\\s", "");
-		
-		System.out.println(uri);
+				
 		
 		return httpget(uri, CorpNum, UserID, HTTaxinvoiceSummary.class);
 	}
