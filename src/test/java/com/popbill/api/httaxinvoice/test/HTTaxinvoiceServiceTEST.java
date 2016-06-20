@@ -2,7 +2,6 @@ package com.popbill.api.httaxinvoice.test;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Test;
@@ -64,20 +63,20 @@ public class HTTaxinvoiceServiceTEST {
 	public void getRequestJob_TEST() throws PopbillException {
 		
 		String DType = "W";
-		String SDate = "20160601";
-		String EDate = "20160615";
+		String SDate = "20160501";
+		String EDate = "20160617";
 		
-		String jobID = hometaxTIService.requestJob("1234567890", QueryType.SELL, DType, SDate, EDate, "innopost");
+		String jobID = hometaxTIService.requestJob("1234567890", QueryType.SELL, DType, SDate, EDate);
 		
 		assertNotNull(jobID);
 		System.out.println("\n\n======== requestJob Response ========");
 		System.out.println(jobID);
-	}
+	} 
 	
 	@Test
 	public void getJobState_TEST() throws PopbillException {
 		
-		HTTaxinvoiceJobState jobState = hometaxTIService.getJobState("1234567890", "016061515000000002", "testkorea");
+		HTTaxinvoiceJobState jobState = hometaxTIService.getJobState("1234567890", "016061709000000001", "testkorea");
 		
 		assertNotNull(jobState);
 		
@@ -104,26 +103,38 @@ public class HTTaxinvoiceServiceTEST {
 		System.out.println("\n\n======== listActvieJob Response ========");
 		
 		for ( int i=0; i < jobList.length; i++ ) {
+			System.out.println("\n======== ["+(i+1)+"] listActvieJob Response ========");
 			System.out.println(jobList[i].getJobID());
+			System.out.println(jobList[i].getJobState());
+			System.out.println(jobList[i].getQueryType());
+			System.out.println(jobList[i].getQueryDateType());
+			System.out.println(jobList[i].getQueryStDate());
+			System.out.println(jobList[i].getQueryEnDate());
+			System.out.println(jobList[i].getErrorCode());
+			System.out.println(jobList[i].getErrorReason());
+			System.out.println(jobList[i].getJobStartDT());
+			System.out.println(jobList[i].getJobEndDT());
+			System.out.println(jobList[i].getCollectCount());
+			System.out.println(jobList[i].getRegDT());
 		}
 	}
 	
 	@Test
 	public void search_TEST() throws PopbillException{
-		String[] Type = {"N","M"};
+		String[] Type = {"N", "M"};
 		String[] TaxType = {"T", "Z", "N"};
-		String[] PurposeType = {"R","C", "N"};
+		String[] PurposeType = {"R", "C", "N"};
 		String TaxRegIDType = "S";
-		String[] TaxRegID = {"",""};
+		String[] TaxRegID = null;
 		Boolean TaxRegIDYN = false;
 		Integer Page = 1;
-		Integer PerPage = 50;
+		Integer PerPage = 10;
 		String Order = "D";
 		
-		HTTaxinvoiceSearchResult result = hometaxTIService.search("1234567890", "016061515000000002", Type, TaxType, 
+		HTTaxinvoiceSearchResult result = hometaxTIService.search("1234567890", "016061709000000001", Type, TaxType, 
 				PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID, Page, PerPage, Order);
 		
-		assertNotNull(result);
+		assertNotNull ( result ) ;
 		
 		System.out.println("\n\n======== Search Result ========");
 		System.out.println(result.getCode());
@@ -133,8 +144,45 @@ public class HTTaxinvoiceServiceTEST {
 		System.out.println(result.getPerPage());
 		System.out.println(result.getTotal());
 		
-		for(int i=0; i<result.getList().size(); i++){
-			System.out.println(i +" "+result.getList().get(i).getInvoiceeCorpName()+" "+result.getList().get(i).getModifyYN());	
+		for ( int i=0; i<result.getList().size(); i++ ) {
+			System.out.println("\n========["+ (i+1) +"] Search Result List Detail ========");
+			System.out.println(result.getList().get(i).getNtsconfirmNum());
+			System.out.println(result.getList().get(i).getWriteDate());
+			System.out.println(result.getList().get(i).getIssueDate());
+			System.out.println(result.getList().get(i).getSendDate());
+			System.out.println(result.getList().get(i).getTaxType());
+			System.out.println(result.getList().get(i).getPurposeType());
+			System.out.println(result.getList().get(i).getSupplyCostTotal());
+			System.out.println(result.getList().get(i).getTaxTotal());
+			System.out.println(result.getList().get(i).getTotalAmount());
+			System.out.println(result.getList().get(i).getRemark1());
+			System.out.println(result.getList().get(i).getRemark());
+			System.out.println(result.getList().get(i).getModifyYN());
+			System.out.println(result.getList().get(i).getOrgNTSConfirmNum());
+			System.out.println(result.getList().get(i).getPurchaseDate());
+			System.out.println(result.getList().get(i).getItemName());
+			System.out.println(result.getList().get(i).getSpec());
+			System.out.println(result.getList().get(i).getQty());
+			System.out.println(result.getList().get(i).getUnitCost());
+			System.out.println(result.getList().get(i).getSupplyCost());
+			System.out.println(result.getList().get(i).getTax());
+			System.out.println(result.getList().get(i).getInvoicerCorpNum());
+			System.out.println(result.getList().get(i).getInvoicerTaxRegID());
+			System.out.println(result.getList().get(i).getInvoicerCorpName());
+			System.out.println(result.getList().get(i).getInvoicerCEOName());
+			System.out.println(result.getList().get(i).getInvoicerEmail());
+			System.out.println(result.getList().get(i).getInvoiceeCorpNum());
+			System.out.println(result.getList().get(i).getInvoiceeType());
+			System.out.println(result.getList().get(i).getInvoiceeTaxRegID());
+			System.out.println(result.getList().get(i).getInvoiceeCorpName());
+			System.out.println(result.getList().get(i).getInvoiceeCEOName());
+			System.out.println(result.getList().get(i).getInvoiceeEmail1());
+			System.out.println(result.getList().get(i).getInvoiceeEmail2());
+			System.out.println(result.getList().get(i).getTrusteeCorpNum());
+			System.out.println(result.getList().get(i).getTrusteeTaxRegID());
+			System.out.println(result.getList().get(i).getTrusteeCorpName());
+			System.out.println(result.getList().get(i).getTrusteeCEOName());
+			System.out.println(result.getList().get(i).getTrusteeEmail());	
 		}
 	}
 	
@@ -143,11 +191,11 @@ public class HTTaxinvoiceServiceTEST {
 		String[] Type = {"N","M"};
 		String[] TaxType = {"T", "Z", "N"};
 		String[] PurposeType = {"R","C", "N"};
-		String TaxRegIDType = "S";
-		String[] TaxRegID = {"",""};
+		String TaxRegIDType = null;
+		String[] TaxRegID = null;
 		Boolean TaxRegIDYN = false;
 		
-		HTTaxinvoiceSummary result = hometaxTIService.summary("1234567890", "016061515000000002", Type, TaxType, 
+		HTTaxinvoiceSummary result = hometaxTIService.summary("1234567890", "016061709000000001", Type, TaxType, 
 				PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID);
 		
 		assertNotNull(result);
@@ -202,9 +250,22 @@ public class HTTaxinvoiceServiceTEST {
 		System.out.println(taxinvoiceInfo.getInvoiceeDeptName2());
 		System.out.println(taxinvoiceInfo.getInvoiceeTEL2());
 		System.out.println(taxinvoiceInfo.getInvoiceeEmail2());
+		System.out.println("\n-------trustee info-------");
+		System.out.println(taxinvoiceInfo.getTrusteeCorpNum());
+		System.out.println(taxinvoiceInfo.getTrusteeMgtKey());
+		System.out.println(taxinvoiceInfo.getTrusteeTaxRegID());
+		System.out.println(taxinvoiceInfo.getTrusteeCorpName());
+		System.out.println(taxinvoiceInfo.getTrusteeCEOName());
+		System.out.println(taxinvoiceInfo.getTrusteeAddr());
+		System.out.println(taxinvoiceInfo.getTrusteeBizType());
+		System.out.println(taxinvoiceInfo.getTrusteeBizClass());
+		System.out.println(taxinvoiceInfo.getTrusteeContactName());
+		System.out.println(taxinvoiceInfo.getTrusteeDeptName());
+		System.out.println(taxinvoiceInfo.getTrusteeTEL());
+		System.out.println(taxinvoiceInfo.getTrusteeEmail());
 		System.out.println("\n-------taxinvoice info-------");
-		System.out.println(taxinvoiceInfo.getTaxTotal());
 		System.out.println(taxinvoiceInfo.getSupplyCostTotal());
+		System.out.println(taxinvoiceInfo.getTaxTotal());
 		System.out.println(taxinvoiceInfo.getTotalAmount());
 		System.out.println(taxinvoiceInfo.getModifyCode());
 		System.out.println(taxinvoiceInfo.getOrgNTSConfirmNum());
@@ -252,7 +313,7 @@ public class HTTaxinvoiceServiceTEST {
 		
 		System.out.println("\n\n======== GetFlatRateState ========");
 		System.out.println(rateInfo.getReferenceID());
-		System.out.println(rateInfo.getContraDT());
+		System.out.println(rateInfo.getContractDT());
 		System.out.println(rateInfo.getBaseDate());
 		System.out.println(rateInfo.getUseEndDate());
 		System.out.println(rateInfo.getState());
@@ -275,9 +336,8 @@ public class HTTaxinvoiceServiceTEST {
 	public void getCertificateExpireDate_TEST() throws PopbillException {
 		Date ExpireDate = hometaxTIService.getCertificateExpireDate("1234567890");
 		assertNotNull(ExpireDate);
-		
+		System.out.println("\n\n======== CertificateExprieDate ========");
 		System.out.println(ExpireDate);
 	}
-
 }
 

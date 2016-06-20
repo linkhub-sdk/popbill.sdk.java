@@ -48,31 +48,31 @@ public class HTCashbillServiceTEST {
 	@Test
 	public void getRequestJob_TEST() throws PopbillException {
 		
-		String SDate = "20160601";
-		String EDate = "20160615";
+		String SDate = "20160501";
+		String EDate = "20160617";
 		
-		String jobID = htCashbillService.requestJob("1234567890", QueryType.SELL, SDate, EDate, "innopost");
+		String jobID = htCashbillService.requestJob("1234567890", QueryType.BUY, SDate, EDate);
 		
 		assertNotNull(jobID);
 		System.out.println("\n\n======== requestJob Response ========");
 		System.out.println(jobID);
 		
-		//016061611000000001
 	}
 	
 	@Test 
 	public void getJobState_TEST() throws PopbillException {
 		
-		String JobID = "016061611000000001";
-		String UserID = "testkorea";
+		String JobID = "016061711000000001";
+		String UserID = "innoposttest";
 		
-		HTCashbillJobState jobState = htCashbillService.getJobState("1234567890", JobID, UserID);
+		HTCashbillJobState jobState = htCashbillService.getJobState("1234567890", JobID);
 		
 		assertNotNull(jobState);
 		System.out.println("\n\n======== GetJobState ========");
 		System.out.println(jobState.getJobID());
 		System.out.println(jobState.getJobState());
 		System.out.println(jobState.getQueryType());
+		System.out.println(jobState.getQueryDateType());
 		System.out.println(jobState.getQueryStDate());
 		System.out.println(jobState.getQueryEnDate());
 		System.out.println(jobState.getErrorCode());
@@ -87,7 +87,7 @@ public class HTCashbillServiceTEST {
 	@Test
 	public void listActiveJob_TEST() throws PopbillException {
 		String CorpNum = "1234567890";
-		String UserID = "testkorea";
+		String UserID = "innoposttest";
 		
 		HTCashbillJobState[] jobList = htCashbillService.listActiveJob(CorpNum, UserID);
 		
@@ -113,18 +113,18 @@ public class HTCashbillServiceTEST {
 	@Test 
 	public void search_TEST() throws PopbillException {
 		String CorpNum = "1234567890";
-		String JobID = "016061611000000001";
-		String[] TypeUsage = {"P"};
+		String JobID = "016061717000000001";
+		String[] TypeUsage = {"P", "C"};
 		String[] TradeType = {"N", "C"};
 		Integer Page = 1;
-		Integer PerPage = 50;
+		Integer PerPage = 10;
 		String Order = "D";
-		String UserID = "testkorea";
+		String UserID = "innoposttest";
 		
 		HTCashbillSearchResult result = htCashbillService.search(CorpNum, JobID, TypeUsage, TradeType, Page, PerPage, Order, UserID);
 		
-		
 		assertNotNull(result);
+		
 		System.out.println("\n\n======== Search Result ========");
 		System.out.println(result.getCode());
 		System.out.println(result.getMessage());
@@ -133,7 +133,7 @@ public class HTCashbillServiceTEST {
 		System.out.println(result.getPerPage());
 		System.out.println(result.getTotal());
 		
-		for ( int i=0; i<result.getTotal(); i++ ) {
+		for ( int i=0; i<result.getList().size(); i++ ) {
 			System.out.println("\n========["+(i+1)+"] Search Result ========");
 			System.out.println(result.getList().get(i).getNtsconfirmNum());
 			System.out.println(result.getList().get(i).getTradeDT());
@@ -157,11 +157,11 @@ public class HTCashbillServiceTEST {
 	@Test 
 	public void summary_TEST() throws PopbillException {
 		String CorpNum = "1234567890";
-		String JobID = "016061611000000001";
-		String[] TypeUsage = {"P"};
+		String JobID = "016061713000000003";
+		String[] TypeUsage = {"P","C"};
 		String[] TradeType = {"N", "C"};
 		
-		String UserID = "testkorea";
+		String UserID = "innoposttest";
 		
 		HTCashbillSummary result = htCashbillService.summary(CorpNum, JobID, TypeUsage, TradeType, UserID);
 		
@@ -173,9 +173,10 @@ public class HTCashbillServiceTEST {
 		System.out.println(result.getServiceFeeTotal());
 		System.out.println(result.getAmountTotal());
 	}
+	
 	@Test
 	public void getFlatRatePopUpURL_TEST() throws PopbillException {
-		String url = htCashbillService.getFlatRatePopUpURL("1234567890", "testkorea");
+		String url = htCashbillService.getFlatRatePopUpURL("1234567890", "innoposttest");
 		
 		assertNotNull(url);
 		
@@ -184,26 +185,16 @@ public class HTCashbillServiceTEST {
 		System.out.println(url);
 	}
 	
-	@Test
-	public void getCertificatePopUpURL_TEST() throws PopbillException {
-		String url = htCashbillService.getCertificatePopUpURL("1234567890", "testkorea");
-		
-		assertNotNull(url);
-		
-		System.out.println("\n\n======== getCertificatePopUpURL Response ========");
-		
-		System.out.println(url);
-	}
 	
 	@Test
 	public void getFlatRateState_TEST() throws PopbillException {
-		FlatRateState rateInfo = htCashbillService.getFlatRateState("1234567890", "testkorea");
+		FlatRateState rateInfo = htCashbillService.getFlatRateState("1234567890", "innoposttest");
 		
 		assertNotNull(rateInfo);
 		
 		System.out.println("\n\n======== GetFlatRateState ========");
 		System.out.println(rateInfo.getReferenceID());
-		System.out.println(rateInfo.getContraDT());
+		System.out.println(rateInfo.getContractDT());
 		System.out.println(rateInfo.getBaseDate());
 		System.out.println(rateInfo.getUseEndDate());
 		System.out.println(rateInfo.getState());
@@ -211,6 +202,17 @@ public class HTCashbillServiceTEST {
 		System.out.println(rateInfo.getUseRestrictYN());
 		System.out.println(rateInfo.getCloseOnExpired());
 		System.out.println(rateInfo.getUnPaidYN());
+	}
+	
+	@Test
+	public void getCertificatePopUpURL_TEST() throws PopbillException {
+		String url = htCashbillService.getCertificatePopUpURL("1234567890", "innoposttest");
+		
+		assertNotNull(url);
+		
+		System.out.println("\n\n======== getCertificatePopUpURL Response ========");
+		
+		System.out.println(url);
 	}
 	
 	@Test
