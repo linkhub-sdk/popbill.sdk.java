@@ -1562,4 +1562,49 @@ public class Taxinvoice implements Serializable {
 	public void setWriteSpecification(Boolean writeSpecification) {
 		this.writeSpecification = writeSpecification;
 	}
+
+	/**
+	 * 거래명세서 동시작성 여부 
+	 * 
+	 * @return 거래명세서 동시작성 여부 
+	 */
+	public Boolean getWriteSpecification() {
+		return writeSpecification;
+	}
+	
+	/**
+	 * 지연발행 강제여부 
+	 * 
+	 * @return 지연발행 강제여부 
+	 */
+	public Boolean getForceIssue() {
+		return forceIssue;
+	}
+
+	/**
+	 * 메모 
+	 * 
+	 * @return 즉시발행 메모 
+	 */
+	public String getMemo() {
+		return memo;
+	}
+
+	/** 
+	 * 발행안내메일 제목 
+	 * 
+	 * @return 발행안내 메일 제목 
+	 */
+	public String getEmailSubject() {
+		return emailSubject;
+	}
+
+	/**
+	 * 거래명세서 동시작성시 거래명세서 관리번호 
+	 * 
+	 * @return 거래명세서 관리번호 
+	 */
+	public String getDealInvoiceMgtKey() {
+		return dealInvoiceMgtKey;
+	}
 }

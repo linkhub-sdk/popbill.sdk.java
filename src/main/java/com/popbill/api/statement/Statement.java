@@ -887,4 +887,31 @@ public class Statement implements Serializable {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+	
+	/**
+	 * 선팩스 전송 발신번호  
+	 * 
+	 * @return
+	 */
+	public String getSendNum() {
+		return sendNum;
+	}
+	
+	/**
+	 * 선팩스 전송 수신번호 
+	 * 
+	 * @return
+	 */
+	public String getReceiveNum() {
+		return receiveNum;
+	}
+	
+	/**
+	 * 메모 
+	 * 
+	 * @return
+	 */
+	public String getMemo() {
+		return memo;
+	}
 }

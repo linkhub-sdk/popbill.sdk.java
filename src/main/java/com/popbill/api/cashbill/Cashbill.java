@@ -491,4 +491,13 @@ public class Cashbill implements Serializable {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+
+	/**
+	 * 즉시발행 메모 
+	 * 
+	 * @return 메모 
+	 */
+	public String getMemo() {
+		return memo;
+	}
 }

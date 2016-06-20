@@ -65,7 +65,7 @@ public class HTCashbillServiceTEST {
 		String JobID = "016061711000000001";
 		String UserID = "innoposttest";
 		
-		HTCashbillJobState jobState = htCashbillService.getJobState("1234567890", JobID);
+		HTCashbillJobState jobState = htCashbillService.getJobState("1234567890", JobID, UserID);
 		
 		assertNotNull(jobState);
 		System.out.println("\n\n======== GetJobState ========");

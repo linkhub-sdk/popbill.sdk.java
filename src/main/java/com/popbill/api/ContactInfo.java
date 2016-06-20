@@ -203,5 +203,13 @@ public class ContactInfo {
 	 */
 	public String getRegDT() {
 		return regDT;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public String getPwd() {
+		return pwd;
 	}	
 }

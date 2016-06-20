@@ -22,7 +22,6 @@ import com.popbill.api.CashbillService;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
-import com.popbill.api.statement.StmtSearchResult;
 
 /**
  *  Implementation of Popbill CashbillService Interface
