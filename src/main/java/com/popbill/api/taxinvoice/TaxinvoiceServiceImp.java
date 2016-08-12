@@ -848,7 +848,6 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	 * 													java.lang.String, java.lang.String, java.lang.String[], java.lang.String[],
 	 * 													boolean, integer, integer)
 	 */
-	
 	@Override 
 	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, 
 			String SDate, String EDate, String[] State, String[] Type, String[] TaxType,
@@ -858,6 +857,10 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 				null, null, null, null, Page, PerPage, Order);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#Search(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[], java.lang.Boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String)
+	 */
 	@Override 
 	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, 
 			String SDate, String EDate, String[] State, String[] Type, String[] TaxType,
@@ -870,7 +873,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	
 	/*
 	 * (non-Javadoc)
-	 * @see com.popbill.api.TaxinvoiceService#Search(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[], java.lang.Boolean, java.lang.Boolean, java.lang.String, java.lang.String[], java.lang.Integer, java.lang.Integer, java.lang.String)
+	 * @see com.popbill.api.TaxinvoiceService#Search(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[], java.lang.Boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String)
 	 */
 	@Override
 	public TISearchResult Search(String CorpNum, MgtKeyType KeyType,
@@ -908,19 +911,19 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 			}
 		}
 		
-		if (TaxRegIDType != null && TaxRegIDType !=""){
+		if (TaxRegIDType != null && TaxRegIDType != ""){
 			uri +="&TaxRegIDType=" + TaxRegIDType;
 		}
 		
-		if (TaxRegID != null && TaxRegID !=""){
+		if (TaxRegID != null && TaxRegID != ""){
 			uri +="&TaxRegID=" + TaxRegID;
 		}
 				
-		if (TaxRegIDYN != null && TaxRegIDYN !=""){
+		if (TaxRegIDYN != null && TaxRegIDYN != ""){
 			uri += "&TaxRegIDYN=" + TaxRegIDYN;
 		}
 		
-		if (QString!= null && QString !=""){
+		if (QString!= null && QString != ""){
 			uri += "&QString=" + QString;
 		}
 			
