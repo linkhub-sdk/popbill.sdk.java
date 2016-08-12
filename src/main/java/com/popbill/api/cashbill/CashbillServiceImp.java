@@ -476,6 +476,17 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	
 	/*
 	 * (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#search(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[], java.lang.String[], int, int, java.lang.String)
+	 */
+	public CBSearchResult search(String CorpNum, String DType, String SDate,
+			String EDate, String[] State, String[] TradeType,
+			String[] TradeUsage, String[] TaxationType, int Page,
+			int PerPage, String Order) throws PopbillException {
+			return search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TaxationType, "", Page, PerPage, Order);
+	} 
+	
+	/*
+	 * (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#search(java.lang.String, java.lang.String, java.lang.String, 
 	 * 												java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[], 
 	 * 												java.lang.String, java.lang.String, java.lang.String)
@@ -483,7 +494,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	@Override
 	public CBSearchResult search(String CorpNum, String DType, String SDate,
 			String EDate, String[] State, String[] TradeType,
-			String[] TradeUsage, String[] TaxationType, int Page,
+			String[] TradeUsage, String[] TaxationType, String QString, int Page,
 			int PerPage, String Order) throws PopbillException {
 		if (DType == null || DType.isEmpty())
 			throw new PopbillException(-99999999, "검색일자유형이  입력되지 않았습니다.");
@@ -504,7 +515,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 				.replaceAll("\\[|\\]|\\s", "");
 		uri += "&TaxationType=" + Arrays.toString(TaxationType)
 				.replaceAll("\\[|\\]|\\s", "");
-		
+		uri += "&QString="+QString;
 		uri += "&Page=" + Integer.toString(Page);
 		uri += "&PerPage="+ Integer.toString(PerPage);
 		uri += "&Order=" + Order;

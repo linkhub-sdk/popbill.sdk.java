@@ -277,42 +277,26 @@ public class CashbillServiceTEST {
 	public void search_TEST() throws PopbillException{
 		String CorpNum = "1234567890";
 		String DType = "T";
-		String SDate = "20151201";
-		String EDate = "20160118";
+		String SDate = "20160701";
+		String EDate = "20160831";
 		
-		String[] State = {"100", "2**", "3**"};
+		String[] State = {"100", "2**", "3**", "4**"};
 		String[] TradeType = {"N", "C"};
 		String[] TradeUsage = {"P", "C"};
 		String[] TaxationType = {"T", "N"};
+		String QString = "0100001234";
 		
 		int Page = 1;
 		int PerPage = 20;
 		String Order = "D";
 		
-		String uri = "/Cashbill/Search?DType=" + DType;
-		
-		uri += "&SDate=" + SDate;
-		uri += "&EDate=" + EDate;
-		uri += "&State=" + Arrays.toString(State)
-				.replaceAll("\\[|\\]|\\s", "");
-		uri += "&TradeType=" + Arrays.toString(TradeType)
-				.replaceAll("\\[|\\]|\\s", "");
-		uri += "&TradeUsage=" + Arrays.toString(TradeUsage)
-				.replaceAll("\\[|\\]|\\s", "");
-		uri += "&TaxationType=" + Arrays.toString(TaxationType)
-				.replaceAll("\\[|\\]|\\s", "");
-		
-		uri += "&Page=" + Page;
-		uri += "&PerPage="+ PerPage;
-		uri += "&Order=" + Order;
-		
-		System.out.println(uri);
-		
-		CBSearchResult response = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TaxationType, Page, PerPage, Order);
+		CBSearchResult response = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TaxationType, QString, Page, PerPage, Order);
 		
 		assertNotNull(response);
 		
-		System.out.println(response.getMessage()+ " " +response.getList().get(0).getIssueDT() +" " +response.getList().size());
+		for (int i=0; i<response.getList().size(); i++){
+			System.out.println(response.getList().get(0).getTotalAmount()+" " +response.getList().get(i).getIdentityNum());
+		}
 	}
 }
 

@@ -39,7 +39,6 @@ public class StatementServiceTEST {
 		statementService = service;
 	}
 	
-	
 	@Test
 	public void getChargeInfo_TEST() throws PopbillException {
 		ChargeInfo chrgInfo = statementService.getChargeInfo("1234567890", 121);
@@ -542,24 +541,27 @@ public class StatementServiceTEST {
 	}
 
 	@Test
-	public void Search_TEST() throws PopbillException{
+	public void Search_TEST() throws PopbillException {
 		String CorpNum = "1234567890";
-		String DType = "I";
-		String SDate = "20160101";
-		String EDate = "20160118";
-		String[] State = {"100", "3**"};
+		String DType = "W";
+		String SDate = "20160701";
+		String EDate = "20160831";
+		String[] State = {"2**", "3**"};
 		int[] ItemCode = {121,122,123,124,125,126};
 		int Page = 1;
 		int PerPage = 50;
-		String Order = "A";
+		String QString = "상호";
+		String Order = "D";
 		
-		StmtSearchResult response = statementService.search(CorpNum, DType, SDate, EDate, State, ItemCode, Page, PerPage, Order);
+		StmtSearchResult response = statementService.search(CorpNum, DType, SDate, EDate, State, ItemCode, QString, Page, PerPage, Order);
 		
 		assertNotNull(response);
-		System.out.println(response.getMessage()+" "+response.getList().get(0).getMgtKey()+ " "+response.getList().size());
+		System.out.println(response.getList().size());
+		
+		for (int i=0 ;i < response.getList().size(); i++){
+			System.out.println(response.getMessage()+" "+response.getList().get(i).getReceiverCorpNum()+ " "+response.getList().get(i).getReceiverCorpName());
+		}
 	}
-
-
 }
 
 

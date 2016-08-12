@@ -1097,10 +1097,13 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param TaxRegID
 	 * 			종사업장번호 배열  
 	 * @param QString
-	 * 			통합검색, (거래처명, 사업자번호 조회)
+	 * 			통합검색 키워드, (거래처명, 거래처 사업자번호 조회)
 	 * @param Page
+	 * 			페이지번호
 	 * @param PerPage
+	 * 			페이지당 목록개수 
 	 * @param Order
+	 * 			정렬방향, D-오름차순, A-내림차순 
 	 * @return
 	 * @throws PopbillException
 	 */

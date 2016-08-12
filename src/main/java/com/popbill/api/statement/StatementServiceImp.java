@@ -612,14 +612,19 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 		return httppost("/Statement/" + ItemCode + "/" + MgtKey + "/DetachStmt/",
 				CorpNum, PostData, null, Response.class);
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.popbill.api.StatementService#search(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String[], int[], int, int, java.lang.String)
-	 */
+
 	@Override
 	public StmtSearchResult search(String CorpNum, String DType, String SDate, 
 			String EDate, String[] State, int[] ItemCode, int Page, int PerPage, 
+			String Order) throws PopbillException {
+		return search(CorpNum, DType, SDate, EDate, State, ItemCode, "", Page, PerPage, Order);
+	}
+	
+
+
+	@Override
+	public StmtSearchResult search(String CorpNum, String DType, String SDate, 
+			String EDate, String[] State, int[] ItemCode, String QString, int Page, int PerPage, 
 			String Order) throws PopbillException {
 		if (DType == null || DType.isEmpty())
 			throw new PopbillException(-99999999, "검색일자유형이 입력되지 않았습니다.");
@@ -635,6 +640,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 				.replaceAll("\\[|\\]|\\s", "");
 		uri += "&ItemCode=" + Arrays.toString(ItemCode)
 				.replaceAll("\\[|\\]|\\s", "");
+		uri += "&QString=" + QString;
 		uri += "&Page=" + Integer.toString(Page);
 		uri += "&PerPage="+ Integer.toString(PerPage);
 		uri += "&Order=" + Order;
@@ -674,6 +680,8 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 		public int ItemCode;
 		public String MgtKey;
 	}
+
+	
 
 
 }

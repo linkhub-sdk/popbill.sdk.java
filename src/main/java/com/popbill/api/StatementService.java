@@ -774,8 +774,38 @@ public interface StatementService extends BaseService{
 	public StmtSearchResult search(String CorpNum, String DType, String SDate,
 			String EDate, String[] State, int[] ItemCode, int Page,
 			int PerPage, String Order) throws PopbillException;
+	
 	/**
-	 * 과금정보 확
+	 * 전자명세서 목록 조회 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param DType
+	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자 
+	 * @param SDate
+	 * 			시작일자(yyyyMMdd)
+	 * @param EDate
+	 * 			종료일자(yyyyMMdd)
+	 * @param State
+	 * 			전자명세서상태 배열 
+	 * @param ItemCode
+	 * 			전자명세서코드 배열, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
+	 * @param QString
+	 * 			통합검색 키워드, (거래처명 또는 거래처 사업자등록번호 조회) 
+	 * @param Page
+	 * 			페이지 번호 
+	 * @param PerPage
+	 * 			페이지당 목록 개수, 기본값 500, 최대 1000 
+	 * @param Order
+	 * 			정렬방향 
+	 * @return 전자명세서 목록조회 결과. see com.popbill.api.statement.StmtSearchResuilt
+	 * @throws PopbillException
+	 */
+	public StmtSearchResult search(String CorpNum, String DType, String SDate,
+			String EDate, String[] State, int[] ItemCode, String QString, int Page,
+			int PerPage, String Order) throws PopbillException;
+	/**
+	 * 과금정보 확인
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param ItemCode
