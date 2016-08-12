@@ -40,6 +40,7 @@ public class TaxinvoiceServiceTEST {
 		
 		taxinvoiceService = service;
 	}
+	
 	@Test
 	public void getChargeInfo_TEST() throws PopbillException {
 		
@@ -603,28 +604,30 @@ public class TaxinvoiceServiceTEST {
 		TISearchResult response = new TISearchResult();
 		
 		String DType = "W";
-		String SDate = "20160601";
-		String EDate = "20160615";
-		String[] State = {"100", "2**", "3**", "4**", "5**", "6**"};
+		String SDate = "20160701";
+		String EDate = "20160831";
+		String[] State = {"3**", "6**"};
 		String[] Type = {"N", "M","Z"};
 		String[] TaxType = {"T","N","Z"};
 		Boolean LateOnly = false;
-		
+		String TaxRegIDType = "S";
+		String TaxRegID = "";
+		String TaxRegIDYN = "";
+		String QString = "ABC";
 		int Page = 1;
 		int PerPage = 30;
 		String Order = "D";
-				
 		
 		response = taxinvoiceService.Search("1234567890", MgtKeyType.SELL, DType, 
-				SDate, EDate, State, Type, TaxType, LateOnly, Page, PerPage, Order);
+				SDate, EDate, State, Type, TaxType, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN,
+				QString, Page, PerPage, Order);
 		
 		assertNotNull(response);
-		
 		
 		System.out.println("Search API - " + response.getTotal());
 		
 		for (int i=0; i< Integer.parseInt(response.getTotal())-1 ; i++){
-			System.out.println(response.getList().get(i).getInvoicerMgtKey());
+			System.out.println(response.getList().get(i).getInvoiceeCorpNum()+" "+response.getList().get(i).getInvoiceeCorpName());
 		}
 	}
 	

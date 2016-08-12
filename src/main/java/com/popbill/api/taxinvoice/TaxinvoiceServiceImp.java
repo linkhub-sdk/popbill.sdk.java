@@ -855,7 +855,17 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 			Boolean LateOnly, Integer Page, Integer PerPage, String Order) throws PopbillException {
 		
 		return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, LateOnly, 
-				null, null, null, Page, PerPage, Order);
+				null, null, null, null, Page, PerPage, Order);
+	}
+	
+	@Override 
+	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, 
+			String SDate, String EDate, String[] State, String[] Type, String[] TaxType,
+			Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN,
+			Integer Page, Integer PerPage, String Order) throws PopbillException {
+		
+		return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, LateOnly, 
+				TaxRegIDType, TaxRegID, TaxRegIDYN, null, Page, PerPage, Order);
 	}
 	
 	/*
@@ -866,8 +876,8 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	public TISearchResult Search(String CorpNum, MgtKeyType KeyType,
 			String DType, String SDate, String EDate, String[] State,
 			String[] Type, String[] TaxType, Boolean LateOnly,
-			String TaxRegIDType, String[] TaxRegID, Boolean TaxRegIDYN,
-			Integer Page, Integer PerPage, String Order)
+			String TaxRegIDType, String TaxRegID, String TaxRegIDYN,
+			String QString, Integer Page, Integer PerPage, String Order)
 			throws PopbillException {
 		
 		if (KeyType == null)
@@ -898,17 +908,20 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 			}
 		}
 		
-		if (TaxRegIDType != null){
-			uri +="&TaxRegIDType="+TaxRegIDType;
+		if (TaxRegIDType != null && TaxRegIDType !=""){
+			uri +="&TaxRegIDType=" + TaxRegIDType;
 		}
 		
-		uri += "&TaxRegID=" + Arrays.toString(TaxRegID)
-				.replaceAll("\\[|\\]|\\s", "");
+		if (TaxRegID != null && TaxRegID !=""){
+			uri +="&TaxRegID=" + TaxRegID;
+		}
+				
+		if (TaxRegIDYN != null && TaxRegIDYN !=""){
+			uri += "&TaxRegIDYN=" + TaxRegIDYN;
+		}
 		
-		if (TaxRegIDYN != null){
-			uri += "&TaxRegIDYN=1";
-		} else {
-			uri += "&TaxRegIDYN=0";
+		if (QString!= null && QString !=""){
+			uri += "&QString=" + QString;
 		}
 			
 		uri += "&Page=" + Integer.toString(Page);
