@@ -29,6 +29,8 @@ public class Message implements Serializable {
 
 	@SerializedName("snd")
 	private String sender;
+	@SerializedName("sndnm")
+	private String senderName;
 	@SerializedName("rcv")
 	private String receiver;
 	@SerializedName("rcvnm")
@@ -131,6 +133,24 @@ public class Message implements Serializable {
 	 */
 	public void setSubject(String subject) {
 		this.subject = subject;
+	}
+	
+	/**
+	 * 발신자명 확인  
+	 * 
+	 * @return 발신자명
+	 */
+	public String getSenderName(){
+		return senderName;
+	}
+	/**
+	 * 발신자명 설정 
+	 * 
+	 * @param senderName
+	 * 			발신자명 
+	 */
+	public void setSenderName(String senderName){
+		this.senderName = senderName;
 	}
 
 }

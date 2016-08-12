@@ -79,10 +79,10 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	 * @see com.popbill.api.FaxService#sendFAX
 	 */
 	@Override
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
+	public String sendFAX(String CorpNum, String sendNum, String senderName, String receiveNum,
 			String receiveName, File file, Date reserveDT, String UserID)
 			throws PopbillException {
-		return sendFAX(CorpNum,sendNum,receiveNum,receiveName,new File[]{file},reserveDT,UserID);
+		return sendFAX(CorpNum,sendNum,senderName,receiveNum,receiveName,new File[]{file},reserveDT,UserID);
 	}
 
 	/*
@@ -91,9 +91,9 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	 * @see com.popbill.api.FaxService#sendFAX
 	 */
 	@Override
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
+	public String sendFAX(String CorpNum, String sendNum, String senderName, Receiver[] receivers,
 			File file, Date reserveDT, String UserID) throws PopbillException {
-		return sendFAX(CorpNum,sendNum,receivers,new File[]{file},reserveDT,UserID);
+		return sendFAX(CorpNum,sendNum,senderName,receivers,new File[]{file},reserveDT,UserID);
 	}
 
 	/*
@@ -102,7 +102,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	 * @see com.popbill.api.FaxService#sendFAX
 	 */
 	@Override
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
+	public String sendFAX(String CorpNum, String sendNum, String senderName, String receiveNum,
 			String receiveName, File[] files, Date reserveDT, String UserID)
 			throws PopbillException {
 		
@@ -112,7 +112,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		receiver.setReceiveNum(receiveNum);
 		receiver.setReceiveName(receiveName);
 		
-		return sendFAX(CorpNum,sendNum,new Receiver[]{receiver},files,reserveDT,UserID);
+		return sendFAX(CorpNum,sendNum,senderName,new Receiver[]{receiver},files,reserveDT,UserID);
 	}
 
 	/*
@@ -121,7 +121,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	 * @see com.popbill.api.FaxService#sendFAX
 	 */
 	@Override
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
+	public String sendFAX(String CorpNum, String sendNum, String senderName, Receiver[] receivers,
 			File[] files, Date reserveDT, String UserID)
 			throws PopbillException {
 		if(sendNum == null || sendNum.isEmpty()) throw new PopbillException(-99999999,"발신번호가 입력되지 않았습니다.");
@@ -132,6 +132,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		SendRequest request = new SendRequest();
 		
 		request.snd = sendNum;
+		request.sndnm = senderName;
 		request.rcvs = receivers;
 		
 		if (reserveDT != null)
@@ -248,6 +249,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
 	protected class SendRequest {
 		public String snd;
+		public String sndnm;
 		public String sndDT;
 		public Integer fCnt;
 		

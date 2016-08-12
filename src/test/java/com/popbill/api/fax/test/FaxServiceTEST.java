@@ -32,6 +32,7 @@ public class FaxServiceTEST {
 		
 		faxService = service;
 	}
+	
 	@Test
 	public void getChargeInfo_TEST() throws PopbillException {
 		
@@ -45,7 +46,7 @@ public class FaxServiceTEST {
 	@Test
 	public void getUnitCost_TEST() throws PopbillException {
 		
-		float UnitCost = faxService.getUnitCost("1231212312");
+		float UnitCost = faxService.getUnitCost("1234567890");
 
 		System.out.println(UnitCost);
 	}
@@ -53,7 +54,7 @@ public class FaxServiceTEST {
 	@Test
 	public void getURL_TEST() throws PopbillException {
 		
-		String url = faxService.getURL("1231212312", "userid", "BOX");
+		String url = faxService.getURL("1234567890", "userid", "BOX");
 
 		assertNotNull(url);
 		System.out.println(url);
@@ -62,26 +63,38 @@ public class FaxServiceTEST {
 	@Test
 	public void sendFAX_Single_TEST() throws PopbillException {
 		
-		File file = new File("/Users/cream/Desktop/test.jpg");
+		File file = new File("/Users/John/Desktop/test.jpg");
 		
-		String receiptNum = faxService.sendFAX("1231212312", "02-6442-9700","111-2222-3333","수신자명칭",file, null,"userid");
+		String receiptNum = faxService.sendFAX("1234567890", "02-6442-9700","발신자명", "111-2222-3333","수신자명칭",file, null,null);
 		
 		assertNotNull(receiptNum);
 		
 		System.out.println(receiptNum);
+		
+		FaxResult[] results = faxService.getFaxResult("1234567890", receiptNum);
+		
+		assertNotNull(results);
+		
+		System.out.println(results[0].getFileNames()[0] + " "+results[0].getSenderName());
+
 	}
 	
 	@Test
 	public void sendFAX_MultiFile_TEST() throws PopbillException {
 		
-		File file1 = new File("/Users/cream/Desktop/test.jpg");
-		File file2 = new File("/Users/cream/Desktop/사업자등록증.jpg");
+		File file1 = new File("/Users/John/Desktop/test.jpg");
+		File file2 = new File("/Users/John/Desktop/사업자등록증.jpg");
 		
-		String receiptNum = faxService.sendFAX("1231212312", "02-6442-9700","111-2222-3333","수신자명칭",new File[]{file1,file2}, null,"userid");
+		String receiptNum = faxService.sendFAX("1234567890", "02-6442-9700","발신자명","111-2222-3333","수신자명칭",new File[]{file1,file2}, null,null);
 		
 		assertNotNull(receiptNum);
 		
-		System.out.println(receiptNum);
+		
+		FaxResult[] results = faxService.getFaxResult("1234567890", receiptNum);
+		
+		assertNotNull(results);
+		
+		System.out.println(results[0].getFileNames()[0] + " "+results[0].getSenderName());
 	}
 	
 	@Test
@@ -102,7 +115,7 @@ public class FaxServiceTEST {
 		
 		String receiptNum = "014101010184200001";
 		
-		Response response = faxService.cancelReserve("1231212312", receiptNum,"userid");
+		Response response = faxService.cancelReserve("1234567890", receiptNum,"userid");
 		
 		assertNotNull(response);
 		
@@ -112,18 +125,18 @@ public class FaxServiceTEST {
 	
 	@Test
 	public void search_TEST() throws PopbillException{
-		String SDate = "20150101";
-		String EDate = "20160115";
+		String SDate = "20160801";
+		String EDate = "20160831";
 		String[] State = {"1","2","3","4"};
 		Boolean ReserveYN = false;
 		Boolean SenderOnlyYN = false;
-		int Page = 5;
+		int Page = 1;
 		int PerPage = 10;
-		String Order = "A";
+		String Order = "D";
 		FAXSearchResult response = faxService.search("1234567890", SDate, EDate, State, ReserveYN, SenderOnlyYN, Page, PerPage, Order);
 		
 		assertNotNull(response);
-		System.out.println(response.getTotal()+" "+response.getList().get(0).getReceiptDT()+" "+response.getPageNum());
+		System.out.println(response.getTotal()+" "+response.getList().get(0).getReceiptDT()+" "+response.getList().get(0).getSenderName());
 	}
 	
 	public static Date addMinutes(Date date, int minutes)

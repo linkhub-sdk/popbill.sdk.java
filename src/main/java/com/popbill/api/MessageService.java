@@ -66,6 +66,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            발신자번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param receiver
 	 *            수신자번호
 	 * @param receiverName
@@ -79,7 +81,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendSMS(String CorpNum, String sender, String receiver,
+	public String sendSMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String content, Date reserveDT, String UserID)
 			throws PopbillException;
 	
@@ -90,6 +92,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            발신자번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param receiver
 	 *            수신자번호
 	 * @param receiverName
@@ -105,7 +109,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendSMS(String CorpNum, String sender, String receiver,
+	public String sendSMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String content, Date reserveDT, Boolean adsYN, String UserID)
 			throws PopbillException;
 
@@ -133,6 +137,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            동보전송 발신번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param content
 	 *            동보전송 단문문자메시지 내용.
 	 * @param Messages
@@ -144,7 +150,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendSMS(String CorpNum, String sender, String content,
+	public String sendSMS(String CorpNum, String sender, String senderName, String content,
 			Message[] Messages, Date reserveDT, String UserID)
 			throws PopbillException;
 	
@@ -155,6 +161,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            동보전송 발신번호
+	 * @param senderName
+	 * 			  동보전송 발신자명
 	 * @param content
 	 *            동보전송 단문문자메시지 내용.
 	 * @param Messages
@@ -168,7 +176,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendSMS(String CorpNum, String sender, String content,
+	public String sendSMS(String CorpNum, String sender, String senderName, String content,
 			Message[] Messages, Date reserveDT, Boolean adsYN, String UserID)
 			throws PopbillException;
 
@@ -179,6 +187,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            발신자번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param receiver
 	 *            수신자번호
 	 * @param receiverName
@@ -194,7 +204,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendLMS(String CorpNum, String sender, String receiver,
+	public String sendLMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String subject, String content,
 			Date reserveDT, String UserID) throws PopbillException;
 	
@@ -205,6 +215,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            발신자번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param receiver
 	 *            수신자번호
 	 * @param receiverName
@@ -222,7 +234,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendLMS(String CorpNum, String sender, String receiver,
+	public String sendLMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String subject, String content,
 			Date reserveDT, Boolean adsYN, String UserID) throws PopbillException;
 
@@ -250,6 +262,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            동보전송 발신번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param subject
 	 *            동보전송 장문메시지 제목
 	 * @param content
@@ -263,7 +277,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendLMS(String CorpNum, String sender, String subject,
+	public String sendLMS(String CorpNum, String sender, String senderName, String subject,
 			String content, Message[] Messages, Date reserveDT, String UserID)
 			throws PopbillException;
 	
@@ -274,6 +288,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            동보전송 발신번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param subject
 	 *            동보전송 장문메시지 제목
 	 * @param content
@@ -289,7 +305,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendLMS(String CorpNum, String sender, String subject, String content, 
+	public String sendLMS(String CorpNum, String sender, String senderName, String subject, String content, 
 			Message[] Messages, Date reserveDT, Boolean adsYN, String UserID)
 			throws PopbillException;
 	
@@ -300,6 +316,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            발신자번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param receiver
 	 *            수신자번호
 	 * @param receiverName
@@ -317,7 +335,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendMMS(String CorpNum, String sender, String receiver,
+	public String sendMMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String subject, String content, File file,
 			Date reserveDT, String UserID) throws PopbillException;
 	
@@ -328,6 +346,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            발신자번호
+	 * @param senderName
+	 * 			  발신자명            
 	 * @param receiver
 	 *            수신자번호
 	 * @param receiverName
@@ -347,7 +367,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendMMS(String CorpNum, String sender, String receiver,
+	public String sendMMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String subject, String content, File file,
 			Date reserveDT, Boolean adsYN, String UserID) throws PopbillException;
 
@@ -377,6 +397,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            동보전송 발신번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param subject
 	 *            동보전송 장문메시지 제목
 	 * @param content
@@ -392,7 +414,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendMMS(String CorpNum, String sender, String subject,
+	public String sendMMS(String CorpNum, String sender, String senderName, String subject,
 			String content, Message[] Messages, File file, Date reserveDT, String UserID)
 			throws PopbillException;
 	
@@ -403,6 +425,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            동보전송 발신번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param subject
 	 *            동보전송 장문메시지 제목
 	 * @param content
@@ -420,7 +444,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendMMS(String CorpNum, String sender, String subject, String content, 
+	public String sendMMS(String CorpNum, String sender, String senderName, String subject, String content, 
 			Message[] Messages, File file, Date reserveDT, Boolean adsYN, String UserID)
 			throws PopbillException;
 	
@@ -432,6 +456,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            발신자번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param receiver
 	 *            수신자번호
 	 * @param receiverName
@@ -447,7 +473,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendXMS(String CorpNum, String sender, String receiver,
+	public String sendXMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String subject, String content,
 			Date reserveDT, String UserID) throws PopbillException;
 	
@@ -458,6 +484,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            발신자번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param receiver
 	 *            수신자번호
 	 * @param receiverName
@@ -475,7 +503,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendXMS(String CorpNum, String sender, String receiver,
+	public String sendXMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String subject, String content,
 			Date reserveDT, Boolean adsYN, String UserID) throws PopbillException;
 
@@ -503,6 +531,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            동보전송 발신번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param subject
 	 *            동보전송 메시지 제목
 	 * @param content
@@ -516,7 +546,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendXMS(String CorpNum, String sender, String subject,
+	public String sendXMS(String CorpNum, String sender, String senderName, String subject,
 			String content, Message[] Messages, Date reserveDT, String UserID)
 			throws PopbillException;
 	
@@ -527,6 +557,8 @@ public interface MessageService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sender
 	 *            동보전송 발신번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param subject
 	 *            동보전송 메시지 제목
 	 * @param content
@@ -542,7 +574,7 @@ public interface MessageService extends BaseService {
 	 * @return receiptNum 접수번호.
 	 * @throws PopbillException
 	 */
-	public String sendXMS(String CorpNum, String sender, String subject,
+	public String sendXMS(String CorpNum, String sender, String senderName, String subject,
 			String content, Message[] Messages, Date reserveDT, Boolean adsYN, String UserID)
 			throws PopbillException;
 	

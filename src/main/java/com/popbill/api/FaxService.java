@@ -61,6 +61,8 @@ public interface FaxService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sendNum
 	 *            발신번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param receiveNum
 	 *            수신번호
 	 * @param receiveName
@@ -74,7 +76,7 @@ public interface FaxService extends BaseService {
 	 * @return receiptNum 접수번호
 	 * @throws PopbillException
 	 */
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
+	public String sendFAX(String CorpNum, String sendNum, String senderName, String receiveNum,
 			String receiveName, File file, Date reserveDT, String UserID)
 			throws PopbillException;
 
@@ -85,6 +87,8 @@ public interface FaxService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sendNum
 	 *            발신번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param receivers
 	 *            동보수신자 배열
 	 * @param file
@@ -96,7 +100,7 @@ public interface FaxService extends BaseService {
 	 * @return receiptNum 접수번호
 	 * @throws PopbillException
 	 */
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
+	public String sendFAX(String CorpNum, String sendNum, String senderName, Receiver[] receivers,
 			File file, Date reserveDT, String UserID) throws PopbillException;
 
 	/**
@@ -106,6 +110,8 @@ public interface FaxService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sendNum
 	 *            발신번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param receiveNum
 	 *            수신번호
 	 * @param receiveName
@@ -119,7 +125,7 @@ public interface FaxService extends BaseService {
 	 * @return receiptNum 접수번호
 	 * @throws PopbillException
 	 */
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
+	public String sendFAX(String CorpNum, String sendNum, String senderName, String receiveNum,
 			String receiveName, File[] files, Date reserveDT, String UserID)
 			throws PopbillException;
 
@@ -130,6 +136,8 @@ public interface FaxService extends BaseService {
 	 *            연동회원 사업자번호
 	 * @param sendNum
 	 *            발신번호
+	 * @param senderName
+	 * 			  발신자명
 	 * @param receivers
 	 *            동보수신자 배열
 	 * @param files
@@ -141,7 +149,7 @@ public interface FaxService extends BaseService {
 	 * @return receiptNum 접수번호
 	 * @throws PopbillException
 	 */
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
+	public String sendFAX(String CorpNum, String sendNum, String senderName, Receiver[] receivers,
 			File[] files, Date reserveDT, String UserID)
 			throws PopbillException;
 

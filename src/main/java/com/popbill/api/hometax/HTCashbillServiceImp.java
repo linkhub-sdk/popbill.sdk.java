@@ -94,6 +94,8 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 	@Override
 	public HTCashbillJobState getJobState(String CorpNum, String JobID, String UserID)
 			throws PopbillException {
+		if ( JobID.length() != 18 )
+			throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
 		return httpget("/HomeTax/Cashbill/" + JobID + "/State", CorpNum, UserID, HTCashbillJobState.class);
 	}
 	
@@ -132,8 +134,8 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 			String[] TradeUsage, String[] TradeType, Integer Page, Integer PerPage, 
 			String Order, String UserID)
 			throws PopbillException {
-		if (JobID == null || JobID.isEmpty())
-			throw new PopbillException(-99999999, "작업아이디가 입력되지 않았습니다.");
+		if ( JobID.length() != 18 )
+			throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
 		
 		String uri = "/HomeTax/Cashbill/"+JobID;
 		
@@ -166,8 +168,8 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 	public HTCashbillSummary summary(String CorpNum, String JobID,
 			String[] TradeUsage, String[] TradeType, String UserID)
 			throws PopbillException {
-		if (JobID == null || JobID.isEmpty())
-			throw new PopbillException(-99999999, "작업아이디가 입력되지 않았습니다.");
+		if ( JobID.length() != 18 )
+			throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
 		
 		String uri = "/HomeTax/Cashbill/"+JobID+"/Summary";
 				
@@ -175,9 +177,7 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 				.replaceAll("\\[|\\]|\\s", "");
 		uri += "&TradeType=" + Arrays.toString(TradeType)
 				.replaceAll("\\[|\\]|\\s", "");
-
 		
-		System.out.println(uri);
 		
 		return httpget(uri, CorpNum, UserID, HTCashbillSummary.class);
 	}
@@ -247,8 +247,7 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 		}
 	}
 
-	
-	
+
 	protected class JobIDResponse {
 		public String jobID;
 	}
@@ -256,11 +255,5 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 	protected class CertResponse {
 		public String certificateExpiration;
 	}
-
-
-
-
-
-
 
 }

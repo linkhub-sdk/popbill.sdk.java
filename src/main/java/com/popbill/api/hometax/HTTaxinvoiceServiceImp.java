@@ -109,6 +109,8 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 	@Override
 	public HTTaxinvoiceJobState getJobState(String CorpNum, String JobID,
 			String UserID) throws PopbillException {
+		if (JobID.length() != 18)
+			throw new PopbillException(-99999999, "작업아이디가 올바르지 않았습니다.");
 		return httpget("/HomeTax/Taxinvoice/" + JobID + "/State",CorpNum, UserID, HTTaxinvoiceJobState.class);
 	}
 	
@@ -139,7 +141,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 	@Override
 	public HTTaxinvoiceSearchResult search(String CorpNum, String JobID,
 			String[] Type, String[] TaxType, String[] PurposeType,
-			Boolean TaxRegIDYN, String TaxRegIDType, String[] TaxRegID,
+			String TaxRegIDYN, String TaxRegIDType, String TaxRegID,
 			Integer Page, Integer PerPage, String Order) throws PopbillException{
 
 		return search(CorpNum, JobID, Type, TaxType, PurposeType, TaxRegIDYN, 
@@ -153,11 +155,11 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 	@Override
 	public HTTaxinvoiceSearchResult search(String CorpNum, String JobID,
 			String[] Type, String[] TaxType, String[] PurposeType,
-			Boolean TaxRegIDYN, String TaxRegIDType, String[] TaxRegID,
+			String TaxRegIDYN, String TaxRegIDType, String TaxRegID,
 			Integer Page, Integer PerPage, String Order, String UserID) throws PopbillException {
 		
-		if (JobID == null || JobID.isEmpty())
-			throw new PopbillException(-99999999, "작업아이디가 입력되지 않았습니다.");
+		if (JobID.length() != 18)
+			throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
 		
 		String uri = "/HomeTax/Taxinvoice/"+JobID;
 		
@@ -168,17 +170,15 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 		uri += "&PurposeType=" + Arrays.toString(PurposeType)
 				.replaceAll("\\[|\\]|\\s", "");
 		
-		if ( TaxRegIDType != null)
+		if ( TaxRegIDType != "" && TaxRegIDType != null)
 			uri += "&TaxRegIDType=" + TaxRegIDType;
 		
-		if ( TaxRegIDYN ) {
-			uri += "&TaxRegIDYN=1";
-		} else {
-			uri += "&TaxRegIDYN=0";
-		}
+		if ( TaxRegIDYN != "" && TaxRegIDYN != null)
+			uri += "&TaxRegIDType=" + TaxRegIDYN;
 		
-		uri += "&TaxRegID=" + Arrays.toString(TaxRegID)
-				.replaceAll("\\[|\\]|\\s", "");
+		if ( TaxRegID != "" && TaxRegIDYN != null) 
+			uri += "&TaxRegID=" + TaxRegID;
+				
 		uri += "&Page=" + Integer.toString(Page);
 		uri += "&PerPage=" + Integer.toString(PerPage);
 		uri += "&Order=" + Order;
@@ -194,7 +194,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 	@Override
 	public HTTaxinvoiceSummary summary(String CorpNum, String JobID,
 			String[] Type, String[] TaxType, String[] PurposeType,
-			Boolean TaxRegIDYN, String TaxRegIDType, String[] TaxRegID)
+			String TaxRegIDYN, String TaxRegIDType, String TaxRegID)
 			throws PopbillException {
 		return summary(CorpNum, JobID, Type, TaxType, PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID, null);
 	}
@@ -207,11 +207,12 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 	@Override
 	public HTTaxinvoiceSummary summary(String CorpNum, String JobID,
 			String[] Type, String[] TaxType, String[] PurposeType,
-			Boolean TaxRegIDYN, String TaxRegIDType, String[] TaxRegID,
+			String TaxRegIDYN, String TaxRegIDType, String TaxRegID,
 			String UserID) throws PopbillException {
 		
-		if (JobID == null || JobID.isEmpty())
-			throw new PopbillException(-99999999, "작업아이디가 입력되지 않았습니다.");
+		if (JobID.length() != 18)
+			throw new PopbillException(-99999999, "작업아이디가 올바르지 않았습니다.");
+		
 		String uri = "/HomeTax/Taxinvoice/" + JobID + "/Summary";
 		
 		uri += "?Type=" + Arrays.toString(Type)
@@ -221,19 +222,15 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 		uri += "&PurposeType=" + Arrays.toString(PurposeType)
 				.replaceAll("\\[|\\]|\\s", "");
 		
-		if ( TaxRegIDType != null)
+		if ( TaxRegIDType != "" && TaxRegIDType != null)
 			uri += "&TaxRegIDType=" + TaxRegIDType;
 		
-		if ( TaxRegIDYN ) {
-			uri += "&TaxRegIDYN=1";
-		} else {
-			uri += "&TaxRegIDYN=0";
-		}
+		if ( TaxRegIDYN != "" && TaxRegIDYN != null)
+			uri += "&TaxRegIDYN=" + TaxRegIDType;
 		
-		uri += "&TaxRegID=" + Arrays.toString(TaxRegID)
-				.replaceAll("\\[|\\]|\\s", "");
-				
-		
+		if ( TaxRegID != "" && TaxRegID != null)
+			uri += "&TaxRegID=" + TaxRegID;
+							
 		return httpget(uri, CorpNum, UserID, HTTaxinvoiceSummary.class);
 	}
 	
@@ -256,6 +253,10 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 	@Override
 	public HTTaxinvoice getTaxinvoice(String CorpNum, String NTSConfirmNum,
 			String UserID) throws PopbillException {
+		
+		if ( NTSConfirmNum.length() != 24 )
+			throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
+		
 		return httpget("/HomeTax/Taxinvoice/" +NTSConfirmNum, CorpNum, UserID, HTTaxinvoice.class);
 	}
 	
@@ -276,6 +277,8 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 	@Override
 	public HTTaxinvoiceXMLResponse getXML(String CorpNum, String NTSConfirmNum,
 			String UserID) throws PopbillException {
+		if ( NTSConfirmNum.length() != 24 )
+			throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
 		return httpget("/HomeTax/Taxinvoice/" +NTSConfirmNum+"?T=xml", CorpNum, UserID, HTTaxinvoiceXMLResponse.class);
 	}
 	

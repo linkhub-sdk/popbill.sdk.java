@@ -24,6 +24,7 @@ public class FaxResult {
 	private Integer sendState;
 	private Integer convState;
 	private String sendNum;
+	private String senderName;
 	private String receiveNum;
 	private String receiveName;
 	private Integer sendPageCnt;
@@ -182,6 +183,15 @@ public class FaxResult {
 	 */
 	public String getReceiptDT() {
 		return receiptDT;
+	}
+	
+	/**
+	 * 팩스 발신자명 확인
+	 * 
+	 * @return 발신자명 
+	 */
+	public String getSenderName() {
+		return senderName;
 	}
 
 

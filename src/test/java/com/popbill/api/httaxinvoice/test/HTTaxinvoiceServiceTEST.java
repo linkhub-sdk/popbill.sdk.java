@@ -125,8 +125,8 @@ public class HTTaxinvoiceServiceTEST {
 		String[] TaxType = {"T", "Z", "N"};
 		String[] PurposeType = {"R", "C", "N"};
 		String TaxRegIDType = "S";
-		String[] TaxRegID = null;
-		Boolean TaxRegIDYN = false;
+		String TaxRegID = "";
+		String TaxRegIDYN = "";
 		Integer Page = 1;
 		Integer PerPage = 10;
 		String Order = "D";
@@ -191,9 +191,9 @@ public class HTTaxinvoiceServiceTEST {
 		String[] Type = {"N","M"};
 		String[] TaxType = {"T", "Z", "N"};
 		String[] PurposeType = {"R","C", "N"};
-		String TaxRegIDType = null;
-		String[] TaxRegID = null;
-		Boolean TaxRegIDYN = false;
+		String TaxRegIDType = "S";
+		String TaxRegID = "";
+		String TaxRegIDYN = "";
 		
 		HTTaxinvoiceSummary result = hometaxTIService.summary("1234567890", "016061709000000001", Type, TaxType, 
 				PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID);

@@ -81,12 +81,13 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 * @see com.popbill.api.MessageService#sendSMS(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.lang.String)
 	 */
 	@Override
-	public String sendSMS(String CorpNum, String sender, String receiver,
+	public String sendSMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String content, Date reserveDT, String UserID)
 			throws PopbillException {
 		Message message = new Message();
 
 		message.setSender(sender);
+		message.setSenderName(senderName);
 		message.setReceiver(receiver);
 		message.setReceiverName(receiverName);
 		message.setContent(content);
@@ -100,17 +101,18 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 * @see com.popbill.api.MessageService#sendSMS(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.lang.Boolean, java.lang.String)
 	 */
 	@Override
-	public String sendSMS(String CorpNum, String sender, String receiver,
+	public String sendSMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String content, Date reserveDT, Boolean adsYN, String UserID)
 			throws PopbillException {
 		Message message = new Message();
 
 		message.setSender(sender);
+		message.setSenderName(senderName);
 		message.setReceiver(receiver);
 		message.setReceiverName(receiverName);
 		message.setContent(content);
 
-		return sendSMS(CorpNum, null, null, new Message[] { message }, reserveDT, adsYN, UserID);
+		return sendSMS(CorpNum, null, null, null, new Message[] { message }, reserveDT, adsYN, UserID);
 
 	}
 
@@ -121,7 +123,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	@Override
 	public String sendSMS(String CorpNum, Message[] Messages, Date reserveDT,
 			String UserID) throws PopbillException {
-		return sendSMS(CorpNum, null, null, Messages, reserveDT, UserID);
+		return sendSMS(CorpNum, null, null, null,  Messages, reserveDT, UserID);
 	}
 
 	/*
@@ -129,10 +131,10 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 * @see com.popbill.api.MessageService#sendSMS(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.message.Message[], java.util.Date, java.lang.String)
 	 */
 	@Override
-	public String sendSMS(String CorpNum, String sender, String content,
+	public String sendSMS(String CorpNum, String sender, String senderName, String content,
 			Message[] Messages, Date reserveDT, String UserID)
 			throws PopbillException {
-		return sendSMS(CorpNum, sender, content,
+		return sendSMS(CorpNum, sender, senderName, content,
 				Messages, reserveDT, false, UserID);
 	}
 
@@ -141,10 +143,10 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 * @see com.popbill.api.MessageService#sendSMS(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.message.Message[], java.util.Date, java.lang.Boolean, java.lang.String)
 	 */
 	@Override
-	public String sendSMS(String CorpNum, String sender, String content,
+	public String sendSMS(String CorpNum, String sender, String senderName, String content,
 			Message[] Messages, Date reserveDT, Boolean adsYN, String UserID)
 			throws PopbillException {
-		return sendMessage(MessageType.SMS, CorpNum, sender, null, content,
+		return sendMessage(MessageType.SMS, CorpNum, sender, senderName, null, content,
 				Messages, reserveDT, adsYN, UserID);
 	}
 
@@ -154,12 +156,13 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 * @see com.popbill.api.MessageService#sendLMS(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.lang.String)
 	 */
 	@Override
-	public String sendLMS(String CorpNum, String sender, String receiver,
+	public String sendLMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String subject, String content,
 			Date reserveDT, String UserID) throws PopbillException {
 		Message message = new Message();
 
 		message.setSender(sender);
+		message.setSenderName(senderName);
 		message.setReceiver(receiver);
 		message.setReceiverName(receiverName);
 		message.setContent(content);
@@ -169,18 +172,19 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	}
 	
 	@Override
-	public String sendLMS(String CorpNum, String sender, String receiver,
+	public String sendLMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String subject, String content,
 			Date reserveDT, Boolean adsYN, String UserID) throws PopbillException {
 		Message message = new Message();
 
 		message.setSender(sender);
+		message.setSenderName(senderName);
 		message.setReceiver(receiver);
 		message.setReceiverName(receiverName);
 		message.setContent(content);
 		message.setSubject(subject);
 
-		return sendLMS(CorpNum, null, null, null, new Message[] { message }, reserveDT, adsYN, UserID);
+		return sendLMS(CorpNum, null, null, null, null, new Message[] { message }, reserveDT, adsYN, UserID);
 	}
 
 	/*
@@ -190,7 +194,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	@Override
 	public String sendLMS(String CorpNum, Message[] Messages, Date reserveDT,
 			String UserID) throws PopbillException {
-		return sendLMS(CorpNum, null, null, null, Messages, reserveDT, UserID);
+		return sendLMS(CorpNum, null, null, null, null, Messages, reserveDT, UserID);
 	}
 
 	/*
@@ -198,10 +202,10 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 * @see com.popbill.api.MessageService#sendLMS(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.message.Message[], java.util.Date, java.lang.String)
 	 */
 	@Override
-	public String sendLMS(String CorpNum, String sender, String subject,
+	public String sendLMS(String CorpNum, String sender, String senderName, String subject,
 			String content, Message[] Messages, Date reserveDT, String UserID)
 			throws PopbillException {
-		return sendLMS(CorpNum, sender, subject, content,
+		return sendLMS(CorpNum, sender, senderName, subject, content,
 				Messages, reserveDT, false, UserID);
 	}
 	
@@ -210,10 +214,10 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 * @see com.popbill.api.MessageService#sendLMS(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.message.Message[], java.util.Date, java.lang.Boolean, java.lang.String)
 	 */
 	@Override
-	public String sendLMS(String CorpNum, String sender, String subject,
+	public String sendLMS(String CorpNum, String sender, String senderName, String subject,
 			String content, Message[] Messages, Date reserveDT, Boolean adsYN, String UserID)
 			throws PopbillException {
-		return sendMessage(MessageType.LMS, CorpNum, sender, subject, content,
+		return sendMessage(MessageType.LMS, CorpNum, sender, senderName, subject, content,
 				Messages, reserveDT, adsYN, UserID);
 	}
 
@@ -222,12 +226,13 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 * @see com.popbill.api.MessageService#sendXMS(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.lang.String)
 	 */
 	@Override
-	public String sendXMS(String CorpNum, String sender, String receiver,
+	public String sendXMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String subject, String content,
 			Date reserveDT, String UserID) throws PopbillException {
 		Message message = new Message();
 
 		message.setSender(sender);
+		message.setSenderName(senderName);
 		message.setReceiver(receiver);
 		message.setReceiverName(receiverName);
 		message.setContent(content);
@@ -241,18 +246,19 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 * @see com.popbill.api.MessageService#sendXMS(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.lang.String)
 	 */
 	@Override
-	public String sendXMS(String CorpNum, String sender, String receiver,
+	public String sendXMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String subject, String content,
 			Date reserveDT, Boolean adsYN, String UserID) throws PopbillException {
 		Message message = new Message();
 
 		message.setSender(sender);
+		message.setSenderName(senderName);
 		message.setReceiver(receiver);
 		message.setReceiverName(receiverName);
 		message.setContent(content);
 		message.setSubject(subject);
 
-		return sendXMS(CorpNum, null, null, null, new Message[] { message }, reserveDT, adsYN, UserID);
+		return sendXMS(CorpNum, null, null, null, null, new Message[] { message }, reserveDT, adsYN, UserID);
 	}
 
 	/*
@@ -262,7 +268,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	@Override
 	public String sendXMS(String CorpNum, Message[] Messages, Date reserveDT,
 			String UserID) throws PopbillException {
-		return sendXMS(CorpNum, null, null, null, Messages, reserveDT, UserID);
+		return sendXMS(CorpNum, null, null, null, null, Messages, reserveDT, UserID);
 	}
 
 	/*
@@ -270,10 +276,10 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 * @see com.popbill.api.MessageService#sendXMS(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.message.Message[], java.util.Date, java.lang.String)
 	 */
 	@Override
-	public String sendXMS(String CorpNum, String sender, String subject,
+	public String sendXMS(String CorpNum, String sender, String senderName, String subject,
 			String content, Message[] Messages, Date reserveDT, String UserID)
 			throws PopbillException {
-		return sendXMS(CorpNum, sender, subject, content,
+		return sendXMS(CorpNum, sender, senderName, subject, content,
 				Messages, reserveDT, false, UserID);
 	}
 	
@@ -282,10 +288,10 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 * @see com.popbill.api.MessageService#sendXMS(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.message.Message[], java.util.Date, java.lang.Boolean, java.lang.String)
 	 */
 	@Override
-	public String sendXMS(String CorpNum, String sender, String subject,
+	public String sendXMS(String CorpNum, String sender, String senderName, String subject,
 			String content, Message[] Messages, Date reserveDT, Boolean adsYN, String UserID)
 			throws PopbillException {
-		return sendMessage(MessageType.XMS, CorpNum, sender, subject, content,
+		return sendMessage(MessageType.XMS, CorpNum, sender, senderName, subject, content,
 				Messages, reserveDT, adsYN, UserID);
 	}
 
@@ -322,13 +328,14 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 * @see com.popbill.api.MessageService#sendMMS(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File, java.util.Date, java.lang.String)
 	 */
 	@Override
-	public String sendMMS(String CorpNum, String sender, String receiver,
+	public String sendMMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String subject, String content, File file,
 			Date reserveDT, String UserID) throws PopbillException {
 		
 		Message message = new Message();
 
 		message.setSender(sender);
+		message.setSenderName(senderName);
 		message.setReceiver(receiver);
 		message.setReceiverName(receiverName);
 		message.setContent(content);
@@ -338,19 +345,20 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	}
 	
 	@Override
-	public String sendMMS(String CorpNum, String sender, String receiver,
+	public String sendMMS(String CorpNum, String sender, String senderName, String receiver,
 			String receiverName, String subject, String content, File file,
 			Date reserveDT, Boolean adsYN, String UserID) throws PopbillException {
 		
 		Message message = new Message();
 
 		message.setSender(sender);
+		message.setSenderName(senderName);
 		message.setReceiver(receiver);
 		message.setReceiverName(receiverName);
 		message.setContent(content);
 		message.setSubject(subject);
 
-		return sendMMS(CorpNum, null, null, null, new Message[] { message },file, reserveDT, adsYN, UserID);
+		return sendMMS(CorpNum, null, null, null, null, new Message[] { message },file, reserveDT, adsYN, UserID);
 	}
 	
 	/*
@@ -361,7 +369,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	public String sendMMS(String CorpNum, Message[] Messages, File file,
 			Date reserveDT, String UserID) throws PopbillException {
 		
-		return sendMMS(CorpNum, null, null, null, Messages, file, reserveDT, UserID);
+		return sendMMS(CorpNum, null, null, null, null, Messages, file, reserveDT, UserID);
 	}
 
 	/*
@@ -369,16 +377,16 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 * @see com.popbill.api.MessageService#sendMMS(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.message.Message[], java.io.File, java.util.Date, java.lang.String)
 	 */
 	@Override
-	public String sendMMS(String CorpNum, String sender, String subject,
+	public String sendMMS(String CorpNum, String sender, String senderName, String subject,
 			String content, Message[] Messages, File file, Date reserveDT,
 			String UserID) throws PopbillException {
 		
-		return sendMMS(CorpNum, sender, subject, content, Messages, 
+		return sendMMS(CorpNum, sender, senderName, subject, content, Messages, 
 				file, reserveDT, false, UserID);
 	}
 	
 	@Override 
-	public String sendMMS(String CorpNum, String sender, String subject,
+	public String sendMMS(String CorpNum, String sender, String senderName, String subject,
 			String content, Message[] Messages, File file, Date reserveDT,
 			Boolean adsYN, String UserID) throws PopbillException {
 		if (Messages == null || Messages.length == 0)
@@ -386,6 +394,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 
 		SendRequest request = new SendRequest();
 		request.snd = sender;
+		request.sndnm = senderName;
 		request.content = content;
 		request.subject = subject;
 		
@@ -425,7 +434,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	 * 
 	 */
 	private String sendMessage(MessageType MsgType, String CorpNum,
-			String sender, String subject, String content, Message[] Messages,
+			String sender, String senderName, String subject, String content, Message[] Messages,
 			Date reserveDT, Boolean adsYN, String UserID) throws PopbillException {
 		if (MsgType == null)
 			throw new PopbillException(-99999999, "메시지 유형이 입력되지 않았습니다.");
@@ -437,6 +446,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 
 		SendRequest request = new SendRequest();
 		request.snd = sender;
+		request.sndnm = senderName;
 		request.content = content;
 		request.subject = subject;
 		
@@ -521,6 +531,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	
 	protected class SendRequest {
 		public String snd;
+		public String sndnm;
 		public String content;
 		public String subject;
 		public String sndDT;

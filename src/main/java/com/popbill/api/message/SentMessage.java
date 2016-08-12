@@ -31,6 +31,7 @@ public class SentMessage implements Serializable {
 	private String content;
 
 	private String sendNum;
+	private String senderName;
 	private String receiveNum;
 	private String receiveName;
 	private String reserveDT;
@@ -155,5 +156,14 @@ public class SentMessage implements Serializable {
 	 */
 	public String getReceiptDT() {
 		return receiptDT;
+	}
+	
+	/**
+	 * 발신자명 확인 
+	 * 
+	 * @return 발신자명 
+	 */
+	public String getSenderName() {
+		return senderName;
 	}
 }
