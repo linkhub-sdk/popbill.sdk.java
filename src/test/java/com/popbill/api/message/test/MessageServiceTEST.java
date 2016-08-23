@@ -67,28 +67,19 @@ public class MessageServiceTEST {
 	@Test
 	public void sendSMS_Single_TEST() throws PopbillException {
 		
-		String receiptNum = messageService.sendSMS("1234567890","070-7510-6766","발신자명",
-				"010-000-111","테스트","단문문자메시지 내용",null,null);
+		String receiptNum = messageService.sendSMS("1234567890","070-7510-6766", "010-4324-5117","테스트","단문문자메시지 내용",null,"testkorea");
 		
 		assertNotNull(receiptNum);
 		
 		System.out.println(receiptNum);
-		
-		SentMessage[] messages = messageService.getMessages("1234567890", receiptNum);
-		
-		assertNotNull(messages);
-		
-		System.out.println(messages[0].getSendResult() + " "+messages[0].getSenderName());	
-		
 	}
 	
-	//@Test
+	@Test
 	public void sendSMS_Reserve_15Minute_TEST() throws PopbillException {
 		
 		Date ReserveDT = addMinutes(new Date(),15);
 		
-		String receiptNum = messageService.sendSMS("1231212312","070-7510-6766","발신자명", 
-				"010-000-111","테스트","단문문자메시지 내용",ReserveDT,"userid");
+		String receiptNum = messageService.sendSMS("1231212312","070-7510-6766","010-000-111","테스트","단문문자메시지 내용",ReserveDT,"userid");
 		
 		assertNotNull(receiptNum);
 		
@@ -96,7 +87,7 @@ public class MessageServiceTEST {
 		
 	}
 	
-	//@Test
+	@Test
 	public void cancelReserve_TEST() throws PopbillException {
 		
 		String receiptNum = "014100911000000006";
@@ -107,59 +98,38 @@ public class MessageServiceTEST {
 		System.out.println(response.getMessage());
 		
 	}
-	
-	
 	@Test
 	public void sendLMS_Single_TEST() throws PopbillException {
 		
-		String receiptNum = messageService.sendLMS("1234567890","070-7510-6766","발신자명","010-111-222","테스트","장문메시지 제목",
-				"장문문자메시지 내용. 장문문자메시지의 내용은 2000byte까지입니다.",null,null);
+		String receiptNum = messageService.sendLMS("1234567890","070-7510-6766","010-111-222","테스트","장문메시지 제목","장문문자메시지 내용. 장문문자메시지의 내용은 2000byte까지입니다.",null,"testkorea");
 		
 		assertNotNull(receiptNum);
 		
 		System.out.println(receiptNum);
-		SentMessage[] messages = messageService.getMessages("1234567890", receiptNum);
 		
-		assertNotNull(messages);
-		
-		System.out.println(messages[0].getSendResult() + " "+messages[0].getSenderName());	
-			
 	}
 	
 	@Test
 	public void sendXMS_Single_TEST() throws PopbillException {
 		
-		String receiptNum = messageService.sendXMS("1234567890","070-7510-6766","발신자명", "010-111-222","테스트",
-				"장문메시지 제목","메시지 길이에 따라 90Byte 이하는 단문, 이상은 장문으로 전송",null,null);
+		String receiptNum = messageService.sendXMS("1234567890","070-7510-6766","010-111-222","테스트","장문메시지 제목","메시지 길이에 따라 90Byte 이하는 단문, 이상은 장문으로 전송",null,"testkorea");
 		
 		assertNotNull(receiptNum);
 		
 		System.out.println(receiptNum);
 		
-		SentMessage[] messages = messageService.getMessages("1234567890", receiptNum);
-		
-		assertNotNull(messages);
-		
-		System.out.println(messages[0].getSendResult() + " "+messages[0].getSenderName());	
-
 	}
 	
 	@Test
 	public void sendMMS_Single_TEST() throws PopbillException {
 		
-		File file = new File("C:/test2.jpg");
+		File file = new File("/Users/John/Desktop/test.jpg");
 		
-		String receiptNum = messageService.sendMMS("1234567890", "07075103710","발신자명", "010123123", "수신자명", 
-				"JAVA MMS 동보 메시지 제목", "메시지내용", file, null, null);
+		String receiptNum = messageService.sendMMS("1234567890", "07075103710", "010123123", "수신자명", "JAVA MMS 동보 메시지 제목", "메시지내용", file, null, "testkorea");
 		
 		assertNotNull(receiptNum);
 		
 		System.out.println(receiptNum);
-		SentMessage[] messages = messageService.getMessages("1234567890", receiptNum);
-		
-		assertNotNull(messages);
-		
-		System.out.println(messages[0].getSendResult() + " "+messages[0].getSenderName());	
 	}
 	
 	@Test
@@ -189,14 +159,13 @@ public class MessageServiceTEST {
 	
 	@Test
 	public void getMessages_TEST() throws PopbillException {
-		SentMessage[] messages = messageService.getMessages("1234567890", "016081210000000002");
+		SentMessage[] messages = messageService.getMessages("1234567890", "016011515000000009");
 		
 		assertNotNull(messages);
 		
 		System.out.println(messages.length);
-		System.out.println(messages[0].getSendResult() + " "+messages[0].getSenderName());		
+		System.out.println(messages[0].getSendResult() + " "+messages[0].getReceiptDT());		
 	}
-	
 	public static Date addMinutes(Date date, int minutes)
     {
         Calendar cal = Calendar.getInstance();
@@ -207,28 +176,27 @@ public class MessageServiceTEST {
 	
 	@Test
 	public void search_TEST() throws PopbillException{
-		String SDate = "20160801";
-		String EDate = "20160831";
+		String SDate = "20151201";
+		String EDate = "20160115";
 		String[] State = {"1","2","3","4"};
 		String[] Item = {"SMS", "LMS", "MMS"};
 		Boolean ReserveYN = false;
 		Boolean SenderYN = false;
 		int Page = 1;
 		int PerPage = 50;
-		String Order = "D";
+		String Order = "A";
 		
 		MSGSearchResult response = messageService.search("1234567890", SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order);
 		
 		assertNotNull(response);
 		
-		System.out.println(response.getTotal() + " " + response.getList().get(0).getTranNet() +" "+response.getList().get(0).getSenderName());
+		System.out.println(response.getTotal() + " " + response.getList().get(0).getTranNet() +" "+response.getList().get(0).getReceiptDT());
 	}
 	
 	@Test
 	public void sendSMS_adsYN_TEST() throws PopbillException {
 		
-		String receiptNum = messageService.sendSMS("1234567890","070-7510-3710","발신자명", "010123123",
-				"테스트","단문문자메시지 내용",null,true, "testkorea");
+		String receiptNum = messageService.sendSMS("1234567890","070-7510-3710","010123123","테스트","단문문자메시지 내용",null,true, "testkorea");
 		
 		assertNotNull(receiptNum);
 		
@@ -239,8 +207,7 @@ public class MessageServiceTEST {
 	@Test
 	public void sendLMS_adsYN_TEST() throws PopbillException {
 		
-		String receiptNum = messageService.sendLMS("1234567890","070-7510-3710","발신자명", "010123123",
-				"수신자명","테스트","장문메시지 내용",null,true, "testkorea");
+		String receiptNum = messageService.sendLMS("1234567890","070-7510-3710","010123123","수신자명","테스트","장문메시지 내용",null,true, "testkorea");
 		
 		assertNotNull(receiptNum);
 		
@@ -251,8 +218,7 @@ public class MessageServiceTEST {
 	@Test
 	public void sendXMS_adsYN_TEST() throws PopbillException {
 		
-		String receiptNum = messageService.sendXMS("1234567890","070-7510-3710","발신자명", 
-				"010123213","수신자명","테스트","장문메시지 내용",null,true, "testkorea");
+		String receiptNum = messageService.sendXMS("1234567890","070-7510-3710","010123213","수신자명","테스트","장문메시지 내용",null,true, "testkorea");
 		
 		assertNotNull(receiptNum);
 		
@@ -276,7 +242,7 @@ public class MessageServiceTEST {
 		Messages[0] = message;
 		Messages[1] = message;
 		
-		String receiptNum = messageService.sendSMS("1234567890", null, null, null, Messages, null,true, "testkorea");
+		String receiptNum = messageService.sendSMS("1234567890", null, null, Messages, null,true, "testkorea");
 		
 		
 		assertNotNull(receiptNum);
@@ -300,7 +266,7 @@ public class MessageServiceTEST {
 		Messages[0] = message;
 		Messages[1] = message;
 		
-		String receiptNum = messageService.sendLMS("1234567890", null, null, null, null, Messages, null,true, "testkorea");
+		String receiptNum = messageService.sendLMS("1234567890",null, null, null, Messages, null,true, "testkorea");
 		
 		
 		assertNotNull(receiptNum);
@@ -314,8 +280,7 @@ public class MessageServiceTEST {
 		File file = new File("C:/test2.jpg");
 		//File file = new File("/Users/John/Documents/test.jpg");
 		
-		String receiptNum = messageService.sendMMS("1234567890", "07075103710", "발신자명", "010123123", "수신자명",
-				"JAVA MMS 동보 메시지 제목", "메시지내용", file, null, true, "testkorea");
+		String receiptNum = messageService.sendMMS("1234567890", "07075103710", "010123123", "수신자명", "JAVA MMS 동보 메시지 제목", "메시지내용", file, null, true, "testkorea");
 		
 		assertNotNull(receiptNum);
 		
@@ -339,7 +304,7 @@ public class MessageServiceTEST {
 		
 		File file = new File("/Users/John/Documents/test.jpg");
 		
-		String receiptNum = messageService.sendMMS("1234567890",  null, null, null, null, Messages, file, null, true, "testkorea");
+		String receiptNum = messageService.sendMMS("1234567890", null, null, null, Messages, file, null, true, "testkorea");
 		assertNotNull(receiptNum);
 		System.out.println(receiptNum);
 	}
@@ -350,6 +315,6 @@ public class MessageServiceTEST {
 		assertNotNull(response);
 		System.out.println(response[0].getNumber() + " " + response[0].getRegDT());
 		System.out.println(response[1].getNumber() + " " + response[1].getRegDT());
+		
 	}
 }
-

@@ -65,7 +65,7 @@ public class FaxServiceTEST {
 		
 		File file = new File("/Users/John/Desktop/test.jpg");
 		
-		String receiptNum = faxService.sendFAX("1234567890", "02-6442-9700","발신자명", "111-2222-3333","수신자명칭",file, null,null);
+		String receiptNum = faxService.sendFAX("1234567890", "02-6442-9700", "111-2222-3333","수신자명칭",file, null,null);
 		
 		assertNotNull(receiptNum);
 		
@@ -83,9 +83,8 @@ public class FaxServiceTEST {
 	public void sendFAX_MultiFile_TEST() throws PopbillException {
 		
 		File file1 = new File("/Users/John/Desktop/test.jpg");
-		File file2 = new File("/Users/John/Desktop/사업자등록증.jpg");
 		
-		String receiptNum = faxService.sendFAX("1234567890", "02-6442-9700","발신자명","111-2222-3333","수신자명칭",new File[]{file1,file2}, null,null);
+		String receiptNum = faxService.sendFAX("1234567890", "02-6442-9700","111-2222-3333","수신자명칭",new File[]{file1}, null,null);
 		
 		assertNotNull(receiptNum);
 		
