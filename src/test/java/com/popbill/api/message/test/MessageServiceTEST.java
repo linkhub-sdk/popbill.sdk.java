@@ -67,7 +67,7 @@ public class MessageServiceTEST {
 	@Test
 	public void sendSMS_Single_TEST() throws PopbillException {
 		
-		String receiptNum = messageService.sendSMS("1234567890","070-7510-6766", "010-4324-5117","테스트","단문문자메시지 내용",null,"testkorea");
+		String receiptNum = messageService.sendSMS("1234567890","070-7510-6766", "010-111-5117","테스트","단문문자메시지 내용",null,"testkorea");
 		
 		assertNotNull(receiptNum);
 		
@@ -258,7 +258,7 @@ public class MessageServiceTEST {
 		Message message = new Message();
 
 		message.setSender("07075103710");
-		message.setReceiver("01043245117");
+		message.setReceiver("010111222");
 		message.setReceiverName("수신자명");
 		message.setSubject("JAVA LMS 개별 메시지 제목");
 		message.setContent("LMS 메시지 내용");
@@ -277,8 +277,7 @@ public class MessageServiceTEST {
 	@Test
 	public void sendMMS_Single_adsYN_TEST() throws PopbillException {
 		
-		File file = new File("C:/test2.jpg");
-		//File file = new File("/Users/John/Documents/test.jpg");
+		File file = new File("/Users/John/Desktop/test.jpg");
 		
 		String receiptNum = messageService.sendMMS("1234567890", "07075103710", "010123123", "수신자명", "JAVA MMS 동보 메시지 제목", "메시지내용", file, null, true, "testkorea");
 		

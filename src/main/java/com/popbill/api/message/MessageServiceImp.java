@@ -152,7 +152,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	public String sendSMS(String CorpNum, String sender, String senderName,
 			String content, Message[] Messages, Date reserveDT, Boolean adsYN,
 			String UserID) throws PopbillException {
-		return sendMessage(MessageType.SMS, CorpNum, sender, null, senderName, content,
+		return sendMessage(MessageType.SMS, CorpNum, sender, senderName, null, content,
 				Messages, reserveDT, adsYN, UserID);
 	}
 
