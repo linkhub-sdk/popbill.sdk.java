@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2014 innopost.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2006-2014 linkhub.co.kr, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -142,7 +142,7 @@ public abstract class BaseServiceImp implements BaseService {
 			token = tokenTable.get(CorpNum);
 
 		boolean expired = true;
-
+		
 		if (token != null) {
 			
 			SimpleDateFormat format = new SimpleDateFormat(
@@ -154,6 +154,7 @@ public abstract class BaseServiceImp implements BaseService {
 			subFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 			
 			try {
+				
 				Date expiration = format.parse(token.getExpiration());
 				UTCTime = subFormat.parse(getTokenbuilder().getTime());
 				expired = expiration.before(UTCTime);
@@ -370,8 +371,7 @@ public abstract class BaseServiceImp implements BaseService {
 		httpURLConnection.setRequestProperty("Content-Type",
 				"application/json; charset=utf8");
 		
-		httpURLConnection.setRequestProperty("Accept-Encoding",
-				"gzip");
+		httpURLConnection.setRequestProperty("Accept-Encoding",	"gzip");
 
 		if (UserID != null && UserID.isEmpty() == false) {
 			httpURLConnection.setRequestProperty("x-pb-userid", UserID);
@@ -391,48 +391,29 @@ public abstract class BaseServiceImp implements BaseService {
 
 			httpURLConnection.setRequestProperty("Content-Length",
 					String.valueOf(btPostData.length));
-
+				
+			DataOutputStream output = null;
+			
 			try {
-
-				DataOutputStream output = new DataOutputStream(
-						httpURLConnection.getOutputStream());
+				output = new DataOutputStream(httpURLConnection.getOutputStream());
 				output.write(btPostData);
 				output.flush();
-				output.close();
 			} catch (Exception e) {
 				throw new PopbillException(-99999999,
 						"Fail to POST data to Server.", e);
+			} finally {
+				try {
+					if (output != null) {
+						output.close();
+					}
+				} catch (IOException e1) {
+					throw new PopbillException(-99999999, 
+							"Popbill httppost func DataOutputStream close() Exception", e1);
+				}
 			}
-
 		}
-		String Result = "";
-
-		try {
-			InputStream input = httpURLConnection.getInputStream();
-			if (httpURLConnection.getContentEncoding().equals("gzip")) {
-				Result = fromGzipStream(input);
-			}else {
-				Result = fromStream(input);
-			}
-			input.close();
-		} catch (IOException e) {
-
-			ErrorResponse error = null;
-
-			try {
-				InputStream input = httpURLConnection.getErrorStream();
-				Result = fromStream(input);
-				input.close();
-				error = fromJsonString(Result, ErrorResponse.class);
-			} catch (Exception E) {
-			}
-
-			if (error == null)
-				throw new PopbillException(-99999999,
-						"Fail to receive data from Server.", e);
-			else
-				throw new PopbillException(error.getCode(), error.getMessage());
-		}
+		
+		String Result = parseResponse(httpURLConnection);
 
 		return fromJsonString(Result, clazz);
 	}
@@ -477,21 +458,22 @@ public abstract class BaseServiceImp implements BaseService {
 			httpURLConnection.setRequestProperty("x-pb-userid", UserID);
 		}
 		
-		httpURLConnection.setRequestProperty("Accept-Encoding",
-				"gzip");
+		httpURLConnection.setRequestProperty("Accept-Encoding",	"gzip");
 
 		try {
 			httpURLConnection.setRequestMethod("POST");
 		} catch (ProtocolException e1) {
+			
 		}
 
 		httpURLConnection.setUseCaches(false);
 		httpURLConnection.setDoOutput(true);
-
+		
+		DataOutputStream output = null;
+		
 		try {
 
-			DataOutputStream output = new DataOutputStream(
-					httpURLConnection.getOutputStream());
+			output = new DataOutputStream(httpURLConnection.getOutputStream());
 
 			if ((form == null || form.isEmpty()) == false) {
 				String formBody = "--" + boundary + CRLF;
@@ -533,42 +515,22 @@ public abstract class BaseServiceImp implements BaseService {
 					.forName("UTF-8"));
 
 			output.write(btboundaryFooter);
-
 			output.flush();
-			output.close();
 		} catch (Exception e) {
 			throw new PopbillException(-99999999,
 					"Fail to POST data to Server.", e);
-		}
-
-		String Result = "";
-
-		try {
-			InputStream input = httpURLConnection.getInputStream();
-			if (httpURLConnection.getContentEncoding().equals("gzip")) {
-				Result = fromGzipStream(input);
-			}else {
-				Result = fromStream(input);
-			}
-			input.close();
-		} catch (IOException e) {
-
-			ErrorResponse error = null;
-
+		} finally {
 			try {
-				InputStream input = httpURLConnection.getErrorStream();
-				Result = fromStream(input);
-				input.close();
-				error = fromJsonString(Result, ErrorResponse.class);
-			} catch (Exception E) {
+				if (output != null){
+					output.close();
+				}
+			} catch (IOException e1) {
+				throw new PopbillException(-99999999, 
+						"Popbill httppostFiles func DataOutputStream close() Exception", e1);
 			}
-
-			if (error == null)
-				throw new PopbillException(-99999999,
-						"Fail to receive data from Server.", e);
-			else
-				throw new PopbillException(error.getCode(), error.getMessage());
 		}
+
+		String Result = parseResponse(httpURLConnection);
 
 		return fromJsonString(Result, clazz);
 	}
@@ -604,38 +566,10 @@ public abstract class BaseServiceImp implements BaseService {
 			httpURLConnection.setRequestProperty("x-pb-userid", UserID);
 		}
 		
-		httpURLConnection.setRequestProperty("Accept-Encoding",
-				"gzip");
-
-		String Result = "";
-
-		try {
-			InputStream input = httpURLConnection.getInputStream();
-			if (httpURLConnection.getContentEncoding().equals("gzip")) {
-				Result = fromGzipStream(input);
-			}else {
-				Result = fromStream(input);
-			}
-			input.close();
-		} catch (IOException e) {
-
-			ErrorResponse error = null;
-
-			try {
-				InputStream input = httpURLConnection.getErrorStream();
-				Result = fromStream(input);
-				input.close();
-				error = fromJsonString(Result, ErrorResponse.class);
-			} catch (Exception E) {
-			}
-
-			if (error == null)
-				throw new PopbillException(-99999999,
-						"Fail to receive data from Server.", e);
-			else
-				throw new PopbillException(error.getCode(), error.getMessage());
-		}
-
+		httpURLConnection.setRequestProperty("Accept-Encoding",	"gzip");
+		
+		String Result = parseResponse(httpURLConnection);
+		
 		return fromJsonString(Result, clazz);
 	}
 
@@ -675,38 +609,130 @@ public abstract class BaseServiceImp implements BaseService {
 		public String url;
 	}
 	
-	private static String fromStream(InputStream input) throws IOException {
+	private static String fromStream(InputStream input) throws PopbillException {
+		InputStreamReader is = null;
+		BufferedReader br = null;
+		StringBuilder sb = null;
+		
+		try{
+			is = new InputStreamReader(input, Charset.forName("UTF-8"));
+			br = new BufferedReader(is);
+			sb = new StringBuilder();
+	
+			String read = br.readLine();
 
-		InputStreamReader is = new InputStreamReader(input,
-				Charset.forName("UTF-8"));
-		StringBuilder sb = new StringBuilder();
-		BufferedReader br = new BufferedReader(is);
-
-		String read = br.readLine();
-
-		while (read != null) {
-			sb.append(read);
-			read = br.readLine();
+			while (read != null) {
+				sb.append(read);
+				read = br.readLine();
+			}
+			
+		} catch (IOException e){
+			throw new PopbillException(-99999999, 
+					"Popbill fromStream func Exception", e);
+		} finally {
+			try {
+				if (br != null) br.close();
+				if (is != null) is.close();
+			} catch (IOException e) { 
+				throw new PopbillException(-99999999,
+					"Popbill fromStream func finally close Exception", e);
+			}
 		}
-
+		
 		return sb.toString();
 	}
 	
-	private static String fromGzipStream(InputStream input) throws IOException {
-		GZIPInputStream zipReader = new GZIPInputStream(input);
+	private static String fromGzipStream(InputStream input) throws PopbillException {
+		GZIPInputStream zipReader = null;
+		InputStreamReader is = null;		
+		BufferedReader br = null;
+		StringBuilder sb = null;
 		
-		InputStreamReader is = new InputStreamReader(zipReader, "UTF-8");
-		StringBuilder sb = new StringBuilder();
-		BufferedReader br = new BufferedReader(is);
-
-		String read = br.readLine();
-
-		while (read != null) {
-			sb.append(read);
-			read = br.readLine();
+		try {
+			zipReader = new GZIPInputStream(input);
+			is = new InputStreamReader(zipReader, "UTF-8");
+			br = new BufferedReader(is);
+			sb = new StringBuilder();
+	
+			String read = br.readLine();
+	
+			while (read != null) {
+				sb.append(read);
+				read = br.readLine();
+			}
+		} catch (IOException e) {
+			throw new PopbillException(-99999999, 
+					"Popbill fromGzipStream func Exception", e);
+		} finally {
+			try {
+				if (br != null) br.close();
+				if (is != null) is.close();
+				if (zipReader != null) zipReader.close();
+			} catch (IOException e) {
+				throw new PopbillException(-99999999,
+					"Popbill fromGzipStream func finally close Exception", e);
+			}
 		}
-
+		
 		return sb.toString();
 	}
-
+		
+	
+	private String parseResponse(HttpURLConnection httpURLConnection) throws PopbillException {
+		
+		String result = "";
+		InputStream input = null;
+		PopbillException exception = null;
+		
+		try {
+			input = httpURLConnection.getInputStream();
+			
+			if (httpURLConnection.getContentEncoding().equals("gzip")) {
+				result = fromGzipStream(input);
+			} else {
+				result = fromStream(input);
+			}
+		} catch (IOException e) {
+			InputStream errorIs = null;
+			ErrorResponse error = null;
+			
+			try {
+				errorIs = httpURLConnection.getErrorStream();
+				result = fromStream(errorIs);
+				error = fromJsonString(result, ErrorResponse.class);
+			} catch (Exception ignored) { 
+				
+			} finally {
+				try {
+					if (errorIs != null) {
+						errorIs.close();
+					}
+				} catch (IOException e1) {
+					throw new PopbillException(-99999999, 
+							"Popbill parseResponse func InputStream close() Exception", e1);
+				}
+			}
+			
+			if (error == null) {
+				exception = new PopbillException(-99999999,
+						"Fail to receive data from Server.", e);
+			} else {
+				exception = new PopbillException(error.getCode(), error.getMessage());
+			}
+		} finally {
+			try {
+				if (input != null) {
+					input.close();
+				}
+			} catch (IOException e2) {
+				throw new PopbillException(-99999999, 
+						"Popbill parseResponse func InputStream close() Exception", e2);
+			}
+		}
+		
+		if (exception != null)
+			throw exception;
+		
+		return result;
+	}
 }
