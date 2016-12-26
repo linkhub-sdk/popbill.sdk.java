@@ -21,6 +21,8 @@ package com.popbill.api.taxinvoice;
  * @version 1.0.0
  */
 public class TaxinvoiceInfo {
+	private Integer closeDownState;
+	private String closeDownStateDate;
 
 	private String itemKey;
 	private String taxType;
@@ -371,8 +373,22 @@ public class TaxinvoiceInfo {
 	public boolean isTrusteePrintYN() {
 		return trusteePrintYN;
 	}
-
-
-
-
+	
+	/**
+	 * 세금계산서 발행시 공급받는자 휴폐업상태정보
+	 * 
+	 * @return 휴폐업 상태
+	 */
+	public Integer getCloseDownState() {
+		return closeDownState;
+	}
+	
+	/**
+	 * 세금계산서 발행시 공급받는자 휴폐업일자
+	 * 
+	 * @return 공급받는자 휴폐업일자
+	 */
+	public String getCloseDownStateDate() {
+		return closeDownStateDate;
+	}
 }

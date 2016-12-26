@@ -25,6 +25,10 @@ import java.util.List;
  */
 public class Taxinvoice implements Serializable {
 	private static final long serialVersionUID = -4724810536341548575L;
+	
+	private Integer closeDownState;
+	private String closeDownStateDate;
+	
 	private Boolean writeSpecification;
 	private Boolean forceIssue;
 	private String memo;
@@ -1606,5 +1610,23 @@ public class Taxinvoice implements Serializable {
 	 */
 	public String getDealInvoiceMgtKey() {
 		return dealInvoiceMgtKey;
+	}
+	
+	/**
+	 * 세금계산서 발행시 공급받는자 휴폐업상태정보
+	 * 
+	 * @return 휴폐업 상태
+	 */
+	public Integer getCloseDownState() {
+		return closeDownState;
+	}
+	
+	/**
+	 * 세금계산서 발행시 공급받는자 휴폐업일자
+	 * 
+	 * @return 공급받는자 휴폐업일자
+	 */
+	public String getCloseDownStateDate() {
+		return closeDownStateDate;
 	}
 }
