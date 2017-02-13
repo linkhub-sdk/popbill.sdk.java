@@ -159,12 +159,12 @@ public class MessageServiceTEST {
 	
 	@Test
 	public void getMessages_TEST() throws PopbillException {
-		SentMessage[] messages = messageService.getMessages("1234567890", "016011515000000009");
+		SentMessage[] messages = messageService.getMessages("1234567890", "017021315000000004");
 		
 		assertNotNull(messages);
 		
 		System.out.println(messages.length);
-		System.out.println(messages[0].getSendResult() + " "+messages[0].getReceiptDT());		
+		System.out.println(messages[0].getResult() + " "+messages[0].getReceiptDT());		
 	}
 	public static Date addMinutes(Date date, int minutes)
     {
@@ -177,20 +177,20 @@ public class MessageServiceTEST {
 	@Test
 	public void search_TEST() throws PopbillException{
 		String SDate = "20151201";
-		String EDate = "20160115";
+		String EDate = "20170213";
 		String[] State = {"1","2","3","4"};
 		String[] Item = {"SMS", "LMS", "MMS"};
 		Boolean ReserveYN = false;
 		Boolean SenderYN = false;
 		int Page = 1;
 		int PerPage = 50;
-		String Order = "A";
+		String Order = "D";
 		
 		MSGSearchResult response = messageService.search("1234567890", SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order);
 		
 		assertNotNull(response);
 		
-		System.out.println(response.getTotal() + " " + response.getList().get(0).getTranNet() +" "+response.getList().get(0).getReceiptDT());
+		System.out.println(response.getTotal() + " " + response.getList().get(0).getResult() +" "+response.getList().get(0).getReceiptDT());
 	}
 	
 	@Test

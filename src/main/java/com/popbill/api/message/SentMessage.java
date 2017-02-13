@@ -26,6 +26,7 @@ public class SentMessage implements Serializable {
 	private static final long serialVersionUID = -4418729876803035880L;
 
 	private Integer state;
+	private Integer result;
 	private String subject;
 	private String type;
 	private String content;
@@ -48,6 +49,16 @@ public class SentMessage implements Serializable {
 	 */
 	public Integer getState() {
 		return state;
+	}
+	
+	
+	/**
+	 * 이동통신사 전송결과 확인
+	 * 
+	 * @return 전송결과코드
+	 */
+	public Integer getResult() {
+		return result;
 	}
 
 	/**
