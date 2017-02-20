@@ -180,6 +180,49 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	}
 	
 	
+	@Override
+	public String resendFAX(String CorpNum, String receiptNum, String sendNum, String senderName,
+			String receiveNum, String receiveName, Date reserveDT, String UserID)
+			throws PopbillException {
+		// TODO Auto-generated method stub
+		
+		Receiver receiver = null;
+		
+		if ( !receiveNum.isEmpty() || !receiveName.isEmpty() ) {
+			receiver = new Receiver();
+			receiver.setReceiveNum(receiveNum);
+			receiver.setReceiveName(receiveName);
+			return resendFAX(CorpNum,receiptNum, sendNum, senderName, new Receiver[]{receiver},reserveDT,UserID);
+		}
+		return resendFAX(CorpNum,receiptNum, sendNum, senderName, null, reserveDT,UserID);	
+	}
+
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#resendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.util.Date, java.lang.String)
+	 */
+	@Override
+	public String resendFAX(String CorpNum, String receiptNum, String sendNum,
+			String senderName, Receiver[] receivers, Date reserveDT,
+			String UserID) throws PopbillException {
+		
+		if(receiptNum == null || receiptNum.isEmpty()) throw new PopbillException(-99999999,"팩스 접수번호(receiptNum)가 입력되지 않았습니다.");
+		
+		SendRequest request = new SendRequest();
+		
+		if (!sendNum.isEmpty() || sendNum != null) request.snd = sendNum;
+		if (!senderName.isEmpty() || senderName != null) request.sndnm = senderName;
+		if (reserveDT != null) request.sndDT = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(reserveDT);
+		
+		if (receivers != null) request.rcvs = receivers;
+		
+		String PostData = toJsonString(request);
+		
+		ReceiptResponse response = httppost("/FAX/"+receiptNum, CorpNum, PostData, UserID, ReceiptResponse.class);
+		
+		return response.receiptNum;
+	}
 	
 
 	/*
@@ -273,6 +316,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	protected class ReceiptResponse {
 		public String receiptNum;
 	}
+
+
 
 	
 

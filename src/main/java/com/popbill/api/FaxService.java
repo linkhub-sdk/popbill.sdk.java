@@ -167,6 +167,59 @@ public interface FaxService extends BaseService {
 	public String sendFAX(String CorpNum, String sendNum, String senderName, Receiver[] receivers,
 			File[] files, Date reserveDT, String UserID)
 			throws PopbillException;
+	
+	
+	/**
+	 * 팩스전송 동보 재전송
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param receiptNum
+	 * 			  팩스 접수번호
+	 * @param sendNum
+	 *            발신번호
+	 * @param senderName
+	 * 			  발신자명           
+	 * @param receiveNum
+	 *            수신번호
+	 * @param receiveName
+	 *            수신자 명칭
+	 * @param reserveDT
+	 *            예약일시, (형태 yyyyMMddHHmmss)
+	 * @param UserID
+	 *            연동회원 아이디
+	 * @return receiptNum 접수번호
+	 * @throws PopbillException
+	 */
+	public String resendFAX(String CorpNum, String receiptNum, String sendNum, String senderName,
+			String receiveNum, String receiveName, Date reserveDT, String UserID)
+			throws PopbillException;
+	
+	
+	/**
+	 * 팩스전송 동보 재전송
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param receiptNum
+	 *            팩스 접수번호
+	 * @param sendNum
+	 *            발신번호
+	 * @param senderName
+	 * 			  발신자명
+	 * @param receivers
+	 *            수신자정보 배열
+	 * @param reserveDT
+	 *            예약일시, (형태 yyyyMMddHHmmss)
+	 * @param UserID
+	 *            연동회원 아이디
+	 * @return receiptNum 접수번호
+	 * @throws PopbillException
+	 */
+	public String resendFAX(String CorpNum, String receiptNum, String sendNum, String senderName, Receiver[] receivers,
+			Date reserveDT, String UserID)
+			throws PopbillException;
+	
 
 	/**
 	 * 전송결과 확인

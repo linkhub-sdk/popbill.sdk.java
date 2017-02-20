@@ -15,6 +15,7 @@ import com.popbill.api.Response;
 import com.popbill.api.fax.FAXSearchResult;
 import com.popbill.api.fax.FaxResult;
 import com.popbill.api.fax.FaxServiceImp;
+import com.popbill.api.fax.Receiver;
 
 public class FaxServiceTEST {
 
@@ -77,6 +78,59 @@ public class FaxServiceTEST {
 		
 		System.out.println(results[0].getFileNames()[0] + " "+results[0].getSenderName());
 
+	}
+	@Test
+	public void resendFAX_Single_TEST() throws PopbillException {
+
+		String testCorpNum = "1234567890";
+		String orgReceiptNum = "017021716071900001";
+		String senderNum = "07043042991";
+		String senderName = "발신자명";
+		String receiveNum = "070111222";
+		String receiveName = "수신자명";
+		
+		String receiptNum = faxService.resendFAX(testCorpNum, orgReceiptNum, senderNum, senderName, receiveNum, receiveName, null, null);
+		
+		assertNotNull(receiptNum);
+		
+		System.out.println(receiptNum);
+		
+		FaxResult[] results = faxService.getFaxResult("1234567890", receiptNum);
+		
+		assertNotNull(results);
+		
+		System.out.println(results[0].getFileNames()[0] + " "+results[0].getSenderName());
+	}
+	
+	@Test
+	public void resendFAX_Multi_TEST() throws PopbillException {
+
+		String testCorpNum = "1234567890";
+		String orgReceiptNum = "017021716071900001";
+		String senderNum = "07043042991";
+		String senderName = "발신자명";
+		
+		Receiver receiver1 = new Receiver();
+		receiver1.setReceiveName("수신자명");
+		receiver1.setReceiveNum("070111222");
+		
+		Receiver receiver2 = new Receiver();
+		receiver2.setReceiveName("수신자명");
+		receiver2.setReceiveNum("070111222");
+		
+		Receiver[] receivers = new Receiver[] {receiver1, receiver2};
+		
+		String receiptNum = faxService.resendFAX(testCorpNum, orgReceiptNum, senderNum, senderName, null, null, null);
+		
+		assertNotNull(receiptNum);
+		
+		System.out.println(receiptNum);
+		
+		FaxResult[] results = faxService.getFaxResult("1234567890", receiptNum);
+		
+		assertNotNull(results);
+		
+		System.out.println(results[0].getFileNames()[0] + " "+results[0].getSenderName());
 	}
 	
 	@Test
