@@ -43,7 +43,20 @@ public interface MessageService extends BaseService {
 	 */
 	public float getUnitCost(String CorpNum, MessageType MsgType)
 			throws PopbillException;
-
+	
+	/**
+	 * 팝빌 문자메시지 관련 URL 확인. 반환한 url은 30초이내에 브라우져에 표시하여야 함.
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호.
+	 * @param TOGO
+	 *            지정값. (BOX : 문자전송 내역 조회 팝업)
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String getURL(String CorpNum, String TOGO)
+			throws PopbillException;
+	
 	/**
 	 * 팝빌 문자메시지 관련 URL 확인. 반환한 url은 30초이내에 브라우져에 표시하여야 함.
 	 * 
@@ -670,6 +683,18 @@ public interface MessageService extends BaseService {
 	 */
 	public SentMessage[] getMessages(String CorpNum, String receiptNum)
 			throws PopbillException;
+
+	/**
+	 * 예약 메시지 전송 취소. 예약시간 기준 10분전의 건만 취소 가능.
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param receiptNum
+	 *            전송시 접수번호.
+	 * @return Response 응답
+	 * @throws PopbillException
+	 */
+	public Response cancelReserve(String CorpNum, String receiptNum) throws PopbillException;
 
 	/**
 	 * 예약 메시지 전송 취소. 예약시간 기준 10분전의 건만 취소 가능.

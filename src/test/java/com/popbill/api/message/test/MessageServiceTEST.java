@@ -55,10 +55,11 @@ public class MessageServiceTEST {
 
 		System.out.println(UnitCost);
 	}
+	
 	@Test
 	public void getURL_TEST() throws PopbillException {
 		
-		String url = messageService.getURL("1231212312", "userid", "BOX");
+		String url = messageService.getURL("1234567890", "BOX");
 
 		assertNotNull(url);
 		System.out.println(url);
@@ -92,12 +93,13 @@ public class MessageServiceTEST {
 		
 		String receiptNum = "014100911000000006";
 		
-		Response response = messageService.cancelReserve("1231212312", receiptNum, "userid");
+		Response response = messageService.cancelReserve("1234567890", receiptNum);
 		assertNotNull(response);
 		
 		System.out.println(response.getMessage());
 		
 	}
+	
 	@Test
 	public void sendLMS_Single_TEST() throws PopbillException {
 		
@@ -316,4 +318,6 @@ public class MessageServiceTEST {
 		System.out.println(response[1].getNumber() + " " + response[1].getRegDT());
 		
 	}
+	
+	
 }

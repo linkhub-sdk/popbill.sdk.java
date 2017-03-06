@@ -64,6 +64,16 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 
 	/*
 	 * (non-Javadoc)
+	 * @see com.popbill.api.MessageService#getURL(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getURL(String CorpNum, String TOGO)
+			throws PopbillException {
+		return getURL(CorpNum, null, TOGO);
+	}
+	
+	/*
+	 * (non-Javadoc)
 	 * @see com.popbill.api.MessageService#getURL(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -329,6 +339,15 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 				SentMessage[].class);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.MessageService#cancelReserve(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Response cancelReserve(String CorpNum, String receiptNum) throws PopbillException {
+		return cancelReserve(CorpNum, receiptNum, null);
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.MessageService#cancelReserve(java.lang.String, java.lang.String, java.lang.String)
