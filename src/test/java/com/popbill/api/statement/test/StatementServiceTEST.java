@@ -75,12 +75,12 @@ public class StatementServiceTEST {
 		
 		Statement statement = new Statement();
 		
-		statement.setWriteDate("20150318");
+		statement.setWriteDate("20170306");
 		statement.setPurposeType("영수");
 		statement.setTaxType("과세");
 		statement.setFormCode("");
 		statement.setItemCode((short) 121);
-		statement.setMgtKey("20150318-01");
+		statement.setMgtKey("20170306-04");
 		statement.setSenderCorpNum("1234567890");
 		statement.setSenderCorpName("공급자 상호");
 		statement.setSenderAddr("공급자 주소");
@@ -133,7 +133,7 @@ public class StatementServiceTEST {
         statement.getDetailList().add(detail);
         
 		statement.setPropertyBag(propertyBag);
-		Response response = statementService.register("1234567890", statement, "testkorea");
+		Response response = statementService.register("1234567890", statement);
 		System.out.println(response.getMessage());
 		
 		assertNotNull(response);
@@ -142,9 +142,10 @@ public class StatementServiceTEST {
 	
 	@Test
 	public void attachFile_TEST() throws PopbillException, IOException {
-		InputStream FileData = new FileInputStream("C:/test.jpg");
+		InputStream FileData = new FileInputStream(
+				"/Users/John/Desktop/test.jpg");
 		
-		Response response = statementService.attachFile("1234567890", 121, "20150318-01", "테스트.jpg", FileData, "testkorea");
+		Response response = statementService.attachFile("1234567890", 121, "20170306-03", "test.jpg", FileData);
 		
 		FileData.close();
 		
@@ -172,7 +173,7 @@ public class StatementServiceTEST {
 		
 		String FileID = "10223612-BAE6-491A-9496-62705E978DA5.PBF";
 		
-		Response response = statementService.deleteFile("1234567890", 121, "20150318-01", FileID, "testkorea");
+		Response response = statementService.deleteFile("1234567890", 121, "20170306-03", FileID);
 		
 		assertNotNull(response);
 		
@@ -266,21 +267,21 @@ public class StatementServiceTEST {
 	
 	@Test
 	public void sendSMS_TEST() throws PopbillException {
-		Response response = statementService.sendSMS("1234567890", 121, "20150318-01", "07075103710", "010111222", "문자메시지 테스트");
+		Response response = statementService.sendSMS("1234567890", 121, "20150318-01", "07043042991", "010111222", "문자메시지 테스트");
 		
 		System.out.println(response.getMessage());
 	}
 	
 	@Test
 	public void sendFAX_TEST() throws PopbillException {
-		Response response = statementService.sendFAX("1234567890", 121, "20150318-01", "07075103710", "010111222", "testkorea");
+		Response response = statementService.sendFAX("1234567890", 121, "20170306-03", "07043042991", "010111222");
 		
 		System.out.println(response.getMessage());
-		
 	}
+	
 	@Test
 	public void getDetailInfo_TEST() throws PopbillException {
-		Statement statement = statementService.getDetailInfo("1234567890", 121, "20150318-01", "testkorea");
+		Statement statement = statementService.getDetailInfo("1234567890", 121, "20170306-02");
 		
 		assertNotNull(statement);
 		System.out.println(statement.getPropertyBag());
@@ -313,7 +314,7 @@ public class StatementServiceTEST {
 	
 	@Test
 	public void getPopUpURL_TEST() throws PopbillException {
-		String url = statementService.getPopUpURL("1234567890", 121, "20150318-01", "testkorea");
+		String url = statementService.getPopUpURL("1234567890", 121, "20170306-01");
 		
 		assertNotNull(url);
 		
@@ -322,7 +323,7 @@ public class StatementServiceTEST {
 	
 	@Test
 	public void getPrintURL_TEST() throws PopbillException {
-		String url = statementService.getPrintURL("1234567890", 121, "20150318-01", "testkorea");
+		String url = statementService.getPrintURL("1234567890", 121, "20170306-01");
 		
 		assertNotNull(url);
 		
@@ -331,7 +332,7 @@ public class StatementServiceTEST {
 	
 	@Test
 	public void getEPrintURL_TEST() throws PopbillException {
-		String url = statementService.getEPrintURL("1234567890", 121, "20150318-01", "testkorea");
+		String url = statementService.getEPrintURL("1234567890", 121, "20170306-01");
 		
 		assertNotNull(url);
 		
@@ -340,7 +341,7 @@ public class StatementServiceTEST {
 	
 	@Test
 	public void getMailURL_TEST() throws PopbillException {
-		String url = statementService.getMailURL("1234567890", 121, "20150318-01", "testkorea");
+		String url = statementService.getMailURL("1234567890", 121, "20170306-02");
 		
 		assertNotNull(url);
 		
@@ -351,7 +352,7 @@ public class StatementServiceTEST {
 	public void getMassPrintURL_TEST() throws PopbillException {
 		String[] MgtKeyList = new String[] {"20150317-01","20150316-06","20150316-04"};
 		
-		String url = statementService.getMassPrintURL("1234567890", 121, MgtKeyList, "testkorea");
+		String url = statementService.getMassPrintURL("1234567890", 121, MgtKeyList);
 		
 		assertNotNull(url);
 		
@@ -380,12 +381,12 @@ public class StatementServiceTEST {
 	public void FAXSend_TEST() throws PopbillException{
 		Statement statement = new Statement();
 		
-		statement.setWriteDate("20160115");
+		statement.setWriteDate("20170306");
 		statement.setPurposeType("영수");
 		statement.setTaxType("과세");
 		statement.setFormCode("");
 		statement.setItemCode((short) 121);
-		statement.setMgtKey("20160115-01");
+		statement.setMgtKey("20170306-06");
 		statement.setSenderCorpNum("1234567890");
 		statement.setSenderCorpName("공급자 상호");
 		statement.setSenderAddr("공급자 주소");
@@ -438,7 +439,7 @@ public class StatementServiceTEST {
         statement.getDetailList().add(detail);
         
 		statement.setPropertyBag(propertyBag);
-		String response = statementService.FAXSend("1234567890", statement, "07075103710", "0264429700", "testkorea");
+		String response = statementService.FAXSend("1234567890", statement, "07043042991", "070111222");
 		System.out.println(response);
 		
 		assertNotNull(response);
@@ -448,12 +449,12 @@ public class StatementServiceTEST {
 	public void RegistIssue_TEST() throws PopbillException{
 		Statement statement = new Statement();
 		
-		statement.setWriteDate("20160115");
+		statement.setWriteDate("20170306");
 		statement.setPurposeType("영수");
 		statement.setTaxType("과세");
 		statement.setFormCode("");
 		statement.setItemCode((short) 121);
-		statement.setMgtKey("20160115-06");
+		statement.setMgtKey("20170306-07");
 		statement.setSenderCorpNum("1234567890");
 		statement.setSenderCorpName("공급자 상호");
 		statement.setSenderAddr("공급자 주소");
@@ -507,7 +508,7 @@ public class StatementServiceTEST {
         
 		statement.setPropertyBag(propertyBag);
 		
-		Response response = statementService.registIssue("1234567890", statement, "전자명세서 즉시발행 메모", "testkorea");
+		Response response = statementService.registIssue("1234567890", statement, "전자명세서 즉시발행 메모");
 		System.out.println("[" + response.getCode() + "] " + response.getMessage());
 		
 		assertNotNull(response);

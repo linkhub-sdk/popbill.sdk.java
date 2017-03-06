@@ -34,6 +34,19 @@ public interface StatementService extends BaseService{
 	 * 
 	 * @param CorpNum 
 	 * 			연동회원 사업자번호
+	 * @param TOGO
+	 * 			지정값(TBOX : 임시 문서함 URL, SBOX : 발행 문서함 URL)
+	 * @return 팝빌 URL(AccessToken값 포함, Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String getURL(String CorpNum, String TOGO)
+			throws PopbillException;
+	
+	/**
+	 * 팝빌 전자명세서 관련 URL 확인, 반환된 URL은 30초이내에 브라우저에 표시해야 함.
+	 * 
+	 * @param CorpNum 
+	 * 			연동회원 사업자번호
 	 * @param UserID 
 	 * 			연동회원의 회원아이디
 	 * @param TOGO
@@ -398,6 +411,22 @@ public interface StatementService extends BaseService{
 	public Response sendFAX(String CorpNum, int ItemCode,
 			String MgtKey, String Sender, String Receiver,
 			String UserID) throws PopbillException;
+
+	/**
+	 * 명세서 상세정보 확인.
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param ItemCode
+	 * 			명세서 코드
+	 * @param MgtKey
+	 * 			문서관리번호
+	 * @return Statement
+	 * @throws PopbillException
+	 * 
+	 */
+	public Statement getDetailInfo(String CorpNum, int ItemCode,
+			String MgtKey) throws PopbillException;
 	
 	/**
 	 * 명세서 상세정보 확인.
@@ -473,6 +502,21 @@ public interface StatementService extends BaseService{
 	 * 			명세서 코드
 	 * @param MgtKey
 	 * 			문서관리번호
+	 * @return 팝빌 URL.
+	 * @throws PopbillException
+	 */
+	public String getPopUpURL(String CorpNum, int ItemCode,
+			String MgtKey) throws PopbillException;
+	
+	/**
+	 * 명세서 팝빌화면 팝업 URL 확인
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param ItemCode
+	 * 			명세서 코드
+	 * @param MgtKey
+	 * 			문서관리번호
 	 * @param UserID
 	 * 			연동회원의 회원아이디
 	 * @return 팝빌 URL.
@@ -480,6 +524,22 @@ public interface StatementService extends BaseService{
 	 */
 	public String getPopUpURL(String CorpNum, int ItemCode,
 			String MgtKey, String UserID) throws PopbillException;
+	
+	/**
+	 * 명세서 인쇄 팝업 URL 확인
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param ItemCode
+	 * 			명세서 코드
+	 * @param MgtKey
+	 * 			문서관리번호
+	 * @return 팝빌 URL
+	 * @throws PopbillException 
+	 * 
+	 */
+	public String getPrintURL(String CorpNum, int ItemCode,
+			String MgtKey) throws PopbillException;
 	
 	/**
 	 * 명세서 인쇄 팝업 URL 확인
@@ -509,6 +569,21 @@ public interface StatementService extends BaseService{
 	 * 			명세서 코드
 	 * @param MgtKey
 	 * 			문서관리번호
+	 * @return 팝빌 URL
+	 * @throws PopbillException
+	 */
+	public String getEPrintURL(String CorpNum, int ItemCode,
+			String MgtKey) throws PopbillException;
+	
+	/**
+	 * 명세서 인쇄 팝업 (공급받는자용) URL 확인
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param ItemCode
+	 * 			명세서 코드
+	 * @param MgtKey
+	 * 			문서관리번호
 	 * @param UserID
 	 * 			연동회원의 회원아이디
 	 * @return 팝빌 URL
@@ -516,6 +591,22 @@ public interface StatementService extends BaseService{
 	 */
 	public String getEPrintURL(String CorpNum, int ItemCode,
 			String MgtKey, String UserID) throws PopbillException;
+	
+	/**
+	 * 메일(공급받는자) 링크 URL 확인
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param ItemCode
+	 * 			명세서 코드
+	 * @param MgtKey
+	 * 			문서관리번호
+	 * @return 팝빌 URL
+	 * @throws PopbillException 
+	 * 
+	 */
+	public String getMailURL(String CorpNum, int ItemCode, 
+			String MgtKey) throws PopbillException;
 	
 	/**
 	 * 메일(공급받는자) 링크 URL 확인
@@ -544,6 +635,21 @@ public interface StatementService extends BaseService{
 	 * 			명세서 코드
 	 * @param MgtKeyList
 	 * 			문서관리번호 배열(최대 1000건)
+	 * @return 팝빌 URL
+	 * @throws PopbillException
+	 */
+	public String getMassPrintURL(String CorpNum, int ItemCode,
+			String[] MgtKeyList) throws PopbillException;
+	
+	/**
+	 * 다량 인쇄 팝업 URL 확인
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param ItemCode
+	 * 			명세서 코드
+	 * @param MgtKeyList
+	 * 			문서관리번호 배열(최대 1000건)
 	 * @param UserID
 	 * 			연동회원의 회원아이디
 	 * @return 팝빌 URL
@@ -551,6 +657,26 @@ public interface StatementService extends BaseService{
 	 */
 	public String getMassPrintURL(String CorpNum, int ItemCode,
 			String[] MgtKeyList, String UserID) throws PopbillException;
+	
+	/**
+	 * 명세서 파일첨부
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param ItemCode
+	 * 			명세서 코드
+	 * @param MgtKey
+	 * 			문서관리번호 
+	 * @param DisplayName
+	 * 			파일 표시명( ex."통장사본.jpg")
+	 * @param FileData
+	 * 			파일 스트림.
+	 * @return Response
+	 * @throws PopbillException
+	 */
+	public Response attachFile(String CorpNum, int ItemCode, String MgtKey, 
+			String DisplayName, InputStream FileData)
+			throws PopbillException;
 	
 	/**
 	 * 명세서 파일첨부

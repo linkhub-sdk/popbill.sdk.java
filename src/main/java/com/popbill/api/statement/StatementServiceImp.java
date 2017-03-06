@@ -42,6 +42,16 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 		return Arrays.asList("121","122","123","124","125","126");
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.StatementService#getURL(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getURL(String CorpNum, String TOGO)
+			throws PopbillException {
+		return getURL(CorpNum, null, TOGO);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.StatementService#getURL(java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -318,6 +328,15 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 					UserID, "FAX", Response.class);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.StatementService#getDetailInfo(java.lang.String, int, java.lang.String)
+	 */
+	@Override
+	public Statement getDetailInfo(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
+		return getDetailInfo(CorpNum, ItemCode, MgtKey, null);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.StatementService#getDetailInfo(java.lang.String, java.number.Integer, java.lang.String, java.lang.String)
 	 */
@@ -373,6 +392,18 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 					CorpNum, null, StatementLog[].class);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.StatementService#getPopUpURL(java.lang.String, int, java.lang.String)
+	 */
+	@Override
+	public String getPopUpURL(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
+		if (MgtKey == null || MgtKey.isEmpty())
+			throw new PopbillException(-99999999, "관리번호 가 입력되지 않았습니다.");
+	
+		return getPopUpURL(CorpNum, ItemCode, MgtKey, null);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.StatementService#getPopUpURL(java.lang.String, java.number.Integer, java.lang.String, java.lang.String)
 	 */
@@ -386,6 +417,17 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 				CorpNum, UserID, URLResponse.class);
 		
 		return response.url;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.StatementService#getPrintURL(java.lang.String, int, java.lang.String)
+	 */
+	@Override
+	public String getPrintURL(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
+		if (MgtKey == null || MgtKey.isEmpty())
+			throw new PopbillException(-99999999, "관리번호 가 입력되지 않았습니다.");
+		return getPrintURL(CorpNum, ItemCode, MgtKey, null);
 	}
 	
 	/* (non-Javadoc)
@@ -403,6 +445,16 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 		return response.url;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.StatementService#getEPrintURL(java.lang.String, int, java.lang.String)
+	 */
+	@Override
+	public String getEPrintURL(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
+						
+		return getEPrintURL(CorpNum, ItemCode, MgtKey, null);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.StatementService#getEPrintURL(java.lang.String, java.number.Integer, java.lang.String, java.lang.String)
 	 */
@@ -418,6 +470,16 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 		return response.url;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.StatementService#getMailURL(java.lang.String, int, java.lang.String)
+	 */
+	@Override
+	public String getMailURL(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
+		return getMailURL(CorpNum, ItemCode, MgtKey, null);
+	}
+	
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.StatementService#getMailURL(java.lang.String, java.number.Integer, java.lang.String, java.lang.String)
 	 */
@@ -431,6 +493,16 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 				CorpNum, UserID, URLResponse.class);
 		
 		return response.url;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.StatementService#getMassPrintURL(java.lang.String, int, java.lang.String[])
+	 */
+	@Override
+	public String getMassPrintURL(String CorpNum, int ItemCode,
+			String[] MgtKeyList) throws PopbillException {
+		return getMassPrintURL(CorpNum, ItemCode, MgtKeyList, null);
 	}
 	
 	/* (non-Javadoc)
@@ -449,6 +521,18 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 		
 		return response.url;
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.StatementService#attachFile(java.lang.String, int, java.lang.String, java.lang.String, java.io.InputStream)
+	 */
+	@Override
+	public Response attachFile(String CorpNum, int ItemCode, String MgtKey,
+			String DisplayName, InputStream FileData)
+			throws PopbillException {
+		return attachFile(CorpNum, ItemCode, MgtKey, DisplayName, FileData, null); 
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.StatementService#attachFile(java.lang.String, java.number.Integer, java.lang.String, ,java.io.InputStream, java.lang.String)
 	 */
@@ -680,7 +764,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 		public int ItemCode;
 		public String MgtKey;
 	}
-
 	
 
 
