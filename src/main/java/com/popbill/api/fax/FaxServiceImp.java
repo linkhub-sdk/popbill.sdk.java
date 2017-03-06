@@ -255,23 +255,16 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 			receiver.setReceiveName(receiveName);
 			return resendFAX(CorpNum,receiptNum, sendNum, senderName, new Receiver[]{receiver},reserveDT,UserID);
 		}
-		return resendFAX(CorpNum,receiptNum, sendNum, senderName, null, reserveDT,UserID);	
+		return resendFAX(CorpNum,receiptNum, sendNum, senderName, null, reserveDT, UserID);	
 	}
-
 	
 	
-	/*
-	 * (non-Javadoc)
-	 * @see com.popbill.api.FaxService#resendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.util.Date)
-	 */
 	@Override
 	public String resendFAX(String CorpNum, String receiptNum, String sendNum,
-			String senderName, Receiver[] receivers, Date reserveDT)
-			throws PopbillException {
-	
+			String senderName, Receiver[] receivers, Date reserveDT) throws PopbillException {
+			
 		return resendFAX(CorpNum, receiptNum, sendNum, senderName, receivers, reserveDT, null);
 	}
-	
 	
 	/*
 	 * (non-Javadoc)
@@ -401,7 +394,4 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	protected class ReceiptResponse {
 		public String receiptNum;
 	}
-
-
-
 }

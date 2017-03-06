@@ -66,7 +66,7 @@ public class FaxServiceTEST {
 		
 		File file = new File("/Users/John/Desktop/test.jpg");
 		
-		String receiptNum = faxService.sendFAX("1234567890", "02-6442-9700", "111-2222-3333","수신자명칭",file, null,null);
+		String receiptNum = faxService.sendFAX("1234567890", "070-4304-2991", "070-111-222","수신자명칭",file, null);
 		
 		assertNotNull(receiptNum);
 		
@@ -77,7 +77,6 @@ public class FaxServiceTEST {
 		assertNotNull(results);
 		
 		System.out.println(results[0].getFileNames()[0] + " "+results[0].getSenderName());
-
 	}
 	@Test
 	public void resendFAX_Single_TEST() throws PopbillException {
@@ -91,15 +90,7 @@ public class FaxServiceTEST {
 		
 		String receiptNum = faxService.resendFAX(testCorpNum, orgReceiptNum, senderNum, senderName, receiveNum, receiveName, null, null);
 		
-		assertNotNull(receiptNum);
-		
 		System.out.println(receiptNum);
-		
-		FaxResult[] results = faxService.getFaxResult("1234567890", receiptNum);
-		
-		assertNotNull(results);
-		
-		System.out.println(results[0].getFileNames()[0] + " "+results[0].getSenderName());
 	}
 	
 	@Test
@@ -120,7 +111,7 @@ public class FaxServiceTEST {
 		
 		Receiver[] receivers = new Receiver[] {receiver1, receiver2};
 		
-		String receiptNum = faxService.resendFAX(testCorpNum, orgReceiptNum, senderNum, senderName, null, null, null);
+		String receiptNum = faxService.resendFAX(testCorpNum, orgReceiptNum, senderNum, senderName, receivers, null);
 		
 		assertNotNull(receiptNum);
 		
@@ -138,7 +129,7 @@ public class FaxServiceTEST {
 		
 		File file1 = new File("/Users/John/Desktop/test.jpg");
 		
-		String receiptNum = faxService.sendFAX("1234567890", "02-6442-9700","111-2222-3333","수신자명칭",new File[]{file1}, null,null);
+		String receiptNum = faxService.sendFAX("1234567890", "02-6442-9700","111-2222-3333","수신자명칭",new File[]{file1}, null);
 		
 		assertNotNull(receiptNum);
 		
@@ -168,7 +159,7 @@ public class FaxServiceTEST {
 		
 		String receiptNum = "017030613315600002";
 		
-		Response response = faxService.cancelReserve("1234567890", receiptNum,"testkorea");
+		Response response = faxService.cancelReserve("1234567890", receiptNum);
 		
 		assertNotNull(response);
 		

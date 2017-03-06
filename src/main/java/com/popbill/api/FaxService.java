@@ -266,8 +266,7 @@ public interface FaxService extends BaseService {
 	public String sendFAX(String CorpNum, String sendNum, String senderName, Receiver[] receivers,
 			File[] files, Date reserveDT, String UserID)
 			throws PopbillException;
-	
-	
+		
 	/**
 	 * 팩스전송 동보 재전송
 	 * 
