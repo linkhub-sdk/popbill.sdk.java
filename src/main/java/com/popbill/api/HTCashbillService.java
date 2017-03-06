@@ -213,6 +213,17 @@ public interface HTCashbillService extends BaseService{
 	 * 
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
+	 * @return 정액제 신청 url
+	 * @throws PopbillException
+	 */
+	public String getFlatRatePopUpURL(String CorpNum)
+			throws PopbillException;
+	
+	/**
+	 * 정액제 신청 URL
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
 	 * @param UserID
 	 * 			연동회원 아이디 
 	 * @return 정액제 신청 url
@@ -226,6 +237,17 @@ public interface HTCashbillService extends BaseService{
 	 * 
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
+	 * @return 홈택스 공인인증서 등록 URL
+	 * @throws PopbillException
+	 */
+	public String getCertificatePopUpURL(String CorpNum)
+			throws PopbillException;
+	
+	/**
+	 * 홈택스 현금영수증 공인인증서 등록 URL
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
 	 * @param UserID
 	 * 			연동회원 아이디 
 	 * @return 홈택스 공인인증서 등록 URL

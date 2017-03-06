@@ -184,6 +184,16 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 	
 	/*
 	 * (non-Javadoc)
+	 * @see com.popbill.api.HTCashbillService#getFlatRatePopUpURL(java.lang.String)
+	 */
+	@Override
+	public String getFlatRatePopUpURL(String CorpNum)
+			throws PopbillException {
+		return getFlatRatePopUpURL(CorpNum, null);
+	}
+	
+	/*
+	 * (non-Javadoc)
 	 * @see com.popbill.api.HTCashbillService#getFlatRatePopUpURL(java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -192,6 +202,16 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 		URLResponse response = httpget("/HomeTax/Cashbill?TG=CHRG", CorpNum, UserID, URLResponse.class);
 		
 		return response.url;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.HTCashbillService#getCertificatePopUpURL(java.lang.String)
+	 */
+	@Override
+	public String getCertificatePopUpURL(String CorpNum)
+			throws PopbillException {
+		return getCertificatePopUpURL(CorpNum, null);
 	}
 	
 	/*
