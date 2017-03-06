@@ -55,7 +55,7 @@ public class FaxServiceTEST {
 	@Test
 	public void getURL_TEST() throws PopbillException {
 		
-		String url = faxService.getURL("1234567890", "userid", "BOX");
+		String url = faxService.getURL("1234567890", "BOX");
 
 		assertNotNull(url);
 		System.out.println(url);
@@ -166,14 +166,13 @@ public class FaxServiceTEST {
 	@Test
 	public void cancelReserve_TEST() throws PopbillException {
 		
-		String receiptNum = "014101010184200001";
+		String receiptNum = "017030613315600002";
 		
-		Response response = faxService.cancelReserve("1234567890", receiptNum,"userid");
+		Response response = faxService.cancelReserve("1234567890", receiptNum,"testkorea");
 		
 		assertNotNull(response);
 		
 		System.out.println(response.getMessage());
-		
 	}
 	
 	@Test

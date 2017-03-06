@@ -60,6 +60,15 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
 	/*
 	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#getURL(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getURL(String CorpNum, String TOGO) throws PopbillException {
+		return getURL(CorpNum, null, TOGO);
+	}
+	
+	/*
+	 * (non-Javadoc)
 	 * 
 	 * @see com.popbill.api.FaxService#getURL
 	 */
@@ -71,6 +80,17 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 				UserID, URLResponse.class);
 
 		return response.url;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File, java.util.Date)
+	 */
+	@Override
+	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
+			String receiveName, File file, Date reserveDT)
+			throws PopbillException {
+		return sendFAX(CorpNum, sendNum, receiveNum, receiveName, file, reserveDT, null);
 	}
 
 	/*
@@ -87,6 +107,18 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
 	/*
 	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File, java.util.Date)
+	 */
+	@Override
+	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
+			File file, Date reserveDT) throws PopbillException {
+		return sendFAX(CorpNum, sendNum, receivers, file, reserveDT, null);
+	}
+	
+	
+	
+	/*
+	 * (non-Javadoc)
 	 * 
 	 * @see com.popbill.api.FaxService#sendFAX
 	 */
@@ -95,6 +127,19 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 			File file, Date reserveDT, String UserID) throws PopbillException {
 		return sendFAX(CorpNum,sendNum,receivers,new File[]{file},reserveDT,UserID);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File[], java.util.Date)
+	 */
+	@Override
+	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
+			String receiveName, File[] files, Date reserveDT)
+			throws PopbillException {
+		return sendFAX(CorpNum, sendNum, receiveNum, receiveName, files, reserveDT, null);
+	}
+	
+	
 	
 	/*
 	 * (non-Javadoc)
@@ -115,7 +160,6 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		return sendFAX(CorpNum,sendNum,new Receiver[]{receiver},files,reserveDT,UserID);
 	}
 	
-	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -128,6 +172,21 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		return sendFAX(CorpNum, sendNum, null, receivers, files, reserveDT, UserID);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date)
+	 */
+	@Override
+	public String sendFAX(String CorpNum, String sendNum, String senderName,
+			Receiver[] receivers, File[] files, Date reserveDT)
+			throws PopbillException {
+		return sendFAX(CorpNum, sendNum, senderName, receivers, files, reserveDT, null);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String)
+	 */
 	@Override
 	public String sendFAX(String CorpNum, String sendNum, String senderName,
 			Receiver[] receivers, File[] files, Date reserveDT, String UserID)
@@ -178,14 +237,16 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		
 		return response.receiptNum;
 	}
-	
-	
+		
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#resendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.lang.String)
+	 */
 	@Override
 	public String resendFAX(String CorpNum, String receiptNum, String sendNum, String senderName,
 			String receiveNum, String receiveName, Date reserveDT, String UserID)
 			throws PopbillException {
-		// TODO Auto-generated method stub
-		
+				
 		Receiver receiver = null;
 		
 		if ( !receiveNum.isEmpty() || !receiveName.isEmpty() ) {
@@ -197,6 +258,20 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		return resendFAX(CorpNum,receiptNum, sendNum, senderName, null, reserveDT,UserID);	
 	}
 
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#resendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.util.Date)
+	 */
+	@Override
+	public String resendFAX(String CorpNum, String receiptNum, String sendNum,
+			String senderName, Receiver[] receivers, Date reserveDT)
+			throws PopbillException {
+	
+		return resendFAX(CorpNum, receiptNum, sendNum, senderName, receivers, reserveDT, null);
+	}
+	
 	
 	/*
 	 * (non-Javadoc)
@@ -238,6 +313,16 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
 		return httpget("/FAX/" + receiptNum, CorpNum, null,
 				FaxResult[].class);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#cancelReserve(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Response cancelReserve(String CorpNum, String receiptNum)
+			throws PopbillException {
+		return cancelReserve(CorpNum, receiptNum, null);
 	}
 	
 	/*
@@ -317,9 +402,6 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		public String receiptNum;
 	}
 
-
-
-	
 
 
 }
