@@ -83,7 +83,7 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void getURL_TEST() throws PopbillException {
 		
-		String url = taxinvoiceService.getURL("1231212312", "userid", "LOGIN");
+		String url = taxinvoiceService.getURL("1234567890", "PBOX");
 
 		assertNotNull(url);
 		System.out.println(url);
@@ -495,8 +495,8 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void getPopUpURL_TEST() throws PopbillException {
-		String url = taxinvoiceService.getPopUpURL("1231212312",
-				MgtKeyType.SELL, "1234", "userid");
+		String url = taxinvoiceService.getPopUpURL("1234567890",
+				MgtKeyType.SELL, "20170303-02");
 
 		assertNotNull(url);
 		System.out.println(url);
@@ -506,8 +506,8 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void getPrintURL_TEST() throws PopbillException {
 	
-		String url = taxinvoiceService.getPrintURL("1231212312",
-				MgtKeyType.SELL, "1234", "userid");
+		String url = taxinvoiceService.getPrintURL("1234567890",
+				MgtKeyType.SELL, "20170303-02");
 
 		assertNotNull(url);
 		System.out.println(url);
@@ -516,8 +516,8 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void getEPrintURL_TEST() throws PopbillException {
 
-		String url = taxinvoiceService.getEPrintURL("1231212312",
-				MgtKeyType.SELL, "1234", "userid");
+		String url = taxinvoiceService.getEPrintURL("1234567890",
+				MgtKeyType.SELL, "20170303-02");
 
 		assertNotNull(url);
 		System.out.println(url);
@@ -526,8 +526,8 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void getMailURL_TEST() throws PopbillException {
 	
-		String url = taxinvoiceService.getMailURL("1231212312",
-				MgtKeyType.SELL, "1234", "userid");
+		String url = taxinvoiceService.getMailURL("1234567890",
+				MgtKeyType.SELL, "20170303-02");
 
 		assertNotNull(url);
 		System.out.println(url);
@@ -536,10 +536,10 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void getMassPrintURL_TEST() throws PopbillException {
 	
-		String[] MgtKeyList = new String[] { "1234", "123", "12345" };
+		String[] MgtKeyList = new String[] { "20170303-02", "20170303-01", "12345" };
 
-		String url = taxinvoiceService.getMassPrintURL("1231212312",
-				MgtKeyType.SELL, MgtKeyList, "userid");
+		String url = taxinvoiceService.getMassPrintURL("1234567890",
+				MgtKeyType.SELL, MgtKeyList);
 
 		assertNotNull(url);
 		System.out.println(url);
@@ -565,7 +565,7 @@ public class TaxinvoiceServiceTEST {
 				"/Users/John/Desktop/test.jpg");
 
 		Response response = taxinvoiceService.attachFile("1234567890",
-				MgtKeyType.SELL, "20161124-01", "test.jpg", FileData, "testkorea");
+				MgtKeyType.SELL, "20170303-02", "test.jpg", FileData);
 
 		FileData.close();
 
@@ -590,8 +590,8 @@ public class TaxinvoiceServiceTEST {
 		
 		String FileID = "56A00CC6-F54C-45F5-A497-C1E5927EFA43.PBF";
 
-		Response response = taxinvoiceService.deleteFile("1231212312",
-				MgtKeyType.SELL, "1234", FileID, "userid");
+		Response response = taxinvoiceService.deleteFile("1234567890",
+				MgtKeyType.SELL, "20170303-02", FileID);
 
 		assertNotNull(response);
 

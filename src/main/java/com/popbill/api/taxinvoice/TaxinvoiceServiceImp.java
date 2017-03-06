@@ -71,9 +71,19 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 			throw new PopbillException(-99999999, "날자형식 포맷변환 실패["
 					+ response.certificateExpiration + "]", e);
 		}
-
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#getURL(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getURL(String CorpNum, String TOGO)
+			throws PopbillException {
 
+		return getURL(CorpNum, null, TOGO);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.TaxinvoiceService#getURL(java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -674,6 +684,16 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 				CorpNum, null, TaxinvoiceLog[].class);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#getPopUpURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+	 */
+	@Override
+	public String getPopUpURL(String CorpNum, MgtKeyType KeyType,
+			String MgtKey) throws PopbillException {
+		return getPopUpURL(CorpNum, KeyType, MgtKey, null);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.TaxinvoiceService#getPopUpURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
@@ -691,6 +711,20 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		return response.url;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#getMailURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+	 */
+	@Override
+	public String getMailURL(String CorpNum, MgtKeyType KeyType, String MgtKey) throws PopbillException {
+		if (KeyType == null)
+			throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+		if (MgtKey == null || MgtKey.isEmpty())
+			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+
+		return getMailURL(CorpNum, KeyType, MgtKey, null);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.TaxinvoiceService#getMailURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
@@ -708,6 +742,17 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		return response.url;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#getPrintURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+	 */
+	@Override
+	public String getPrintURL(String CorpNum, MgtKeyType KeyType,
+			String MgtKey) throws PopbillException {
+		
+		return getPrintURL(CorpNum, KeyType, MgtKey, null);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.TaxinvoiceService#getPrintURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
@@ -725,6 +770,16 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		return response.url;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#getEPrintURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+	 */
+	@Override
+	public String getEPrintURL(String CorpNum, MgtKeyType KeyType,
+			String MgtKey) throws PopbillException {
+		return getEPrintURL(CorpNum, KeyType, MgtKey, null);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.TaxinvoiceService#getEPrintURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
 	 */
@@ -742,6 +797,17 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		return response.url;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#getMassPrintURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String[])
+	 */
+	@Override
+	public String getMassPrintURL(String CorpNum, MgtKeyType KeyType,
+			String[] MgtKeyList) throws PopbillException {
+	
+		return getMassPrintURL(CorpNum, KeyType, MgtKeyList, null);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.TaxinvoiceService#getMassPrintURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String[], java.lang.String)
 	 */
@@ -1081,9 +1147,4 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		public String ItemCode;
 		public String MgtKey;
 	}
-
-
-
-
-	
 }

@@ -215,7 +215,20 @@ public abstract class BaseServiceImp implements BaseService {
 
 		return httppost("/Join", null, postData, null, Response.class);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.BaseService#getPopbillURL(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getPopbillURL(String CorpNum, String TOGO)
+			throws PopbillException {
+		URLResponse response = httpget("/?TG=" + TOGO, CorpNum, null,
+				URLResponse.class);
 
+		return response.url;
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.BaseService#getPopbillURL(java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -238,7 +251,16 @@ public abstract class BaseServiceImp implements BaseService {
 		return httpget("/Join?CorpNum=" + CorpNum + "&LID=" + LinkID, null,
 				null, Response.class);
 	}
-	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.BaseService#listContact(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public ContactInfo[] listContact(String CorpNum) 
+			throws PopbillException {
+			
+		return httpget("/IDs", CorpNum, null, ContactInfo[].class);
+	}
 	/* (non-Javadoc)
 	 * @see com.popbill.api.BaseService#listContact(java.lang.String, java.lang.String)
 	 */
@@ -259,6 +281,18 @@ public abstract class BaseServiceImp implements BaseService {
 		return httppost("/IDs", CorpNum, postData, UserID, Response.class);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.BaseService#registContact(java.lang.String, com.popbill.api.ContactInfo, java.lang.String)
+	 */
+	@Override
+	public Response registContact(String CorpNum, ContactInfo contactInfo) throws PopbillException {
+		String postData = toJsonString(contactInfo);
+
+		return httppost("/IDs/New", CorpNum, postData, null, Response.class);
+	}
+	
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.BaseService#registContactMember(java.lang.String, com.popbill.api.ContactInfo, java.lang.String)
 	 */
@@ -278,6 +312,16 @@ public abstract class BaseServiceImp implements BaseService {
 		return httpget("/IDCheck?ID="+CheckID, null, null, Response.class);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.BaseService#getCorpInfo(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public CorpInfo getCorpInfo(String CorpNum) throws PopbillException {
+		
+		return httpget("/CorpInfo", CorpNum, null, CorpInfo.class);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.BaseService#getCorpInfo(java.lang.String, java.lang.String)
 	 */
@@ -285,6 +329,17 @@ public abstract class BaseServiceImp implements BaseService {
 	public CorpInfo getCorpInfo(String CorpNum, String UserID) throws PopbillException {
 		
 		return httpget("/CorpInfo", CorpNum, UserID, CorpInfo.class);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.BaseService#updateCorpInfo(java.lang.String, com.popbill.api.CorpInfo, java.lang.String)
+	 */
+	@Override
+	public Response updateCorpInfo(String CorpNum, CorpInfo corpInfo) throws PopbillException {
+		String postData = toJsonString(corpInfo);
+
+		return httppost("/CorpInfo", CorpNum, postData, null, Response.class);
 	}
 	
 	/* (non-Javadoc)

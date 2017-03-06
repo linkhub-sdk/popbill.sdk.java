@@ -60,6 +60,19 @@ public interface BaseService {
 	 * 
 	 * @param CorpNum
 	 *            Member's CorpNum
+	 * @param TOGO
+	 *            Word to wanna go.
+	 * @return Popbill' url with token.
+	 * @throws PopbillException
+	 */
+	public abstract String getPopbillURL(String CorpNum, String TOGO) 
+			throws PopbillException;
+	
+	/**
+	 * 팝빌의 SSO 접근 URL 요청.
+	 * 
+	 * @param CorpNum
+	 *            Member's CorpNum
 	 * @param UserID
 	 *            UserID to login.
 	 * @param TOGO
@@ -81,6 +94,17 @@ public interface BaseService {
 	 * @throws PopbillException
 	 */
 	public abstract Response checkIsMember(String CorpNum, String LinkID)
+			throws PopbillException;
+
+	/**
+	 * 담당자 목록조회
+	 * 
+	 * @param CorpNum
+	 * 			Member's CorpNum
+	 * @return Contact member list
+	 * @throws PopbillException
+	 */
+	public abstract ContactInfo[] listContact(String CorpNum) 
 			throws PopbillException;
 	
 	/**
@@ -111,7 +135,20 @@ public interface BaseService {
 	 */
 	public abstract Response updateContact(String CorpNum, ContactInfo contactInfo, String UserID)
 			throws PopbillException;
-	 
+
+	/**
+	 * 담당차 등록 
+	 * 
+	 * @param CorpNum
+	 * 			Member's CorpNum
+	 * @param ContactInfo
+	 * 			Contact's Infomation. see ContactInfo
+	 * @return Response of RegistContact process.
+	 * @thorws PopbillException
+	 */
+	public abstract Response registContact(String CorpNum, ContactInfo contactInfo)
+			throws PopbillException;
+	
 	/**
 	 * 담당차 등록 
 	 * 
@@ -136,6 +173,17 @@ public interface BaseService {
 	 */
 	public abstract Response checkID(String id)
 			throws PopbillException;
+
+	/**
+	 * 회사정보 확인
+	 * 
+	 * @param CorpNum
+	 * 			Member's CorpNum
+	 * @return CorpInfo. see CorpInfo
+	 * @throws PopbillException
+	 */
+	public abstract CorpInfo getCorpInfo(String CorpNum)
+		throws PopbillException;	
 	
 	/**
 	 * 회사정보 확인
@@ -149,6 +197,19 @@ public interface BaseService {
 	 */
 	public abstract CorpInfo getCorpInfo(String CorpNum, String UserID)
 		throws PopbillException;
+
+	/**
+	 * 회사정보 수정 
+	 * 
+	 * @param CorpNum
+	 * 			Member's CorpNum
+	 * @param corpInfo
+	 * 			CorpInfo. see CorpInfo
+	 * @return CorpInfo's Information updating success or not.
+	 * @throws PopbillException
+	 */
+	public abstract Response updateCorpInfo(String CorpNum, CorpInfo corpInfo)
+			throws PopbillException;	
 	
 	/**
 	 * 회사정보 수정 
@@ -164,5 +225,4 @@ public interface BaseService {
 	 */
 	public abstract Response updateCorpInfo(String CorpNum, CorpInfo corpInfo, String UserID)
 			throws PopbillException;
-
 }

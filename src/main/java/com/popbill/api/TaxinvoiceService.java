@@ -58,6 +58,19 @@ public interface TaxinvoiceService extends BaseService {
 	 * 
 	 * @param CorpNum
 	 *            연동회원 사업자번호.
+	 * @param TOGO
+	 *            지정값. (TBOX : 연동문서함, SBOX : 매출보관함, PBOX : 매입보관함, WRITE : 매출작성)
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String getURL(String CorpNum, String TOGO)
+			throws PopbillException;
+	
+	/**
+	 * 팝빌 세금계산서 관련 URL 확인. 반환한 url은 30초이내에 브라우져에 표시하여야 함.
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호.
 	 * @param UserID
 	 *            연동회원의 회원아이디
 	 * @param TOGO
@@ -815,7 +828,22 @@ public interface TaxinvoiceService extends BaseService {
 	 */
 	public TaxinvoiceLog[] getLogs(String CorpNum, MgtKeyType KeyType,
 			String MgtKey) throws PopbillException;
-
+	
+	/**
+	 * 세금계산서 팝빌화면 팝업 URL 확인.
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param KeyType
+	 *            연동관리번호 종류
+	 * @param MgtKey
+	 *            연동관리번호
+	 * @return 팝빌 URL.
+	 * @throws PopbillException
+	 */
+	public String getPopUpURL(String CorpNum, MgtKeyType KeyType,
+			String MgtKey) throws PopbillException;
+	
 	/**
 	 * 세금계산서 팝빌화면 팝업 URL 확인.
 	 * 
@@ -826,13 +854,29 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param MgtKey
 	 *            연동관리번호
 	 * @param UserID
-	 *            회원 아이디(필수)
+	 *            회원 아이디
 	 * @return 팝빌 URL.
 	 * @throws PopbillException
 	 */
 	public String getPopUpURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String UserID) throws PopbillException;
+	
+	/**
+	 * 세금계산서 이메일의 링크 URL 확인.
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param KeyType
+	 *            연동관리번호 종류
+	 * @param MgtKey
+	 *            연동관리번호
+	 * @return 팝빌 URL.
+	 * @throws PopbillException
+	 */
+	public String getMailURL(String CorpNum, MgtKeyType KeyType,
+			String MgtKey) throws PopbillException;
 
+	
 	/**
 	 * 세금계산서 이메일의 링크 URL 확인.
 	 * 
@@ -843,7 +887,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param MgtKey
 	 *            연동관리번호
 	 * @param UserID
-	 *            회원 아이디(필수)
+	 *            회원 아이디
 	 * @return 팝빌 URL.
 	 * @throws PopbillException
 	 */
@@ -859,8 +903,23 @@ public interface TaxinvoiceService extends BaseService {
 	 *            연동관리번호 종류
 	 * @param MgtKey
 	 *            연동관리번호
+	 * @return 팝빌 URL.
+	 * @throws PopbillException
+	 */
+	public String getPrintURL(String CorpNum, MgtKeyType KeyType,
+			String MgtKey) throws PopbillException;
+	
+	/**
+	 * 세금계산서 팝빌 인쇄화면 URL 확인.
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param KeyType
+	 *            연동관리번호 종류
+	 * @param MgtKey
+	 *            연동관리번호
 	 * @param UserID
-	 *            회원 아이디(필수)
+	 *            회원 아이디
 	 * @return 팝빌 URL.
 	 * @throws PopbillException
 	 */
@@ -876,14 +935,44 @@ public interface TaxinvoiceService extends BaseService {
 	 *            연동관리번호 종류
 	 * @param MgtKey
 	 *            연동관리번호
+	 * @return 팝빌 URL.
+	 * @throws PopbillException
+	 */
+	public String getEPrintURL(String CorpNum, MgtKeyType KeyType,
+			String MgtKey) throws PopbillException;
+	
+	/**
+	 * 세금계산서 팝빌 인쇄화면(공급받는자용) URL 확인.
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param KeyType
+	 *            연동관리번호 종류
+	 * @param MgtKey
+	 *            연동관리번호
 	 * @param UserID
-	 *            회원 아이디(필수)
+	 *            회원 아이디
 	 * @return 팝빌 URL.
 	 * @throws PopbillException
 	 */
 	public String getEPrintURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String UserID) throws PopbillException;
-
+	
+	/**
+	 * 다량 인쇄 URL 확인.
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param KeyType
+	 *            연동관리번호 종류
+	 * @param MgtKeyList
+	 *            연동관리번호 목록
+	 * @return 팝빌 URL
+	 * @throws PopbillException
+	 */
+	public String getMassPrintURL(String CorpNum, MgtKeyType KeyType,
+			String[] MgtKeyList) throws PopbillException;
+	
 	/**
 	 * 다량 인쇄 URL 확인.
 	 * 
@@ -894,7 +983,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param MgtKeyList
 	 *            연동관리번호 목록
 	 * @param UserID
-	 *            회원 아이디(필수)
+	 *            회원 아이디
 	 * @return 팝빌 URL
 	 * @throws PopbillException
 	 */
@@ -1242,9 +1331,6 @@ public interface TaxinvoiceService extends BaseService {
 	 * @throws PopbillException
 	 */
 	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException;
-	
-	
-	
 }
 
 
