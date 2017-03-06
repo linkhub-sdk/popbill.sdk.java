@@ -37,6 +37,16 @@ public interface HTTaxinvoiceService extends BaseService{
 	 * 정액제 신청 URL
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
+	 * @return 정액제 신청 url
+	 * @throws PopbillException
+	 */
+	public String getFlatRatePopUpURL(String CorpNum)
+			throws PopbillException;
+	
+	/**
+	 * 정액제 신청 URL
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
 	 * @param UserID
 	 * 			연동회원 아이디 
 	 * @return 정액제 신청 url
@@ -324,6 +334,17 @@ public interface HTTaxinvoiceService extends BaseService{
 	 * @throws PopbillException
 	 */
 	public FlatRateState getFlatRateState(String CorpNum, String UserID) throws PopbillException;
+	
+	/**
+	 * 홈택스연계 공인인증서 등록 URL 확인 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @return 홈택스연계 공인인증서 등록 URL
+	 * @throws PopbillException
+	 */
+	public String getCertificatePopUpURL(String CorpNum)
+			throws PopbillException;
 	
 	/**
 	 * 홈택스연계 공인인증서 등록 URL 확인 

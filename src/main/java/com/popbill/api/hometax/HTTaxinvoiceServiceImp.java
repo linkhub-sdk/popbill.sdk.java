@@ -42,6 +42,16 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 	
 	/*
 	 * (non-Javadoc)
+	 * @see com.popbill.api.HTTaxinvoiceService#getFlatRatePopUpURL(java.lang.String)
+	 */
+	@Override
+	public String getFlatRatePopUpURL(String CorpNum) throws PopbillException {
+		
+		return getFlatRatePopUpURL(CorpNum, null);
+	}
+	
+	/*
+	 * (non-Javadoc)
 	 * @see com.popbill.api.HomeTaxTaxinvoiceService#getFlatRatePopUpURL(java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -57,7 +67,6 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 	 */
 	@Override
 	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
-		// TODO Auto-generated method stub
 		return httpget("/HomeTax/Taxinvoice/ChargeInfo", CorpNum, null, ChargeInfo.class);
 	}
 	
@@ -300,6 +309,17 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 	public FlatRateState getFlatRateState(String CorpNum, String UserID)
 			throws PopbillException {
 		return httpget("/HomeTax/Taxinvoice/Contract", CorpNum, UserID, FlatRateState.class);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.HTTaxinvoiceService#getCertificatePopUpURL(java.lang.String)
+	 */
+	@Override
+	public String getCertificatePopUpURL(String CorpNum)
+			throws PopbillException {
+		
+		return getCertificatePopUpURL(CorpNum, null);
 	}
 	
 	/*
