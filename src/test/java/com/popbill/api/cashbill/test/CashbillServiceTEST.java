@@ -54,7 +54,7 @@ public class CashbillServiceTEST {
 	
 	@Test
 	public void getURL_TEST() throws PopbillException {
-		String url = cashbillService.getURL("1234567890", "testkorea", "TBOX");
+		String url = cashbillService.getURL("1234567890", "TBOX");
 		assertNotNull(url);
 		System.out.println(url);
 	}
@@ -64,14 +64,13 @@ public class CashbillServiceTEST {
 		
 		Cashbill cashbill = new Cashbill();
 		
-		cashbill.setMgtKey("20150424-01");
-		cashbill.setTradeType("취소거래");
-		cashbill.setFranchiseCorpNum("4352343543");
+		cashbill.setMgtKey("20170306-07");
+		cashbill.setTradeType("승인거래");
+		cashbill.setFranchiseCorpNum("1234567890");
 		cashbill.setFranchiseCorpName("발행자 상호");
 		cashbill.setFranchiseCEOName("발행자 대표자");
 		cashbill.setFranchiseAddr("발행자 주소");
 		cashbill.setFranchiseTEL("07075103710");
-		cashbill.setOrgConfirmNum("790099657");
 		cashbill.setIdentityNum("01041680206");
 		cashbill.setCustomerName("고객명");
 		cashbill.setItemName("상품명");
@@ -87,7 +86,7 @@ public class CashbillServiceTEST {
 		cashbill.setTaxationType("과세");
 		cashbill.setSmssendYN(false);
 		
-		Response response = cashbillService.register("4352343543", cashbill, "weicome1");
+		Response response = cashbillService.register("1234567890", cashbill);
 		assertNotNull(response);
 		System.out.println(response.getMessage());
 	}
@@ -203,23 +202,22 @@ public class CashbillServiceTEST {
 	
 	@Test 
 	public void getPrintURL_TEST() throws PopbillException {
-		String url = cashbillService.getPrintURL("1234567890", "20150318-02", "testkorea");
+		String url = cashbillService.getPrintURL("1234567890", "20170306-05");
 		assertNotNull(url);
 		System.out.println(url);
 	}
 	
 	@Test
 	public void getEPrintURL_TEST() throws PopbillException {
-		String url = cashbillService.getEPrintURL("1234567890", "20150318-02", "testkorea");
+		String url = cashbillService.getEPrintURL("1234567890", "20170306-05");
 		assertNotNull(url);
 		System.out.println(url);
-	
 	}
 	
 	@Test
 	public void getMassPrintURL_TEST() throws PopbillException {
 		String[] MgtKeyList = {"20150317-01","20150317-02","20150317-03"};
-		String url = cashbillService.getMassPrintURL("1234567890", MgtKeyList, "testkorea");
+		String url = cashbillService.getMassPrintURL("1234567890", MgtKeyList);
 		
 		assertNotNull(url);
 		System.out.println(url);
@@ -245,7 +243,7 @@ public class CashbillServiceTEST {
 		
 		Cashbill cashbill = new Cashbill();
 		
-		cashbill.setMgtKey("20160115-03");
+		cashbill.setMgtKey("20170306-05");
 		cashbill.setTradeType("승인거래");
 		cashbill.setFranchiseCorpNum("1234567890");
 		cashbill.setFranchiseCorpName("발행자 상호");
@@ -298,29 +296,6 @@ public class CashbillServiceTEST {
 			System.out.println(response.getList().get(0).getTotalAmount()+" " +response.getList().get(i).getIdentityNum());
 		}
 	}
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -37,6 +37,17 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		return Arrays.asList("140");
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#getURL(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getURL(String CorpNum, String TOGO)
+			throws PopbillException {
+		
+		return getURL(CorpNum, null, TOGO);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getURL(java.lang.String, java.lang.String,  java.lang.String)
 	 */
@@ -364,6 +375,17 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		return httpget("/Cashbill/" + MgtKey +"/Logs", CorpNum, null, CashbillLog[].class);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#getPrintURL(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getPrintURL(String CorpNum, String MgtKey)
+			throws PopbillException {
+			
+		return getPrintURL(CorpNum, MgtKey, null);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getPrintURL(java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -377,6 +399,17 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 				CorpNum, UserID, URLResponse.class);
 		
 		return response.url;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#getEPrintURL(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getEPrintURL(String CorpNum, String MgtKey)
+			throws PopbillException {
+				
+		return getEPrintURL(CorpNum, MgtKey, null);
 	}
 	
 	/* (non-Javadoc)
@@ -394,6 +427,15 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		return response.url;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#getMassPrintURL(java.lang.String, java.lang.String[])
+	 */
+	@Override
+	public String getMassPrintURL(String CorpNum, String[] MgtKeyList) throws PopbillException {
+		return getMassPrintURL(CorpNum, MgtKeyList, null);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getMassPrintURL(java.lang.String, java.lang.String[], java.lang.String)
 	 */
@@ -409,7 +451,17 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 				PostData, UserID, URLResponse.class);
 		
 		return response.url;
-		
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#getMailURL(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getMailURL(String CorpNum, String MgtKey)
+			throws PopbillException {
+			
+		return getMailURL(CorpNum, MgtKey, null);
 	}
 	
 	/* (non-Javadoc)
@@ -425,6 +477,17 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 				CorpNum, UserID, URLResponse.class);
 		
 		return response.url;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#getPopUpURL(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getPopUpURL(String CorpNum, String MgtKey)
+			throws PopbillException {
+		
+		return getPopUpURL(CorpNum, MgtKey, null);
 	}
 	
 	/* (non-Javadoc)

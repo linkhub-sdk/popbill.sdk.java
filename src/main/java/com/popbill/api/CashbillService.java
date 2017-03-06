@@ -32,6 +32,18 @@ public interface CashbillService extends BaseService{
 	 * 팝빌 현금영수증 관련 URL 확인, 반환된 URL은 30초 이내에 브라우저에 표시해야 함
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
+	 * @param TOGO
+	 * 			지정값(TBOX : 임시문서함 URL, SBOX : 발행 문서함 URL)
+	 * @return 팝빌URL(AccessToken값 포함, Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String getURL(String CorpNum, String TOGO)
+			throws PopbillException;
+	
+	/**
+	 * 팝빌 현금영수증 관련 URL 확인, 반환된 URL은 30초 이내에 브라우저에 표시해야 함
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
 	 * @param UserID
 	 * 			연동회원의 회원아이디
 	 * @param TOGO
@@ -367,6 +379,17 @@ public interface CashbillService extends BaseService{
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
 	 * 			문서관리번호
+	 * @return 팝빌 url
+	 * @throws PopbillException
+	 */
+	public String getPrintURL(String CorpNum, String MgtKey) throws PopbillException;
+	
+	/**
+	 * 현금영수증 인쇄 URL
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param MgtKey
+	 * 			문서관리번호
 	 * @param UserID
 	 * 			연동회원 아이디
 	 * @return 팝빌 url
@@ -375,6 +398,17 @@ public interface CashbillService extends BaseService{
 	public String getPrintURL(String CorpNum, String MgtKey, 
 			String UserID) throws PopbillException;
 	
+	
+	/**
+	 * 현금영수증 인쇄 URL(공급받는자용)
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param MgtKey
+	 * 			문서관리번호
+	 * @return 팝빌 URL
+	 * @throws PopbillException
+	 */
+	public String getEPrintURL(String CorpNum, String MgtKey) throws PopbillException;
 	
 	/**
 	 * 현금영수증 인쇄 URL(공급받는자용)
@@ -397,6 +431,18 @@ public interface CashbillService extends BaseService{
 	 * 			연동회원  사업자번호
 	 * @param MgtKeyList
 	 * 			문서관리번호 배열
+	 * @return 팝빌 URL
+	 * @throws PopbillException
+	 */
+	public String getMassPrintURL(String CorpNum, String[] MgtKeyList) throws PopbillException;
+	
+	
+	/**
+	 * 다량 현금영수증 인쇄 URL 
+	 * @param CorpNum
+	 * 			연동회원  사업자번호
+	 * @param MgtKeyList
+	 * 			문서관리번호 배열
 	 * @param UserID
 	 * 			연동회원 아이디
 	 * @return 팝빌 URL
@@ -404,6 +450,17 @@ public interface CashbillService extends BaseService{
 	 */
 	public String getMassPrintURL(String CorpNum, String[] MgtKeyList, 
 			String UserID) throws PopbillException;
+	
+	/**
+	 * 공급받는자 메일링크 URL 
+	 * @param CorpNum
+	 *  		연동회원 사업자번호
+	 * @param MgtKey
+	 * 			문서관리번호
+	 * @return 팝빌 URL
+	 * @throws PopbillException
+	 */
+	public String getMailURL(String CorpNum, String MgtKey) throws PopbillException;
 	
 	/**
 	 * 공급받는자 메일링크 URL 
@@ -419,6 +476,17 @@ public interface CashbillService extends BaseService{
 	public String getMailURL(String CorpNum, String MgtKey,
 			String UserID) throws PopbillException;
 	
+	
+	/**
+	 * 현금영수증 내용 보기 팝업 URL
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param MgtKey
+	 * 			문서관리번호
+	 * @return 팝빌 URL
+	 * @throws PopbillException
+	 */
+	public String getPopUpURL(String CorpNum, String MgtKey) throws PopbillException;
 	
 	/**
 	 * 현금영수증 내용 보기 팝업 URL
