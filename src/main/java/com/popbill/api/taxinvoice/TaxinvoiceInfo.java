@@ -63,8 +63,9 @@ public class TaxinvoiceInfo {
 	private String ntssendErrCode;
 
 	private String stateMemo;
-	
 	private String lateIssueYN;
+	
+	private boolean interOPYN;
 
 	/**
 	 * 팝빌 관리번호 확인
@@ -390,5 +391,15 @@ public class TaxinvoiceInfo {
 	 */
 	public String getCloseDownStateDate() {
 		return closeDownStateDate;
+	}
+	
+	/**
+	 * 세금계산서 연동문서 여부 확인
+	 * 
+	 * @return true(연동문서)/false(일반문서)
+	 * @return
+	 */
+	public boolean getInterOPYN() {
+		return interOPYN;
 	}
 }

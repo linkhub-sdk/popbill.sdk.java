@@ -471,7 +471,7 @@ public class TaxinvoiceServiceTEST {
 				MgtKeyType.SELL, "20161221-03");
 
 		assertNotNull(taxinvoiceInfo);
-		System.out.println("[getInfo API] - "+taxinvoiceInfo.getCloseDownState()+ " "+taxinvoiceInfo.getCloseDownStateDate());
+		System.out.println("[getInfo API] - "+taxinvoiceInfo.getCloseDownState()+ " "+taxinvoiceInfo.getInterOPYN());
 	}
 
 	@Test
@@ -627,7 +627,7 @@ public class TaxinvoiceServiceTEST {
 		System.out.println("Search API - " + response.getTotal());
 		
 		for (int i=0; i< Integer.parseInt(response.getTotal())-1 ; i++){
-			System.out.println(response.getList().get(i).getCloseDownState()+" "+response.getList().get(i).getCloseDownStateDate());
+			System.out.println(response.getList().get(i).getCloseDownState()+" "+response.getList().get(i).getInterOPYN());
 		}
 	}
 	
