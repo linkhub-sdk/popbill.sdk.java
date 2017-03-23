@@ -617,10 +617,11 @@ public class TaxinvoiceServiceTEST {
 		int Page = 1;
 		int PerPage = 50;
 		String Order = "D";
+		String interOPYN = "";
 		
 		response = taxinvoiceService.Search("1234567890", MgtKeyType.SELL, DType, 
 				SDate, EDate, State, Type, TaxType, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN,
-				QString, Page, PerPage, Order);
+				QString, Page, PerPage, Order, interOPYN);
 		
 		assertNotNull(response);
 		
