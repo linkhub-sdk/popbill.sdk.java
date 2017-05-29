@@ -20,6 +20,7 @@ import java.util.Date;
 import com.popbill.api.fax.FAXSearchResult;
 import com.popbill.api.fax.FaxResult;
 import com.popbill.api.fax.Receiver;
+import com.popbill.api.fax.SenderNumber;
 
 /**
  * Fax Service Interface.
@@ -417,4 +418,27 @@ public interface FaxService extends BaseService {
 	 * @throws PopbillException
 	 */
 	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException;
+	
+	/**
+	 * 등록된 발신번호 목록 확인 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @return 발신번호 목록  
+	 * @throws PopbillException
+	 */
+	public SenderNumber[] getSenderNumberList(String CorpNum) throws PopbillException;
+	
+	/**
+	 * 등록된 발신번호 목록 확인 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID 
+	 * 			연동회원 아이디
+	 * @return 발신번호 목록  
+	 * @throws PopbillException
+	 */
+	public SenderNumber[] getSenderNumberList(String CorpNum, String UserID) throws PopbillException;
+	
 }

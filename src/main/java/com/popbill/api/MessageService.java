@@ -21,6 +21,7 @@ import com.popbill.api.message.AutoDeny;
 import com.popbill.api.message.MSGSearchResult;
 import com.popbill.api.message.Message;
 import com.popbill.api.message.MessageType;
+import com.popbill.api.message.SenderNumber;
 import com.popbill.api.message.SentMessage;
 
 /**
@@ -762,4 +763,27 @@ public interface MessageService extends BaseService {
 	 * @throws PopbillException
 	 */
 	public ChargeInfo getChargeInfo(String CorpNum, MessageType MsgType) throws PopbillException;
+	
+
+	/**
+	 * 등록된 발신번호 목록 확인 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @return 발신번호 목록  
+	 * @throws PopbillException
+	 */
+	public SenderNumber[] getSenderNumberList(String CorpNum) throws PopbillException;
+	
+	/**
+	 * 등록된 발신번호 목록 확인 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID 
+	 * 			연동회원 아이디
+	 * @return 발신번호 목록  
+	 * @throws PopbillException
+	 */
+	public SenderNumber[] getSenderNumberList(String CorpNum, String UserID) throws PopbillException;
 }

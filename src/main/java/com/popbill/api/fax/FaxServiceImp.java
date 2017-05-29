@@ -379,6 +379,27 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
 		return httpget("/FAX/ChargeInfo", CorpNum, null, ChargeInfo.class);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#getSenderNumberList(java.lang.String)
+	 */
+	@Override
+	public SenderNumber[] getSenderNumberList(String CorpNum)
+			throws PopbillException {
+		return getSenderNumberList(CorpNum, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#getSenderNumberList(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public SenderNumber[] getSenderNumberList(String CorpNum, String UserID)
+			throws PopbillException {
+		
+		return httpget("/FAX/SenderNumber", CorpNum, UserID, SenderNumber[].class);
+	}
 
 
 
@@ -394,4 +415,6 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	protected class ReceiptResponse {
 		public String receiptNum;
 	}
+
+
 }

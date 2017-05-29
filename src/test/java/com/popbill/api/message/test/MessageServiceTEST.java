@@ -18,6 +18,7 @@ import com.popbill.api.message.Message;
 import com.popbill.api.message.MessageServiceImp;
 import com.popbill.api.message.MessageType;
 import com.popbill.api.message.SentMessage;
+import com.popbill.api.message.SenderNumber;
 
 public class MessageServiceTEST {
 
@@ -316,8 +317,19 @@ public class MessageServiceTEST {
 		assertNotNull(response);
 		System.out.println(response[0].getNumber() + " " + response[0].getRegDT());
 		System.out.println(response[1].getNumber() + " " + response[1].getRegDT());
-		
 	}
 	
+	@Test
+	public void getSenderNumberList_TEST() throws PopbillException {
+		
+		SenderNumber[] listInfo = messageService.getSenderNumberList("1234567890", "testkorea");
+		
+		int i;
+		for (i=0; i<listInfo.length; i++){
+			System.out.println(listInfo[i].getNumber());
+			System.out.println(listInfo[i].getState());
+			System.out.println(listInfo[i].getRepresentYN());
+		}
+	}
 	
 }

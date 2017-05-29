@@ -16,6 +16,7 @@ import com.popbill.api.fax.FAXSearchResult;
 import com.popbill.api.fax.FaxResult;
 import com.popbill.api.fax.FaxServiceImp;
 import com.popbill.api.fax.Receiver;
+import com.popbill.api.fax.SenderNumber;
 
 public class FaxServiceTEST {
 
@@ -55,7 +56,7 @@ public class FaxServiceTEST {
 	@Test
 	public void getURL_TEST() throws PopbillException {
 		
-		String url = faxService.getURL("1234567890", "BOX");
+		String url = faxService.getURL("1234567890", "SENDER");
 
 		assertNotNull(url);
 		System.out.println(url);
@@ -182,6 +183,21 @@ public class FaxServiceTEST {
 		System.out.println(response.getTotal()+" "+response.getList().get(0).getReceiptDT()+" "+response.getList().get(0).getSenderName());
 	}
 	
+	@Test
+	public void getSenderNumberList_TEST() throws PopbillException {
+		
+		SenderNumber[] listInfo = faxService.getSenderNumberList("1234567890", "testkorea");
+		
+		assertNotNull(listInfo);
+		
+		int i;
+		for (i=0; i<listInfo.length; i++){
+			System.out.println(listInfo[i].getNumber());
+			System.out.println(listInfo[i].getState());
+			System.out.println(listInfo[i].getRepresentYN());
+		}
+	}
+	
 	public static Date addMinutes(Date date, int minutes)
     {
         Calendar cal = Calendar.getInstance();
@@ -189,4 +205,7 @@ public class FaxServiceTEST {
         cal.add(Calendar.MINUTE, minutes); //minus number would decrement the days
         return cal.getTime();
     }
+	
+	
+	
 }

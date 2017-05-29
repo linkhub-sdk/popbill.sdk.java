@@ -578,6 +578,19 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 		return httpget("/Message/ChargeInfo?Type=" + MsgType.name(), CorpNum, null, ChargeInfo.class);
 	}
 	
+	
+	@Override
+	public SenderNumber[] getSenderNumberList(String CorpNum)
+			throws PopbillException {
+		return getSenderNumberList(CorpNum, null);
+	}
+	
+	@Override
+	public SenderNumber[] getSenderNumberList(String CorpNum, String UserID)
+			throws PopbillException {
+		return httpget("/Message/SenderNumber", CorpNum, null, SenderNumber[].class);
+	}
+	
 	protected class SendRequest {
 		public String snd;
 		public String sndnm;
@@ -592,6 +605,8 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 	protected class ReceiptResponse {
 		public String receiptNum;
 	}
+
+
 
 	
 
