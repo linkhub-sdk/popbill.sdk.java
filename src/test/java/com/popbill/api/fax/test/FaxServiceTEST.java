@@ -67,7 +67,7 @@ public class FaxServiceTEST {
 		
 		File file = new File("/Users/John/Desktop/test.jpg");
 		
-		String receiptNum = faxService.sendFAX("1234567890", "070-4304-2991", "070-111-222","수신자명칭",file, null);
+		String receiptNum = faxService.sendFAX("1234567890", "070-4304-2991", "070-111-222","수신자명칭",file, null, null, true);
 		
 		assertNotNull(receiptNum);
 		

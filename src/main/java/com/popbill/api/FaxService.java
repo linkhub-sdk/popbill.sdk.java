@@ -91,6 +91,30 @@ public interface FaxService extends BaseService {
 			throws PopbillException;
 	
 	/**
+	 * 팩스전송 단일파일 단일 수신자. (광고팩스)
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param sendNum
+	 *            발신번호
+	 * @param receiveNum
+	 *            수신번호
+	 * @param receiveName
+	 *            수신자 명칭
+	 * @param file
+	 *            전송파일
+	 * @param reserveDT
+	 *            예약일시, (형태 yyyyMMddHHmmss)
+	 * @param adsYN
+	 * 			  광고팩스 전송여부
+	 * @return receiptNum 접수번호
+	 * @throws PopbillException
+	 */
+	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
+			String receiveName, File file, Date reserveDT, Boolean adsYN)
+			throws PopbillException;
+	
+	/**
 	 * 팩스전송 단일파일 단일 수신자.
 	 * 
 	 * @param CorpNum
@@ -113,6 +137,33 @@ public interface FaxService extends BaseService {
 	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
 			String receiveName, File file, Date reserveDT, String UserID)
 			throws PopbillException;
+	
+	
+	/**
+	 * 팩스전송 단일파일 단일 수신자 (광고팩스).
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param sendNum
+	 *            발신번호
+	 * @param receiveNum
+	 *            수신번호
+	 * @param receiveName
+	 *            수신자 명칭
+	 * @param file
+	 *            전송파일
+	 * @param reserveDT
+	 *            예약일시, (형태 yyyyMMddHHmmss)
+	 * @param UserID
+	 *            연동회원 아이디
+	 * @param adsYN
+	 * 			  광고팩스 전송여부
+	 * @return receiptNum 접수번호
+	 * @throws PopbillException
+	 */
+	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
+			String receiveName, File file, Date reserveDT, String UserID, Boolean adsYN)
+			throws PopbillException;
 
 	/**
 	 * 팩스전송 단일파일 동보전송.
@@ -132,6 +183,27 @@ public interface FaxService extends BaseService {
 	 */
 	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
 			File file, Date reserveDT) throws PopbillException;
+	
+	/**
+	 * 팩스전송 단일파일 동보전송. (광고팩스)
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param sendNum
+	 *            발신번호
+	 * @param receivers
+	 *            동보수신자 배열
+	 * @param file
+	 *            전송파일
+	 * @param reserveDT
+	 *            예약일시, (형태 yyyyMMddHHmmss)
+	 * @param adsYN
+	 * 			  광고팩스 전송여부
+	 * @return receiptNum 접수번호
+	 * @throws PopbillException
+	 */
+	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
+			File file, Date reserveDT, Boolean adsYN) throws PopbillException;	
 	
 	/**
 	 * 팩스전송 단일파일 동보전송.
@@ -155,6 +227,29 @@ public interface FaxService extends BaseService {
 			File file, Date reserveDT, String UserID) throws PopbillException;
 
 	/**
+	 * 팩스전송 단일파일 동보전송. (광고팩스)
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param sendNum
+	 *            발신번호
+	 * @param receivers
+	 *            동보수신자 배열
+	 * @param file
+	 *            전송파일
+	 * @param reserveDT
+	 *            예약일시, (형태 yyyyMMddHHmmss)
+	 * @param UserID
+	 *            연동회원 아이디
+	 * @param adsYN
+	 * 			  광고팩스 전송여부
+	 * @return receiptNum 접수번호
+	 * @throws PopbillException
+	 */
+	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
+			File file, Date reserveDT, String UserID, Boolean adsYN) throws PopbillException;	
+	
+	/**
 	 * 팩스전송 다중파일(최대5개) 단일 수신자.
 	 * 
 	 * @param CorpNum
@@ -175,6 +270,30 @@ public interface FaxService extends BaseService {
 	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
 			String receiveName, File[] files, Date reserveDT)
 			throws PopbillException;
+
+	/**
+	 * 팩스전송 다중파일(최대5개) 단일 수신자.
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param sendNum
+	 *            발신번호
+	 * @param receiveNum
+	 *            수신번호
+	 * @param receiveName
+	 *            수신자 명칭
+	 * @param files
+	 *            전송파일 Stream 배열
+	 * @param reserveDT
+	 *            예약일시, (형태 yyyyMMddHHmmss)
+	 * @param adsYN
+	 * 			  광고팩스 전송여부
+	 * @return receiptNum 접수번호
+	 * @throws PopbillException
+	 */
+	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
+			String receiveName, File[] files, Date reserveDT, Boolean adsYN)
+			throws PopbillException;	
 	
 	/**
 	 * 팩스전송 다중파일(최대5개) 단일 수신자.
@@ -201,6 +320,32 @@ public interface FaxService extends BaseService {
 			throws PopbillException;
 	
 	/**
+	 * 팩스전송 다중파일(최대5개) 단일 수신자. (광고팩스)
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param sendNum
+	 *            발신번호
+	 * @param receiveNum
+	 *            수신번호
+	 * @param receiveName
+	 *            수신자 명칭
+	 * @param files
+	 *            전송파일 Stream 배열
+	 * @param reserveDT
+	 *            예약일시, (형태 yyyyMMddHHmmss)
+	 * @param UserID
+	 *            연동회원 아이디
+	 * @param adsYN
+	 * 			  광고팩스 전송여부
+	 * @return receiptNum 접수번호
+	 * @throws PopbillException
+	 */
+	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
+			String receiveName, File[] files, Date reserveDT, String UserID,
+			Boolean adsYN) throws PopbillException;	
+	
+	/**
 	 * 팩스전송 다중파일(최대5개) 동보전송
 	 * 
 	 * @param CorpNum
@@ -221,6 +366,30 @@ public interface FaxService extends BaseService {
 	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
 			File[] files, Date reserveDT, String UserID)
 			throws PopbillException;
+
+	/**
+	 * 팩스전송 다중파일(최대5개) 동보전송 (광고팩스)
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param sendNum
+	 *            발신번호
+	 * @param receivers
+	 *            동보수신자 배열
+	 * @param files
+	 *            전송파일 Stream 배열
+	 * @param reserveDT
+	 *            예약일시, (형태 yyyyMMddHHmmss)
+	 * @param UserID
+	 *            연동회원 아이디
+	 * @param adsYN
+	 * 			  광고팩스 전송여부
+	 * @return receiptNum 접수번호
+	 * @throws PopbillException
+	 */
+	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
+			File[] files, Date reserveDT, String UserID, Boolean adsYN)
+			throws PopbillException;	
 	
 	/**
 	 * 팩스전송 다중파일(최대5개) 동보전송
@@ -240,8 +409,31 @@ public interface FaxService extends BaseService {
 	 * @return receiptNum 접수번호
 	 * @throws PopbillException
 	 */
-	public String sendFAX(String CorpNum, String sendNum, String senderName, Receiver[] receivers,
-			File[] files, Date reserveDT)
+	public String sendFAX(String CorpNum, String sendNum, String senderName, 
+			Receiver[] receivers, File[] files, Date reserveDT) throws PopbillException;
+	
+	/**
+	 * 팩스전송 다중파일(최대5개) 동보전송 (광고팩스)
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param sendNum
+	 *            발신번호
+	 * @param senderName
+	 * 			  발신자명
+	 * @param receivers
+	 *            동보수신자 배열
+	 * @param files
+	 *            전송파일 Stream 배열
+	 * @param reserveDT
+	 *            예약일시, (형태 yyyyMMddHHmmss)
+	 * @param adsYN
+	 * 			  광고팩스 전송여부
+	 * @return receiptNum 접수번호
+	 * @throws PopbillException
+	 */
+	public String sendFAX(String CorpNum, String sendNum, String senderName, 
+			Receiver[] receivers, File[] files, Date reserveDT, Boolean adsYN)
 			throws PopbillException;
 	
 	/**
@@ -267,6 +459,37 @@ public interface FaxService extends BaseService {
 	public String sendFAX(String CorpNum, String sendNum, String senderName, Receiver[] receivers,
 			File[] files, Date reserveDT, String UserID)
 			throws PopbillException;
+	
+	/**
+	 * 팩스전송 다중파일(최대5개) 동보전송 (광고)
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param sendNum
+	 *            발신번호
+	 * @param senderName
+	 * 			  발신자명
+	 * @param receivers
+	 *            동보수신자 배열
+	 * @param files
+	 *            전송파일 Stream 배열
+	 * @param reserveDT
+	 *            예약일시, (형태 yyyyMMddHHmmss)
+	 * @param UserID
+	 *            연동회원 아이디
+	 * @param adsYN
+	 * 			  광고팩스 전송여부            
+	 * @return receiptNum 접수번호
+	 * @throws PopbillException
+	 */
+	public String sendFAX(String CorpNum, String sendNum, String senderName, Receiver[] receivers,
+			File[] files, Date reserveDT, String UserID, Boolean adsYN)
+			throws PopbillException;
+	
+	
+	
+	
+	
 		
 	/**
 	 * 팩스전송 동보 재전송
