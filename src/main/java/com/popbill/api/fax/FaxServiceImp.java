@@ -36,7 +36,7 @@ import com.popbill.api.Response;
  * 
  * @author KimSeongjun
  * @version 1.0.0
- * @see com.popbill.api.MessageService
+ * @see com.popbill.api.FaxService
  */
 public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
@@ -122,7 +122,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	 */
 	@Override
 	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
-			File file, Date reserveDT) throws PopbillException {		
+			File file, Date reserveDT) throws PopbillException {
+
 		return requestFax(CorpNum, sendNum, null, receivers, new File[]{file}, 
 				reserveDT, null, null);
 	}
@@ -194,7 +195,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	public String sendFAX(String CorpNum, String sendNum, String senderName,
 			Receiver[] receivers, File[] files, Date reserveDT)
 			throws PopbillException {
-		
+	
 		return requestFax(CorpNum, sendNum, senderName, receivers, files, reserveDT,
 				null, null);
 	}
@@ -207,7 +208,9 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	public String sendFAX(String CorpNum, String sendNum, String senderName,
 			Receiver[] receivers, File[] files, Date reserveDT, String UserID, Boolean adsYN)
 			throws PopbillException {
-		return requestFax(CorpNum, sendNum, senderName, receivers, files, reserveDT, UserID, adsYN);
+
+		return requestFax(CorpNum, sendNum, senderName, receivers, files, reserveDT,
+				UserID, adsYN);
 	}
 	
 	
