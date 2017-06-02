@@ -239,7 +239,6 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		request.fCnt = files.length;
 		
 		String PostData = toJsonString(request);
-		System.out.println(PostData);
 		
 		List<UploadFile> uploadFiles = new ArrayList<UploadFile>();
 		
