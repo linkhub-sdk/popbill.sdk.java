@@ -56,7 +56,9 @@ public class Cashbill implements Serializable {
 	
 	private String confirmNum;
 	private String orgConfirmNum;
+	private String orgTradeDate;
 	
+
 	/**
 	 * 문서관리번호 확인 
 	 * 
@@ -499,5 +501,25 @@ public class Cashbill implements Serializable {
 	 */
 	public String getMemo() {
 		return memo;
+	}
+		
+	
+	/*
+	 * 원본현금영수증 거래일자
+	 * 
+	 * @return 원본 현금영수증 거래일자.yyyy-mm-dd
+	 */
+	public String getOrgTradeDate() {
+		return orgTradeDate;
+	}
+	
+	
+	/*
+	 * 원본현금영수증 거래일자
+	 * 
+	 * @param orgTradeDate
+	 */
+	public void setOrgTradeDate(String orgTradeDate) {
+		this.orgTradeDate = orgTradeDate;
 	}
 }
