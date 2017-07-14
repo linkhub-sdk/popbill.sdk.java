@@ -65,9 +65,9 @@ public class FaxServiceTEST {
 	@Test
 	public void sendFAX_Single_TEST() throws PopbillException {
 		
-		File file = new File("/Users/John/Desktop/test.jpg");
+		File file = new File("/Users/John/Desktop/test.html");
 		
-		String receiptNum = faxService.sendFAX("1234567890", "070-4304-2991", "070-111-222","수신자명칭",file, null, null, true);
+		String receiptNum = faxService.sendFAX("1234567890", "070-4304-2991", "070-111-222","수신자명칭",file, null, null, true, "팩스제목");
 		
 		assertNotNull(receiptNum);
 		
@@ -77,7 +77,7 @@ public class FaxServiceTEST {
 		
 		assertNotNull(results);
 		
-		System.out.println(results[0].getFileNames()[0] + " "+results[0].getSenderName());
+		System.out.println(results[0].getFileNames()[0] + " "+results[0].getTitle());
 	}
 	@Test
 	public void resendFAX_Single_TEST() throws PopbillException {
@@ -88,8 +88,9 @@ public class FaxServiceTEST {
 		String senderName = "발신자명";
 		String receiveNum = "070111222";
 		String receiveName = "수신자명";
+		String title = "팩스재전송";
 		
-		String receiptNum = faxService.resendFAX(testCorpNum, orgReceiptNum, senderNum, senderName, receiveNum, receiveName, null, null);
+		String receiptNum = faxService.resendFAX(testCorpNum, orgReceiptNum, senderNum, senderName, receiveNum, receiveName, null, null, title);
 		
 		System.out.println(receiptNum);
 	}
@@ -112,7 +113,7 @@ public class FaxServiceTEST {
 		
 		Receiver[] receivers = new Receiver[] {receiver1, receiver2};
 		
-		String receiptNum = faxService.resendFAX(testCorpNum, orgReceiptNum, senderNum, senderName, receivers, null);
+		String receiptNum = faxService.resendFAX(testCorpNum, orgReceiptNum, senderNum, senderName, receivers, null, null, "팩스제목");
 		
 		assertNotNull(receiptNum);
 		
@@ -122,7 +123,7 @@ public class FaxServiceTEST {
 		
 		assertNotNull(results);
 		
-		System.out.println(results[0].getFileNames()[0] + " "+results[0].getSenderName());
+		System.out.println(results[0].getFileNames()[0] + " "+results[0].getTitle());
 	}
 	
 	@Test
@@ -145,13 +146,13 @@ public class FaxServiceTEST {
 	@Test
 	public void getFaxResult_TEST() throws PopbillException {
 		
-		String receiptNum = "015122413083700001";
+		String receiptNum = "017071415135300001";
 		
 		FaxResult[] results = faxService.getFaxResult("1234567890", receiptNum);
 		
 		assertNotNull(results);
 		
-		System.out.println(results[0].getFileNames()[1] + " "+results[0].getReceiptDT());
+		System.out.println(results[0].getState() + " "+results[0].getResult());
 		
 	}
 	

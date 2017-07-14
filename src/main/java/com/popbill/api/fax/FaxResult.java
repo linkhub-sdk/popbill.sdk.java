@@ -38,6 +38,9 @@ public class FaxResult {
 	private Integer sendResult;
 	private String[] fileNames;
 	private String receiptDT;
+	private String title;
+	private Integer state;
+	private Integer result;
 
 	/**
 	 * 전송상태 확인 0 : 접수 1 : 업로드중 2 : 전송중 3 : 완료 4 : 실패 (DB항목 오류) 5 : 실패 (전송중 오류) 6
@@ -193,7 +196,32 @@ public class FaxResult {
 	public String getSenderName() {
 		return senderName;
 	}
+	
+	/**
+	 * 팩스제목 확인
+	 * 
+	 * @return 팩스제목 
+	 */
+	public String getTitle() {
+		return title;
+	}
+	
+	/**
+	 * 전송상태코드
+	 * 
+	 * @return 전송상태
+	 */
+	public Integer getState() {
+		return state;
+	}
 
-
+	/**
+	 * 전송결과코드
+	 * 
+	 * @return 결과코드
+	 */
+	public Integer getResult() {
+		return result;
+	}
 
 }
