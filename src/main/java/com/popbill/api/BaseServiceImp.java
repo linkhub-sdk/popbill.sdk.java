@@ -49,7 +49,7 @@ public abstract class BaseServiceImp implements BaseService {
 	private final String ServiceID_REAL = "POPBILL";
 	private final String ServiceID_TEST = "POPBILL_TEST";
 	private final String ServiceURL_REAL = "https://popbill.linkhub.co.kr";
-	private final String ServiceURL_TEST = "https://popbill_test.linkhub.co.kr";
+	private final String ServiceURL_TEST = "https://popbill-test.linkhub.co.kr";
 	private final String APIVersion = "1.0";
 
 	private TokenBuilder tokenBuilder;
