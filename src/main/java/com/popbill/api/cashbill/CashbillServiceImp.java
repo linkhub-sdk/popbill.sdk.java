@@ -595,6 +595,88 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		return httpget("/Cashbill/ChargeInfo", CorpNum, null, ChargeInfo.class);
 	}
 	
+	@Override
+	public Response revokeRegister(String CorpNum, String mgtKey,
+			String orgConfirmNum, String orgTradeDate) throws PopbillException {
+		
+		return revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, false, null);
+	}
+
+	@Override
+	public Response revokeRegister(String CorpNum, String mgtKey,
+			String orgConfirmNum, String orgTradeDate, Boolean smssendYN)
+			throws PopbillException {
+		
+		return revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, null);
+	}
+	
+	@Override
+	public Response revokeRegister(String CorpNum, String mgtKey,
+			String orgConfirmNum, String orgTradeDate, Boolean smssendYN,
+			String UserID) throws PopbillException {
+		
+		if (mgtKey == null)
+			throw new PopbillException(-99999999, "취소현금영수증 문서관리번호가 입력되지 않았습니다.");
+		
+		RevokeRequest request = new RevokeRequest();
+		
+		request.mgtKey = mgtKey;
+		request.orgConfirmNum = orgConfirmNum;
+		request.orgTradeDate = orgTradeDate;
+		request.smssendYN = smssendYN;
+		
+		String PostData = toJsonString(request);
+		
+		return httppost("/Cashbill", CorpNum, PostData,
+				UserID, "REVOKE", Response.class);
+	}
+
+	@Override
+	public Response revokeRegistIssue(String CorpNum, String mgtKey,
+			String orgConfirmNum, String orgTradeDate) throws PopbillException {
+		return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, 
+				false, null, null);
+	}
+
+	@Override
+	public Response revokeRegistIssue(String CorpNum, String mgtKey,
+			String orgConfirmNum, String orgTradeDate, Boolean smssendYN)
+			throws PopbillException {
+		
+		return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, 
+				smssendYN, null, null);
+	}
+
+	@Override
+	public Response revokeRegistIssue(String CorpNum, String mgtKey,
+			String orgConfirmNum, String orgTradeDate, Boolean smssendYN,
+			String memo) throws PopbillException {
+		
+		return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, 
+				smssendYN, memo, null);
+	}
+
+	@Override
+	public Response revokeRegistIssue(String CorpNum, String mgtKey,
+			String orgConfirmNum, String orgTradeDate, Boolean smssendYN,
+			String memo, String userID) throws PopbillException {
+		if (mgtKey == null)
+			throw new PopbillException(-99999999, "취소현금영수증 문서관리번호가 입력되지 않았습니다.");
+		
+		RevokeRequest request = new RevokeRequest();
+		
+		request.mgtKey = mgtKey;
+		request.orgConfirmNum = orgConfirmNum;
+		request.orgTradeDate = orgTradeDate;
+		request.smssendYN = smssendYN;
+		request.memo = memo;
+		
+		String PostData = toJsonString(request);
+		
+		return httppost("/Cashbill", CorpNum, PostData, 
+				userID, "REVOKEISSUE", Response.class);
+	}
+	
 	protected class MemoRequest {
 		public MemoRequest(String memo){
 			this.memo = memo;
@@ -608,6 +690,13 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		public String sender = null;
 		public String contents = null;
 	}
-
+	
+	protected class RevokeRequest {
+		public String mgtKey;
+		public String orgTradeDate;
+		public String orgConfirmNum;
+		public Boolean smssendYN;
+		public String memo;
+	}
 
 }

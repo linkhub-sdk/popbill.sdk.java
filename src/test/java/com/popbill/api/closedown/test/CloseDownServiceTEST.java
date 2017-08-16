@@ -46,21 +46,22 @@ public class CloseDownServiceTEST {
 	@Test
 	public void CheckCorpNum() throws PopbillException {
 		
-		CorpState state =closeDownService.CheckCorpNum("1231212312", "1000000000");
+		CorpState state =closeDownService.CheckCorpNum("1231212312", "6798700433");
 		
 		System.out.println(state.getState());
+		System.out.println(state.getTypeDate());
 		
 	}
 	
 	@Test
 	public void CheckCorpNums() throws PopbillException {
 		
-		String[] CorpNumList = new String[] {"1231212312","1000000000"};
+		String[] CorpNumList = new String[] {"1231212312","401-03-94930"};
 		
 		CorpState[] state =closeDownService.CheckCorpNum("1231212312",CorpNumList);
 		
-		System.out.println(state[0].getState());
-		
+		System.out.println(state[1].getState());
+		System.out.println(state[1].getTypeDate());
 	}
 
 }

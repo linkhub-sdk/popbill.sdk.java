@@ -16,6 +16,7 @@ public class CorpState implements Serializable {
 	private String state;
 	private String stateDate;
 	private String checkDate;
+	private String typeDate;
 	
 	
 	/**
@@ -59,5 +60,13 @@ public class CorpState implements Serializable {
 	 */
 	public String getCheckDate() {
 		return checkDate;
+	}
+	
+	/**
+	 * @return 과세유형 전환일자
+	 * 		해당 사업자의 과세유형이 전환된 일자
+	 */
+	public String getTypeDate() {
+		return typeDate;
 	}
 }

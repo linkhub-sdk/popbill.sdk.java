@@ -297,5 +297,95 @@ public class CashbillServiceTEST {
 		}
 	}
 	
+	@Test
+	public void revokeRegistIssue01_TEST() throws PopbillException{
+		String CorpNum = "1234567890";
+		String mgtKey = "20170816-04";
+		String orgConfirmNum = "820116333";
+		String orgTradeDate = "20170711";
+		
+		Response response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate);
+		
+		assertNotNull(response);
+		
+		System.out.println(response.getMessage());
+	}
+	
+	@Test
+	public void revokeRegistIssue02_TEST() throws PopbillException{
+		String CorpNum = "1234567890";
+		String mgtKey = "20170816-05";
+		String orgConfirmNum = "820116333";
+		String orgTradeDate = "20170711";
+		Boolean smssendYN = true;
+		
+		Response response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN);
+		
+		assertNotNull(response);
+		
+		System.out.println(response.getMessage());
+	}
+	
+	@Test
+	public void revokeRegistIssue03_TEST() throws PopbillException{
+		String CorpNum = "1234567890";
+		String mgtKey = "20170816-10";
+		String orgConfirmNum = "820116333";
+		String orgTradeDate = "20170711";
+		Boolean smssendYN = true;
+		String memo = "취소현금영수증 즉시발행";
+		String userID = "testkorea";
+		
+		Response response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo, userID);
+		
+		assertNotNull(response);
+		
+		System.out.println(response.getMessage());
+	}
+	
+	@Test
+	public void revokeRegister01_TEST() throws PopbillException{
+		String CorpNum = "1234567890";
+		String mgtKey = "20170816-11";
+		String orgConfirmNum = "820116333";
+		String orgTradeDate = "20170711";
+		
+		Response response = cashbillService.revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate);
+		
+		assertNotNull(response);
+		
+		System.out.println(response.getMessage());
+	}
+	
+	@Test
+	public void revokeRegister02_TEST() throws PopbillException{
+		String CorpNum = "1234567890";
+		String mgtKey = "20170816-12";
+		String orgConfirmNum = "820116333";
+		String orgTradeDate = "20170711";
+		Boolean smssendYN = true;
+		
+		Response response = cashbillService.revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN);
+		
+		assertNotNull(response);
+		
+		System.out.println(response.getMessage());
+	}
+	
+	@Test
+	public void revokeRegister03_TEST() throws PopbillException{
+		String CorpNum = "1234567890";
+		String mgtKey = "20170816-13";
+		String orgConfirmNum = "820116333";
+		String orgTradeDate = "20170711";
+		Boolean smssendYN = true;
+		String userID = "testkorea";
+		
+		Response response = cashbillService.revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, userID);
+		
+		assertNotNull(response);
+		
+		System.out.println(response.getMessage());
+	}
 }
 
