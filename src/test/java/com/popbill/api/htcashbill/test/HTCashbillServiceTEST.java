@@ -48,8 +48,8 @@ public class HTCashbillServiceTEST {
 	@Test
 	public void getRequestJob_TEST() throws PopbillException {
 		
-		String SDate = "20160501";
-		String EDate = "20160617";
+		String SDate = "20170101";
+		String EDate = "20171231";
 		
 		String jobID = htCashbillService.requestJob("1234567890", QueryType.BUY, SDate, EDate);
 		
@@ -113,13 +113,13 @@ public class HTCashbillServiceTEST {
 	@Test 
 	public void search_TEST() throws PopbillException {
 		String CorpNum = "1234567890";
-		String JobID = "016061717000000001";
+		String JobID = "017082810000000002";
 		String[] TypeUsage = {"P", "C"};
 		String[] TradeType = {"N", "C"};
 		Integer Page = 1;
 		Integer PerPage = 10;
 		String Order = "D";
-		String UserID = "innoposttest";
+		String UserID = "";
 		
 		HTCashbillSearchResult result = htCashbillService.search(CorpNum, JobID, TypeUsage, TradeType, Page, PerPage, Order, UserID);
 		
@@ -135,6 +135,7 @@ public class HTCashbillServiceTEST {
 		
 		for ( int i=0; i<result.getList().size(); i++ ) {
 			System.out.println("\n========["+(i+1)+"] Search Result ========");
+			System.out.println(result.getList().get(i).getInvoiceType());
 			System.out.println(result.getList().get(i).getNtsconfirmNum());
 			System.out.println(result.getList().get(i).getTradeDT());
 			System.out.println(result.getList().get(i).getTradeUsage());

@@ -82,6 +82,19 @@ public interface BaseService {
 	 */
 	public abstract String getPopbillURL(String CorpNum, String UserID,
 			String TOGO) throws PopbillException;
+	
+	/**
+	 * 파트너 관리자 팝업 URL 요청
+	 * 
+	 * @param CorpNum
+	 * 			팝빌회원 사업자번호
+	 * @param TOGO
+	 * 			CHRG(포인트충전), LOGIN(로그인)
+	 * @return	파트너관리자 URL
+	 * @throws PopbillException
+	 */
+	public abstract String getPartnerURL(String CorpNum, String TOGO) throws PopbillException;
+	
 
 	/**
 	 * 연동회원의 가입여부 확인.

@@ -180,6 +180,19 @@ public abstract class BaseServiceImp implements BaseService {
 		return token.getSession_token();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.BaseService#getPartnerURL(java.lang.String, java.lang.String)
+	 */
+	public String getPartnerURL(String CorpNum, String TOGO) throws PopbillException{
+		try {
+			return getTokenbuilder().getPartnerURL(
+					this.getSessionToken(CorpNum, null), TOGO);
+		} catch (LinkhubException le) {
+			throw new PopbillException(le);
+		}
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.popbill.api.BaseService#getBalance(java.lang.String)
 	 */

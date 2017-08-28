@@ -63,8 +63,8 @@ public class HTTaxinvoiceServiceTEST {
 	public void getRequestJob_TEST() throws PopbillException {
 		
 		String DType = "W";
-		String SDate = "20160501";
-		String EDate = "20160617";
+		String SDate = "20170101";
+		String EDate = "20171231";
 		
 		String jobID = hometaxTIService.requestJob("1234567890", QueryType.SELL, DType, SDate, EDate);
 		
@@ -76,7 +76,7 @@ public class HTTaxinvoiceServiceTEST {
 	@Test
 	public void getJobState_TEST() throws PopbillException {
 		
-		HTTaxinvoiceJobState jobState = hometaxTIService.getJobState("1234567890", "016061709000000001", "testkorea");
+		HTTaxinvoiceJobState jobState = hometaxTIService.getJobState("1234567890", "016061709000000001");
 		
 		assertNotNull(jobState);
 		
@@ -131,7 +131,7 @@ public class HTTaxinvoiceServiceTEST {
 		Integer PerPage = 10;
 		String Order = "D";
 		
-		HTTaxinvoiceSearchResult result = hometaxTIService.search("1234567890", "016061709000000001", Type, TaxType, 
+		HTTaxinvoiceSearchResult result = hometaxTIService.search("1234567890", "017082810000000001", Type, TaxType, 
 				PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID, Page, PerPage, Order);
 		
 		assertNotNull ( result ) ;
@@ -146,6 +146,7 @@ public class HTTaxinvoiceServiceTEST {
 		
 		for ( int i=0; i<result.getList().size(); i++ ) {
 			System.out.println("\n========["+ (i+1) +"] Search Result List Detail ========");
+			System.out.println(result.getList().get(i).getInvoiceType());
 			System.out.println(result.getList().get(i).getNtsconfirmNum());
 			System.out.println(result.getList().get(i).getWriteDate());
 			System.out.println(result.getList().get(i).getIssueDate());
@@ -330,7 +331,7 @@ public class HTTaxinvoiceServiceTEST {
 		
 		System.out.println("\n\n======== GetCertificatePopUPURL ========");
 		System.out.println(url);
-	}	
+	}
 	
 	@Test
 	public void getCertificateExpireDate_TEST() throws PopbillException {

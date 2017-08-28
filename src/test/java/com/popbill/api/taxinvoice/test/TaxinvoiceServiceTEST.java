@@ -748,4 +748,14 @@ public class TaxinvoiceServiceTEST {
 		
 		System.out.println("["+response.getCode() +"] " + response.getMessage());
 	}
+	
+	
+	@Test
+	public void getPartnerURL_TEST() throws PopbillException{
+		
+		String url = taxinvoiceService.getPartnerURL("1234567890", "CHRG");
+		assertNotNull(url);
+		
+		System.out.println(url);
+	}
 }

@@ -45,6 +45,18 @@ public class HTCashbill implements Serializable{
 	private String cardOwnerName;
 	private Short deductionType;
 
+	private String invoiceType;
+
+	/**
+	 * 매출/매입 구분
+	 * - 2017/08/28 추가
+	 * 
+	 * @return 매출/매입
+	 */
+	public String getInvoiceType(){
+		return invoiceType;
+	}
+	
 	/**
 	 * 국세청승인번호 확인 
 	 * 

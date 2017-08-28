@@ -51,7 +51,17 @@ public class HTTaxinvoiceAbbr implements Serializable {
 	private String tax;
 	private String remark;
 	private String orgNTSConfirmNum;
+	private String invoiceType;
 	
+	/**
+	 *  매입/매출 구분
+	 *  - 2017/08/25 추가
+	 *  
+	 * @return "매입" or "매출"
+	 */
+	public String getInvoiceType(){
+		return invoiceType;
+	}
 
 	/**
 	 * 국세청승인번호 확인 
