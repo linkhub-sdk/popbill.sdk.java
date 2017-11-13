@@ -724,6 +724,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		request.isPartCancel = isPartCancel;
 		request.cancelType = cancelType;
 		request.supplyCost = supplyCost;
+		request.serviceFee = serviceFee;
 		request.tax = tax;
 		request.totalAmount = totalAmount;
 		

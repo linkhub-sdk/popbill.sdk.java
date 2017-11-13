@@ -329,13 +329,13 @@ public class CashbillServiceTEST {
 	@Test
 	public void revokeRegistIssue03_TEST() throws PopbillException{
 		String CorpNum = "1234567890";
-		String mgtKey = "20171113-16";
+		String mgtKey = "20171113-17";
 		String orgConfirmNum = "133367419";
 		String orgTradeDate = "20171112";
 		Boolean smssendYN = true;
 		String memo = "취소현금영수증 즉시발행";
 		Boolean isPartCancel = true;
-		String cancelType = "3";
+		String cancelType = "1";
 		String supplyCost = "10000";
 		String tax = "1000";
 		String serviceFee = "0";
