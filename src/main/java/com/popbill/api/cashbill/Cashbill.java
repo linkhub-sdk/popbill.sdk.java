@@ -58,6 +58,8 @@ public class Cashbill implements Serializable {
 	private String orgConfirmNum;
 	private String orgTradeDate;
 	
+	private String cancelType;
+	
 
 	/**
 	 * 문서관리번호 확인 
@@ -521,5 +523,21 @@ public class Cashbill implements Serializable {
 	 */
 	public void setOrgTradeDate(String orgTradeDate) {
 		this.orgTradeDate = orgTradeDate;
+	}
+
+	/*
+	 * 취소사유, 1-거래취소, 2-오류발급취소, 3-기타 
+	 */
+	public String getCancelType() {
+		return cancelType;
+	}
+
+	/*
+	 * 취소사유, 1-거래취소, 2-오류발급취소, 3-기타
+	 * 
+	 * @return 취소사유 
+	 */
+	public void setCancelType(String cancelType) {
+		this.cancelType = cancelType;
 	}
 }

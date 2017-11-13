@@ -64,7 +64,7 @@ public class CashbillServiceTEST {
 		
 		Cashbill cashbill = new Cashbill();
 		
-		cashbill.setMgtKey("20170306-07");
+		cashbill.setMgtKey("20171113-10");
 		cashbill.setTradeType("승인거래");
 		cashbill.setFranchiseCorpNum("1234567890");
 		cashbill.setFranchiseCorpName("발행자 상호");
@@ -79,9 +79,9 @@ public class CashbillServiceTEST {
 		cashbill.setHp("01043245117");
 		cashbill.setFax("07075103710");
 		cashbill.setServiceFee("0");
-		cashbill.setSupplyCost("10000");
-		cashbill.setTax("1000");
-		cashbill.setTotalAmount("11000");
+		cashbill.setSupplyCost("5000");
+		cashbill.setTax("5000");
+		cashbill.setTotalAmount("10000");
 		cashbill.setTradeUsage("소득공제용");
 		cashbill.setTaxationType("과세");
 		cashbill.setSmssendYN(false);
@@ -176,9 +176,9 @@ public class CashbillServiceTEST {
 	@Test
 	public void getDetailInfo_TEST() throws PopbillException {
 		
-		Cashbill cashbill = cashbillService.getDetailInfo("1234567890", "20150318-02");
+		Cashbill cashbill = cashbillService.getDetailInfo("1234567890", "20171113-16");
 		assertNotNull(cashbill);
-		System.out.println("Detail Info : "+ cashbill.getMgtKey()+ " " );
+		System.out.println("Detail Info : "+ cashbill.getCancelType()+ " " );
 		
 	}
 	
@@ -243,7 +243,7 @@ public class CashbillServiceTEST {
 		
 		Cashbill cashbill = new Cashbill();
 		
-		cashbill.setMgtKey("20170306-05");
+		cashbill.setMgtKey("20171113-13");
 		cashbill.setTradeType("승인거래");
 		cashbill.setFranchiseCorpNum("1234567890");
 		cashbill.setFranchiseCorpName("발행자 상호");
@@ -329,14 +329,22 @@ public class CashbillServiceTEST {
 	@Test
 	public void revokeRegistIssue03_TEST() throws PopbillException{
 		String CorpNum = "1234567890";
-		String mgtKey = "20170816-10";
-		String orgConfirmNum = "820116333";
-		String orgTradeDate = "20170711";
+		String mgtKey = "20171113-16";
+		String orgConfirmNum = "133367419";
+		String orgTradeDate = "20171112";
 		Boolean smssendYN = true;
 		String memo = "취소현금영수증 즉시발행";
-		String userID = "testkorea";
+		Boolean isPartCancel = true;
+		String cancelType = "3";
+		String supplyCost = "10000";
+		String tax = "1000";
+		String serviceFee = "0";
+		String totalAmount = "11000";
+		String userID = "cream99";
 		
-		Response response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo, userID);
+		Response response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, 
+				orgTradeDate, smssendYN, memo, isPartCancel, cancelType, supplyCost, 
+				tax, serviceFee, totalAmount, userID);
 		
 		assertNotNull(response);
 		
@@ -346,11 +354,20 @@ public class CashbillServiceTEST {
 	@Test
 	public void revokeRegister01_TEST() throws PopbillException{
 		String CorpNum = "1234567890";
-		String mgtKey = "20170816-11";
-		String orgConfirmNum = "820116333";
-		String orgTradeDate = "20170711";
+		String mgtKey = "20171113-11";
+		String orgConfirmNum = "133367419";
+		String orgTradeDate = "20171112";
+		Boolean smssendYN = false; 
+		Boolean isPartCancel = true;
+		String cancelType = "1";
+		String supplyCost = "10000";
+		String tax = "1000";
+		String serviceFee = "0";
+		String totalAmount = "11000";
 		
-		Response response = cashbillService.revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate);
+		Response response = cashbillService.revokeRegister(CorpNum, mgtKey, orgConfirmNum,
+				orgTradeDate, smssendYN, isPartCancel, cancelType, supplyCost, 
+				tax, serviceFee, totalAmount);
 		
 		assertNotNull(response);
 		
