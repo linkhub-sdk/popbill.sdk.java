@@ -624,7 +624,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	
 	@Override
 	public Response revokeRegister(String CorpNum, String mgtKey, String orgConfirmNum, 
-			String orgTradeDate, Boolean smssendYN, Boolean isPartCancel, String cancelType, 
+			String orgTradeDate, Boolean smssendYN, Boolean isPartCancel, Integer cancelType, 
 			String supplyCost, String tax, String serviceFee, String totalAmount) throws PopbillException {
 		
 		return revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, isPartCancel,
@@ -635,7 +635,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	@Override
 	public Response revokeRegister(String CorpNum, String mgtKey,
 			String orgConfirmNum, String orgTradeDate, Boolean smssendYN, Boolean isPartCancel,
-			String cancelType, String supplyCost, String tax, String serviceFee, String totalAmount,
+			Integer cancelType, String supplyCost, String tax, String serviceFee, String totalAmount,
 			String UserID) throws PopbillException {
 		
 		if (mgtKey == null)
@@ -698,7 +698,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	@Override
 	public Response revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
 			String orgTradeDate, Boolean smssendYN,	String memo, 
-			Boolean isPartCancel, String cancelType, String supplyCost, 
+			Boolean isPartCancel, Integer cancelType, String supplyCost, 
 			String tax, String serviceFee, String totalAmount) throws PopbillException {
 		
 		return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo, 
@@ -708,7 +708,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	@Override
 	public Response revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
 			String orgTradeDate, Boolean smssendYN,	String memo, 
-			Boolean isPartCancel, String cancelType, String supplyCost, 
+			Boolean isPartCancel, Integer cancelType, String supplyCost, 
 			String tax, String serviceFee, String totalAmount, String userID) throws PopbillException {
 		
 		if (mgtKey == null)
@@ -755,7 +755,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		public Boolean smssendYN;
 		public String memo;
 		public Boolean isPartCancel;
-		public String cancelType;
+		public Integer cancelType;
 		public String supplyCost;
 		public String tax;
 		public String serviceFee;

@@ -184,7 +184,7 @@ public interface CashbillService extends BaseService{
 	 * @throws PopbillException
 	 */
 	public Response revokeRegister(String CorpNum, String mgtKey, String orgConfirmNum,
-			String orgTradeDate, Boolean smssendYN, Boolean isPartCancel, String cancelType, 
+			String orgTradeDate, Boolean smssendYN, Boolean isPartCancel, Integer cancelType, 
 			String supplyCost, String tax, String serviceFee, String totalAmount) throws PopbillException;
 
 	
@@ -218,7 +218,7 @@ public interface CashbillService extends BaseService{
 	 * @throws PopbillException
 	 */
 	public Response revokeRegister(String CorpNum, String mgtKey, String orgConfirmNum,
-			String orgTradeDate, Boolean smssendYN, Boolean isPartCancel, String cancelType, 
+			String orgTradeDate, Boolean smssendYN, Boolean isPartCancel, Integer cancelType, 
 			String supplyCost, String tax, String serviceFee, String totalAmount, String UserID) throws PopbillException;	
 	
 	
@@ -334,7 +334,7 @@ public interface CashbillService extends BaseService{
 	 */
 	public Response revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
 			String orgTradeDate, Boolean smssendYN, String memo, Boolean isPartCancel,
-			String cancelType, String supplyCost, String tax, String serviceFee,
+			Integer cancelType, String supplyCost, String tax, String serviceFee,
 			String totalAmount) throws PopbillException;
 	
 	/**
@@ -371,7 +371,7 @@ public interface CashbillService extends BaseService{
 	 */
 	public Response revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
 			String orgTradeDate, Boolean smssendYN, String memo, Boolean isPartCancel,
-			String cancelType, String supplyCost, String tax, String serviceFee,
+			Integer cancelType, String supplyCost, String tax, String serviceFee,
 			String totalAmount, String UserID) throws PopbillException;	
 	
 	/**

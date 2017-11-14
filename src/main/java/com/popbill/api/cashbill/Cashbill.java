@@ -58,7 +58,7 @@ public class Cashbill implements Serializable {
 	private String orgConfirmNum;
 	private String orgTradeDate;
 	
-	private String cancelType;
+	private Integer cancelType;
 	
 
 	/**
@@ -528,7 +528,7 @@ public class Cashbill implements Serializable {
 	/*
 	 * 취소사유, 1-거래취소, 2-오류발급취소, 3-기타 
 	 */
-	public String getCancelType() {
+	public Integer getCancelType() {
 		return cancelType;
 	}
 
@@ -537,7 +537,7 @@ public class Cashbill implements Serializable {
 	 * 
 	 * @return 취소사유 
 	 */
-	public void setCancelType(String cancelType) {
+	public void setCancelType(Integer cancelType) {
 		this.cancelType = cancelType;
 	}
 }
