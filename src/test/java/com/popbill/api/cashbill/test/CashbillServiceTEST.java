@@ -354,7 +354,7 @@ public class CashbillServiceTEST {
 	@Test
 	public void revokeRegister01_TEST() throws PopbillException{
 		String CorpNum = "1234567890";
-		String mgtKey = "20171114-18";
+		String mgtKey = "20171114-13";
 		String orgConfirmNum = "133367419";
 		String orgTradeDate = "20171112";
 		Boolean smssendYN = false; 

@@ -919,8 +919,8 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 			String SDate, String EDate, String[] State, String[] Type, String[] TaxType,
 			Boolean LateOnly, Integer Page, Integer PerPage, String Order) throws PopbillException {
 		
-		return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, LateOnly, 
-				null, null, null, null, Page, PerPage, Order);
+		return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly, 
+				null, null, null, null, Page, PerPage, Order, null);
 	}
 	
 	/*
@@ -933,8 +933,8 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 			Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN,
 			Integer Page, Integer PerPage, String Order) throws PopbillException {
 		
-		return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, LateOnly, 
-				TaxRegIDType, TaxRegID, TaxRegIDYN, null, Page, PerPage, Order);
+		return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly, 
+				TaxRegIDType, TaxRegID, TaxRegIDYN, null, Page, PerPage, Order, null);
 	}
 	
 	/*
@@ -948,7 +948,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 			String TaxRegIDType, String TaxRegID, String TaxRegIDYN,
 			String QString, Integer Page, Integer PerPage, String Order)
 			throws PopbillException {
-		return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, LateOnly, 
+		return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly, 
 				TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page, PerPage, Order, null);
 	}
 	
@@ -956,6 +956,22 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	public TISearchResult Search(String CorpNum, MgtKeyType KeyType,
 			String DType, String SDate, String EDate, String[] State,
 			String[] Type, String[] TaxType, Boolean LateOnly,
+			String TaxRegIDType, String TaxRegID, String TaxRegIDYN,
+			String QString, Integer Page, Integer PerPage, String Order, String InterOPYN)
+			throws PopbillException {
+		
+		return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null,LateOnly, 
+				TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page, PerPage, Order, InterOPYN);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#Search(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[], java.lang.String[], java.lang.Boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public TISearchResult Search(String CorpNum, MgtKeyType KeyType,
+			String DType, String SDate, String EDate, String[] State,
+			String[] Type, String[] TaxType, String[] IssueType, Boolean LateOnly,
 			String TaxRegIDType, String TaxRegID, String TaxRegIDYN,
 			String QString, Integer Page, Integer PerPage, String Order, String InterOPYN)
 			throws PopbillException {
@@ -979,6 +995,11 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 				.replaceAll("\\[|\\]|\\s", "");
 		uri += "&TaxType=" + Arrays.toString(TaxType)
 				.replaceAll("\\[|\\]|\\s", "");
+		
+		if (IssueType != null){
+			uri += "&IssueType=" + Arrays.toString(IssueType)
+					.replaceAll("\\[|\\]|\\s", "");
+		}
 		
 		if (LateOnly != null){
 			if (LateOnly){

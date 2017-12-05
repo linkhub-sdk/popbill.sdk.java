@@ -604,11 +604,12 @@ public class TaxinvoiceServiceTEST {
 		TISearchResult response = new TISearchResult();
 		
 		String DType = "W";
-		String SDate = "20160701";
-		String EDate = "20161221";
+		String SDate = "20171101";
+		String EDate = "20171231";
 		String[] State = {"3**", "6**"};
 		String[] Type = {"N", "M","Z"};
 		String[] TaxType = {"T","N","Z"};
+		String[] IssueType = {"N","R","T"};
 		Boolean LateOnly = false;
 		String TaxRegIDType = "S";
 		String TaxRegID = "";
@@ -620,16 +621,13 @@ public class TaxinvoiceServiceTEST {
 		String interOPYN = "";
 		
 		response = taxinvoiceService.Search("1234567890", MgtKeyType.SELL, DType, 
-				SDate, EDate, State, Type, TaxType, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN,
+				SDate, EDate, State, Type, TaxType, IssueType, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN,
 				QString, Page, PerPage, Order, interOPYN);
 		
 		assertNotNull(response);
 		
 		System.out.println("Search API - " + response.getTotal());
 		
-		for (int i=0; i< Integer.parseInt(response.getTotal())-1 ; i++){
-			System.out.println(response.getList().get(i).getCloseDownState()+" "+response.getList().get(i).getInterOPYN());
-		}
 	}
 	
 	@Test
