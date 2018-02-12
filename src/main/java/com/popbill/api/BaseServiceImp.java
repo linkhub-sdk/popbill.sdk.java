@@ -46,11 +46,14 @@ import com.google.gson.Gson;
  */
 public abstract class BaseServiceImp implements BaseService {
 
-	private final String ServiceID_REAL = "POPBILL";
-	private final String ServiceID_TEST = "POPBILL_TEST";
-	private final String ServiceURL_REAL = "https://popbill.linkhub.co.kr";
-	private final String ServiceURL_TEST = "https://popbill-test.linkhub.co.kr";
+	private static final String ServiceID_REAL = "POPBILL";
+	private static final String ServiceID_TEST = "POPBILL_TEST";
+	private static final String ServiceURL_REAL = "https://popbill.linkhub.co.kr";
+	private static final String ServiceURL_TEST = "https://popbill-test.linkhub.co.kr";
 	private final String APIVersion = "1.0";
+	private String ServiceURL = null;
+	private String TestServiceURL = null;
+	private String AuthURL = null;
 
 	private TokenBuilder tokenBuilder;
 
@@ -92,6 +95,30 @@ public abstract class BaseServiceImp implements BaseService {
 	public void setLinkID(String linkID) {
 		this.linkID = linkID;
 	}
+	
+	/**
+	 * Proxy 인증 URL 설정.
+	 * @param authURL
+	 */
+	public void setAuthURL(String authURL) {
+		this.AuthURL = authURL;
+	}
+	
+	/**
+	 * Proxy 운영기 URL 설정.
+	 * @param serviceURL
+	 */
+	public void setServiceURL(String serviceURL) {
+		ServiceURL = serviceURL;
+	}
+	
+	/**
+	 * Proxy 테스트기 URL 설정.
+	 * @param testServiceURL
+	 */
+	public void setTestServiceURL(String testServiceURL) {
+		TestServiceURL = testServiceURL;
+	}
 
 	protected String getSecretKey() {
 		return secretKey;
@@ -112,6 +139,12 @@ public abstract class BaseServiceImp implements BaseService {
 	}
 
 	protected String getServiceURL() {
+		if(isTest) {
+			if(TestServiceURL != null) return TestServiceURL;
+		} else {
+			if(ServiceURL != null) return ServiceURL;
+		}
+		
 		return isTest ? ServiceURL_TEST : ServiceURL_REAL;
 	}
 
@@ -121,7 +154,9 @@ public abstract class BaseServiceImp implements BaseService {
 					.getInstance(getLinkID(), getSecretKey())
 					.ServiceID(isTest ? ServiceID_TEST : ServiceID_REAL)
 					.addScope("member");
-
+			
+			if(AuthURL != null) tokenBuilder.setServiceURL(AuthURL);
+			
 			for (String scope : getScopes())
 				tokenBuilder.addScope(scope);
 		}

@@ -2,8 +2,6 @@ package com.popbill.api.cashbill.test;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.util.Arrays;
-
 import org.junit.Test;
 
 import com.popbill.api.CashbillService;

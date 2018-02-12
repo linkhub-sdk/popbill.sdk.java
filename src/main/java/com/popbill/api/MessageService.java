@@ -377,7 +377,7 @@ public interface MessageService extends BaseService {
 	 * @param content
 	 *            장문메시지 내용 최대 2000Byte.
 	 * @param file
-	 *            전송파일 최대크기 3000Kbyte
+	 *            전송파일 최대크기 300Kbyte
 	 * @param reserveDT
 	 *            예약전송시 예약일시.
 	 * @param UserID
@@ -405,7 +405,7 @@ public interface MessageService extends BaseService {
 	 * @param content
 	 *            장문메시지 내용 최대 2000Byte.
 	 * @param file
-	 *            전송파일 최대크기 3000Kbyte
+	 *            전송파일 최대크기 300Kbyte
 	 * @param reserveDT
 	 *            예약전송시 예약일시.
 	 * @param UserID
@@ -427,7 +427,7 @@ public interface MessageService extends BaseService {
 	 * @param Messages
 	 *            메시지 배열.
 	 * @param file
-	 *            전송파일 최대크기 3000Kbyte
+	 *            전송파일 최대크기 300Kbyte
 	 * @param reserveDT
 	 *            예약일시
 	 * @param UserID
@@ -452,7 +452,7 @@ public interface MessageService extends BaseService {
 	 * @param Messages
 	 *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
 	 * @param file
-	 *            전송파일 최대크기 3000Kbyte
+	 *            전송파일 최대크기 300Kbyte
 	 * @param reserveDT
 	 *            예약일시
 	 * @param UserID
@@ -478,7 +478,7 @@ public interface MessageService extends BaseService {
 	 * @param Messages
 	 *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
 	 * @param file
-	 *            전송파일 최대크기 3000Kbyte
+	 *            전송파일 최대크기 300Kbyte
 	 * @param reserveDT
 	 *            예약일시
 	 * @param adsYN
@@ -508,7 +508,7 @@ public interface MessageService extends BaseService {
 	 * @param Messages
 	 *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
 	 * @param file
-	 *            전송파일 최대크기 3000Kbyte
+	 *            전송파일 최대크기 300Kbyte
 	 * @param reserveDT
 	 *            예약일시
 	 * @param adsYN
