@@ -220,7 +220,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		if(sendNum == null || sendNum.isEmpty()) throw new PopbillException(-99999999,"발신번호가 입력되지 않았습니다.");
 		if(receivers == null || receivers.length == 0) throw new PopbillException(-99999999,"수신처 정보가 입력되지 않았습니다.");
 		if(files == null || files.length == 0) throw new PopbillException(-99999999,"발신파일 정보가 입력되지 않았습니다.");
-		if(files.length > 5) throw new PopbillException(-99999999,"동보발신 최대 파일갯수는 5개 입니다.");
+		if(files.length > 20) throw new PopbillException(-99999999,"동보발신 최대 파일갯수는 20개 입니다.");
 		
 		SendRequest request = new SendRequest();
 		

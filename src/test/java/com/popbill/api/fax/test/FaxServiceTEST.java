@@ -65,9 +65,9 @@ public class FaxServiceTEST {
 	@Test
 	public void sendFAX_Single_TEST() throws PopbillException {
 		
-		File file = new File("/Users/John/Desktop/test.html");
+		File file = new File("/Users/kimhyunjin/Workspace/popbill.sdk.example.py/popbill.fax.example.py/hello.html");
 		
-		String receiptNum = faxService.sendFAX("1234567890", "070-4304-2991", "070-111-222","수신자명칭",file, null, null, true, "팩스제목");
+		String receiptNum = faxService.sendFAX("1234567890", "0264429700", "0264429700","수신자명칭",file, null, null, true, "팩스제목");
 		
 		assertNotNull(receiptNum);
 		
@@ -128,18 +128,21 @@ public class FaxServiceTEST {
 	
 	@Test
 	public void sendFAX_MultiFile_TEST() throws PopbillException {
-		
-		File file1 = new File("/Users/John/Desktop/test.jpg");
-		
-		String receiptNum = faxService.sendFAX("1234567890", "02-6442-9700","111-2222-3333","수신자명칭",new File[]{file1}, null);
-		
+        File[] files = new File[20];
+		File file1 = new File("/Users/kimhyunjin/Pictures/", "example.png");
+
+        for (int i = 0; i < 20; i++){
+            files[i] = file1;
+        }
+
+		String receiptNum = faxService.sendFAX("1234567890", "02-6442-9700","111-2222-3333","수신자명칭", files, null);
+
 		assertNotNull(receiptNum);
-		
-		
+
 		FaxResult[] results = faxService.getFaxResult("1234567890", receiptNum);
-		
+
 		assertNotNull(results);
-		
+
 		System.out.println(results[0].getFileNames()[0] + " "+results[0].getSenderName());
 	}
 	
