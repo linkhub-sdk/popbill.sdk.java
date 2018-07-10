@@ -356,6 +356,33 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 		
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.HTTaxinvoiceService#getPopUpURL(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getPopUpURL(String CorpNum, String NTSConfirmNum) throws PopbillException {
+		if ( NTSConfirmNum.length() != 24 )
+			throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
+		URLResponse response = httpget("/HomeTax/Taxinvoice/" +NTSConfirmNum+"/PopUp", CorpNum, null, URLResponse.class);
+		
+		return response.url;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.HTTaxinvoiceService#getPopUpURL(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getPopUpURL(String CorpNum, String NTSConfirmNum,
+			String UserID) throws PopbillException {
+		if ( NTSConfirmNum.length() != 24 )
+			throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
+		URLResponse response = httpget("/HomeTax/Taxinvoice/" +NTSConfirmNum+"/PopUp", CorpNum, UserID, URLResponse.class);
+		
+		return response.url;
+	}
+	
 		
 	protected class JobIDResponse {
 		public String jobID;

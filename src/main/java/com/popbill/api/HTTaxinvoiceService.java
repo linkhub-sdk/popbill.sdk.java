@@ -369,4 +369,32 @@ public interface HTTaxinvoiceService extends BaseService{
 	 */
 	public Date getCertificateExpireDate(String CorpNum)
 			throws PopbillException;
+	
+	/**
+	 * 홈택스 전자세금계산서 팝업 URL
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param NTSConfirmNum
+	 * 			세금계산서 국세청 승인번호
+	 * @return
+	 * @throws PopbillException
+	 */
+	public String getPopUpURL(String CorpNum, String NTSConfirmNum) 
+			throws PopbillException;
+	
+	/**
+	 * 홈택스 전자세금계산서 팝업 URL
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param NTSConfirmNum
+	 * 			세금계산서 국세청 승인번호
+	 * @param UserID
+	 * 			회원아이디
+	 * @return
+	 * @throws PopbillException
+	 */
+	public String getPopUpURL(String CorpNum, String NTSConfirmNum, String UserID) 
+			throws PopbillException;
 }
