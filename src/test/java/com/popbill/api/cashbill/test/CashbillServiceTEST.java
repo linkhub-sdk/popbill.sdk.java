@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import com.popbill.api.CashbillService;
 import com.popbill.api.ChargeInfo;
+import com.popbill.api.EmailSendConfig;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.cashbill.CBSearchResult;
@@ -402,5 +403,33 @@ public class CashbillServiceTEST {
 		
 		System.out.println(response.getMessage());
 	}
+	
+	@Test
+	public void listEmailConfig_TEST() throws PopbillException{
+		
+		EmailSendConfig[] configList = cashbillService.listEmailConfig("1234567890");
+		
+		assertNotNull(configList);
+		
+		for(int i=0; i< configList.length; i++){
+
+			System.out.print(configList[i].getEmailType()+ " "+ configList[i].getSendYN());
+			System.out.println();
+		}
+	}
+	
+	@Test
+	public void updateEmailConfig_TEST() throws PopbillException{
+		
+		String CorpNum = "1234567890";
+		String EmailType = "CSH_ISSUE";
+		Boolean SendYN = true;
+		String UserID = "testkorea";
+		
+		Response response = cashbillService.updateEmailConfig(CorpNum, EmailType, SendYN, UserID);
+		assertNotNull(response);
+		
+		System.out.println("["+response.getCode() +"] " + response.getMessage());
+	}		
 }
 

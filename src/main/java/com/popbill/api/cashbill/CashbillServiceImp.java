@@ -20,6 +20,7 @@ import java.util.List;
 import com.popbill.api.BaseServiceImp;
 import com.popbill.api.CashbillService;
 import com.popbill.api.ChargeInfo;
+import com.popbill.api.EmailSendConfig;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 
@@ -733,6 +734,49 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		return httppost("/Cashbill", CorpNum, PostData, 
 				userID, "REVOKEISSUE", Response.class);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#updateEmailConfig(java.lang.String, java.lang.String, java.lang.Boolean)
+	 */
+	@Override
+	public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN) throws PopbillException {
+		return updateEmailConfig(CorpNum, EmailType, SendYN, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#updateEmailConfig(java.lang.String, java.lang.String, java.lang.Boolean, java.lang.String)
+	 */
+	@Override
+	public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN, String UserID)
+			throws PopbillException {
+		if (SendYN == null)
+			throw new PopbillException(-99999999, "메일전송여부(SendYN)가 입력되지 않았습니다.");
+		if (EmailType == null || EmailType.isEmpty())
+			throw new PopbillException(-99999999, "메일전송유형(EmailType)이 입력되지 않았습니다.");
+				
+		return httppost("/Cashbill/EmailSendConfig?EmailType=" + EmailType + "&SendYN=" + String.valueOf(SendYN),
+				CorpNum, null, UserID, "", Response.class);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#listEmailConfig(java.lang.String)
+	 */
+	@Override
+	public EmailSendConfig[] listEmailConfig(String CorpNum) throws PopbillException {
+		return httpget("/Cashbill/EmailSendConfig", CorpNum, null, EmailSendConfig[].class);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#listEmailConfig(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public EmailSendConfig[] listEmailConfig(String CorpNum, String UserID) throws PopbillException {
+		return httpget("/Cashbill/EmailSendConfig", CorpNum, UserID, EmailSendConfig[].class);
+	}		
 	
 	protected class MemoRequest {
 		public MemoRequest(String memo){

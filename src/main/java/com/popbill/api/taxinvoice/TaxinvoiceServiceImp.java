@@ -28,6 +28,7 @@ import com.popbill.api.ChargeInfo;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.TaxinvoiceService;
+import com.popbill.api.EmailSendConfig;
 
 /**
  *  Implementation of Popbill TaxinvoiceService Interface
@@ -1103,7 +1104,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		return httppost("/Taxinvoice", CorpNum, PostData, 
 				UserID, "ISSUE", Response.class);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.TaxinvoiceService#attachStatement(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, int, java.lang.String)
@@ -1139,7 +1140,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		return httppost("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "/DetachStmt",
 				CorpNum, PostData, null, "", Response.class);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.TaxinvoiceService#getChargeInfo(java.lang.String)
@@ -1148,7 +1149,49 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
 		return httpget("/Taxinvoice/ChargeInfo", CorpNum, null, ChargeInfo.class);
 	}
-	
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#updateEmailConfig(java.lang.String, java.lang.String, java.lang.Boolean)
+	 */
+	@Override
+	public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN) throws PopbillException {
+		return updateEmailConfig(CorpNum, EmailType, SendYN, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#updateEmailConfig(java.lang.String, java.lang.String, java.lang.Boolean, java.lang.String)
+	 */
+	@Override
+	public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN, String UserID)
+			throws PopbillException {
+		if (SendYN == null)
+			throw new PopbillException(-99999999, "메일전송여부(SendYN)가 입력되지 않았습니다.");
+		if (EmailType == null || EmailType.isEmpty())
+			throw new PopbillException(-99999999, "메일전송유형(EmailType)이 입력되지 않았습니다.");
+		
+		return httppost("/Taxinvoice/EmailSendConfig?EmailType=" + EmailType + "&SendYN=" + String.valueOf(SendYN),
+				CorpNum, null, UserID, "", Response.class);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#listEmailConfig(java.lang.String)
+	 */
+	@Override
+	public EmailSendConfig[] listEmailConfig(String CorpNum) throws PopbillException {
+		return httpget("/Taxinvoice/EmailSendConfig", CorpNum, null, EmailSendConfig[].class);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#listEmailConfig(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public EmailSendConfig[] listEmailConfig(String CorpNum, String UserID) throws PopbillException {
+		return httpget("/Taxinvoice/EmailSendConfig", CorpNum, UserID, EmailSendConfig[].class);
+	}
 
 	protected class CertResponse {
 		public String certificateExpiration;
@@ -1183,4 +1226,5 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		public String ItemCode;
 		public String MgtKey;
 	}
+
 }

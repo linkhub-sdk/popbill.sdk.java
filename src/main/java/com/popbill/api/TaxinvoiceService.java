@@ -1427,6 +1427,59 @@ public interface TaxinvoiceService extends BaseService {
 	 * @throws PopbillException
 	 */
 	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException;
+	
+	
+	/**
+	 * 
+	 * @param CorpNum
+	 * @param EmailType
+	 * @param SendYN
+	 * @return
+	 * @throws PopbillException
+	 */
+	public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN)
+			throws PopbillException;
+	
+	
+	/**
+	 *  알림메일 전송설정 수정
+	 *  
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param EmailType
+	 * 			메일전송유형
+	 * @param SendYN
+	 * 			전송 여부 (True = 전송, False = 미전송)
+	 * @param UserID
+	 * 			팝빌회원 아이디 
+	 * @return Response.
+	 * @throws PopbillException
+	 */
+	public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN, 
+			String UserID) throws PopbillException;
+	
+	
+	
+	/**
+	 * 
+	 * @param CorpNum
+	 * @return
+	 * @throws PopbillException
+	 */
+	public EmailSendConfig[] listEmailConfig(String CorpNum) throws PopbillException;	
+	
+	/**
+	 *  알림메일 전송목록 조회
+	 *  
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID
+	 * 			팝빌회원 아이디 
+	 * @return EmailSendConfig 메일전송정보.
+	 * @throws PopbillException
+	 */
+	public EmailSendConfig[] listEmailConfig(String CorpNum, String UserID) throws PopbillException;	
+	
 }
 
 
