@@ -51,9 +51,9 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	 * @see com.popbill.api.FaxService#getUnitCost
 	 */
 	@Override
-	public float getUnitCost(String CorpNum) throws PopbillException {
+	public float getUnitCost(String corpNum) throws PopbillException {
 		UnitCostResponse response = httpget("/FAX/UnitCost",
-				CorpNum, null, UnitCostResponse.class);
+				corpNum, null, UnitCostResponse.class);
 
 		return response.unitCost;
 	}
@@ -63,8 +63,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	 * @see com.popbill.api.FaxService#getURL(java.lang.String, java.lang.String)
 	 */
 	@Override
-	public String getURL(String CorpNum, String TOGO) throws PopbillException {
-		return getURL(CorpNum, null, TOGO);
+	public String getURL(String corpNum, String TOGO) throws PopbillException {
+		return getURL(corpNum, null, TOGO);
 	}
 	
 	/*
@@ -73,21 +73,21 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	 * @see com.popbill.api.FaxService#getURL
 	 */
 	@Override
-	public String getURL(String CorpNum, String UserID, String TOGO)
+	public String getURL(String corpNum, String userID, String TOGO)
 			throws PopbillException {
 
-		URLResponse response = httpget("/FAX/?TG=" + TOGO, CorpNum,
-				UserID, URLResponse.class);
+		URLResponse response = httpget("/FAX/?TG=" + TOGO, corpNum,
+				userID, URLResponse.class);
 
 		return response.url;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File, java.util.Date)
 	 */
 	@Override
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
 			String receiveName, File file, Date reserveDT)
 			throws PopbillException {
 
@@ -95,57 +95,249 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		receiver.setReceiveNum(receiveNum);
 		receiver.setReceiveName(receiveName);
 		
-		return requestFax(CorpNum, sendNum, null, new Receiver[]{receiver}, 
-				new File[]{file}, reserveDT, null, null, null);
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, 
+				new File[]{file}, reserveDT, null, null, null, null);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File, java.util.Date, java.lang.Boolean)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File file, Date reserveDT, Boolean adsYN)
+			throws PopbillException {
+		
+		Receiver receiver = null;
+				
+		receiver = new Receiver();
+		receiver.setReceiveNum(receiveNum);
+		receiver.setReceiveName(receiveName);
+		
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, 
+				new File[]{file}, reserveDT, null, adsYN, null, null);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File, java.util.Date, java.lang.Boolean, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File file, Date reserveDT, Boolean adsYN, String requestNum)
+			throws PopbillException {
+		
+		Receiver receiver = null;
+		
+		receiver = new Receiver();
+		receiver.setReceiveNum(receiveNum);
+		receiver.setReceiveName(receiveName);
+		
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, 
+				new File[]{file}, reserveDT, null, adsYN, null, requestNum);
+	}	
 
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File, java.util.Date, java.lang.String)
 	 */
 	@Override
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
-			String receiveName, File file, Date reserveDT, String UserID)
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File file, Date reserveDT, String userID)
 			throws PopbillException {
 		
 		Receiver receiver = new Receiver();
 		receiver.setReceiveNum(receiveNum);
 		receiver.setReceiveName(receiveName);
 		
-		return requestFax(CorpNum, sendNum, null, new Receiver[]{receiver}, new File[]{file},
-				reserveDT, UserID, null, null);
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, new File[]{file},
+				reserveDT, userID, null, null, null);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File, java.util.Date, java.lang.String, java.lang.Boolean)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File file, Date reserveDT, String userID,
+			Boolean adsYN) throws PopbillException {
+		
+		Receiver receiver = new Receiver();
+		receiver.setReceiveNum(receiveNum);
+		receiver.setReceiveName(receiveName);
+		
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, 
+				new File[]{file}, reserveDT, userID, adsYN, null, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File, java.util.Date, java.lang.String, java.lang.Boolean, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File file, Date reserveDT, String userID,
+			Boolean adsYN, String title) throws PopbillException {
+		
+		Receiver receiver = new Receiver();
+		receiver.setReceiveNum(receiveNum);
+		receiver.setReceiveName(receiveName);
+		
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, 
+				new File[]{file}, reserveDT, userID, adsYN, title, null);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File, java.util.Date, java.lang.String, java.lang.Boolean, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File file, Date reserveDT, String userID,
+			Boolean adsYN, String title, String requestNum) throws PopbillException {
+		
+		Receiver receiver = new Receiver();
+		receiver.setReceiveNum(receiveNum);
+		receiver.setReceiveName(receiveName);
+		
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, 
+				new File[]{file}, reserveDT, userID, adsYN, title, requestNum);
+	}	
 
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File, java.util.Date)
 	 */
 	@Override
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
 			File file, Date reserveDT) throws PopbillException {
 
-		return requestFax(CorpNum, sendNum, null, receivers, new File[]{file}, 
-				reserveDT, null, null, null);
+		return requestFax(corpNum, sendNum, null, receivers, new File[]{file}, 
+				reserveDT, null, null, null, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File, java.util.Date, java.lang.Boolean)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File file, Date reserveDT, Boolean adsYN) throws PopbillException {
+
+		return requestFax(corpNum, sendNum, null, receivers, new File[]{file},
+				reserveDT, null, adsYN, null, null);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File, java.util.Date, java.lang.Boolean, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File file, Date reserveDT, Boolean adsYN, String title)
+			throws PopbillException {
+
+		return requestFax(corpNum, sendNum, null, receivers, 
+				new File[]{file}, reserveDT, null, adsYN, title, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File, java.util.Date, java.lang.Boolean, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File file, Date reserveDT, Boolean adsYN, String title, String requestNum)
+			throws PopbillException {
+
+		return requestFax(corpNum, sendNum, null, receivers, 
+				new File[]{file}, reserveDT, null, adsYN, title, requestNum);
+	}	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File, java.util.Date, java.lang.String)
 	 */
 	@Override
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
-			File file, Date reserveDT, String UserID) throws PopbillException {
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File file, Date reserveDT, String userID) throws PopbillException {
 		
-		return requestFax(CorpNum, sendNum, null, receivers, new File[]{file}, 
-				reserveDT, UserID, null, null);
+		return requestFax(corpNum, sendNum, null, receivers, new File[]{file}, 
+				reserveDT, userID, null, null, null);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File, java.util.Date, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File file, Date reserveDT, String userID, String title)
+			throws PopbillException {
+
+		return requestFax(corpNum, sendNum, null, receivers, 
+				new File[]{file}, reserveDT, userID, false, title, null);	
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File, java.util.Date, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File file, Date reserveDT, String userID, String title, String requestNum)
+			throws PopbillException {
+
+		return requestFax(corpNum, sendNum, null, receivers, 
+				new File[]{file}, reserveDT, userID, false, title, requestNum);
+	}	
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File, java.util.Date, java.lang.String, java.lang.Boolean)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File file, Date reserveDT, String userID, Boolean adsYN)
+			throws PopbillException {
+		
+		return requestFax(corpNum, sendNum, null, receivers, new File[]{file}, 
+				reserveDT, userID, adsYN, null, null);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File, java.util.Date, java.lang.String, java.lang.Boolean, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File file, Date reserveDT, String userID, Boolean adsYN,
+			String title) throws PopbillException {
+		
+		return requestFax(corpNum, sendNum, null, receivers, 
+				new File[]{file}, reserveDT, userID, adsYN, title, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File, java.util.Date, java.lang.String, java.lang.Boolean, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File file, Date reserveDT, String userID, Boolean adsYN,
+			String title, String requestNum) throws PopbillException {		
+		
+		return requestFax(corpNum, sendNum, null, receivers, 
+				new File[]{file}, reserveDT, userID, adsYN, title, requestNum);
+	}		
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File[], java.util.Date)
 	 */
 	@Override
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
 			String receiveName, File[] files, Date reserveDT)
 			throws PopbillException {
 
@@ -153,8 +345,59 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		receiver.setReceiveNum(receiveNum);
 		receiver.setReceiveName(receiveName);
 				
-		return requestFax(CorpNum, sendNum, null, new Receiver[]{receiver}, files,
-				reserveDT, null, null, null);
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, files,
+				reserveDT, null, null, null, null);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File[], java.util.Date, java.lang.Boolean)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File[] files, Date reserveDT, Boolean adsYN)
+			throws PopbillException {
+
+		Receiver receiver = new Receiver();
+		receiver.setReceiveNum(receiveNum);
+		receiver.setReceiveName(receiveName);
+				
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, files,
+				reserveDT, null, adsYN, null, null);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File[], java.util.Date, java.lang.Boolean, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File[] files, Date reserveDT, Boolean adsYN,
+			String title) throws PopbillException {
+		
+		Receiver receiver = new Receiver();
+		receiver.setReceiveNum(receiveNum);
+		receiver.setReceiveName(receiveName);
+		
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, 
+				files, reserveDT, null, adsYN, title, null);
+	}		
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File[], java.util.Date, java.lang.Boolean, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File[] files, Date reserveDT, Boolean adsYN,
+			String title, String requestNum) throws PopbillException {
+		
+		Receiver receiver = new Receiver();
+		receiver.setReceiveNum(receiveNum);
+		receiver.setReceiveName(receiveName);
+		
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, 
+				files, reserveDT, null, adsYN, title, requestNum);
 	}
 	
 	/*
@@ -162,60 +405,298 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File[], java.util.Date, java.lang.String)
 	 */
 	@Override
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
-			String receiveName, File[] files, Date reserveDT, String UserID)
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File[] files, Date reserveDT, String userID)
 			throws PopbillException {
 		
 		Receiver receiver = new Receiver();
 		receiver.setReceiveNum(receiveNum);
 		receiver.setReceiveName(receiveName);
 		
-		return requestFax(CorpNum, sendNum, null, new Receiver[]{receiver}, files,
-				reserveDT, UserID, null, null);	 
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, files,
+				reserveDT, userID, null, null, null);	 
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File[], java.util.Date, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File[] files, Date reserveDT, String userID,
+			String title) throws PopbillException {
+		
+		Receiver receiver = new Receiver();
+		receiver.setReceiveNum(receiveNum);
+		receiver.setReceiveName(receiveName);
+		
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, 
+				files, reserveDT, userID, false, title, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File[], java.util.Date, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File[] files, Date reserveDT, String userID,
+			String title, String requestNum) throws PopbillException {
+		
+		Receiver receiver = new Receiver();
+		receiver.setReceiveNum(receiveNum);
+		receiver.setReceiveName(receiveName);
+		
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, 
+				files, reserveDT, userID, false, title, requestNum);
+	}	
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File[], java.util.Date, java.lang.String, java.lang.Boolean)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File[] files, Date reserveDT, String userID,
+			Boolean adsYN) throws PopbillException {
+		
+		Receiver receiver = new Receiver();
+		receiver.setReceiveNum(receiveNum);
+		receiver.setReceiveName(receiveName);
+				
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, files, 
+				reserveDT, userID, adsYN, null, null);
+	}	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File[], java.util.Date, java.lang.String, java.lang.Boolean, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File[] files, Date reserveDT, String userID,
+			Boolean adsYN, String title) throws PopbillException {
+
+		Receiver receiver = new Receiver();
+		receiver.setReceiveNum(receiveNum);
+		receiver.setReceiveName(receiveName);
+		
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, 
+				files, reserveDT, userID, adsYN, title, null);
+	}	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File[], java.util.Date, java.lang.String, java.lang.Boolean, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String receiveNum,
+			String receiveName, File[] files, Date reserveDT, String userID,
+			Boolean adsYN, String title, String requestNum) throws PopbillException {
+
+		Receiver receiver = new Receiver();
+		receiver.setReceiveNum(receiveNum);
+		receiver.setReceiveName(receiveName);
+		
+		return requestFax(corpNum, sendNum, null, new Receiver[]{receiver}, 
+				files, reserveDT, userID, adsYN, title, requestNum);
+	}	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String)
 	 */
 	@Override
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
-			File[] files, Date reserveDT, String UserID)
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File[] files, Date reserveDT, String userID)
 			throws PopbillException {
 		
-		return requestFax(CorpNum, sendNum, null, receivers, files, reserveDT,
-				UserID, null, null);
+		return requestFax(corpNum, sendNum, null, receivers, files, reserveDT,
+				userID, null, null, null);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File[] files, Date reserveDT, String userID, String title)
+			throws PopbillException {
+		
+		return requestFax(corpNum, sendNum, null, receivers, 
+				files, reserveDT, userID, false, title, null);
+	}	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File[] files, Date reserveDT, String userID, String title, String reqestNum)
+			throws PopbillException {
+		
+		return requestFax(corpNum, sendNum, null, receivers, 
+				files, reserveDT, userID, false, title, reqestNum);
+	}		
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String, java.lang.Boolean)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File[] files, Date reserveDT, String userID, Boolean adsYN)
+			throws PopbillException {
+	
+		return requestFax(corpNum, sendNum, null, receivers, files, reserveDT,
+				userID, adsYN, null, null);
+	}	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String, java.lang.Boolean, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File[] files, Date reserveDT, String userID, Boolean adsYN,
+			String title) throws PopbillException {
+		
+		return requestFax(corpNum, sendNum, null, receivers, 
+				files, reserveDT, userID, adsYN, title, null);
+	}	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String, java.lang.Boolean, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
+			File[] files, Date reserveDT, String userID, Boolean adsYN,
+			String title, String requestNum) throws PopbillException {
+		
+		return requestFax(corpNum, sendNum, null, receivers, 
+				files, reserveDT, userID, adsYN, title, requestNum);
+	}		
 
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date)
 	 */
 	@Override
-	public String sendFAX(String CorpNum, String sendNum, String senderName,
+	public String sendFAX(String corpNum, String sendNum, String senderName,
 			Receiver[] receivers, File[] files, Date reserveDT)
 			throws PopbillException {
 	
-		return requestFax(CorpNum, sendNum, senderName, receivers, files, reserveDT,
-				null, null, null);
+		return requestFax(corpNum, sendNum, senderName, receivers, files, reserveDT,
+				null, null, null, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.Boolean)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String senderName,
+			Receiver[] receivers, File[] files, Date reserveDT, Boolean adsYN)
+			throws PopbillException {
+		return requestFax(corpNum, sendNum, senderName, receivers, files, reserveDT,
+				null, adsYN, null, null);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.Boolean, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String senderName,
+			Receiver[] receivers, File[] files, Date reserveDT, Boolean adsYN, String requestNum)
+			throws PopbillException {
+		return requestFax(corpNum, sendNum, senderName, receivers, files, reserveDT,
+				null, adsYN, null, requestNum);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String senderName,
+			Receiver[] receivers, File[] files, Date reserveDT, String userID)
+			throws PopbillException {
+		
+		return requestFax(corpNum, sendNum, senderName, receivers, files, reserveDT,
+				userID, false, null, null);
+	}	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String senderName,
+			Receiver[] receivers, File[] files, Date reserveDT, String userID,
+			String title) throws PopbillException {
+		
+		return requestFax(corpNum, sendNum, senderName, receivers, 
+				files, reserveDT, userID, false, title, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String senderName,
+			Receiver[] receivers, File[] files, Date reserveDT, String userID,
+			String title, String requestNum) throws PopbillException {
+		
+		return requestFax(corpNum, sendNum, senderName, receivers, 
+				files, reserveDT, userID, false, title, requestNum);
+	}	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String, java.lang.Boolean)
 	 */
 	@Override
-	public String sendFAX(String CorpNum, String sendNum, String senderName,
-			Receiver[] receivers, File[] files, Date reserveDT, String UserID, Boolean adsYN)
+	public String sendFAX(String corpNum, String sendNum, String senderName,
+			Receiver[] receivers, File[] files, Date reserveDT, String userID, Boolean adsYN)
 			throws PopbillException {
 
-		return requestFax(CorpNum, sendNum, senderName, receivers, files, reserveDT,
-				UserID, adsYN, null);
+		return requestFax(corpNum, sendNum, senderName, receivers, files, reserveDT,
+				userID, adsYN, null, null);
+	}	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String, java.lang.Boolean, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String senderName,
+			Receiver[] receivers, File[] files, Date reserveDT, String userID,
+			Boolean adsYN, String title) throws PopbillException {
+
+		return requestFax(corpNum, sendNum, senderName, receivers, 
+				files, reserveDT, userID, adsYN, title, null);
 	}
 	
-	
-	private String requestFax(String CorpNum, String sendNum, String senderName,
-			Receiver[] receivers, File[] files, Date reserveDT, String UserID, Boolean adsYN, String title)
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String, java.lang.Boolean, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String sendFAX(String corpNum, String sendNum, String senderName,
+			Receiver[] receivers, File[] files, Date reserveDT, String userID,
+			Boolean adsYN, String title, String requestNum) throws PopbillException {
+
+		return requestFax(corpNum, sendNum, senderName, receivers, 
+				files, reserveDT, userID, adsYN, title, requestNum);
+	}
+
+	private String requestFax(String corpNum, String sendNum, String senderName,
+			Receiver[] receivers, File[] files, Date reserveDT, String userID, Boolean adsYN, String title, String requestNum)
 				throws PopbillException {
 		if(sendNum == null || sendNum.isEmpty()) throw new PopbillException(-99999999,"발신번호가 입력되지 않았습니다.");
 		if(receivers == null || receivers.length == 0) throw new PopbillException(-99999999,"수신처 정보가 입력되지 않았습니다.");
@@ -239,6 +720,9 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		if (title != null)
 			request.title = title;
 		
+		if (requestNum != null)
+			request.requestNum = requestNum;
+
 		request.fCnt = files.length;
 		
 		String PostData = toJsonString(request);
@@ -257,7 +741,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 			uploadFiles.add(uf);
 		}
 		
-		ReceiptResponse response = httppostFiles("/FAX", CorpNum, PostData, uploadFiles, UserID, ReceiptResponse.class);
+		ReceiptResponse response = httppostFiles("/FAX", corpNum, PostData, uploadFiles, userID, ReceiptResponse.class);
 		
 		for(UploadFile uf : uploadFiles) {
 			if(uf.fileData != null)
@@ -268,14 +752,14 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		
 		return response.receiptNum;
 	}
-		
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.FaxService#resendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.lang.String)
 	 */
 	@Override
-	public String resendFAX(String CorpNum, String receiptNum, String sendNum, String senderName,
-			String receiveNum, String receiveName, Date reserveDT, String UserID)
+	public String resendFAX(String corpNum, String receiptNum, String sendNum, String senderName,
+			String receiveNum, String receiveName, Date reserveDT, String userID)
 			throws PopbillException {
 				
 		Receiver receiver = null;
@@ -284,38 +768,19 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 			receiver = new Receiver();
 			receiver.setReceiveNum(receiveNum);
 			receiver.setReceiveName(receiveName);
-			return resendFAX(CorpNum,receiptNum, sendNum, senderName, new Receiver[]{receiver},reserveDT,UserID,null);
+			return resendFAX(corpNum,receiptNum, sendNum, senderName, new Receiver[]{receiver},reserveDT,userID,null);
 		}
-		return resendFAX(CorpNum,receiptNum, sendNum, senderName, null, reserveDT, UserID, null);	
+		return resendFAX(corpNum,receiptNum, sendNum, senderName, null, reserveDT, userID, null);	
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see com.popbill.api.FaxService#resendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.util.Date)
+	 * @see com.popbill.api.FaxService#resendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public String resendFAX(String CorpNum, String receiptNum, String sendNum,
-			String senderName, Receiver[] receivers, Date reserveDT) throws PopbillException {
-		
-		return resendFAX(CorpNum, receiptNum, sendNum, senderName, receivers, reserveDT, null, null);
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.popbill.api.FaxService#resendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.util.Date, java.lang.String)
-	 */
-	@Override
-	public String resendFAX(String CorpNum, String receiptNum, String sendNum,
-			String senderName, Receiver[] receivers, Date reserveDT,
-			String UserID) throws PopbillException {
-		
-		return resendFAX(CorpNum, receiptNum, sendNum, senderName, receivers, reserveDT, UserID, null);
-	}
-	
-	@Override
-	public String resendFAX(String CorpNum, String receiptNum, String sendNum,
+	public String resendFAX(String corpNum, String receiptNum, String sendNum,
 			String senderName, String receiveNum, String receiveName,
-			Date reserveDT, String UserID, String title)
+			Date reserveDT, String userID, String title)
 			throws PopbillException {
 		
 		Receiver receiver = null;
@@ -325,16 +790,74 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 			receiver.setReceiveNum(receiveNum);
 			receiver.setReceiveName(receiveName);
 			
-			return resendFAX(CorpNum,receiptNum, sendNum, senderName, new Receiver[]{receiver},reserveDT,UserID,title);
+			return resendFAX(corpNum,receiptNum, sendNum, senderName, new Receiver[]{receiver},reserveDT,userID,title);
 		}
-		return resendFAX(CorpNum,receiptNum, sendNum, senderName, null, reserveDT, UserID, title);	
+		return resendFAX(corpNum,receiptNum, sendNum, senderName, null, reserveDT, userID, title);			
+	}	
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#resendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String resendFAX(String corpNum, String receiptNum, String sendNum,
+			String senderName, String receiveNum, String receiveName,
+			Date reserveDT, String userID, String title, String requestNum)
+			throws PopbillException {
 		
+		Receiver receiver = null;
+		
+		if ( !receiveNum.isEmpty() || !receiveName.isEmpty() ) {
+			receiver = new Receiver();
+			receiver.setReceiveNum(receiveNum);
+			receiver.setReceiveName(receiveName);
+			
+			return resendFAX(corpNum,receiptNum, sendNum, senderName, new Receiver[]{receiver}, reserveDT, userID, title, requestNum);
+		}
+		return resendFAX(corpNum,receiptNum, sendNum, senderName, null, reserveDT, userID, title, requestNum);			
+	}		
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#resendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.util.Date)
+	 */
+	@Override
+	public String resendFAX(String corpNum, String receiptNum, String sendNum,
+			String senderName, Receiver[] receivers, Date reserveDT) throws PopbillException {
+		
+		return resendFAX(corpNum, receiptNum, sendNum, senderName, receivers, reserveDT, null, null);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#resendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.util.Date, java.lang.String)
+	 */
 	@Override
-	public String resendFAX(String CorpNum, String receiptNum, String sendNum,
+	public String resendFAX(String corpNum, String receiptNum, String sendNum,
 			String senderName, Receiver[] receivers, Date reserveDT,
-			String UserID, String title) throws PopbillException {
+			String userID) throws PopbillException {
+		
+		return resendFAX(corpNum, receiptNum, sendNum, senderName, receivers, reserveDT, userID, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#resendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.util.Date, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String resendFAX(String corpNum, String receiptNum, String sendNum,
+			String senderName, Receiver[] receivers, Date reserveDT,
+			String userID, String title) throws PopbillException {
+		return resendFAX(corpNum, receiptNum, sendNum, senderName, receivers, reserveDT, userID, title, null);
+	}
+
+	/*
+	 * verride(non-Javadoc)
+	 * @see com.popbill.api.FaxService#resendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.util.Date, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	public String resendFAX(String corpNum, String receiptNum, String sendNum,
+			String senderName, Receiver[] receivers, Date reserveDT,
+			String userID, String title, String requestNum) throws PopbillException {
 		
 		if(receiptNum == null)
 			throw new PopbillException(-99999999,"팩스 접수번호(receiptNum)가 입력되지 않았습니다.");
@@ -356,112 +879,224 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		if (reserveDT != null) 
 			request.sndDT = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(reserveDT);
 		
+		if (requestNum != null) 
+			request.requestNum = requestNum;
 		
 		String PostData = toJsonString(request);
 		
-		ReceiptResponse response = httppost("/FAX/"+receiptNum, CorpNum, PostData, UserID, ReceiptResponse.class);
+		ReceiptResponse response = httppost("/FAX/"+receiptNum, corpNum, PostData, userID, ReceiptResponse.class);
 		
 		return response.receiptNum;
 	}
-	
-	
-	
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.popbill.api.FaxService#getFaxResult
+	 * @see com.popbill.api.FaxService#resendFAXRN(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public FaxResult[] getFaxResult(String CorpNum, String receiptNum)
+	public String resendFAXRN(String corpNum, String requestNum, String sendNum,
+			String senderName, String receiveNum, String receiveName,
+			Date reserveDT, String userID, String title, String originalFAXrequestNum)
+			throws PopbillException {
+		
+		Receiver receiver = null;
+		
+		if ( !receiveNum.isEmpty() || !receiveName.isEmpty() ) {
+			receiver = new Receiver();
+			receiver.setReceiveNum(receiveNum);
+			receiver.setReceiveName(receiveName);
+			
+			return resendFAXRN(corpNum,requestNum, sendNum, senderName, new Receiver[]{receiver}, reserveDT, userID, title, originalFAXrequestNum);
+		}
+		return resendFAXRN(corpNum,requestNum, sendNum, senderName, null, reserveDT, userID, title, originalFAXrequestNum);			
+	}			
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#resendFAXRN(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.util.Date, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String resendFAXRN(String corpNum, String requestNum, String sendNum,
+			String senderName, Receiver[] receivers, Date reserveDT,
+			String userID, String title, String originalFAXrequestNum) throws PopbillException {
+		
+		if(requestNum == null)
+			throw new PopbillException(-99999999,"재전송 팩스의 전송요청번호(requestNum)가 입력되지 않았습니다.");
+		
+		if(originalFAXrequestNum == null)
+			throw new PopbillException(-99999999,"원본 팩스 전송시 할당한 전송요청번호(originalFAXrequestNum)가 입력되지 않았습니다.");
+		
+		SendRequest request = new SendRequest();
+		
+		if (sendNum != null)
+			request.snd = sendNum;
+		
+		if ( senderName != null)
+			request.sndnm = senderName;
+		
+		if ( title != null)
+			request.title = title;
+
+		if (receivers != null) 
+			request.rcvs = receivers;
+		
+		if (reserveDT != null) 
+			request.sndDT = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(reserveDT);
+		
+		if (requestNum != null) 
+			request.requestNum = requestNum;
+		
+		String PostData = toJsonString(request);
+		
+		ReceiptResponse response = httppost("/FAX/Resend/"+originalFAXrequestNum, corpNum, PostData, userID, ReceiptResponse.class);
+		
+		return response.receiptNum;
+	}	
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#getFaxResult(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public FaxResult[] getFaxResult(String corpNum, String receiptNum)
 			throws PopbillException {
 		if (receiptNum == null)
 			throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
 
-		return httpget("/FAX/" + receiptNum, CorpNum, null,
+		return httpget("/FAX/" + receiptNum, corpNum, null,
 				FaxResult[].class);
 	}
-	
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#getFaxResultRN(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public FaxResult[] getFaxResultRN(String corpNum, String requestNum)
+			throws PopbillException {
+		if (requestNum == null)
+			throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
+
+		return httpget("/FAX/Get/" + requestNum, corpNum, null,
+				FaxResult[].class);
+	}	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.FaxService#cancelReserve(java.lang.String, java.lang.String)
 	 */
 	@Override
-	public Response cancelReserve(String CorpNum, String receiptNum)
+	public Response cancelReserve(String corpNum, String receiptNum)
 			throws PopbillException {
-		return cancelReserve(CorpNum, receiptNum, null);
+		return cancelReserve(corpNum, receiptNum, null);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.popbill.api.FaxService#cancelReserve
+	 * @see com.popbill.api.FaxService#cancelReserve(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public Response cancelReserve(String CorpNum, String receiptNum,String UserID)
+	public Response cancelReserve(String corpNum, String receiptNum,String userID)
 			throws PopbillException {
 		if (receiptNum == null)
 			throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
 
-		return httpget("/FAX/" + receiptNum + "/Cancel", CorpNum, UserID,
+		return httpget("/FAX/" + receiptNum + "/Cancel", corpNum, userID,
 				Response.class);
 	}
-	
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#cancelReserveRN(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Response cancelReserveRN(String corpNum, String requestNum)
+			throws PopbillException {
+		return cancelReserveRN(corpNum, requestNum, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#cancelReserveRN(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Response cancelReserveRN(String corpNum, String requestNum,String userID)
+			throws PopbillException {
+		if (requestNum == null)
+			throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
+
+		return httpget("/FAX/Cancel/"+requestNum, corpNum, userID,
+				Response.class);
+	}	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.FaxService#search(java.lang.String, java.lang.String, java.lang.String, java.lang.String[], java.lang.Boolean, java.lang.Boolean, int, int, java.lang.String)
 	 */
 	@Override
-	public FAXSearchResult search(String CorpNum, String SDate, String EDate,
-			String[] State, Boolean ReserveYN, Boolean SenderOnly, int Page,
-			int PerPage, String Order) throws PopbillException {
-		if (SDate == null)
+	public FAXSearchResult search(String corpNum, String sDate, String eDate,
+			String[] state, Boolean reserveYN, Boolean senderOnly, int page,
+			int perPage, String order) throws PopbillException {
+		return search(corpNum, sDate, eDate, state, reserveYN, senderOnly, page, perPage, order, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.FaxService#search(java.lang.String, java.lang.String, java.lang.String, java.lang.String[], java.lang.Boolean, java.lang.Boolean, int, int, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public FAXSearchResult search(String corpNum, String sDate, String eDate,
+			String[] state, Boolean reserveYN, Boolean senderOnly, int page,
+			int perPage, String order, String qString) throws PopbillException {
+		if (sDate == null)
 			throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
-		if (EDate == null)
+		if (eDate == null)
 			throw new PopbillException(-99999999, "종료일자가 입력되지 않았습니다.");
 		
-		String uri = "/FAX/Search?SDate=" + SDate;
-		uri += "&EDate=" + EDate;
-		uri += "&State=" + Arrays.toString(State)
+		String uri = "/FAX/Search?SDate=" + sDate;
+		uri += "&EDate=" + eDate;
+		uri += "&State=" + Arrays.toString(state)
 				.replaceAll("\\[|\\]|\\s", "");
 		
-		if (ReserveYN) {
+		if (reserveYN) {
 			uri += "&ReserveYN=1";
 		} else {
 			uri += "&ReserveYN=0";
 		}
 		
-		if (SenderOnly) {
+		if (senderOnly) {
 			uri +="&SenderOnly=1";
 		} else {
 			uri += "&SenderOnly=0";
 		}
 		
-		uri += "&Page=" + Integer.toString(Page);
-		uri += "&PerPage=" + Integer.toString(PerPage);
-		uri += "&Order=" + Order;
+		uri += "&Page=" + Integer.toString(page);
+		uri += "&PerPage=" + Integer.toString(perPage);
+		uri += "&Order=" + order;
 		
-		return httpget(uri, CorpNum, null, FAXSearchResult.class);
-	}
+		if (qString != null)
+			uri += "&QString=" + qString;
+		
+		return httpget(uri, corpNum, null, FAXSearchResult.class);
+	}	
 	
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.FaxService#getChargeInfo(java.lang.String)
 	 */
-	
 	@Override
-	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
-		return httpget("/FAX/ChargeInfo", CorpNum, null, ChargeInfo.class);
+	public ChargeInfo getChargeInfo(String corpNum) throws PopbillException {
+		return httpget("/FAX/ChargeInfo", corpNum, null, ChargeInfo.class);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.FaxService#getSenderNumberList(java.lang.String)
 	 */
 	@Override
-	public SenderNumber[] getSenderNumberList(String CorpNum)
+	public SenderNumber[] getSenderNumberList(String corpNum)
 			throws PopbillException {
-		return getSenderNumberList(CorpNum, null);
+		return getSenderNumberList(corpNum, null);
 	}
 
 	/*
@@ -469,279 +1104,12 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	 * @see com.popbill.api.FaxService#getSenderNumberList(java.lang.String, java.lang.String)
 	 */
 	@Override
-	public SenderNumber[] getSenderNumberList(String CorpNum, String UserID)
+	public SenderNumber[] getSenderNumberList(String corpNum, String userID)
 			throws PopbillException {
 		
-		return httpget("/FAX/SenderNumber", CorpNum, UserID, SenderNumber[].class);
+		return httpget("/FAX/SenderNumber", corpNum, userID, SenderNumber[].class);
 	}
 
-	
-	/*
-	 * 광고팩스 전송을 위한 adsYN 추가 SendFAX Overloading
-	 */
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File, java.util.Date, java.lang.Boolean)
-	 */
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
-			String receiveName, File file, Date reserveDT, Boolean adsYN)
-			throws PopbillException {
-		
-		Receiver receiver = null;
-				
-		receiver = new Receiver();
-		receiver.setReceiveNum(receiveNum);
-		receiver.setReceiveName(receiveName);
-		
-		return requestFax(CorpNum, sendNum, null, new Receiver[]{receiver}, 
-				new File[]{file}, reserveDT, null, adsYN, null);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File, java.util.Date, java.lang.String, java.lang.Boolean)
-	 */
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
-			String receiveName, File file, Date reserveDT, String UserID,
-			Boolean adsYN) throws PopbillException {
-		
-		Receiver receiver = new Receiver();
-		receiver.setReceiveNum(receiveNum);
-		receiver.setReceiveName(receiveName);
-		
-		return requestFax(CorpNum, sendNum, null, new Receiver[]{receiver}, 
-				new File[]{file}, reserveDT, UserID, adsYN, null);
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File, java.util.Date, java.lang.Boolean)
-	 */
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
-			File file, Date reserveDT, Boolean adsYN) throws PopbillException {
-
-		return requestFax(CorpNum, sendNum, null, receivers, new File[]{file},
-				reserveDT, null, adsYN, null);
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File, java.util.Date, java.lang.String, java.lang.Boolean)
-	 */
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
-			File file, Date reserveDT, String UserID, Boolean adsYN)
-			throws PopbillException {
-		
-		return requestFax(CorpNum, sendNum, null, receivers, new File[]{file}, 
-				reserveDT, UserID, adsYN, null);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File[], java.util.Date, java.lang.Boolean)
-	 */
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
-			String receiveName, File[] files, Date reserveDT, Boolean adsYN)
-			throws PopbillException {
-
-		Receiver receiver = new Receiver();
-		receiver.setReceiveNum(receiveNum);
-		receiver.setReceiveName(receiveName);
-				
-		return requestFax(CorpNum, sendNum, null, new Receiver[]{receiver}, files,
-				reserveDT, null, adsYN, null);
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File[], java.util.Date, java.lang.String, java.lang.Boolean)
-	 */
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
-			String receiveName, File[] files, Date reserveDT, String UserID,
-			Boolean adsYN) throws PopbillException {
-		
-		Receiver receiver = new Receiver();
-		receiver.setReceiveNum(receiveNum);
-		receiver.setReceiveName(receiveName);
-				
-		return requestFax(CorpNum, sendNum, null, new Receiver[]{receiver}, files, 
-				reserveDT, UserID, adsYN, null);
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String, java.lang.Boolean)
-	 */
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
-			File[] files, Date reserveDT, String UserID, Boolean adsYN)
-			throws PopbillException {
-	
-		return requestFax(CorpNum, sendNum, null, receivers, files, reserveDT,
-				UserID, adsYN, null);
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.Boolean)
-	 */
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, String senderName,
-			Receiver[] receivers, File[] files, Date reserveDT, Boolean adsYN)
-			throws PopbillException {
-		return requestFax(CorpNum, sendNum, senderName, receivers, files, reserveDT,
-				null, adsYN, null);
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, com.popbill.api.fax.Receiver[], java.io.File[], java.util.Date, java.lang.String)
-	 */
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, String senderName,
-			Receiver[] receivers, File[] files, Date reserveDT, String UserID)
-			throws PopbillException {
-		
-		return requestFax(CorpNum, sendNum, senderName, receivers, files, reserveDT,
-				UserID, false, null);
-	}
-	
-	
-	/*
-	 *  팩스 제목 처리를 위한 SendFax Overload 추가
-	 *  - 2017/07/14
-	 */
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.popbill.api.FaxService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File, java.util.Date, java.lang.String, java.lang.Boolean, java.lang.String)
-	 */
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
-			String receiveName, File file, Date reserveDT, String UserID,
-			Boolean adsYN, String title) throws PopbillException {
-		
-		Receiver receiver = new Receiver();
-		receiver.setReceiveNum(receiveNum);
-		receiver.setReceiveName(receiveName);
-		
-		return requestFax(CorpNum, sendNum, null, new Receiver[]{receiver}, 
-				new File[]{file}, reserveDT, UserID, adsYN, title);
-	}
-
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
-			File file, Date reserveDT, Boolean adsYN, String title)
-			throws PopbillException {
-
-		return requestFax(CorpNum, sendNum, null, receivers, 
-				new File[]{file}, reserveDT, null, adsYN, title);
-	}
-
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
-			File file, Date reserveDT, String UserID, String title)
-			throws PopbillException {
-
-		return requestFax(CorpNum, sendNum, null, receivers, 
-				new File[]{file}, reserveDT, UserID, false, title);	
-	}
-
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
-			File file, Date reserveDT, String UserID, Boolean adsYN,
-			String title) throws PopbillException {
-		
-		return requestFax(CorpNum, sendNum, null, receivers, 
-				new File[]{file}, reserveDT, UserID, adsYN, title);
-	}
-
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
-			String receiveName, File[] files, Date reserveDT, Boolean adsYN,
-			String title) throws PopbillException {
-		
-		Receiver receiver = new Receiver();
-		receiver.setReceiveNum(receiveNum);
-		receiver.setReceiveName(receiveName);
-		
-		return requestFax(CorpNum, sendNum, null, new Receiver[]{receiver}, 
-				files, reserveDT, null, adsYN, title);
-	}
-
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
-			String receiveName, File[] files, Date reserveDT, String UserID,
-			String title) throws PopbillException {
-		
-		Receiver receiver = new Receiver();
-		receiver.setReceiveNum(receiveNum);
-		receiver.setReceiveName(receiveName);
-		
-		return requestFax(CorpNum, sendNum, null, new Receiver[]{receiver}, 
-				files, reserveDT, UserID, false, title);
-
-
-	}
-
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, String receiveNum,
-			String receiveName, File[] files, Date reserveDT, String UserID,
-			Boolean adsYN, String title) throws PopbillException {
-
-		Receiver receiver = new Receiver();
-		receiver.setReceiveNum(receiveNum);
-		receiver.setReceiveName(receiveName);
-		
-		return requestFax(CorpNum, sendNum, null, new Receiver[]{receiver}, 
-				files, reserveDT, UserID, adsYN, title);
-	}
-
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
-			File[] files, Date reserveDT, String UserID, String title)
-			throws PopbillException {
-		
-		return requestFax(CorpNum, sendNum, null, receivers, 
-				files, reserveDT, UserID, false, title);
-	}
-
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, Receiver[] receivers,
-			File[] files, Date reserveDT, String UserID, Boolean adsYN,
-			String title) throws PopbillException {
-		
-		return requestFax(CorpNum, sendNum, null, receivers, 
-				files, reserveDT, UserID, adsYN, title);
-	}
-
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, String senderName,
-			Receiver[] receivers, File[] files, Date reserveDT, String UserID,
-			String title) throws PopbillException {
-		
-		return requestFax(CorpNum, sendNum, senderName, receivers, 
-				files, reserveDT, UserID, false, title);
-
-	}
-
-	@Override
-	public String sendFAX(String CorpNum, String sendNum, String senderName,
-			Receiver[] receivers, File[] files, Date reserveDT, String UserID,
-			Boolean adsYN, String title) throws PopbillException {
-
-		return requestFax(CorpNum, sendNum, senderName, receivers, 
-				files, reserveDT, UserID, adsYN, title);
-	}
-	
-	
 
 	protected class SendRequest {
 		public String snd;
@@ -750,18 +1118,11 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		public String title;
 		public Integer fCnt;
 		public Boolean adsYN;
+		public String requestNum;
 		public Receiver[] rcvs;
 	}
 
 	protected class ReceiptResponse {
 		public String receiptNum;
 	}
-
-
-
-	
-
-
-
-
 }

@@ -33,7 +33,9 @@ public class ContactInfo {
 	private String fax;
 	private Boolean mgrYN;
 	private String regDT;
+	private Integer state;
 	
+
 	/**
 	 * 담당자 아이디 확인
 	 * 
@@ -211,5 +213,21 @@ public class ContactInfo {
 	 */
 	public String getPwd() {
 		return pwd;
+	}	
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Integer getState() {
+		return state;
+	}
+
+	/**
+	 * 
+	 * @param state
+	 */
+	public void setState(Integer state) {
+		this.state = state;
 	}	
 }

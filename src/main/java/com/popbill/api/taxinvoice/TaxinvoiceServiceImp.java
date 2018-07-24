@@ -1193,6 +1193,45 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		return httpget("/Taxinvoice/EmailSendConfig", CorpNum, UserID, EmailSendConfig[].class);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#assignMgtKey(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+	 */
+	public Response assignMgtKey(String corpNum, MgtKeyType keyType, String itemKey, 
+			String mgtKey) throws PopbillException{
+		
+		return assignMgtKey(corpNum, keyType, itemKey, mgtKey, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#assignMgtKey(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	public Response assignMgtKey(String corpNum, MgtKeyType keyType, String itemKey, 
+			String mgtKey, String userID) throws PopbillException{
+		if (itemKey == null || itemKey.isEmpty())
+			throw new PopbillException(-99999999, "아이템키(ItemKey)가 입력되지 않았습니다.");
+		
+		if (mgtKey == null || mgtKey.isEmpty())
+			throw new PopbillException(-99999999, "문서관리번호(MgtKey)가 입력되지 않았습니다.");		
+
+		String PostData = "MgtKey=" + mgtKey;
+
+		return httppost("/Taxinvoice/" + itemKey + "/" + keyType.name(),
+				corpNum, PostData, userID, "", Response.class, "application/x-www-form-urlencoded; charset=utf-8");		
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.TaxinvoiceService#checkCertValidation(java.lang.String)
+	 */
+	public Response checkCertValidation(String CorpNum) throws PopbillException{
+		if (CorpNum == null || CorpNum.isEmpty())
+			throw new PopbillException(-99999999, "연동회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
+		
+		return httpget("/Taxinvoice/CertCheck", CorpNum, null, Response.class);
+	}
+	
 	protected class CertResponse {
 		public String certificateExpiration;
 	}
@@ -1226,5 +1265,4 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 		public String ItemCode;
 		public String MgtKey;
 	}
-
 }

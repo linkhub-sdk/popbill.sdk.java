@@ -101,6 +101,1095 @@ public class KakaoServiceTest {
 		}
 	}
 	
+
+	
+	@Test
+	public void sendATS_01_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";		
+		String templateCode = "018060000159";		
+		String senderNum = "01071754819";		
+		String content = "[믿을 수 있는 팝빌]"
+				+ "안녕하세요. "
+				+ "고객 님!고객님의 공인인증서가 등록처리 되었음을 알려드립니다!"
+				+ "- 등록일자 : 2018-07-24 "
+				+ "- 인증서용도 : 전자세금계산서용 공인인증서 삭제는 팝빌 사이트에서 가능합니다. "
+				+ "감사합니다.";				
+		String altContent = "대체문자 내용";		
+		String altSendType = "C";		
+		String receiverNum = "010111222";		
+		String receiverName = "01수신자명";		
+		String sndDT = "20180725120000";
+						
+		String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, content, altContent, altSendType, 
+				receiverNum, receiverName, sndDT);
+		
+		assertNotNull(receiptNum);		
+		System.out.println(receiptNum);
+	}	
+	
+	@Test
+	public void sendATS_02_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";		
+		String templateCode = "018060000159";		
+		String senderNum = "01071754819";		
+		String content = "[믿을 수 있는 팝빌]"
+				+ "안녕하세요. "
+				+ "고객 님!고객님의 공인인증서가 등록처리 되었음을 알려드립니다!"
+				+ "- 등록일자 : 2018-07-24 "
+				+ "- 인증서용도 : 전자세금계산서용 공인인증서 삭제는 팝빌 사이트에서 가능합니다. "
+				+ "감사합니다.";				
+		String altContent = "대체문자 내용";		
+		String altSendType = "C";		
+		String receiverNum = "010111222";		
+		String receiverName = "02수신자명";		
+		String sndDT = "20180725120000";
+						
+		String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, content, altContent, altSendType, 
+				receiverNum, receiverName, sndDT, "testkorea");
+		
+		assertNotNull(receiptNum);		
+		System.out.println(receiptNum);
+	}	
+	
+	@Test
+	public void sendATS_03_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";		
+		String templateCode = "018060000159";		
+		String senderNum = "01071754819";		
+		String content = "[믿을 수 있는 팝빌]"
+				+ "안녕하세요. "
+				+ "고객 님!고객님의 공인인증서가 등록처리 되었음을 알려드립니다!"
+				+ "- 등록일자 : 2018-07-24 "
+				+ "- 인증서용도 : 전자세금계산서용 공인인증서 삭제는 팝빌 사이트에서 가능합니다. "
+				+ "감사합니다.";				
+		String altContent = "대체문자 내용";		
+		String altSendType = "C";		
+		String receiverNum = "010111222";		
+		String receiverName = "03수신자명";		
+		String sndDT = "20180725120000";
+						
+		String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, content, altContent, altSendType, 
+				receiverNum, receiverName, sndDT, "testkorea", "20180724_ats_13");
+		
+		assertNotNull(receiptNum);		
+		System.out.println(receiptNum);
+	}	
+	
+	@Test
+	public void sendATS_04_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";		
+		String templateCode = "018060000159";		
+		String senderNum = "01071754819";		
+		String content = "[믿을 수 있는 팝빌]"
+				+ "안녕하세요. "
+				+ "고객 님!고객님의 공인인증서가 등록처리 되었음을 알려드립니다!"
+				+ "- 등록일자 : 2018-07-24 "
+				+ "- 인증서용도 : 전자세금계산서용 공인인증서 삭제는 팝빌 사이트에서 가능합니다. "
+				+ "감사합니다.";				
+		String altContent = "대체문자 내용";		
+		String altSendType = "C";
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("04-1수신자명");
+		message.setMessage(content);
+		message.setAltMessage(altContent);
+		receivers[0] = message;
+		message.setReceiverNum("010111222");
+		message.setReceiverName("04-2수신자명");
+		message.setMessage(content);
+		message.setAltMessage(altContent);
+		receivers[1] = message;
+		
+		String sndDT = "20180725120000";
+		
+		String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, altSendType, receivers, sndDT);
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendATS_05_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";		
+		String templateCode = "018060000159";		
+		String senderNum = "01071754819";		
+		String content = "[믿을 수 있는 팝빌]"
+				+ "안녕하세요. "
+				+ "고객 님!고객님의 공인인증서가 등록처리 되었음을 알려드립니다!"
+				+ "- 등록일자 : 2018-07-24 "
+				+ "- 인증서용도 : 전자세금계산서용 공인인증서 삭제는 팝빌 사이트에서 가능합니다. "
+				+ "감사합니다.";				
+		String altContent = "대체문자 내용";		
+		String altSendType = "C";
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("05-1수신자명");
+		message.setMessage(content);
+		message.setAltMessage(altContent);
+		receivers[0] = message;
+		message.setReceiverNum("010111222");
+		message.setReceiverName("05-2수신자명");
+		message.setMessage(content);
+		message.setAltMessage(altContent);
+		receivers[1] = message;
+		
+		String sndDT = "20180725120000";
+		
+		String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, altSendType, receivers, sndDT,
+				"testkorea");
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendATS_06_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";		
+		String templateCode = "018060000159";		
+		String senderNum = "01071754819";		
+		String content = "[믿을 수 있는 팝빌]"
+				+ "안녕하세요. "
+				+ "고객 님!고객님의 공인인증서가 등록처리 되었음을 알려드립니다!"
+				+ "- 등록일자 : 2018-07-24 "
+				+ "- 인증서용도 : 전자세금계산서용 공인인증서 삭제는 팝빌 사이트에서 가능합니다. "
+				+ "감사합니다.";				
+		String altContent = "대체문자 내용";		
+		String altSendType = "C";
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("06-1수신자명");
+		message.setMessage(content);
+		message.setAltMessage(altContent);
+		receivers[0] = message;
+		message.setReceiverNum("010111222");
+		message.setReceiverName("06-2수신자명");
+		message.setMessage(content);
+		message.setAltMessage(altContent);
+		receivers[1] = message;
+		
+		String sndDT = "20180725120000";
+		
+		String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, altSendType, receivers, sndDT,
+				"testkorea", "20180724_ats_16");
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendATS_07_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";		
+		String templateCode = "018060000159";		
+		String senderNum = "01071754819";		
+		String content = "[믿을 수 있는 팝빌]"
+				+ "안녕하세요. "
+				+ "고객 님!고객님의 공인인증서가 등록처리 되었음을 알려드립니다!"
+				+ "- 등록일자 : 2018-07-24 "
+				+ "- 인증서용도 : 전자세금계산서용 공인인증서 삭제는 팝빌 사이트에서 가능합니다. "
+				+ "감사합니다.";				
+		String altContent = "대체문자 내용";		
+		String altSendType = "C";
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("07-1수신자명");
+		message.setMessage(content);
+		message.setAltMessage(altContent);
+		receivers[0] = message;
+		message.setReceiverNum("010111222");
+		message.setReceiverName("07-2수신자명");
+		message.setMessage(content);
+		message.setAltMessage(altContent);
+		receivers[1] = message;
+		
+		String sndDT = "20180725120000";
+		
+		String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, content, altContent, 
+				altSendType, receivers, sndDT);
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}	
+	
+	@Test
+	public void sendATS_08_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";		
+		String templateCode = "018060000159";		
+		String senderNum = "01071754819";		
+		String content = "[믿을 수 있는 팝빌]"
+				+ "안녕하세요. "
+				+ "고객 님!고객님의 공인인증서가 등록처리 되었음을 알려드립니다!"
+				+ "- 등록일자 : 2018-07-24 "
+				+ "- 인증서용도 : 전자세금계산서용 공인인증서 삭제는 팝빌 사이트에서 가능합니다. "
+				+ "감사합니다.";				
+		String altContent = "대체문자 내용";		
+		String altSendType = "C";
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("08-1수신자명");
+		message.setMessage(content);
+		message.setAltMessage(altContent);
+		receivers[0] = message;
+		message.setReceiverNum("010111222");
+		message.setReceiverName("08-2수신자명");
+		message.setMessage(content);
+		message.setAltMessage(altContent);
+		receivers[1] = message;
+		
+		String sndDT = "20180725120000";
+		
+		String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, content, altContent, 
+				altSendType, receivers, sndDT, "testkorea");
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}	
+	
+	@Test
+	public void sendATS_09_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";		
+		String templateCode = "018060000159";		
+		String senderNum = "01071754819";		
+		String content = "[믿을 수 있는 팝빌]"
+				+ "안녕하세요. "
+				+ "고객 님!고객님의 공인인증서가 등록처리 되었음을 알려드립니다!"
+				+ "- 등록일자 : 2018-07-24 "
+				+ "- 인증서용도 : 전자세금계산서용 공인인증서 삭제는 팝빌 사이트에서 가능합니다. "
+				+ "감사합니다.";				
+		String altContent = "대체문자 내용";		
+		String altSendType = "C";
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("09-1수신자명");
+		message.setMessage(content);
+		message.setAltMessage(altContent);
+		receivers[0] = message;
+		message.setReceiverNum("010111222");
+		message.setReceiverName("09-2수신자명");
+		message.setMessage(content);
+		message.setAltMessage(altContent);
+		receivers[1] = message;
+		
+		String sndDT = "20180725120000";
+		
+		String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, content, altContent, 
+				altSendType, receivers, sndDT, "testkorea", "20180724_ats_19");
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}	
+	
+	@Test
+	public void sendFTS_01_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String content = "친구톡 메시지 내용";
+		String altContent = "대체문자 내용";
+		String altSendType = "C";
+		String receiverNum = "010111222";
+		String receiverName = "01수신자명";
+		String sndDT = "20180725120000";
+		Boolean adsYN = false;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		String receiptNum = kakaoService.sendFTS(testCorpNum, plusFriendID, senderNum, content, 
+				altContent, altSendType, btns, receiverNum, receiverName, sndDT, adsYN);
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFTS_02_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String content = "친구톡 메시지 내용";
+		String altContent = "대체문자 내용";
+		String altSendType = "C";
+		String receiverNum = "010111222";
+		String receiverName = "02수신자명";
+		String sndDT = "20180725120000";
+		Boolean adsYN = false;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		String receiptNum = kakaoService.sendFTS(testCorpNum, plusFriendID, senderNum, content, 
+				altContent, altSendType, btns, receiverNum, receiverName, sndDT, adsYN, 
+				"testkorea");
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFTS_03_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String content = "친구톡 메시지 내용";
+		String altContent = "대체문자 내용";
+		String altSendType = "C";
+		String receiverNum = "010111222";
+		String receiverName = "03수신자명";
+		String sndDT = "20180725120000";
+		Boolean adsYN = false;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		String receiptNum = kakaoService.sendFTS(testCorpNum, plusFriendID, senderNum, content, 
+				altContent, altSendType, btns, receiverNum, receiverName, sndDT, adsYN,
+				"testkorea", "20180724_fts_13");
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFTS_04_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String content = "친구톡 메시지 내용";
+		String altContent = "대체문자 내용";
+		String altSendType = "C";
+		String sndDT = "20180725120000";
+		Boolean adsYN = true;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("04-1수신자명");
+		receivers[0] = message;
+		
+		message = new KakaoReceiver();
+		message.setReceiverNum("010333444");
+		message.setReceiverName("04-2수신자명");
+		receivers[1] = message;
+
+		String receiptNum = kakaoService.sendFTS(testCorpNum, plusFriendID, senderNum, content, 
+				altContent, altSendType, receivers, btns, sndDT, adsYN);
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFTS_05_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String content = "친구톡 메시지 내용";
+		String altContent = "대체문자 내용";
+		String altSendType = "C";
+		String sndDT = "20180725120000";
+		Boolean adsYN = true;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("05-1수신자명");
+		receivers[0] = message;
+		
+		message = new KakaoReceiver();
+		message.setReceiverNum("010333444");
+		message.setReceiverName("05-2수신자명");
+		receivers[1] = message;
+
+		String receiptNum = kakaoService.sendFTS(testCorpNum, plusFriendID, senderNum, content, 
+				altContent, altSendType, receivers, btns, sndDT, adsYN, "testkorea");
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFTS_06_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String content = "친구톡 메시지 내용";
+		String altContent = "대체문자 내용";
+		String altSendType = "C";
+		String sndDT = "20180725120000";
+		Boolean adsYN = true;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("06-1수신자명");
+		receivers[0] = message;
+		
+		message = new KakaoReceiver();
+		message.setReceiverNum("010333444");
+		message.setReceiverName("06-2수신자명");
+		receivers[1] = message;
+
+		String receiptNum = kakaoService.sendFTS(testCorpNum, plusFriendID, senderNum, content, 
+				altContent, altSendType, receivers, btns, sndDT, adsYN, "testkorea", "20180724_fts_16");
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFTS_07_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String altSendType = "C";
+		String sndDT = "20180725120000";
+		Boolean adsYN = false;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("07-1수신자명");
+		message.setMessage("[테스트] 테스트 템플릿입니다요1");
+		message.setAltMessage("대체문자 내용");
+		receivers[0] = message;
+		
+		message = new KakaoReceiver();
+		message.setReceiverNum("010333444");
+		message.setReceiverName("07-2수신자명");
+		message.setMessage("[테스트] 테스트 템플릿입니다요2");
+		message.setAltMessage("대체문자 내용");
+		receivers[1] = message;
+
+		String receiptNum = kakaoService.sendFTS(testCorpNum, plusFriendID, senderNum, altSendType, 
+				receivers, btns, sndDT, adsYN);
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFTS_08_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String altSendType = "C";
+		String sndDT = "20180725120000";
+		Boolean adsYN = false;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("08-1수신자명");
+		message.setMessage("[테스트] 테스트 템플릿입니다요1");
+		message.setAltMessage("대체문자 내용");
+		receivers[0] = message;
+		
+		message = new KakaoReceiver();
+		message.setReceiverNum("010333444");
+		message.setReceiverName("08-2수신자명");
+		message.setMessage("[테스트] 테스트 템플릿입니다요2");
+		message.setAltMessage("대체문자 내용");
+		receivers[1] = message;
+
+		String receiptNum = kakaoService.sendFTS(testCorpNum, plusFriendID, senderNum, altSendType, 
+				receivers, btns, sndDT, adsYN, "testkorea");
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFTS_09_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String altSendType = "C";
+		String sndDT = "20180725120000";
+		Boolean adsYN = false;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("09-1수신자명");
+		message.setMessage("[테스트] 테스트 템플릿입니다요1");
+		message.setAltMessage("대체문자 내용");
+		receivers[0] = message;
+		
+		message = new KakaoReceiver();
+		message.setReceiverNum("010333444");
+		message.setReceiverName("09-2수신자명");
+		message.setMessage("[테스트] 테스트 템플릿입니다요2");
+		message.setAltMessage("대체문자 내용");
+		receivers[1] = message;
+
+		String receiptNum = kakaoService.sendFTS(testCorpNum, plusFriendID, senderNum, altSendType, 
+				receivers, btns, sndDT, adsYN, "testkorea", "20180724_fts_19");
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFMS_01_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String content = "친구톡 메시지 내용~~!";
+		String altContent = "대체문자 내용";
+		String altSendType = "C";
+		String receiverNum = "010111222";
+		String receiverName = "01수신자명";
+		String sndDT = "20180725120000";
+		Boolean adsYN = false;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		File file = new File("./test.jpg");		
+		String imageURL = "http://test.popbill.com";		
+		String receiptNum = kakaoService.sendFMS(testCorpNum, plusFriendID, senderNum, content, 
+				altContent, altSendType, btns, receiverNum, receiverName, sndDT, adsYN, file, imageURL);
+		
+		assertNotNull(receiptNum);		
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFMS_02_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String content = "친구톡 메시지 내용~~!";
+		String altContent = "대체문자 내용";
+		String altSendType = "C";
+		String receiverNum = "010111222";
+		String receiverName = "02수신자명";
+		String sndDT = "20180725120000";
+		Boolean adsYN = false;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		File file = new File("./test.jpg");		
+		String imageURL = "http://test.popbill.com";		
+		String receiptNum = kakaoService.sendFMS(testCorpNum, plusFriendID, senderNum, content, 
+				altContent, altSendType, btns, receiverNum, receiverName, sndDT, adsYN, file, imageURL, 
+				"testkorea");
+		
+		assertNotNull(receiptNum);		
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFMS_03_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String content = "친구톡 메시지 내용~~!";
+		String altContent = "대체문자 내용";
+		String altSendType = "C";
+		String receiverNum = "010111222";
+		String receiverName = "03수신자명";
+		String sndDT = "20180725120000";
+		Boolean adsYN = false;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		File file = new File("./test.jpg");		
+		String imageURL = "http://test.popbill.com";		
+		String receiptNum = kakaoService.sendFMS(testCorpNum, plusFriendID, senderNum, content, 
+				altContent, altSendType, btns, receiverNum, receiverName, sndDT, adsYN, file, imageURL, 
+				"testkorea" , "20180724_fms_13");
+		
+		assertNotNull(receiptNum);		
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFMS_04_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String content = "친구톡 메시지 내용";
+		String altContent = "대체문자 내용";
+		String altSendType = "C";
+		String sndDT = "20180725120000";
+		Boolean adsYN = false;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("04-1수신자명");
+		receivers[0] = message;
+		
+		message = new KakaoReceiver();
+		message.setReceiverNum("010222333");
+		message.setReceiverName("04-2수신자명");
+		receivers[1] = message;
+		
+		File file = new File("./test.jpg");				
+		String imageURL = "http://test.popbill.com";
+
+		String receiptNum = kakaoService.sendFMS(testCorpNum, plusFriendID, senderNum, content, 
+				altContent, altSendType, receivers, btns, sndDT, adsYN, file, imageURL);
+		
+		assertNotNull(receiptNum);
+
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFMS_05_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String content = "친구톡 메시지 내용";
+		String altContent = "대체문자 내용";
+		String altSendType = "C";
+		String sndDT = "20180725120000";
+		Boolean adsYN = false;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("05-1수신자명");
+		receivers[0] = message;
+		
+		message = new KakaoReceiver();
+		message.setReceiverNum("010222333");
+		message.setReceiverName("05-2수신자명");
+		receivers[1] = message;
+		
+		File file = new File("./test.jpg");				
+		String imageURL = "http://test.popbill.com";
+
+		String receiptNum = kakaoService.sendFMS(testCorpNum, plusFriendID, senderNum, content, 
+				altContent, altSendType, receivers, btns, sndDT, adsYN, file, imageURL,
+				"testkorea");
+		
+		assertNotNull(receiptNum);
+
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFMS_06_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String content = "친구톡 메시지 내용";
+		String altContent = "대체문자 내용";
+		String altSendType = "C";
+		String sndDT = "20180725120000";
+		Boolean adsYN = false;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("06-1수신자명");
+		receivers[0] = message;
+		
+		message = new KakaoReceiver();
+		message.setReceiverNum("010222333");
+		message.setReceiverName("06-2수신자명");
+		receivers[1] = message;
+		
+		File file = new File("./test.jpg");				
+		String imageURL = "http://test.popbill.com";
+
+		String receiptNum = kakaoService.sendFMS(testCorpNum, plusFriendID, senderNum, content, 
+				altContent, altSendType, receivers, btns, sndDT, adsYN, file, imageURL,
+				"testkorea", "20180724_fms_16");
+		
+		assertNotNull(receiptNum);
+
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFMS_07_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String altSendType = "A";
+		String sndDT = "20180725120000";
+		Boolean adsYN = true;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("07-1수신자명");
+		message.setMessage("[테스트] 테스트 템플릿입니다요1");
+		message.setAltMessage("대체문자 내용");
+		receivers[0] = message;
+		
+		message = new KakaoReceiver();
+		message.setReceiverNum("010333444");
+		message.setReceiverName("07-2수신자명");
+		message.setMessage("[테스트] 테스트 템플릿입니다요2");
+		message.setAltMessage("대체문자 내용");
+		receivers[1] = message;
+		
+		File file = new File("./test.jpg");				
+		String imageURL = "http://test.popbill.com";
+		String receiptNum = kakaoService.sendFMS(testCorpNum, plusFriendID, senderNum, altSendType, 
+				receivers, btns, sndDT, adsYN, file, imageURL);
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFMS_08_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String altSendType = "A";
+		String sndDT = "20180725120000";
+		Boolean adsYN = true;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("08-1수신자명");
+		message.setMessage("[테스트] 테스트 템플릿입니다요1");
+		message.setAltMessage("대체문자 내용");
+		receivers[0] = message;
+		
+		message = new KakaoReceiver();
+		message.setReceiverNum("010333444");
+		message.setReceiverName("08-2수신자명");
+		message.setMessage("[테스트] 테스트 템플릿입니다요2");
+		message.setAltMessage("대체문자 내용");
+		receivers[1] = message;
+		
+		File file = new File("./test.jpg");				
+		String imageURL = "http://test.popbill.com";
+		String receiptNum = kakaoService.sendFMS(testCorpNum, plusFriendID, senderNum, altSendType, 
+				receivers, btns, sndDT, adsYN, file, imageURL, "testkorea");
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	@Test
+	public void sendFMS_09_TEST() throws PopbillException {
+		String testCorpNum = "1234567890";
+		String plusFriendID = "@팝빌";
+		String senderNum = "01071754819";
+		String altSendType = "A";
+		String sndDT = "20180725120000";
+		Boolean adsYN = true;
+		
+		KakaoButton[] btns = new KakaoButton[2];
+		KakaoButton button = new KakaoButton();
+		button.setN("버튼명");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
+		
+		KakaoReceiver[] receivers = new KakaoReceiver[2];
+		
+		KakaoReceiver message = new KakaoReceiver();
+		message.setReceiverNum("010111222");
+		message.setReceiverName("09-1수신자명");
+		message.setMessage("[테스트] 테스트 템플릿입니다요1");
+		message.setAltMessage("대체문자 내용");
+		receivers[0] = message;
+		
+		message = new KakaoReceiver();
+		message.setReceiverNum("010333444");
+		message.setReceiverName("09-2수신자명");
+		message.setMessage("[테스트] 테스트 템플릿입니다요2");
+		message.setAltMessage("대체문자 내용");
+		receivers[1] = message;
+		
+		File file = new File("./test.jpg");				
+		String imageURL = "http://test.popbill.com";
+		String receiptNum = kakaoService.sendFMS(testCorpNum, plusFriendID, senderNum, altSendType, 
+				receivers, btns, sndDT, adsYN, file, imageURL, "testkorea", "20180724_fms_19");
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}
+	
+	
+	
 	@Test
 	public void sendATS_Single_TEST() throws PopbillException {
 		String testCorpNum = "1234567890";
@@ -128,7 +1217,7 @@ public class KakaoServiceTest {
 		assertNotNull(receiptNum);
 		
 		System.out.println(receiptNum);
-	}
+	}	
 	
 	@Test
 	public void sendATS_same_TEST() throws PopbillException {
@@ -231,6 +1320,8 @@ public class KakaoServiceTest {
 		
 		System.out.println(receiptNum);
 	}
+	
+
 	
 	@Test
 	public void sendFTS_same_TEST() throws PopbillException {
@@ -412,7 +1503,7 @@ public class KakaoServiceTest {
 				altContent, altSendType, receivers, btns, sndDT, adsYN, file, imageURL);
 		
 		assertNotNull(receiptNum);
-		
+
 		System.out.println(receiptNum);
 	}
 	
@@ -457,21 +1548,18 @@ public class KakaoServiceTest {
 		receivers[1] = message;
 		
 		File file = new File("/Users/John/Desktop/tmp/test03.jpg");
-		
 		String imageURL = "http://test.popbill.com";
-
 		String receiptNum = kakaoService.sendFMS(testCorpNum, plusFriendID, senderNum, altSendType, 
 				receivers, btns, sndDT, adsYN, file, imageURL);
 		
 		assertNotNull(receiptNum);
-		
 		System.out.println(receiptNum);
 	}
 	
 	@Test
 	public void cancelReserve_TEST() throws PopbillException {
 		
-		String receiptNum = "018030516465900001";
+		String receiptNum = "018072410120300001";
 		
 		Response response = kakaoService.cancelReserve("1234567890", receiptNum);
 		assertNotNull(response);
@@ -480,9 +1568,20 @@ public class KakaoServiceTest {
 	}
 	
 	@Test
+	public void cancelReserveRN_TEST() throws PopbillException {
+		
+		String requestNum = "20180724_fms_19";
+		
+		Response response = kakaoService.cancelReserveRN("1234567890", requestNum);
+		assertNotNull(response);
+		
+		System.out.println(response.getMessage());
+	}
+	
+	@Test
 	public void getMessage_TEST() throws PopbillException {
 		
-		String receiptNum = "018030516492300001";
+		String receiptNum = "018072410121200001";
 		
 		KakaoSentInfo result = kakaoService.getMessages("1234567890", receiptNum);
 		
@@ -517,14 +1616,60 @@ public class KakaoServiceTest {
 			System.out.println("altSendDT : " + result.getMsgs().get(i).getAltSendDT());
 			System.out.println("altResult : " + result.getMsgs().get(i).getAltResult());
 			System.out.println("altResultDT : " + result.getMsgs().get(i).getAltResultDT());
+			System.out.println("receiptNum : " + result.getMsgs().get(i).getReceiptNum());
+			System.out.println("requestNum : " + result.getMsgs().get(i).getRequestNum());
 		}
 	}
+	
+	@Test
+	public void getMessageRN_TEST() throws PopbillException {
+		
+		String requestNum = "20180724_fms_19";
+		
+		KakaoSentInfo result = kakaoService.getMessagesRN("1234567890", requestNum);
+		
+		assertNotNull(result);
+		
+		System.out.println("contentType : " + result.getContentType());
+		System.out.println("templateCode : " + result.getTemplateCode());
+		System.out.println("plusFriendID : " + result.getPlusFriendID());
+		System.out.println("sendNum : " + result.getSendNum());
+		System.out.println("altContent : " + result.getAltContent());
+		System.out.println("altSendType : " + result.getAltSendType());
+		System.out.println("reserveDT : " + result.getReserveDT());
+		System.out.println("adsYN : " + result.getAdsYN());
+		System.out.println("imageURL : " + result.getImageURL());
+		System.out.println("sendCnt : " + result.getSendCnt());
+		System.out.println("successCnte : " + result.getSuccessCnt());
+		System.out.println("failCnt : " + result.getFailCnt());
+		System.out.println("altCnt : " + result.getAltCnt());
+		System.out.println("cancelCnt : " + result.getCancelCnt());		
+		
+		for (int i=0; i<result.getMsgs().size(); i++)
+		{
+			System.out.println("state : " + result.getMsgs().get(i).getState());
+			System.out.println("sendDT : " + result.getMsgs().get(i).getSendDT());
+			System.out.println("receiveNum : " + result.getMsgs().get(i).getReceiveNum());
+			System.out.println("receiveName : " + result.getMsgs().get(i).getReceiveName());
+			System.out.println("content : " + result.getMsgs().get(i).getContent());
+			System.out.println("result : " + result.getMsgs().get(i).getResult());
+			System.out.println("resultDT : " + result.getMsgs().get(i).getResultDT());
+			System.out.println("altContent : " + result.getMsgs().get(i).getAltContent());
+			System.out.println("altContentType : " + result.getMsgs().get(i).getAltContentType());
+			System.out.println("altSendDT : " + result.getMsgs().get(i).getAltSendDT());
+			System.out.println("altResult : " + result.getMsgs().get(i).getAltResult());
+			System.out.println("altResultDT : " + result.getMsgs().get(i).getAltResultDT());
+			System.out.println("receiptNum : " + result.getMsgs().get(i).getReceiptNum());
+			System.out.println("requestNum : " + result.getMsgs().get(i).getRequestNum());
+		}
+	}
+
 	
 	@Test 
 	public void search_TEST() throws PopbillException {
 		
-		String SDate = "20180305";
-		String EDate = "20180305";
+		String SDate = "20180716";
+		String EDate = "20180719";
 		String[] State = {"0", "1","2","3","4", "5"};
 		String[] Item = {"ATS", "FTS", "FMS"};
 		String ReserveYN = "";
@@ -532,10 +1677,13 @@ public class KakaoServiceTest {
 		int Page = 1;
 		int PerPage = 3;
 		String Order = "D";
+		String QString = "";
 		
-		KakaoSearchResult result = kakaoService.search("1234567890", SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order);
+		KakaoSearchResult result = kakaoService.search("1234567890", SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order, "testkorea", QString);
 		
 		assertNotNull(result);
+		
+		System.out.println(result.getTotal());
 		
 		System.out.println("code : " + result.getCode());
 		System.out.println("message : " + result.getMessage());

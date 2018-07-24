@@ -10,6 +10,7 @@ import com.popbill.api.ChargeInfo;
 import com.popbill.api.FlatRateState;
 import com.popbill.api.HTTaxinvoiceService;
 import com.popbill.api.PopbillException;
+import com.popbill.api.Response;
 import com.popbill.api.hometax.HTTaxinvoice;
 import com.popbill.api.hometax.HTTaxinvoiceJobState;
 import com.popbill.api.hometax.HTTaxinvoiceSearchResult;
@@ -340,5 +341,62 @@ public class HTTaxinvoiceServiceTEST {
 		System.out.println("\n\n======== CertificateExprieDate ========");
 		System.out.println(ExpireDate);
 	}
+	
+	@Test
+	public void checkCertValidation_TEST() throws PopbillException{
+		String corpNum = "6798700433";
+		
+		Response response = hometaxTIService.checkCertValidation(corpNum);
+		assertNotNull(response);
+		
+		System.out.println("["+response.getCode() +"] " + response.getMessage());
+		
+	}
+	
+	@Test
+	public void registDeptUser_TEST() throws PopbillException{
+		String corpNum = "6798700433";
+		String deptUserID = "linkhub0004";
+		String deptUserPWD = "linkhub8536!";
+		
+		Response response = hometaxTIService.registDeptUser(corpNum, deptUserID, deptUserPWD);
+		assertNotNull(response);
+		
+		System.out.println("["+response.getCode() +"] " + response.getMessage());		
+	}
+	
+	@Test
+	public void checkDeptUser_TEST() throws PopbillException{
+		String corpNum = "6798700433";
+		
+		Response response = hometaxTIService.checkDeptUser(corpNum);
+		assertNotNull(response);
+		
+		System.out.println("["+response.getCode() +"] " + response.getMessage());		
+	}
+	
+	@Test
+	public void checkLoginDeptUser_TEST() throws PopbillException{
+		String corpNum = "6798700433";
+		
+		Response response = hometaxTIService.checkLoginDeptUser(corpNum);
+		assertNotNull(response);
+		
+		System.out.println("["+response.getCode() +"] " + response.getMessage());		
+	}
+	
+	@Test
+	public void deleteDeptUser_TEST() throws PopbillException{
+		String corpNum = "6798700433";
+		
+		Response response = hometaxTIService.deleteDeptUser(corpNum);
+		assertNotNull(response);
+		
+		System.out.println("["+response.getCode() +"] " + response.getMessage());		
+	}	
+
+
+
+
 }
 

@@ -25,6 +25,8 @@ import com.popbill.api.ChargeInfo;
 import com.popbill.api.FlatRateState;
 import com.popbill.api.HTCashbillService;
 import com.popbill.api.PopbillException;
+import com.popbill.api.Response;
+
 
 /**
  * Implementation of Popbill Hometax Cashbill Service Interface
@@ -266,7 +268,72 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 					+ response.certificateExpiration + "]", e);
 		}
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.HTCashbillService#checkCertValidation(java.lang.String)
+	 */
+	public Response checkCertValidation(String CorpNum) throws PopbillException{
+		if (CorpNum == null || CorpNum.isEmpty())
+			throw new PopbillException(-99999999, "연동회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
+		
+		return httpget("/HomeTax/Cashbill/CertCheck", CorpNum, null, Response.class); 
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.HTCashbillService#registDeptUser(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD) throws PopbillException{
+		if (CorpNum == null || CorpNum.isEmpty())
+			throw new PopbillException(-99999999, "연동회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
+		if (DeptUserID == null || DeptUserID.isEmpty())
+			throw new PopbillException(-99999999, "홈택스 부서사용자 계정 아이디(DeptUserID)가 입력되지 않았습니다.");
+		if (DeptUserPWD == null || DeptUserPWD.isEmpty())
+			throw new PopbillException(-99999999, "홈택스 부서사용자 계정 비밀번호(DeptUserPWD)가 입력되지 않았습니다.");
+			
+		DeptRequest request = new DeptRequest();
+		request.id = DeptUserID;
+		request.pwd = DeptUserPWD;
+		
+		String PostData = toJsonString(request);		
 
+		return httppost("/HomeTax/Cashbill/DeptUser", CorpNum, PostData, null, Response.class);
+
+	}
+		
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.HTCashbillService#checkDeptUser(java.lang.String, java.lang.String)
+	 */
+	public Response checkDeptUser(String CorpNum) throws PopbillException{
+		if (CorpNum == null || CorpNum.isEmpty())
+			throw new PopbillException(-99999999, "연동회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
+		
+		return httpget("/HomeTax/Cashbill/DeptUser", CorpNum, null, Response.class); 
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.HTCashbillService#checkLoginDeptUser(java.lang.String)
+	 */
+	public Response checkLoginDeptUser(String CorpNum) throws PopbillException{
+		if (CorpNum == null || CorpNum.isEmpty())
+			throw new PopbillException(-99999999, "연동회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
+		
+		return httpget("/HomeTax/Cashbill/DeptUser/Check", CorpNum, null, Response.class); 
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.HTCashbillService#deleteDeptUser(java.lang.String)
+	 */
+	public Response deleteDeptUser(String CorpNum) throws PopbillException{
+		if (CorpNum == null || CorpNum.isEmpty())
+			throw new PopbillException(-99999999, "연동회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
+		
+		return httppost("/HomeTax/Cashbill/DeptUser", CorpNum, null, null, "DELETE", Response.class);
+	}
 
 	protected class JobIDResponse {
 		public String jobID;
@@ -276,4 +343,8 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 		public String certificateExpiration;
 	}
 
+	protected class DeptRequest {
+		public String id;
+		public String pwd;
+	}		
 }

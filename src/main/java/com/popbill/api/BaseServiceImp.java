@@ -435,7 +435,7 @@ public abstract class BaseServiceImp implements BaseService {
 			String UserID, Class<T> clazz) throws PopbillException {
 		return httppost(url, CorpNum, PostData, UserID, null, clazz);
 	}
-
+		
 	/**
 	 * 
 	 * @param url
@@ -449,6 +449,24 @@ public abstract class BaseServiceImp implements BaseService {
 	 */
 	protected <T> T httppost(String url, String CorpNum, String PostData,
 			String UserID, String Action, Class<T> clazz)
+			throws PopbillException {
+		return httppost(url, CorpNum, PostData, UserID, Action, clazz, null);
+	}	
+
+	/**
+	 * 
+	 * @param url
+	 * @param CorpNum
+	 * @param PostData
+	 * @param UserID
+	 * @param Action
+	 * @param clazz
+	 * @param ContentType
+	 * @return
+	 * @throws PopbillException
+	 */
+	protected <T> T httppost(String url, String CorpNum, String PostData,
+			String UserID, String Action, Class<T> clazz, String ContentType)
 			throws PopbillException {
 		HttpURLConnection httpURLConnection;
 		try {
@@ -470,9 +488,13 @@ public abstract class BaseServiceImp implements BaseService {
 			httpURLConnection.setRequestProperty("X-HTTP-Method-Override",
 					Action);
 		}
-
-		httpURLConnection.setRequestProperty("Content-Type",
-				"application/json; charset=utf8");
+		
+		if (ContentType != null && ContentType.isEmpty() == false) {
+			httpURLConnection.setRequestProperty("Content-Type", ContentType);			
+		} else {
+			httpURLConnection.setRequestProperty("Content-Type",
+					"application/json; charset=utf8");			
+		}
 		
 		httpURLConnection.setRequestProperty("Accept-Encoding",	"gzip");
 
@@ -518,8 +540,8 @@ public abstract class BaseServiceImp implements BaseService {
 		
 		String Result = parseResponse(httpURLConnection);
 
-		return fromJsonString(Result, clazz);
-	}
+		return fromJsonString(Result, clazz);		
+	}	
 
 	private static final String boundary = "--u489jwe98j3498j394r23450--";
 	private static final String CRLF = "\r\n";

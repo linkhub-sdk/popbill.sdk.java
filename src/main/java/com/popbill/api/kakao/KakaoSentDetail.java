@@ -24,6 +24,8 @@ public class KakaoSentDetail implements Serializable{
 	private String altResultDT;
 	private String reserveDT;
 	private Integer contentType;
+	private String receiptNum;
+	private String requestNum;
 	
 	public Integer getState() {
 		return state;
@@ -103,14 +105,25 @@ public class KakaoSentDetail implements Serializable{
 	public void setContentType(Integer contentType) {
 		this.contentType = contentType;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	public String getReserveDT() {
 		return reserveDT;
 	}
 	public void setReserveDT(String reserveDT) {
 		this.reserveDT = reserveDT;
 	}
-
+	public String getReceiptNum() {
+		return receiptNum;
+	}
+	public void setReceiptNum(String receiptNum) {
+		this.receiptNum = receiptNum;
+	}
+	public String getRequestNum() {
+		return requestNum;
+	}
+	public void setRequestNum(String requestNum) {
+		this.requestNum = requestNum;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

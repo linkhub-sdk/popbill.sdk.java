@@ -93,8 +93,8 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void checkMgtKeyInUse_TEST() throws PopbillException {
 			
-		boolean useYN = taxinvoiceService.checkMgtKeyInUse("1231212312",
-				MgtKeyType.SELL, "1234");
+		boolean useYN = taxinvoiceService.checkMgtKeyInUse("1234567890",
+				MgtKeyType.SELL, "안녕하세용");
 
 		System.out.println(useYN);
 	}
@@ -549,14 +549,18 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void getInfos_TEST() throws PopbillException {
 		
-		String[] MgtKeyList = new String[] { "20161221-03", "20161221-02", "12345" };
+		String[] MgtKeyList = new String[] { "20161221-03", "20161221-02", "12345", "20180712_04" };
 
 		TaxinvoiceInfo[] infoList = taxinvoiceService.getInfos("1234567890",
 				MgtKeyType.SELL, MgtKeyList);
 
 		assertNotNull(infoList);
 		System.out.println("휴폐업 상태 " + infoList[0].getCloseDownState() + " | 휴폐업 일자 " + infoList[0].getCloseDownStateDate());
-	}
+		System.out.println(infoList[0].getInvoiceeCorpNum());
+		System.out.println(infoList[1].getInvoiceeCorpNum());
+		System.out.println(infoList[2].getInvoiceeCorpNum());
+		System.out.println(infoList[3].getInvoiceeCorpNum());
+}
 
 	@Test
 	public void attachFile_TEST() throws IOException, PopbillException {
@@ -605,8 +609,8 @@ public class TaxinvoiceServiceTEST {
 		TISearchResult response = new TISearchResult();
 		
 		String DType = "W";
-		String SDate = "20171101";
-		String EDate = "20171231";
+		String SDate = "20180701";
+		String EDate = "20180712";
 		String[] State = {"3**", "6**"};
 		String[] Type = {"N", "M","Z"};
 		String[] TaxType = {"T","N","Z"};
@@ -635,7 +639,7 @@ public class TaxinvoiceServiceTEST {
 	public void RegistIssue_TEST() throws PopbillException {
 		Taxinvoice taxinvoice = new Taxinvoice();
 
-		taxinvoice.setWriteDate("20160115"); // 필수, 기재상 작성일자
+		taxinvoice.setWriteDate("20180712"); // 필수, 기재상 작성일자
 		taxinvoice.setChargeDirection("정과금"); // 필수, {정과금, 역과금}
 		taxinvoice.setIssueType("정발행"); // 필수, {정발행, 역발행, 위수탁}
 		taxinvoice.setPurposeType("영수"); // 필수, {영수, 청구}
@@ -645,7 +649,7 @@ public class TaxinvoiceServiceTEST {
 		taxinvoice.setInvoicerCorpNum("1234567890");
 		taxinvoice.setInvoicerTaxRegID("0000"); // 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
 		taxinvoice.setInvoicerCorpName("공급자 상호");
-		taxinvoice.setInvoicerMgtKey("20160115-06"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
+		taxinvoice.setInvoicerMgtKey("20180712_04"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
 												// 동일한 형태로 추가 기재.
 		taxinvoice.setInvoicerCEOName("공급자 대표자 성명");
 		taxinvoice.setInvoicerAddr("공급자 주소");
@@ -667,7 +671,7 @@ public class TaxinvoiceServiceTEST {
 		taxinvoice.setInvoiceeBizClass("공급받는자 업종");
 		taxinvoice.setInvoiceeBizType("공급받는자 업태");
 		taxinvoice.setInvoiceeContactName1("공급받는자 담당자명");
-		taxinvoice.setInvoiceeEmail1("frenchofkiss@gmail.com");
+		taxinvoice.setInvoiceeEmail1("centily@naver.com");
 
 		taxinvoice.setSupplyCostTotal("100000"); // 필수 공급가액 합계"
 		taxinvoice.setTaxTotal("10000"); // 필수 세액 합계
@@ -713,7 +717,7 @@ public class TaxinvoiceServiceTEST {
 
 		taxinvoice.getDetailList().add(detail);
 
-		Response response = taxinvoiceService.registIssue("1234567890", taxinvoice, true, "즉시발행 메모야", true, "201600001", "메일제목이라네", "testkorea");
+		Response response = taxinvoiceService.registIssue("1234567890", taxinvoice, true, "즉시발행 메모야", true, null, "메일제목이라네", "testkorea");
 		
 		assertNotNull(response);
 
@@ -785,6 +789,31 @@ public class TaxinvoiceServiceTEST {
 		assertNotNull(response);
 		
 		System.out.println("["+response.getCode() +"] " + response.getMessage());
+	}
+	
+	@Test
+	public void assignMgtKey_TEST() throws PopbillException{
+		
+		String CorpNum = "1234567890";
+		String ItemKey = "018072314105200001";
+		String MgtKey = "20180724_01";
+	
+		Response response = taxinvoiceService.assignMgtKey(CorpNum, MgtKeyType.SELL, ItemKey, MgtKey, "testkorea");
+		assertNotNull(response);
+
+		System.out.println("["+response.getCode() +"] " + response.getMessage());
+	}
+	
+	@Test
+	public void checkCertValidation() throws PopbillException{
+		
+		String corpNum = "6798700433";
+		 
+		Response response = taxinvoiceService.checkCertValidation(corpNum);
+		assertNotNull(response);
+		
+		System.out.println("["+response.getCode() +"] " + response.getMessage());
+		
 	}
 	
 }

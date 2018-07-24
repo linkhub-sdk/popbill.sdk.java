@@ -30,7 +30,6 @@ public class SentMessage implements Serializable {
 	private String subject;
 	private String type;
 	private String content;
-
 	private String sendNum;
 	private String senderName;
 	private String receiveNum;
@@ -41,6 +40,9 @@ public class SentMessage implements Serializable {
 	private String sendResult;
 	private String tranNet;
 	private String receiptDT;
+	private String receiptNum;
+	private String requestNum;
+
 
 	/**
 	 * 전송상태 확인 0 : 접수 1 : 대기중 2 : 처리중 3 : 완료 4 : 취소
@@ -177,4 +179,23 @@ public class SentMessage implements Serializable {
 	public String getSenderName() {
 		return senderName;
 	}
+	
+	/**
+	 * 전송요청번호 확인 
+	 * 
+	 * @return 전송요청번호
+	 */
+	public String getRequestNum() {
+		return requestNum;
+	}
+
+	/**
+	 * 접수번호 확인 
+	 * 
+	 * @return 접수번호
+	 */
+	public String getReceiptNum() {
+		return receiptNum;
+	}
+
 }

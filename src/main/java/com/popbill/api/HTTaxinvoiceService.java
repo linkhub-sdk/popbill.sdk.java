@@ -397,4 +397,59 @@ public interface HTTaxinvoiceService extends BaseService{
 	 */
 	public String getPopUpURL(String CorpNum, String NTSConfirmNum, String UserID) 
 			throws PopbillException;
+	
+	/**
+	 * 홈택스 공인인증서 로그인 테스트
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @return Response
+	 * @throws PopbillException
+	 */
+	public Response checkCertValidation(String CorpNum) throws PopbillException;
+	
+	/**
+	 * 부서사용자 계정등록
+	 * 
+	 * @param corpNum
+	 * 			연동회원 사업자번호
+	 * @param deptUserID
+	 * 			홈택스 부서사용자 계정 아이디
+	 * @param deptUserPWD
+	 * 			홈택스 부서사용자 계정 비밀번호
+	 * @return Response
+	 * @throws PopbillException
+	 */
+	public Response registDeptUser(String corpNum, String deptUserID, String deptUserPWD) throws PopbillException;
+
+	/**
+	 * 부서사용자 등록정보 확인
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID
+	 * @return Response
+	 * @throws PopbillException
+	 */
+	public Response checkDeptUser(String CorpNum) throws PopbillException;
+	
+	/**
+	 * 부서사용자 로그인 테스트
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @return Response
+	 * @throws PopbillException
+	 */
+	public Response checkLoginDeptUser(String CorpNum) throws PopbillException;
+	
+	/**
+	 * 부서사용자 등록정보 삭제
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @return Response
+	 * @throws PopbillException
+	 */
+	public Response deleteDeptUser(String CorpNum) throws PopbillException;
 }

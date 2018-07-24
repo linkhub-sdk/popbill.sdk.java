@@ -1485,7 +1485,49 @@ public interface TaxinvoiceService extends BaseService {
 	 * @throws PopbillException
 	 */
 	public EmailSendConfig[] listEmailConfig(String CorpNum, String UserID) throws PopbillException;	
+
+	/**
+	 *  관리번호 할당
+	 * 
+	 * @param coprNum
+	 * 			연동회원 사업자번호
+	 * @param keyType
+	 * 			발행유형 
+	 * @param itemKey
+	 * 			세금계산서 아이템키
+	 * @param mgtKey
+	 * 			세금계산서 관리번호 
+	 * @return Response.
+	 * @throws PopbillException
+	 */
+	public Response assignMgtKey(String corpNum, MgtKeyType keyType, String itemKey, String mgtKey) throws PopbillException;
 	
+	/**
+	 *  관리번호 할당
+	 * 
+	 * @param coprNum
+	 * 			연동회원 사업자번호
+	 * @param keyType
+	 * 			발행유형 
+	 * @param itemKey
+	 * 			세금계산서 아이템키
+	 * @param mgtKey
+	 * 			세금계산서 관리번호 
+	 * @param userID
+	 * 			팝빌회원 아이디 
+	 * @return Response.
+	 * @throws PopbillException
+	 */
+	public Response assignMgtKey(String corpNum, MgtKeyType keyType, String itemKey, String mgtKey, String userID) throws PopbillException;
+	
+	/**
+	 *  공인인증서 만료일 확인
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @return Response
+	 */
+	public Response checkCertValidation(String CorpNum) throws PopbillException;
 }
 
 

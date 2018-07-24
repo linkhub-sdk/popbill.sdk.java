@@ -41,6 +41,8 @@ public class FaxResult {
 	private String title;
 	private Integer state;
 	private Integer result;
+	private String receiptNum;
+	private String requestNum;
 
 	/**
 	 * 전송상태 확인 0 : 접수 1 : 업로드중 2 : 전송중 3 : 완료 4 : 실패 (DB항목 오류) 5 : 실패 (전송중 오류) 6
@@ -223,5 +225,22 @@ public class FaxResult {
 	public Integer getResult() {
 		return result;
 	}
+	
+	/**
+	 * 접수번호 확인
+	 * 
+	 * @return 접수번호
+	 */
+	public String getReceiptNum() {
+		return receiptNum;
+	}
 
+	/**
+	 * 전송요청번호 확인
+	 * 
+	 * @return 전송요청번호
+	 */
+	public String getRequestNum() {
+		return requestNum;
+	}	
 }
