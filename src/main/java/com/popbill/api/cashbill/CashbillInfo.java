@@ -16,7 +16,7 @@ package com.popbill.api.cashbill;
 
 /**
  * Class for Cashbill' outline information.
- * 
+ *
  * @author JeongYoHan
  * @version 1.0.0
  */
@@ -27,43 +27,45 @@ public class CashbillInfo {
 	private String tradeDate;
 	private String issueDT;
 	private String customerName;
-	
+
 	private String itemName;
 	private String identityNum;
 	private String taxationType;
 	private String totalAmount;
 	private String tradeUsage;
+	private String tradeOpt;
 	private String tradeType;
-	
+
 	private int stateCode;
-	
+
 	private String stateDT;
 	private boolean printYN;
-	
+
 	private String confirmNum;
 	private String orgTradeDate;
 	private String orgConfirmNum;
-	
+
 	private String ntssendDT;
 	private String ntsresult;
 	private String ntsresultDT;
 	private String ntsresultCode;
 	private String ntsresultMessage;
 	private String regDT;
-	
-	
+	private String stateMemo;
+
+
 	/**
 	 * 팝빌 관리번호 확인
-	 * 
+	 *
 	 * @return the itemKey
 	 */
 	public String getItemKey() {
 		return itemKey;
 	}
-	
+
 	/**
 	 * 문서관리번호 확인
-	 * 
+	 *
 	 * @return the mgtKey
 	 */
 	public String getMgtKey() {
@@ -71,126 +73,134 @@ public class CashbillInfo {
 	}
 	/**
 	 * 거래일자 확인
-	 * 
+	 *
 	 * @return the tradeDate
 	 */
 	public String getTradeDate() {
 		return tradeDate;
 	}
-	
+
 	/**
 	 * 발행일시 확인
-	 * 
+	 *
 	 * @return the issueDT
 	 */
 	public String getIssueDT() {
 		return issueDT;
 	}
-	
+
 	/**
 	 * 고객명 확인
-	 * 
+	 *
 	 * @return the customerName
 	 */
 	public String getCustomerName() {
 		return customerName;
 	}
-	
+
 	/**
 	 * 품명 확인
-	 * 
+	 *
 	 * @return the itemName
 	 */
 	public String getItemName() {
 		return itemName;
 	}
-	
+
 	/**
 	 * 거래처 식별번호 확인
-	 * 
+	 *
 	 * @return the identityNum
 	 */
 	public String getIdentityNum() {
 		return identityNum;
 	}
-	
+
 	/**
 	 * 과세형태 확인
-	 * 
+	 *
 	 * @return the taxationType
 	 */
 	public String getTaxationType() {
 		return taxationType;
 	}
-	
+
 	/**
 	 * 거래금액 확인
-	 * 
+	 *
 	 * @return the totalAmount
 	 */
 	public String getTotalAmount() {
 		return totalAmount;
 	}
-	
+
 	/**
-	 * 거래 유형 확인
+	 * 거래 구분 확인
 	 * @return the tradeUsage
 	 */
 	public String getTradeUsage() {
 		return tradeUsage;
 	}
-	
+
+	/**
+	 * 거래 유형 확인
+	 * @return the tradeOpt
+	 */
+	public String getTradeOpt() {
+		return tradeOpt;
+	}
+
 	/**
 	 * 현금영수증 형태 확인
-	 * 
+	 *
 	 * @return the tradeType
 	 */
 	public String getTradeType() {
 		return tradeType;
 	}
-	
+
 	/**
 	 * 상태코드 확인
-	 * 
+	 *
 	 * @return the stateCode
 	 */
 	public int getStateCode() {
 		return stateCode;
 	}
-	
+
 	/**
 	 * 상태변경 일시 확인
-	 * 
+	 *
 	 * @return the stateDT
 	 */
 	public String getStateDT() {
 		return stateDT;
 	}
-	
+
 	/**
 	 * 인쇄여부 확인
-	 * 
+	 *
 	 * @return the printYN
 	 */
 	public boolean isPrintYN() {
 		return printYN;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return the confirmNum
 	 */
 	public String getConfirmNum() {
 		return confirmNum;
 	}
-	
+
 	/**
 	 * @return the orgTradeDAte
 	 */
 	public String getOrgTradeDate() {
 		return orgTradeDate;
 	}
-	
+
 	/**
 	 * @return the orgConfirmNum
 	 */
@@ -211,21 +221,21 @@ public class CashbillInfo {
 		return ntsresult;
 	}
 	/**
-	 * 
+	 *
 	 * @return the ntsresultDT
 	 */
 	public String getNtsresultDT() {
 		return ntsresultDT;
 	}
 	/**
-	 * 
+	 *
 	 * @return the ntsresultCode
 	 */
 	public String getNtsresultCode() {
 		return ntsresultCode;
 	}
 	/**
-	 * 
+	 *
 	 * @return the ntsresultMessage
 	 */
 	public String getNtsresultMessage() {
@@ -237,5 +247,13 @@ public class CashbillInfo {
 	 */
 	public String getRegDT() {
 		return regDT;
-	}	
+	}
+
+	/**
+	 * 상태메모 확인
+	 * @return the stateMemo
+	 */
+	public String getStateMemo() {
+		return stateMemo;
+	}
 }

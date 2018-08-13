@@ -26,7 +26,7 @@ import com.popbill.api.Response;
 
 /**
  *  Implementation of Popbill CashbillService Interface
- * 
+ *
  * @author JeongYoHan
  * @version 1.0.0
  * @see com.popbill.api.CashbillService
@@ -37,7 +37,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	protected List<String> getScopes(){
 		return Arrays.asList("140");
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getURL(java.lang.String, java.lang.String)
@@ -45,20 +45,20 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	@Override
 	public String getURL(String CorpNum, String TOGO)
 			throws PopbillException {
-		
+
 		return getURL(CorpNum, null, TOGO);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getURL(java.lang.String, java.lang.String,  java.lang.String)
 	 */
 	@Override
 	public String getURL(String CorpNum, String UserID, String TOGO)
 			throws PopbillException {
-		
-		URLResponse response = httpget("/Cashbill?TG=" + TOGO, 
+
+		URLResponse response = httpget("/Cashbill?TG=" + TOGO,
 				CorpNum, UserID, URLResponse.class);
-		
+
 		return response.url;
 	}
 
@@ -67,12 +67,12 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	 */
 	@Override
 	public float getUnitCost(String CorpNum) throws PopbillException {
-		
+
 		UnitCostResponse response = httpget("/Cashbill?cfg=UNITCOST",
 				CorpNum,null, UnitCostResponse.class);
-		
+
 		return response.unitCost;
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -83,12 +83,12 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
+
 		try{
 			CashbillInfo info = httpget("/Cashbill/" + MgtKey, CorpNum, null, CashbillInfo.class);
-			
+
 			return (info.getItemKey() == null || info.getItemKey().isEmpty()) == false;
-			
+
 			} catch(PopbillException PE){
 				if(PE.getCode() == -14000003)
 					return false;
@@ -104,7 +104,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		return register(CorpNum, cashbill, null);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#register(java.lang.String, com.popbill.api.cashbill.Cashbill, java.lang.String)
 	 */
@@ -113,12 +113,12 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (cashbill == null)
 			throw new PopbillException(-99999999, "현금영수증정보가 입력되지 않았습니다.");
-		
+
 		String PostData = toJsonString(cashbill);
-		
-		return httppost("/Cashbill",CorpNum, PostData, 
+
+		return httppost("/Cashbill",CorpNum, PostData,
 				UserID, Response.class);
-		
+
 	}
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#update(java.lang.String, java.lang.String, com.popbill.api.cashbill.Cashbill)
@@ -128,8 +128,8 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
-		return update(CorpNum, MgtKey, cashbill, null);		
+
+		return update(CorpNum, MgtKey, cashbill, null);
 	}
 
 	/* (non-Javadoc)
@@ -140,10 +140,10 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			String UserID) throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
+
 		String PostData = toJsonString(cashbill);
-		
-		return httppost("/Cashbill/"+MgtKey, CorpNum, 
+
+		return httppost("/Cashbill/"+MgtKey, CorpNum,
 				PostData, UserID, "PATCH", Response.class);
 	}
 
@@ -155,10 +155,10 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
+
 		return delete(CorpNum, MgtKey, null);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#delete(java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -167,11 +167,11 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
-		return httppost("/Cashbill/"+MgtKey, CorpNum, null, 
+
+		return httppost("/Cashbill/"+MgtKey, CorpNum, null,
 				UserID, "DELETE", Response.class);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#issue(java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -180,10 +180,10 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
+
 		return issue(CorpNum, MgtKey, Memo, null);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#issue(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -192,13 +192,13 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			String UserID) throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
+
 		String PostData = toJsonString(new MemoRequest(Memo));
-		
-		return httppost("/Cashbill/" + MgtKey, CorpNum, PostData, 
+
+		return httppost("/Cashbill/" + MgtKey, CorpNum, PostData,
 				UserID, "ISSUE", Response.class);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#cancelIssue(java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -209,7 +209,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
 		return cancelIssue(CorpNum, MgtKey, Memo, null);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#cancelIssue(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -218,13 +218,13 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			String UserID) throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
+
 		String PostData = toJsonString(new MemoRequest(Memo));
-		
+
 		return httppost("/Cashbill/" + MgtKey, CorpNum, PostData,
 				UserID, "CANCELISSUE", Response.class);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#sendEmail(java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -233,10 +233,10 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			 throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
+
 		return sendEmail(CorpNum, MgtKey, Receiver, null);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#sendEmail(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -245,14 +245,14 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			String UserID) throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
+
 		ResendRequest request  = new ResendRequest();
-		
+
 		request.receiver = Receiver;
-		
+
 		String PostData = toJsonString(request);
-		
-		return httppost("/Cashbill/" + MgtKey, CorpNum, PostData, 
+
+		return httppost("/Cashbill/" + MgtKey, CorpNum, PostData,
 				UserID, "EMAIL", Response.class);
 	}
 
@@ -265,10 +265,10 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
+
 		return sendSMS(CorpNum, MgtKey, Sender, Receiver, Contents, null);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#sendSMS(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -278,19 +278,19 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
+
 		ResendRequest request = new ResendRequest();
-		
+
 		request.sender = Sender;
 		request.receiver = Receiver;
 		request.contents = Contents;
-		
+
 		String PostData = toJsonString(request);
-		
-		return httppost("/Cashbill/" + MgtKey, CorpNum, PostData, 
+
+		return httppost("/Cashbill/" + MgtKey, CorpNum, PostData,
 				UserID, "SMS", Response.class);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#sendFAX(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -299,7 +299,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			String Receiver) throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
+
 		return sendFAX(CorpNum, MgtKey, Sender, Receiver, null);
 	}
 
@@ -311,15 +311,15 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			String Receiver, String UserID) throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
+
 		ResendRequest request = new ResendRequest();
-		
+
 		request.sender = Sender;
 		request.receiver = Receiver;
-		
+
 		String PostData = toJsonString(request);
-		
-		return httppost("/Cashbill/" + MgtKey, CorpNum, 
+
+		return httppost("/Cashbill/" + MgtKey, CorpNum,
 				PostData, UserID, "FAX", Response.class);
 	}
 
@@ -331,8 +331,8 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
-		return httpget("/Cashbill/" + MgtKey + "?Detail", CorpNum, 
+
+		return httpget("/Cashbill/" + MgtKey + "?Detail", CorpNum,
 				null, Cashbill.class);
 	}
 
@@ -344,8 +344,8 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
-		return httpget("/Cashbill/" + MgtKey, CorpNum, 
+
+		return httpget("/Cashbill/" + MgtKey, CorpNum,
 				null, CashbillInfo.class);
 	}
 
@@ -357,10 +357,10 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKeyList == null || MgtKeyList.length == 0)
 			throw new PopbillException(-99999999, "관리번호배열이 입력되지 않았습니다.");
-		
+
 		String PostData = toJsonString(MgtKeyList);
-		
-		return httppost("/Cashbill/States", CorpNum, PostData, 
+
+		return httppost("/Cashbill/States", CorpNum, PostData,
 				null, CashbillInfo[].class);
 	}
 
@@ -372,10 +372,10 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
+
 		return httpget("/Cashbill/" + MgtKey +"/Logs", CorpNum, null, CashbillLog[].class);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getPrintURL(java.lang.String, java.lang.String)
@@ -383,10 +383,10 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	@Override
 	public String getPrintURL(String CorpNum, String MgtKey)
 			throws PopbillException {
-			
+
 		return getPrintURL(CorpNum, MgtKey, null);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getPrintURL(java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -395,13 +395,13 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
-		URLResponse response = httpget("/Cashbill/" + MgtKey + "?TG=PRINT", 
+
+		URLResponse response = httpget("/Cashbill/" + MgtKey + "?TG=PRINT",
 				CorpNum, UserID, URLResponse.class);
-		
+
 		return response.url;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getEPrintURL(java.lang.String, java.lang.String)
@@ -409,10 +409,10 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	@Override
 	public String getEPrintURL(String CorpNum, String MgtKey)
 			throws PopbillException {
-				
+
 		return getEPrintURL(CorpNum, MgtKey, null);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getEPrintURL(java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -421,13 +421,13 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
-		URLResponse response = httpget("/Cashbill/" + MgtKey + "?TG=EPRINT", 
+
+		URLResponse response = httpget("/Cashbill/" + MgtKey + "?TG=EPRINT",
 				CorpNum, UserID, URLResponse.class);
-		
+
 		return response.url;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getMassPrintURL(java.lang.String, java.lang.String[])
@@ -436,7 +436,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public String getMassPrintURL(String CorpNum, String[] MgtKeyList) throws PopbillException {
 		return getMassPrintURL(CorpNum, MgtKeyList, null);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getMassPrintURL(java.lang.String, java.lang.String[], java.lang.String)
 	 */
@@ -445,15 +445,15 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			String UserID) throws PopbillException {
 		if (MgtKeyList == null || MgtKeyList.length == 0)
 			throw new PopbillException(-99999999, "관리번호배열이 입력되지 않았습니다.");
-		
+
 		String PostData = toJsonString(MgtKeyList);
-		
-		URLResponse response = httppost("/Cashbill/Prints", CorpNum, 
+
+		URLResponse response = httppost("/Cashbill/Prints", CorpNum,
 				PostData, UserID, URLResponse.class);
-		
+
 		return response.url;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getMailURL(java.lang.String, java.lang.String)
@@ -461,10 +461,10 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	@Override
 	public String getMailURL(String CorpNum, String MgtKey)
 			throws PopbillException {
-			
+
 		return getMailURL(CorpNum, MgtKey, null);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getMailURL(java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -473,13 +473,13 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
-		URLResponse response = httpget("/Cashbill/" + MgtKey + "?TG=MAIL", 
+
+		URLResponse response = httpget("/Cashbill/" + MgtKey + "?TG=MAIL",
 				CorpNum, UserID, URLResponse.class);
-		
+
 		return response.url;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getPopUpURL(java.lang.String, java.lang.String)
@@ -487,10 +487,10 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	@Override
 	public String getPopUpURL(String CorpNum, String MgtKey)
 			throws PopbillException {
-		
+
 		return getPopUpURL(CorpNum, MgtKey, null);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getPopUpURL(java.lang.String, java.lang.String, java.lang.String)
 	 */
@@ -499,18 +499,18 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
 			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
-		
-		URLResponse response = httpget("/Cashbill/" + MgtKey + "?TG=POPUP", 
+
+		URLResponse response = httpget("/Cashbill/" + MgtKey + "?TG=POPUP",
 				CorpNum, UserID, URLResponse.class);
-		
+
 		return response.url;
 	}
-	
+
 	@Override
 	public Response registIssue(String CorpNum, Cashbill cashbill) throws PopbillException{
 		return registIssue(CorpNum, cashbill, null, null);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#registIssue(java.lang.String, com.popbill.api.cashbill.Cashbill, java.lang.String)
@@ -521,7 +521,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		return registIssue(CorpNum, cashbill, memo, null);
 	}
 	/* (non-Javadoc)
-	 * @see com.popbill.api.CashbillService#registIssue(java.lang.String, com.popbill.api.cashbill.Cashbill, 
+	 * @see com.popbill.api.CashbillService#registIssue(java.lang.String, com.popbill.api.cashbill.Cashbill,
 	 * 				java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -531,44 +531,51 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throw new PopbillException(-99999999, "현금영수증정보가 입력되지 않았습니다.");
 		if (memo != null)
 			cashbill.setMemo(memo);
-		
+
 		String PostData = toJsonString(cashbill);
-		
-		return httppost("/Cashbill", CorpNum, PostData, 
+
+		return httppost("/Cashbill", CorpNum, PostData,
 				UserID, "ISSUE", Response.class);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#search(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[], java.lang.String[], int, int, java.lang.String)
 	 */
 	public CBSearchResult search(String CorpNum, String DType, String SDate,
-			String EDate, String[] State, String[] TradeType,
-			String[] TradeUsage, String[] TaxationType, int Page,
-			int PerPage, String Order) throws PopbillException {
-			return search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TaxationType, "", Page, PerPage, Order);
-	} 
-	
+								 String EDate, String[] State, String[] TradeType,
+								 String[] TradeUsage, String[] TaxationType, int Page,
+								 int PerPage, String Order) throws PopbillException {
+		return search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TaxationType, "", Page, PerPage, Order);
+	}
+
 	/*
 	 * (non-Javadoc)
-	 * @see com.popbill.api.CashbillService#search(java.lang.String, java.lang.String, java.lang.String, 
-	 * 												java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[], 
+	 * @see com.popbill.api.CashbillService#search(java.lang.String, java.lang.String, java.lang.String,
+	 * 												java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[],
 	 * 												java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public CBSearchResult search(String CorpNum, String DType, String SDate,
-			String EDate, String[] State, String[] TradeType,
-			String[] TradeUsage, String[] TaxationType, String QString, int Page,
-			int PerPage, String Order) throws PopbillException {
+								 String EDate, String[] State, String[] TradeType,
+								 String[] TradeUsage, String[] TaxationType, String QString, int Page,
+								 int PerPage, String Order) throws PopbillException {
+		return search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, null, TaxationType, QString, Page, PerPage, Order);
+	}
+
+	@Override
+	public CBSearchResult search(String CorpNum, String DType, String SDate, String EDate,
+								 String[] State, String[] TradeType, String[] TradeUsage, String[] TradeOpt, String[] TaxationType,
+								 String QString, int Page, int PerPage, String Order) throws PopbillException {
 		if (DType == null || DType.isEmpty())
 			throw new PopbillException(-99999999, "검색일자유형이  입력되지 않았습니다.");
 		if (SDate == null || SDate.isEmpty())
 			throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
 		if (EDate == null || EDate.isEmpty())
 			throw new PopbillException(-99999999, "종료일자가 입력되지 않았습니다.");
-		
+
 		String uri = "/Cashbill/Search?DType=" + DType;
-		
+
 		uri += "&SDate=" + SDate;
 		uri += "&EDate=" + EDate;
 		uri += "&State=" + Arrays.toString(State)
@@ -577,16 +584,20 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 				.replaceAll("\\[|\\]|\\s", "");
 		uri += "&TradeUsage=" + Arrays.toString(TradeUsage)
 				.replaceAll("\\[|\\]|\\s", "");
+		if (TradeOpt != null){
+			uri += "&TradeOpt=" + Arrays.toString(TradeOpt)
+					.replaceAll("\\[|\\]|\\s", "");
+		}
 		uri += "&TaxationType=" + Arrays.toString(TaxationType)
 				.replaceAll("\\[|\\]|\\s", "");
 		uri += "&QString="+QString;
 		uri += "&Page=" + Integer.toString(Page);
 		uri += "&PerPage="+ Integer.toString(PerPage);
 		uri += "&Order=" + Order;
-		
+
 		return httpget(uri, CorpNum, null, CBSearchResult.class);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getChargeInfo(java.lang.String)
@@ -595,11 +606,11 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
 		return httpget("/Cashbill/ChargeInfo", CorpNum, null, ChargeInfo.class);
 	}
-	
+
 	@Override
 	public Response revokeRegister(String CorpNum, String mgtKey,
 			String orgConfirmNum, String orgTradeDate) throws PopbillException {
-		
+
 		return revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, false, false,
 				null, null, null, null, null, null);
 	}
@@ -608,42 +619,42 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response revokeRegister(String CorpNum, String mgtKey,
 			String orgConfirmNum, String orgTradeDate, Boolean smssendYN)
 			throws PopbillException {
-		
-		return revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, 
+
+		return revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN,
 				false, null, null, null, null, null, null);
 	}
-	
+
 	@Override
 	public Response revokeRegister(String CorpNum, String mgtKey,
 			String orgConfirmNum, String orgTradeDate, Boolean smssendYN,
 			String UserID) throws PopbillException {
-		
-		return revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, 
+
+		return revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN,
 				false, null, null, null, null, null, UserID);
 	}
 
-	
+
 	@Override
-	public Response revokeRegister(String CorpNum, String mgtKey, String orgConfirmNum, 
-			String orgTradeDate, Boolean smssendYN, Boolean isPartCancel, Integer cancelType, 
+	public Response revokeRegister(String CorpNum, String mgtKey, String orgConfirmNum,
+			String orgTradeDate, Boolean smssendYN, Boolean isPartCancel, Integer cancelType,
 			String supplyCost, String tax, String serviceFee, String totalAmount) throws PopbillException {
-		
+
 		return revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, isPartCancel,
 				cancelType, supplyCost, tax, serviceFee, totalAmount, null);
 	}
-	
-	
+
+
 	@Override
 	public Response revokeRegister(String CorpNum, String mgtKey,
 			String orgConfirmNum, String orgTradeDate, Boolean smssendYN, Boolean isPartCancel,
 			Integer cancelType, String supplyCost, String tax, String serviceFee, String totalAmount,
 			String UserID) throws PopbillException {
-		
+
 		if (mgtKey == null)
 			throw new PopbillException(-99999999, "취소현금영수증 문서관리번호가 입력되지 않았습니다.");
-		
+
 		RevokeRequest request = new RevokeRequest();
-		
+
 		request.mgtKey = mgtKey;
 		request.orgConfirmNum = orgConfirmNum;
 		request.orgTradeDate = orgTradeDate;
@@ -654,18 +665,18 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		request.tax = tax;
 		request.serviceFee = serviceFee;
 		request.totalAmount = totalAmount;
-		
+
 		String PostData = toJsonString(request);
-		
+
 		return httppost("/Cashbill", CorpNum, PostData,
 				UserID, "REVOKE", Response.class);
 	}
-	
+
 	@Override
 	public Response revokeRegistIssue(String CorpNum, String mgtKey,
 			String orgConfirmNum, String orgTradeDate) throws PopbillException {
 
-		return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, false, null, 
+		return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, false, null,
 				false, null, null, null, null, null, null);
 	}
 
@@ -673,8 +684,8 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response revokeRegistIssue(String CorpNum, String mgtKey,
 			String orgConfirmNum, String orgTradeDate, Boolean smssendYN)
 			throws PopbillException {
-		
-		return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, null, 
+
+		return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, null,
 				false, null, null, null, null, null, null);
 	}
 
@@ -682,8 +693,8 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response revokeRegistIssue(String CorpNum, String mgtKey,
 			String orgConfirmNum, String orgTradeDate, Boolean smssendYN,
 			String memo) throws PopbillException {
-		
-		return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo, 
+
+		return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo,
 				false, null, null, null, null, null, null);
 	}
 
@@ -691,32 +702,32 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response revokeRegistIssue(String CorpNum, String mgtKey,
 			String orgConfirmNum, String orgTradeDate, Boolean smssendYN,
 			String memo, String userID) throws PopbillException {
-		
-		return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo, 
+
+		return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo,
 				false, null, null, null, null, null, userID);
 	}
-	
+
 	@Override
-	public Response revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
-			String orgTradeDate, Boolean smssendYN,	String memo, 
-			Boolean isPartCancel, Integer cancelType, String supplyCost, 
+	public Response revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum,
+			String orgTradeDate, Boolean smssendYN,	String memo,
+			Boolean isPartCancel, Integer cancelType, String supplyCost,
 			String tax, String serviceFee, String totalAmount) throws PopbillException {
-		
-		return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo, 
+
+		return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo,
 				isPartCancel, cancelType, supplyCost, tax, serviceFee, totalAmount, null);
 	}
-	
+
 	@Override
-	public Response revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
-			String orgTradeDate, Boolean smssendYN,	String memo, 
-			Boolean isPartCancel, Integer cancelType, String supplyCost, 
+	public Response revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum,
+			String orgTradeDate, Boolean smssendYN,	String memo,
+			Boolean isPartCancel, Integer cancelType, String supplyCost,
 			String tax, String serviceFee, String totalAmount, String userID) throws PopbillException {
-		
+
 		if (mgtKey == null)
 			throw new PopbillException(-99999999, "취소현금영수증 문서관리번호가 입력되지 않았습니다.");
-		
+
 		RevokeRequest request = new RevokeRequest();
-		
+
 		request.mgtKey = mgtKey;
 		request.orgConfirmNum = orgConfirmNum;
 		request.orgTradeDate = orgTradeDate;
@@ -728,13 +739,13 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		request.serviceFee = serviceFee;
 		request.tax = tax;
 		request.totalAmount = totalAmount;
-		
+
 		String PostData = toJsonString(request);
-		
-		return httppost("/Cashbill", CorpNum, PostData, 
+
+		return httppost("/Cashbill", CorpNum, PostData,
 				userID, "REVOKEISSUE", Response.class);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#updateEmailConfig(java.lang.String, java.lang.String, java.lang.Boolean)
@@ -755,7 +766,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			throw new PopbillException(-99999999, "메일전송여부(SendYN)가 입력되지 않았습니다.");
 		if (EmailType == null || EmailType.isEmpty())
 			throw new PopbillException(-99999999, "메일전송유형(EmailType)이 입력되지 않았습니다.");
-				
+
 		return httppost("/Cashbill/EmailSendConfig?EmailType=" + EmailType + "&SendYN=" + String.valueOf(SendYN),
 				CorpNum, null, UserID, "", Response.class);
 	}
@@ -776,22 +787,22 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	@Override
 	public EmailSendConfig[] listEmailConfig(String CorpNum, String UserID) throws PopbillException {
 		return httpget("/Cashbill/EmailSendConfig", CorpNum, UserID, EmailSendConfig[].class);
-	}		
-	
+	}
+
 	protected class MemoRequest {
 		public MemoRequest(String memo){
 			this.memo = memo;
 		}
-		
+
 		public String memo;
 	}
-	
+
 	protected class ResendRequest {
 		public String receiver;
 		public String sender = null;
 		public String contents = null;
 	}
-	
+
 	protected class RevokeRequest {
 		public String mgtKey;
 		public String orgTradeDate;

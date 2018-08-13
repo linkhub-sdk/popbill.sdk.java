@@ -63,8 +63,9 @@ public class CashbillServiceTEST {
 		
 		Cashbill cashbill = new Cashbill();
 		
-		cashbill.setMgtKey("20171113-10");
+		cashbill.setMgtKey("20180813154637");
 		cashbill.setTradeType("승인거래");
+		cashbill.setTradeOpt("도서공연");
 		cashbill.setFranchiseCorpNum("1234567890");
 		cashbill.setFranchiseCorpName("발행자 상호");
 		cashbill.setFranchiseCEOName("발행자 대표자");
@@ -175,17 +176,17 @@ public class CashbillServiceTEST {
 	@Test
 	public void getDetailInfo_TEST() throws PopbillException {
 		
-		Cashbill cashbill = cashbillService.getDetailInfo("1234567890", "20171113-16");
+		Cashbill cashbill = cashbillService.getDetailInfo("1234567890", "20180813160709");
 		assertNotNull(cashbill);
-		System.out.println("Detail Info : "+ cashbill.getCancelType()+ " " );
-		
+		System.out.println("Detail Info : "+ cashbill.getMgtKey());
+
 	}
 	
 	@Test
 	public void getInfo_TEST() throws PopbillException {
-		CashbillInfo cashbillInfo = cashbillService.getInfo("1234567890", "20150318-02");
+		CashbillInfo cashbillInfo = cashbillService.getInfo("1234567890", "20180813160709");
 		assertNotNull(cashbillInfo);
-		System.out.println("Get INfo : "+ cashbillInfo.getItemKey()+" "+cashbillInfo.getOrgConfirmNum());
+		System.out.println("Get INfo : "+ cashbillInfo.getMgtKey()+" "+cashbillInfo.getStateMemo());
 		
 	}
 	
@@ -242,8 +243,9 @@ public class CashbillServiceTEST {
 		
 		Cashbill cashbill = new Cashbill();
 		
-		cashbill.setMgtKey("20171113-13");
+		cashbill.setMgtKey("20180813160709");
 		cashbill.setTradeType("승인거래");
+		cashbill.setTradeOpt("대중교통");
 		cashbill.setFranchiseCorpNum("1234567890");
 		cashbill.setFranchiseCorpName("발행자 상호");
 		cashbill.setFranchiseCEOName("발행자 대표자");
@@ -265,37 +267,65 @@ public class CashbillServiceTEST {
 		cashbill.setTaxationType("과세");
 		cashbill.setSmssendYN(false);
 		
-		Response response = cashbillService.registIssue("1234567890", cashbill, "즉시발행 메모");
+		Response response = cashbillService.registIssue("1234567890", cashbill, "메모 입니다. Getinfo [StateMemo] 필드");
 		assertNotNull(response);
 		System.out.println("[" + response.getCode() + "] "+ response.getMessage());
 	}
 	
 	@Test
-	public void search_TEST() throws PopbillException{
-		String CorpNum = "1234567890";
-		String DType = "T";
-		String SDate = "20160701";
-		String EDate = "20160831";
-		
-		String[] State = {"100", "2**", "3**", "4**"};
-		String[] TradeType = {"N", "C"};
-		String[] TradeUsage = {"P", "C"};
-		String[] TaxationType = {"T", "N"};
-		String QString = "0100001234";
-		
-		int Page = 1;
-		int PerPage = 20;
-		String Order = "D";
-		
-		CBSearchResult response = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TaxationType, QString, Page, PerPage, Order);
-		
-		assertNotNull(response);
-		
-		for (int i=0; i<response.getList().size(); i++){
-			System.out.println(response.getList().get(0).getTotalAmount()+" " +response.getList().get(i).getIdentityNum());
-		}
-	}
-	
+    public void search_TEST() throws PopbillException{
+        String CorpNum = "1234567890";
+        String DType = "T";
+        String SDate = "20160701";
+        String EDate = "20160831";
+
+        String[] State = {"100", "2**", "3**", "4**"};
+        String[] TradeType = {"N", "C"};
+        String[] TradeUsage = {"P", "C"};
+        String[] TaxationType = {"T", "N"};
+        String QString = "0100001234";
+
+        int Page = 1;
+        int PerPage = 20;
+        String Order = "D";
+
+        CBSearchResult response = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TaxationType, QString, Page, PerPage, Order);
+
+        assertNotNull(response);
+
+        for (int i=0; i<response.getList().size(); i++){
+            System.out.println(response.getList().get(0).getTotalAmount()+" " +response.getList().get(i).getIdentityNum());
+        }
+    }
+
+    @Test
+    public void search_TradeOpt_TEST() throws PopbillException{
+        String CorpNum = "1234567890";
+        String DType = "T";
+        String SDate = "20180813";
+        String EDate = "20180813";
+
+        String[] State = {"100", "2**", "3**", "4**"};
+        String[] TradeType = {"N", "C"};
+        String[] TradeUsage = {"P", "C"};
+        String[] TradeOpt = {"N", "B", "T"};
+        String[] TaxationType = {"T", "N"};
+        String QString = "";
+
+        int Page = 1;
+        int PerPage = 20;
+        String Order = "D";
+
+        CBSearchResult response = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TradeOpt, TaxationType, QString, Page, PerPage, Order);
+
+        assertNotNull(response);
+
+        for (int i=0; i<response.getList().size(); i++){
+            System.out.println(response.getList().get(i).getTradeOpt()+" " +response.getList().get(i).getIdentityNum()+" " +response.getList().get(i).getStateMemo());
+        }
+    }
+
+
 	@Test
 	public void revokeRegistIssue01_TEST() throws PopbillException{
 		String CorpNum = "1234567890";
@@ -430,6 +460,6 @@ public class CashbillServiceTEST {
 		assertNotNull(response);
 		
 		System.out.println("["+response.getCode() +"] " + response.getMessage());
-	}		
+	}
 }
 
