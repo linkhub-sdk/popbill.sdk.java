@@ -506,7 +506,6 @@ public class Cashbill implements Serializable {
      * 즉시발행 메모 설정
      *
      * @param memo
-     * 			메모
      */
     public void setMemo(String memo) {
         this.memo = memo;
@@ -515,7 +514,7 @@ public class Cashbill implements Serializable {
     /**
      * 즉시발행 메모
      *
-     * @return 메모
+     * @return memo
      */
     public String getMemo() {
         return memo;

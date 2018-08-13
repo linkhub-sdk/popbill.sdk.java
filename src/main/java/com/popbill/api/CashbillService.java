@@ -187,7 +187,6 @@ public interface CashbillService extends BaseService{
 			String orgTradeDate, Boolean smssendYN, Boolean isPartCancel, Integer cancelType, 
 			String supplyCost, String tax, String serviceFee, String totalAmount) throws PopbillException;
 
-	
 	/**
 	 * 취소현금영수증 1건 임시저장
 	 * @param CorpNum
@@ -220,7 +219,6 @@ public interface CashbillService extends BaseService{
 	public Response revokeRegister(String CorpNum, String mgtKey, String orgConfirmNum,
 			String orgTradeDate, Boolean smssendYN, Boolean isPartCancel, Integer cancelType, 
 			String supplyCost, String tax, String serviceFee, String totalAmount, String UserID) throws PopbillException;	
-	
 	
 	/**
 	 * 취소현금영수증 1건 즉시발행
@@ -257,6 +255,7 @@ public interface CashbillService extends BaseService{
 	 */
 	public Response revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
 			String orgTradeDate, Boolean smssendYN) throws PopbillException;
+
 	/**
 	 * 취소현금영수증 1건 즉시발행
 	 * 
@@ -300,7 +299,6 @@ public interface CashbillService extends BaseService{
 	 */
 	public Response revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
 			String orgTradeDate, Boolean smssendYN, String memo, String userID) throws PopbillException;
-	
 	
 	/**
 	 * 취소현금영수증 1건 즉시발행
@@ -539,7 +537,6 @@ public interface CashbillService extends BaseService{
 			String Receiver, String Contents) 
 			throws PopbillException;
 	
-	
 	/**
 	 * 알림문자 전송
 	 * @param CorpNum
@@ -594,8 +591,7 @@ public interface CashbillService extends BaseService{
 	 */
 	public Response sendFAX(String CorpNum, String MgtKey, String Sender,
 			String Receiver, String UserID) throws PopbillException;
-	
-	
+
 	/**
 	 * 현금영수증 상세내역 조회
 	 * @param CorpNum
@@ -619,7 +615,6 @@ public interface CashbillService extends BaseService{
 	 */
 	public CashbillInfo getInfo(String CorpNum, String MgtKey)
 			throws PopbillException;
-	
 	
 	/**
 	 * 현금영수증 요약/상태 정보 대량 조회( 최대 1000건)
@@ -828,7 +823,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호 
 	 * @param DType
-	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자 
+	 * 			검색일자 유형 [R-등록일자, T-거래일자, I-발행일시]
 	 * @param SDate
 	 * 			시작일자 (yyyyMMdd) 
 	 * @param EDate
@@ -836,11 +831,11 @@ public interface CashbillService extends BaseService{
 	 * @param State
 	 * 			현금영수증 상태코드 배열 
 	 * @param TradeType
-	 * 			현금영수증 형태 배열, N-일반현금영수증, C-취소현금영수증
+	 * 			현금영수증 형태 배열 [N-승인거래, C-취소거래]
 	 * @param TradeUsage
-	 * 			거래구분 배열, P-소득공제용, C-지출증빙용
+	 * 			거래구분 배열 [P-소득공제용, C-지출증빙용]
 	 * @param TaxationType
-	 * 			과세형태 배열, T-과세, N-비과세 
+	 * 			과세형태 배열 [T-과세, N-비과세]
 	 * @param Page
 	 * 			페이지번호, 기본값 1 
 	 * @param PerPage
@@ -858,7 +853,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param DType
-	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자
+	 * 			검색일자 유형 [R-등록일자, T-거래일자, I-발행일시]
 	 * @param SDate
 	 * 			시작일자 (yyyyMMdd)
 	 * @param EDate
@@ -866,11 +861,11 @@ public interface CashbillService extends BaseService{
 	 * @param State
 	 * 			현금영수증 상태코드 배열
 	 * @param TradeType
-	 * 			현금영수증 형태 배열, N-일반현금영수증, C-취소현금영수증
+	 * 			현금영수증 형태 배열 [N-승인거래, C-취소거래]
 	 * @param TradeUsage
-	 * 			거래구분 배열, P-소득공제용, C-지출증빙용
+	 * 			거래구분 배열 [P-소득공제용, C-지출증빙용]
 	 * @param TaxationType
-	 * 			과세형태 배열, T-과세, N-비과세
+	 * 			과세형태 배열 [T-과세, N-비과세]
 	 * @param QString
 	 * 			식별번호, 휴대폰번호, 주민등록번호, 사업자등록번호 입력
 	 * @param Page
@@ -890,7 +885,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param DType
-	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자
+	 * 			검색일자 유형 [R-등록일자, T-거래일자, I-발행일시]
 	 * @param SDate
 	 * 			시작일자 (yyyyMMdd)
 	 * @param EDate
@@ -898,13 +893,13 @@ public interface CashbillService extends BaseService{
 	 * @param State
 	 * 			현금영수증 상태코드 배열
 	 * @param TradeType
-	 * 			현금영수증 형태 배열, N-일반현금영수증, C-취소현금영수증
+	 * 			현금영수증 형태 배열 [N-승인거래, C-취소거래]
 	 * @param TradeUsage
-	 * 			거래구분 배열, P-소득공제용, C-지출증빙용
+	 * 			거래구분 배열 [P-소득공제용, C-지출증빙용]
 	 * @param TradeOpt
-	 * 			거래유형 배열 N-일반, B-도서공연, T-대중교통
+	 * 			거래유형 배열 [N-일반, B-도서공연, T-대중교통]
 	 * @param TaxationType
-	 * 			과세형태 배열, T-과세, N-비과세
+	 * 			과세형태 배열 [T-과세, N-비과세]
 	 * @param QString
 	 * 			식별번호, 휴대폰번호, 주민등록번호, 사업자등록번호 입력
 	 * @param Page
@@ -942,8 +937,7 @@ public interface CashbillService extends BaseService{
 	 */
 	public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN)
 			throws PopbillException;
-	
-	
+
 	/**
 	 *  알림메일 전송설정 수정
 	 *  
@@ -960,8 +954,6 @@ public interface CashbillService extends BaseService{
 	 */
 	public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN, 
 			String UserID) throws PopbillException;
-	
-	
 	
 	/**
 	 *  알림메일 전송목록 조회
