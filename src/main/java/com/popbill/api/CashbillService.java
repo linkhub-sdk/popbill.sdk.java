@@ -829,9 +829,9 @@ public interface CashbillService extends BaseService{
 	 * @param EDate
 	 * 			종료일자 (yyyyMMdd) 
 	 * @param State
-	 * 			현금영수증 상태코드 배열 
+	 * 			상태코드 배열
 	 * @param TradeType
-	 * 			현금영수증 형태 배열 [N-승인거래, C-취소거래]
+	 * 			문서형태 배열 [N-승인거래, C-취소거래]
 	 * @param TradeUsage
 	 * 			거래구분 배열 [P-소득공제용, C-지출증빙용]
 	 * @param TaxationType
@@ -859,9 +859,9 @@ public interface CashbillService extends BaseService{
 	 * @param EDate
 	 * 			종료일자 (yyyyMMdd)
 	 * @param State
-	 * 			현금영수증 상태코드 배열
+	 * 			상태코드 배열
 	 * @param TradeType
-	 * 			현금영수증 형태 배열 [N-승인거래, C-취소거래]
+	 * 			문서형태 배열 [N-승인거래, C-취소거래]
 	 * @param TradeUsage
 	 * 			거래구분 배열 [P-소득공제용, C-지출증빙용]
 	 * @param TaxationType
@@ -891,9 +891,9 @@ public interface CashbillService extends BaseService{
 	 * @param EDate
 	 * 			종료일자 (yyyyMMdd)
 	 * @param State
-	 * 			현금영수증 상태코드 배열
+	 * 			상태코드 배열
 	 * @param TradeType
-	 * 			현금영수증 형태 배열 [N-승인거래, C-취소거래]
+	 * 			문서형태 배열 [N-승인거래, C-취소거래]
 	 * @param TradeUsage
 	 * 			거래구분 배열 [P-소득공제용, C-지출증빙용]
 	 * @param TradeOpt

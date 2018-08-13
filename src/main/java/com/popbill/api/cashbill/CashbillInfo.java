@@ -187,6 +187,7 @@ public class CashbillInfo {
 	}
 
 	/**
+	 * 국세청 승인번호
 	 *
 	 * @return the confirmNum
 	 */
@@ -195,19 +196,25 @@ public class CashbillInfo {
 	}
 
 	/**
-	 * @return the orgTradeDAte
+	 * 원본 현금영수증 거래일자
+	 *
+	 * @return the orgTradeDate
 	 */
 	public String getOrgTradeDate() {
 		return orgTradeDate;
 	}
 
 	/**
+	 * 원본 현금영수증 국새청 승인번호
+	 *
 	 * @return the orgConfirmNum
 	 */
 	public String getOrgConfirmNum() {
 		return orgConfirmNum;
 	}
 	/**
+	 * 국세청 전송일시 확인
+	 *
 	 * @return the ntssendDT
 	 */
 	public String getNtssendDT() {
@@ -215,12 +222,14 @@ public class CashbillInfo {
 	}
 	/**
 	 * 국세청 전송결과 확인
+	 *
 	 * @return the ntsresult
 	 */
 	public String getNtsresult() {
 		return ntsresult;
 	}
 	/**
+	 * 국세청 처리결과 수신일시
 	 *
 	 * @return the ntsresultDT
 	 */
@@ -228,6 +237,7 @@ public class CashbillInfo {
 		return ntsresultDT;
 	}
 	/**
+	 * 국세청 처리결과 상태코드
 	 *
 	 * @return the ntsresultCode
 	 */
@@ -235,6 +245,7 @@ public class CashbillInfo {
 		return ntsresultCode;
 	}
 	/**
+	 * 국세청 처리결과 메시지
 	 *
 	 * @return the ntsresultMessage
 	 */
@@ -243,6 +254,7 @@ public class CashbillInfo {
 	}
 	/**
 	 * 등록일시 확인
+	 *
 	 * @return the regDT
 	 */
 	public String getRegDT() {
@@ -251,6 +263,7 @@ public class CashbillInfo {
 
 	/**
 	 * 상태메모 확인
+	 *
 	 * @return the stateMemo
 	 */
 	public String getStateMemo() {

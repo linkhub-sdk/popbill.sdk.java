@@ -122,7 +122,7 @@ public class Cashbill implements Serializable {
     public void setTradeOpt(String tradeOpt) { this.tradeOpt = tradeOpt; }
 
     /**
-     * 현금영수증 형태 확인
+     * 문서형태 확인
      *
      * @return the tradeType
      */
@@ -131,7 +131,7 @@ public class Cashbill implements Serializable {
     }
 
     /**
-     * 현금영수증 형태 설정
+     * 문서형태 설정
      *
      * @param tradeType the tradeType to set
      */
@@ -176,7 +176,7 @@ public class Cashbill implements Serializable {
     }
 
     /**
-     * 세액 확인
+     * 부가세 확인
      *
      * @return the tax
      */
@@ -185,7 +185,7 @@ public class Cashbill implements Serializable {
     }
 
     /**
-     * 세액 설정
+     * 부가세 설정
      *
      * @param tax the tax to set
      */
@@ -402,6 +402,7 @@ public class Cashbill implements Serializable {
 
     /**
      * 거래처 이메일 설정
+     *
      * @param email the email to set
      */
     public void setEmail(String email) {
@@ -409,7 +410,7 @@ public class Cashbill implements Serializable {
     }
 
     /**
-     * 거래처 휴대전화번호 확인
+     * 거래처 휴대폰 확인
      *
      * @return the hp
      */
@@ -418,7 +419,7 @@ public class Cashbill implements Serializable {
     }
 
     /**
-     * 거래처 휴대전화번호 설정
+     *거래처 휴대폰 설정
      *
      * @param hp the hp to set
      */
@@ -437,6 +438,7 @@ public class Cashbill implements Serializable {
 
     /**
      * 거래처 팩스번호 설정
+     *
      * @param fax the fax to set
      */
     public void setFax(String fax) {
@@ -480,6 +482,8 @@ public class Cashbill implements Serializable {
     }
 
     /**
+     * 국세청 승인번호
+     *
      * @return the confirmNum
      */
     public String getConfirmNum() {
@@ -487,6 +491,8 @@ public class Cashbill implements Serializable {
     }
 
     /**
+     *  원본 현금영수증 국세청 승인번호
+     *
      * @return the orgConfirmNum
      */
     public String getOrgConfirmNum() {
