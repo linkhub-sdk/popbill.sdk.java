@@ -43,6 +43,8 @@ public class FaxResult {
 	private Integer result;
 	private String receiptNum;
 	private String requestNum;
+	private Integer chargePageCnt;
+	private String tiffFileSize;
 
 	/**
 	 * 전송상태 확인 0 : 접수 1 : 업로드중 2 : 전송중 3 : 완료 4 : 실패 (DB항목 오류) 5 : 실패 (전송중 오류) 6
@@ -242,5 +244,25 @@ public class FaxResult {
 	 */
 	public String getRequestNum() {
 		return requestNum;
-	}	
+	}
+
+	/**
+	 * 과금 페이지수
+	 *  - 2018/09/17 추가
+	 *
+	 * @return 과금 페이지수
+	 */
+	public Integer getChargePageCnt() {
+		return chargePageCnt;
+	}
+
+	/**
+	 * 변환파일용량 (단위 : byte)
+	 *  - 2018/09/17 추가
+	 *
+	 * @return 변환파일용량
+	 */
+	public String getTiffFileSize() {
+		return tiffFileSize;
+	}
 }
