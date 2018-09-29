@@ -19,6 +19,7 @@ public class MessageBriefInfo implements Serializable {
 	private String rDT;
 	private String rlt;
 	private String net;
+	private String srt;
 	
 	public String getSn() {
 		return sn;
@@ -61,6 +62,12 @@ public class MessageBriefInfo implements Serializable {
 	}
 	public void setNet(String net) {
 		this.net = net;
+	}
+	public String getSrt() {
+		return srt;
+	}
+	public void setSrt(String srt) {
+		this.srt = srt;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

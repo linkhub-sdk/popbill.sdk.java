@@ -43,7 +43,7 @@ public class MessageServiceTEST {
 		Date reserveDT = new Date();
 		reserveDT.setDate(reserveDT.getDate() + 1);
 		
-		String receiptNum = messageService.sendSMS("1234567890","010-7175-4819", "010-111-222",
+		String receiptNum = messageService.sendSMS("1234567890","07043042992", "010-111-222",
 				   "1수신자명","SMS 문자 01 테스트입니다.",reserveDT, 
 				   	"testkorea");
 		
@@ -203,9 +203,9 @@ public class MessageServiceTEST {
 	@Test
 	public void sendSMS_07_TEST() throws PopbillException {
 		Date reserveDT = new Date();
-		reserveDT.setDate(reserveDT.getDate() + 1);
+		reserveDT.setDate(reserveDT.getDate() + 15);
 		String receiptNum = messageService.sendSMS("1234567890","010-7175-4819", "010-111-222",
-				   "수신자명07","SMS 문자 07 테스트입니다",reserveDT, "testkorea", "20180723_SMS_07");
+				   "수신자명07","SMS 문자 07 테스트입니다",reserveDT, "testkorea", "20180813155254");
 		
 		assertNotNull(receiptNum);
 		
@@ -1426,7 +1426,7 @@ public class MessageServiceTEST {
 	@Test
 	public void getMessages_TEST() throws PopbillException {
 		
-		SentMessage[] messages = messageService.getMessages("1234567890", "018072311000000102");
+		SentMessage[] messages = messageService.getMessages("1234567890", "018081315000000061");
 		
 		assertNotNull(messages);
 		
@@ -1441,7 +1441,7 @@ public class MessageServiceTEST {
 			System.out.println(messages[i].getReceiptDT()); 
 			System.out.println(messages[i].getSendDT()); 
 			System.out.println(messages[i].getResultDT()); 
-			System.out.println(messages[i].getReserveDT()); 
+			System.out.println("ReserveDT:"+messages[i].getReserveDT());
 			System.out.println(messages[i].getState()); 
 			System.out.println(messages[i].getResult()); 
 			System.out.println(messages[i].getMessageType()); 
@@ -1454,7 +1454,7 @@ public class MessageServiceTEST {
 	
 	@Test
 	public void getMessagesRN_TEST() throws PopbillException {
-		SentMessage[] messages = messageService.getMessagesRN("1234567890", "20180723_MMS_32");
+		SentMessage[] messages = messageService.getMessagesRN("1234567890", "20180813155254");
 		
 		assertNotNull(messages);
 		
@@ -1468,8 +1468,8 @@ public class MessageServiceTEST {
 			System.out.println(messages[i].getReceiveName()); 
 			System.out.println(messages[i].getReceiptDT()); 
 			System.out.println(messages[i].getSendDT()); 
-			System.out.println(messages[i].getResultDT()); 
-			System.out.println(messages[i].getReserveDT()); 
+			System.out.println(messages[i].getResultDT());
+			System.out.println("ReserveDT:"+messages[i].getReserveDT());
 			System.out.println(messages[i].getState()); 
 			System.out.println(messages[i].getResult()); 
 			System.out.println(messages[i].getMessageType()); 
@@ -1864,6 +1864,7 @@ public class MessageServiceTEST {
 			System.out.println("sDT : " + listInfo[i].getsDT());
 			System.out.println("rDT : " + listInfo[i].getrDT());
 			System.out.println("net : " + listInfo[i].getNet());
+			System.out.println("srt : " + listInfo[i].getSrt());
 			System.out.println("==========");
 		}
 	}	
