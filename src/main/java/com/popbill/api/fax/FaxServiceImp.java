@@ -1110,6 +1110,21 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		return httpget("/FAX/SenderNumber", corpNum, userID, SenderNumber[].class);
 	}
 
+	@Override
+	public String getPreviewURL(String corpNum, String receiptNum) throws PopbillException {
+		return getPreviewURL(corpNum, receiptNum, null);
+	}
+
+	@Override
+	public String getPreviewURL(String corpNum, String receiptNum, String userID) throws PopbillException {
+		if (receiptNum == null || receiptNum.equals(""))
+			throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
+
+		URLResponse response =  httpget("/FAX/Preview/"+receiptNum, corpNum, userID, URLResponse.class);
+
+		return response.url;
+	}
+
 
 	protected class SendRequest {
 		public String snd;

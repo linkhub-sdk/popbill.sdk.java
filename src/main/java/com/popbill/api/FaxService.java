@@ -1545,5 +1545,27 @@ public interface FaxService extends BaseService {
 	 * @throws PopbillException
 	 */
 	public SenderNumber[] getSenderNumberList(String corpNum, String userID) throws PopbillException;
-	
+
+	/**
+	 * 팩스 미리보기 팝업 URL
+	 *
+	 * @param corpNum 연동회원 사업자번호
+	 * @param receiptNum 접수번호
+	 * @return
+	 * @throws PopbillException
+	 */
+	public String getPreviewURL(String corpNum, String receiptNum) throws PopbillException;
+
+	/**
+	 * 팩스 미리보기 팝업 URL
+	 *
+	 * @param corpNum 연동회원 사업자번호
+	 * @param receiptNum 접수번호
+	 * @param userID 연동회원 아이디
+	 * @return
+	 * @throws PopbillException
+	 */
+	public String getPreviewURL(String corpNum, String receiptNum, String userID) throws PopbillException;
+
+
 }

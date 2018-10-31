@@ -1337,6 +1337,24 @@ public class FaxServiceTEST {
 			System.out.println(listInfo[i].getRepresentYN());
 		}
 	}
+
+	@Test
+	public void getPreviewURL_userID_TEST() throws PopbillException{
+
+		String url = faxService.getPreviewURL("1234567890", "018103015555500001", "testkorea");
+
+		assertNotNull(url);
+		System.out.println(url);
+	}
+
+	@Test
+	public void getPreviewURL_TEST() throws PopbillException{
+
+		String url = faxService.getPreviewURL("1234567890", "018102609383900001");
+
+		assertNotNull(url);
+		System.out.println(url);
+	}
 	
 	public static Date addMinutes(Date date, int minutes)
     {
@@ -1345,7 +1363,7 @@ public class FaxServiceTEST {
         cal.add(Calendar.MINUTE, minutes); //minus number would decrement the days
         return cal.getTime();
     }
-	
-	
+
+
 	
 }
