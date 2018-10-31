@@ -861,6 +861,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		
 		if(receiptNum == null)
 			throw new PopbillException(-99999999,"팩스 접수번호(receiptNum)가 입력되지 않았습니다.");
+		if (receiptNum.length() != 18)
+			throw new PopbillException(-99999999, "접수번호가 올바르지 않았습니다.");
 		
 		SendRequest request = new SendRequest();
 		
@@ -962,6 +964,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 			throws PopbillException {
 		if (receiptNum == null)
 			throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
+		if (receiptNum.length() != 18)
+			throw new PopbillException(-99999999, "접수번호가 올바르지 않았습니다.");
 
 		return httpget("/FAX/" + receiptNum, corpNum, null,
 				FaxResult[].class);
@@ -1000,6 +1004,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 			throws PopbillException {
 		if (receiptNum == null)
 			throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
+		if (receiptNum.length() != 18)
+			throw new PopbillException(-99999999, "접수번호가 올바르지 않았습니다.");
 
 		return httpget("/FAX/" + receiptNum + "/Cancel", corpNum, userID,
 				Response.class);
@@ -1119,6 +1125,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 	public String getPreviewURL(String corpNum, String receiptNum, String userID) throws PopbillException {
 		if (receiptNum == null || receiptNum.equals(""))
 			throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
+		if (receiptNum.length() != 18)
+			throw new PopbillException(-99999999, "접수번호가 올바르지 않았습니다.");
 
 		URLResponse response =  httpget("/FAX/Preview/"+receiptNum, corpNum, userID, URLResponse.class);
 

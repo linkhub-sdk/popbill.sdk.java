@@ -1341,7 +1341,7 @@ public class FaxServiceTEST {
 	@Test
 	public void getPreviewURL_userID_TEST() throws PopbillException{
 
-		String url = faxService.getPreviewURL("1234567890", "018103015555500001", "testkorea");
+		String url = faxService.getPreviewURL("1234567890", "01810301555550000", "testkorea");
 
 		assertNotNull(url);
 		System.out.println(url);
