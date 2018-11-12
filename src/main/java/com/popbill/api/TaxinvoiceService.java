@@ -1554,6 +1554,39 @@ public interface TaxinvoiceService extends BaseService {
 	 * @throws PopbillException
 	 */
 	public String GetTaxCertURL(String CorpNum, String UserID) throws PopbillException;
+
+
+    /**
+     *  역발행 즉시 요청
+     *
+     * @param CorpNum
+     * 			연동회원 사업자번호
+     * @param taxinvoice
+     *            세금계산서 정보.(see com.popbill.api.taxinvoice.Taxinvoice)
+     * @param Memo
+     *            처리 메모
+     * @return Response 응답.
+     * @throws PopbillException
+     */
+    public Response RegistRequest(String CorpNum, Taxinvoice taxinvoice, String Memo) throws PopbillException;
+
+
+    /**
+     *  역발행 즉시 요청
+     *
+     * @param CorpNum
+     * 			연동회원 사업자번호
+     * @param taxinvoice
+     *            세금계산서 정보.(see com.popbill.api.taxinvoice.Taxinvoice)
+     * @param Memo
+     *            처리 메모
+     * @param UserID
+     * 			연동회원 유저아이디
+     * @return Response 응답.
+     * @throws PopbillException
+     */
+    public Response RegistRequest(String CorpNum, Taxinvoice taxinvoice, String Memo, String UserID) throws PopbillException;
+
 }
 
 

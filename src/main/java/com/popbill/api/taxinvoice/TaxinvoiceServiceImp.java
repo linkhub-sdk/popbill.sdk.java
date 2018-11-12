@@ -1232,26 +1232,6 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         return httpget("/Taxinvoice/CertCheck", CorpNum, null, Response.class);
     }
 
-
-    @Override
-    public Response RegistRequest(String CorpNum, Taxinvoice taxinvoice, String Memo, boolean writeSpecification) throws PopbillException {
-        return RegistRequest(CorpNum, taxinvoice, Memo, writeSpecification,"");
-    }
-
-
-    @Override
-    public Response RegistRequest(String CorpNum, Taxinvoice taxinvoice, String Memo, boolean writeSpecification, String UserID) throws PopbillException {
-
-        String PostData = toJsonString(new MemoRequest(Memo));
-
-        if (writeSpecification) {
-            PostData = "{\"writeSpecification\":true," + PostData.substring(1);
-        }
-
-        return httppost("/Taxinvoice", CorpNum, PostData, UserID, "REQUEST", Response.class);
-    }
-
-
     @Override
     public String GetSealURL(String CorpNum, String UserID) throws PopbillException {
 
@@ -1270,6 +1250,26 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     }
 
 
+
+    @Override
+    public Response RegistRequest(String CorpNum, Taxinvoice taxinvoice, String Memo) throws PopbillException {
+        return RegistRequest(CorpNum, taxinvoice, Memo,"");
+    }
+
+
+    @Override
+    public Response RegistRequest(String CorpNum, Taxinvoice taxinvoice, String Memo, String UserID) throws PopbillException {
+
+        if (taxinvoice == null)
+            throw new PopbillException(-99999999, "세금계산서 정보가 입력되지 않았습니다.");
+
+        if (Memo != null)
+            taxinvoice.setMemo(Memo);
+
+        String PostData = toJsonString(taxinvoice);
+
+        return httppost("/Taxinvoice", CorpNum, PostData, UserID, "REQUEST", Response.class);
+    }
 
 
     protected class CertResponse {
