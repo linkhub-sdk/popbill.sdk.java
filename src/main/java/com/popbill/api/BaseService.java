@@ -249,7 +249,7 @@ public interface BaseService {
 	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
 	 * @throws PopbillException
 	 */
-	public String GetAccessURL(String CorpNum, String UserID) throws PopbillException;
+	public abstract String getAccessURL(String CorpNum, String UserID) throws PopbillException;
 
 
 	/**
@@ -262,6 +262,6 @@ public interface BaseService {
 	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
 	 * @throws PopbillException
 	 */
-	public String GetChargeURL(String CorpNum, String UserID) throws PopbillException;
+	public abstract String getChargeURL(String CorpNum, String UserID) throws PopbillException;
 
 }

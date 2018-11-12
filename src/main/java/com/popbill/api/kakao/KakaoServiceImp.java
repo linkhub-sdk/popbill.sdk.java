@@ -449,7 +449,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
 
 	@Override
-	public String GetPlusFriendMgtURL(String CorpNum, String UserID) throws PopbillException {
+	public String getPlusFriendMgtURL(String CorpNum, String UserID) throws PopbillException {
 
 		URLResponse response = httpget("/KakaoTalk/?TG=PLUSFRIEND", CorpNum, UserID, URLResponse.class);
 
@@ -457,7 +457,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 	}
 
 	@Override
-	public String GetSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException {
+	public String getSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException {
 
 		URLResponse response = httpget("/Message/?TG=SENDER", CorpNum, UserID, URLResponse.class);
 
@@ -465,7 +465,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 	}
 
 	@Override
-	public String GetATSTemplateMgtURL(String CorpNum, String UserID) throws PopbillException {
+	public String getATSTemplateMgtURL(String CorpNum, String UserID) throws PopbillException {
 
 		URLResponse response = httpget("/KakaoTalk/?TG=TEMPLATE", CorpNum, UserID, URLResponse.class);
 
@@ -473,7 +473,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 	}
 
 	@Override
-	public String GetSentListURL(String CorpNum, String UserID) throws PopbillException {
+	public String getSentListURL(String CorpNum, String UserID) throws PopbillException {
 
 		URLResponse response = httpget("/KakaoTalk/?TG=BOX", CorpNum, UserID, URLResponse.class);
 

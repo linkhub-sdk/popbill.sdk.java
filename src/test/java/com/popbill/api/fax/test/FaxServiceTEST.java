@@ -1359,7 +1359,7 @@ public class FaxServiceTEST {
 	@Test
 	public void GetSenderNumberMgtURL_TEST() throws PopbillException {
 
-		String url = faxService.GetSenderNumberMgtURL("1234567890","testkorea");
+		String url = faxService.getSenderNumberMgtURL("1234567890","testkorea");
 
 		System.out.println(url);
 	}
@@ -1367,7 +1367,7 @@ public class FaxServiceTEST {
 	@Test
 	public void GetSentListURL_TEST() throws PopbillException {
 
-		String url = faxService.GetSentListURL("1234567890","testkorea");
+		String url = faxService.getSentListURL("1234567890","testkorea");
 
 		System.out.println(url);
 	}

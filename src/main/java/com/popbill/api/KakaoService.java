@@ -524,7 +524,7 @@ public interface KakaoService extends BaseService {
 	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
 	 * @throws PopbillException
 	 */
-	public String GetPlusFriendMgtURL(String CorpNum, String UserID) throws PopbillException;
+	public String getPlusFriendMgtURL(String CorpNum, String UserID) throws PopbillException;
 
 
 	/**
@@ -537,7 +537,7 @@ public interface KakaoService extends BaseService {
 	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
 	 * @throws PopbillException
 	 */
-	public String GetSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException;
+	public String getSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException;
 
 
 	/**
@@ -550,7 +550,7 @@ public interface KakaoService extends BaseService {
 	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
 	 * @throws PopbillException
 	 */
-	public String GetATSTemplateMgtURL(String CorpNum, String UserID) throws PopbillException;
+	public String getATSTemplateMgtURL(String CorpNum, String UserID) throws PopbillException;
 
 
 	/**
@@ -563,6 +563,6 @@ public interface KakaoService extends BaseService {
 	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
 	 * @throws PopbillException
 	 */
-	public String GetSentListURL(String CorpNum, String UserID) throws PopbillException;
+	public String getSentListURL(String CorpNum, String UserID) throws PopbillException;
 
 }

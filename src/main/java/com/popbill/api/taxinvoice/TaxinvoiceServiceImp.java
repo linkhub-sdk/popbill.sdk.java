@@ -1233,7 +1233,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     }
 
     @Override
-    public String GetSealURL(String CorpNum, String UserID) throws PopbillException {
+    public String getSealURL(String CorpNum, String UserID) throws PopbillException {
 
         URLResponse response = httpget("/?TG=SEAL", CorpNum, UserID, URLResponse.class);
 
@@ -1242,7 +1242,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
 
     @Override
-    public String GetTaxCertURL(String CorpNum, String UserID) throws PopbillException {
+    public String getTaxCertURL(String CorpNum, String UserID) throws PopbillException {
 
         URLResponse response = httpget("/?TG=CERT", CorpNum, UserID, URLResponse.class);
 
@@ -1252,13 +1252,13 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
 
     @Override
-    public Response RegistRequest(String CorpNum, Taxinvoice taxinvoice, String Memo) throws PopbillException {
-        return RegistRequest(CorpNum, taxinvoice, Memo,"");
+    public Response registRequest(String CorpNum, Taxinvoice taxinvoice, String Memo) throws PopbillException {
+        return registRequest(CorpNum, taxinvoice, Memo,"");
     }
 
 
     @Override
-    public Response RegistRequest(String CorpNum, Taxinvoice taxinvoice, String Memo, String UserID) throws PopbillException {
+    public Response registRequest(String CorpNum, Taxinvoice taxinvoice, String Memo, String UserID) throws PopbillException {
 
         if (taxinvoice == null)
             throw new PopbillException(-99999999, "세금계산서 정보가 입력되지 않았습니다.");

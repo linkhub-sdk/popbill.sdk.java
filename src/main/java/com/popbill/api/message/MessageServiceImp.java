@@ -1097,7 +1097,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
     }
 
     @Override
-    public String GetSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException {
+    public String getSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException {
 
         URLResponse response = httpget("/Message/?TG=SENDER", CorpNum, UserID, URLResponse.class);
 
@@ -1105,7 +1105,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
     }
 
     @Override
-    public String GetSentListURL(String CorpNum, String UserID) throws PopbillException {
+    public String getSentListURL(String CorpNum, String UserID) throws PopbillException {
 
         URLResponse response = httpget("/Message/?TG=BOX", CorpNum, UserID, URLResponse.class);
 

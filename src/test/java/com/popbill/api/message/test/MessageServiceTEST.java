@@ -1872,7 +1872,7 @@ public class MessageServiceTEST {
 	@Test
 	public void GetSenderNumberMgtURL_TEST() throws PopbillException {
 
-		String url = messageService.GetSenderNumberMgtURL("1234567890","testkorea");
+		String url = messageService.getSenderNumberMgtURL("1234567890","testkorea");
 
 		System.out.println(url);
 	}
@@ -1880,7 +1880,7 @@ public class MessageServiceTEST {
 	@Test
 	public void GetSentListURL_TEST() throws PopbillException {
 
-		String url = messageService.GetSentListURL("1234567890","testkorea");
+		String url = messageService.getSentListURL("1234567890","testkorea");
 
 		System.out.println(url);
 	}

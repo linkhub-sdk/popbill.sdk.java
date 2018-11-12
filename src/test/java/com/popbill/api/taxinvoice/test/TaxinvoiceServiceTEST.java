@@ -808,7 +808,7 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void GetAccessURL_TEST() throws PopbillException {
 
-		String url = taxinvoiceService.GetAccessURL("1234567890","testkorea");
+		String url = taxinvoiceService.getAccessURL("1234567890","testkorea");
 
 		System.out.println(url);
 	}
@@ -816,7 +816,7 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void GetChargeURL_TEST() throws PopbillException {
 
-		String url = taxinvoiceService.GetChargeURL("1234567890","testkorea");
+		String url = taxinvoiceService.getChargeURL("1234567890","testkorea");
 
 		System.out.println(url);
 	}
@@ -824,7 +824,7 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void GetSealURL_TEST() throws PopbillException {
 
-		String url = taxinvoiceService.GetSealURL("1234567890","testkorea");
+		String url = taxinvoiceService.getSealURL("1234567890","testkorea");
 
 		System.out.println(url);
 	}
@@ -832,7 +832,7 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void GetTaxCertURL_TEST() throws PopbillException {
 
-		String url = taxinvoiceService.GetTaxCertURL("1234567890","testkorea");
+		String url = taxinvoiceService.getTaxCertURL("1234567890","testkorea");
 
 		System.out.println(url);
 	}
@@ -889,7 +889,7 @@ public class TaxinvoiceServiceTEST {
 		taxinvoice.setBusinessLicenseYN(false); // 사업자등록증 이미지 첨부시 설정.
 		taxinvoice.setBankBookYN(false); // 통장사본 이미지 첨부시 설정.
 
-		Response response = taxinvoiceService.RegistRequest("1234567890", taxinvoice, "역발행 즉시요청");
+		Response response = taxinvoiceService.registRequest("1234567890", taxinvoice, "역발행 즉시요청");
 
 
 	}

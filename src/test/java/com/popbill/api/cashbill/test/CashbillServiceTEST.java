@@ -465,7 +465,7 @@ public class CashbillServiceTEST {
 	@Test
 	public void GetAccessURL_TEST() throws PopbillException {
 
-		String url = cashbillService.GetAccessURL("1234567890","testkorea");
+		String url = cashbillService.getAccessURL("1234567890","testkorea");
 
 		System.out.println(url);
 	}
@@ -473,7 +473,7 @@ public class CashbillServiceTEST {
 	@Test
 	public void GetChargeURL_TEST() throws PopbillException {
 
-		String url = cashbillService.GetChargeURL("1234567890","testkorea");
+		String url = cashbillService.getChargeURL("1234567890","testkorea");
 
 		System.out.println(url);
 	}

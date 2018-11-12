@@ -1540,7 +1540,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
 	 * @throws PopbillException
 	 */
-	public String GetSealURL(String CorpNum, String UserID) throws PopbillException;
+	public String getSealURL(String CorpNum, String UserID) throws PopbillException;
 
 
 	/**
@@ -1553,7 +1553,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
 	 * @throws PopbillException
 	 */
-	public String GetTaxCertURL(String CorpNum, String UserID) throws PopbillException;
+	public String getTaxCertURL(String CorpNum, String UserID) throws PopbillException;
 
 
     /**
@@ -1568,7 +1568,7 @@ public interface TaxinvoiceService extends BaseService {
      * @return Response 응답.
      * @throws PopbillException
      */
-    public Response RegistRequest(String CorpNum, Taxinvoice taxinvoice, String Memo) throws PopbillException;
+    public Response registRequest(String CorpNum, Taxinvoice taxinvoice, String Memo) throws PopbillException;
 
 
     /**
@@ -1585,7 +1585,7 @@ public interface TaxinvoiceService extends BaseService {
      * @return Response 응답.
      * @throws PopbillException
      */
-    public Response RegistRequest(String CorpNum, Taxinvoice taxinvoice, String Memo, String UserID) throws PopbillException;
+    public Response registRequest(String CorpNum, Taxinvoice taxinvoice, String Memo, String UserID) throws PopbillException;
 
 }
 

@@ -1578,7 +1578,7 @@ public interface FaxService extends BaseService {
 	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
 	 * @throws PopbillException
 	 */
-	public String GetSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException;
+	public String getSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException;
 
 
 	/**
@@ -1591,5 +1591,5 @@ public interface FaxService extends BaseService {
 	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
 	 * @throws PopbillException
 	 */
-	public String GetSentListURL(String CorpNum, String UserID) throws PopbillException;
+	public String getSentListURL(String CorpNum, String UserID) throws PopbillException;
 }
