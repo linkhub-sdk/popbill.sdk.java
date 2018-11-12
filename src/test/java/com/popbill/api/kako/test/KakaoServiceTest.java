@@ -1712,8 +1712,39 @@ public class KakaoServiceTest {
 		}
 		
 	}
-	
-	
+
+
+	@Test
+	public void GetSentListURL_TEST() throws PopbillException {
+
+		String url = kakaoService.GetSentListURL("1234567890","testkorea");
+
+		System.out.println(url);
+	}
+
+	@Test
+	public void GetSenderNumerMgtURL_TEST() throws PopbillException {
+
+		String url = kakaoService.GetSenderNumberMgtURL("1234567890","testkorea");
+
+		System.out.println(url);
+	}
+
+	@Test
+	public void GetATSTemplateMgtURL_TEST() throws PopbillException {
+
+		String url = kakaoService.GetATSTemplateMgtURL("1234567890","testkorea");
+
+		System.out.println(url);
+	}
+
+	@Test
+	public void GetPlusFriendMgtURL_TEST() throws PopbillException {
+
+		String url = kakaoService.GetPlusFriendMgtURL("1234567890","testkorea");
+
+		System.out.println(url);
+	}
 	
 	
 }

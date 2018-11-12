@@ -512,4 +512,57 @@ public interface KakaoService extends BaseService {
 		
 	public Response cancelReserveRN(String CorpNum, String requestNum, String UserID) 
 			throws PopbillException;
+
+
+	/**
+	 * 플러스친구 계정관리 팝업 URL을 반환
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID
+	 * 			연동회원 유저아이디
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String GetPlusFriendMgtURL(String CorpNum, String UserID) throws PopbillException;
+
+
+	/**
+	 * 발신번호 관리 팝업 URL을 반환
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID
+	 * 			연동회원 유저아이디
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String GetSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException;
+
+
+	/**
+	 * 알림톡 템플릿관리 팝업 URL을 반환
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID
+	 * 			연동회원 유저아이디
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String GetATSTemplateMgtURL(String CorpNum, String UserID) throws PopbillException;
+
+
+	/**
+	 *  카카오톡 전송내역 팝업 URL을 반환
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID
+	 * 			연동회원 유저아이디
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String GetSentListURL(String CorpNum, String UserID) throws PopbillException;
+
 }

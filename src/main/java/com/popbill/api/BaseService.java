@@ -238,4 +238,30 @@ public interface BaseService {
 	 */
 	public abstract Response updateCorpInfo(String CorpNum, CorpInfo corpInfo, String UserID)
 			throws PopbillException;
+
+	/**
+	 *  팝빌 로그인 URL
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID
+	 * 			연동회원 유저아이디
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String GetAccessURL(String CorpNum, String UserID) throws PopbillException;
+
+
+	/**
+	 *  연동회원 포인트충전 팝업 URL
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID
+	 * 			연동회원 유저아이디
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String GetChargeURL(String CorpNum, String UserID) throws PopbillException;
+
 }

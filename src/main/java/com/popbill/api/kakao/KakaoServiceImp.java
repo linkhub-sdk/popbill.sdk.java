@@ -447,6 +447,39 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 		return httpget(uri, CorpNum, UserID, KakaoSearchResult.class);
 	}
 
+
+	@Override
+	public String GetPlusFriendMgtURL(String CorpNum, String UserID) throws PopbillException {
+
+		URLResponse response = httpget("/KakaoTalk/?TG=PLUSFRIEND", CorpNum, UserID, URLResponse.class);
+
+		return response.url;
+	}
+
+	@Override
+	public String GetSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException {
+
+		URLResponse response = httpget("/Message/?TG=SENDER", CorpNum, UserID, URLResponse.class);
+
+		return response.url;
+	}
+
+	@Override
+	public String GetATSTemplateMgtURL(String CorpNum, String UserID) throws PopbillException {
+
+		URLResponse response = httpget("/KakaoTalk/?TG=TEMPLATE", CorpNum, UserID, URLResponse.class);
+
+		return response.url;
+	}
+
+	@Override
+	public String GetSentListURL(String CorpNum, String UserID) throws PopbillException {
+
+		URLResponse response = httpget("/KakaoTalk/?TG=BOX", CorpNum, UserID, URLResponse.class);
+
+		return response.url;
+	}
+
 	protected class ATSSendRequest {
 		public String templateCode;
 		public String snd;

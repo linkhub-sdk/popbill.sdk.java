@@ -26,7 +26,7 @@ import com.popbill.api.taxinvoice.TaxinvoiceLog;
 
 /**
  * Taxinvoice Service Interface.
- * 
+ *
  * @author KimSeongjun
  * @version 1.0.0
  */
@@ -34,7 +34,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 회원의 세금계산서 발행단가 확인
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @return 단가 (ex. 200.0)
@@ -44,7 +44,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 연동회원이 등록한 공인인증서의 만료일시 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @return 만료일시
@@ -55,7 +55,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 팝빌 세금계산서 관련 URL 확인. 반환한 url은 30초이내에 브라우져에 표시하여야 함.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호.
 	 * @param TOGO
@@ -65,10 +65,10 @@ public interface TaxinvoiceService extends BaseService {
 	 */
 	public String getURL(String CorpNum, String TOGO)
 			throws PopbillException;
-	
+
 	/**
 	 * 팝빌 세금계산서 관련 URL 확인. 반환한 url은 30초이내에 브라우져에 표시하여야 함.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호.
 	 * @param UserID
@@ -83,7 +83,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 연동관리번호 등록여부 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -98,7 +98,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 대량사업자간 Email 유통을 위한 국세청인증번호와 이메일 주소 반환.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @return EmailPublicKey 배열 반환
@@ -109,7 +109,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 1건 임시저장.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param taxinvoice
@@ -122,7 +122,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 1건 임시저장.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param taxinvoice
@@ -137,7 +137,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 1건 임시저장.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param taxinvoice
@@ -154,7 +154,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 임시저장된 세금계산서 정보 수정.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호.
 	 * @param KeyType
@@ -171,7 +171,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 임시저장된 세금계산서 정보 수정.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호.
 	 * @param KeyType
@@ -191,7 +191,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 삭제. 삭제가능한 건만 삭제처리되고, 불가능한 건은 PopbillException 발생함.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -206,7 +206,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 삭제. 삭제가능한 건만 삭제처리되고, 불가능한 건은 PopbillException 발생함.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -223,7 +223,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 정발행 세금계산서 발행예정 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -237,10 +237,10 @@ public interface TaxinvoiceService extends BaseService {
 	 */
 	public Response send(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo) throws PopbillException;
-	
+
 	/**
 	 * 정발행 세금계산서 발행예정 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -261,7 +261,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 정발행 세금계산서 발행예정 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -280,7 +280,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 발행예정 세금계산서의 취소 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -297,7 +297,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 발행예정 세금계산서의 취소 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -316,7 +316,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 발행예정 세금계산서의 공급받는자의 승인 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -333,7 +333,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 발행예정 세금계산서의 공급받는자의 승인 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -352,7 +352,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 발행예정 세금계산서의 공급받는자의 거부 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -369,7 +369,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 발행예정 세금계산서의 공급받는자의 거부 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -388,7 +388,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 발행.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -405,7 +405,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 발행.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -424,7 +424,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 발행.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -438,7 +438,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param UserID
 	 *            회원 아이디
 	 * @return Response 응답.
-	 * @throws PopbillException7
+	 * @throws PopbillException
 	 */
 	public Response issue(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, boolean ForceIssue, String UserID)
@@ -446,7 +446,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 발행.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -470,7 +470,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 발행취소 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -487,7 +487,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 발행취소 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -506,7 +506,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 역발행 세금계산서의 역)발행요청 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -523,7 +523,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 역발행 세금계산서의 역)발행요청 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -542,7 +542,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 역발행 세금계산서의 공급자의 발행거부 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -559,7 +559,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 역발행 세금계산서의 공급자의 발행거부 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -578,7 +578,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 역발행 세금계산서의 역)발행요청 취소 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -595,7 +595,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 역발행 세금계산서의 역)발행요청 취소 처리.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -614,7 +614,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 발행된 세금계산서의 국세청 즉시 전송 요청.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -629,7 +629,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 발행된 세금계산서의 국세청 즉시 전송 요청.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -646,7 +646,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 이메일 재전송 요청.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -663,7 +663,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 이메일 재전송 요청.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -683,7 +683,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 문자 재전송 요청
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -705,7 +705,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 문자 재전송 요청
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -729,7 +729,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 팩스 전송 요청
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -749,7 +749,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 팩스 전송 요청
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -771,7 +771,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 상세정보 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -786,7 +786,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 상태정보 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -801,7 +801,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 상태정보 대량(최대 1000건) 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -816,7 +816,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 문서이력 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -828,10 +828,10 @@ public interface TaxinvoiceService extends BaseService {
 	 */
 	public TaxinvoiceLog[] getLogs(String CorpNum, MgtKeyType KeyType,
 			String MgtKey) throws PopbillException;
-	
+
 	/**
 	 * 세금계산서 팝빌화면 팝업 URL 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -843,10 +843,10 @@ public interface TaxinvoiceService extends BaseService {
 	 */
 	public String getPopUpURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey) throws PopbillException;
-	
+
 	/**
 	 * 세금계산서 팝빌화면 팝업 URL 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -860,10 +860,10 @@ public interface TaxinvoiceService extends BaseService {
 	 */
 	public String getPopUpURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String UserID) throws PopbillException;
-	
+
 	/**
 	 * 세금계산서 이메일의 링크 URL 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -876,10 +876,10 @@ public interface TaxinvoiceService extends BaseService {
 	public String getMailURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey) throws PopbillException;
 
-	
+
 	/**
 	 * 세금계산서 이메일의 링크 URL 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -896,7 +896,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 팝빌 인쇄화면 URL 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -908,10 +908,10 @@ public interface TaxinvoiceService extends BaseService {
 	 */
 	public String getPrintURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey) throws PopbillException;
-	
+
 	/**
 	 * 세금계산서 팝빌 인쇄화면 URL 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -928,7 +928,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 세금계산서 팝빌 인쇄화면(공급받는자용) URL 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -940,10 +940,10 @@ public interface TaxinvoiceService extends BaseService {
 	 */
 	public String getEPrintURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey) throws PopbillException;
-	
+
 	/**
 	 * 세금계산서 팝빌 인쇄화면(공급받는자용) URL 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -957,10 +957,10 @@ public interface TaxinvoiceService extends BaseService {
 	 */
 	public String getEPrintURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String UserID) throws PopbillException;
-	
+
 	/**
 	 * 다량 인쇄 URL 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -972,10 +972,10 @@ public interface TaxinvoiceService extends BaseService {
 	 */
 	public String getMassPrintURL(String CorpNum, MgtKeyType KeyType,
 			String[] MgtKeyList) throws PopbillException;
-	
+
 	/**
 	 * 다량 인쇄 URL 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -992,7 +992,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 임시저장 세금계산서에 첨부파일 추가.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -1012,7 +1012,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 임시저장 세금계산서에 첨부파일 추가.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -1034,7 +1034,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 첨부파일 목록 확인.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -1049,7 +1049,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 첨부파일 삭제.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -1066,7 +1066,7 @@ public interface TaxinvoiceService extends BaseService {
 
 	/**
 	 * 첨부파일 삭제.
-	 * 
+	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
@@ -1084,294 +1084,294 @@ public interface TaxinvoiceService extends BaseService {
 			String MgtKey, String FileID, String UserID)
 			throws PopbillException;
 	/**
-	 * 세금계산서 목록조회 
-	 * 
+	 * 세금계산서 목록조회
+	 *
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param KeyType
-	 * 			연동문서 종류 
+	 * 			연동문서 종류
 	 * @param DType
-	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자 
+	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자
 	 * @param SDate
 	 * 			시작일자(yyyyMMdd)
 	 * @param EDate
 	 * 			종료일자(yyyyMMdd)
 	 * @param State
-	 * 			상태코드 배열 
+	 * 			상태코드 배열
 	 * @param Type
-	 * 			문서유형 배열, N-일반세금계산서, M-수정세금계산서 
+	 * 			문서유형 배열, N-일반세금계산서, M-수정세금계산서
 	 * @param TaxType
 	 * 			과세형태 배열, T-과세, N-면세, Z-영세
 	 * @param LateOnly
 	 * 			지연발행 여부, null-전체조회, 0:정상발행분 조회, 1:지연발행분 조회
 	 * @param Page
-	 * 			페이지 번호 
+	 * 			페이지 번호
 	 * @param PerPage
 	 * 			페이지당 검색갯수, 기본값 500, 최대값 1000
 	 * @param Order
-	 * 			정렬방향, D-내림차순, A-오름차순  
-	 * @return 세금계산서 목록조회 결과. (see com.popbill.api.taxinvoice.TISearchResult) 
+	 * 			정렬방향, D-내림차순, A-오름차순
+	 * @return 세금계산서 목록조회 결과. (see com.popbill.api.taxinvoice.TISearchResult)
 	 * @throws PopbillException
 	 */
-	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, 
-			String DType, String SDate, String EDate, 
-			String[] State, String[] Type, String[] TaxType, 
+	public TISearchResult Search(String CorpNum, MgtKeyType KeyType,
+			String DType, String SDate, String EDate,
+			String[] State, String[] Type, String[] TaxType,
 			Boolean LateOnly, Integer Page, Integer PerPage,
 			String Order) throws PopbillException;
 	/**
-	  * 세금계산서 목록조회 
-	 * 
+	  * 세금계산서 목록조회
+	 *
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param KeyType
-	 * 			연동문서 종류 
+	 * 			연동문서 종류
 	 * @param DType
-	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자 
+	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자
 	 * @param SDate
 	 * 			시작일자(yyyyMMdd)
 	 * @param EDate
 	 * 			종료일자(yyyyMMdd)
 	 * @param State
-	 * 			상태코드 배열 
+	 * 			상태코드 배열
 	 * @param Type
-	 * 			문서유형 배열, N-일반세금계산서, M-수정세금계산서 
+	 * 			문서유형 배열, N-일반세금계산서, M-수정세금계산서
 	 * @param TaxType
 	 * 			과세형태 배열, T-과세, N-면세, Z-영세
 	 * @param LateOnly
 	 * 			지연발행 여부, null-전체조회, 0:정상발행분 조회, 1:지연발행분 조회
 	 * @param TaxRegIDYN
-	 * 			종사업장 유무, false-식별번호 없는것 검색, true-식별번호 검색 
+	 * 			종사업장 유무, false-식별번호 없는것 검색, true-식별번호 검색
 	 * @param TaxRegIDType
 	 * 			식별번호 유형, 미기재 or S-공급자, B-공급받는자, T-수탁자
 	 * @param TaxRegID
-	 * 			종사업장번호 배열  
+	 * 			종사업장번호 배열
 	 * @param Page
 	 * @param PerPage
 	 * @param Order
 	 * @return
 	 * @throws PopbillException
 	 */
-	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, 
-			String DType, String SDate, String EDate, 
-			String[] State, String[] Type, String[] TaxType, 
+	public TISearchResult Search(String CorpNum, MgtKeyType KeyType,
+			String DType, String SDate, String EDate,
+			String[] State, String[] Type, String[] TaxType,
 			Boolean LateOnly, String TaxRegIDType,
 			String TaxRegID, String TaxRegIDYN, Integer Page, Integer PerPage,
 			String Order) throws PopbillException;
-	
+
 	/**
-	  * 세금계산서 목록조회 
-	 * 
+	  * 세금계산서 목록조회
+	 *
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param KeyType
-	 * 			연동문서 종류 
+	 * 			연동문서 종류
 	 * @param DType
-	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자 
+	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자
 	 * @param SDate
 	 * 			시작일자(yyyyMMdd)
 	 * @param EDate
 	 * 			종료일자(yyyyMMdd)
 	 * @param State
-	 * 			상태코드 배열 
+	 * 			상태코드 배열
 	 * @param Type
-	 * 			문서유형 배열, N-일반세금계산서, M-수정세금계산서 
+	 * 			문서유형 배열, N-일반세금계산서, M-수정세금계산서
 	 * @param TaxType
 	 * 			과세형태 배열, T-과세, N-면세, Z-영세
 	 * @param LateOnly
 	 * 			지연발행 여부, null-전체조회, 0:정상발행분 조회, 1:지연발행분 조회
 	 * @param TaxRegIDYN
-	 * 			종사업장 유무, false-식별번호 없는것 검색, true-식별번호 검색 
+	 * 			종사업장 유무, false-식별번호 없는것 검색, true-식별번호 검색
 	 * @param TaxRegIDType
 	 * 			식별번호 유형, 미기재 or S-공급자, B-공급받는자, T-수탁자
 	 * @param TaxRegID
-	 * 			종사업장번호 배열  
+	 * 			종사업장번호 배열
 	 * @param QString
 	 * 			통합검색 키워드, (거래처명, 거래처 사업자번호 조회)
 	 * @param Page
 	 * 			페이지번호
 	 * @param PerPage
-	 * 			페이지당 목록개수 
+	 * 			페이지당 목록개수
 	 * @param Order
-	 * 			정렬방향, D-오름차순, A-내림차순 
+	 * 			정렬방향, D-오름차순, A-내림차순
 	 * @return
 	 * @throws PopbillException
 	 */
-	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, 
-			String DType, String SDate, String EDate, 
-			String[] State, String[] Type, String[] TaxType, 
+	public TISearchResult Search(String CorpNum, MgtKeyType KeyType,
+			String DType, String SDate, String EDate,
+			String[] State, String[] Type, String[] TaxType,
 			Boolean LateOnly, String TaxRegIDType,
-			String TaxRegID, String TaxRegIDYN, String QString, 
+			String TaxRegID, String TaxRegIDYN, String QString,
 			Integer Page, Integer PerPage, String Order) throws PopbillException;
-	
+
 	/**
-	  * 세금계산서 목록조회 
-	 * 
+	  * 세금계산서 목록조회
+	 *
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param KeyType
-	 * 			연동문서 종류 
+	 * 			연동문서 종류
 	 * @param DType
-	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자 
+	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자
 	 * @param SDate
 	 * 			시작일자(yyyyMMdd)
 	 * @param EDate
 	 * 			종료일자(yyyyMMdd)
 	 * @param State
-	 * 			상태코드 배열 
+	 * 			상태코드 배열
 	 * @param Type
-	 * 			문서유형 배열, N-일반세금계산서, M-수정세금계산서 
+	 * 			문서유형 배열, N-일반세금계산서, M-수정세금계산서
 	 * @param TaxType
 	 * 			과세형태 배열, T-과세, N-면세, Z-영세
 	 * @param LateOnly
 	 * 			지연발행 여부, null-전체조회, 0:정상발행분 조회, 1:지연발행분 조회
 	 * @param TaxRegIDYN
-	 * 			종사업장 유무, false-식별번호 없는것 검색, true-식별번호 검색 
+	 * 			종사업장 유무, false-식별번호 없는것 검색, true-식별번호 검색
 	 * @param TaxRegIDType
 	 * 			식별번호 유형, 미기재 or S-공급자, B-공급받는자, T-수탁자
 	 * @param TaxRegID
-	 * 			종사업장번호 배열  
+	 * 			종사업장번호 배열
 	 * @param QString
 	 * 			통합검색 키워드, (거래처명, 거래처 사업자번호 조회)
 	 * @param Page
 	 * 			페이지번호
 	 * @param PerPage
-	 * 			페이지당 목록개수 
+	 * 			페이지당 목록개수
 	 * @param Order
 	 * 			정렬방향, D-오름차순, A-내림차순
-	 * @param InterOPYN 
+	 * @param InterOPYN
 	 * 			연동문서 여부 null-전체조회, 0:일반문서, 1-연동문서
 	 * @return
 	 * @throws PopbillException
 	 */
-	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, 
-			String DType, String SDate, String EDate, 
-			String[] State, String[] Type, String[] TaxType, 
+	public TISearchResult Search(String CorpNum, MgtKeyType KeyType,
+			String DType, String SDate, String EDate,
+			String[] State, String[] Type, String[] TaxType,
 			Boolean LateOnly, String TaxRegIDType,
-			String TaxRegID, String TaxRegIDYN, String QString, 
+			String TaxRegID, String TaxRegIDYN, String QString,
 			Integer Page, Integer PerPage, String Order, String InterOPYN) throws PopbillException;
-	
+
 	/**
-	  * 세금계산서 목록조회 
-	 * 
+	  * 세금계산서 목록조회
+	 *
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param KeyType
-	 * 			연동문서 종류 
+	 * 			연동문서 종류
 	 * @param DType
-	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자 
+	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자
 	 * @param SDate
 	 * 			시작일자(yyyyMMdd)
 	 * @param EDate
 	 * 			종료일자(yyyyMMdd)
 	 * @param State
-	 * 			상태코드 배열 
+	 * 			상태코드 배열
 	 * @param Type
-	 * 			문서유형 배열, N-일반세금계산서, M-수정세금계산서 
+	 * 			문서유형 배열, N-일반세금계산서, M-수정세금계산서
 	 * @param TaxType
 	 * 			과세형태 배열, T-과세, N-면세, Z-영세
 	 * @param IssueType
-	 * 			발행형태 배열, N-정발행, R-역발행, T-위수탁 
+	 * 			발행형태 배열, N-정발행, R-역발행, T-위수탁
 	 * @param LateOnly
 	 * 			지연발행 여부, null-전체조회, 0:정상발행분 조회, 1:지연발행분 조회
 	 * @param TaxRegIDYN
-	 * 			종사업장 유무, false-식별번호 없는것 검색, true-식별번호 검색 
+	 * 			종사업장 유무, false-식별번호 없는것 검색, true-식별번호 검색
 	 * @param TaxRegIDType
 	 * 			식별번호 유형, 미기재 or S-공급자, B-공급받는자, T-수탁자
 	 * @param TaxRegID
-	 * 			종사업장번호 배열  
+	 * 			종사업장번호 배열
 	 * @param QString
 	 * 			통합검색 키워드, (거래처명, 거래처 사업자번호 조회)
 	 * @param Page
 	 * 			페이지번호
 	 * @param PerPage
-	 * 			페이지당 목록개수 
+	 * 			페이지당 목록개수
 	 * @param Order
 	 * 			정렬방향, D-오름차순, A-내림차순
-	 * @param InterOPYN 
+	 * @param InterOPYN
 	 * 			연동문서 여부 null-전체조회, 0:일반문서, 1-연동문서
 	 * @return
 	 * @throws PopbillException
 	 */
-	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, 
-			String DType, String SDate, String EDate, 
+	public TISearchResult Search(String CorpNum, MgtKeyType KeyType,
+			String DType, String SDate, String EDate,
 			String[] State, String[] Type, String[] TaxType, String[] IssueType,
 			Boolean LateOnly, String TaxRegIDType,
-			String TaxRegID, String TaxRegIDYN, String QString, 
+			String TaxRegID, String TaxRegIDYN, String QString,
 			Integer Page, Integer PerPage, String Order, String InterOPYN) throws PopbillException;
-		
+
 	/**
-	 * 세금계산서 즉시발행 
-	 * 
+	 * 세금계산서 즉시발행
+	 *
 	 * @param CorpNum
-	 * 			연동회원 사업자번호 
+	 * 			연동회원 사업자번호
 	 * @param taxinvoice
 	 * 			세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
 	 * @param WriteSpecification
-	 * 			거래명세서 동시작성 여부 
+	 * 			거래명세서 동시작성 여부
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
 	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
-			Boolean WriteSpecification) throws PopbillException; 
-			
+			Boolean WriteSpecification) throws PopbillException;
+
 	/**
-	 * 세금계산서 즉시발행 
-	 * 
+	 * 세금계산서 즉시발행
+	 *
 	 * @param CorpNum
-	 * 			연동회원 사업자번호 
+	 * 			연동회원 사업자번호
 	 * @param taxinvoice
 	 * 			세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
 	 * @param Memo
-	 * 			즉시발행 메모, 최대 200자 
+	 * 			즉시발행 메모, 최대 200자
 	 * @param ForceIssue
-	 * 			지연발행 강제여부 
-	 * @return Response 응답. 
+	 * 			지연발행 강제여부
+	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
 	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
 			String Memo, Boolean ForceIssue) throws PopbillException;
-	
+
 	/**
-	 * 세금계산서 즉시발행 
-	 * 
+	 * 세금계산서 즉시발행
+	 *
 	 * @param CorpNum
-	 * 			연동회원 사업자번호 
+	 * 			연동회원 사업자번호
 	 * @param taxinvoice
 	 * 			세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
 	 * @param WriteSpecification
-	 * 			거래명세서 동시작성 여부 
+	 * 			거래명세서 동시작성 여부
 	 * @param Memo
 	 * 			즉시발행 메모, 최대 200자
 	 * @param ForceIssue
-	 * 			지연발행 강제여부 
+	 * 			지연발행 강제여부
 	 * @param DealInvoiceKey
-	 * 			거래명세서 관리번호, 최대 24자 
-	 * @return Response 응답. 
+	 * 			거래명세서 관리번호, 최대 24자
+	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
 	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
 			Boolean WriteSpecification, String Memo, Boolean ForceIssue,
 			String DealInvoiceKey) throws PopbillException;
-	
+
 	/**
-	 * 세금계산서 즉시발행 
-	 * 
+	 * 세금계산서 즉시발행
+	 *
 	 * @param CorpNum
-	 * 			연동회원 사업자번호 
+	 * 			연동회원 사업자번호
 	 * @param taxinvoice
 	 * 			세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
 	 * @param WriteSpecification
-	 * 			거래명세서 동시작성 여부 
+	 * 			거래명세서 동시작성 여부
 	 * @param Memo
-	 * 			즉시발행 메모, 최대 200자 
+	 * 			즉시발행 메모, 최대 200자
 	 * @param ForceIssue
-	 * 			지연발행 강제여부 
+	 * 			지연발행 강제여부
 	 * @param DealInvoiceKey
-	 * 			거래명세서 관리번호, 최대 24자 
+	 * 			거래명세서 관리번호, 최대 24자
 	 * @param EmailSubject
-	 * 			안내메일 제목, 최대 300자 
+	 * 			안내메일 제목, 최대 300자
 	 * @param UserID
-	 * 			팝빌회원 아이디 
+	 * 			팝빌회원 아이디
 	 * @return
 	 * @throws PopbillException
 	 */
@@ -1379,59 +1379,59 @@ public interface TaxinvoiceService extends BaseService {
 			Boolean WriteSpecification, String Memo, Boolean ForceIssue,
 			String DealInvoiceKey, String EmailSubject, String UserID)
 			throws PopbillException;
-	
+
 	/**
-	 * 전자명세서 첨부 
-	 * 
+	 * 전자명세서 첨부
+	 *
 	 * @param CorpNum
-	 * 			연동회원 사업자번호 
+	 * 			연동회원 사업자번호
 	 * @param KeyType
-	 * 			발행유형 
+	 * 			발행유형
 	 * @param MgtKey
-	 * 			세금계산서 관리번호 
+	 * 			세금계산서 관리번호
 	 * @param SubItemCode
-	 * 			첨부할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증 
+	 * 			첨부할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
 	 * @param SubMgtKey
-	 * 			첨부할 명세서 관리번호 
-	 * @return Response. 
+	 * 			첨부할 명세서 관리번호
+	 * @return Response.
 	 * @throws PopbillException
 	 */
 	public Response attachStatement(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, int SubItemCode, String SubMgtKey) throws PopbillException;
 	/**
-	 * 전자명세서 첨부해제 
-	 * 
+	 * 전자명세서 첨부해제
+	 *
 	 * @param CorpNum
-	 * 			연동회원 사업자번호 
+	 * 			연동회원 사업자번호
 	 * @param KeyType
-	 * 			발행유형 
+	 * 			발행유형
 	 * @param MgtKey
-	 * 			세금계산서 관리번호 
+	 * 			세금계산서 관리번호
 	 * @param SubItemCode
-	 * 			첨부해제할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증 
+	 * 			첨부해제할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
 	 * @param SubMgtKey
-	 * 			첨부해제할 명세서 관리번호 
-	 * @return Response. 
+	 * 			첨부해제할 명세서 관리번호
+	 * @return Response.
 	 * @throws PopbillException
 	 */
 	public Response detachStatement(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, int SubItemCode, String SubMgtKey) throws PopbillException;
 
-	
+
 	/**
 	 *  과금정보 확인
-	 *  
+	 *
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @return ChargeInfo 과금정보.
 	 * @throws PopbillException
 	 */
 	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException;
-	
-	
+
+
 	/**
 	 *  알림메일 전송설정 수정
-	 * 
+	 *
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param EmailType
@@ -1443,11 +1443,11 @@ public interface TaxinvoiceService extends BaseService {
 	 */
 	public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN)
 			throws PopbillException;
-	
-	
+
+
 	/**
 	 *  알림메일 전송설정 수정
-	 *  
+	 *
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param EmailType
@@ -1455,79 +1455,105 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param SendYN
 	 * 			전송 여부 (True = 전송, False = 미전송)
 	 * @param UserID
-	 * 			팝빌회원 아이디 
+	 * 			팝빌회원 아이디
 	 * @return Response.
 	 * @throws PopbillException
 	 */
-	public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN, 
+	public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN,
 			String UserID) throws PopbillException;
-	
-	
-	
+
+
+
 	/**
 	 *  알림메일 전송목록 조회
-	 * 
+	 *
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @return EmailSendConfig 배열.
 	 * @throws PopbillException
 	 */
-	public EmailSendConfig[] listEmailConfig(String CorpNum) throws PopbillException;	
-	
+	public EmailSendConfig[] listEmailConfig(String CorpNum) throws PopbillException;
+
 	/**
 	 *  알림메일 전송목록 조회
-	 *  
+	 *
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param UserID
-	 * 			팝빌회원 아이디 
+	 * 			팝빌회원 아이디
 	 * @return EmailSendConfig 배열.
 	 * @throws PopbillException
 	 */
-	public EmailSendConfig[] listEmailConfig(String CorpNum, String UserID) throws PopbillException;	
+	public EmailSendConfig[] listEmailConfig(String CorpNum, String UserID) throws PopbillException;
 
 	/**
 	 *  관리번호 할당
-	 * 
-	 * @param coprNum
+	 *
+	 * @param corpNum
 	 * 			연동회원 사업자번호
 	 * @param keyType
-	 * 			발행유형 
+	 * 			발행유형
 	 * @param itemKey
 	 * 			세금계산서 아이템키
 	 * @param mgtKey
-	 * 			세금계산서 관리번호 
+	 * 			세금계산서 관리번호
 	 * @return Response.
 	 * @throws PopbillException
 	 */
 	public Response assignMgtKey(String corpNum, MgtKeyType keyType, String itemKey, String mgtKey) throws PopbillException;
-	
+
 	/**
 	 *  관리번호 할당
-	 * 
-	 * @param coprNum
+	 *
+	 * @param corpNum
 	 * 			연동회원 사업자번호
 	 * @param keyType
-	 * 			발행유형 
+	 * 			발행유형
 	 * @param itemKey
 	 * 			세금계산서 아이템키
 	 * @param mgtKey
-	 * 			세금계산서 관리번호 
+	 * 			세금계산서 관리번호
 	 * @param userID
-	 * 			팝빌회원 아이디 
+	 * 			팝빌회원 아이디
 	 * @return Response.
 	 * @throws PopbillException
 	 */
 	public Response assignMgtKey(String corpNum, MgtKeyType keyType, String itemKey, String mgtKey, String userID) throws PopbillException;
-	
+
 	/**
 	 *  공인인증서 만료일 확인
-	 * 
+	 *
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @return Response
 	 */
 	public Response checkCertValidation(String CorpNum) throws PopbillException;
+
+
+	/**
+	 *  팝빌 인감 및 첨부문서 등록 URL
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID
+	 * 			연동회원 유저아이디
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String GetSealURL(String CorpNum, String UserID) throws PopbillException;
+
+
+	/**
+	 *  공인인증서 등록 URL
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID
+	 * 			연동회원 유저아이디
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String GetTaxCertURL(String CorpNum, String UserID) throws PopbillException;
 }
 
 

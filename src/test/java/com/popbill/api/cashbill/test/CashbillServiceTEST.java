@@ -461,5 +461,21 @@ public class CashbillServiceTEST {
 		
 		System.out.println("["+response.getCode() +"] " + response.getMessage());
 	}
+
+	@Test
+	public void GetAccessURL_TEST() throws PopbillException {
+
+		String url = cashbillService.GetAccessURL("1234567890","testkorea");
+
+		System.out.println(url);
+	}
+
+	@Test
+	public void GetChargeURL_TEST() throws PopbillException {
+
+		String url = cashbillService.GetChargeURL("1234567890","testkorea");
+
+		System.out.println(url);
+	}
 }
 

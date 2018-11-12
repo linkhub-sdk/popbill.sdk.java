@@ -1355,7 +1355,24 @@ public class FaxServiceTEST {
 		assertNotNull(url);
 		System.out.println(url);
 	}
-	
+
+	@Test
+	public void GetSenderNumberMgtURL_TEST() throws PopbillException {
+
+		String url = faxService.GetSenderNumberMgtURL("1234567890","testkorea");
+
+		System.out.println(url);
+	}
+
+	@Test
+	public void GetSentListURL_TEST() throws PopbillException {
+
+		String url = faxService.GetSentListURL("1234567890","testkorea");
+
+		System.out.println(url);
+	}
+
+
 	public static Date addMinutes(Date date, int minutes)
     {
         Calendar cal = Calendar.getInstance();

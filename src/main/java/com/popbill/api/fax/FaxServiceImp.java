@@ -1133,6 +1133,22 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 		return response.url;
 	}
 
+	@Override
+	public String GetSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException {
+
+		URLResponse response = httpget("/FAX/?TG=SENDER", CorpNum, UserID, URLResponse.class);
+
+		return response.url;
+	}
+
+	@Override
+	public String GetSentListURL(String CorpNum, String UserID) throws PopbillException {
+
+		URLResponse response = httpget("/FAX/?TG=BOX", CorpNum, UserID, URLResponse.class);
+
+		return response.url;
+	}
+
 
 	protected class SendRequest {
 		public String snd;

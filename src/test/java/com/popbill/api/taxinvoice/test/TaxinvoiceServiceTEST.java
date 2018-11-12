@@ -815,5 +815,37 @@ public class TaxinvoiceServiceTEST {
 		System.out.println("["+response.getCode() +"] " + response.getMessage());
 		
 	}
-	
+
+	@Test
+	public void GetAccessURL_TEST() throws PopbillException {
+
+		String url = taxinvoiceService.GetAccessURL("1234567890","testkorea");
+
+		System.out.println(url);
+	}
+
+	@Test
+	public void GetChargeURL_TEST() throws PopbillException {
+
+		String url = taxinvoiceService.GetChargeURL("1234567890","testkorea");
+
+		System.out.println(url);
+	}
+
+	@Test
+	public void GetSealURL_TEST() throws PopbillException {
+
+		String url = taxinvoiceService.GetSealURL("1234567890","testkorea");
+
+		System.out.println(url);
+	}
+
+	@Test
+	public void GetTaxCertURL_TEST() throws PopbillException {
+
+		String url = taxinvoiceService.GetTaxCertURL("1234567890","testkorea");
+
+		System.out.println(url);
+	}
+
 }

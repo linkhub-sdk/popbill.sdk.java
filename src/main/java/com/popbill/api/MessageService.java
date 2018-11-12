@@ -1550,16 +1550,42 @@ public interface MessageService extends BaseService {
 	 * @throws PopbillException
 	 */
 	public SenderNumber[] getSenderNumberList(String CorpNum) throws PopbillException;
-	
+
 	/**
-	 * 등록된 발신번호 목록 확인 
-	 * 
+	 * 등록된 발신번호 목록 확인
+	 *
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
-	 * @param UserID 
+	 * @param UserID
 	 * 			연동회원 아이디
-	 * @return 발신번호 목록  
+	 * @return 발신번호 목록
 	 * @throws PopbillException
 	 */
 	public SenderNumber[] getSenderNumberList(String CorpNum, String UserID) throws PopbillException;
+
+	/**
+	 *  문자 발신번호 관리 팝업 URL을 반환
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID
+	 * 			연동회원 유저아이디
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String GetSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException;
+
+
+	/**
+	 *  문자 전송내역 팝업 URL을 반환
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID
+	 * 			연동회원 유저아이디
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String GetSentListURL(String CorpNum, String UserID) throws PopbillException;
+
 }

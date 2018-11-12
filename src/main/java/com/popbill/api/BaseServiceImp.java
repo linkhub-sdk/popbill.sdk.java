@@ -399,7 +399,23 @@ public abstract class BaseServiceImp implements BaseService {
 
 		return httppost("/CorpInfo", CorpNum, postData, UserID, Response.class);
 	}
-	
+
+	@Override
+	public String GetAccessURL(String CorpNum, String UserID) throws PopbillException {
+
+		URLResponse response = httpget("/?TG=LOGIN", CorpNum, UserID, URLResponse.class);
+
+		return response.url;
+	}
+
+	@Override
+	public String GetChargeURL(String CorpNum, String UserID) throws PopbillException {
+
+		URLResponse response = httpget("/?TG=CHRG", CorpNum, UserID, URLResponse.class);
+
+		return response.url;
+	}
+
 	/**
 	 * Convert Object to Json String.
 	 * 

@@ -1568,4 +1568,28 @@ public interface FaxService extends BaseService {
 	public String getPreviewURL(String corpNum, String receiptNum, String userID) throws PopbillException;
 
 
+	/**
+	 *  팩스 발신번호 관리 팝업 URL을 반환
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID
+	 * 			연동회원 유저아이디
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String GetSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException;
+
+
+	/**
+	 *  팩스 전송내역 팝업 URL을 반환
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param UserID
+	 * 			연동회원 유저아이디
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public String GetSentListURL(String CorpNum, String UserID) throws PopbillException;
 }

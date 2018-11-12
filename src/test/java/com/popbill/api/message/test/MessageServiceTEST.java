@@ -1867,7 +1867,23 @@ public class MessageServiceTEST {
 			System.out.println("srt : " + listInfo[i].getSrt());
 			System.out.println("==========");
 		}
-	}	
+	}
+
+	@Test
+	public void GetSenderNumberMgtURL_TEST() throws PopbillException {
+
+		String url = messageService.GetSenderNumberMgtURL("1234567890","testkorea");
+
+		System.out.println(url);
+	}
+
+	@Test
+	public void GetSentListURL_TEST() throws PopbillException {
+
+		String url = messageService.GetSentListURL("1234567890","testkorea");
+
+		System.out.println(url);
+	}
 
 //private Date addMinutes(Date date, int i) {
 //	// TODO Auto-generated method stub

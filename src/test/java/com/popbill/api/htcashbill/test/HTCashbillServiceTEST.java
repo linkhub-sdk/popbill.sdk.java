@@ -43,7 +43,7 @@ public class HTCashbillServiceTEST {
 		String SDate = "20180101";
 		String EDate = "20181231";
 
-		String jobID = htCashbillService.requestJob("1234567890", QueryType.BUY, SDate, EDate);
+		String jobID = htCashbillService.requestJob("6798700433", QueryType.BUY, SDate, EDate);
 
 		assertNotNull(jobID);
 		System.out.println("\n\n======== requestJob Response ========");
