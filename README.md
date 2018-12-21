@@ -4,8 +4,8 @@ popbill.sdk.java
 팝빌 통합 SDK for JAVA
 
 
-		<dependency>
-			<groupId>kr.co.linkhub</groupId>
-			<artifactId>popbill-sdk</artifactId>
-			<version>1.16.0</version>
-		</dependency>
+    <dependency>
+        <groupId>kr.co.linkhub</groupId>
+        <artifactId>popbill-sdk</artifactId>
+        <version>1.16.1</version>
+    </dependency>
