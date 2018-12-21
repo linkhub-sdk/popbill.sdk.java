@@ -232,8 +232,8 @@ public class HTCashbillServiceTEST {
 	@Test
 	public void registDeptUser_TEST() throws PopbillException{
 		String corpNum = "1234567890";
-		String deptUserID = "linkhub0002";
-		String deptUserPWD = "linkhub8536!";
+		String deptUserID = "test_id";
+		String deptUserPWD = "test_user";
 		
 		Response response = htCashbillService.registDeptUser(corpNum, deptUserID, deptUserPWD);
 		assertNotNull(response);

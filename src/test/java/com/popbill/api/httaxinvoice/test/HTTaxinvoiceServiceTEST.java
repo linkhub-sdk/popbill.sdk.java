@@ -356,8 +356,8 @@ public class HTTaxinvoiceServiceTEST {
 	@Test
 	public void registDeptUser_TEST() throws PopbillException{
 		String corpNum = "6798700433";
-		String deptUserID = "linkhub0004";
-		String deptUserPWD = "linkhub8536!";
+		String deptUserID = "test_id";
+		String deptUserPWD = "test_pwd";
 		
 		Response response = hometaxTIService.registDeptUser(corpNum, deptUserID, deptUserPWD);
 		assertNotNull(response);
