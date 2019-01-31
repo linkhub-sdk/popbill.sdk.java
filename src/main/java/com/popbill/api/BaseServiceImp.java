@@ -58,11 +58,19 @@ public abstract class BaseServiceImp implements BaseService {
 	private TokenBuilder tokenBuilder;
 
 	private boolean isTest;
+	private boolean isIPRestrictOnOff;
 	private String linkID;
 	private String secretKey;
 	private Gson _gsonParser = new Gson();
 
 	private Map<String, Token> tokenTable = new HashMap<String, Token>();
+	
+	/**
+	 * IP 제한 여부 기본값  True
+	 */
+	public BaseServiceImp() {
+		isIPRestrictOnOff = true;
+	}
 
 	/**
 	 * 테스트모드 확인. 기본값은 false.
@@ -72,7 +80,11 @@ public abstract class BaseServiceImp implements BaseService {
 	public boolean isTest() {
 		return isTest;
 	}
-
+	
+	public boolean isIPRestrictOnOff() {
+		return isIPRestrictOnOff;
+	}
+	
 	/**
 	 * 테스트 모드 설정.
 	 * 
@@ -83,6 +95,15 @@ public abstract class BaseServiceImp implements BaseService {
 		this.isTest = isTest;
 	}
 
+	/**
+	 * IP 제한 해제. 
+	 * 
+	 * @param isRestrictOnOff
+	 */
+	public void setIPRestrictOnOff(boolean isIPRestrictOnOff) {
+		this.isIPRestrictOnOff = isIPRestrictOnOff;
+	}
+	
 	protected String getLinkID() {
 		return linkID;
 	}
@@ -205,7 +226,14 @@ public abstract class BaseServiceImp implements BaseService {
 				tokenTable.remove(CorpNum);
 
 			try {
-				token = getTokenbuilder().build(CorpNum, ForwardIP);
+				
+				// IP 제한 On/Off 기능 추가 - 2019/01/31
+				if (isIPRestrictOnOff) {
+					token = getTokenbuilder().build(CorpNum, ForwardIP);
+				} else {
+					token = getTokenbuilder().build(CorpNum, "*");
+				}
+				
 				tokenTable.put(CorpNum, token);
 			} catch (LinkhubException le) {
 				throw new PopbillException(le);
@@ -828,7 +856,7 @@ public abstract class BaseServiceImp implements BaseService {
 		try {
 			input = httpURLConnection.getInputStream();
 			
-			if (httpURLConnection.getContentEncoding().equals("gzip")) {
+			if (null != httpURLConnection.getContentEncoding() && httpURLConnection.getContentEncoding().equals("gzip")) {
 				result = fromGzipStream(input);
 			} else {
 				result = fromStream(input);

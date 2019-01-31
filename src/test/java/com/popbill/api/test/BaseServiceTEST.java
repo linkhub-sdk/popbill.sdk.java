@@ -40,6 +40,7 @@ public class BaseServiceTEST {
 		service.setSecretKey(testSecretKey);
 		service.setTest(true);
 		
+		
 		taxinvoiceService = service;
 	}
 	
