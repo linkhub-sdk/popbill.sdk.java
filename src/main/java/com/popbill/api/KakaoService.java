@@ -96,6 +96,45 @@ public interface KakaoService extends BaseService {
 	
 	public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType, String receiverNum, String receiverName, String sndDT, String UserID, String requestNum)
 			throws PopbillException;
+	
+	/**
+	 * 알림톡 단건전송 버튼추가.
+	 * 
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param templateCode
+	 *            알림톡 템플릿코드
+	 * @param senderNum
+	 *            발신번호
+	 * @param content
+	 *            알림톡 내용
+	 * @param altContent
+	 *            대체문자 내용
+	 * @param altSendType
+	 *            대체문자 유형
+	 * @param receiverNum
+	 *            수신번호
+	 * @param receiverName
+	 *            수신자명
+	 * @param sndDT
+	 *            예약일시
+	 * @param UserID
+	 *            연동회원 아이디
+	 * @param requestNum
+	 *            전송요청번호
+	 * @return receiptNum 접수번호
+	 * @throws PopbillException
+	 */
+	public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType, String receiverNum, String receiverName, String sndDT, KakaoButton[] Buttons)
+			throws PopbillException;
+		
+	public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType, String receiverNum, String receiverName, String sndDT, String UserID, KakaoButton[] Buttons)
+			throws PopbillException;
+	
+	public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType, String receiverNum, String receiverName, String sndDT, String UserID, String requestNum, KakaoButton[] Buttons)
+			throws PopbillException;
+	
+	
 
 	/**
 	 * 알림톡 동일내용 대량전송
@@ -127,6 +166,27 @@ public interface KakaoService extends BaseService {
 
 	public String sendATS(String CorpNum, String templateCode, String senderNum, String altSendType, KakaoReceiver[] Receivers, String sndDT, String UserID, String requestNum)
 			throws PopbillException;
+	
+	/**
+	 * 알림톡 동일내용 대량전송 - 버튼추가
+	 * @param CorpNum
+	 * @param templateCode
+	 * @param senderNum
+	 * @param altSendType
+	 * @param Receivers
+	 * @param sndDT
+	 * @param Buttons
+	 * @return
+	 * @throws PopbillException
+	 */
+	public String sendATS(String CorpNum, String templateCode, String senderNum, String altSendType, KakaoReceiver[] Receivers, String sndDT, KakaoButton[] Buttons)
+			throws PopbillException;
+	
+	public String sendATS(String CorpNum, String templateCode, String senderNum, String altSendType, KakaoReceiver[] Receivers, String sndDT, String UserID, KakaoButton[] Buttons)
+			throws PopbillException;
+
+	public String sendATS(String CorpNum, String templateCode, String senderNum, String altSendType, KakaoReceiver[] Receivers, String sndDT, String UserID, String requestNum, KakaoButton[] Buttons)
+			throws PopbillException;	
 	
 	/**
 	 * 알림톡 개별내용 대량전송
@@ -162,6 +222,31 @@ public interface KakaoService extends BaseService {
 	
 	public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType, KakaoReceiver[] Receivers, String sndDT, String UserID, String requestNum)
 			throws PopbillException;
+	
+	
+	/**
+	 * 알림톡 개별내용 대량전송 - 버튼추가.
+	 * 
+	 * @param CorpNum
+	 * @param templateCode
+	 * @param senderNum
+	 * @param content
+	 * @param altContent
+	 * @param altSendType
+	 * @param Receivers
+	 * @param sndDT
+	 * @param Buttons
+	 * @return
+	 * @throws PopbillException
+	 */
+	public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType, KakaoReceiver[] Receivers, String sndDT, KakaoButton[] Buttons)
+			throws PopbillException;
+		
+	public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType, KakaoReceiver[] Receivers, String sndDT, String UserID, KakaoButton[] Buttons)
+		throws PopbillException;
+	
+	public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType, KakaoReceiver[] Receivers, String sndDT, String UserID, String requestNum , KakaoButton[] Buttons)
+			throws PopbillException;	
 	
 	/**
 	 * 친구톡 단건전송

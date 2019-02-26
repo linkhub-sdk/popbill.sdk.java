@@ -467,6 +467,11 @@ public interface TaxinvoiceService extends BaseService {
 	public Response issue(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, String EmailSubject,
 			boolean ForceIssue, String UserID) throws PopbillException;
+	
+	
+	public IssueResponse issueEx(String CorpNum, MgtKeyType KeyType,
+			String MgtKey, String Memo, String EmailSubject,
+			boolean ForceIssue, String UserID) throws PopbillException;
 
 	/**
 	 * 세금계산서 발행취소 처리.
@@ -1379,6 +1384,24 @@ public interface TaxinvoiceService extends BaseService {
 			Boolean WriteSpecification, String Memo, Boolean ForceIssue,
 			String DealInvoiceKey, String EmailSubject, String UserID)
 			throws PopbillException;
+	
+	/**
+	 * 
+	 * @param CorpNum
+	 * @param taxinvoice
+	 * @param WriteSpecification
+	 * @param Memo
+	 * @param ForceIssue
+	 * @param DealInvoiceKey
+	 * @param EmailSubject
+	 * @param UserID
+	 * @return
+	 * @throws PopbillException
+	 */
+	public IssueResponse registIssueEx(String CorpNum, Taxinvoice taxinvoice,
+			Boolean WriteSpecification, String Memo, Boolean ForceIssue,
+			String DealInvoiceKey, String EmailSubject, String UserID)
+			throws PopbillException;
 
 	/**
 	 * 전자명세서 첨부
@@ -1586,6 +1609,39 @@ public interface TaxinvoiceService extends BaseService {
      * @throws PopbillException
      */
     public Response registRequest(String CorpNum, Taxinvoice taxinvoice, String Memo, String UserID) throws PopbillException;
+    
+    /**
+     * 세금계산서 뷰 팝업 URL 
+     * @param CorpNum
+     * 			연동회원 사업자번호
+     * @param KeyType
+     * 			발행유형
+     * @param MgtKey
+     * 			문서관리번호
+     * @return
+     * @throws PopbillException
+     */
+    public String getViewURL(String CorpNum, MgtKeyType KeyType,
+			String MgtKey) throws PopbillException;
+    
+    /**
+     * 세금계산서 뷰 팝업 URL
+     * 
+     * @param CorpNum
+     * 			연동회원 사업자번호
+     * @param KeyType
+     * 			발행유형
+     * @param MgtKey
+     * 			문서관리번호
+     * @param UserID
+     * 			회원아이디
+     * @return
+     * @throws PopbillException
+     */
+    public String getViewURL(String CorpNum, MgtKeyType KeyType,
+			String MgtKey, String UserID) throws PopbillException;
+    
+    
 
 }
 

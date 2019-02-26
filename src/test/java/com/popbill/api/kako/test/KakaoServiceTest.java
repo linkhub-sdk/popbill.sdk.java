@@ -140,9 +140,9 @@ public class KakaoServiceTest {
 				+ "감사합니다.";				
 		String altContent = "대체문자 내용";		
 		String altSendType = "C";		
-		String receiverNum = "010111222";		
+		String receiverNum = "01043245117";		
 		String receiverName = "02수신자명";		
-		String sndDT = "20180725120000";
+		String sndDT = "";
 						
 		String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, content, altContent, altSendType, 
 				receiverNum, receiverName, sndDT, "testkorea");
@@ -362,35 +362,38 @@ public class KakaoServiceTest {
 	@Test
 	public void sendATS_09_TEST() throws PopbillException {
 		String testCorpNum = "1234567890";		
-		String templateCode = "018060000159";		
-		String senderNum = "01071754819";		
-		String content = "[믿을 수 있는 팝빌]"
-				+ "안녕하세요. "
-				+ "고객 님!고객님의 공인인증서가 등록처리 되었음을 알려드립니다!"
-				+ "- 등록일자 : 2018-07-24 "
-				+ "- 인증서용도 : 전자세금계산서용 공인인증서 삭제는 팝빌 사이트에서 가능합니다. "
-				+ "감사합니다.";				
+		String templateCode = "019020000163";		
+		String senderNum = "07043042991";		
+		String content = "[ 팝빌 ]\n"
+				+ "신청하신 #{템플릿코드}에 대한 심사가 완료되어 승인 처리되었습니다."
+				+ "해당 템플릿으로 전송 가능합니다.\n\n"
+				+ "문의사항 있으시면 파트너센터로 편하게 연락주시기 바랍니다.\n\n"
+				+ "팝빌 파트너센터 : 1600-8536\n"
+				+ "support@linkhub.co.kr";				
 		String altContent = "대체문자 내용";		
 		String altSendType = "C";
 		
 		KakaoReceiver[] receivers = new KakaoReceiver[2];
 		
 		KakaoReceiver message = new KakaoReceiver();
-		message.setReceiverNum("010111222");
+		message.setReceiverNum("01043245117");
 		message.setReceiverName("09-1수신자명");
 		message.setMessage(content);
 		message.setAltMessage(altContent);
 		receivers[0] = message;
-		message.setReceiverNum("010111222");
-		message.setReceiverName("09-2수신자명");
-		message.setMessage(content);
-		message.setAltMessage(altContent);
-		receivers[1] = message;
 		
-		String sndDT = "20180725120000";
+		String sndDT = "";
+		
+		KakaoButton[] btns = new KakaoButton[1];
+		KakaoButton button = new KakaoButton();
+		button.setN("템플릿 안내");
+		button.setT("WL");
+		button.setU1("https://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[0] = button;
 		
 		String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, content, altContent, 
-				altSendType, receivers, sndDT, "testkorea", "20180724_ats_19");
+				altSendType, receivers, sndDT, "testkorea", "", btns);
 		
 		assertNotNull(receiptNum);
 		System.out.println(receiptNum);

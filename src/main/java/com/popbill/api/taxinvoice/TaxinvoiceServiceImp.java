@@ -29,6 +29,7 @@ import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.TaxinvoiceService;
 import com.popbill.api.EmailSendConfig;
+import com.popbill.api.IssueResponse;
 
 /**
  * Implementation of Popbill TaxinvoiceService Interface
@@ -391,6 +392,29 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         return httppost("/Taxinvoice/" + KeyType.name() + "/" + MgtKey,
                 CorpNum, PostData, UserID, "ISSUE", Response.class);
     }
+    
+    /*
+     * (non-Javadoc)
+     * @see com.popbill.api.TaxinvoiceService#issueEx(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String)
+     */
+    @Override
+	public IssueResponse issueEx(String CorpNum, MgtKeyType KeyType, String MgtKey, String Memo, String EmailSubject,
+			boolean ForceIssue, String UserID) throws PopbillException {
+    	 if (KeyType == null)
+             throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+         if (MgtKey == null || MgtKey.isEmpty())
+             throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+
+         IssueRequest request = new IssueRequest();
+         request.memo = Memo;
+         request.emailSubject = EmailSubject;
+         request.forceIssue = ForceIssue;
+
+         String PostData = toJsonString(request);
+
+         return httppost("/Taxinvoice/" + KeyType.name() + "/" + MgtKey,
+                 CorpNum, PostData, UserID, "ISSUE", IssueResponse.class);
+	}
 
     /* (non-Javadoc)
      * @see com.popbill.api.TaxinvoiceService#cancelIssue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
@@ -770,6 +794,32 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
         return response.url;
     }
+    
+    /*
+     * (non-Javadoc)
+     * @see com.popbill.api.TaxinvoiceService#getViewURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+     */
+    @Override
+	public String getViewURL(String CorpNum, MgtKeyType KeyType, String MgtKey) throws PopbillException {
+		return getViewURL(CorpNum, KeyType, MgtKey, null); 
+	}
+    
+    /*
+     * (non-Javadoc)
+     * @see com.popbill.api.TaxinvoiceService#getViewURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+     */
+    @Override
+	public String getViewURL(String CorpNum, MgtKeyType KeyType, String MgtKey, String UserID) throws PopbillException {
+    	 if (KeyType == null)
+             throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+         if (MgtKey == null || MgtKey.isEmpty())
+             throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+
+         URLResponse response = httpget("/Taxinvoice/" + KeyType.name() + "/"
+                 + MgtKey + "?TG=VIEW", CorpNum, UserID, URLResponse.class);
+
+         return response.url;
+	}
 
     /*
      * (non-Javadoc)
@@ -1104,6 +1154,39 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         return httppost("/Taxinvoice", CorpNum, PostData,
                 UserID, "ISSUE", Response.class);
     }
+    
+    /*
+     * (non-Javadoc)
+     * @see com.popbill.api.TaxinvoiceService#registIssueEx(java.lang.String, com.popbill.api.taxinvoice.Taxinvoice, java.lang.Boolean, java.lang.String, java.lang.Boolean, java.lang.String, java.lang.String, java.lang.String)
+     */
+    @Override
+	public IssueResponse registIssueEx(String CorpNum, Taxinvoice taxinvoice, Boolean WriteSpecification, String Memo,
+			Boolean ForceIssue, String DealInvoiceKey, String EmailSubject, String UserID) throws PopbillException {
+    	if (taxinvoice == null)
+            throw new PopbillException(-99999999, "세금계산서 정보가 입력되지 않았습니다.");
+
+        if (WriteSpecification)
+            taxinvoice.setWriteSpecification(true);
+
+        if (Memo != null)
+            taxinvoice.setMemo(Memo);
+
+        if (ForceIssue)
+            taxinvoice.setForceIssue(true);
+
+
+        if (DealInvoiceKey != null)
+            taxinvoice.setDealInvoiceMgtKey(DealInvoiceKey);
+
+        if (EmailSubject != null)
+            taxinvoice.setEmailSubject(EmailSubject);
+
+        String PostData = toJsonString(taxinvoice);
+
+
+        return httppost("/Taxinvoice", CorpNum, PostData,
+                UserID, "ISSUE", IssueResponse.class);
+	}
 
     /*
      * (non-Javadoc)
@@ -1305,4 +1388,12 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         public String ItemCode;
         public String MgtKey;
     }
+
+	
+
+	
+
+	
+
+	
 }
