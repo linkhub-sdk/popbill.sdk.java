@@ -400,7 +400,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public Response issue(String CorpNum, MgtKeyType KeyType,
+	public IssueResponse issue(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo) throws PopbillException;
 
 	/**
@@ -419,7 +419,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public Response issue(String CorpNum, MgtKeyType KeyType,
+	public IssueResponse issue(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, String UserID) throws PopbillException;
 
 	/**
@@ -440,7 +440,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public Response issue(String CorpNum, MgtKeyType KeyType,
+	public IssueResponse issue(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, boolean ForceIssue, String UserID)
 			throws PopbillException;
 
@@ -464,15 +464,11 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public Response issue(String CorpNum, MgtKeyType KeyType,
+	public IssueResponse issue(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String Memo, String EmailSubject,
 			boolean ForceIssue, String UserID) throws PopbillException;
 	
 	
-	public IssueResponse issueEx(String CorpNum, MgtKeyType KeyType,
-			String MgtKey, String Memo, String EmailSubject,
-			boolean ForceIssue, String UserID) throws PopbillException;
-
 	/**
 	 * 세금계산서 발행취소 처리.
 	 *
@@ -1316,7 +1312,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
+	public IssueResponse registIssue(String CorpNum, Taxinvoice taxinvoice,
 			Boolean WriteSpecification) throws PopbillException;
 
 	/**
@@ -1333,7 +1329,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
+	public IssueResponse registIssue(String CorpNum, Taxinvoice taxinvoice,
 			String Memo, Boolean ForceIssue) throws PopbillException;
 
 	/**
@@ -1354,7 +1350,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
-	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
+	public IssueResponse registIssue(String CorpNum, Taxinvoice taxinvoice,
 			Boolean WriteSpecification, String Memo, Boolean ForceIssue,
 			String DealInvoiceKey) throws PopbillException;
 
@@ -1380,28 +1376,11 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return
 	 * @throws PopbillException
 	 */
-	public Response registIssue(String CorpNum, Taxinvoice taxinvoice,
+	public IssueResponse registIssue(String CorpNum, Taxinvoice taxinvoice,
 			Boolean WriteSpecification, String Memo, Boolean ForceIssue,
 			String DealInvoiceKey, String EmailSubject, String UserID)
 			throws PopbillException;
 	
-	/**
-	 * 
-	 * @param CorpNum
-	 * @param taxinvoice
-	 * @param WriteSpecification
-	 * @param Memo
-	 * @param ForceIssue
-	 * @param DealInvoiceKey
-	 * @param EmailSubject
-	 * @param UserID
-	 * @return
-	 * @throws PopbillException
-	 */
-	public IssueResponse registIssueEx(String CorpNum, Taxinvoice taxinvoice,
-			Boolean WriteSpecification, String Memo, Boolean ForceIssue,
-			String DealInvoiceKey, String EmailSubject, String UserID)
-			throws PopbillException;
 
 	/**
 	 * 전자명세서 첨부

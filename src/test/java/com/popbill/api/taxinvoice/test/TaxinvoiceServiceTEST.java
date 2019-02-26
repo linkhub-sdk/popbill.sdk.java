@@ -115,7 +115,7 @@ public class TaxinvoiceServiceTEST {
 		taxinvoice.setInvoicerCorpNum("1234567890");
 		taxinvoice.setInvoicerTaxRegID(""); // 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
 		taxinvoice.setInvoicerCorpName("공급자 상호");
-		taxinvoice.setInvoicerMgtKey("20190226-03"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
+		taxinvoice.setInvoicerMgtKey("20190226-09"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
 												// 동일한 형태로 추가 기재.
 		taxinvoice.setInvoicerCEOName("공급자 대표자 성명");
 		taxinvoice.setInvoicerAddr("공급자 주소");
@@ -360,12 +360,12 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void issue_TEST() throws PopbillException {
 		
-		Response response = taxinvoiceService.issue("1234567890",
-				MgtKeyType.SELL, "20190226-03", "발행메모", false, "testkorea");
+		IssueResponse response = taxinvoiceService.issue("1234567890",
+				MgtKeyType.SELL, "20190226-09", "발행메모", false, "testkorea");
 
 		assertNotNull(response);
 
-		System.out.println(response.getMessage());
+		System.out.println(response.getMessage() + " " + response.getNtsConfirmNum());
 
 	}
 
@@ -659,7 +659,7 @@ public class TaxinvoiceServiceTEST {
 		taxinvoice.setInvoicerCorpNum("1234567890");
 		taxinvoice.setInvoicerTaxRegID(""); // 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
 		taxinvoice.setInvoicerCorpName("공급자 상호");
-		taxinvoice.setInvoicerMgtKey("20190226-05"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
+		taxinvoice.setInvoicerMgtKey("20190226-07"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
 		taxinvoice.setInvoicerCEOName("공급자 대표자 성명");
 		taxinvoice.setInvoicerAddr("공급자 주소");
 		taxinvoice.setInvoicerBizClass("공급자 업종");
@@ -718,7 +718,7 @@ public class TaxinvoiceServiceTEST {
 		detail.setItemName("품목명");
 		taxinvoice.getDetailList().add(detail);
 
-		IssueResponse response = taxinvoiceService.registIssueEx("1234567890", taxinvoice, true, "즉시발행 메모야", true, null, "메일제목이라네", "testkorea");
+		IssueResponse response = taxinvoiceService.registIssue("1234567890", taxinvoice, true, "즉시발행 메모야", true, null, "메일제목이라네", "testkorea");
 		
 		assertNotNull(response);
 
