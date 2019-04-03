@@ -172,7 +172,7 @@ public abstract class BaseServiceImp implements BaseService {
 	private TokenBuilder getTokenbuilder() {
 		if (this.tokenBuilder == null) {
 			tokenBuilder = TokenBuilder
-					.getInstance(getLinkID(), getSecretKey())
+					.newInstance(getLinkID(), getSecretKey())
 					.ServiceID(isTest ? ServiceID_TEST : ServiceID_REAL)
 					.addScope("member");
 			
