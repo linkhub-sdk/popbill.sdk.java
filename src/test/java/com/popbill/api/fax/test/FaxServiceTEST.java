@@ -940,7 +940,7 @@ public class FaxServiceTEST {
 		
 		File file = new File("/Users/kimhyunjin/Workspace/popbill.sdk.example.py/popbill.fax.example.py/hello.html");
 		
-		String receiptNum = faxService.sendFAX("1234567890", "0264429700", "0264429700","수신자명칭",file, null, null, true, "팩스제목");
+		String receiptNum = faxService.sendFAX("1234567890", "070111222", "070111222","수신자명칭",file, null, null, true, "팩스제목");
 		
 		assertNotNull(receiptNum);
 		
@@ -1177,7 +1177,7 @@ public class FaxServiceTEST {
 		assertNotNull(messages);
 		
 		int i=0;
-		for(i=0; i<=messages.length; i++){
+		for(i=0; i < messages.length; i++){
 			System.out.println(messages[i].getSendState()); 
 			System.out.println(messages[i].getConvState()); 
 			System.out.println(messages[i].getSendNum()); 
@@ -1217,7 +1217,7 @@ public class FaxServiceTEST {
 		assertNotNull(messages);
 		
 		int i=0;
-		for(i=0; i<=messages.length; i++){
+		for(i=0; i < messages.length; i++){
 			System.out.println(messages[i].getSendState()); 
 			System.out.println(messages[i].getConvState()); 
 			System.out.println(messages[i].getSendNum()); 
