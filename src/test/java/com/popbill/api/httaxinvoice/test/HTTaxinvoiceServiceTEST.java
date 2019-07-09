@@ -47,6 +47,8 @@ public class HTTaxinvoiceServiceTEST {
 		System.out.println(url);
 	}
 	
+	
+	
 	@Test
 	public void getChargeInfo_TEST() throws PopbillException {
 		ChargeInfo chrgInfo = hometaxTIService.getChargeInfo("1234567890");
@@ -393,10 +395,17 @@ public class HTTaxinvoiceServiceTEST {
 		assertNotNull(response);
 		
 		System.out.println("["+response.getCode() +"] " + response.getMessage());		
-	}	
-
-
-
-
+	}
+	
+	@Test
+	public void getPrintURL_TEST() throws PopbillException {
+		String url = hometaxTIService.getPrintURL("6798700433", "201907054100001141339517");
+		
+		assertNotNull(url);
+		
+		System.out.println("\n\n======== getPrintURL Response ========");
+		
+		System.out.println(url);
+	}
 }
 

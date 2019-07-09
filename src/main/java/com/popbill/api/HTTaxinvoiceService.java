@@ -399,6 +399,32 @@ public interface HTTaxinvoiceService extends BaseService{
 			throws PopbillException;
 	
 	/**
+	 * 홈택스 전자세금계산서 인쇄 팝업 URL
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param NTSConfirmNum
+	 * 			세금계산서 국세청 승인번호
+	 * @return
+	 * @throws PopbillException
+	 */
+	public String getPrintURL(String CorpNum, String NTSConfirmNum) 
+			throws PopbillException;
+	
+	/**
+	 * 홈택스 전자세금계산서 인쇄 팝업 URL
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param NTSConfirmNum
+	 * 			세금계산서 국세청 승인번호
+	 * @param UserID
+	 * 			연동회원 아이디
+	 * @return
+	 * @throws PopbillException
+	 */
+	public String getPrintURL(String CorpNum, String NTSConfirmNum, String UserID) 
+			throws PopbillException;
+	
+	/**
 	 * 홈택스 공인인증서 로그인 테스트
 	 * 
 	 * @param CorpNum

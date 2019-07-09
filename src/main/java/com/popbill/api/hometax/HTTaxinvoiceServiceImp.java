@@ -384,6 +384,23 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 		return response.url;
 	}
 	
+	@Override
+	public String getPrintURL(String CorpNum, String NTSConfirmNum) throws PopbillException {
+		if ( NTSConfirmNum.length() != 24 )
+			throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
+		URLResponse response = httpget("/HomeTax/Taxinvoice/" +NTSConfirmNum+"/Print", CorpNum, null, URLResponse.class);
+		return response.url;
+	}
+
+	@Override
+	public String getPrintURL(String CorpNum, String NTSConfirmNum, String UserID) throws PopbillException {
+		if ( NTSConfirmNum.length() != 24 )
+			throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
+		URLResponse response = httpget("/HomeTax/Taxinvoice/" +NTSConfirmNum+"/Print", CorpNum, UserID, URLResponse.class);
+		return response.url;
+	}	
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.HTTaxinvoiceService#checkCertValidation(java.lang.String)
@@ -460,5 +477,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 	protected class DeptRequest {
 		public String id;
 		public String pwd;
-	}	
+	}
+
+	
 }
