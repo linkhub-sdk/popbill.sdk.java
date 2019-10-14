@@ -1629,4 +1629,8 @@ public class Taxinvoice implements Serializable {
 	public String getCloseDownStateDate() {
 		return closeDownStateDate;
 	}
+
+	public void setOrgNTSConfirmNum(String orgNTSConfirmNum) {
+		this.orgNTSConfirmNum = orgNTSConfirmNum;
+	}
 }

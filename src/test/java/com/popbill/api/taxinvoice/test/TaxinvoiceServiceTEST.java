@@ -650,7 +650,7 @@ public class TaxinvoiceServiceTEST {
 	public void RegistIssue_TEST() throws PopbillException {
 		Taxinvoice taxinvoice = new Taxinvoice();
 
-		taxinvoice.setWriteDate("20190226"); // 필수, 기재상 작성일자
+		taxinvoice.setWriteDate("20191014"); // 필수, 기재상 작성일자
 		taxinvoice.setChargeDirection("정과금"); // 필수, {정과금, 역과금}
 		taxinvoice.setIssueType("정발행"); // 필수, {정발행, 역발행, 위수탁}
 		taxinvoice.setPurposeType("영수"); // 필수, {영수, 청구}
@@ -659,7 +659,7 @@ public class TaxinvoiceServiceTEST {
 		taxinvoice.setInvoicerCorpNum("1234567890");
 		taxinvoice.setInvoicerTaxRegID(""); // 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
 		taxinvoice.setInvoicerCorpName("공급자 상호");
-		taxinvoice.setInvoicerMgtKey("20190226-07"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
+		taxinvoice.setInvoicerMgtKey("20191014-07"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
 		taxinvoice.setInvoicerCEOName("공급자 대표자 성명");
 		taxinvoice.setInvoicerAddr("공급자 주소");
 		taxinvoice.setInvoicerBizClass("공급자 업종");
@@ -683,8 +683,8 @@ public class TaxinvoiceServiceTEST {
 		taxinvoice.setSupplyCostTotal("100000"); // 필수 공급가액 합계"
 		taxinvoice.setTaxTotal("10000"); // 필수 세액 합계
 		taxinvoice.setTotalAmount("110000"); // 필수 합계금액. 공급가액 + 세액
-		taxinvoice.setModifyCode(null); // 수정세금계산서 작성시 1~6까지 선택기재.
-		taxinvoice.setOriginalTaxinvoiceKey(""); // 수정세금계산서 작성시 원본세금계산서의 ItemKey기재. ItemKey는 문서확인.
+		taxinvoice.setModifyCode((short)1); // 수정세금계산서 작성시 1~6까지 선택기재.
+		taxinvoice.setOrgNTSConfirmNum("20191008888888880000003e"); // 수정세금계산서 작성시 원본세금계산서의 ItemKey기재. ItemKey는 문서확인.
 		taxinvoice.setSerialNum("123");
 		taxinvoice.setCash(""); // 현금
 		taxinvoice.setChkBill(""); // 수표
