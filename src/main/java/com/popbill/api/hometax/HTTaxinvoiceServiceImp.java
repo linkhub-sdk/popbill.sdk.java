@@ -14,6 +14,8 @@
  */
 package com.popbill.api.hometax;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -196,6 +198,54 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 		return httpget(uri, CorpNum, UserID, HTTaxinvoiceSearchResult.class);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.HTTaxinvoiceService#search(java.lang.String, java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[], java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public HTTaxinvoiceSearchResult search(String CorpNum, String JobID,
+			String[] Type, String[] TaxType, String[] PurposeType,
+			String TaxRegIDYN, String TaxRegIDType, String TaxRegID,
+			Integer Page, Integer PerPage, String Order, String UserID, String SearchString) throws PopbillException {
+		
+		if (JobID.length() != 18)
+			throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
+		
+		String uri = "/HomeTax/Taxinvoice/"+JobID;
+		
+		uri += "?Type=" + Arrays.toString(Type)
+				.replaceAll("\\[|\\]|\\s", "");
+		uri += "&TaxType=" + Arrays.toString(TaxType)
+				.replaceAll("\\[|\\]|\\s", "");
+		uri += "&PurposeType=" + Arrays.toString(PurposeType)
+				.replaceAll("\\[|\\]|\\s", "");
+		
+		if (TaxRegIDType != "" && TaxRegIDType != null)
+			uri += "&TaxRegIDType=" + TaxRegIDType;
+		
+		if (TaxRegIDYN != "" && TaxRegIDYN != null)
+			uri += "&TaxRegIDYN=" + TaxRegIDYN;
+		
+		if (TaxRegID != "" && TaxRegIDYN != null) 
+			uri += "&TaxRegID=" + TaxRegID;
+		
+		if (SearchString != "" && SearchString != null) {
+			try {
+				uri += "&SearchString=" + URLEncoder.encode(SearchString, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				throw new PopbillException(-99999999, "검색어(SearchString) 인코딩 오류");
+			}
+		}
+				
+		
+
+		uri += "&Page=" + Integer.toString(Page);
+		uri += "&PerPage=" + Integer.toString(PerPage);
+		uri += "&Order=" + Order;
+		
+		return httpget(uri, CorpNum, UserID, HTTaxinvoiceSearchResult.class);
+	}
+	
 	
 	/*
 	 * (non-Javadoc)
@@ -219,6 +269,15 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 			String[] Type, String[] TaxType, String[] PurposeType,
 			String TaxRegIDYN, String TaxRegIDType, String TaxRegID,
 			String UserID) throws PopbillException {
+		return summary(CorpNum, JobID, Type, TaxType, PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID, null, null);
+	}
+	
+	
+	@Override
+	public HTTaxinvoiceSummary summary(String CorpNum, String JobID,
+			String[] Type, String[] TaxType, String[] PurposeType,
+			String TaxRegIDYN, String TaxRegIDType, String TaxRegID,
+			String UserID, String SearchString) throws PopbillException {
 		
 		if (JobID.length() != 18)
 			throw new PopbillException(-99999999, "작업아이디가 올바르지 않았습니다.");
@@ -240,6 +299,14 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 		
 		if (TaxRegID != "" && TaxRegID != null)
 			uri += "&TaxRegID=" + TaxRegID;
+		
+		if (SearchString != "" && SearchString != null) {
+			try {
+				uri += "&SearchString=" + URLEncoder.encode(SearchString, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				throw new PopbillException(-99999999, "검색어(SearchString) 인코딩 오류");
+			}
+		}
 							
 		return httpget(uri, CorpNum, UserID, HTTaxinvoiceSummary.class);
 	}

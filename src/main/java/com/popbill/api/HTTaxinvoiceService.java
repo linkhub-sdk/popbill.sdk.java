@@ -204,7 +204,42 @@ public interface HTTaxinvoiceService extends BaseService{
 	 */
 	public HTTaxinvoiceSearchResult search(String CorpNum, String JobID, String[] Type, 
 			String[] TaxType, String[] PurposeType, String TaxRegIDYN, String TaxRegIDType,
-			String TaxRegID, Integer Page, Integer PerPage, String Order, String UserID) throws PopbillException;	
+			String TaxRegID, Integer Page, Integer PerPage, String Order, String UserID) throws PopbillException;
+	
+	/**
+	 * 수집 결과 조회 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param JobID
+	 * 			작업 아이디 
+	 * @param Type
+	 * 			문서형태 배열 
+	 * @param TaxType
+	 * 			과세형태 배열 
+	 * @param PurposeType
+	 * 			영수/청구 배열
+	 * @param TaxRegIDYN
+	 * 			종사업장 유무  
+	 * @param TaxRegIDType
+	 * 			종사업장번호 사업자 유형 
+	 * @param TaxRegID
+	 * 			종사업장번호, 다수 기재시 콤마(",")로 구분하여 구성
+	 * @param Page
+	 * 			페이지 번호 
+	 * @param PerPage
+	 * 			페이지당 검색개수 
+	 * @param Order
+	 * 			정렬방향 
+	 * @param UserID
+	 * 			연동회원 아이디
+	 * @param SearchString
+	 * 			 검색어 
+	 * @return 수집 결과 (see. com.popbill.api.httaxinvoice.HTTaxinvoiceSearchResult)
+	 */
+	public HTTaxinvoiceSearchResult search(String CorpNum, String JobID, String[] Type, String[] TaxType, String[] PurposeType,
+			String TaxRegIDYN, String TaxRegIDType, String TaxRegID, Integer Page, Integer PerPage, String Order,
+			String UserID, String SearchString) throws PopbillException;
 	
 	/**
 	 * 수집 결과 요약정보 조회 
@@ -259,6 +294,36 @@ public interface HTTaxinvoiceService extends BaseService{
 	public HTTaxinvoiceSummary summary(String CorpNum, String JobID, String[] Type, 
 			String[] TaxType, String[] PurposeType, String TaxRegIDYN, String TaxRegIDType,
 			String TaxRegID, String UserID) throws PopbillException;
+	
+	/**
+	* 수집 결과 요약정보 조회 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param JobID
+	 * 			수집요청시 반환받은 작업아이디 
+	 * @param Type
+	 * 			문서형태 배열 
+	 * @param TaxType
+	 * 			과세형태 배열 
+	 * @param PurposeType
+	 * 			영수/청구 배열 
+	 * @param TaxRegIDYN
+	 * 			종사업장 유무 
+	 * @param TaxRegIDType
+	 * 			종사업장번호 사업자 유형 
+	 * @param TaxRegID
+	 * 			종사업장번호, 다수 기재시 콤마(",")로 구분하여 구성
+	 * @param UserID
+	 * 			연동회원 아이디 
+	 * @param SearchString
+	 * 			검색어
+	 * @return 수집 결과 요약정보 (see. com.popbill.api.httaxinvoice.HTTaxinvoiceSearchSummary)
+	 * @throws PopbillException
+	 */
+	public HTTaxinvoiceSummary summary(String CorpNum, String JobID, String[] Type, String[] TaxType, String[] PurposeType,
+			String TaxRegIDYN, String TaxRegIDType, String TaxRegID, String UserID, String SearchString)
+			throws PopbillException;
 	/**
 	 * 상세정보 확인 - JSON 
 	 * 
@@ -478,4 +543,5 @@ public interface HTTaxinvoiceService extends BaseService{
 	 * @throws PopbillException
 	 */
 	public Response deleteDeptUser(String CorpNum) throws PopbillException;
+	
 }

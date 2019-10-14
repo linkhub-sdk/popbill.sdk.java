@@ -65,9 +65,9 @@ public class HTTaxinvoiceServiceTEST {
 	@Test
 	public void getRequestJob_TEST() throws PopbillException {
 		
-		String DType = "W";
-		String SDate = "20170101";
-		String EDate = "20171231";
+		String DType = "S";
+		String SDate = "20190901";
+		String EDate = "20191001";
 		
 		String jobID = hometaxTIService.requestJob("1234567890", QueryType.SELL, DType, SDate, EDate);
 		
@@ -134,8 +134,8 @@ public class HTTaxinvoiceServiceTEST {
 		Integer PerPage = 10;
 		String Order = "D";
 		
-		HTTaxinvoiceSearchResult result = hometaxTIService.search("1234567890", "017082810000000001", Type, TaxType, 
-				PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID, Page, PerPage, Order);
+		HTTaxinvoiceSearchResult result = hometaxTIService.search("1234567890", "019101414000000001", Type, TaxType, 
+				PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID, Page, PerPage, Order, "", "123");
 		
 		assertNotNull ( result ) ;
 		
@@ -199,8 +199,8 @@ public class HTTaxinvoiceServiceTEST {
 		String TaxRegID = "";
 		String TaxRegIDYN = "";
 		
-		HTTaxinvoiceSummary result = hometaxTIService.summary("1234567890", "016061709000000001", Type, TaxType, 
-				PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID);
+		HTTaxinvoiceSummary result = hometaxTIService.summary("1234567890", "019101414000000001", Type, TaxType, 
+				PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID, "", "");
 		
 		assertNotNull(result);
 		
@@ -346,7 +346,7 @@ public class HTTaxinvoiceServiceTEST {
 	
 	@Test
 	public void checkCertValidation_TEST() throws PopbillException{
-		String corpNum = "6798700433";
+		String corpNum = "1234567890";
 		
 		Response response = hometaxTIService.checkCertValidation(corpNum);
 		assertNotNull(response);
@@ -357,7 +357,7 @@ public class HTTaxinvoiceServiceTEST {
 	
 	@Test
 	public void registDeptUser_TEST() throws PopbillException{
-		String corpNum = "6798700433";
+		String corpNum = "1234567890";
 		String deptUserID = "test_id";
 		String deptUserPWD = "test_pwd";
 		
@@ -369,7 +369,7 @@ public class HTTaxinvoiceServiceTEST {
 	
 	@Test
 	public void checkDeptUser_TEST() throws PopbillException{
-		String corpNum = "6798700433";
+		String corpNum = "1234567890";
 		
 		Response response = hometaxTIService.checkDeptUser(corpNum);
 		assertNotNull(response);
@@ -379,7 +379,7 @@ public class HTTaxinvoiceServiceTEST {
 	
 	@Test
 	public void checkLoginDeptUser_TEST() throws PopbillException{
-		String corpNum = "6798700433";
+		String corpNum = "1234567890";
 		
 		Response response = hometaxTIService.checkLoginDeptUser(corpNum);
 		assertNotNull(response);
@@ -389,7 +389,7 @@ public class HTTaxinvoiceServiceTEST {
 	
 	@Test
 	public void deleteDeptUser_TEST() throws PopbillException{
-		String corpNum = "6798700433";
+		String corpNum = "1234567890";
 		
 		Response response = hometaxTIService.deleteDeptUser(corpNum);
 		assertNotNull(response);
@@ -399,7 +399,7 @@ public class HTTaxinvoiceServiceTEST {
 	
 	@Test
 	public void getPrintURL_TEST() throws PopbillException {
-		String url = hometaxTIService.getPrintURL("6798700433", "201907054100001141339517");
+		String url = hometaxTIService.getPrintURL("1234567890", "201907054100001141339517");
 		
 		assertNotNull(url);
 		
