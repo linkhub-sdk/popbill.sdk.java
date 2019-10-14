@@ -835,6 +835,25 @@ public interface StatementService extends BaseService{
 			throws PopbillException;
 	
 	/**
+	 * 명세서 즉시발행 
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자번호 
+	 * @param statement
+	 * 			전자명세서 객체. see com.popbill.api.statement
+	 * @param Memo
+	 * 			메모  
+	 * @param UserID
+	 * 			연동회원 아이디 
+	 * @return Response 
+	 * @throws PopbillException
+	 */
+	
+	public Response registIssue(String CorpNum, Statement statement, String memo, String 
+			UserID, String emailSubject)
+			throws PopbillException;	
+	
+	/**
 	 * 다른 전자명세서 첨부 
 	 * 
 	 * @param CorpNum
@@ -996,6 +1015,8 @@ public interface StatementService extends BaseService{
 	 * @return EmailSendConfig 배열.
 	 * @throws PopbillException
 	 */
-	public EmailSendConfig[] listEmailConfig(String CorpNum, String UserID) throws PopbillException;	
+	public EmailSendConfig[] listEmailConfig(String CorpNum, String UserID) throws PopbillException;
+
+	
 }
 

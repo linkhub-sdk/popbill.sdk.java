@@ -17,7 +17,6 @@ import com.popbill.api.fax.FaxResult;
 import com.popbill.api.fax.FaxServiceImp;
 import com.popbill.api.fax.Receiver;
 import com.popbill.api.fax.SenderNumber;
-import com.popbill.api.message.SentMessage;
 
 public class FaxServiceTEST {
 

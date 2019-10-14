@@ -243,9 +243,9 @@ public class CashbillServiceTEST {
 		
 		Cashbill cashbill = new Cashbill();
 		
-		cashbill.setMgtKey("20180813160709");
+		cashbill.setMgtKey("20191014-01");
 		cashbill.setTradeType("승인거래");
-		cashbill.setTradeOpt("대중교통");
+		cashbill.setTradeOpt("일반");
 		cashbill.setFranchiseCorpNum("1234567890");
 		cashbill.setFranchiseCorpName("발행자 상호");
 		cashbill.setFranchiseCEOName("발행자 대표자");
@@ -256,7 +256,7 @@ public class CashbillServiceTEST {
 		cashbill.setCustomerName("고객명");
 		cashbill.setItemName("상품명");
 		cashbill.setOrderNumber("주문번호");
-		cashbill.setEmail("test@test.com");
+		cashbill.setEmail("code@linkhub.co.kr");
 		cashbill.setHp("01043245117");
 		cashbill.setFax("07075103710");
 		cashbill.setServiceFee("0");
@@ -267,7 +267,7 @@ public class CashbillServiceTEST {
 		cashbill.setTaxationType("과세");
 		cashbill.setSmssendYN(false);
 		
-		Response response = cashbillService.registIssue("1234567890", cashbill, "메모 입니다. Getinfo [StateMemo] 필드");
+		Response response = cashbillService.registIssue("1234567890", cashbill, "메모 입니다. Getinfo [StateMemo] 필드", "", "메일 제목 테스트");
 		assertNotNull(response);
 		System.out.println("[" + response.getCode() + "] "+ response.getMessage());
 	}
@@ -343,12 +343,12 @@ public class CashbillServiceTEST {
 	@Test
 	public void revokeRegistIssue02_TEST() throws PopbillException{
 		String CorpNum = "1234567890";
-		String mgtKey = "20170816-05";
+		String mgtKey = "20191014-02";
 		String orgConfirmNum = "820116333";
 		String orgTradeDate = "20170711";
 		Boolean smssendYN = true;
 		
-		Response response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN);
+		Response response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, "memo","", "메일제목 테스트");
 		
 		assertNotNull(response);
 		

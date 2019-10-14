@@ -450,12 +450,12 @@ public class StatementServiceTEST {
 	public void RegistIssue_TEST() throws PopbillException{
 		Statement statement = new Statement();
 		
-		statement.setWriteDate("20170306");
+		statement.setWriteDate("20191014");
 		statement.setPurposeType("영수");
 		statement.setTaxType("과세");
 		statement.setFormCode("");
 		statement.setItemCode((short) 121);
-		statement.setMgtKey("20170306-07");
+		statement.setMgtKey("20191014-01");
 		statement.setSenderCorpNum("1234567890");
 		statement.setSenderCorpName("공급자 상호");
 		statement.setSenderAddr("공급자 주소");
@@ -475,7 +475,7 @@ public class StatementServiceTEST {
         statement.setReceiverBizClass("공급받는자 업종");
         statement.setReceiverBizType("공급받는자 업태");
         statement.setReceiverContactName("공급받는자 담당자명");
-        statement.setReceiverEmail("test@test.com");
+        statement.setReceiverEmail("code@linkhub.co.kr");
 
         statement.setSupplyCostTotal("200000");         //필수 공급가액 합계
         statement.setTaxTotal("20000");                 //필수 세액 합계
@@ -509,7 +509,7 @@ public class StatementServiceTEST {
         
 		statement.setPropertyBag(propertyBag);
 		
-		Response response = statementService.registIssue("1234567890", statement, "전자명세서 즉시발행 메모");
+		Response response = statementService.registIssue("1234567890", statement, "전자명세서 즉시발행 메모", "", "메일 제목 테스트");
 		System.out.println("[" + response.getCode() + "] " + response.getMessage());
 		
 		assertNotNull(response);

@@ -32,6 +32,7 @@ public class Statement implements Serializable {
 	private String sendNum;
 	private String receiveNum;
 	private String memo;
+	private String emailSubject;
 	
 	private Short itemCode;
 	private String mgtKey;
@@ -913,5 +914,11 @@ public class Statement implements Serializable {
 	 */
 	public String getMemo() {
 		return memo;
+	}
+	public String getEmailSubject() {
+		return emailSubject;
+	}
+	public void setEmailSubject(String emailSubject) {
+		this.emailSubject = emailSubject;
 	}
 }

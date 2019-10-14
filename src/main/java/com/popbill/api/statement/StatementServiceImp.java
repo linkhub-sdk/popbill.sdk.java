@@ -654,9 +654,18 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 	@Override
 	public Response registIssue(String CorpNum, Statement statement, String memo, 
 			String UserID) throws PopbillException {
-			
-		statement.setMemo(memo);
+			return registIssue(CorpNum, statement, memo, UserID);
+	}
+	
+	@Override
+	public Response registIssue(String CorpNum, Statement statement, String memo, 
+			String UserID, String emailSubject) throws PopbillException {
 		
+		if (memo != null) 
+			statement.setMemo(memo);
+		if (emailSubject != null)
+			statement.setEmailSubject(emailSubject);
+			
 		String PostData = toJsonString(statement);
 		
 		return httppost("/Statement",

@@ -58,8 +58,9 @@ public class Cashbill implements Serializable {
     private String confirmNum;
     private String orgConfirmNum;
     private String orgTradeDate;
-
+    
     private Integer cancelType;
+    private String emailSubject;
 
 
     /**
@@ -561,4 +562,12 @@ public class Cashbill implements Serializable {
     public void setCancelType(Integer cancelType) {
         this.cancelType = cancelType;
     }
+
+	public String getEmailSubject() {
+		return emailSubject;
+	}
+
+	public void setEmailSubject(String emailSubject) {
+		this.emailSubject = emailSubject;
+	}
 }
