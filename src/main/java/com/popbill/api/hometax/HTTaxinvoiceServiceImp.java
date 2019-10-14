@@ -170,32 +170,8 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 			String TaxRegIDYN, String TaxRegIDType, String TaxRegID,
 			Integer Page, Integer PerPage, String Order, String UserID) throws PopbillException {
 		
-		if (JobID.length() != 18)
-			throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
-		
-		String uri = "/HomeTax/Taxinvoice/"+JobID;
-		
-		uri += "?Type=" + Arrays.toString(Type)
-				.replaceAll("\\[|\\]|\\s", "");
-		uri += "&TaxType=" + Arrays.toString(TaxType)
-				.replaceAll("\\[|\\]|\\s", "");
-		uri += "&PurposeType=" + Arrays.toString(PurposeType)
-				.replaceAll("\\[|\\]|\\s", "");
-		
-		if (TaxRegIDType != "" && TaxRegIDType != null)
-			uri += "&TaxRegIDType=" + TaxRegIDType;
-		
-		if (TaxRegIDYN != "" && TaxRegIDYN != null)
-			uri += "&TaxRegIDYN=" + TaxRegIDYN;
-		
-		if (TaxRegID != "" && TaxRegIDYN != null) 
-			uri += "&TaxRegID=" + TaxRegID;
-				
-		uri += "&Page=" + Integer.toString(Page);
-		uri += "&PerPage=" + Integer.toString(PerPage);
-		uri += "&Order=" + Order;
-		
-		return httpget(uri, CorpNum, UserID, HTTaxinvoiceSearchResult.class);
+		return search(CorpNum, JobID, Type, TaxType, PurposeType, TaxRegIDYN, 
+				TaxRegIDType, TaxRegID, Page, PerPage, Order, null, null);
 	}
 	
 	/*
