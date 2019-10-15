@@ -1848,6 +1848,7 @@ public class MessageServiceTEST {
 			System.out.println(listInfo[i].getNumber());
 			System.out.println(listInfo[i].getState());
 			System.out.println(listInfo[i].getRepresentYN());
+			System.out.println(listInfo[i].getMemo());
 		}
 	}
 	

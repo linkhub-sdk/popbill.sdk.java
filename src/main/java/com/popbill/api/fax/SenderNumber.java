@@ -29,6 +29,7 @@ public class SenderNumber implements Serializable  {
 	private String number;
 	private Boolean representYN;
 	private Integer state;
+	private String memo;
 	
 	/**
 	 *  등록된 발신번호
@@ -58,5 +59,9 @@ public class SenderNumber implements Serializable  {
 	 */
 	public Integer getState() {
 		return state;
+	}
+
+	public String getMemo() {
+		return memo;
 	}
 }
