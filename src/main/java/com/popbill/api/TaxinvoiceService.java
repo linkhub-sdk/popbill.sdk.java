@@ -1299,6 +1299,55 @@ public interface TaxinvoiceService extends BaseService {
 			Boolean LateOnly, String TaxRegIDType,
 			String TaxRegID, String TaxRegIDYN, String QString,
 			Integer Page, Integer PerPage, String Order, String InterOPYN) throws PopbillException;
+	
+	/**
+	  * 세금계산서 목록조회
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param KeyType
+	 * 			연동문서 종류
+	 * @param DType
+	 * 			검색일자 유형, R-등록일자, W-작성일자, I-발행일자
+	 * @param SDate
+	 * 			시작일자(yyyyMMdd)
+	 * @param EDate
+	 * 			종료일자(yyyyMMdd)
+	 * @param State
+	 * 			상태코드 배열
+	 * @param Type
+	 * 			문서유형 배열, N-일반세금계산서, M-수정세금계산서
+	 * @param TaxType
+	 * 			과세형태 배열, T-과세, N-면세, Z-영세
+	 * @param IssueType
+	 * 			발행형태 배열, N-정발행, R-역발행, T-위수탁
+	 * @param LateOnly
+	 * 			지연발행 여부, null-전체조회, 0:정상발행분 조회, 1:지연발행분 조회
+	 * @param TaxRegIDYN
+	 * 			종사업장 유무, false-식별번호 없는것 검색, true-식별번호 검색
+	 * @param TaxRegIDType
+	 * 			식별번호 유형, 미기재 or S-공급자, B-공급받는자, T-수탁자
+	 * @param TaxRegID
+	 * 			종사업장번호 배열
+	 * @param QString
+	 * 			통합검색 키워드, (거래처명, 거래처 사업자번호 조회)
+	 * @param Page
+	 * 			페이지번호
+	 * @param PerPage
+	 * 			페이지당 목록개수
+	 * @param Order
+	 * 			정렬방향, D-오름차순, A-내림차순
+	 * @param InterOPYN
+	 * 			연동문서 여부 null-전체조회, 0:일반문서, 1-연동문서
+	 * @param RegType
+	 * 			등록유형, P-팝빌 등록,  H: 홈택스, 외부ASP
+	 * @return
+	 * @throws PopbillException
+	 */
+	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, String SDate, String EDate, String[] State,
+			String[] Type, String[] TaxType, String[] IssueType, Boolean LateOnly, String TaxRegIDType, String TaxRegID,
+			String TaxRegIDYN, String QString, Integer Page, Integer PerPage, String Order, String InterOPYN,
+			String[] RegType) throws PopbillException;
 
 	/**
 	 * 세금계산서 즉시발행
@@ -1619,6 +1668,8 @@ public interface TaxinvoiceService extends BaseService {
      */
     public String getViewURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String UserID) throws PopbillException;
+
+	
     
     
 

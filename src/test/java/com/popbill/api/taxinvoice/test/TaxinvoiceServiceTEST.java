@@ -620,8 +620,8 @@ public class TaxinvoiceServiceTEST {
 		TISearchResult response = new TISearchResult();
 		
 		String DType = "W";
-		String SDate = "20180701";
-		String EDate = "20180712";
+		String SDate = "20191001";
+		String EDate = "20191031";
 		String[] State = {"3**", "6**"};
 		String[] Type = {"N", "M","Z"};
 		String[] TaxType = {"T","N","Z"};
@@ -635,10 +635,11 @@ public class TaxinvoiceServiceTEST {
 		int PerPage = 50;
 		String Order = "D";
 		String interOPYN = "";
+		String[] RegType = {"P", "H"};
 		
 		response = taxinvoiceService.Search("1234567890", MgtKeyType.SELL, DType, 
 				SDate, EDate, State, Type, TaxType, IssueType, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN,
-				QString, Page, PerPage, Order, interOPYN);
+				QString, Page, PerPage, Order, interOPYN,RegType);
 		
 		assertNotNull(response);
 		

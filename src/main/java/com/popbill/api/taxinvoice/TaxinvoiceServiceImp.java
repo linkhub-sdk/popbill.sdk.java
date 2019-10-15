@@ -1005,6 +1005,17 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                                  String TaxRegIDType, String TaxRegID, String TaxRegIDYN,
                                  String QString, Integer Page, Integer PerPage, String Order, String InterOPYN)
             throws PopbillException {
+    	 return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly,
+                 TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page, PerPage, Order, InterOPYN, null);
+    }
+    
+    @Override
+    public TISearchResult Search(String CorpNum, MgtKeyType KeyType,
+                                 String DType, String SDate, String EDate, String[] State,
+                                 String[] Type, String[] TaxType, String[] IssueType, Boolean LateOnly,
+                                 String TaxRegIDType, String TaxRegID, String TaxRegIDYN,
+                                 String QString, Integer Page, Integer PerPage, String Order, String InterOPYN, String[] RegType)
+            throws PopbillException {
 
         if (KeyType == null)
             throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
@@ -1028,6 +1039,11 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
         if (IssueType != null) {
             uri += "&IssueType=" + Arrays.toString(IssueType)
+                    .replaceAll("\\[|\\]|\\s", "");
+        }
+        
+        if (RegType != null) {
+            uri += "&RegType=" + Arrays.toString(RegType)
                     .replaceAll("\\[|\\]|\\s", "");
         }
 
