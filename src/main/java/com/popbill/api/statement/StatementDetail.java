@@ -40,6 +40,21 @@ public class StatementDetail implements Serializable {
 	private String spare3;
 	private String spare4;
 	private String spare5;
+	private String spare6;
+	private String spare7;
+	private String spare8;
+	private String spare9;
+	private String spare10;
+	private String spare11;
+	private String spare12;
+	private String spare13;
+	private String spare14;
+	private String spare15;
+	private String spare16;
+	private String spare17;
+	private String spare18;
+	private String spare19;
+	private String spare20;
 	
 	/**
 	 * return 일련번호
@@ -319,5 +334,125 @@ public class StatementDetail implements Serializable {
 	 */
 	public void setSpare5(String spare5) {
 		this.spare5 = spare5;
+	}
+
+	public String getSpare6() {
+		return spare6;
+	}
+
+	public void setSpare6(String spare6) {
+		this.spare6 = spare6;
+	}
+
+	public String getSpare7() {
+		return spare7;
+	}
+
+	public void setSpare7(String spare7) {
+		this.spare7 = spare7;
+	}
+
+	public String getSpare8() {
+		return spare8;
+	}
+
+	public void setSpare8(String spare8) {
+		this.spare8 = spare8;
+	}
+
+	public String getSpare9() {
+		return spare9;
+	}
+
+	public void setSpare9(String spare9) {
+		this.spare9 = spare9;
+	}
+
+	public String getSpare10() {
+		return spare10;
+	}
+
+	public void setSpare10(String spare10) {
+		this.spare10 = spare10;
+	}
+
+	public String getSpare11() {
+		return spare11;
+	}
+
+	public void setSpare11(String spare11) {
+		this.spare11 = spare11;
+	}
+
+	public String getSpare12() {
+		return spare12;
+	}
+
+	public void setSpare12(String spare12) {
+		this.spare12 = spare12;
+	}
+
+	public String getSpare13() {
+		return spare13;
+	}
+
+	public void setSpare13(String spare13) {
+		this.spare13 = spare13;
+	}
+
+	public String getSpare14() {
+		return spare14;
+	}
+
+	public void setSpare14(String spare14) {
+		this.spare14 = spare14;
+	}
+
+	public String getSpare15() {
+		return spare15;
+	}
+
+	public void setSpare15(String spare15) {
+		this.spare15 = spare15;
+	}
+
+	public String getSpare16() {
+		return spare16;
+	}
+
+	public void setSpare16(String spare16) {
+		this.spare16 = spare16;
+	}
+
+	public String getSpare17() {
+		return spare17;
+	}
+
+	public void setSpare17(String spare17) {
+		this.spare17 = spare17;
+	}
+
+	public String getSpare18() {
+		return spare18;
+	}
+
+	public void setSpare18(String spare18) {
+		this.spare18 = spare18;
+	}
+
+	public String getSpare19() {
+		return spare19;
+	}
+
+	public void setSpare19(String spare19) {
+		this.spare19 = spare19;
+	}
+
+	public String getSpare20() {
+		return spare20;
+	}
+
+	public void setSpare20(String spare20) {
+		this.spare20 = spare20;
 	}
 }

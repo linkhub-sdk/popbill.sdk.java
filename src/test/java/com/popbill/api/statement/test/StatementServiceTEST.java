@@ -282,10 +282,11 @@ public class StatementServiceTEST {
 	
 	@Test
 	public void getDetailInfo_TEST() throws PopbillException {
-		Statement statement = statementService.getDetailInfo("1234567890", 121, "20170306-02");
+		Statement statement = statementService.getDetailInfo("1234567890", 121, "2019015-01");
 		
 		assertNotNull(statement);
 		System.out.println(statement.getPropertyBag());
+		System.out.println(statement.getDetailList().get(0).getSpare20());
 	}
 	@Test
 	public void getInfo_TEST() throws PopbillException {
@@ -450,12 +451,12 @@ public class StatementServiceTEST {
 	public void RegistIssue_TEST() throws PopbillException{
 		Statement statement = new Statement();
 		
-		statement.setWriteDate("20191014");
+		statement.setWriteDate("20191015");
 		statement.setPurposeType("영수");
 		statement.setTaxType("과세");
 		statement.setFormCode("");
 		statement.setItemCode((short) 121);
-		statement.setMgtKey("20191014-01");
+		statement.setMgtKey("2019015-01");
 		statement.setSenderCorpNum("1234567890");
 		statement.setSenderCorpName("공급자 상호");
 		statement.setSenderAddr("공급자 주소");
@@ -504,6 +505,26 @@ public class StatementServiceTEST {
         detail.setQty("1");
         detail.setSupplyCost("200000");
         detail.setTax("20000");
+        detail.setSpare1("20000");
+        detail.setSpare2("20000");
+        detail.setSpare3("20000");
+        detail.setSpare4("20000");
+        detail.setSpare5("20000");
+        detail.setSpare6("20000");
+        detail.setSpare7("20000");
+        detail.setSpare8("20000");
+        detail.setSpare9("20000");
+        detail.setSpare10("30000");
+        detail.setSpare11("30000");
+        detail.setSpare12("30000");
+        detail.setSpare13("30000");
+        detail.setSpare14("30000");
+        detail.setSpare15("30000");
+        detail.setSpare16("30000");
+        detail.setSpare17("30000");
+        detail.setSpare18("30000");
+        detail.setSpare19("30000");
+        detail.setSpare20("30000");
         
         statement.getDetailList().add(detail);
         
