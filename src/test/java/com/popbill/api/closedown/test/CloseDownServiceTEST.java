@@ -63,5 +63,4 @@ public class CloseDownServiceTEST {
 		System.out.println(state[1].getState());
 		System.out.println(state[1].getTypeDate());
 	}
-
 }
