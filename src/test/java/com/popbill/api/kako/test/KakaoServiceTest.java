@@ -3,6 +3,7 @@ package com.popbill.api.kako.test;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -511,19 +512,21 @@ public class KakaoServiceTest {
 	public void sendFTS_04_TEST() throws PopbillException {
 		String testCorpNum = "1234567890";
 		String plusFriendID = "@팝빌";
-		String senderNum = "01071754819";
+		String senderNum = "07043042991";
 		String content = "친구톡 메시지 내용";
 		String altContent = "대체문자 내용";
 		String altSendType = "C";
-		String sndDT = "20180725120000";
+		String sndDT = "";
 		Boolean adsYN = true;
+		
+		
 		
 		KakaoButton[] btns = new KakaoButton[2];
 		KakaoButton button = new KakaoButton();
-		button.setN("버튼명");
+		button.setN("버튼명ddd");
 		button.setT("WL");
-		button.setU1("http://www.popbill.com");
-		button.setU2("http://test.popbill.com");
+		button.setU1("http://dddwww.popbill.com");
+		button.setU2("http://dddtest.popbill.com");
 		btns[0] = button;
 		
 		button = new KakaoButton();
@@ -538,11 +541,33 @@ public class KakaoServiceTest {
 		KakaoReceiver message = new KakaoReceiver();
 		message.setReceiverNum("010111222");
 		message.setReceiverName("04-1수신자명");
+		message.setBtns(new ArrayList<KakaoButton>());
+		message.getBtns().add(btns[0]);
+		message.getBtns().add(btns[1]);
+		
 		receivers[0] = message;
+		
+		button = new KakaoButton();
+		button.setN("버튼명ddd");
+		button.setT("WL");
+		button.setU1("http://cccwww.popbill.com");
+		button.setU2("http://ccctest.popbill.com");
+		btns[0] = button;
+		
+		button = new KakaoButton();
+		button.setN("버튼명2");
+		button.setT("WL");
+		button.setU1("http://www.popbill.com");
+		button.setU2("http://test.popbill.com");
+		btns[1] = button;
 		
 		message = new KakaoReceiver();
 		message.setReceiverNum("010333444");
 		message.setReceiverName("04-2수신자명");
+		message.setBtns(new ArrayList<KakaoButton>());
+		message.getBtns().add(btns[0]);
+		message.getBtns().add(btns[1]);
+		
 		receivers[1] = message;
 
 		String receiptNum = kakaoService.sendFTS(testCorpNum, plusFriendID, senderNum, content, 

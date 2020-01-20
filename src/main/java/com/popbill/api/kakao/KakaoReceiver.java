@@ -1,6 +1,7 @@
 package com.popbill.api.kakao;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -19,6 +20,9 @@ public class KakaoReceiver implements Serializable{
 	
 	@SerializedName("altmsg")
 	private String altMessage;
+	
+	@SerializedName("btns")
+	private List<KakaoButton> btns;
 
 	public String getReceiverNum() {
 		return receiverNum;
@@ -52,4 +56,13 @@ public class KakaoReceiver implements Serializable{
 		this.altMessage = altMessage;
 	}
 
+	public List<KakaoButton> getBtns() {
+		return btns;
+	}
+
+	public void setBtns(List<KakaoButton> btns) {
+		this.btns = btns;
+	}
+
 }
+
