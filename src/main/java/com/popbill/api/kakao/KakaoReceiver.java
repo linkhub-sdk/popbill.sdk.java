@@ -23,7 +23,10 @@ public class KakaoReceiver implements Serializable{
 	
 	@SerializedName("btns")
 	private List<KakaoButton> btns;
-
+	
+	@SerializedName("interOPRefKey")
+	private String interOPRefKey;
+	
 	public String getReceiverNum() {
 		return receiverNum;
 	}
@@ -62,6 +65,14 @@ public class KakaoReceiver implements Serializable{
 
 	public void setBtns(List<KakaoButton> btns) {
 		this.btns = btns;
+	}
+
+	public String getInterOPRefKey() {
+		return interOPRefKey;
+	}
+
+	public void setInterOPRefKey(String interOPRefKey) {
+		this.interOPRefKey = interOPRefKey;
 	}
 
 }

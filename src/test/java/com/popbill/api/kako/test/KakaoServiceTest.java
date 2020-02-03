@@ -767,7 +767,7 @@ public class KakaoServiceTest {
 		String plusFriendID = "@팝빌";
 		String senderNum = "01071754819";
 		String altSendType = "C";
-		String sndDT = "20180725120000";
+		String sndDT = "";
 		Boolean adsYN = false;
 		
 		KakaoButton[] btns = new KakaoButton[2];
@@ -792,6 +792,7 @@ public class KakaoServiceTest {
 		message.setReceiverName("09-1수신자명");
 		message.setMessage("[테스트] 테스트 템플릿입니다요1");
 		message.setAltMessage("대체문자 내용");
+		message.setInterOPRefKey("01");
 		receivers[0] = message;
 		
 		message = new KakaoReceiver();
@@ -799,10 +800,11 @@ public class KakaoServiceTest {
 		message.setReceiverName("09-2수신자명");
 		message.setMessage("[테스트] 테스트 템플릿입니다요2");
 		message.setAltMessage("대체문자 내용");
+		message.setInterOPRefKey("02");
 		receivers[1] = message;
 
 		String receiptNum = kakaoService.sendFTS(testCorpNum, plusFriendID, senderNum, altSendType, 
-				receivers, btns, sndDT, adsYN, "testkorea", "20180724_fts_19");
+				receivers, btns, sndDT, adsYN, "testkorea", "20190203_01");
 		
 		assertNotNull(receiptNum);
 		System.out.println(receiptNum);
@@ -1610,7 +1612,7 @@ public class KakaoServiceTest {
 	@Test
 	public void getMessage_TEST() throws PopbillException {
 		
-		String receiptNum = "018072410121200001";
+		String receiptNum = "020020314162900001";
 		
 		KakaoSentInfo result = kakaoService.getMessages("1234567890", receiptNum);
 		
@@ -1633,6 +1635,7 @@ public class KakaoServiceTest {
 		
 		for (int i=0; i<result.getMsgs().size(); i++)
 		{
+			
 			System.out.println("state : " + result.getMsgs().get(i).getState());
 			System.out.println("sendDT : " + result.getMsgs().get(i).getSendDT());
 			System.out.println("receiveNum : " + result.getMsgs().get(i).getReceiveNum());
@@ -1647,6 +1650,7 @@ public class KakaoServiceTest {
 			System.out.println("altResultDT : " + result.getMsgs().get(i).getAltResultDT());
 			System.out.println("receiptNum : " + result.getMsgs().get(i).getReceiptNum());
 			System.out.println("requestNum : " + result.getMsgs().get(i).getRequestNum());
+			System.out.println("interOPRefKey : " + result.getMsgs().get(i).getInterOPRefKey());
 		}
 	}
 	

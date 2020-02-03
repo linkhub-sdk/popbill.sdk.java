@@ -26,6 +26,7 @@ public class KakaoSentDetail implements Serializable{
 	private Integer contentType;
 	private String receiptNum;
 	private String requestNum;
+	private String interOPRefKey;
 	
 	public Integer getState() {
 		return state;
@@ -125,5 +126,11 @@ public class KakaoSentDetail implements Serializable{
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public String getInterOPRefKey() {
+		return interOPRefKey;
+	}
+	public void setInterOPRefKey(String interOPRefKey) {
+		this.interOPRefKey = interOPRefKey;
 	}
 }
