@@ -1,6 +1,7 @@
 package com.popbill.api;
 
 import com.popbill.api.easyfin.EasyFinBankAccount;
+import com.popbill.api.easyfin.EasyFinBankAccountForm;
 import com.popbill.api.easyfin.EasyFinBankJobState;
 import com.popbill.api.easyfin.EasyFinBankSearchResult;
 import com.popbill.api.easyfin.EasyFinBankSummary;
@@ -33,6 +34,124 @@ public interface EasyFinBankService extends BaseService{
 	 * @throws PopbillException
 	 */
 	public String getBankAccountMgtURL(String CorpNum, String UserID) throws PopbillException;
+	
+	
+	/**
+	 * 계좌 등록
+	 * 
+	 * @param CorpNum
+	 * @param form
+	 * @return
+	 * @throws PopbillException
+	 */
+	public Response registBankAccount(String CorpNum, EasyFinBankAccountForm form) throws PopbillException;
+	
+	
+	/**
+	 * 계좌 등록
+	 * 
+	 * @param CorpNum
+	 * @param form
+	 * @param UserID
+	 * @return
+	 * @throws PopbillException
+	 */
+	public Response registBankAccount(String CorpNum, EasyFinBankAccountForm form, String UserID) throws PopbillException;
+	
+	/**
+	 * 계좌정보 수정
+	 * 
+	 * @param CorpNum
+	 * @param form
+	 * @return
+	 * @throws PopbillException
+	 */
+	public Response updateBankAccount(String CorpNum, EasyFinBankAccountForm form) throws PopbillException;
+	
+	/**
+	 * 계좌정보 수정
+	 * 
+	 * @param CorpNum
+	 * @param form
+	 * @param UserID
+	 * @return
+	 * @throws PopbillException
+	 */
+	public Response updateBankAccount(String CorpNum, EasyFinBankAccountForm form, String UserID) throws PopbillException;
+	
+	/**
+	 * 계좌 정액제 해지 요청
+	 * 
+	 * @param CorpNum
+	 * @param BankCode
+	 * @param AccountNumber
+	 * @param CloseType
+	 * @return
+	 * @throws PopbillException
+	 */
+	public Response closeBankAccount(String CorpNum, String BankCode, String AccountNumber, String CloseType) throws PopbillException;
+	
+	/**
+	 * 계좌 정액제 해지 요청 
+	 * 
+	 * @param CorpNum
+	 * @param BankCode
+	 * @param AccountNumber
+	 * @param CloseType
+	 * @param UserID
+	 * @return
+	 * @throws PopbillException
+	 */
+	public Response closeBankAccount(String CorpNum, String BankCode, String AccountNumber, String CloseType, String UserID) throws PopbillException;
+	
+	
+	/**
+	 * 계좌 정액제 해지요청 취소
+	 * 
+	 * @param CorpNum
+	 * @param BankCode
+	 * @param AccountNumber
+	 * @return
+	 * @throws PopbillException
+	 */
+	public Response revokeCloseBankAccount(String CorpNum, String BankCode, String AccountNumber) throws PopbillException;
+	
+	
+	/**
+	 * 계좌 정액제 해지요청 취소
+	 * 
+	 * @param CorpNum
+	 * @param BankCode
+	 * @param AccountNumber
+	 * @param UserID
+	 * @return
+	 * @throws PopbillException
+	 */
+	public Response revokeCloseBankAccount(String CorpNum, String BankCode, String AccountNumber, String UserID) throws PopbillException;
+	
+	/**
+	 * 계좌정보 조회 
+	 * 
+	 * @param CorpNum
+	 * @param BankCode
+	 * @param AccountNumber
+	 * @return EasyFinBankAccount Class
+	 * @throws PopbillException
+	 */
+	public EasyFinBankAccount getBankAccountInfo(String CorpNum, String BankCode, String AccountNumber) throws PopbillException;
+	
+	
+	/**
+	 * 계좌정보 조호 
+	 * @param CorpNum
+	 * @param BankCode
+	 * @param AccountNumber
+	 * @param UserID
+	 * @return EasyFinBankAccount Class
+	 * @throws PopbillException
+	 */
+	public EasyFinBankAccount getBankAccountInfo(String CorpNum, String BankCode, String AccountNumber, String UserID) throws PopbillException;
+	
 	
 	/**
 	 * 계좌 목록 조회 

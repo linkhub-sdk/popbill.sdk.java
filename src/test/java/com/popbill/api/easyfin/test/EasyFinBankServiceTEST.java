@@ -9,6 +9,7 @@ import com.popbill.api.FlatRateState;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.easyfin.EasyFinBankAccount;
+import com.popbill.api.easyfin.EasyFinBankAccountForm;
 import com.popbill.api.easyfin.EasyFinBankJobState;
 import com.popbill.api.easyfin.EasyFinBankSearchResult;
 import com.popbill.api.easyfin.EasyFinBankServiceImp;
@@ -30,6 +31,83 @@ public class EasyFinBankServiceTEST {
 		easyFinBankService = service;
 	}
 	
+	
+	@Test 
+	public void registBankAccount() throws PopbillException{
+		
+		EasyFinBankAccountForm bankInfo = new EasyFinBankAccountForm();
+		bankInfo.setAccountName("별칭");
+		bankInfo.setAccountNumber("1002057875456");
+		bankInfo.setAccountPWD("2018");
+		bankInfo.setAccountType("개인");
+		bankInfo.setBankCode("0020");
+		bankInfo.setIdentityNumber("800715");
+		
+		
+		Response response = easyFinBankService.registBankAccount("1234567890", bankInfo);
+		
+		assertNotNull(response);
+		
+		System.out.println("\n\n======== registBankAccount Response ========");
+		
+		System.out.println(response.getCode());
+		System.out.println(response.getMessage());
+	}
+	
+	@Test 
+	public void revokeCloseBankAccount() throws PopbillException{
+		
+		String BankCode = "0020";
+		String AccountNumber = "1002057875456";
+		
+		Response response = easyFinBankService.revokeCloseBankAccount("1234567890", BankCode, AccountNumber );
+		
+		assertNotNull(response);
+		
+		System.out.println("\n\n======== revokeCloseBankAccount Response ========");
+		
+		System.out.println(response.getCode());
+		System.out.println(response.getMessage());
+	}
+	
+	@Test 
+	public void closeBankAccount() throws PopbillException{
+		
+		String BankCode = "0020";
+		String AccountNumber = "1002057875456";
+		String CloseType = "중도";
+		
+		Response response = easyFinBankService.closeBankAccount("1234567890", BankCode, AccountNumber, CloseType);
+		
+		assertNotNull(response);
+		
+		System.out.println("\n\n======== closeBankAccount Response ========");
+		
+		System.out.println(response.getCode());
+		System.out.println(response.getMessage());
+	}
+	
+	@Test 
+	public void updateBankAccount() throws PopbillException{
+		
+		EasyFinBankAccountForm bankInfo = new EasyFinBankAccountForm();
+		
+		bankInfo.setBankCode("0020");
+		bankInfo.setAccountNumber("1002057875456");
+		bankInfo.setAccountPWD("2018");
+		bankInfo.setAccountName("별칭_1234");
+		bankInfo.setMemo("memo1356");
+		
+		Response response = easyFinBankService.updateBankAccount("1234567890", bankInfo);
+		
+		assertNotNull(response);
+		
+		System.out.println("\n\n======== updateBankAccount Response ========");
+		
+		System.out.println(response.getCode());
+		System.out.println(response.getMessage());
+	}
+	
 	@Test 
 	public void getBankAccountMgtURL() throws PopbillException{
 		String url = easyFinBankService.getBankAccountMgtURL("1234567890", "testkorea");
@@ -39,6 +117,34 @@ public class EasyFinBankServiceTEST {
 		System.out.println("\n\n======== getBankAccountMgtURL Response ========");
 		
 		System.out.println(url);
+	}
+	
+	
+	@Test
+	public void getBankAccountInfo() throws PopbillException {
+		EasyFinBankAccount accountList = easyFinBankService.getBankAccountInfo("1234567890", "0020", "1002057875456");
+		assertNotNull(accountList);
+		
+		System.out.println("\n\n======== getBankAccountInfo Response ========");
+		
+		if( accountList != null) {
+		
+			System.out.println(accountList.getAccountNumber());
+			System.out.println(accountList.getAccountName());
+			System.out.println(accountList.getBankCode());
+			System.out.println(accountList.getAccountType());
+			System.out.println(accountList.getState());
+			System.out.println(accountList.getRegDT());
+			System.out.println(accountList.getMemo());
+			System.out.println(accountList.getContractDT());
+			System.out.println(accountList.getBaseDate());
+			System.out.println(accountList.getUseEndDate());
+			System.out.println(accountList.getContractState());
+			System.out.println(accountList.getCloseRequestYN());
+			System.out.println(accountList.getUseRestrictYN());
+			System.out.println(accountList.getUnPaidYN());
+			
+		}
 	}
 	
 	@Test
@@ -57,6 +163,13 @@ public class EasyFinBankServiceTEST {
 			System.out.println(accountList[i].getState());
 			System.out.println(accountList[i].getRegDT());
 			System.out.println(accountList[i].getMemo());
+			System.out.println(accountList[i].getContractDT());
+			System.out.println(accountList[i].getBaseDate());
+			System.out.println(accountList[i].getUseEndDate());
+			System.out.println(accountList[i].getContractState());
+			System.out.println(accountList[i].getCloseRequestYN());
+			System.out.println(accountList[i].getUseRestrictYN());
+			System.out.println(accountList[i].getUnPaidYN());
 		}
 	}
 	

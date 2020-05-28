@@ -40,6 +40,177 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 		return response.url;
 	}
 
+	
+	@Override
+	public Response registBankAccount(String CorpNum, EasyFinBankAccountForm form) throws PopbillException {
+		
+		return registBankAccount(CorpNum, form, null);
+	}
+	@Override
+	public Response registBankAccount(String CorpNum, EasyFinBankAccountForm form, String UserID)
+			throws PopbillException {
+		
+		if(form == null)
+			throw new PopbillException(-99999999, "은행 계좌정보가 입력되지 않았습니다.");
+		
+		if (form.getBankCode()== null || form.getBankCode().isEmpty())
+			throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+		
+		if (form.getBankCode().length() != 4)
+			throw new PopbillException(-99999999, "은행코드가 올바르지 않습니다.");
+		
+		if (form.getAccountNumber()== null || form.getAccountNumber().isEmpty())
+			throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
+		
+		if (form.getAccountPWD()== null || form.getAccountPWD().isEmpty())
+			throw new PopbillException(-99999999, "계좌 비밀번호가 입력되지 않았습니다.");
+		
+		if (form.getAccountType()== null || form.getAccountType().isEmpty())
+			throw new PopbillException(-99999999, "계좌유형이 입력되지 않았습니다.");
+		
+		if (form.getAccountType() != "개인" && form.getAccountType() != "법인")
+			throw new PopbillException(-99999999, "계좌유형이 올바르지 않습니다.");
+		
+		if (form.getIdentityNumber()== null || form.getIdentityNumber().isEmpty())
+			throw new PopbillException(-99999999, "예금주 식별정보가 입력되지 않았습니다.");
+		
+		String uri = "/EasyFin/Bank/BankAccount/Regist"; 
+		if(null != form.getUsePeriod()) uri += "?UsePeriod=" + form.getUsePeriod();
+		
+		String PostData = toJsonString(form);
+		
+		return httppost(uri, CorpNum, PostData, UserID, Response.class);
+	}
+	
+	
+	@Override
+	public Response closeBankAccount(String CorpNum, String BankCode, String AccountNumber, String CloseType)
+			throws PopbillException {
+		
+		return closeBankAccount(CorpNum, BankCode, AccountNumber, CloseType, null);
+	}
+	
+	@Override
+	public Response closeBankAccount(String CorpNum, String BankCode, String AccountNumber, String CloseType,
+			String UserID) throws PopbillException {
+		if (BankCode== null || BankCode.isEmpty())
+			throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+		
+		if (BankCode.length() != 4)
+			throw new PopbillException(-99999999, "은행코드가 올바르지 않습니다.");
+		
+		if (AccountNumber== null || AccountNumber.isEmpty())
+			throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
+		
+				
+		if (CloseType== null || CloseType.isEmpty())
+			throw new PopbillException(-99999999, "정액제 해지유형이 입력되지 않았습니다.");
+		
+		if (CloseType != "중도" && CloseType != "일반")
+			throw new PopbillException(-99999999, "정액제 해지유형이 올바르지 않습니다.");
+		
+		String uri = "/EasyFin/Bank/BankAccount/Close";
+		
+		uri += "?BankCode="+BankCode;
+		uri += "&AccountNumber="+AccountNumber;
+		uri += "&CloseType="+CloseType;
+		
+		return httppost(uri, CorpNum, null, UserID, Response.class);
+	}
+	
+	@Override
+	public Response revokeCloseBankAccount(String CorpNum, String BankCode, String AccountNumber)
+			throws PopbillException {
+
+		return revokeCloseBankAccount(CorpNum, BankCode, AccountNumber, null);
+	}
+	@Override
+	public Response revokeCloseBankAccount(String CorpNum, String BankCode, String AccountNumber, String UserID)
+			throws PopbillException {
+		
+		if (BankCode== null || BankCode.isEmpty())
+			throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+		
+		if (BankCode.length() != 4)
+			throw new PopbillException(-99999999, "은행코드가 올바르지 않습니다.");
+		
+		if (AccountNumber== null || AccountNumber.isEmpty())
+			throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
+		
+				
+		String uri = "/EasyFin/Bank/BankAccount/RevokeClose";
+		
+		uri += "?BankCode="+BankCode;
+		uri += "&AccountNumber="+AccountNumber;
+		
+		return httppost(uri, CorpNum, null, UserID, Response.class);
+	}
+
+	
+	
+	@Override
+	public Response updateBankAccount(String CorpNum, EasyFinBankAccountForm form) throws PopbillException {
+		return updateBankAccount(CorpNum, form, null);
+	}
+	@Override
+	public Response updateBankAccount(String CorpNum, EasyFinBankAccountForm form, String UserID)
+			throws PopbillException {
+		
+		if(form == null)
+			throw new PopbillException(-99999999, "은행 계좌정보가 입력되지 않았습니다.");
+		
+		if (form.getBankCode()== null || form.getBankCode().isEmpty())
+			throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+		
+		if (form.getBankCode().length() != 4)
+			throw new PopbillException(-99999999, "은행코드가 올바르지 않습니다.");
+		
+		if (form.getAccountNumber()== null || form.getAccountNumber().isEmpty())
+			throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
+		
+		if (form.getAccountPWD()== null || form.getAccountPWD().isEmpty())
+			throw new PopbillException(-99999999, "계좌 비밀번호가 입력되지 않았습니다.");
+		
+		
+		String uri = "/EasyFin/Bank/BankAccount/"+form.getBankCode()+"/"+form.getAccountNumber()+"/Update"; 
+		
+		String PostData = toJsonString(form);
+		
+		return httppost(uri, CorpNum, PostData, UserID, Response.class);
+	}
+	
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.EasyFinBankService#getBankAccountInfo(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public EasyFinBankAccount getBankAccountInfo(String CorpNum, String BankCode, String AccountNumber)
+			throws PopbillException {
+		
+		return getBankAccountInfo(CorpNum, BankCode, AccountNumber, null);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.EasyFinBankService#getBankAccountInfo(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public EasyFinBankAccount getBankAccountInfo(String CorpNum, String BankCode, String AccountNumber, String UserID)
+			throws PopbillException {
+		if (BankCode == null || BankCode.isEmpty())
+			throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+		if (BankCode.length() != 4)
+			throw new PopbillException(-99999999, "은행코드가 올바르지 않습니다.");
+		if (AccountNumber == null || AccountNumber.isEmpty())
+			throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
+		
+		return httpget("/EasyFin/Bank/BankAccount/"+BankCode+"/"+AccountNumber, CorpNum, UserID, EasyFinBankAccount.class);
+		
+	}
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.EasyFinBankService#listBankAccount(java.lang.String)
@@ -311,11 +482,17 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 		return response.url;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.EasyFinBankService#getChargeInfo(java.lang.String)
+	 */
 	@Override
 	public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
 		
 		return httpget("/EasyFin/Bank/ChargeInfo", CorpNum, null, ChargeInfo.class);
 	}
+	
+	
 	
 	protected class JobIDResponse {
 		public String jobID;
@@ -325,5 +502,14 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 		public String tID;
 		public String memo;
 	}
+
+	
+
+	
+	
+
+	
+
+	
 
 }
