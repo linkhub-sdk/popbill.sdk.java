@@ -48,8 +48,11 @@ public abstract class BaseServiceImp implements BaseService {
 
 	private static final String ServiceID_REAL = "POPBILL";
 	private static final String ServiceID_TEST = "POPBILL_TEST";
+	private static final String Auth_GA_URL= "https://ga-auth.linkhub.co.kr";
 	private static final String ServiceURL_REAL = "https://popbill.linkhub.co.kr";
 	private static final String ServiceURL_TEST = "https://popbill-test.linkhub.co.kr";
+	private static final String ServiceURL_GA_REAL = "https://ga-popbill.linkhub.co.kr";
+	private static final String ServiceURL_GA_TEST = "https://ga-popbill-test.linkhub.co.kr";
 	private final String APIVersion = "1.0";
 	private String ServiceURL = null;
 	private String TestServiceURL = null;
@@ -59,6 +62,7 @@ public abstract class BaseServiceImp implements BaseService {
 
 	private boolean isTest;
 	private boolean isIPRestrictOnOff;
+	private boolean useStaticIP;
 	private String linkID;
 	private String secretKey;
 	private Gson _gsonParser = new Gson();
@@ -70,6 +74,7 @@ public abstract class BaseServiceImp implements BaseService {
 	 */
 	public BaseServiceImp() {
 		isIPRestrictOnOff = true;
+		useStaticIP = false;
 	}
 
 	/**
@@ -84,7 +89,7 @@ public abstract class BaseServiceImp implements BaseService {
 	public boolean isIPRestrictOnOff() {
 		return isIPRestrictOnOff;
 	}
-	
+		
 	/**
 	 * 테스트 모드 설정.
 	 * 
@@ -102,6 +107,11 @@ public abstract class BaseServiceImp implements BaseService {
 	 */
 	public void setIPRestrictOnOff(boolean isIPRestrictOnOff) {
 		this.isIPRestrictOnOff = isIPRestrictOnOff;
+	}
+	
+	
+	public void setUseStaticIP(boolean useStaticIP) {
+		this.useStaticIP = useStaticIP;
 	}
 	
 	protected String getLinkID() {
@@ -160,13 +170,21 @@ public abstract class BaseServiceImp implements BaseService {
 	}
 
 	protected String getServiceURL() {
+		
+		// SetServiceURL 우선.
 		if(isTest) {
 			if(TestServiceURL != null) return TestServiceURL;
 		} else {
 			if(ServiceURL != null) return ServiceURL;
 		}
 		
-		return isTest ? ServiceURL_TEST : ServiceURL_REAL;
+		// ServiceURL null 인경우 useStaticIP 체크
+		if(useStaticIP) {
+			return isTest ? ServiceURL_GA_TEST : ServiceURL_GA_REAL;
+		} else {
+			return isTest ? ServiceURL_TEST : ServiceURL_REAL;
+		}
+		
 	}
 
 	private TokenBuilder getTokenbuilder() {
@@ -176,11 +194,21 @@ public abstract class BaseServiceImp implements BaseService {
 					.ServiceID(isTest ? ServiceID_TEST : ServiceID_REAL)
 					.addScope("member");
 			
-			if(AuthURL != null) tokenBuilder.setServiceURL(AuthURL);
+			if(AuthURL != null) {
+				tokenBuilder.setServiceURL(AuthURL);
+			} else {
+				// AuthURL 이 null이고, useStaticIP 가 True인 경우. GA-AUTH 호출.
+				if(useStaticIP) {
+					tokenBuilder.setServiceURL(Auth_GA_URL);
+				}
+				
+			}
 			
 			for (String scope : getScopes())
 				tokenBuilder.addScope(scope);
 		}
+		
+		
 
 		return tokenBuilder;
 	}
@@ -718,6 +746,7 @@ public abstract class BaseServiceImp implements BaseService {
 		HttpURLConnection httpURLConnection;
 		try {
 			URL uri = new URL(getServiceURL() + url);
+			
 			httpURLConnection = (HttpURLConnection) uri.openConnection();
 		} catch (Exception e) {
 			throw new PopbillException(-99999999, "팝빌 API 서버 접속 실패", e);
@@ -736,6 +765,7 @@ public abstract class BaseServiceImp implements BaseService {
 		}
 		
 		httpURLConnection.setRequestProperty("Accept-Encoding",	"gzip");
+		
 		
 		String Result = parseResponse(httpURLConnection);
 		
