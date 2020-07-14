@@ -89,6 +89,10 @@ public abstract class BaseServiceImp implements BaseService {
 	public boolean isIPRestrictOnOff() {
 		return isIPRestrictOnOff;
 	}
+	
+	public boolean isUseStaticIP() {
+		return useStaticIP;
+	}
 		
 	/**
 	 * 테스트 모드 설정.
