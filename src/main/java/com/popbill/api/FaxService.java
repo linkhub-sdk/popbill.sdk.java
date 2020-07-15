@@ -90,6 +90,9 @@ public interface FaxService extends BaseService {
 			String receiveName, File file, Date reserveDT)
 			throws PopbillException;
 	
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile file, Date reserveDT)
+			throws PopbillException;
 	/**
 	 * 팩스전송 단일파일 단일 수신자. (광고팩스)
 	 * 
@@ -112,6 +115,10 @@ public interface FaxService extends BaseService {
 	 */
 	public String sendFAX(String corpNum, String sendNum, String receiveNum,
 			String receiveName, File file, Date reserveDT, Boolean adsYN)
+			throws PopbillException;
+	
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile file, Date reserveDT, Boolean adsYN)
 			throws PopbillException;
 	
 	/**
@@ -140,6 +147,9 @@ public interface FaxService extends BaseService {
 			String receiveName, File file, Date reserveDT, Boolean adsYN, String requestNum)
 			throws PopbillException;
 	
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile file, Date reserveDT, Boolean adsYN, String requestNum)
+			throws PopbillException;
 	/**
 	 * 팩스전송 단일파일 단일 수신자.
 	 * 
@@ -164,6 +174,9 @@ public interface FaxService extends BaseService {
 			String receiveName, File file, Date reserveDT, String userID)
 			throws PopbillException;
 	
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile file, Date reserveDT, String userID)
+			throws PopbillException;
 	
 	/**
 	 * 팩스전송 단일파일 단일 수신자 (광고팩스).
@@ -191,6 +204,9 @@ public interface FaxService extends BaseService {
 			String receiveName, File file, Date reserveDT, String userID, Boolean adsYN)
 			throws PopbillException;
 	
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile file, Date reserveDT, String userID, Boolean adsYN)
+			throws PopbillException;
 	/**
 	 * 팩스전송 단일파일 단일 수신자 (팩스제목)
 	 * 
@@ -220,6 +236,10 @@ public interface FaxService extends BaseService {
 			String title)
 			throws PopbillException;
 	
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile file, Date reserveDT, String userID, Boolean adsYN,
+			String title)
+			throws PopbillException;
 	/**
 	 * 팩스전송 단일파일 단일 수신자 (팩스제목)
 	 * 
@@ -250,6 +270,11 @@ public interface FaxService extends BaseService {
 			String receiveName, File file, Date reserveDT, String userID, Boolean adsYN,
 			String title, String requestNum)
 			throws PopbillException;
+	
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile file, Date reserveDT, String userID, Boolean adsYN,
+			String title, String requestNum)
+			throws PopbillException;
 
 	/**
 	 * 팩스전송 단일파일 동보전송.
@@ -270,6 +295,8 @@ public interface FaxService extends BaseService {
 	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
 			File file, Date reserveDT) throws PopbillException;
 	
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile file, Date reserveDT) throws PopbillException;
 	/**
 	 * 팩스전송 단일파일 동보전송. (광고팩스)
 	 * 
@@ -289,7 +316,10 @@ public interface FaxService extends BaseService {
 	 * @throws PopbillException
 	 */
 	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
-			File file, Date reserveDT, Boolean adsYN) throws PopbillException;	
+			File file, Date reserveDT, Boolean adsYN) throws PopbillException;
+	
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile file, Date reserveDT, Boolean adsYN) throws PopbillException;	
 	
 	/**
 	 * 팩스전송 단일파일 동보전송. (팩스제목)
@@ -312,7 +342,10 @@ public interface FaxService extends BaseService {
 	 * @throws PopbillException
 	 */
 	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
-			File file, Date reserveDT, Boolean adsYN, String title) throws PopbillException;	
+			File file, Date reserveDT, Boolean adsYN, String title) throws PopbillException;
+	
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile file, Date reserveDT, Boolean adsYN, String title) throws PopbillException;
 	
 	/**
 	 * 팩스전송 단일파일 동보전송. (팩스제목)
@@ -338,6 +371,9 @@ public interface FaxService extends BaseService {
 	 */
 	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
 			File file, Date reserveDT, Boolean adsYN, String title, String requestNum) throws PopbillException;	
+	
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile file, Date reserveDT, Boolean adsYN, String title, String requestNum) throws PopbillException;
 
 	/**
 	 * 팩스전송 단일파일 동보전송.
@@ -360,6 +396,8 @@ public interface FaxService extends BaseService {
 	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
 			File file, Date reserveDT, String userID) throws PopbillException;
 		
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile file, Date reserveDT, String userID) throws PopbillException;
 	/**
 	 * 팩스전송 단일파일 동보전송. (팩스제목)
 	 * 
@@ -383,6 +421,8 @@ public interface FaxService extends BaseService {
 	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
 			File file, Date reserveDT, String userID, String title) throws PopbillException;
 
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile file, Date reserveDT, String userID, String title) throws PopbillException;
 	/**
 	 * 팩스전송 단일파일 동보전송. (팩스제목)
 	 * 
@@ -407,6 +447,9 @@ public interface FaxService extends BaseService {
 	 */
 	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
 			File file, Date reserveDT, String userID, String title, String requestNum) throws PopbillException;
+	
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile file, Date reserveDT, String userID, String title, String requestNum) throws PopbillException;
 
 	/**
 	 * 팩스전송 단일파일 동보전송. (광고팩스)
@@ -431,6 +474,8 @@ public interface FaxService extends BaseService {
 	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
 			File file, Date reserveDT, String userID, Boolean adsYN) throws PopbillException;	
 	
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile file, Date reserveDT, String userID, Boolean adsYN) throws PopbillException;
 	/**
 	 * 팩스전송 단일파일 동보전송. (팩스제목)
 	 * 
@@ -457,6 +502,9 @@ public interface FaxService extends BaseService {
 			File file, Date reserveDT, String userID, Boolean adsYN, String title)
 					throws PopbillException;	
 	
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile file, Date reserveDT, String userID, Boolean adsYN, String title)
+					throws PopbillException;
 	/**
 	 * 팩스전송 단일파일 동보전송. (팩스제목)
 	 * 
@@ -485,6 +533,9 @@ public interface FaxService extends BaseService {
 			File file, Date reserveDT, String userID, Boolean adsYN, String title, String requestNum)
 					throws PopbillException;	
 
+	public String sendFAXBinary(String CorpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile file, Date reserveDT, String userID, Boolean adsYN, String title, String requestNum)
+					throws PopbillException;
 	/**
 	 * 팩스전송 다중파일(최대5개) 단일 수신자.
 	 * 
@@ -507,6 +558,9 @@ public interface FaxService extends BaseService {
 			String receiveName, File[] files, Date reserveDT)
 			throws PopbillException;
 
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile[] files, Date reserveDT)
+			throws PopbillException;
 	/**
 	 * 팩스전송 다중파일(최대5개) 단일 수신자.
 	 * 
@@ -531,6 +585,9 @@ public interface FaxService extends BaseService {
 			String receiveName, File[] files, Date reserveDT, Boolean adsYN)
 			throws PopbillException;
 	
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile[] files, Date reserveDT, Boolean adsYN)
+			throws PopbillException;
 	/**
 	 * 팩스전송 다중파일(최대5개) 단일 수신자.
 	 * 
@@ -557,6 +614,9 @@ public interface FaxService extends BaseService {
 			String receiveName, File[] files, Date reserveDT, Boolean adsYN, String title)
 			throws PopbillException;
 	
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile[] files, Date reserveDT, Boolean adsYN, String title)
+			throws PopbillException;
 	/**
 	 * 팩스전송 다중파일(최대5개) 단일 수신자.
 	 * 
@@ -585,6 +645,9 @@ public interface FaxService extends BaseService {
 			String receiveName, File[] files, Date reserveDT, Boolean adsYN, String title, String requestNum)
 			throws PopbillException;
 
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile[] files, Date reserveDT, Boolean adsYN, String title, String requestNum)
+			throws PopbillException;
 	/**
 	 * 팩스전송 다중파일(최대5개) 단일 수신자.
 	 * 
@@ -609,6 +672,9 @@ public interface FaxService extends BaseService {
 			String receiveName, File[] files, Date reserveDT, String userID)
 			throws PopbillException;
 	
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile[] files, Date reserveDT, String userID)
+			throws PopbillException;
 	/**
 	 * 팩스전송 다중파일(최대5개) 단일 수신자.
 	 * 
@@ -635,6 +701,9 @@ public interface FaxService extends BaseService {
 			String receiveName, File[] files, Date reserveDT, String userID,
 			String title) throws PopbillException;
 	
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile[] files, Date reserveDT, String userID,
+			String title) throws PopbillException;
 	/**
 	 * 팩스전송 다중파일(최대5개) 단일 수신자.
 	 * 
@@ -663,6 +732,10 @@ public interface FaxService extends BaseService {
 			String receiveName, File[] files, Date reserveDT, String userID,
 			String title, String requestNum) throws PopbillException;
 
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile[] files, Date reserveDT, String userID,
+			String title, String requestNum) throws PopbillException;
+	
 	/**
 	 * 팩스전송 다중파일(최대5개) 단일 수신자. (광고팩스)
 	 * 
@@ -689,6 +762,9 @@ public interface FaxService extends BaseService {
 			String receiveName, File[] files, Date reserveDT, String userID,
 			Boolean adsYN) throws PopbillException;	
 	
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile[] files, Date reserveDT, String userID,
+			Boolean adsYN) throws PopbillException;
 	/**
 	 * 팩스전송 다중파일(최대5개) 단일 수신자. (팩스제목)
 	 * 
@@ -717,6 +793,9 @@ public interface FaxService extends BaseService {
 			String receiveName, File[] files, Date reserveDT, String userID,
 			Boolean adsYN, String title) throws PopbillException;	
 	
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile[] files, Date reserveDT, String userID,
+			Boolean adsYN, String title) throws PopbillException;
 	/**
 	 * 팩스전송 다중파일(최대5개) 단일 수신자. (팩스제목)
 	 * 
@@ -747,6 +826,10 @@ public interface FaxService extends BaseService {
 			String receiveName, File[] files, Date reserveDT, String userID,
 			Boolean adsYN, String title, String requestNum) throws PopbillException;	
 
+	public String sendFAXBinary(String corpNum, String sendNum, String receiveNum,
+			String receiveName, FaxUploadFile[] files, Date reserveDT, String userID,
+			Boolean adsYN, String title, String requestNum) throws PopbillException;
+	
 	/**
 	 * 팩스전송 다중파일(최대5개) 동보전송
 	 * 
@@ -767,6 +850,10 @@ public interface FaxService extends BaseService {
 	 */
 	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
 			File[] files, Date reserveDT, String userID)
+			throws PopbillException;
+	
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile[] files, Date reserveDT, String userID)
 			throws PopbillException;
 	
 	/**
@@ -793,6 +880,9 @@ public interface FaxService extends BaseService {
 			File[] files, Date reserveDT, String userID, String title)
 			throws PopbillException;
 
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile[] files, Date reserveDT, String userID, String title)
+			throws PopbillException;
 	/**
 	 * 팩스전송 다중파일(최대5개) 동보전송 - 팩스제목
 	 * 
@@ -818,7 +908,11 @@ public interface FaxService extends BaseService {
 	public String sendFAX(String corpNum, String sendNum, Receiver[] receivers,
 			File[] files, Date reserveDT, String userID, String title, String requestNum)
 			throws PopbillException;
-
+	
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile[] files, Date reserveDT, String userID, String title, String requestNum)
+			throws PopbillException;
+	
 	/**
 	 * 팩스전송 다중파일(최대5개) 동보전송 (광고팩스)
 	 * 
@@ -843,6 +937,9 @@ public interface FaxService extends BaseService {
 			File[] files, Date reserveDT, String userID, Boolean adsYN)
 			throws PopbillException;	
 	
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile[] files, Date reserveDT, String userID, Boolean adsYN)
+			throws PopbillException;	
 	/**
 	 * 팩스전송 다중파일(최대5개) 동보전송 (팩스제목)
 	 * 
@@ -869,6 +966,9 @@ public interface FaxService extends BaseService {
 			File[] files, Date reserveDT, String userID, Boolean adsYN, String title)
 			throws PopbillException;
 	
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile[] files, Date reserveDT, String userID, Boolean adsYN, String title)
+			throws PopbillException;
 	/**
 	 * 팩스전송 다중파일(최대5개) 동보전송 (팩스제목)
 	 * 
@@ -897,6 +997,9 @@ public interface FaxService extends BaseService {
 			File[] files, Date reserveDT, String userID, Boolean adsYN, String title, String requestNum)
 			throws PopbillException;
 
+	public String sendFAXBinary(String corpNum, String sendNum, Receiver[] receivers,
+			FaxUploadFile[] files, Date reserveDT, String userID, Boolean adsYN, String title, String requestNum)
+			throws PopbillException;
 	/**
 	 * 팩스전송 다중파일(최대5개) 동보전송
 	 * 
@@ -918,6 +1021,8 @@ public interface FaxService extends BaseService {
 	public String sendFAX(String corpNum, String sendNum, String senderName, 
 			Receiver[] receivers, File[] files, Date reserveDT) throws PopbillException;
 	
+	public String sendFAXBinary(String corpNum, String sendNum, String senderName, 
+			Receiver[] receivers, FaxUploadFile[] files, Date reserveDT) throws PopbillException;
 	/**
 	 * 팩스전송 다중파일(최대5개) 동보전송 (광고팩스)
 	 * 
@@ -940,6 +1045,10 @@ public interface FaxService extends BaseService {
 	 */
 	public String sendFAX(String corpNum, String sendNum, String senderName, 
 			Receiver[] receivers, File[] files, Date reserveDT, Boolean adsYN)
+			throws PopbillException;
+	
+	public String sendFAXBinary(String corpNum, String sendNum, String senderName, 
+			Receiver[] receivers, FaxUploadFile[] files, Date reserveDT, Boolean adsYN)
 			throws PopbillException;
 	
 	/**
@@ -967,6 +1076,10 @@ public interface FaxService extends BaseService {
 	public String sendFAX(String corpNum, String sendNum, String senderName, 
 			Receiver[] receivers, File[] files, Date reserveDT, Boolean adsYN, String requestNum)
 			throws PopbillException;
+	
+	public String sendFAXBinary(String corpNum, String sendNum, String senderName, 
+			Receiver[] receivers, FaxUploadFile[] files, Date reserveDT, Boolean adsYN, String requestNum)
+			throws PopbillException;
 
 	/**
 	 * 팩스전송 다중파일(최대5개) 동보전송
@@ -992,6 +1105,11 @@ public interface FaxService extends BaseService {
 			File[] files, Date reserveDT, String userID)
 			throws PopbillException;
 	
+	public String sendFAXBinary(String corpNum, String sendNum, String senderName, Receiver[] receivers,
+			FaxUploadFile[] files, Date reserveDT, String userID)
+			throws PopbillException;
+	
+	
 	/**
 	 * 팩스전송 다중파일(최대5개) 동보전송 - 팩스제목
 	 * 
@@ -1016,6 +1134,10 @@ public interface FaxService extends BaseService {
 	 */
 	public String sendFAX(String corpNum, String sendNum, String senderName, Receiver[] receivers,
 			File[] files, Date reserveDT, String userID, String title)
+			throws PopbillException;
+	
+	public String sendFAXBinary(String corpNum, String sendNum, String senderName, Receiver[] receivers,
+			FaxUploadFile[] files, Date reserveDT, String userID, String title)
 			throws PopbillException;
 	
 	/**
@@ -1045,6 +1167,10 @@ public interface FaxService extends BaseService {
 	public String sendFAX(String corpNum, String sendNum, String senderName, Receiver[] receivers,
 			File[] files, Date reserveDT, String userID, String title, String requestNum)
 			throws PopbillException;
+	
+	public String sendFAXBinary(String corpNum, String sendNum, String senderName, Receiver[] receivers,
+			FaxUploadFile[] files, Date reserveDT, String userID, String title, String requestNum)
+			throws PopbillException;
 
 	/**
 	 * 팩스전송 다중파일(최대5개) 동보전송 (광고)
@@ -1072,6 +1198,10 @@ public interface FaxService extends BaseService {
 			File[] files, Date reserveDT, String userID, Boolean adsYN)
 			throws PopbillException;
 	
+	public String sendFAXBinary(String corpNum, String sendNum, String senderName, Receiver[] receivers,
+			FaxUploadFile[] files, Date reserveDT, String userID, Boolean adsYN)
+			throws PopbillException;
+	
 	/**
 	 * 팩스전송 다중파일(최대5개) 동보전송 (팩스제목)
 	 * 
@@ -1096,8 +1226,13 @@ public interface FaxService extends BaseService {
 	 * @return receiptNum 접수번호
 	 * @throws PopbillException
 	 */
+	
 	public String sendFAX(String corpNum, String sendNum, String senderName, Receiver[] receivers,
 			File[] files, Date reserveDT, String userID, Boolean adsYN, String title)
+			throws PopbillException;
+	
+	public String sendFAXBinary(String corpNum, String sendNum, String senderName, Receiver[] receivers,
+			FaxUploadFile[] files, Date reserveDT, String userID, Boolean adsYN, String title)
 			throws PopbillException;
 	
 	/**
@@ -1130,6 +1265,10 @@ public interface FaxService extends BaseService {
 			File[] files, Date reserveDT, String userID, Boolean adsYN, String title, String requestNum)
 			throws PopbillException;
 
+	public String sendFAXBinary(String corpNum, String sendNum, String senderName, Receiver[] receivers,
+			FaxUploadFile[] files, Date reserveDT, String userID, Boolean adsYN, String title, String requestNum)
+			throws PopbillException;
+	
 	/**
 	 * 팩스전송 동보 재전송
 	 * 
