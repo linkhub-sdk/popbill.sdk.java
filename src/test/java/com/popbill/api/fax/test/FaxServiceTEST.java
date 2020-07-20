@@ -110,6 +110,37 @@ public class FaxServiceTEST {
 		System.out.println(receiptNum);
 	}	
 	
+	@SuppressWarnings("resource")
+	@Test
+	public void sendFAXBinary_02_TEST() throws PopbillException, FileNotFoundException {
+		
+		File file = new File("/Users/John/Desktop/test.pdf");
+		InputStream tragetStream = new FileInputStream(file);
+		
+		FaxUploadFile[] fileList = new FaxUploadFile[1];
+		FaxUploadFile uf = new FaxUploadFile();
+		uf.fileName = "test.pdf";
+		uf.fileData = tragetStream;
+		
+		fileList[0] = uf;
+		
+		Receiver receiver1 = new Receiver();
+		receiver1.setReceiveName("수신자명40_1");
+		receiver1.setReceiveNum("070111222");
+		
+		Receiver receiver2 = new Receiver();
+		receiver2.setReceiveName("수신자명40_2");
+		receiver2.setReceiveNum("070111222");
+		
+		Receiver[] receivers = new Receiver[] {receiver1, receiver2};	        
+
+		String receiptNum = faxService.sendFAXBinary("1234567890", "070-4304-2999", receivers, fileList,
+				null, "testkorea", false, "", "");
+		
+		assertNotNull(receiptNum);
+		System.out.println(receiptNum);
+	}	
+	
 	
 	@Test
 	public void sendFAX_02_TEST() throws PopbillException {
