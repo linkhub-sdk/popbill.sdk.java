@@ -633,7 +633,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 	 */
 	@Override
 	public Response registIssue(String CorpNum, Statement statement) throws PopbillException{
-		return registIssue(CorpNum, statement, null);
+		return registIssue(CorpNum, statement, null, null, null);
 	}
 	
 	/* (non-Javadoc)
@@ -643,7 +643,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 	@Override
 	public Response registIssue(String CorpNum, Statement statement, String memo)
 			throws PopbillException{
-		return registIssue(CorpNum, statement, memo, null);
+		return registIssue(CorpNum, statement, memo, null, null);
 	}
 	
 	
@@ -654,7 +654,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 	@Override
 	public Response registIssue(String CorpNum, Statement statement, String memo, 
 			String UserID) throws PopbillException {
-			return registIssue(CorpNum, statement, memo, UserID);
+			return registIssue(CorpNum, statement, memo, UserID, null);
 	}
 	
 	@Override
