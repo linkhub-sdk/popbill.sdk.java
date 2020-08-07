@@ -1017,6 +1017,27 @@ public interface StatementService extends BaseService{
 	 */
 	public EmailSendConfig[] listEmailConfig(String CorpNum, String UserID) throws PopbillException;
 
+	/**
+	 * 
+	 * @param CorpNum
+	 * @param ItemCode
+	 * @param MgtKey
+	 * @return
+	 * @throws PopbillException
+	 */
+	public String getViewURL(String CorpNum, int ItemCode, String MgtKey) throws PopbillException;
+
+	/**
+	 * 
+	 * @param CorpNum
+	 * @param ItemCode
+	 * @param MgtKey
+	 * @param UserID
+	 * @return
+	 * @throws PopbillException
+	 */
+	public String getViewURL(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException;
+
 	
 }
 

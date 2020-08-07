@@ -13,6 +13,8 @@ public class EasyFinBankSearchResult implements Serializable{
 	private long pageNum;
 	private long pageCount;
 	private String message;
+	private String lastScrapDT;
+	
 	private List<EasyFinBankSearchDetail> list;
 	
 	public long getCode() {
@@ -35,6 +37,9 @@ public class EasyFinBankSearchResult implements Serializable{
 	}
 	public List<EasyFinBankSearchDetail> getList() {
 		return list;
+	}
+	public String getLastScrapDT() {
+		return lastScrapDT;
 	}
 	
 }

@@ -1350,6 +1350,35 @@ public interface TaxinvoiceService extends BaseService {
 			String[] RegType) throws PopbillException;
 
 	/**
+	 * @param CorpNum
+	 * @param KeyType
+	 * @param DType
+	 * @param SDate
+	 * @param EDate
+	 * @param State
+	 * @param Type
+	 * @param TaxType
+	 * @param IssueType
+	 * @param LateOnly
+	 * @param TaxRegIDType
+	 * @param TaxRegID
+	 * @param TaxRegIDYN
+	 * @param QString
+	 * @param Page
+	 * @param PerPage
+	 * @param Order
+	 * @param InterOPYN
+	 * @param RegType
+	 * @param CloseDownState
+	 * @param MgtKey
+	 * @return
+	 * @throws PopbillException
+	 */
+	public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, String SDate, String EDate, String[] State,
+			String[] Type, String[] TaxType, String[] IssueType, Boolean LateOnly, String TaxRegIDType, String TaxRegID,
+			String TaxRegIDYN, String QString, Integer Page, Integer PerPage, String Order, String InterOPYN,
+			String[] RegType, String[] CloseDownState, String MgtKey) throws PopbillException;
+	/**
 	 * 세금계산서 즉시발행
 	 *
 	 * @param CorpNum
@@ -1668,6 +1697,26 @@ public interface TaxinvoiceService extends BaseService {
      */
     public String getViewURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String UserID) throws PopbillException;
+    
+    /**
+     * @param CorpNum
+     * @param KeyType
+     * @param MgtKey
+     * @return
+     * @throws PopbillException
+     */
+    public String getPDFURL(String CorpNum, MgtKeyType KeyType, String MgtKey) throws PopbillException;
+    
+    /**
+     * 
+     * @param CorpNum
+     * @param KeyType
+     * @param MgtKey
+     * @param UserID
+     * @return
+     * @throws PopbillException
+     */
+	public String getPDFURL(String CorpNum, MgtKeyType KeyType, String MgtKey, String UserID) throws PopbillException;
 
 	
     

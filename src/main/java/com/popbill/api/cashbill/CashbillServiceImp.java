@@ -82,7 +82,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public boolean checkMgtKeyInUse(String CorpNum, String MgtKey)
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		try{
 			CashbillInfo info = httpget("/Cashbill/" + MgtKey, CorpNum, null, CashbillInfo.class);
@@ -127,7 +127,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response update(String CorpNum, String MgtKey, Cashbill cashbill)
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		return update(CorpNum, MgtKey, cashbill, null);
 	}
@@ -139,7 +139,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response update(String CorpNum, String MgtKey, Cashbill cashbill,
 			String UserID) throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		String PostData = toJsonString(cashbill);
 
@@ -154,7 +154,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response delete(String CorpNum, String MgtKey)
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		return delete(CorpNum, MgtKey, null);
 	}
@@ -166,7 +166,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response delete(String CorpNum, String MgtKey, String UserID)
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		return httppost("/Cashbill/"+MgtKey, CorpNum, null,
 				UserID, "DELETE", Response.class);
@@ -179,7 +179,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response issue(String CorpNum, String MgtKey, String Memo)
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		return issue(CorpNum, MgtKey, Memo, null);
 	}
@@ -191,7 +191,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response issue(String CorpNum, String MgtKey, String Memo,
 			String UserID) throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		String PostData = toJsonString(new MemoRequest(Memo));
 
@@ -206,7 +206,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response cancelIssue(String CorpNum, String MgtKey, String Memo)
 			 throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 		return cancelIssue(CorpNum, MgtKey, Memo, null);
 	}
 
@@ -217,7 +217,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response cancelIssue(String CorpNum, String MgtKey, String Memo,
 			String UserID) throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		String PostData = toJsonString(new MemoRequest(Memo));
 
@@ -232,7 +232,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response sendEmail(String CorpNum, String MgtKey, String Receiver)
 			 throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		return sendEmail(CorpNum, MgtKey, Receiver, null);
 	}
@@ -244,7 +244,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response sendEmail(String CorpNum, String MgtKey, String Receiver,
 			String UserID) throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		ResendRequest request  = new ResendRequest();
 
@@ -264,7 +264,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			String Receiver, String Contents)
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		return sendSMS(CorpNum, MgtKey, Sender, Receiver, Contents, null);
 	}
@@ -277,7 +277,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			String Receiver, String Contents, String UserID)
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		ResendRequest request = new ResendRequest();
 
@@ -298,7 +298,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response sendFAX(String CorpNum, String MgtKey, String Sender,
 			String Receiver) throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		return sendFAX(CorpNum, MgtKey, Sender, Receiver, null);
 	}
@@ -310,7 +310,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Response sendFAX(String CorpNum, String MgtKey, String Sender,
 			String Receiver, String UserID) throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		ResendRequest request = new ResendRequest();
 
@@ -330,7 +330,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public Cashbill getDetailInfo(String CorpNum, String MgtKey)
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		return httpget("/Cashbill/" + MgtKey + "?Detail", CorpNum,
 				null, Cashbill.class);
@@ -343,7 +343,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public CashbillInfo getInfo(String CorpNum, String MgtKey)
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		return httpget("/Cashbill/" + MgtKey, CorpNum,
 				null, CashbillInfo.class);
@@ -356,7 +356,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public CashbillInfo[] getInfos(String CorpNum, String[] MgtKeyList)
 			throws PopbillException {
 		if (MgtKeyList == null || MgtKeyList.length == 0)
-			throw new PopbillException(-99999999, "관리번호배열이 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호배열이 입력되지 않았습니다.");
 
 		String PostData = toJsonString(MgtKeyList);
 
@@ -371,11 +371,53 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public CashbillLog[] getLogs(String CorpNum, String MgtKey)
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		return httpget("/Cashbill/" + MgtKey +"/Logs", CorpNum, null, CashbillLog[].class);
 	}
+	
+	@Override
+    public Response assignMgtKey(String corpNum, String itemKey,
+                                 String mgtKey) throws PopbillException {
 
+        return assignMgtKey(corpNum,  itemKey, mgtKey, null);
+    }
+
+	@Override
+    public Response assignMgtKey(String corpNum, String itemKey,
+                                 String mgtKey, String userID) throws PopbillException {
+        if (itemKey == null || itemKey.isEmpty())
+            throw new PopbillException(-99999999, "아이템키(ItemKey)가 입력되지 않았습니다.");
+
+        if (mgtKey == null || mgtKey.isEmpty())
+            throw new PopbillException(-99999999, "문서번호(MgtKey)가 입력되지 않았습니다.");
+
+        String PostData = "MgtKey=" + mgtKey;
+
+        return httppost("/Cashbill/" + itemKey ,
+                corpNum, PostData, userID, "", Response.class, "application/x-www-form-urlencoded; charset=utf-8");
+    }
+
+	@Override
+	public String getPDFURL(String CorpNum, String MgtKey)
+			throws PopbillException {
+
+		return getPDFURL(CorpNum, MgtKey, null);
+	}
+	
+	@Override
+	public String getPDFURL(String CorpNum, String MgtKey, String UserID)
+			throws PopbillException {
+		if (MgtKey == null || MgtKey.isEmpty())
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
+
+		URLResponse response = httpget("/Cashbill/" + MgtKey + "?TG=PDF",
+				CorpNum, UserID, URLResponse.class);
+
+		return response.url;
+	}
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.CashbillService#getPrintURL(java.lang.String, java.lang.String)
@@ -394,7 +436,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public String getPrintURL(String CorpNum, String MgtKey, String UserID)
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		URLResponse response = httpget("/Cashbill/" + MgtKey + "?TG=PRINT",
 				CorpNum, UserID, URLResponse.class);
@@ -420,7 +462,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public String getEPrintURL(String CorpNum, String MgtKey, String UserID)
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		URLResponse response = httpget("/Cashbill/" + MgtKey + "?TG=EPRINT",
 				CorpNum, UserID, URLResponse.class);
@@ -444,7 +486,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public String getMassPrintURL(String CorpNum, String[] MgtKeyList,
 			String UserID) throws PopbillException {
 		if (MgtKeyList == null || MgtKeyList.length == 0)
-			throw new PopbillException(-99999999, "관리번호배열이 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호배열이 입력되지 않았습니다.");
 
 		String PostData = toJsonString(MgtKeyList);
 
@@ -472,7 +514,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public String getMailURL(String CorpNum, String MgtKey, String UserID)
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		URLResponse response = httpget("/Cashbill/" + MgtKey + "?TG=MAIL",
 				CorpNum, UserID, URLResponse.class);
@@ -498,7 +540,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 	public String getPopUpURL(String CorpNum, String MgtKey, String UserID)
 			throws PopbillException {
 		if (MgtKey == null || MgtKey.isEmpty())
-			throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
 		URLResponse response = httpget("/Cashbill/" + MgtKey + "?TG=POPUP",
 				CorpNum, UserID, URLResponse.class);
@@ -662,7 +704,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			String UserID) throws PopbillException {
 
 		if (mgtKey == null)
-			throw new PopbillException(-99999999, "취소현금영수증 문서관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "취소현금영수증 문서번호가 입력되지 않았습니다.");
 
 		RevokeRequest request = new RevokeRequest();
 
@@ -754,7 +796,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 			String tax, String serviceFee, String totalAmount, String userID, String emailSubject) throws PopbillException {
 
 		if (mgtKey == null)
-			throw new PopbillException(-99999999, "취소현금영수증 문서관리번호가 입력되지 않았습니다.");
+			throw new PopbillException(-99999999, "취소현금영수증 문서번호가 입력되지 않았습니다.");
 		
 		RevokeRequest request = new RevokeRequest();
 		

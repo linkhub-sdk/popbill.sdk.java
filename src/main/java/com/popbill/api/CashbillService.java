@@ -1023,6 +1023,46 @@ public interface CashbillService extends BaseService{
 	 */
 	public EmailSendConfig[] listEmailConfig(String CorpNum, String UserID) throws PopbillException;
 
+	/**
+	 * 
+	 * @param CorpNum
+	 * @param MgtKey
+	 * @return
+	 * @throws PopbillException
+	 */
+	String getPDFURL(String CorpNum, String MgtKey) throws PopbillException;
+
+	/**
+	 * 
+	 * @param CorpNum
+	 * @param MgtKey
+	 * @param UserID
+	 * @return
+	 * @throws PopbillException
+	 */
+	String getPDFURL(String CorpNum, String MgtKey, String UserID) throws PopbillException;
+
+	/**
+	 * 
+	 * @param corpNum
+	 * @param itemKey
+	 * @param mgtKey
+	 * @return
+	 * @throws PopbillException
+	 */
+	Response assignMgtKey(String corpNum, String itemKey, String mgtKey) throws PopbillException;
+
+	/**
+	 * 
+	 * @param corpNum
+	 * @param itemKey
+	 * @param mgtKey
+	 * @param userID
+	 * @return
+	 * @throws PopbillException
+	 */
+	Response assignMgtKey(String corpNum, String itemKey, String mgtKey, String userID) throws PopbillException;
+
 	
 
 		

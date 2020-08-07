@@ -507,6 +507,17 @@ public class TaxinvoiceServiceTEST {
 	}
 
 	@Test
+	public void getPDFURL_TEST() throws PopbillException {
+	
+		String url = taxinvoiceService.getPDFURL("1234567890",
+				MgtKeyType.SELL, "20200728-002");
+
+		assertNotNull(url);
+		System.out.println(url);
+	}
+	
+	
+	@Test
 	public void getPrintURL_TEST() throws PopbillException {
 	
 		String url = taxinvoiceService.getPrintURL("1234567890",
@@ -621,8 +632,8 @@ public class TaxinvoiceServiceTEST {
 		TISearchResult response = new TISearchResult();
 		
 		String DType = "W";
-		String SDate = "20191001";
-		String EDate = "20191031";
+		String SDate = "20200701";
+		String EDate = "20200731";
 		String[] State = {"3**", "6**"};
 		String[] Type = {"N", "M","Z"};
 		String[] TaxType = {"T","N","Z"};
@@ -637,10 +648,12 @@ public class TaxinvoiceServiceTEST {
 		String Order = "D";
 		String interOPYN = "";
 		String[] RegType = {"P", "H"};
+		String[] CloseDownState = {"N", "0", "1", "2", "3"};
+		String MgtKey = "";
 		
 		response = taxinvoiceService.Search("1234567890", MgtKeyType.SELL, DType, 
 				SDate, EDate, State, Type, TaxType, IssueType, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN,
-				QString, Page, PerPage, Order, interOPYN,RegType);
+				QString, Page, PerPage, Order, interOPYN, RegType, CloseDownState, MgtKey);
 		
 		assertNotNull(response);
 		

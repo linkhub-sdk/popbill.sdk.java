@@ -107,9 +107,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                                     String MgtKey) throws PopbillException {
 
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         try {
             TaxinvoiceInfo info = httpget("/Taxinvoice/" + KeyType.name() + "/"
@@ -188,9 +188,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public Response update(String CorpNum, MgtKeyType KeyType, String MgtKey,
                            Taxinvoice taxinvoice, String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
         if (taxinvoice == null)
             throw new PopbillException(-99999999, "세금계산서 정보가 입력되지 않았습니다.");
 
@@ -216,9 +216,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public Response delete(String CorpNum, MgtKeyType KeyType, String MgtKey,
                            String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return httppost("/Taxinvoice/" + KeyType.name() + "/" + MgtKey,
                 CorpNum, null, UserID, "DELETE", Response.class);
@@ -249,9 +249,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public Response send(String CorpNum, MgtKeyType KeyType, String MgtKey,
                          String Memo, String EmailSubject, String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         SendRequest request = new SendRequest();
         request.memo = Memo;
@@ -280,9 +280,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public Response cancelSend(String CorpNum, MgtKeyType KeyType,
                                String MgtKey, String Memo, String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         String PostData = toJsonString(new MemoRequest(Memo));
 
@@ -306,9 +306,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public Response accept(String CorpNum, MgtKeyType KeyType, String MgtKey,
                            String Memo, String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         String PostData = toJsonString(new MemoRequest(Memo));
 
@@ -332,9 +332,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public Response deny(String CorpNum, MgtKeyType KeyType, String MgtKey,
                          String Memo, String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         String PostData = toJsonString(new MemoRequest(Memo));
 
@@ -378,9 +378,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                           String Memo, String EmailSubject, boolean ForceIssue, String UserID)
             throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         IssueRequest request = new IssueRequest();
         request.memo = Memo;
@@ -412,9 +412,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public Response cancelIssue(String CorpNum, MgtKeyType KeyType,
                                 String MgtKey, String Memo, String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         String PostData = toJsonString(new MemoRequest(Memo));
 
@@ -439,9 +439,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public Response request(String CorpNum, MgtKeyType KeyType, String MgtKey,
                             String Memo, String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         String PostData = toJsonString(new MemoRequest(Memo));
 
@@ -466,9 +466,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public Response refuse(String CorpNum, MgtKeyType KeyType, String MgtKey,
                            String Memo, String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         String PostData = toJsonString(new MemoRequest(Memo));
 
@@ -493,9 +493,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public Response cancelRequest(String CorpNum, MgtKeyType KeyType,
                                   String MgtKey, String Memo, String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         String PostData = toJsonString(new MemoRequest(Memo));
 
@@ -519,9 +519,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public Response sendToNTS(String CorpNum, MgtKeyType KeyType,
                               String MgtKey, String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return httppost("/Taxinvoice/" + KeyType.name() + "/" + MgtKey,
                 CorpNum, null, UserID, "NTS", Response.class);
@@ -544,9 +544,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                               String MgtKey, String Receiver, String UserID)
             throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         ResendRequest request = new ResendRequest();
 
@@ -577,9 +577,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                             String Sender, String Receiver, String Contents, String UserID)
             throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         ResendRequest request = new ResendRequest();
 
@@ -610,9 +610,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                             String Sender, String Receiver, String UserID)
             throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         ResendRequest request = new ResendRequest();
 
@@ -632,9 +632,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public Taxinvoice getDetailInfo(String CorpNum, MgtKeyType KeyType,
                                     String MgtKey) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey
                 + "?Detail", CorpNum, null, Taxinvoice.class);
@@ -647,9 +647,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public TaxinvoiceInfo getInfo(String CorpNum, MgtKeyType KeyType,
                                   String MgtKey) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey, CorpNum,
                 null, TaxinvoiceInfo.class);
@@ -662,9 +662,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public TaxinvoiceInfo[] getInfos(String CorpNum, MgtKeyType KeyType,
                                      String[] MgtKeyList) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKeyList == null || MgtKeyList.length == 0)
-            throw new PopbillException(-99999999, "관리번호 목록이 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 목록이 입력되지 않았습니다.");
 
         String PostData = toJsonString(MgtKeyList);
 
@@ -679,9 +679,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public TaxinvoiceLog[] getLogs(String CorpNum, MgtKeyType KeyType,
                                    String MgtKey) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return httpget(
                 "/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "/Logs",
@@ -705,9 +705,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public String getPopUpURL(String CorpNum, MgtKeyType KeyType,
                               String MgtKey, String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         URLResponse response = httpget("/Taxinvoice/" + KeyType.name() + "/"
                 + MgtKey + "?TG=POPUP", CorpNum, UserID, URLResponse.class);
@@ -722,9 +722,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     @Override
     public String getMailURL(String CorpNum, MgtKeyType KeyType, String MgtKey) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return getMailURL(CorpNum, KeyType, MgtKey, null);
     }
@@ -736,12 +736,33 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public String getMailURL(String CorpNum, MgtKeyType KeyType, String MgtKey,
                              String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         URLResponse response = httpget("/Taxinvoice/" + KeyType.name() + "/"
                 + MgtKey + "?TG=MAIL", CorpNum, UserID, URLResponse.class);
+
+        return response.url;
+    }
+    
+    @Override
+    public String getPDFURL(String CorpNum, MgtKeyType KeyType,
+                              String MgtKey) throws PopbillException {
+
+        return getPDFURL(CorpNum, KeyType, MgtKey, null);
+    }
+    
+    @Override
+    public String getPDFURL(String CorpNum, MgtKeyType KeyType,
+                              String MgtKey, String UserID) throws PopbillException {
+        if (KeyType == null)
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
+        if (MgtKey == null || MgtKey.isEmpty())
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
+
+        URLResponse response = httpget("/Taxinvoice/" + KeyType.name() + "/"
+                + MgtKey + "?TG=PDF", CorpNum, UserID, URLResponse.class);
 
         return response.url;
     }
@@ -764,9 +785,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public String getPrintURL(String CorpNum, MgtKeyType KeyType,
                               String MgtKey, String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         URLResponse response = httpget("/Taxinvoice/" + KeyType.name() + "/"
                 + MgtKey + "?TG=PRINT", CorpNum, UserID, URLResponse.class);
@@ -790,9 +811,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     @Override
 	public String getViewURL(String CorpNum, MgtKeyType KeyType, String MgtKey, String UserID) throws PopbillException {
     	 if (KeyType == null)
-             throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+             throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
          if (MgtKey == null || MgtKey.isEmpty())
-             throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
          URLResponse response = httpget("/Taxinvoice/" + KeyType.name() + "/"
                  + MgtKey + "?TG=VIEW", CorpNum, UserID, URLResponse.class);
@@ -817,9 +838,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public String getEPrintURL(String CorpNum, MgtKeyType KeyType,
                                String MgtKey, String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         URLResponse response = httpget("/Taxinvoice/" + KeyType.name() + "/"
                 + MgtKey + "?TG=EPRINT", CorpNum, UserID, URLResponse.class);
@@ -845,9 +866,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public String getMassPrintURL(String CorpNum, MgtKeyType KeyType,
                                   String[] MgtKeyList, String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKeyList == null || MgtKeyList.length == 0)
-            throw new PopbillException(-99999999, "관리번호 목록이 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 목록이 입력되지 않았습니다.");
 
         String PostData = toJsonString(MgtKeyList);
 
@@ -875,9 +896,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                                String MgtKey, String DisplayName, InputStream FileData,
                                String UserID) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
         if (DisplayName == null || DisplayName.isEmpty())
             throw new PopbillException(-99999999, "파일 표시명이 입력되지 않았습니다.");
         if (FileData == null)
@@ -903,9 +924,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public AttachedFile[] getFiles(String CorpNum, MgtKeyType KeyType,
                                    String MgtKey) throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey
                 + "/Files", CorpNum, null, AttachedFile[].class);
@@ -928,9 +949,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                                String MgtKey, String FileID, String UserID)
             throws PopbillException {
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "관리번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
         if (FileID == null || FileID.isEmpty())
             throw new PopbillException(-99999999, "파일아이디가 입력되지 않았습니다.");
 
@@ -950,7 +971,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                                  Boolean LateOnly, Integer Page, Integer PerPage, String Order) throws PopbillException {
 
         return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly,
-                null, null, null, null, Page, PerPage, Order, null);
+                null, null, null, null, Page, PerPage, Order, null, null, null, null);
     }
 
     /*
@@ -964,7 +985,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                                  Integer Page, Integer PerPage, String Order) throws PopbillException {
 
         return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly,
-                TaxRegIDType, TaxRegID, TaxRegIDYN, null, Page, PerPage, Order, null);
+                TaxRegIDType, TaxRegID, TaxRegIDYN, null, Page, PerPage, Order, null , null, null, null);
     }
 
     /*
@@ -991,7 +1012,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
             throws PopbillException {
 
         return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly,
-                TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page, PerPage, Order, InterOPYN);
+                TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page, PerPage, Order, InterOPYN, null, null, null);
     }
 
     /*
@@ -1006,7 +1027,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                                  String QString, Integer Page, Integer PerPage, String Order, String InterOPYN)
             throws PopbillException {
     	 return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly,
-                 TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page, PerPage, Order, InterOPYN, null);
+                 TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page, PerPage, Order, InterOPYN, null, null, null);
     }
     
     @Override
@@ -1017,8 +1038,21 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                                  String QString, Integer Page, Integer PerPage, String Order, String InterOPYN, String[] RegType)
             throws PopbillException {
 
+    	return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly,
+                TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page, PerPage, Order, InterOPYN, null, null, null);
+    }
+    
+    @Override
+    public TISearchResult Search(String CorpNum, MgtKeyType KeyType,
+                                 String DType, String SDate, String EDate, String[] State,
+                                 String[] Type, String[] TaxType, String[] IssueType, Boolean LateOnly,
+                                 String TaxRegIDType, String TaxRegID, String TaxRegIDYN,
+                                 String QString, Integer Page, Integer PerPage, String Order, String InterOPYN, String[] RegType,
+                                 String[] CloseDownState, String MgtKey)
+            throws PopbillException {
+
         if (KeyType == null)
-            throw new PopbillException(-99999999, "관리번호형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (DType == null || DType.isEmpty())
             throw new PopbillException(-99999999, "검색일자 유형이 입력되지 않았습니다.");
         if (SDate == null || SDate.isEmpty())
@@ -1044,6 +1078,11 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         
         if (RegType != null) {
             uri += "&RegType=" + Arrays.toString(RegType)
+                    .replaceAll("\\[|\\]|\\s", "");
+        }
+        
+        if (CloseDownState != null) {
+            uri += "&CloseDownState=" + Arrays.toString(CloseDownState)
                     .replaceAll("\\[|\\]|\\s", "");
         }
 
@@ -1074,6 +1113,10 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         if (QString != null && QString != "") {
             uri += "&QString=" + QString;
         }
+        
+        if (MgtKey != null && MgtKey != "") {
+            uri += "&MgtKey=" + MgtKey;
+        }
 
         uri += "&Page=" + Integer.toString(Page);
         uri += "&PerPage=" + Integer.toString(PerPage);
@@ -1081,6 +1124,8 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
         return httpget(uri, CorpNum, null, TISearchResult.class);
     }
+    
+    
 
     /* (non-Javadoc)
      * @see com.popbill.api.TaxinvoiceService#registIssue(java.lang.String, com.popbill.api.Taxinvoice, Boolean)
@@ -1260,7 +1305,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
             throw new PopbillException(-99999999, "아이템키(ItemKey)가 입력되지 않았습니다.");
 
         if (mgtKey == null || mgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서관리번호(MgtKey)가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문서번호(MgtKey)가 입력되지 않았습니다.");
 
         String PostData = "MgtKey=" + mgtKey;
 

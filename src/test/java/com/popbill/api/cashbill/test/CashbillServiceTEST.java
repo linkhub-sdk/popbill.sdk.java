@@ -14,6 +14,7 @@ import com.popbill.api.cashbill.Cashbill;
 import com.popbill.api.cashbill.CashbillInfo;
 import com.popbill.api.cashbill.CashbillLog;
 import com.popbill.api.cashbill.CashbillServiceImp;
+import com.popbill.api.taxinvoice.MgtKeyType;
 
 public class CashbillServiceTEST {
 	private final String testLinkID = "TESTER";
@@ -198,6 +199,26 @@ public class CashbillServiceTEST {
 		
 		assertNotNull(infoList);
 		System.out.println(infoList.length);
+	}
+	
+	@Test
+	public void assignMgtKey_TEST() throws PopbillException{
+		
+		String CorpNum = "1234567890";
+		String ItemKey = "020080711515000001";
+		String MgtKey = "20200807-01";
+	
+		Response response = cashbillService.assignMgtKey(CorpNum, ItemKey, MgtKey, "testkorea");
+		assertNotNull(response);
+
+		System.out.println("["+response.getCode() +"] " + response.getMessage());
+	}
+	
+	@Test 
+	public void getPDFURL_TEST() throws PopbillException {
+		String url = cashbillService.getPDFURL("1234567890", "20200806-03");
+		assertNotNull(url);
+		System.out.println(url);
 	}
 	
 	@Test 

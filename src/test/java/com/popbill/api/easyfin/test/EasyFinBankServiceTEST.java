@@ -233,7 +233,7 @@ public class EasyFinBankServiceTEST {
 		Integer PerPage = 10;
 		String Order = "D";
 		
-		EasyFinBankSearchResult result = easyFinBankService.search("1234567890", "019121811000000004", TradeType, SearchString, Page, PerPage, Order);
+		EasyFinBankSearchResult result = easyFinBankService.search("1234567890", "020080711000000001", TradeType, SearchString, Page, PerPage, Order);
 		
 		
 		assertNotNull ( result ) ;
@@ -245,6 +245,7 @@ public class EasyFinBankServiceTEST {
 		System.out.println(result.getPageNum());
 		System.out.println(result.getPerPage());
 		System.out.println(result.getTotal());
+		System.out.println(result.getLastScrapDT());
 		
 		for ( int i=0; i<result.getList().size(); i++ ) {
 			System.out.println("\n========["+ (i+1) +"] Search Result List Detail ========");
