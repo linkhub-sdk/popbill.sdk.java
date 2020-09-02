@@ -15,6 +15,7 @@
 package com.popbill.api;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,11 +33,11 @@ import java.util.Map;
 import java.util.TimeZone;
 import java.util.zip.GZIPInputStream;
 
+import com.google.gson.Gson;
+
 import kr.co.linkhub.auth.LinkhubException;
 import kr.co.linkhub.auth.Token;
 import kr.co.linkhub.auth.TokenBuilder;
-
-import com.google.gson.Gson;
 
 /**
  * Abstract class for Popbill Services.
@@ -63,6 +64,7 @@ public abstract class BaseServiceImp implements BaseService {
 	private boolean isTest;
 	private boolean isIPRestrictOnOff;
 	private boolean useStaticIP;
+	private boolean useLocalTimeYN;
 	private String linkID;
 	private String secretKey;
 	private Gson _gsonParser = new Gson();
@@ -75,6 +77,7 @@ public abstract class BaseServiceImp implements BaseService {
 	public BaseServiceImp() {
 		isIPRestrictOnOff = true;
 		useStaticIP = false;
+		useLocalTimeYN = true;
 	}
 
 	/**
@@ -92,6 +95,10 @@ public abstract class BaseServiceImp implements BaseService {
 	
 	public boolean isUseStaticIP() {
 		return useStaticIP;
+	}
+	
+	public boolean isUseLocalTimeYN() {
+		return useLocalTimeYN;
 	}
 		
 	/**
@@ -116,6 +123,15 @@ public abstract class BaseServiceImp implements BaseService {
 	
 	public void setUseStaticIP(boolean useStaticIP) {
 		this.useStaticIP = useStaticIP;
+	}
+	
+	/**
+	 * Local 타임 사용 여부.
+	 * 
+	 * @param useLocalTimeYN
+	 */
+	public void setUseLocalTimeYN(boolean useLocalTimeYN) {
+		this.useLocalTimeYN = useLocalTimeYN;
 	}
 	
 	protected String getLinkID() {
@@ -196,8 +212,8 @@ public abstract class BaseServiceImp implements BaseService {
 			tokenBuilder = TokenBuilder
 					.newInstance(getLinkID(), getSecretKey())
 					.ServiceID(isTest ? ServiceID_TEST : ServiceID_REAL)
-					.addScope("member");
-			
+					.addScope("member")
+					.useLocalTimeYN(useLocalTimeYN);
 			if(AuthURL != null) {
 				tokenBuilder.setServiceURL(AuthURL);
 			} else {
@@ -770,12 +786,22 @@ public abstract class BaseServiceImp implements BaseService {
 		
 		httpURLConnection.setRequestProperty("Accept-Encoding",	"gzip");
 		
+		if(httpURLConnection.getContentType().toLowerCase().equals("application/pdf;charset=utf-8")) {		
+			
+			byte[] ResultArray = parseResponseByte(httpURLConnection);
+			
+			return clazz.cast(ResultArray);
+			
+		} else {
+			
+			String Result = parseResponse(httpURLConnection);
+
+			return fromJsonString(Result, clazz);
+		}
 		
-		String Result = parseResponse(httpURLConnection);
-		
-		return fromJsonString(Result, clazz);
 	}
 
+	
 	protected abstract List<String> getScopes();
 
 	private class ErrorResponse {
@@ -879,8 +905,7 @@ public abstract class BaseServiceImp implements BaseService {
 		
 		return sb.toString();
 	}
-		
-	
+			
 	private String parseResponse(HttpURLConnection httpURLConnection) throws PopbillException {
 		
 		String result = "";
@@ -938,4 +963,126 @@ public abstract class BaseServiceImp implements BaseService {
 		
 		return result;
 	}
+	
+private byte[] parseResponseByte(HttpURLConnection httpURLConnection) throws PopbillException {
+		
+		byte[] result = null;
+		InputStream input = null;
+		PopbillException exception = null;
+		String errorResult = null;
+		
+		try {
+			input = httpURLConnection.getInputStream();
+			if (null != httpURLConnection.getContentEncoding() && httpURLConnection.getContentEncoding().equals("gzip")) {
+				result = fromGzipStreamByte(input);
+			} else {
+				result = fromStreamByte(input);
+			}
+		} catch (IOException e) {
+			InputStream errorIs = null;
+			ErrorResponse error = null;
+			try {
+				errorIs = httpURLConnection.getErrorStream();
+				errorResult = fromStream(errorIs);
+				error = fromJsonString(errorResult, ErrorResponse.class);
+				
+			} catch (Exception ignored) { 
+				
+			} finally {
+				try {
+					if (errorIs != null) {
+						errorIs.close();
+					}
+				} catch (IOException e1) {
+					throw new PopbillException(-99999999, 
+							"Popbill parseResponseByte func InputStream close() Exception", e1);
+				}
+			}
+			
+			if (error == null) {
+				exception = new PopbillException(-99999999,
+						"Fail to receive data from Server.", e);
+			} else {
+				exception = new PopbillException(error.getCode(), error.getMessage());
+			}
+		} finally {
+			try {
+				if (input != null) {
+					input.close();
+				}
+			} catch (IOException e2) {
+				throw new PopbillException(-99999999, 
+						"Popbill parseResponseByte func InputStream close() Exception", e2);
+			}
+		}
+		
+		if (exception != null)
+			throw exception;
+				
+		return result;
+	}
+
+	private byte[] fromStreamByte(InputStream input) throws PopbillException {
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		
+		byte[] buffer = new byte[1024];
+		 
+		int nRead =0;
+
+		try {
+			while((nRead = input.read(buffer)) > 0) {
+				byteArrayOutputStream.write(buffer, 0, nRead);
+			}
+		} catch (IOException e) {
+			throw new PopbillException(-99999999, 
+					"Popbill fromStreamByte func Exception", e);
+		} finally {
+			try {
+				if (byteArrayOutputStream != null) byteArrayOutputStream.close();
+			} catch (IOException e) {
+				throw new PopbillException(-99999999,
+						"Popbill fromStreamByte func finally close Exception", e);
+			}
+			
+		}
+			
+		byte[] Result = byteArrayOutputStream.toByteArray();
+
+		return Result;
+	}
+
+	private byte[] fromGzipStreamByte(InputStream input) throws PopbillException {
+		GZIPInputStream zipReader = null;
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		
+		byte[] buffer = new byte[1024];
+		 
+		int nRead =0;
+		
+		try {
+			zipReader = new GZIPInputStream(input);
+
+			while((nRead = zipReader.read(buffer)) > 0) {
+				byteArrayOutputStream.write(buffer, 0, nRead);
+			}
+
+		} catch (IOException e) {
+			throw new PopbillException(-99999999, 
+					"Popbill fromGzipStreamByte func Exception", e);
+		} finally {
+			try {
+				if (zipReader != null) zipReader.close();
+				if (byteArrayOutputStream != null) byteArrayOutputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+				throw new PopbillException(-99999999,
+					"Popbill fromGzipStreamByte func finally close Exception", e);
+			}
+		}
+		
+		byte[] Result = byteArrayOutputStream.toByteArray();
+
+		return Result;
+	}
+
 }

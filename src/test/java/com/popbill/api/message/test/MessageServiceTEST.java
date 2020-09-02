@@ -3,6 +3,8 @@ package com.popbill.api.message.test;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -41,9 +43,14 @@ public class MessageServiceTEST {
 	@Test
 	public void sendSMS_01_TEST() throws PopbillException {
 		Date reserveDT = new Date();
-		reserveDT.setDate(reserveDT.getDate() + 1);
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+		try {
+			reserveDT = format.parse("20200901180000");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		
-		String receiptNum = messageService.sendSMS("1234567890","07043042992", "010-111-222",
+		String receiptNum = messageService.sendSMS("1234567890","070", "010-111-222",
 				   "1수신자명","SMS 문자 01 테스트입니다.",reserveDT, 
 				   	"testkorea");
 		
@@ -1481,7 +1488,7 @@ public class MessageServiceTEST {
 
 	@Test
 	public void cancelReserve_TEST() throws PopbillException {
-		String receiptNum = "018072311000000098";
+		String receiptNum = "020090117000000007";
 		
 		Response response = messageService.cancelReserve("1234567890", receiptNum);
 		assertNotNull(response);

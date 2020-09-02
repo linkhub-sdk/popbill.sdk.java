@@ -35,7 +35,7 @@ public class FaxServiceTEST {
 		service.setLinkID(testLinkID);
 		service.setSecretKey(testSecretKey);
 		service.setTest(true);
-		
+		service.setUseLocalTimeYN(true);
 		faxService = service;
 	}
 	
@@ -1409,7 +1409,7 @@ public class FaxServiceTEST {
 	@Test
 	public void getPreviewURL_userID_TEST() throws PopbillException{
 
-		String url = faxService.getPreviewURL("1234567890", "01810301555550000", "testkorea");
+		String url = faxService.getPreviewURL("1234567890", "018102609383900001", "testkorea");
 
 		assertNotNull(url);
 		System.out.println(url);

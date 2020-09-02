@@ -2,6 +2,11 @@ package com.popbill.api.cashbill.test;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import org.junit.Test;
 
 import com.popbill.api.CashbillService;
@@ -14,7 +19,6 @@ import com.popbill.api.cashbill.Cashbill;
 import com.popbill.api.cashbill.CashbillInfo;
 import com.popbill.api.cashbill.CashbillLog;
 import com.popbill.api.cashbill.CashbillServiceImp;
-import com.popbill.api.taxinvoice.MgtKeyType;
 
 public class CashbillServiceTEST {
 	private final String testLinkID = "TESTER";
@@ -28,6 +32,7 @@ public class CashbillServiceTEST {
 		service.setLinkID(testLinkID);
 		service.setSecretKey(testSecretKey);
 		service.setTest(true);
+		service.setUseLocalTimeYN(false);
 		
 		cashbillService = service;
 	}
@@ -246,7 +251,7 @@ public class CashbillServiceTEST {
 	
 	@Test
 	public void getLogs_TEST() throws PopbillException {
-		CashbillLog[] logList = cashbillService.getLogs("1234567890", "20150318-02");
+		CashbillLog[] logList = cashbillService.getLogs("1234567890", "20170306-05");
 		for(int i=0; i<logList.length; i++){
 			System.out.println(logList[i].getProcMemo());
 		}
@@ -497,6 +502,31 @@ public class CashbillServiceTEST {
 		String url = cashbillService.getChargeURL("1234567890","testkorea");
 
 		System.out.println(url);
+	}
+	
+	@Test
+	public void GetPDF_TEST() throws PopbillException {
+		
+		byte[] pdfByte = cashbillService.getPDF("1234567890", "20200806-01");
+		
+		File outfile = new File("C:/pdf_test/PDF_Update/20200901_Cashbill_TEST_1.pdf");
+		FileOutputStream fileoutputstream;
+		try {
+			fileoutputstream = new FileOutputStream(outfile);
+			try {
+				fileoutputstream.write(pdfByte);
+				System.out.println("다운로드 성공");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				fileoutputstream.close();
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }
 

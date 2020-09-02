@@ -417,6 +417,31 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 		return response.url;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#getPDF(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public byte[] getPDF(String CorpNum, String MgtKey)
+			throws PopbillException {
+		
+		return getPDF(CorpNum, MgtKey, null);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#getPDF(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public byte[] getPDF(String CorpNum, String MgtKey, String UserID)
+			throws PopbillException {
+		if (MgtKey == null || MgtKey.isEmpty())
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
+		
+		byte[] result = httpget("/Cashbill/" + MgtKey + "?PDF",
+				CorpNum, UserID, byte[].class);
+		
+		return result;
+	}
+	
 	
 	/*
 	 * (non-Javadoc)

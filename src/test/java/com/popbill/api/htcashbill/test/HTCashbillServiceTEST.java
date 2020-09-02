@@ -54,8 +54,8 @@ public class HTCashbillServiceTEST {
 	@Test
 	public void getJobState_TEST() throws PopbillException {
 
-		String JobID = "016061711000000001";
-		String UserID = "innoposttest";
+		String JobID = "020090116000000002";
+		String UserID = "testkorea";
 
 		HTCashbillJobState jobState = htCashbillService.getJobState("1234567890", JobID, UserID);
 
@@ -170,7 +170,7 @@ public class HTCashbillServiceTEST {
 
 	@Test
 	public void getFlatRatePopUpURL_TEST() throws PopbillException {
-		String url = htCashbillService.getFlatRatePopUpURL("1234567890", "innoposttest");
+		String url = htCashbillService.getFlatRatePopUpURL("1234567890", "testkorea");
 
 		assertNotNull(url);
 
@@ -182,7 +182,7 @@ public class HTCashbillServiceTEST {
 
 	@Test
 	public void getFlatRateState_TEST() throws PopbillException {
-		FlatRateState rateInfo = htCashbillService.getFlatRateState("1234567890", "innoposttest");
+		FlatRateState rateInfo = htCashbillService.getFlatRateState("1234567890", "testkorea");
 
 		assertNotNull(rateInfo);
 
@@ -200,7 +200,7 @@ public class HTCashbillServiceTEST {
 
 	@Test
 	public void getCertificatePopUpURL_TEST() throws PopbillException {
-		String url = htCashbillService.getCertificatePopUpURL("1234567890", "innoposttest");
+		String url = htCashbillService.getCertificatePopUpURL("1234567890", "testkorea");
 
 		assertNotNull(url);
 

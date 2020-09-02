@@ -79,7 +79,7 @@ public class HTTaxinvoiceServiceTEST {
 	@Test
 	public void getJobState_TEST() throws PopbillException {
 		
-		HTTaxinvoiceJobState jobState = hometaxTIService.getJobState("1234567890", "016061709000000001");
+		HTTaxinvoiceJobState jobState = hometaxTIService.getJobState("1234567890", "020090116000000001");
 		
 		assertNotNull(jobState);
 		

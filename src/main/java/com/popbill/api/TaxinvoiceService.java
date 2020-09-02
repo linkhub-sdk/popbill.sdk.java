@@ -926,7 +926,39 @@ public interface TaxinvoiceService extends BaseService {
 	 */
 	public String getPrintURL(String CorpNum, MgtKeyType KeyType,
 			String MgtKey, String UserID) throws PopbillException;
-
+	
+	/**
+	 * 세금계산서 팝빌 (구)인쇄화면 URL 확인.
+	 *
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param KeyType
+	 *            연동관리번호 종류
+	 * @param MgtKey
+	 *            연동관리번호
+	 * @return 팝빌 URL.
+	 * @throws PopbillException
+	 */
+	public String getOldPrintURL(String CorpNum, MgtKeyType KeyType,
+			String MgtKey) throws PopbillException;
+	
+	/**
+	 * 세금계산서 팝빌 (구)인쇄화면 URL 확인.
+	 *
+	 * @param CorpNum
+	 *            연동회원 사업자번호
+	 * @param KeyType
+	 *            연동관리번호 종류
+	 * @param MgtKey
+	 *            연동관리번호
+	 * @param UserID
+	 *            회원 아이디
+	 * @return 팝빌 URL.
+	 * @throws PopbillException
+	 */
+	public String getOldPrintURL(String CorpNum, MgtKeyType KeyType,
+			String MgtKey, String UserID) throws PopbillException;
+	
 	/**
 	 * 세금계산서 팝빌 인쇄화면(공급받는자용) URL 확인.
 	 *
@@ -1691,7 +1723,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param MgtKey
      * 			문서관리번호
      * @param UserID
-     * 			회원아이디
+     * 			연동회원 유저아이디
      * @return
      * @throws PopbillException
      */
@@ -1700,26 +1732,62 @@ public interface TaxinvoiceService extends BaseService {
     
     /**
      * @param CorpNum
+     * 			연동회원 사업자 번호
      * @param KeyType
+     * 			발행유형
      * @param MgtKey
+     * 			문서관리번호
      * @return
      * @throws PopbillException
      */
-    public String getPDFURL(String CorpNum, MgtKeyType KeyType, String MgtKey) throws PopbillException;
+    public String getPDFURL(String CorpNum, MgtKeyType KeyType,
+    		String MgtKey) throws PopbillException;
     
     /**
      * 
      * @param CorpNum
+     * 			연동회원 사업자 번호
      * @param KeyType
+     * 			발행유형
      * @param MgtKey
+     * 			문서관리번호
      * @param UserID
+     * 			연동회원 유저아이디
      * @return
      * @throws PopbillException
      */
-	public String getPDFURL(String CorpNum, MgtKeyType KeyType, String MgtKey, String UserID) throws PopbillException;
+	public String getPDFURL(String CorpNum, MgtKeyType KeyType,
+			String MgtKey, String UserID) throws PopbillException;
 
+	 /**
+     * 세금계산서 PDF파일 다운로드
+     * @param CorpNum
+     * 			연동회원 사업자번호
+     * @param KeyType
+     * 			발행유형
+     * @param MgtKey
+     * 			문서관리번호
+     * @return
+     * @throws PopbillException
+     */
+	public byte[] getPDF(String CorpNum, MgtKeyType KeyType,
+			String MgtKey) throws PopbillException;
 	
-    
+	  /**
+     * 세금계산서 PDF파일 다운로드
+     * @param CorpNum
+     * 			연동회원 사업자번호
+     * @param KeyType
+     * 			발행유형
+     * @param MgtKey
+     * 			문서관리번호
+     * @param UserID
+     * 			연동회원 유저아이디
+     * @return
+     * @throws PopbillException
+     */
+    public byte[] getPDF(String CorpNum, MgtKeyType KeyType,
+    		String MgtKey, String UserID) throws PopbillException;
     
 
 }

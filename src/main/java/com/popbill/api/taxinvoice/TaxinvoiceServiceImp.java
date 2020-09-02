@@ -74,7 +74,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                     + response.certificateExpiration + "]", e);
         }
     }
-
+    
     /*
      * (non-Javadoc)
      * @see com.popbill.api.TaxinvoiceService#getURL(java.lang.String, java.lang.String, java.lang.String)
@@ -746,6 +746,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         return response.url;
     }
     
+    /* (non-Javadoc)
+     * @see com.popbill.api.TaxinvoiceService#getPDFURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+     */
     @Override
     public String getPDFURL(String CorpNum, MgtKeyType KeyType,
                               String MgtKey) throws PopbillException {
@@ -753,6 +756,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         return getPDFURL(CorpNum, KeyType, MgtKey, null);
     }
     
+    /* (non-Javadoc)
+     * @see com.popbill.api.TaxinvoiceService#getPDFURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+     */
     @Override
     public String getPDFURL(String CorpNum, MgtKeyType KeyType,
                               String MgtKey, String UserID) throws PopbillException {
@@ -765,6 +771,35 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                 + MgtKey + "?TG=PDF", CorpNum, UserID, URLResponse.class);
 
         return response.url;
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see com.popbill.api.TaxinvoiceService#getPDF(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+     */
+    @Override
+    public byte[] getPDF(String CorpNum, MgtKeyType KeyType,
+    					 String MgtKey) throws PopbillException {
+    	
+    	return getPDF(CorpNum, KeyType, MgtKey, null);
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see com.popbill.api.TaxinvoiceService#getPDF(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+     */
+    @Override
+    public byte[] getPDF(String CorpNum, MgtKeyType KeyType,
+    					 String MgtKey, String UserID) throws PopbillException {
+    	  if (KeyType == null)
+              throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
+          if (MgtKey == null || MgtKey.isEmpty())
+              throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
+    	
+         byte[] result = httpget("/Taxinvoice/" + KeyType.name() + "/"
+        		 + MgtKey + "?PDF", CorpNum, UserID, byte[].class);
+          
+    	return result;
     }
 
     /*
@@ -793,6 +828,33 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                 + MgtKey + "?TG=PRINT", CorpNum, UserID, URLResponse.class);
 
         return response.url;
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see com.popbill.api.TaxinvoiceService#getOldPrintURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
+     */
+    @Override
+    public String getOldPrintURL(String CorpNum, MgtKeyType KeyType,
+    							 String MgtKey) throws PopbillException {
+    	return getOldPrintURL(CorpNum, KeyType, MgtKey, null);
+    }
+    
+    /* (non-Javadoc)
+     * @see com.popbill.api.TaxinvoiceService#getOldPrintURL(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String)
+     */
+    @Override
+    public String getOldPrintURL(String CorpNum, MgtKeyType KeyType,
+    							 String MgtKey, String UserID) throws PopbillException {
+    	if (KeyType == null)
+    		throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
+    	if (MgtKey == null || MgtKey.isEmpty())
+    		throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
+    	
+    	URLResponse response = httpget("/Taxinvoice/" + KeyType.name() + "/"
+    			+ MgtKey + "?TG=PRINTOLD", CorpNum, UserID, URLResponse.class);
+    	
+    	return response.url;
     }
     
     /*

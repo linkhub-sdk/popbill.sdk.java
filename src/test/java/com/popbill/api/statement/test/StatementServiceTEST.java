@@ -158,7 +158,7 @@ public class StatementServiceTEST {
 	@Test 
 	public void getFiles_TEST() throws PopbillException {
 		
-		AttachedFile[] files = statementService.getFiles("1234567890", 121, "20150318-01");
+		AttachedFile[] files = statementService.getFiles("1234567890", 121, "20200818-001");
 		
 		assertNotNull(files);
 		

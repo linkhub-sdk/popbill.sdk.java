@@ -2,7 +2,10 @@ package com.popbill.api.taxinvoice.test;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -40,6 +43,7 @@ public class TaxinvoiceServiceTEST {
 		service.setSecretKey(testSecretKey);
 		service.setTest(true);
 		service.setUseStaticIP(false);
+		service.setUseLocalTimeYN(false);
 		
 		taxinvoiceService = service;
 	}
@@ -489,8 +493,8 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void getLogs_TEST() throws PopbillException {
 	
-		TaxinvoiceLog[] logs = taxinvoiceService.getLogs("1231212312",
-				MgtKeyType.SELL, "1234");
+		TaxinvoiceLog[] logs = taxinvoiceService.getLogs("1234567890",
+				MgtKeyType.SELL, "20161221-03");
 
 		assertNotNull(logs);
 		System.out.println(logs.length);
@@ -521,12 +525,22 @@ public class TaxinvoiceServiceTEST {
 	public void getPrintURL_TEST() throws PopbillException {
 	
 		String url = taxinvoiceService.getPrintURL("1234567890",
-				MgtKeyType.SELL, "20170303-02");
+				MgtKeyType.SELL, "20200824-001");
 
 		assertNotNull(url);
 		System.out.println(url);
 	}
 	
+	@Test
+	public void getOldPrintURL_TEST() throws PopbillException {
+		
+		String url = taxinvoiceService.getOldPrintURL("1234567890",
+				MgtKeyType.SELL, "20200824-001", "testkorea");
+		
+		assertNotNull(url);
+		System.out.println(url);
+	}
+ 	
 	@Test
 	public void getVIEWURL_TEST() throws PopbillException {
 	
@@ -541,7 +555,7 @@ public class TaxinvoiceServiceTEST {
 	public void getEPrintURL_TEST() throws PopbillException {
 
 		String url = taxinvoiceService.getEPrintURL("1234567890",
-				MgtKeyType.SELL, "20170303-02");
+				MgtKeyType.SELL, "20200824-001");
 
 		assertNotNull(url);
 		System.out.println(url);
@@ -551,7 +565,7 @@ public class TaxinvoiceServiceTEST {
 	public void getMailURL_TEST() throws PopbillException {
 	
 		String url = taxinvoiceService.getMailURL("1234567890",
-				MgtKeyType.SELL, "20170303-02");
+				MgtKeyType.SELL, "20200824-001");
 
 		assertNotNull(url);
 		System.out.println(url);
@@ -605,8 +619,8 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void getFiles_TEST() throws PopbillException {
 	
-		AttachedFile[] files = taxinvoiceService.getFiles("1231212312",
-				MgtKeyType.SELL, "1234");
+		AttachedFile[] files = taxinvoiceService.getFiles("1234567890",
+				MgtKeyType.SELL, "20200824-001");
 
 		assertNotNull(files);
 
@@ -665,7 +679,7 @@ public class TaxinvoiceServiceTEST {
 	public void RegistIssue_TEST() throws PopbillException {
 		Taxinvoice taxinvoice = new Taxinvoice();
 
-		taxinvoice.setWriteDate("20191014"); // 필수, 기재상 작성일자
+		taxinvoice.setWriteDate("20200827"); // 필수, 기재상 작성일자
 		taxinvoice.setChargeDirection("정과금"); // 필수, {정과금, 역과금}
 		taxinvoice.setIssueType("정발행"); // 필수, {정발행, 역발행, 위수탁}
 		taxinvoice.setPurposeType("영수"); // 필수, {영수, 청구}
@@ -674,7 +688,7 @@ public class TaxinvoiceServiceTEST {
 		taxinvoice.setInvoicerCorpNum("1234567890");
 		taxinvoice.setInvoicerTaxRegID(""); // 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
 		taxinvoice.setInvoicerCorpName("공급자 상호");
-		taxinvoice.setInvoicerMgtKey("20191014-07"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
+		taxinvoice.setInvoicerMgtKey("20200827-002"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
 		taxinvoice.setInvoicerCEOName("공급자 대표자 성명");
 		taxinvoice.setInvoicerAddr("공급자 주소");
 		taxinvoice.setInvoicerBizClass("공급자 업종");
@@ -706,8 +720,8 @@ public class TaxinvoiceServiceTEST {
 		taxinvoice.setNote(""); // 어음
 		taxinvoice.setCredit(""); // 외상미수금
 		taxinvoice.setRemark1("비고1");
-		taxinvoice.setRemark2("비고2");
-		taxinvoice.setRemark3("비고3");
+//		taxinvoice.setRemark2("비고2");
+//		taxinvoice.setRemark3("비고3");
 		taxinvoice.setKwon((short) 1);
 		taxinvoice.setHo((short) 1);
 		taxinvoice.setBusinessLicenseYN(false); // 사업자등록증 이미지 첨부시 설정.
@@ -869,7 +883,7 @@ public class TaxinvoiceServiceTEST {
 
 		Taxinvoice taxinvoice = new Taxinvoice();
 
-		taxinvoice.setWriteDate("20181112"); // 필수, 기재상 작성일자
+		taxinvoice.setWriteDate("20200825"); // 필수, 기재상 작성일자
 		taxinvoice.setChargeDirection("정과금"); // 필수, {정과금, 역과금}
 		taxinvoice.setIssueType("역발행"); // 필수, {정발행, 역발행, 위수탁}
 		taxinvoice.setPurposeType("영수"); // 필수, {영수, 청구}
@@ -918,7 +932,34 @@ public class TaxinvoiceServiceTEST {
 
 		Response response = taxinvoiceService.registRequest("1234567890", taxinvoice, "역발행 즉시요청");
 
-
+		assertNotNull(response);
+		
+		System.out.println(response.getCode());
+	}
+	
+	@Test
+	public void GetPDF_TEST() throws PopbillException {
+		
+		byte[] pdfByte = taxinvoiceService.getPDF("1234567890", MgtKeyType.SELL, "20200806-01 ");
+		
+		File outfile = new File("C:/pdf_test/PDF_Update/20200901_Taxinvoice_TEST_T1.pdf");
+		FileOutputStream fileoutputstream;
+		try {
+			fileoutputstream = new FileOutputStream(outfile);
+			try {
+				fileoutputstream.write(pdfByte);
+				System.out.println("다운로드 성공");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				fileoutputstream.close();
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -1063,6 +1063,29 @@ public interface CashbillService extends BaseService{
 	 */
 	Response assignMgtKey(String corpNum, String itemKey, String mgtKey, String userID) throws PopbillException;
 
+	/**
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자 번호
+	 * @param Mgtkey
+	 * 			문서관리 번호			
+	 * @return
+	 * @throws PopbillException
+	 */
+	byte[] getPDF(String CorpNum, String MgtKey) throws PopbillException;
+	
+	/**
+	 * 
+	 * @param CorpNum
+	 * 			연동회원 사업자 번호
+	 * @param Mgtkey
+	 * 			문서관리 번호
+	 * @param UserID
+	 * 			팝빌회원 아이디 
+	 * @return
+	 * @throws PopbillException
+	 */
+	byte[] getPDF(String CorpNum, String Mgtkey, String UserID) throws PopbillException;
 	
 
 		

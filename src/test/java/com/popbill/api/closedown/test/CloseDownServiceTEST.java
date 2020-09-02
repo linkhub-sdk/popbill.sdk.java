@@ -6,6 +6,7 @@ import com.popbill.api.ChargeInfo;
 import com.popbill.api.CloseDownService;
 import com.popbill.api.CorpState;
 import com.popbill.api.PopbillException;
+import com.popbill.api.Response;
 import com.popbill.api.closedown.CloseDownServiceImp;
 
 public class CloseDownServiceTEST {
@@ -46,7 +47,7 @@ public class CloseDownServiceTEST {
 	@Test
 	public void CheckCorpNum() throws PopbillException {
 		
-		CorpState state =closeDownService.CheckCorpNum("1231212312", "6798700433");
+		CorpState state =closeDownService.CheckCorpNum("1234567890", "1234567890");
 		
 		System.out.println(state.getState());
 		System.out.println(state.getTypeDate());
@@ -60,7 +61,16 @@ public class CloseDownServiceTEST {
 		
 		CorpState[] state =closeDownService.CheckCorpNum("1231212312",CorpNumList);
 		
+		System.out.println(state[0].getState());
 		System.out.println(state[1].getState());
 		System.out.println(state[1].getTypeDate());
+	}
+	
+	@Test
+	public void CheckIsMember() throws PopbillException {
+		
+		Response response =  closeDownService.checkIsMember("1234567890", "TESTER");
+		
+		System.out.println(response.getCode());
 	}
 }
