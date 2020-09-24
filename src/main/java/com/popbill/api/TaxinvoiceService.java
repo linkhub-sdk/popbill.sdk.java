@@ -16,7 +16,9 @@ package com.popbill.api;
 
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 
+import com.popbill.api.taxinvoice.BulkTaxinvoiceResult;
 import com.popbill.api.taxinvoice.EmailPublicKey;
 import com.popbill.api.taxinvoice.MgtKeyType;
 import com.popbill.api.taxinvoice.TISearchResult;
@@ -1492,6 +1494,54 @@ public interface TaxinvoiceService extends BaseService {
 			throws PopbillException;
 	
 
+	/**
+	 * 
+	 * @param CorpNum
+	 * @param SubmitID
+	 * @param taxinvoiceList
+	 * @param ForceIssue
+	 * @return
+	 * @throws PopbillException
+	 */
+	public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList,
+			boolean ForceIssue)
+			throws PopbillException;
+	
+	/**
+	 * 
+	 * @param CorpNum
+	 * @param SubmitID
+	 * @param taxinvoiceList
+	 * @param ForceIssue
+	 * @param UserID
+	 * @return
+	 * @throws PopbillException
+	 */
+	public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList,
+			boolean ForceIssue, String UserID)
+			throws PopbillException;
+	
+	
+	/**
+	 * @param CorpNum
+	 * @param SubmitID
+	 * @return
+	 * @throws PopbillException
+	 */
+	public BulkTaxinvoiceResult getBulkResult(String CorpNum, String SubmitID) throws PopbillException;
+	
+	
+	/**
+	 * @param CorpNum
+	 * @param SubmitID
+	 * @param UserID
+	 * @return
+	 * @throws PopbillException
+	 */
+	public BulkTaxinvoiceResult getBulkResult(String CorpNum, String SubmitID,
+			String UserID) throws PopbillException;
+	
+	
 	/**
 	 * 전자명세서 첨부
 	 *

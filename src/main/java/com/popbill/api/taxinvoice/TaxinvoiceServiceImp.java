@@ -24,12 +24,13 @@ import java.util.List;
 
 import com.popbill.api.AttachedFile;
 import com.popbill.api.BaseServiceImp;
+import com.popbill.api.BulkResponse;
 import com.popbill.api.ChargeInfo;
+import com.popbill.api.EmailSendConfig;
+import com.popbill.api.IssueResponse;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.TaxinvoiceService;
-import com.popbill.api.EmailSendConfig;
-import com.popbill.api.IssueResponse;
 
 /**
  * Implementation of Popbill TaxinvoiceService Interface
@@ -639,6 +640,22 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey
                 + "?Detail", CorpNum, null, Taxinvoice.class);
     }
+    
+    @Override
+	public BulkTaxinvoiceResult getBulkResult(String CorpNum, String SubmitID) throws PopbillException {
+		
+    	return getBulkResult(CorpNum, SubmitID, null);
+	}
+
+	@Override
+	public BulkTaxinvoiceResult getBulkResult(String CorpNum, String SubmitID, String UserID) throws PopbillException {
+		if (SubmitID == null)
+            throw new PopbillException(-99999999, "제출아이디(SubmitID)가 입력되지 않았습니다.");
+        
+
+        return httpget("/Taxinvoice/BULK/" + SubmitID+ "/State", CorpNum,
+                UserID, BulkTaxinvoiceResult.class);
+	}
 
     /* (non-Javadoc)
      * @see com.popbill.api.TaxinvoiceService#getInfo(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
@@ -1198,6 +1215,8 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
         return registIssue(CorpNum, taxinvoice, WriteSpecification, null, false, null, null, null);
     }
+    
+    
 
     /* (non-Javadoc)
      * @see com.popbill.api.TaxinvoiceService#registIssue(java.lang.String, com.popbill.api.Taxinvoice, String, Boolean)
@@ -1257,6 +1276,32 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                 UserID, "ISSUE", IssueResponse.class);
     }
     
+    @Override
+    public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, boolean ForceIssue)
+    	throws PopbillException {
+    	
+    	return bulkSubmit(CorpNum, SubmitID, taxinvoiceList, ForceIssue, null);
+    	
+    }
+    
+	public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, boolean ForceIssue, String UserID)
+			throws PopbillException {
+
+    	if (SubmitID == null || SubmitID.equals(""))
+            throw new PopbillException(-99999999, "제출아이디(SubmitID)가 입력되지 않았습니다.");
+    	
+    	if(taxinvoiceList == null) {
+    		throw new PopbillException(-99999999, "세금계산서 정보가 입력되지 않았습니다.");
+    	}
+    	
+    	BulkTaxinvoiceSubmit tx = new BulkTaxinvoiceSubmit();
+    	tx.setForceIssue(ForceIssue);
+    	tx.setInvoices(taxinvoiceList);
+    	String PostData = toJsonString(tx);
+    	
+    	return httpBulkPost("/Taxinvoice", CorpNum, SubmitID, PostData, UserID, 
+    			"BULKISSUE", BulkResponse.class);
+	}
     /*
     
     /*
@@ -1459,6 +1504,10 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         public String ItemCode;
         public String MgtKey;
     }
+
+	
+
+	
 
 	
 

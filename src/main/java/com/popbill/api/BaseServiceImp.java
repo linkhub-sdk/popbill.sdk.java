@@ -24,6 +24,8 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,6 +34,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 import java.util.zip.GZIPInputStream;
+
+import javax.xml.bind.DatatypeConverter;
 
 import com.google.gson.Gson;
 
@@ -545,6 +549,106 @@ public abstract class BaseServiceImp implements BaseService {
 		return httppost(url, CorpNum, PostData, UserID, Action, clazz, null);
 	}	
 
+	
+	private static byte[] encryptSHA1(String input) 
+    { 
+        try { 
+
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            
+            byte[] messageDigest = md.digest(input.getBytes());
+
+            return messageDigest;
+            
+        } catch (NoSuchAlgorithmException e) { 
+            throw new RuntimeException(e); 
+        } 
+    }
+	
+	private static String base64Encode(byte[] input) {
+        return DatatypeConverter.printBase64Binary(input);
+    }
+	
+	protected <T> T httpBulkPost(String url, String CorpNum, String SubmitID, String PostData,
+			String UserID, String Action, Class<T> clazz)
+			throws PopbillException {
+		HttpURLConnection httpURLConnection;
+		try {
+			URL uri = new URL(getServiceURL() + url);
+			httpURLConnection = (HttpURLConnection) uri.openConnection();
+		} catch (Exception e) {
+			throw new PopbillException(-99999999, "팝빌 API 서버 접속 실패", e);
+		}
+
+		if (CorpNum != null && CorpNum.isEmpty() == false) {
+			httpURLConnection.setRequestProperty("Authorization", "Bearer "
+					+ getSessionToken(CorpNum, null));
+		}
+		
+		httpURLConnection.setRequestProperty("x-pb-message-digest", base64Encode(encryptSHA1(PostData)));
+		
+		httpURLConnection.setRequestProperty("x-pb-submit-id", SubmitID);
+		
+
+		httpURLConnection.setRequestProperty("x-pb-version".toLowerCase(),
+				APIVersion);
+
+		if (Action != null && Action.isEmpty() == false) {
+			httpURLConnection.setRequestProperty("X-HTTP-Method-Override",
+					Action);
+		}
+		
+		
+		httpURLConnection.setRequestProperty("Content-Type",
+					"application/json; charset=utf8");			
+		
+		
+		httpURLConnection.setRequestProperty("Accept-Encoding",	"gzip");
+
+		if (UserID != null && UserID.isEmpty() == false) {
+			httpURLConnection.setRequestProperty("x-pb-userid", UserID);
+		}
+
+		try {
+			httpURLConnection.setRequestMethod("POST");
+		} catch (ProtocolException e1) {
+		}
+
+		httpURLConnection.setUseCaches(false);
+		httpURLConnection.setDoOutput(true);
+
+		if ((PostData == null || PostData.isEmpty()) == false) {
+
+			byte[] btPostData = PostData.getBytes(Charset.forName("UTF-8"));
+
+			httpURLConnection.setRequestProperty("Content-Length",
+					String.valueOf(btPostData.length));
+				
+			DataOutputStream output = null;
+			
+			try {
+				output = new DataOutputStream(httpURLConnection.getOutputStream());
+				output.write(btPostData);
+				output.flush();
+			} catch (Exception e) {
+				throw new PopbillException(-99999999,
+						"Fail to POST data to Server.", e);
+			} finally {
+				try {
+					if (output != null) {
+						output.close();
+					}
+				} catch (IOException e1) {
+					throw new PopbillException(-99999999, 
+							"Popbill httppost func DataOutputStream close() Exception", e1);
+				}
+			}
+		}
+		
+		String Result = parseResponse(httpURLConnection);
+
+		return fromJsonString(Result, clazz);		
+	}
 	/**
 	 * 
 	 * @param url
