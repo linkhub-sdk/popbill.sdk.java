@@ -21,7 +21,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
 import java.net.ProtocolException;
+import java.net.Proxy;
+import java.net.Proxy.Type;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
@@ -62,6 +65,8 @@ public abstract class BaseServiceImp implements BaseService {
 	private String ServiceURL = null;
 	private String TestServiceURL = null;
 	private String AuthURL = null;
+	private String ProxyIP = null;
+	private Integer ProxyPort = null;
 
 	private TokenBuilder tokenBuilder;
 
@@ -167,6 +172,15 @@ public abstract class BaseServiceImp implements BaseService {
 		ServiceURL = serviceURL;
 	}
 	
+	public void setProxyIP(String proxyIP) {
+		this.ProxyIP = proxyIP;
+	}
+	
+	public void setProxyPort(Integer proxyPort) {
+		this.ProxyPort = proxyPort;
+	}
+	
+	
 	/**
 	 * Proxy 테스트기 URL 설정.
 	 * @param testServiceURL
@@ -226,6 +240,11 @@ public abstract class BaseServiceImp implements BaseService {
 					tokenBuilder.setServiceURL(Auth_GA_URL);
 				}
 				
+			}
+			
+			if(ProxyIP != null && ProxyPort != null) {
+				tokenBuilder.setProxyIP(ProxyIP);
+				tokenBuilder.setProxyPort(ProxyPort);
 			}
 			
 			for (String scope : getScopes())
@@ -575,7 +594,14 @@ public abstract class BaseServiceImp implements BaseService {
 		HttpURLConnection httpURLConnection;
 		try {
 			URL uri = new URL(getServiceURL() + url);
-			httpURLConnection = (HttpURLConnection) uri.openConnection();
+			
+			if(ProxyIP != null && ProxyPort != null) {
+				Proxy prx = new Proxy(Type.HTTP, new InetSocketAddress(ProxyIP, ProxyPort));
+				httpURLConnection = (HttpURLConnection) uri.openConnection(prx);
+			} else {
+				httpURLConnection = (HttpURLConnection) uri.openConnection();
+			}
+			
 		} catch (Exception e) {
 			throw new PopbillException(-99999999, "팝빌 API 서버 접속 실패", e);
 		}
@@ -667,7 +693,14 @@ public abstract class BaseServiceImp implements BaseService {
 		HttpURLConnection httpURLConnection;
 		try {
 			URL uri = new URL(getServiceURL() + url);
-			httpURLConnection = (HttpURLConnection) uri.openConnection();
+			
+			if(ProxyIP != null && ProxyPort != null) {
+				Proxy prx = new Proxy(Type.HTTP, new InetSocketAddress(ProxyIP, ProxyPort));
+				httpURLConnection = (HttpURLConnection) uri.openConnection(prx);
+			} else {
+				httpURLConnection = (HttpURLConnection) uri.openConnection();
+			}
+			
 		} catch (Exception e) {
 			throw new PopbillException(-99999999, "팝빌 API 서버 접속 실패", e);
 		}
@@ -759,7 +792,14 @@ public abstract class BaseServiceImp implements BaseService {
 		HttpURLConnection httpURLConnection;
 		try {
 			URL uri = new URL(getServiceURL() + url);
-			httpURLConnection = (HttpURLConnection) uri.openConnection();
+			
+			if(ProxyIP != null && ProxyPort != null) {
+				Proxy prx = new Proxy(Type.HTTP, new InetSocketAddress(ProxyIP, ProxyPort));
+				httpURLConnection = (HttpURLConnection) uri.openConnection(prx);
+			} else {
+				httpURLConnection = (HttpURLConnection) uri.openConnection();
+			}
+			
 		} catch (Exception e) {
 			throw new PopbillException(-99999999, "팝빌 API 서버 접속 실패", e);
 		}
@@ -871,7 +911,13 @@ public abstract class BaseServiceImp implements BaseService {
 		try {
 			URL uri = new URL(getServiceURL() + url);
 			
-			httpURLConnection = (HttpURLConnection) uri.openConnection();
+			if(ProxyIP != null && ProxyPort != null) {
+				Proxy prx = new Proxy(Type.HTTP, new InetSocketAddress(ProxyIP, ProxyPort));
+				httpURLConnection = (HttpURLConnection) uri.openConnection(prx);
+			} else {
+				httpURLConnection = (HttpURLConnection) uri.openConnection();
+			}
+			
 		} catch (Exception e) {
 			throw new PopbillException(-99999999, "팝빌 API 서버 접속 실패", e);
 		}

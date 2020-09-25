@@ -37,9 +37,6 @@ public class TaxinvoiceServiceTEST {
 	private final String testLinkID = "TESTER";
 	private final String testSecretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
 	
-//	private final String testLinkID = "LINKHUB1";
-//	private final String testSecretKey = "CAkTApmtepOsPvKxCFhvto0eniDrCV1SvrmezBVmXRY=";
-
 	private TaxinvoiceService taxinvoiceService;
 	
 	public TaxinvoiceServiceTEST() {
@@ -50,8 +47,9 @@ public class TaxinvoiceServiceTEST {
 		service.setTest(true);
 		service.setUseStaticIP(false);
 		service.setUseLocalTimeYN(false);
-//		service.setAuthURL("https://dev-auth.linkhub.kr");
-//		service.setTestServiceURL("https://dev-pb-api.linkhub.kr");
+		
+//		service.setProxyIP("192.168.0.215");
+//		service.setProxyPort(8081);
 		
 		taxinvoiceService = service;
 	}
@@ -765,7 +763,7 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void getBulkResult_TEST() throws PopbillException {
 	
-		BulkTaxinvoiceResult bulkResult = taxinvoiceService.getBulkResult("6798700433", "20200924-001-", "linkhubd");
+		BulkTaxinvoiceResult bulkResult = taxinvoiceService.getBulkResult("6798700433", "20200924-001", "linkhub");
 		
 		assertNotNull(bulkResult);
 		
@@ -795,7 +793,7 @@ public class TaxinvoiceServiceTEST {
 		
 		List<Taxinvoice> bulkTx = new ArrayList<Taxinvoice>();
 		
-		String SubmitID = "20200924-001";
+		String SubmitID = "20200924-009";
 		
 		for(int i=0; i<100; i++) {
 			Taxinvoice taxinvoice = new Taxinvoice();
@@ -830,7 +828,7 @@ public class TaxinvoiceServiceTEST {
 			taxinvoice.setInvoiceeBizClass("공급받는자 업종");
 			taxinvoice.setInvoiceeBizType("공급받는자 업태");
 			taxinvoice.setInvoiceeContactName1("공급받는자 담당자명");
-			taxinvoice.setInvoiceeEmail1("test@naver.com");
+			taxinvoice.setInvoiceeEmail1("");
 			taxinvoice.setSupplyCostTotal("100000"); // 필수 공급가액 합계"
 			taxinvoice.setTaxTotal("10000"); // 필수 세액 합계
 			taxinvoice.setTotalAmount("110000"); // 필수 합계금액. 공급가액 + 세액
