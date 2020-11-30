@@ -22,9 +22,9 @@ public class CloseDownServiceTEST {
 		service.setLinkID(testLinkID);
 		service.setSecretKey(testSecretKey);
 		service.setTest(true);
-		service.setAuthURL("http://{ProxyIP}:{Port}");
-		service.setServiceURL("http://{ProxyIP}:{Port}");
-		service.setTestServiceURL("http://{ProxyIP}:{Port}");
+//		service.setAuthURL("http://{ProxyIP}:{Port}");
+//		service.setServiceURL("http://{ProxyIP}:{Port}");
+//		service.setTestServiceURL("http://{ProxyIP}:{Port}");
 		closeDownService = service;
 	}
 	@Test
