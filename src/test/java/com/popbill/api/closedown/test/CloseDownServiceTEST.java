@@ -49,7 +49,15 @@ public class CloseDownServiceTEST {
 	@Test
 	public void CheckCorpNum() throws PopbillException {
 		
-		CorpState state =closeDownService.CheckCorpNum("1234567890", "1234567890");
+		CorpState state = null;
+		
+		try {
+			state = closeDownService.CheckCorpNum("1234567890", "1234567890");
+		} catch (PopbillException e) {
+			System.out.println(e.getCode());
+			System.out.println(e.getMessage());
+		}
+		
 		
 		System.out.println(state.getState());
 		System.out.println(state.getTypeDate());
