@@ -7,8 +7,8 @@ public class BulkTaxinvoiceResult implements Serializable {
 
 	private static final long serialVersionUID = -4224469288700675685L;
 	
-	private long Code;
-	private String Message;
+	private long code;
+	private String message;
 	private String receiptID;
 	private String submitID;
 	private long submitCount;
@@ -24,11 +24,11 @@ public class BulkTaxinvoiceResult implements Serializable {
 	}
 
 	public long getCode() {
-		return Code;
+		return code;
 	}
 
 	public String getMessage() {
-		return Message;
+		return message;
 	}
 	
 	private List<BulkTaxinvoiceIssueResult> issueResult;
