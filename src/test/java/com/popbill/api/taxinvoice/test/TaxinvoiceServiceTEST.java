@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNotNull;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -807,9 +806,10 @@ public class TaxinvoiceServiceTEST {
 			
 			String n1 = bulkResult.getIssueResult().get(i).getInvoicerMgtKey();
 			long n2 = bulkResult.getIssueResult().get(i).getCode();
-			String n3 = bulkResult.getIssueResult().get(i).getConfirmNumber();
+			String n3 = bulkResult.getIssueResult().get(i).getNtsconfirmNum();
 			String n4 = bulkResult.getIssueResult().get(i).getTrusteeMgtKey();
-			System.out.println(n1+ " " + String.valueOf(n2) +" "+n3+" | "+n4);
+			String n5 = bulkResult.getIssueResult().get(i).getIssueDT();
+			System.out.println(n1+ " " + String.valueOf(n2) +" "+n3+" | "+n4+" | "+n5);
 		}		
 	}
 	

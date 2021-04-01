@@ -9,8 +9,13 @@ public class BulkTaxinvoiceIssueResult implements Serializable {
 	private String invoicerMgtKey;
 	private String trusteeMgtKey;
 	private long code;
-	private String confirmNumber;
 	
+	private String issueDT;
+	private String ntsconfirmNum;
+	
+	public String getNtsconfirmNum() {
+		return ntsconfirmNum;
+	}
 	public String getInvoicerMgtKey() {
 		return invoicerMgtKey;
 	}
@@ -20,7 +25,7 @@ public class BulkTaxinvoiceIssueResult implements Serializable {
 	public long getCode() {
 		return code;
 	}
-	public String getConfirmNumber() {
-		return confirmNumber;
+	public String getIssueDT() {
+		return issueDT;
 	}
 }
