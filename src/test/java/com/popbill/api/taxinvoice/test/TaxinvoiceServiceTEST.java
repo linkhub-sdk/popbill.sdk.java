@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +35,7 @@ public class TaxinvoiceServiceTEST {
 
 	private final String testLinkID = "TESTER";
 	private final String testSecretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
+	
 	
 	private TaxinvoiceService taxinvoiceService;
 	
@@ -379,7 +381,7 @@ public class TaxinvoiceServiceTEST {
 	public void cancelIssue_TEST() throws PopbillException {
 	
 		Response response = taxinvoiceService.cancelIssue("6798700433",
-				MgtKeyType.SELL, "20201126-004", "cancelIssue memo");
+				MgtKeyType.SELL, "20201229-001-99", "cancelIssue memo");
 
 		assertNotNull(response);
 
@@ -587,7 +589,7 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void getInfos_TEST() throws PopbillException {
 		
-		String[] MgtKeyList = new String[] { "20201126-001d" };
+		String[] MgtKeyList = new String[] { "20210105-001" };
 
 		TaxinvoiceInfo[] infoList = taxinvoiceService.getInfos("1234567890",
 				MgtKeyType.SELL, MgtKeyList);
@@ -647,8 +649,8 @@ public class TaxinvoiceServiceTEST {
 		TISearchResult response = new TISearchResult();
 		
 		String DType = "W";
-		String SDate = "20200701";
-		String EDate = "20200731";
+		String SDate = "20210101";
+		String EDate = "20210131";
 		String[] State = {"3**", "6**"};
 		String[] Type = {"N", "M","Z"};
 		String[] TaxType = {"T","N","Z"};
@@ -680,7 +682,7 @@ public class TaxinvoiceServiceTEST {
 	public void RegistIssue_TEST() throws PopbillException {
 		Taxinvoice taxinvoice = new Taxinvoice();
 
-		taxinvoice.setWriteDate("20201126"); // 필수, 기재상 작성일자
+		taxinvoice.setWriteDate("20210105"); // 필수, 기재상 작성일자
 		taxinvoice.setChargeDirection("정과금"); // 필수, {정과금, 역과금}
 		taxinvoice.setIssueType("정발행"); // 필수, {정발행, 역발행, 위수탁}
 		taxinvoice.setPurposeType("영수"); // 필수, {영수, 청구}
@@ -689,7 +691,7 @@ public class TaxinvoiceServiceTEST {
 		taxinvoice.setInvoicerCorpNum("1234567890");
 		taxinvoice.setInvoicerTaxRegID(""); // 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
 		taxinvoice.setInvoicerCorpName("Seller Name of Company");
-		taxinvoice.setInvoicerMgtKey("20201126-005"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
+		taxinvoice.setInvoicerMgtKey("20210105-002"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
 		taxinvoice.setInvoicerCEOName("Seller Name of Representative");
 		taxinvoice.setInvoicerAddr("Seller Company Address");
 		taxinvoice.setInvoicerBizClass("Seller Business Item");
@@ -733,7 +735,7 @@ public class TaxinvoiceServiceTEST {
 		TaxinvoiceDetail detail = new TaxinvoiceDetail();
 
 		detail.setSerialNum((short) 1); // 일련번호
-		detail.setPurchaseDT("20201126"); // 거래일자
+		detail.setPurchaseDT("20210105"); // 거래일자
 		detail.setItemName("ItemName01");
 		detail.setSpec("spec01");
 		detail.setQty("1"); // 수량
@@ -745,7 +747,7 @@ public class TaxinvoiceServiceTEST {
 
 		detail = new TaxinvoiceDetail();
 		detail.setSerialNum((short) 2);
-		detail.setPurchaseDT("20201126"); // 거래일자
+		detail.setPurchaseDT("20210105"); // 거래일자
 		detail.setItemName("ItemName02");
 		detail.setSpec("spec02");
 		detail.setQty("1"); // 수량
@@ -782,9 +784,10 @@ public class TaxinvoiceServiceTEST {
 	@Test
 	public void getBulkResult_TEST() throws PopbillException {
 	
-		BulkTaxinvoiceResult bulkResult = taxinvoiceService.getBulkResult("1234567890", "20201126-0022", "");
+		BulkTaxinvoiceResult bulkResult = taxinvoiceService.getBulkResult("1234567890", "20210105-002", "");
 		
 		assertNotNull(bulkResult);
+		System.out.println(bulkResult.getReceiptDT());
 		
 		System.out.println(bulkResult.getCode());
 		System.out.println(bulkResult.getMessage());
@@ -798,12 +801,15 @@ public class TaxinvoiceServiceTEST {
 		System.out.println(bulkResult.getTxEndDT());
 		System.out.println(bulkResult.getTxResultCode());
 		
+		System.out.println();
+		
 		for(int i=0; i< bulkResult.getIssueResult().size(); i++) {
 			
 			String n1 = bulkResult.getIssueResult().get(i).getInvoicerMgtKey();
 			long n2 = bulkResult.getIssueResult().get(i).getCode();
 			String n3 = bulkResult.getIssueResult().get(i).getConfirmNumber();
-			System.out.println(n1+ " " + String.valueOf(n2) +" "+n3);
+			String n4 = bulkResult.getIssueResult().get(i).getTrusteeMgtKey();
+			System.out.println(n1+ " " + String.valueOf(n2) +" "+n3+" | "+n4);
 		}		
 	}
 	
@@ -812,7 +818,7 @@ public class TaxinvoiceServiceTEST {
 		
 		List<Taxinvoice> bulkTx = new ArrayList<Taxinvoice>();
 		
-		String SubmitID = "20201126-006";
+		String SubmitID = "20210105-002";
 		
 		for(int j=0; j<1; j++) {
 			//SubmitID += String.valueOf(j);
@@ -821,7 +827,7 @@ public class TaxinvoiceServiceTEST {
 			
 			Taxinvoice taxinvoice = new Taxinvoice();
 
-			taxinvoice.setWriteDate("20201126"); // 필수, 기재상 작성일자
+			taxinvoice.setWriteDate("20210105"); // 필수, 기재상 작성일자
 			taxinvoice.setChargeDirection("정과금"); // 필수, {정과금, 역과금}
 			taxinvoice.setIssueType("정발행"); // 필수, {정발행, 역발행, 위수탁}
 			taxinvoice.setPurposeType("영수"); // 필수, {영수, 청구}
@@ -874,7 +880,7 @@ public class TaxinvoiceServiceTEST {
 			TaxinvoiceDetail detail = new TaxinvoiceDetail();
 
 			detail.setSerialNum((short) 1); // 일련번호
-			detail.setPurchaseDT("20201126"); // 거래일자
+			detail.setPurchaseDT("20210105"); // 거래일자
 			detail.setItemName("ItemName01");
 			detail.setSpec("spec01");
 			detail.setQty("1"); // 수량
@@ -886,7 +892,7 @@ public class TaxinvoiceServiceTEST {
 
 			detail = new TaxinvoiceDetail();
 			detail.setSerialNum((short) 2);
-			detail.setPurchaseDT("20201126"); // 거래일자
+			detail.setPurchaseDT("20210105"); // 거래일자
 			detail.setItemName("ItemName02");
 			detail.setSpec("spec02");
 			detail.setQty("1"); // 수량
@@ -1038,7 +1044,7 @@ public class TaxinvoiceServiceTEST {
 
 	@Test
 	public void GetSealURL_TEST() throws PopbillException {
-
+		
 		String url = taxinvoiceService.getSealURL("1234567890","testkorea");
 
 		System.out.println(url);

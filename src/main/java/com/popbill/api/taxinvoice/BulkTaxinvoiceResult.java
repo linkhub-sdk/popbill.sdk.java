@@ -10,6 +10,7 @@ public class BulkTaxinvoiceResult implements Serializable {
 	private long code;
 	private String message;
 	private String receiptID;
+	private String receiptDT;
 	private String submitID;
 	private long submitCount;
 	private long successCount;
@@ -71,6 +72,10 @@ public class BulkTaxinvoiceResult implements Serializable {
 
 	public List<BulkTaxinvoiceIssueResult> getIssueResult() {
 		return issueResult;
+	}
+
+	public String getReceiptDT() {
+		return receiptDT;
 	}
 	
 	
