@@ -80,7 +80,7 @@ public class Statement implements Serializable {
 	private boolean businessLicenseYN;
 	private boolean bankBookYN;
 	private boolean smssendYN;
-	private boolean autoacceptYN;
+	private boolean autoAcceptYN;
 	
 	private List<StatementDetail> detailList;
 	private Map<String, String> propertyBag = new HashMap<String, String>();
@@ -812,7 +812,7 @@ public class Statement implements Serializable {
 	 * @return 발행시 자동승인여부 
 	 */
 	public boolean getAutoacceptYN() {
-		return autoacceptYN;
+		return autoAcceptYN;
 	}
 	/**
 	 * 발행시 자동승인여부 설정
@@ -820,8 +820,8 @@ public class Statement implements Serializable {
 	 * @param autoacceptYN
 	 * 		  발행시 자동승인여부 설정
 	 */
-	public void setAutoacceptYN(Boolean autoacceptYN) {
-		this.autoacceptYN = autoacceptYN;
+	public void setAutoacceptYN(Boolean autoAcceptYN) {
+		this.autoAcceptYN = autoAcceptYN;
 	}
 	/**
 	 * 상세항목 리스트 확인
