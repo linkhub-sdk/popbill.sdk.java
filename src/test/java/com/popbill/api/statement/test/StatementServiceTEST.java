@@ -451,12 +451,12 @@ public class StatementServiceTEST {
 	public void RegistIssue_TEST() throws PopbillException{
 		Statement statement = new Statement();
 		
-		statement.setWriteDate("20191015");
+		statement.setWriteDate("20210429");
 		statement.setPurposeType("영수");
 		statement.setTaxType("과세");
 		statement.setFormCode("");
 		statement.setItemCode((short) 121);
-		statement.setMgtKey("2019015-01");
+		statement.setMgtKey("20210429-JAVA0012");
 		statement.setSenderCorpNum("1234567890");
 		statement.setSenderCorpName("공급자 상호");
 		statement.setSenderAddr("공급자 주소");
@@ -470,13 +470,13 @@ public class StatementServiceTEST {
         
         statement.setSenderHP("010-000-2222");
         statement.setReceiverCorpNum("8888888888");
-        statement.setReceiverCorpName("공급받는자 상호");
+        statement.setReceiverCorpName("JAVA 상호");
         statement.setReceiverCEOName("공급받는자 대표자 성명");
         statement.setReceiverAddr("공급받는자 주소");
         statement.setReceiverBizClass("공급받는자 업종");
         statement.setReceiverBizType("공급받는자 업태");
         statement.setReceiverContactName("공급받는자 담당자명");
-        statement.setReceiverEmail("code@linkhub.co.kr");
+        statement.setReceiverEmail("");
 
         statement.setSupplyCostTotal("200000");         //필수 공급가액 합계
         statement.setTaxTotal("20000");                 //필수 세액 합계
@@ -489,7 +489,7 @@ public class StatementServiceTEST {
 
         statement.setBusinessLicenseYN(false); //사업자등록증 이미지 첨부시 설정.
         statement.setBankBookYN(false);         //통장사본 이미지 첨부시 설정.
-        
+        statement.setAutoacceptYN(false);
                 
         Map<String, String> propertyBag = new HashMap<String, String>();
         
