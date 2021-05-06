@@ -403,6 +403,7 @@ public abstract class BaseServiceImp implements BaseService {
 	 * (non-Javadoc)
 	 * @see com.popbill.api.BaseService#getContactInfo(java.lang.String, java.lang.String)
 	 */
+	@Override
 	public ContactInfo getContactInfo(String CorpNum, String ContactID) 
 			throws PopbillException {
 		
@@ -413,6 +414,7 @@ public abstract class BaseServiceImp implements BaseService {
 	 * (non-Javadoc)
 	 * @see com.popbill.api.BaseService#getContactInfo(java.lang.String, java.lang.String, java.lang.String)
 	 */
+	@Override
 	public ContactInfo getContactInfo(String CorpNum, String ContactID, String UserID) 
 			throws PopbillException {
 		String postData = "{'id' :" + "'" + ContactID + "'}" ;
