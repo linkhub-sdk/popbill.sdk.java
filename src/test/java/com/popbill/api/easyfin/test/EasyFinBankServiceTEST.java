@@ -37,11 +37,11 @@ public class EasyFinBankServiceTEST {
 		
 		EasyFinBankAccountForm bankInfo = new EasyFinBankAccountForm();
 		bankInfo.setAccountName("별칭");
-		bankInfo.setAccountNumber("1002057875456");
-		bankInfo.setAccountPWD("2018");
-		bankInfo.setAccountType("개인");
-		bankInfo.setBankCode("0020");
-		bankInfo.setIdentityNumber("800715");
+		bankInfo.setAccountNumber("");
+		bankInfo.setAccountPWD("");
+		bankInfo.setAccountType("");
+		bankInfo.setBankCode("");
+		bankInfo.setIdentityNumber("6798700433");
 		
 		
 		Response response = easyFinBankService.registBankAccount("1234567890", bankInfo);
@@ -58,7 +58,7 @@ public class EasyFinBankServiceTEST {
 	public void revokeCloseBankAccount() throws PopbillException{
 		
 		String BankCode = "0020";
-		String AccountNumber = "1002057875456";
+		String AccountNumber = "10020875456";
 		
 		Response response = easyFinBankService.revokeCloseBankAccount("1234567890", BankCode, AccountNumber );
 		
@@ -94,7 +94,7 @@ public class EasyFinBankServiceTEST {
 		
 		bankInfo.setBankCode("0020");
 		bankInfo.setAccountNumber("1002057875456");
-		bankInfo.setAccountPWD("2018");
+		bankInfo.setAccountPWD("");
 		bankInfo.setAccountName("별칭_1234");
 		bankInfo.setMemo("memo1356");
 		
@@ -104,6 +104,22 @@ public class EasyFinBankServiceTEST {
 		
 		System.out.println("\n\n======== updateBankAccount Response ========");
 		
+		System.out.println(response.getCode());
+		System.out.println(response.getMessage());
+	}
+	
+	@Test
+	public void deleteBankAccount() throws PopbillException{
+		
+		EasyFinBankAccountForm bankInfo = new EasyFinBankAccountForm();
+		
+		bankInfo.setBankCode("");
+		bankInfo.setAccountNumber("");
+		bankInfo.setAccountPWD("");
+		
+		Response response = easyFinBankService.deleteBankAccount("1234567890", bankInfo, "testkorea");
+		
+		assertNotNull(response);
 		System.out.println(response.getCode());
 		System.out.println(response.getMessage());
 	}
@@ -175,10 +191,10 @@ public class EasyFinBankServiceTEST {
 	
 	@Test
 	public void requestJob() throws PopbillException {
-		String AccountNumber = "131020538645";
-		String BankCode = "0048";
-		String SDate = "20191001";
-		String EDate = "20191218";
+		String AccountNumber = "74620246488";
+		String BankCode = "0023";
+		String SDate = "20210505";
+		String EDate = "20210506";
 		String jobID = easyFinBankService.requestJob("1234567890", BankCode, AccountNumber, SDate, EDate);
 		
 		assertNotNull(jobID);
@@ -190,7 +206,7 @@ public class EasyFinBankServiceTEST {
 	
 	@Test
 	public void getJobState() throws PopbillException {
-		EasyFinBankJobState jobState = easyFinBankService.getJobState("1234567890", "019121811000000002");
+		EasyFinBankJobState jobState = easyFinBankService.getJobState("1234567890", "021050616000000050");
 		
 		assertNotNull(jobState);
 		
