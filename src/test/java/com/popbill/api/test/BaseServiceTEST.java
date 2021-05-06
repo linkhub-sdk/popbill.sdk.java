@@ -62,6 +62,7 @@ public class BaseServiceTEST {
 		System.out.println("searchAllAllowYN : " + contactList[i].getSearchAllAllowYN());
 		System.out.println("mgrYN : " + contactList[i].getMgrYN());
 		System.out.println("state : " + contactList[i].getState());
+		System.out.println("searchRole :" + contactList[i].getSearchRole());
 		System.out.println("=======================");
 		}
 
@@ -237,15 +238,16 @@ public class BaseServiceTEST {
 	public void RegistContact_TEST() throws PopbillException{
 		ContactInfo contInfo = new ContactInfo();
 		
-		contInfo.setId("testkorea01");
-		contInfo.setPwd("innopost");
-		contInfo.setPersonName("정요한");
+		contInfo.setId("JAVARegistContact01");
+		contInfo.setPwd("qwe123");
+		contInfo.setPersonName("자바");
 		contInfo.setTel("02-1234-1234");
 		contInfo.setHp("010-1234-1234");
 		contInfo.setFax("070-7510-3710");
 		contInfo.setEmail("test1234@test.com");
 		contInfo.setSearchAllAllowYN(true);
 		contInfo.setMgrYN(false);
+		contInfo.setSearchRole(2);
 		
 		Response response = taxinvoiceService.registContact("1234567890", contInfo, "testkorea");
 		
@@ -289,6 +291,25 @@ public class BaseServiceTEST {
 		System.out.println(corpInfo.getCeoname());
 		System.out.println(corpInfo.getCorpName());
 		
+	}
+	
+	@Test
+	public void getContactInfo_Test() throws PopbillException{
+		ContactInfo contactInfo = taxinvoiceService.getContactInfo("1234567890", "JAVARegistContact01", "testkorea");
+		
+		assertNotNull(contactInfo);
+		
+		System.out.println(contactInfo.getState());
+		System.out.println(contactInfo.getId());
+		System.out.println(contactInfo.getPersonName());
+		System.out.println(contactInfo.getClass());
+		System.out.println(contactInfo.getEmail());
+		System.out.println(contactInfo.getFax());
+		System.out.println(contactInfo.getHp());
+		System.out.println(contactInfo.getRegDT());
+		System.out.println(contactInfo.getMgrYN());
+		System.out.println(contactInfo.getSearchRole());
+		System.out.println(contactInfo.getSearchAllAllowYN());
 	}
 	
 }

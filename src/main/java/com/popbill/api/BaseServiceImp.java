@@ -398,6 +398,28 @@ public abstract class BaseServiceImp implements BaseService {
 		return httpget("/Join?CorpNum=" + CorpNum + "&LID=" + LinkID, null,
 				null, Response.class);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.BaseService#getContactInfo(java.lang.String, java.lang.String)
+	 */
+	public ContactInfo getContactInfo(String CorpNum, String ContactID) 
+			throws PopbillException {
+		
+		return getContactInfo(CorpNum, ContactID, null);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.popbill.api.BaseService#getContactInfo(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	public ContactInfo getContactInfo(String CorpNum, String ContactID, String UserID) 
+			throws PopbillException {
+		String postData = "{'id' :" + "'" + ContactID + "'}" ;
+		
+		return httppost("/Contact", CorpNum, postData, UserID, ContactInfo.class);
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.popbill.api.BaseService#listContact(java.lang.String, java.lang.String)

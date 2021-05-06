@@ -108,7 +108,35 @@ public interface BaseService {
 	 */
 	public abstract Response checkIsMember(String CorpNum, String LinkID)
 			throws PopbillException;
-
+	
+	/**
+	 * 담당자 정보확인.
+	 * 
+	 * @param CorpNum
+	 *            CorpNum to Check.
+	 * @param ContactID
+	 *            ContactID to Check.
+	 * @return 
+	 * @throws PopbillException
+	 */
+    public abstract ContactInfo getContactInfo(String CorpNum, String contactID)
+    		throws PopbillException;
+    
+    /**
+	 * 담당자 정보확인.
+	 * 
+	 * @param CorpNum
+	 *            CorpNum to Check.
+	 * @param ContactID
+	 *            ContactID to Check.
+	 * @param UserID
+	 *            UserID to Check.
+	 * @return 
+	 * @throws PopbillException
+	 */
+    public abstract ContactInfo getContactInfo(String CorpNum, String contactID, String UserID)
+    		throws PopbillException;
+	
 	/**
 	 * 담당자 목록조회
 	 * 

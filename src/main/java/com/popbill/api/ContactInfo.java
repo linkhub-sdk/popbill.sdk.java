@@ -34,8 +34,8 @@ public class ContactInfo {
 	private Boolean mgrYN;
 	private String regDT;
 	private Integer state;
+	private Integer searchRole;
 	
-
 	/**
 	 * 담당자 아이디 확인
 	 * 
@@ -229,5 +229,22 @@ public class ContactInfo {
 	 */
 	public void setState(Integer state) {
 		this.state = state;
-	}	
+	}
+	
+	/**
+	 * 담당자 조회권한 확인
+	 * 
+	 * @return 담당자 아이디
+	 */
+	public Integer getSearchRole() {
+		return this.searchRole;
+	}
+	/**
+	 * 담당자 조회권한 설정
+	 * 
+	 * @return 담당자 아이디
+	 */
+	public void setSearchRole(Integer searchRole) {
+		this.searchRole = searchRole;
+	}
 }
