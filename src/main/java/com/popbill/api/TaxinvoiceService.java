@@ -25,6 +25,7 @@ import com.popbill.api.taxinvoice.TISearchResult;
 import com.popbill.api.taxinvoice.Taxinvoice;
 import com.popbill.api.taxinvoice.TaxinvoiceInfo;
 import com.popbill.api.taxinvoice.TaxinvoiceLog;
+import com.popbill.api.taxinvoice.SendToNTSConfig;
 
 /**
  * Taxinvoice Service Interface.
@@ -1838,6 +1839,15 @@ public interface TaxinvoiceService extends BaseService {
      */
     public byte[] getPDF(String CorpNum, MgtKeyType KeyType,
     		String MgtKey, String UserID) throws PopbillException;
+    
+    /**
+     * 연동회원 국세청 전송 설정 확인
+     * @param CorpNum
+     * 			연동회원 사업자번호  
+     * @return
+     * @throws PopbillException
+     */
+    public SendToNTSConfig getSendToNTSConfig(String CorpNum) throws PopbillException;
     
 
 }

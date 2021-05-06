@@ -29,6 +29,7 @@ import com.popbill.api.taxinvoice.TaxinvoiceDetail;
 import com.popbill.api.taxinvoice.TaxinvoiceInfo;
 import com.popbill.api.taxinvoice.TaxinvoiceLog;
 import com.popbill.api.taxinvoice.TaxinvoiceServiceImp;
+import com.popbill.api.taxinvoice.SendToNTSConfig;
 
 public class TaxinvoiceServiceTEST {
 
@@ -1116,6 +1117,17 @@ public class TaxinvoiceServiceTEST {
 		
 		System.out.println(response.getCode());
 	}
+	
+	@Test
+	public void getSendToNTSConfig_TEST() throws PopbillException {
+		
+		
+		SendToNTSConfig ntsConfig = taxinvoiceService.getSendToNTSConfig("1234567890");
+		
+		assertNotNull(ntsConfig);
+		System.out.println(ntsConfig.getSendToNTS());
+	}
+	
 	
 	@Test
 	public void GetPDF_TEST() throws PopbillException {
