@@ -220,6 +220,13 @@ public class CashbillServiceTEST {
 	}
 	
 	@Test 
+	public void getViewURL_TEST() throws PopbillException {
+		String url = cashbillService.getViewURL("1234567890", "20200806-03", "testkorea");
+		assertNotNull(url);
+		System.out.println(url);
+	}
+	
+	@Test 
 	public void getPDFURL_TEST() throws PopbillException {
 		String url = cashbillService.getPDFURL("1234567890", "20200806-03");
 		assertNotNull(url);

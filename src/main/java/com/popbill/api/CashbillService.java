@@ -798,6 +798,30 @@ public interface CashbillService extends BaseService{
 	public String getPopUpURL(String CorpNum, String MgtKey, 
 			String UserID) throws PopbillException;
 	
+	  /**
+     * 세금계산서 뷰 팝업 URL 
+     * @param CorpNum
+     * 			연동회원 사업자번호
+     * @param MgtKey
+     * 			문서번호
+     * @return
+     * @throws PopbillException
+     */
+	public String getViewURL(String CorpNum, String MgtKey) throws PopbillException;
+	
+	
+	 /**
+     * 세금계산서 뷰 팝업 URL 
+     * @param CorpNum
+     * 			연동회원 사업자번호
+     * @param MgtKey
+     * 			문서번호
+     * @param UserID
+     * 			연동회원 아이디
+     * @return
+     * @throws PopbillException
+     */
+	public String getViewURL(String Corpnum, String Mgtkey, String UserID) throws PopbillException;
 	
 	/**
 	 * 현금영수증 즉시발행 

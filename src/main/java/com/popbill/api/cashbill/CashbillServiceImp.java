@@ -572,6 +572,31 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 
 		return response.url;
 	}
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#getViewURL(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getViewURL(String CorpNum, String MgtKey)
+			throws PopbillException {
+
+		return getViewURL(CorpNum, MgtKey, null);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.popbill.api.CashbillService#getViewURL(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getViewURL(String CorpNum, String MgtKey, String UserID)
+			throws PopbillException {
+		if (MgtKey == null || MgtKey.isEmpty())
+			throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
+
+		URLResponse response = httpget("/Cashbill/" + MgtKey + "?TG=VIEW",
+				CorpNum, UserID, URLResponse.class);
+
+		return response.url;
+	}
 
 	@Override
 	public Response registIssue(String CorpNum, Cashbill cashbill) throws PopbillException{
