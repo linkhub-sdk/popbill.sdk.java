@@ -59,6 +59,33 @@ public interface KakaoService extends BaseService {
 	public ATSTemplate[] listATSTemplate(String CorpNum, String UserID)
 		throws PopbillException;
 	
+	/**
+	 *  템플릿 정보 확인
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param templateCode
+	 * 			템플맇 코드
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public ATSTemplate getATSTemplate(String CorpNum, String templateCode) throws PopbillException;
+	
+	
+	/**
+	 *  템플릿 정보 확인
+	 *
+	 * @param CorpNum
+	 * 			연동회원 사업자번호
+	 * @param templateCode
+	 * 			템플맇 코드
+	 * @param UserID
+	 * 			연동회원 유저아이디
+	 * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+	 * @throws PopbillException
+	 */
+	public ATSTemplate getATSTemplate(String Corpnum, String templateCode, String UserID) throws PopbillException;
+	
 	
 	/**
 	 * 알림톡 단건전송 

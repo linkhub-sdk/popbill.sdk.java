@@ -32,7 +32,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 		return response.unitCost;
 	}
 
-
+	
 	@Override
 	public String getURL(String CorpNum, String TOGO, String UserID) throws PopbillException {
 		
@@ -94,7 +94,17 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 	public PlusFriendID[] listPlusFriendID(String CorpNum, String UserID) throws PopbillException {
 		return httpget("/KakaoTalk/ListPlusFriendID", CorpNum, UserID, PlusFriendID[].class);
 	}
-
+	@Override
+	public ATSTemplate getATSTemplate(String CorpNum, String templateCode) throws PopbillException {
+		return getATSTemplate(CorpNum, templateCode, null);
+	}
+	@Override
+	public ATSTemplate getATSTemplate(String CorpNum, String templateCode, String UserID) throws PopbillException {
+		if (templateCode == null || templateCode.isEmpty()) 
+			throw new PopbillException(-99999999, "알림톡 템플릿코드(templateCode)가 입력되지 않았습니다.");
+		
+		return httpget("/KakaoTalk/GetATSTemplate/" + templateCode, CorpNum, UserID, ATSTemplate.class);
+	}
 	@Override
 	public ATSTemplate[] listATSTemplate(String CorpNum) throws PopbillException {
 		return listATSTemplate(CorpNum, null);
