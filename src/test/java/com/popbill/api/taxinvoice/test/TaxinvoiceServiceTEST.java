@@ -1042,6 +1042,22 @@ public class TaxinvoiceServiceTEST {
 
 		System.out.println(url);
 	}
+	
+	@Test
+	public void GetPaymentURL_TEST() throws PopbillException {
+		
+		String url = taxinvoiceService.getPaymentURL("1234567890", "testkorea");
+		
+		System.out.println(url);
+	}
+	
+	@Test
+	public void GetUseHistorURL_TEST() throws PopbillException {
+		
+		String url = taxinvoiceService.getUseHistoryURL("1234567890", null);
+		
+		System.out.println(url);
+	}
 
 	@Test
 	public void GetSealURL_TEST() throws PopbillException {

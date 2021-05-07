@@ -538,7 +538,23 @@ public abstract class BaseServiceImp implements BaseService {
 
 		return response.url;
 	}
-
+	
+	@Override
+	public String getPaymentURL(String CorpNum, String UserID) throws PopbillException {
+		
+		URLResponse response = httpget("/?TG=PAYMENT", CorpNum, UserID, URLResponse.class);
+		
+		return response.url;
+	}
+	
+	@Override
+	public String getUseHistoryURL(String CorpNum, String UserID) throws PopbillException {
+		
+		URLResponse response = httpget("/?TG=USEHISTORY", CorpNum, UserID, URLResponse.class);
+		
+		return response.url;
+	}
+	
 	/**
 	 * Convert Object to Json String.
 	 * 
