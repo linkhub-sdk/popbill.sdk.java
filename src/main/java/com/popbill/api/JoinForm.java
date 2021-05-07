@@ -23,6 +23,7 @@ package com.popbill.api;
 public class JoinForm {
 	private String ID;
 	private String PWD;
+	private String Password;
 	private String LinkID;
 	private String CorpNum;
 	private String CEOName;
@@ -73,6 +74,16 @@ public class JoinForm {
 	 */
 	public void setPWD(String pWD) {
 		PWD = pWD;
+	}
+	
+	/**
+	 * 회원 비밀번호 설정
+	 * 
+	 * @param Password
+	 * 		8자 이상 20이하, 영문, 숫자, 특수문자 조합 
+	 */
+	public void setPassword(String password) {
+		Password = password;
 	}
 
 	/**

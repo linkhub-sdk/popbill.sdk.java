@@ -84,15 +84,16 @@ public class BaseServiceTEST {
 
 		JoinForm joinInfo = new JoinForm();
 		joinInfo.setLinkID(testLinkID);
-		joinInfo.setCorpNum("1231212312"); // 사업자번호 "-" 제외
+		joinInfo.setCorpNum("0000009998"); // 사업자번호 "-" 제외
 		joinInfo.setCEOName("대표자성명");
 		joinInfo.setCorpName("상호");
 		joinInfo.setAddr("주소");
 		joinInfo.setZipCode("500-100");
 		joinInfo.setBizType("업태");
 		joinInfo.setBizClass("업종");
-		joinInfo.setID("userid"); // 6자 이상 20자 미만
+		joinInfo.setID("JAVA_JoinMember_PasswordTEST01"); // 6자 이상 20자 미만
 		joinInfo.setPWD("pwd_must_be_long_enough"); // 6자 이상 20자 미만
+		joinInfo.setPassword("qwe123!@#");
 		joinInfo.setContactName("담당자명");
 		joinInfo.setContactTEL("02-999-9999");
 		joinInfo.setContactHP("010-1234-5678");
@@ -238,8 +239,9 @@ public class BaseServiceTEST {
 	public void RegistContact_TEST() throws PopbillException{
 		ContactInfo contInfo = new ContactInfo();
 		
-		contInfo.setId("JAVARegistContact01");
-		contInfo.setPwd("qwe123");
+		contInfo.setId("JAVA_ResgistContact_Password001");
+		contInfo.setPwd("qwe123!@#");
+		contInfo.setPassword("qwe123!@#");
 		contInfo.setPersonName("자바");
 		contInfo.setTel("02-1234-1234");
 		contInfo.setHp("010-1234-1234");

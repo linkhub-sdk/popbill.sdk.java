@@ -25,6 +25,7 @@ package com.popbill.api;
 public class ContactInfo {
 	private String id;
 	private String pwd;
+	private String Password;
 	private String email;
 	private String hp;
 	private String personName;
@@ -65,6 +66,15 @@ public class ContactInfo {
 		this.pwd = pwd;
 	}
 	
+	/**
+	 * 담당자 비밀번호 설정 
+	 * 
+	 * @param Passwrod
+	 *		담당자비밀번호 (8자이상, 20자이하, 영문, 숫자, 특수문자 조합)
+	 */	
+	public void setPassword(String password) {
+		Password = password;
+	}
 	/**
 	 * 담당자 이메일 확인
 	 * 
