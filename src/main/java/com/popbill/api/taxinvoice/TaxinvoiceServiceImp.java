@@ -1474,9 +1474,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      * @see com.popbill.api.TaxinvoiceService#getSendToNTSConfig(java.lang.String)
      */
     @Override
-    public SendToNTSConfig getSendToNTSConfig(String CorpNum) throws PopbillException {
+    public boolean getSendToNTSConfig(String CorpNum) throws PopbillException {
 		
-    	return httpget("/Taxinvoice/SendToNTSConfig", CorpNum, null, SendToNTSConfig.class);
+    	return httpget("/Taxinvoice/SendToNTSConfig", CorpNum, null, SendToNTSConfig.class).getSendToNTS();
     }
     
     protected class CertResponse {
