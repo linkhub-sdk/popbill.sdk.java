@@ -1847,7 +1847,7 @@ public interface TaxinvoiceService extends BaseService {
      * @return
      * @throws PopbillException
      */
-    public SendToNTSConfig getSendToNTSConfig(String CorpNum) throws PopbillException;
+    public boolean getSendToNTSConfig(String CorpNum) throws PopbillException;
     
 
 }

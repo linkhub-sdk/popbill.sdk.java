@@ -1138,10 +1138,10 @@ public class TaxinvoiceServiceTEST {
 	public void getSendToNTSConfig_TEST() throws PopbillException {
 		
 		
-		SendToNTSConfig ntsConfig = taxinvoiceService.getSendToNTSConfig("1234567890");
+		boolean ntsConfig = taxinvoiceService.getSendToNTSConfig("1234567890");
 		
 		assertNotNull(ntsConfig);
-		System.out.println(ntsConfig.getSendToNTS());
+		System.out.println(ntsConfig);
 	}
 	
 	
