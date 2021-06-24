@@ -522,7 +522,10 @@ public abstract class BaseServiceImp implements BaseService {
 
 		return httppost("/CorpInfo", CorpNum, postData, UserID, Response.class);
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.BaseService#getAccessURL(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public String getAccessURL(String CorpNum, String UserID) throws PopbillException {
 
@@ -530,7 +533,10 @@ public abstract class BaseServiceImp implements BaseService {
 
 		return response.url;
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.BaseService#getChargeURL(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public String getChargeURL(String CorpNum, String UserID) throws PopbillException {
 
@@ -539,6 +545,9 @@ public abstract class BaseServiceImp implements BaseService {
 		return response.url;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.BaseService#getPaymentURL(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public String getPaymentURL(String CorpNum, String UserID) throws PopbillException {
 		
@@ -547,6 +556,9 @@ public abstract class BaseServiceImp implements BaseService {
 		return response.url;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.popbill.api.BaseService#getUseHistoryURL(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public String getUseHistoryURL(String CorpNum, String UserID) throws PopbillException {
 		
