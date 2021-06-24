@@ -69,7 +69,7 @@ public class ContactInfo {
 	/**
 	 * 담당자 비밀번호 설정 
 	 * 
-	 * @param Passwrod
+	 * @param Password
 	 *		담당자비밀번호 (8자이상, 20자이하, 영문, 숫자, 특수문자 조합)
 	 */	
 	public void setPassword(String password) {
