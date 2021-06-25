@@ -16,6 +16,7 @@ import com.popbill.api.ChargeInfo;
 import com.popbill.api.EmailSendConfig;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.SMTIssueResponse;
 import com.popbill.api.StatementService;
 import com.popbill.api.statement.Statement;
 import com.popbill.api.statement.StatementDetail;
@@ -451,12 +452,12 @@ public class StatementServiceTEST {
 	public void RegistIssue_TEST() throws PopbillException{
 		Statement statement = new Statement();
 		
-		statement.setWriteDate("20210429");
+		statement.setWriteDate("20210625");
 		statement.setPurposeType("영수");
 		statement.setTaxType("과세");
 		statement.setFormCode("");
 		statement.setItemCode((short) 121);
-		statement.setMgtKey("20210429-JAVA0012");
+		statement.setMgtKey("20210625-JAVA004");
 		statement.setSenderCorpNum("1234567890");
 		statement.setSenderCorpName("공급자 상호");
 		statement.setSenderAddr("공급자 주소");
@@ -530,8 +531,8 @@ public class StatementServiceTEST {
         
 		statement.setPropertyBag(propertyBag);
 		
-		Response response = statementService.registIssue("1234567890", statement, "전자명세서 즉시발행 메모", "", "메일 제목 테스트");
-		System.out.println("[" + response.getCode() + "] " + response.getMessage());
+		SMTIssueResponse response = statementService.registIssue("1234567890", statement, "전자명세서 즉시발행 메모", "", "메일 제목 테스트");
+		System.out.println("[" + response.getCode() + "] " + "[" + response.getMessage() +"] "+ "["+response.getInvoiceNum() + "]");
 		
 		assertNotNull(response);
 	}

@@ -27,6 +27,7 @@ import com.popbill.api.ChargeInfo;
 import com.popbill.api.EmailSendConfig;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.SMTIssueResponse;
 import com.popbill.api.StatementService;
 
 /**
@@ -651,7 +652,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 	 * @see com.popbill.api.StatementService#registIssue(java.lang.String, com.popbill.api.statement.Statement)
 	 */
 	@Override
-	public Response registIssue(String CorpNum, Statement statement) throws PopbillException{
+	public SMTIssueResponse registIssue(String CorpNum, Statement statement) throws PopbillException{
 		return registIssue(CorpNum, statement, null, null, null);
 	}
 	
@@ -660,7 +661,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 	 * 				java.lang.String)
 	 */
 	@Override
-	public Response registIssue(String CorpNum, Statement statement, String memo)
+	public SMTIssueResponse registIssue(String CorpNum, Statement statement, String memo)
 			throws PopbillException{
 		return registIssue(CorpNum, statement, memo, null, null);
 	}
@@ -671,13 +672,13 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 	 * 				java.lang.String, java.lang.String)
 	 */
 	@Override
-	public Response registIssue(String CorpNum, Statement statement, String memo, 
+	public SMTIssueResponse registIssue(String CorpNum, Statement statement, String memo, 
 			String UserID) throws PopbillException {
 			return registIssue(CorpNum, statement, memo, UserID, null);
 	}
 	
 	@Override
-	public Response registIssue(String CorpNum, Statement statement, String memo, 
+	public SMTIssueResponse registIssue(String CorpNum, Statement statement, String memo, 
 			String UserID, String emailSubject) throws PopbillException {
 		
 		if (memo != null) 
@@ -688,7 +689,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 		String PostData = toJsonString(statement);
 		
 		return httppost("/Statement",
-				CorpNum, PostData, UserID, "ISSUE", Response.class);
+				CorpNum, PostData, UserID, "ISSUE", SMTIssueResponse.class);
 	}
 	
 	/*
