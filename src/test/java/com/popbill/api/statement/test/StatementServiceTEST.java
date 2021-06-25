@@ -457,7 +457,7 @@ public class StatementServiceTEST {
 		statement.setTaxType("과세");
 		statement.setFormCode("");
 		statement.setItemCode((short) 121);
-		statement.setMgtKey("20210625-JAVA004");
+		statement.setMgtKey("20210625-JAVA015");
 		statement.setSenderCorpNum("1234567890");
 		statement.setSenderCorpName("공급자 상호");
 		statement.setSenderAddr("공급자 주소");
@@ -490,7 +490,7 @@ public class StatementServiceTEST {
 
         statement.setBusinessLicenseYN(false); //사업자등록증 이미지 첨부시 설정.
         statement.setBankBookYN(false);         //통장사본 이미지 첨부시 설정.
-        statement.setAutoacceptYN(false);
+//        statement.setAutoacceptYN(false);
                 
         Map<String, String> propertyBag = new HashMap<String, String>();
         

@@ -80,7 +80,7 @@ public class Statement implements Serializable {
 	private boolean businessLicenseYN;
 	private boolean bankBookYN;
 	private boolean smssendYN;
-	private boolean autoAcceptYN;
+	private Boolean autoAcceptYN;
 	
 	private List<StatementDetail> detailList;
 	private Map<String, String> propertyBag = new HashMap<String, String>();
