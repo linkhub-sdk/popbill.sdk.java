@@ -37,9 +37,9 @@ public class EasyFinBankServiceTEST {
 		
 		EasyFinBankAccountForm bankInfo = new EasyFinBankAccountForm();
 		bankInfo.setAccountName("별칭");
-		bankInfo.setAccountNumber("");
+		bankInfo.setAccountNumber("1012051447401");
 		bankInfo.setAccountPWD("");
-		bankInfo.setAccountType("");
+		bankInfo.setAccountType("법인");
 		bankInfo.setBankCode("");
 		bankInfo.setIdentityNumber("6798700433");
 		
@@ -111,13 +111,10 @@ public class EasyFinBankServiceTEST {
 	@Test
 	public void deleteBankAccount() throws PopbillException{
 		
-		EasyFinBankAccountForm bankInfo = new EasyFinBankAccountForm();
+		String bankCode = "0032";
+		String AccountNumber = "";
 		
-		bankInfo.setBankCode("");
-		bankInfo.setAccountNumber("");
-		bankInfo.setAccountPWD("");
-		
-		Response response = easyFinBankService.deleteBankAccount("1234567890", bankInfo, "testkorea");
+		Response response = easyFinBankService.deleteBankAccount("1234567890", bankCode, AccountNumber, "testkorea");
 		
 		assertNotNull(response);
 		System.out.println(response.getCode());

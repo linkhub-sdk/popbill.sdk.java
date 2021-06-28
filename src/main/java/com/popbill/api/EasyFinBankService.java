@@ -133,22 +133,24 @@ public interface EasyFinBankService extends BaseService{
 	 * 종량제 이용시 등록된 계좌 삭제
 	 * 
 	 * @param CorpNum
-	 * @param form
+	 * @param BankCode
+	 * @param AccountNumber
 	 * @return
 	 * @throws PopbillException
 	 */
-	public Response deleteBankAccount(String CorpNum, EasyFinBankAccountForm form) throws PopbillException;
+	public Response deleteBankAccount(String CorpNum, String BankCode, String AccountNumber) throws PopbillException;
 	
 	/**
 	 * 종량제 이용시 등록된 계좌 삭제
 	 * 
 	 * @param CorpNum
-	 * @param form
+	 * @param BankCode
+	 * @param AccountNumber
 	 * @param UserID
 	 * @return
 	 * @throws PopbillException
 	 */
-	public Response deleteBankAccount(String CorpNum, EasyFinBankAccountForm form, String UserID) throws PopbillException;
+	public Response deleteBankAccount(String CorpNum, String BankCode, String AccountNumber, String UserID) throws PopbillException;
 	
 	/**
 	 * 계좌정보 조회 
