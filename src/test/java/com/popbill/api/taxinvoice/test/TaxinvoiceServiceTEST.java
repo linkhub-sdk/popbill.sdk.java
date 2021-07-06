@@ -682,7 +682,7 @@ public class TaxinvoiceServiceTEST {
 	public void RegistIssue_TEST() throws PopbillException {
 		Taxinvoice taxinvoice = new Taxinvoice();
 
-		taxinvoice.setWriteDate("20210105"); // 필수, 기재상 작성일자
+		taxinvoice.setWriteDate("20210706"); // 필수, 기재상 작성일자
 		taxinvoice.setChargeDirection("정과금"); // 필수, {정과금, 역과금}
 		taxinvoice.setIssueType("정발행"); // 필수, {정발행, 역발행, 위수탁}
 		taxinvoice.setPurposeType("영수"); // 필수, {영수, 청구}
@@ -691,7 +691,7 @@ public class TaxinvoiceServiceTEST {
 		taxinvoice.setInvoicerCorpNum("1234567890");
 		taxinvoice.setInvoicerTaxRegID(""); // 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
 		taxinvoice.setInvoicerCorpName("Seller Name of Company");
-		taxinvoice.setInvoicerMgtKey("20210105-002"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
+		taxinvoice.setInvoicerMgtKey("20210706-002"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
 		taxinvoice.setInvoicerCEOName("Seller Name of Representative");
 		taxinvoice.setInvoicerAddr("Seller Company Address");
 		taxinvoice.setInvoicerBizClass("Seller Business Item");
@@ -735,7 +735,7 @@ public class TaxinvoiceServiceTEST {
 		TaxinvoiceDetail detail = new TaxinvoiceDetail();
 
 		detail.setSerialNum((short) 1); // 일련번호
-		detail.setPurchaseDT("20210105"); // 거래일자
+		detail.setPurchaseDT("20210705"); // 거래일자
 		detail.setItemName("ItemName01");
 		detail.setSpec("spec01");
 		detail.setQty("1"); // 수량
@@ -747,7 +747,7 @@ public class TaxinvoiceServiceTEST {
 
 		detail = new TaxinvoiceDetail();
 		detail.setSerialNum((short) 2);
-		detail.setPurchaseDT("20210105"); // 거래일자
+		detail.setPurchaseDT("20210705"); // 거래일자
 		detail.setItemName("ItemName02");
 		detail.setSpec("spec02");
 		detail.setQty("1"); // 수량
