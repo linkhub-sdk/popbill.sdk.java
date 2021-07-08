@@ -1849,6 +1849,17 @@ public interface TaxinvoiceService extends BaseService {
      */
     public boolean getSendToNTSConfig(String CorpNum) throws PopbillException;
     
+    /**
+     * 연동회원 국세청 전송 설정 확인
+     * @param CorpNum
+     * 			연동회원 사업자번호  
+     * @param UserID
+     * 			연동회원 유저아이디
+     * @return
+     * @throws PopbillException
+     */
+    public boolean getSendToNTSConfig(String CorpNum, String UserID) throws PopbillException;
+    
 
 }
 
