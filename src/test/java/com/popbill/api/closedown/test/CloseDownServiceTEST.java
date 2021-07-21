@@ -1,5 +1,10 @@
 package com.popbill.api.closedown.test;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import org.junit.Test;
 
 import com.popbill.api.ChargeInfo;
@@ -52,7 +57,7 @@ public class CloseDownServiceTEST {
 		CorpState state = null;
 		
 		try {
-			state = closeDownService.CheckCorpNum("1234567890", "1234567890");
+			state = closeDownService.CheckCorpNum("1234567890", "169-09-01387");
 		} catch (PopbillException e) {
 			System.out.println(e.getCode());
 			System.out.println(e.getMessage());
@@ -61,19 +66,28 @@ public class CloseDownServiceTEST {
 		
 		System.out.println(state.getState());
 		System.out.println(state.getTypeDate());
+		System.out.println(state.getType());
+		System.out.println(state.getTaxType());
 		
 	}
 	
 	@Test
-	public void CheckCorpNums() throws PopbillException {
+	public void CheckCorpNums() throws PopbillException, IOException {
 		
-		String[] CorpNumList = new String[] {"1231212312","401-03-94930"};
+		String[] CorpNumList = new String[] {"169-09-01387","401-03-94930"};
 		
-		CorpState[] state =closeDownService.CheckCorpNum("1231212312",CorpNumList);
+		CorpState[] state =closeDownService.CheckCorpNum("1234567890",CorpNumList);
+		
 		
 		System.out.println(state[0].getState());
+		System.out.println(state[0].getTypeDate());
+		System.out.println(state[0].getType());
+		System.out.println(state[0].getTaxType());
+		
 		System.out.println(state[1].getState());
 		System.out.println(state[1].getTypeDate());
+		System.out.println(state[1].getType());
+		System.out.println(state[1].getTaxType());
 	}
 	
 	@Test
