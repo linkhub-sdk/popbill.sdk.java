@@ -122,9 +122,9 @@ public class TaxinvoiceInfo {
 	}
 
 	/**
-	 * 공급자 연동관리번호 확인
+	 * 공급자 문서번호 확인
 	 * 
-	 * @return 공급자 연동관리번호
+	 * @return 공급자 문서번호
 	 */
 	public String getInvoicerMgtKey() {
 		return invoicerMgtKey;
@@ -149,9 +149,9 @@ public class TaxinvoiceInfo {
 	}
 
 	/**
-	 * 공급받는자 연동관리번호 확인
+	 * 공급받는자 문서번호 확인
 	 * 
-	 * @return 공급받는자 연동관리번호
+	 * @return 공급받는자 문서번호
 	 */
 	public String getInvoiceeMgtKey() {
 		return invoiceeMgtKey;
@@ -176,9 +176,9 @@ public class TaxinvoiceInfo {
 	}
 
 	/**
-	 * 수탁자 연동관리번호 확인
+	 * 수탁자 문서번호 확인
 	 * 
-	 * @return 수탁자 연동관리번호
+	 * @return 수탁자 문서번호
 	 */
 	public String getTrusteeMgtKey() {
 		return trusteeMgtKey;

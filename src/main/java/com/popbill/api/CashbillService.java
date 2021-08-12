@@ -305,7 +305,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			팝빌연동회원 사업자번호
 	 * @param mgtKey
-	 * 			취소현금영수증 문서관리번호
+	 * 			취소현금영수증 문서번호
 	 * @param orgConfirmNum
 	 * 			원본현금영수증 승인번호
 	 * @param orgTradeDate
@@ -330,7 +330,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			팝빌연동회원 사업자번호
 	 * @param mgtKey
-	 * 			취소현금영수증 문서관리번호
+	 * 			취소현금영수증 문서번호
 	 * @param orgConfirmNum
 	 * 			원본현금영수증 승인번호
 	 * @param orgTradeDate
@@ -365,7 +365,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			팝빌연동회원 사업자번호
 	 * @param mgtKey
-	 * 			취소현금영수증 문서관리번호
+	 * 			취소현금영수증 문서번호
 	 * @param orgConfirmNum
 	 * 			원본현금영수증 승인번호
 	 * @param orgTradeDate
@@ -402,7 +402,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			팝빌연동회원 사업자번호
 	 * @param mgtKey
-	 * 			취소현금영수증 문서관리번호
+	 * 			취소현금영수증 문서번호
 	 * @param orgConfirmNum
 	 * 			원본현금영수증 승인번호
 	 * @param orgTradeDate
@@ -439,7 +439,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param cashbill
 	 * 			현금영수증 정보. (see. com.popbill.api.cashbill.Cashbill)
 	 * @return Response
@@ -453,7 +453,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param cashbill
 	 * 			현금영수증 정보. (see. com.popbill.api.cashbill.Cashbill)
 	 * @param UserID
@@ -469,7 +469,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return Response
 	 * @throws PopbillException
 	 */
@@ -481,7 +481,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param UserID
 	 * 			연동회원아이디
 	 * @return Response
@@ -495,7 +495,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Memo
 	 * 			처리 메모
 	 * @return CBIssueResponse
@@ -509,7 +509,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Memo
 	 * 			처리 메모
 	 * @param UserID
@@ -525,7 +525,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Memo
 	 * 			처리메모
 	 * @return CBIssueResponse
@@ -539,7 +539,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Memo
 	 * 			처리메모
 	 * @param UserID
@@ -555,7 +555,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Receiver
 	 * 			수신 이메일주소
 	 * @return Response
@@ -569,7 +569,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Receiver
 	 * 			수신 이메일주소
 	 * @param UserID
@@ -585,7 +585,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Sender
 	 * 			발신번호
 	 * @param Receiver
@@ -604,7 +604,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Sender
 	 * 			발신번호
 	 * @param Receiver
@@ -625,7 +625,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Sender
 	 * 			발신번호
 	 * @param Receiver
@@ -641,7 +641,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Sender
 	 * 			발신번호
 	 * @param Receiver
@@ -659,7 +659,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return Cashbill
 	 * @throws PopbillException
 	 */
@@ -671,7 +671,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return CashbillInfo
 	 * @throws PopbillException
 	 */
@@ -683,7 +683,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번
 	 * @param MgtKeyList
-	 * 			문서관리번호 배열
+	 * 			문서번호 배열
 	 * @return CashbillInfo 배열
 	 * @throws PopbillException
 	 */
@@ -695,7 +695,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return CashbillLog 배열
 	 * @throws PopbillException
 	 */
@@ -707,7 +707,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return 팝빌 url
 	 * @throws PopbillException
 	 */
@@ -718,7 +718,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param UserID
 	 * 			연동회원 아이디
 	 * @return 팝빌 url
@@ -733,7 +733,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return 팝빌 URL
 	 * @throws PopbillException
 	 */
@@ -744,7 +744,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param UserID
 	 * 			연동회원 아이디
 	 * @return 팝빌 URL
@@ -759,7 +759,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원  사업자번호
 	 * @param MgtKeyList
-	 * 			문서관리번호 배열
+	 * 			문서번호 배열
 	 * @return 팝빌 URL
 	 * @throws PopbillException
 	 */
@@ -771,7 +771,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원  사업자번호
 	 * @param MgtKeyList
-	 * 			문서관리번호 배열
+	 * 			문서번호 배열
 	 * @param UserID
 	 * 			연동회원 아이디
 	 * @return 팝빌 URL
@@ -785,7 +785,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 *  		연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return 팝빌 URL
 	 * @throws PopbillException
 	 */
@@ -796,7 +796,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 *  		연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param UserID
 	 * 			연동회원 아이디
 	 * @return 팝빌 URL
@@ -811,7 +811,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return 팝빌 URL
 	 * @throws PopbillException
 	 */
@@ -822,7 +822,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param UserID
 	 * 			연동회원 아이디
 	 * @return 팝빌 URL
