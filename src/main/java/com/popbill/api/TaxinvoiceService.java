@@ -25,7 +25,6 @@ import com.popbill.api.taxinvoice.TISearchResult;
 import com.popbill.api.taxinvoice.Taxinvoice;
 import com.popbill.api.taxinvoice.TaxinvoiceInfo;
 import com.popbill.api.taxinvoice.TaxinvoiceLog;
-import com.popbill.api.taxinvoice.SendToNTSConfig;
 
 /**
  * Taxinvoice Service Interface.

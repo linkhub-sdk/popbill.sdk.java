@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import com.popbill.api.CBIssueResponse;
 import com.popbill.api.CashbillService;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.EmailSendConfig;
@@ -69,7 +70,7 @@ public class CashbillServiceTEST {
 		
 		Cashbill cashbill = new Cashbill();
 		
-		cashbill.setMgtKey("20180813154637");
+		cashbill.setMgtKey("20210812JAVA003");
 		cashbill.setTradeType("승인거래");
 		cashbill.setTradeOpt("도서공연");
 		cashbill.setFranchiseCorpNum("1234567890");
@@ -132,9 +133,12 @@ public class CashbillServiceTEST {
 	@Test
 	public void issue_TEST() throws PopbillException {
 		
-		Response response = cashbillService.issue("1234567890", "20150318-02", "발행메모",	"testkorea");
+		CBIssueResponse response = cashbillService.issue("1234567890", "20210812JAVA003", "발행메모",	"testkorea");
 		assertNotNull(response);
 		System.out.println(response.getMessage());
+		System.out.println(response.getCode());
+		System.out.println(response.getConfirmNum());
+		System.out.println(response.getTradeDate());
 	}
 	
 	@Test
@@ -276,7 +280,7 @@ public class CashbillServiceTEST {
 		
 		Cashbill cashbill = new Cashbill();
 		
-		cashbill.setMgtKey("20191014-01");
+		cashbill.setMgtKey("20210812JAVA01");
 		cashbill.setTradeType("승인거래");
 		cashbill.setTradeOpt("일반");
 		cashbill.setFranchiseCorpNum("1234567890");
@@ -289,7 +293,7 @@ public class CashbillServiceTEST {
 		cashbill.setCustomerName("고객명");
 		cashbill.setItemName("상품명");
 		cashbill.setOrderNumber("주문번호");
-		cashbill.setEmail("code@linkhub.co.kr");
+		cashbill.setEmail("code@test.co.kr");
 		cashbill.setHp("01043245117");
 		cashbill.setFax("07075103710");
 		cashbill.setServiceFee("0");
@@ -300,9 +304,10 @@ public class CashbillServiceTEST {
 		cashbill.setTaxationType("과세");
 		cashbill.setSmssendYN(false);
 		
-		Response response = cashbillService.registIssue("1234567890", cashbill, "메모 입니다. Getinfo [StateMemo] 필드", "", "메일 제목 테스트");
+		CBIssueResponse response = cashbillService.registIssue("1234567890", cashbill, "메모 입니다. Getinfo [StateMemo] 필드", "", "메일 제목 테스트");
 		assertNotNull(response);
 		System.out.println("[" + response.getCode() + "] "+ response.getMessage());
+		System.out.println(response.getConfirmNum() + ", " + response.getTradeDate());
 	}
 	
 	@Test
@@ -366,7 +371,7 @@ public class CashbillServiceTEST {
 		String orgConfirmNum = "820116333";
 		String orgTradeDate = "20170711";
 		
-		Response response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate);
+		CBIssueResponse response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate);
 		
 		assertNotNull(response);
 		
@@ -381,17 +386,20 @@ public class CashbillServiceTEST {
 		String orgTradeDate = "20170711";
 		Boolean smssendYN = true;
 		
-		Response response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, "memo","", "메일제목 테스트");
+		CBIssueResponse response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, "memo","", "메일제목 테스트");
 		
 		assertNotNull(response);
 		
 		System.out.println(response.getMessage());
+		System.out.println(response.getCode());
+		System.out.println(response.getConfirmNum());
+		System.out.println(response.getTradeDate());
 	}
 	
 	@Test
 	public void revokeRegistIssue03_TEST() throws PopbillException{
 		String CorpNum = "1234567890";
-		String mgtKey = "20171114-17";
+		String mgtKey = "20210812-Revoke002";
 		String orgConfirmNum = "133367419";
 		String orgTradeDate = "20171112";
 		Boolean smssendYN = true;
@@ -404,13 +412,16 @@ public class CashbillServiceTEST {
 		String totalAmount = "11000";
 		String userID = "testkorea";
 		
-		Response response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, 
+		CBIssueResponse response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, 
 				orgTradeDate, smssendYN, memo, isPartCancel, cancelType, supplyCost, 
 				tax, serviceFee, totalAmount, userID);
 		
 		assertNotNull(response);
 		
 		System.out.println(response.getMessage());
+		System.out.println(response.getCode());
+		System.out.println(response.getConfirmNum());
+		System.out.println(response.getTradeDate());
 	}
 	
 	@Test
