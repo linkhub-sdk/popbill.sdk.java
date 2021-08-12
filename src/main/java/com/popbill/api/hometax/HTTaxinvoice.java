@@ -138,9 +138,9 @@ public class HTTaxinvoice implements Serializable {
 	}
 
 	/**
-	 * 공급자 문서관리번호 확인  
+	 * 공급자 문서번호 확인  
 	 * 
-	 * @return 공급자 문서관리번호 
+	 * @return 공급자 문서번호 
 	 */
 	public String getInvoicerMgtKey() {
 		return invoicerMgtKey;
@@ -256,9 +256,9 @@ public class HTTaxinvoice implements Serializable {
 	}
 
 	/**
-	 * 공급받는자 문서 관리번호 확인 
+	 * 공급받는자 문서번호 확인 
 	 * 
-	 * @return 공급받는자 문서 관리번호 
+	 * @return 공급받는자 문서번호 
 	 */
 	public String getInvoiceeMgtKey() {
 		return invoiceeMgtKey;
@@ -400,9 +400,9 @@ public class HTTaxinvoice implements Serializable {
 	}
 
 	/**
-	 * 수탁자 문서관리번호 확인 
+	 * 수탁자 문서번호 확인 
 	 * 
-	 * @return 수탁자 문서관리번호 
+	 * @return 수탁자 문서번호 
 	 */
 	public String getTrusteeMgtKey() {
 		return trusteeMgtKey;

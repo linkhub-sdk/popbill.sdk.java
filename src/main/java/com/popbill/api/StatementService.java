@@ -79,14 +79,14 @@ public interface StatementService extends BaseService{
 	
 	
 	/**
-	 * 문서관리번호 사용여부 확인
+	 * 문서번호 사용여부 확인
 	 * 
 	 * @param CorpNum
 	 * 			연동회원 사업자번호
 	 * @param ItemCode	
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return 사용여부, true : 사용중 / false : 미사용중
 	 * @throws PopbillException
 	 * 
@@ -131,7 +131,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param statement
 	 * 			명세서 정보.(see. com.popbill.api.statement.Statement)
 	 * @return Response
@@ -148,7 +148,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey 
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param statement
 	 * 			명세서 정보.(see. com.popbill.api.statement.Statement)
 	 * @param UserID
@@ -168,7 +168,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * 
 	 * @return Response 응답
 	 * @throws PopbillException
@@ -184,7 +184,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param UserID
 	 * 			연동회원의 회원아이디
 	 * 
@@ -202,7 +202,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Memo
 	 * 			처리 메모
 	 * @return Response
@@ -219,7 +219,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Memo
 	 * 			처리 메모
 	 * @param UserID
@@ -238,7 +238,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Memo
 	 * 			처리 메모
 	 * @param EmailSubject
@@ -260,7 +260,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Memo
 	 * 			처리 메모
 	 * @return Response 응답.
@@ -277,7 +277,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Memo
 	 * 			처리 메모
 	 * @param UserID
@@ -297,7 +297,7 @@ public interface StatementService extends BaseService{
 	 *  @param ItemCode
 	 *  		명세서 코드
 	 *  @param MgtKey
-	 *  		문서관리번호
+	 *  		문서번호
 	 *  @param Receiver
 	 *  		수신자이메일주소
 	 *  @return Response 응답.
@@ -315,7 +315,7 @@ public interface StatementService extends BaseService{
 	 *  @param ItemCode
 	 *  		명세서 코드
 	 *  @param MgtKey
-	 *  		문서관리번호
+	 *  		문서번호
 	 *  @param Receiver
 	 *  		수신자이메일주소
 	 *  @param UserID
@@ -334,7 +334,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Sender
 	 * 			발신자 번호
 	 * @param Receiver
@@ -355,7 +355,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param Sender
 	 * 			발신번호
 	 * @param Receiver
@@ -379,7 +379,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @Param Sender
 	 * 			발신번호
 	 * @param Receiver
@@ -398,7 +398,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @Param Sender
 	 * 			발신번호
 	 * @param Receiver
@@ -420,7 +420,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return Statement
 	 * @throws PopbillException
 	 * 
@@ -436,7 +436,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param UserID
 	 * 			연동회원의 회원아이디
 	 * @return Statement
@@ -454,7 +454,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return StatementInfo
 	 * @throws PopbillException
 	 */
@@ -469,7 +469,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKeyList
-	 * 			문서관리번호 목록
+	 * 			문서번호 목록
 	 * @return StatementInfo 배열
 	 * @throws PopbillException
 	 *  
@@ -486,7 +486,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return StatementLog 배열.
 	 * @throws PopbillException
 	 */
@@ -501,7 +501,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return 팝빌 URL.
 	 * @throws PopbillException
 	 */
@@ -516,7 +516,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param UserID
 	 * 			연동회원의 회원아이디
 	 * @return 팝빌 URL.
@@ -533,7 +533,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return 팝빌 URL
 	 * @throws PopbillException 
 	 * 
@@ -549,7 +549,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param UserID
 	 * 			연동회원의 회원아이디
 	 * 
@@ -568,7 +568,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return 팝빌 URL
 	 * @throws PopbillException
 	 */
@@ -583,7 +583,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param UserID
 	 * 			연동회원의 회원아이디
 	 * @return 팝빌 URL
@@ -600,7 +600,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return 팝빌 URL
 	 * @throws PopbillException 
 	 * 
@@ -616,7 +616,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param UserID
 	 * 			연동회원의 회원아이디
 	 * @return 팝빌 URL
@@ -634,7 +634,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKeyList
-	 * 			문서관리번호 배열(최대 1000건)
+	 * 			문서번호 배열(최대 1000건)
 	 * @return 팝빌 URL
 	 * @throws PopbillException
 	 */
@@ -649,7 +649,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKeyList
-	 * 			문서관리번호 배열(최대 1000건)
+	 * 			문서번호 배열(최대 1000건)
 	 * @param UserID
 	 * 			연동회원의 회원아이디
 	 * @return 팝빌 URL
@@ -666,7 +666,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호 
+	 * 			문서번호 
 	 * @param DisplayName
 	 * 			파일 표시명( ex."통장사본.jpg")
 	 * @param FileData
@@ -686,7 +686,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호 
+	 * 			문서번호 
 	 * @param DisplayName
 	 * 			파일 표시명( ex."통장사본.jpg")
 	 * @param FileData
@@ -708,7 +708,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return AttachedFile 배열
 	 * @throws PopbillException
 	 * 
@@ -724,7 +724,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param FileID
 	 * 			파일아이디
 	 * @return Response
@@ -741,7 +741,7 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @param FileID
 	 * 			파일아이디 
 	 * @param UserID
@@ -861,11 +861,11 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증 
 	 * @param MgtKey
-	 * 			명세서 관리번호 
+	 * 			명세서 문서번호 
 	 * @param SubItemCode
 	 * 			첨부할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증 
 	 * @param SubMgtKey
-	 * 			첨부할 명세서 관리번호 
+	 * 			첨부할 명세서 문서번호 
 	 * @return Response.
 	 * @throws PopbillException
 	 */
@@ -881,11 +881,11 @@ public interface StatementService extends BaseService{
 	 * @param ItemCode
 	 * 			명세서 코드,  121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증 
 	 * @param MgtKey
-	 * 			명세서 관리번호 
+	 * 			명세서 문서번호 
 	 * @param SubItemCode
 	 * 			첨부해제할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증 
 	 * @param SubMgtKey
-	 * 			첨부해제할 명세서 관리번호 
+	 * 			첨부해제할 명세서 문서번호 
 	 * @return Response.
 	 * @throws PopbillException
 	 */

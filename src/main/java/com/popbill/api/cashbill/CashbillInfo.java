@@ -55,7 +55,7 @@ public class CashbillInfo {
 
 
 	/**
-	 * 팝빌 관리번호 확인
+	 * 팝빌번호 확인
 	 *
 	 * @return the itemKey
 	 */
@@ -64,7 +64,7 @@ public class CashbillInfo {
 	}
 
 	/**
-	 * 문서관리번호 확인
+	 * 문서번호 확인
 	 *
 	 * @return the mgtKey
 	 */

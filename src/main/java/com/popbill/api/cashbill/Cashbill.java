@@ -64,7 +64,7 @@ public class Cashbill implements Serializable {
 
 
     /**
-     * 문서관리번호 확인
+     * 문서번호 확인
      *
      * @return the mgtKey
      */
@@ -73,7 +73,7 @@ public class Cashbill implements Serializable {
     }
 
     /**
-     * 문서관리번호 설정
+     * 문서번호 설정
      *
      * @param mgtKey the mgtKey to set
      */

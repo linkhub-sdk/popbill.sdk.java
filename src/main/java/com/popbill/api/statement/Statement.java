@@ -115,18 +115,18 @@ public class Statement implements Serializable {
 		this.itemCode = itemCode;
 	}
 	/**
-	 * 문서관리번호 확인
+	 * 문서번호 확인
 	 * 
-	 * @return 문서관리번호
+	 * @return 문서번호
 	 */
 	public String getMgtKey() {
 		return mgtKey;
 	}
 	/**
-	 * 문서관리번호 설정
+	 * 문서번호 설정
 	 * 
 	 * @param mgtKey
-	 * 		문서관리번호
+	 * 		문서번호
 	 */
 	public void setMgtKey(String mgtKey) {
 		this.mgtKey = mgtKey;

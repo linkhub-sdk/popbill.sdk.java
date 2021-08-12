@@ -84,14 +84,14 @@ public interface TaxinvoiceService extends BaseService {
 			throws PopbillException;
 
 	/**
-	 * 연동관리번호 등록여부 확인.
+	 * 문서번호 사용여부 확인.
 	 *
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @return 사용여부 true : 사용중 , false : 미사용중.
 	 * @throws PopbillException
 	 */
@@ -160,9 +160,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호.
 	 * @param KeyType
-	 *            연동관리번호 종류.
+	 *            세금계산서 유형.
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param taxinvoice
 	 *            세금계산서 정보. (see com.popbill.api.taxinvoice.Taxinvoice)
 	 * @return Response 응답
@@ -177,9 +177,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호.
 	 * @param KeyType
-	 *            연동관리번호 종류.
+	 *            세금계산서 유형.
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param taxinvoice
 	 *            세금계산서 정보. (see com.popbill.api.taxinvoice.Taxinvoice)
 	 * @param UserID
@@ -197,9 +197,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
@@ -212,9 +212,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param UserID
 	 *            회원아이디
 	 * @return Response 응답.
@@ -229,9 +229,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @return Response 응답
@@ -246,9 +246,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @param EmailSubject
@@ -267,9 +267,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @param UserID
@@ -286,9 +286,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @return Response 응답
@@ -303,9 +303,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @param UserID
@@ -322,9 +322,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @return Response 응답
@@ -339,9 +339,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @param UserID
@@ -358,9 +358,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @return Response 응답
@@ -375,9 +375,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @param UserID
@@ -394,9 +394,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @return Response 응답.
@@ -411,9 +411,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @param UserID
@@ -430,9 +430,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @param ForceIssue
@@ -452,9 +452,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @param EmailSubject
@@ -477,9 +477,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @return Response 응답.
@@ -494,9 +494,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @param UserID
@@ -513,9 +513,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @return Response 응답.
@@ -530,9 +530,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @param UserID
@@ -549,9 +549,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @return Response 응답.
@@ -566,9 +566,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @param UserID
@@ -585,9 +585,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @return Response 응답.
@@ -602,9 +602,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Memo
 	 *            처리 메모
 	 * @param UserID
@@ -621,9 +621,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
@@ -636,9 +636,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param UserID
 	 *            회원 아이
 	 * @return Response 응답
@@ -653,9 +653,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Receiver
 	 *            수신이메일 주소
 	 * @return Response 응답
@@ -670,9 +670,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Receiver
 	 *            수신이메일 주소
 	 * @param UserID
@@ -690,9 +690,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Sender
 	 *            발신자번호
 	 * @param Receiver
@@ -712,9 +712,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Sender
 	 *            발신자번호
 	 * @param Receiver
@@ -736,9 +736,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Sender
 	 *            발신자 번호
 	 * @param Receiver
@@ -756,9 +756,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param Sender
 	 *            발신자 번호
 	 * @param Receiver
@@ -778,9 +778,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
@@ -793,9 +793,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @return Response 응답
 	 * @throws PopbillException
 	 */
@@ -808,9 +808,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKeyList
-	 *            연동관리번호 목록
+	 *            문서번호 목록
 	 * @return TaxinvoiceInfo 배열.
 	 * @throws PopbillException
 	 */
@@ -823,9 +823,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @return TaxinvoiceLog 배열.
 	 * @throws PopbillException
 	 */
@@ -838,9 +838,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @return 팝빌 URL.
 	 * @throws PopbillException
 	 */
@@ -853,9 +853,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param UserID
 	 *            회원 아이디
 	 * @return 팝빌 URL.
@@ -870,9 +870,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @return 팝빌 URL.
 	 * @throws PopbillException
 	 */
@@ -886,9 +886,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param UserID
 	 *            회원 아이디
 	 * @return 팝빌 URL.
@@ -903,9 +903,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @return 팝빌 URL.
 	 * @throws PopbillException
 	 */
@@ -918,9 +918,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param UserID
 	 *            회원 아이디
 	 * @return 팝빌 URL.
@@ -935,9 +935,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @return 팝빌 URL.
 	 * @throws PopbillException
 	 */
@@ -950,9 +950,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param UserID
 	 *            회원 아이디
 	 * @return 팝빌 URL.
@@ -967,9 +967,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @return 팝빌 URL.
 	 * @throws PopbillException
 	 */
@@ -982,9 +982,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param UserID
 	 *            회원 아이디
 	 * @return 팝빌 URL.
@@ -999,9 +999,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKeyList
-	 *            연동관리번호 목록
+	 *            문서번호 목록
 	 * @return 팝빌 URL
 	 * @throws PopbillException
 	 */
@@ -1014,9 +1014,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKeyList
-	 *            연동관리번호 목록
+	 *            문서번호 목록
 	 * @param UserID
 	 *            회원 아이디
 	 * @return 팝빌 URL
@@ -1031,9 +1031,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param DisplayName
 	 *            파일 표시명(ex. "통장사본.jpg")
 	 * @param FileData
@@ -1051,9 +1051,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param DisplayName
 	 *            파일 표시명(ex. "통장사본.jpg")
 	 * @param FileData
@@ -1073,9 +1073,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @return AttachedFile 배열.
 	 * @throws PopbillException
 	 */
@@ -1088,9 +1088,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param FileID
 	 *            파일아이디. (AttachedFile.getAttachedFile() 로 확인된 문자열)
 	 * @return Response 응답.
@@ -1105,9 +1105,9 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param CorpNum
 	 *            연동회원 사업자번호
 	 * @param KeyType
-	 *            연동관리번호 종류
+	 *            세금계산서 유형
 	 * @param MgtKey
-	 *            연동관리번호
+	 *            문서번호
 	 * @param FileID
 	 *            파일아이디. (AttachedFile.getAttachedFile() 로 확인된 문자열)
 	 * @param UserID
@@ -1458,7 +1458,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param ForceIssue
 	 * 			지연발행 강제여부
 	 * @param DealInvoiceKey
-	 * 			거래명세서 관리번호, 최대 24자
+	 * 			거래명세서 문서번호, 최대 24자
 	 * @return Response 응답.
 	 * @throws PopbillException
 	 */
@@ -1480,7 +1480,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param ForceIssue
 	 * 			지연발행 강제여부
 	 * @param DealInvoiceKey
-	 * 			거래명세서 관리번호, 최대 24자
+	 * 			거래명세서 문서번호, 최대 24자
 	 * @param EmailSubject
 	 * 			안내메일 제목, 최대 300자
 	 * @param UserID
@@ -1550,11 +1550,11 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param KeyType
 	 * 			발행유형
 	 * @param MgtKey
-	 * 			세금계산서 관리번호
+	 * 			세금계산서 문서번호
 	 * @param SubItemCode
 	 * 			첨부할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
 	 * @param SubMgtKey
-	 * 			첨부할 명세서 관리번호
+	 * 			첨부할 명세서 문서번호
 	 * @return Response.
 	 * @throws PopbillException
 	 */
@@ -1568,11 +1568,11 @@ public interface TaxinvoiceService extends BaseService {
 	 * @param KeyType
 	 * 			발행유형
 	 * @param MgtKey
-	 * 			세금계산서 관리번호
+	 * 			세금계산서 문서번호
 	 * @param SubItemCode
 	 * 			첨부해제할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
 	 * @param SubMgtKey
-	 * 			첨부해제할 명세서 관리번호
+	 * 			첨부해제할 명세서 문서번호
 	 * @return Response.
 	 * @throws PopbillException
 	 */
@@ -1649,32 +1649,32 @@ public interface TaxinvoiceService extends BaseService {
 	public EmailSendConfig[] listEmailConfig(String CorpNum, String UserID) throws PopbillException;
 
 	/**
-	 *  관리번호 할당
+	 *  문서번호 할당
 	 *
 	 * @param corpNum
 	 * 			연동회원 사업자번호
 	 * @param keyType
 	 * 			발행유형
 	 * @param itemKey
-	 * 			세금계산서 아이템키
+	 * 			세금계산서 팝빌번호
 	 * @param mgtKey
-	 * 			세금계산서 관리번호
+	 * 			세금계산서 문서번호
 	 * @return Response.
 	 * @throws PopbillException
 	 */
 	public Response assignMgtKey(String corpNum, MgtKeyType keyType, String itemKey, String mgtKey) throws PopbillException;
 
 	/**
-	 *  관리번호 할당
+	 *  문서번호 할당
 	 *
 	 * @param corpNum
 	 * 			연동회원 사업자번호
 	 * @param keyType
 	 * 			발행유형
 	 * @param itemKey
-	 * 			세금계산서 아이템키
+	 * 			세금계산서 팝빌번호
 	 * @param mgtKey
-	 * 			세금계산서 관리번호
+	 * 			세금계산서 문서번호
 	 * @param userID
 	 * 			팝빌회원 아이디
 	 * @return Response.
@@ -1756,7 +1756,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param KeyType
      * 			발행유형
      * @param MgtKey
-     * 			문서관리번호
+     * 			문서번호
      * @return
      * @throws PopbillException
      */
@@ -1771,7 +1771,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param KeyType
      * 			발행유형
      * @param MgtKey
-     * 			문서관리번호
+     * 			문서번호
      * @param UserID
      * 			연동회원 유저아이디
      * @return
@@ -1786,7 +1786,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param KeyType
      * 			발행유형
      * @param MgtKey
-     * 			문서관리번호
+     * 			문서번호
      * @return
      * @throws PopbillException
      */
@@ -1800,7 +1800,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param KeyType
      * 			발행유형
      * @param MgtKey
-     * 			문서관리번호
+     * 			문서번호
      * @param UserID
      * 			연동회원 유저아이디
      * @return
@@ -1816,7 +1816,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param KeyType
      * 			발행유형
      * @param MgtKey
-     * 			문서관리번호
+     * 			문서번호
      * @return
      * @throws PopbillException
      */
@@ -1830,7 +1830,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param KeyType
      * 			발행유형
      * @param MgtKey
-     * 			문서관리번호
+     * 			문서번호
      * @param UserID
      * 			연동회원 유저아이디
      * @return

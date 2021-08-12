@@ -49,9 +49,9 @@ public class StatementInfo {
 	private String regDT;
 
 	/**
-	 * 팝빌 관리번호 확인
+	 * 팝빌번호 확인
 	 * 
-	 * @return 팝빌 관리번호
+	 * @return 팝빌번호
 	 */
 	public String getItemKey() {
 		return itemKey;
@@ -92,9 +92,9 @@ public class StatementInfo {
 	}
 
 	/**
-	 * 문서관리번호 확인
+	 * 문서번호 확인
 	 * 
-	 * @return 문서관리번호
+	 * @return 문서번호
 	 */
 	public String getMgtKey() {
 		return mgtKey;

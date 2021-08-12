@@ -226,19 +226,19 @@ public class Taxinvoice implements Serializable {
 	}
 
 	/**
-	 * 공급자 연동관리번호 확인
+	 * 공급자 문서번호 확인
 	 * 
-	 * @return 공급자 연동관리번호
+	 * @return 공급자 문서번호
 	 */
 	public String getInvoicerMgtKey() {
 		return invoicerMgtKey;
 	}
 
 	/**
-	 * 공급자 연동관리번호 설정
+	 * 공급자 문서번호 설정
 	 * 
 	 * @param invoicerMgtKey
-	 *            공급자 연동관리번호
+	 *            공급자 문서번호
 	 */
 	public void setInvoicerMgtKey(String invoicerMgtKey) {
 		this.invoicerMgtKey = invoicerMgtKey;
@@ -511,19 +511,19 @@ public class Taxinvoice implements Serializable {
 	}
 
 	/**
-	 * 공급받는자 연동관리번호 확인
+	 * 공급받는자 문서번호 확인
 	 * 
-	 * @return 공급받는자 연동관리번호
+	 * @return 공급받는자 문서번호
 	 */
 	public String getInvoiceeMgtKey() {
 		return invoiceeMgtKey;
 	}
 
 	/**
-	 * 공급받는자 연동관리번호 설정
+	 * 공급받는자 문서번호 설정
 	 * 
 	 * @param invoiceeMgtKey
-	 *            공급받는자 연동관리번호
+	 *            공급받는자 문서번호
 	 */
 	public void setInvoiceeMgtKey(String invoiceeMgtKey) {
 		this.invoiceeMgtKey = invoiceeMgtKey;
@@ -872,19 +872,19 @@ public class Taxinvoice implements Serializable {
 	}
 
 	/**
-	 * 수탁자 연동관리번호 확인
+	 * 수탁자 문서번호 확인
 	 * 
-	 * @return 수탁자 연동관리번호
+	 * @return 수탁자 문서번호
 	 */
 	public String getTrusteeMgtKey() {
 		return trusteeMgtKey;
 	}
 
 	/**
-	 * 수탁자 연동관리번호 설정
+	 * 수탁자 문서번호 설정
 	 * 
 	 * @param trusteeMgtKey
-	 *            수탁자 연동관리번호
+	 *            수탁자 문서번호
 	 */
 	public void setTrusteeMgtKey(String trusteeMgtKey) {
 		this.trusteeMgtKey = trusteeMgtKey;
@@ -1548,10 +1548,10 @@ public class Taxinvoice implements Serializable {
 	}
 
 	/**
-	 * 거래명세서 동시작성시 거래명세서 관리번호 설정 
+	 * 거래명세서 동시작성시 거래명세서 문서번호 설정 
 	 * 
 	 * @param dealInvoiceMgtKey
-	 * 			거래명세서 관리번호 
+	 * 			거래명세서 문서번호 
 	 */
 	public void setDealInvoiceMgtKey(String dealInvoiceMgtKey) {
 		this.dealInvoiceMgtKey = dealInvoiceMgtKey;
@@ -1604,9 +1604,9 @@ public class Taxinvoice implements Serializable {
 	}
 
 	/**
-	 * 거래명세서 동시작성시 거래명세서 관리번호 
+	 * 거래명세서 동시작성시 거래명세서 문서번호 
 	 * 
-	 * @return 거래명세서 관리번호 
+	 * @return 거래명세서 문서번호 
 	 */
 	public String getDealInvoiceMgtKey() {
 		return dealInvoiceMgtKey;

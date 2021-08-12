@@ -68,9 +68,9 @@ public class TaxinvoiceInfo {
 	private boolean interOPYN;
 
 	/**
-	 * 팝빌 관리번호 확인
+	 * 팝빌번호 확인
 	 * 
-	 * @return 팝빌 관리번호
+	 * @return 팝빌번호
 	 */
 	public String getItemKey() {
 		return itemKey;

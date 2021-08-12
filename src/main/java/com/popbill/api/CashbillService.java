@@ -65,11 +65,11 @@ public interface CashbillService extends BaseService{
 			throws PopbillException;
 
 	/**
-	 * 문서관리번호 사용여부 확인
+	 * 문서번호 사용여부 확인
 	 * @param Corpnum
 	 * 			연동회원 사업자번호
 	 * @param MgtKey
-	 * 			문서관리번호
+	 * 			문서번호
 	 * @return 사용여부, true - 사용중 / false - 미사용
 	 * @throws PopbillException
 	 */
@@ -107,7 +107,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			팝빌 연동회원 사업자번호
 	 * @param mgtKey
-	 * 			취소현금영수증 문서관리번호
+	 * 			취소현금영수증 문서번호
 	 * @param orgConfirmNum
 	 * 			원본현금영수증 승인번호
 	 * @param orgTradeDate
@@ -123,7 +123,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			팝빌 연동회원 사업자번호
 	 * @param mgtKey
-	 * 			취소현금영수증 문서관리번호
+	 * 			취소현금영수증 문서번호
 	 * @param orgConfirmNum
 	 * 			원본현금영수증 승인번호
 	 * @param orgTradeDate
@@ -141,7 +141,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			팝빌연동회원 사업자번호
 	 * @param mgtKey
-	 * 			취소현금영수증 문서관리번호
+	 * 			취소현금영수증 문서
 	 * @param orgConfirmNum
 	 * 			원본현금영수증 승인번호
 	 * @param orgTradeDate
@@ -161,7 +161,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			팝빌연동회원 사업자번호
 	 * @param mgtKey
-	 * 			취소현금영수증 문서관리번호
+	 * 			취소현금영수증 문서번호
 	 * @param orgConfirmNum
 	 * 			원본현금영수증 승인번호
 	 * @param orgTradeDate
@@ -192,7 +192,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			팝빌연동회원 사업자번호
 	 * @param mgtKey
-	 * 			취소현금영수증 문서관리번호
+	 * 			취소현금영수증 문서
 	 * @param orgConfirmNum
 	 * 			원본현금영수증 승인번호
 	 * @param orgTradeDate
@@ -226,7 +226,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			팝빌연동회원 사업자번호
 	 * @param mgtKey
-	 * 			취소현금영수증 문서관리번호
+	 * 			취소현금영수증 문서번호
 	 * @param orgConfirmNum
 	 * 			원본현금영수증 승인번호
 	 * @param orgTradeDate
@@ -243,7 +243,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			팝빌연동회원 사업자번호
 	 * @param mgtKey
-	 * 			취소현금영수증 문서관리번호
+	 * 			취소현금영수증 문서번호
 	 * @param orgConfirmNum
 	 * 			원본현금영수증 승인번호
 	 * @param orgTradeDate
@@ -262,7 +262,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			팝빌연동회원 사업자번호
 	 * @param mgtKey
-	 * 			취소현금영수증 문서관리번호
+	 * 			취소현금영수증 문서번호
 	 * @param orgConfirmNum
 	 * 			원본현금영수증 승인번호
 	 * @param orgTradeDate
@@ -283,7 +283,7 @@ public interface CashbillService extends BaseService{
 	 * @param CorpNum
 	 * 			팝빌연동회원 사업자번호
 	 * @param mgtKey
-	 * 			취소현금영수증 문서관리번호
+	 * 			취소현금영수증 문서번호
 	 * @param orgConfirmNum
 	 * 			원본현금영수증 승인번호
 	 * @param orgTradeDate
