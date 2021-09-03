@@ -56,9 +56,12 @@ public abstract class BaseServiceImp implements BaseService {
 
 	private static final String ServiceID_REAL = "POPBILL";
 	private static final String ServiceID_TEST = "POPBILL_TEST";
+	private static final String Auth_Static_URL = "https://static-auth.linkhub.co.kr";
 	private static final String Auth_GA_URL= "https://ga-auth.linkhub.co.kr";
 	private static final String ServiceURL_REAL = "https://popbill.linkhub.co.kr";
 	private static final String ServiceURL_TEST = "https://popbill-test.linkhub.co.kr";
+	private static final String ServiceURL_Static_REAL = "https://static-popbill.linkhub.co.kr";
+	private static final String ServiceURL_Static_TEST = "https://static-popbill-test.linkhub.co.kr";
 	private static final String ServiceURL_GA_REAL = "https://ga-popbill.linkhub.co.kr";
 	private static final String ServiceURL_GA_TEST = "https://ga-popbill-test.linkhub.co.kr";
 	private final String APIVersion = "1.0";
@@ -73,6 +76,7 @@ public abstract class BaseServiceImp implements BaseService {
 	private boolean isTest;
 	private boolean isIPRestrictOnOff;
 	private boolean useStaticIP;
+	private boolean useGAIP;
 	private boolean useLocalTimeYN;
 	private String linkID;
 	private String secretKey;
@@ -86,6 +90,7 @@ public abstract class BaseServiceImp implements BaseService {
 	public BaseServiceImp() {
 		isIPRestrictOnOff = true;
 		useStaticIP = false;
+		useGAIP = false;
 		useLocalTimeYN = true;
 	}
 
@@ -109,7 +114,10 @@ public abstract class BaseServiceImp implements BaseService {
 	public boolean isUseLocalTimeYN() {
 		return useLocalTimeYN;
 	}
-		
+	
+	public boolean isUseGAIP() {
+		return useGAIP;
+	}
 	/**
 	 * 테스트 모드 설정.
 	 * 
@@ -132,6 +140,10 @@ public abstract class BaseServiceImp implements BaseService {
 	
 	public void setUseStaticIP(boolean useStaticIP) {
 		this.useStaticIP = useStaticIP;
+	}
+	
+	public void setUseGAIP(boolean useGAIP) {
+		this.useGAIP = useGAIP;
 	}
 	
 	/**
@@ -217,8 +229,10 @@ public abstract class BaseServiceImp implements BaseService {
 		}
 		
 		// ServiceURL null 인경우 useStaticIP 체크
-		if(useStaticIP) {
+		if(useGAIP) {
 			return isTest ? ServiceURL_GA_TEST : ServiceURL_GA_REAL;
+		} else if(useStaticIP) {
+			return isTest ? ServiceURL_Static_TEST : ServiceURL_Static_REAL;
 		} else {
 			return isTest ? ServiceURL_TEST : ServiceURL_REAL;
 		}
@@ -235,11 +249,12 @@ public abstract class BaseServiceImp implements BaseService {
 			if(AuthURL != null) {
 				tokenBuilder.setServiceURL(AuthURL);
 			} else {
-				// AuthURL 이 null이고, useStaticIP 가 True인 경우. GA-AUTH 호출.
-				if(useStaticIP) {
+				// AuthURL 이 null이고, useGAIP 가 true일때. ga-auth 호출.
+				if (useGAIP) {
 					tokenBuilder.setServiceURL(Auth_GA_URL);
+				} else if(useStaticIP) { 
+					tokenBuilder.setServiceURL(Auth_Static_URL);
 				}
-				
 			}
 			
 			if(ProxyIP != null && ProxyPort != null) {

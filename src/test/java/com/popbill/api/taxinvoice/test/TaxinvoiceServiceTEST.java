@@ -45,9 +45,9 @@ public class TaxinvoiceServiceTEST {
 		service.setLinkID(testLinkID);
 		service.setSecretKey(testSecretKey);
 		service.setTest(true);
-		service.setUseStaticIP(false);
+
 		service.setUseLocalTimeYN(false);
-		
+		service.setUseGAIP(true);
 		taxinvoiceService = service;
 	}
 	
