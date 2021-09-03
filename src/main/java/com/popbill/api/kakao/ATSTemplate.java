@@ -25,6 +25,8 @@ public class ATSTemplate implements Serializable{
 	private String templateName;
 	private String template;
 	private String plusFriendID;
+	private String ads;
+	private String appendix;
 	private List<KakaoButton> btns;
 	
 	public String getTemplateCode() {
@@ -50,6 +52,18 @@ public class ATSTemplate implements Serializable{
 	}
 	public void setPlusFriendID(String plusFriendID) {
 		this.plusFriendID = plusFriendID;
+	}
+	public String getAds() {
+		return ads;
+	}
+	public void setAds(String ads) {
+		this.ads = ads;
+	}
+	public String getAppendix() {
+		return appendix;
+	}
+	public void setAppendix(String appendix) {
+		this.appendix = appendix;
 	}
 	public List<KakaoButton> getBtns() {
 		return btns;

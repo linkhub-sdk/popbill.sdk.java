@@ -100,6 +100,8 @@ public class KakaoServiceTest {
 			System.out.println(templateList[i].getTemplateName());
 			System.out.println(templateList[i].getTemplate());
 			System.out.println(templateList[i].getPlusFriendID());
+			System.out.println(templateList[i].getAds());
+			System.out.println(templateList[i].getAppendix());
 		}
 	}
 	
@@ -1782,7 +1784,7 @@ public class KakaoServiceTest {
 	@Test
 	public void getATSTemplate_TEST() throws PopbillException {
 		
-		ATSTemplate templateInfo = kakaoService.getATSTemplate("1234567890", "018030000066");
+		ATSTemplate templateInfo = kakaoService.getATSTemplate("1234567890", "020120000476");
 		
 		assertNotNull(templateInfo);
 		
@@ -1790,6 +1792,8 @@ public class KakaoServiceTest {
 		System.out.println(templateInfo.getTemplateCode());
 		System.out.println(templateInfo.getTemplateName());
 		System.out.println(templateInfo.getTemplate());
+		System.out.println(templateInfo.getAds());
+		System.out.println(templateInfo.getAppendix());
 		System.out.println(templateInfo.getBtns().size());
 		
 	}
