@@ -1238,7 +1238,7 @@ public class FaxServiceTEST {
 	
 	@Test
 	public void getFaxResult_TEST() throws PopbillException {
-		String receiptNum = "018091311225700001";
+		String receiptNum = "021091715443100001";
 		FaxResult[] messages = faxService.getFaxResult("1234567890", receiptNum);
 		
 		assertNotNull(messages);
@@ -1265,7 +1265,9 @@ public class FaxServiceTEST {
 			System.out.println(messages[i].getState()); 
 			System.out.println(messages[i].getResult()); 
 			System.out.println(messages[i].getReceiptNum()); 
-			System.out.println(messages[i].getRequestNum()); 
+			System.out.println(messages[i].getRequestNum());
+			System.out.println(messages[i].getiSuccessPageCnt());
+			System.out.println(messages[i].getReceiveNumType());
 			System.out.println("getChargePageCnt :"+ messages[i].getChargePageCnt());
 			System.out.println("getTifFileSize : "+ messages[i].getTiffFileSize());
 
@@ -1375,11 +1377,11 @@ public class FaxServiceTEST {
 	
 	@Test
 	public void search_TEST() throws PopbillException{
-		String SDate = "20180910";
-		String EDate = "20180914";
+		String SDate = "20210917";
+		String EDate = "20210924";
 		String[] State = {"1","2","3","4"};
-		Boolean ReserveYN = true;
-		Boolean SenderOnlyYN = true;
+		Boolean ReserveYN = false;
+		Boolean SenderOnlyYN = false;
 		int Page = 1;
 		int PerPage = 50;
 		String Order = "D";
@@ -1387,7 +1389,7 @@ public class FaxServiceTEST {
 		FAXSearchResult response = faxService.search("1234567890", SDate, EDate, State, ReserveYN, SenderOnlyYN, Page, PerPage, Order, QString);
 		
 		assertNotNull(response);
-		System.out.println(response);
+		System.out.println(response.getList().get(0).getReceiveNumType());
 	}
 	
 	@Test

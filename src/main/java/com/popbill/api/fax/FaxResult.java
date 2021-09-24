@@ -45,6 +45,8 @@ public class FaxResult {
 	private String requestNum;
 	private Integer chargePageCnt;
 	private String tiffFileSize;
+	private Integer iSuccessPageCnt;
+	private String receiveNumType;
 
 	/**
 	 * 전송상태 확인 0 : 접수 1 : 업로드중 2 : 전송중 3 : 완료 4 : 실패 (DB항목 오류) 5 : 실패 (전송중 오류) 6
@@ -265,4 +267,23 @@ public class FaxResult {
 	public String getTiffFileSize() {
 		return tiffFileSize;
 	}
+
+	/**
+	 * 지능망 성공장수
+	 * - v1.37.0 추가
+	 * @return 지능망 성공장수
+	 */
+	public Integer getiSuccessPageCnt() {
+		return iSuccessPageCnt;
+	}
+	/**
+	 * 수신번호 유형
+	 * - v1.37.0 추가
+	 * @return 수신번호 유형
+	 */
+	public String getReceiveNumType() {
+		return receiveNumType;
+	}
+	
+	
 }
