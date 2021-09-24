@@ -53,15 +53,27 @@ public class ATSTemplate implements Serializable{
 	public void setPlusFriendID(String plusFriendID) {
 		this.plusFriendID = plusFriendID;
 	}
+	/**
+	 * v1.37.0 추가
+	 */
 	public String getAds() {
 		return ads;
 	}
+	/**
+	 * v1.37.0 추가
+	 */
 	public void setAds(String ads) {
 		this.ads = ads;
 	}
+	/**
+	 * v1.37.0 추가
+	 */
 	public String getAppendix() {
 		return appendix;
 	}
+	/**
+	 * v1.37.0 추가
+	 */
 	public void setAppendix(String appendix) {
 		this.appendix = appendix;
 	}

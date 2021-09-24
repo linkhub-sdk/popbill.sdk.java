@@ -115,6 +115,9 @@ public abstract class BaseServiceImp implements BaseService {
 		return useLocalTimeYN;
 	}
 	
+	/**
+	 * v1.37.0  추가
+	 */
 	public boolean isUseGAIP() {
 		return useGAIP;
 	}
@@ -137,11 +140,13 @@ public abstract class BaseServiceImp implements BaseService {
 		this.isIPRestrictOnOff = isIPRestrictOnOff;
 	}
 	
-	
 	public void setUseStaticIP(boolean useStaticIP) {
 		this.useStaticIP = useStaticIP;
 	}
 	
+	/**
+	 * v1.37.0  추가
+	 */
 	public void setUseGAIP(boolean useGAIP) {
 		this.useGAIP = useGAIP;
 	}
