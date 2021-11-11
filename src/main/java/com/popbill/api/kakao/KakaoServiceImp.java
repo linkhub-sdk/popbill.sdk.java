@@ -3,6 +3,7 @@ package com.popbill.api.kakao;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -480,6 +481,13 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
 		ReceiptResponse response = httppostFiles("/FMS", CorpNum,
 				postData, uploadFiles, UserID, ReceiptResponse.class);
+		
+        for(UploadFile f : uploadFiles) {
+            if(f.fileData != null)
+                try {
+                    f.fileData.close();
+                } catch (IOException e) {}
+        }
 
 		return response.receiptNum;
 	}
