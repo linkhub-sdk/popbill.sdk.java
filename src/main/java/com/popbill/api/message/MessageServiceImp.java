@@ -17,7 +17,6 @@ package com.popbill.api.message;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -832,11 +831,6 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 
         ReceiptResponse response = httppostFiles("/MMS", CorpNum,
                 PostData, uploadFiles, UserID, ReceiptResponse.class);
-        
-        if (uf.fileData != null)
-            try {
-                uf.fileData.close();
-            } catch (IOException e) {}
 
         return response.receiptNum;
     }
@@ -969,11 +963,6 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 
         ReceiptResponse response = httppostFiles("/MMS", CorpNum,
                 PostData, uploadFiles, UserID, ReceiptResponse.class);
-        
-        if (uf.fileData != null)
-            try {
-                uf.fileData.close();
-            } catch (IOException e) {}
 
         return response.receiptNum;
     }
