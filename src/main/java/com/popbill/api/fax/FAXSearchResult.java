@@ -24,78 +24,78 @@ import java.util.List;
  * @version 1.0.0
  */
 
-public class FAXSearchResult implements Serializable{
-	private static final long serialVersionUID = 5237615431260290014L;
-	
-	private String code;
-	private String total;
-	private String perPage;
-	private String pageNum;
-	private String pageCount;
-	private String message;
-	
-	private List<FaxResult> list;
+public class FAXSearchResult implements Serializable {
+    private static final long serialVersionUID = 5237615431260290014L;
 
-	/**
-	 * 응답코드 확인 
-	 * 
-	 * @return 응답코드 
-	 */
-	public String getCode() {
-		return code;
-	}
+    private String code;
+    private String total;
+    private String perPage;
+    private String pageNum;
+    private String pageCount;
+    private String message;
 
-	/**
-	 * 전체 검색개수 확인 
-	 * 
-	 * @return 전체 검색개수 
-	 */
-	public String getTotal() {
-		return total;
-	}
+    private List<FaxResult> list;
 
-	/**
-	 * 페이지당 목록개수 확인 
-	 * 
-	 * @return 페이지당 목록개수 
-	 */
-	public String getPerPage() {
-		return perPage;
-	}
+    /**
+     * 응답코드 확인
+     * 
+     * @return 응답코드
+     */
+    public String getCode() {
+        return code;
+    }
 
-	/**
-	 * 페이지번호 확인 
-	 * 
-	 * @return 페이지번호 
-	 */
-	public String getPageNum() {
-		return pageNum;
-	}
+    /**
+     * 전체 검색개수 확인
+     * 
+     * @return 전체 검색개수
+     */
+    public String getTotal() {
+        return total;
+    }
 
-	/**
-	 * 전체 페이지수 확인 
-	 * 
-	 * @return 전체 페이지수 
-	 */
-	public String getPageCount() {
-		return pageCount;
-	}
+    /**
+     * 페이지당 목록개수 확인
+     * 
+     * @return 페이지당 목록개수
+     */
+    public String getPerPage() {
+        return perPage;
+    }
 
-	/**
-	 * 응답메시지 확인 
-	 * 
-	 * @return 응답메시지 
-	 */
-	public String getMessage() {
-		return message;
-	}
+    /**
+     * 페이지번호 확인
+     * 
+     * @return 페이지번호
+     */
+    public String getPageNum() {
+        return pageNum;
+    }
 
-	/**
-	 * 팩스전송내역 리스트 확인 
-	 * 
-	 * @return 팩스전송내역 리스트 
-	 */
-	public List<FaxResult> getList() {
-		return list;
-	}
+    /**
+     * 전체 페이지수 확인
+     * 
+     * @return 전체 페이지수
+     */
+    public String getPageCount() {
+        return pageCount;
+    }
+
+    /**
+     * 응답메시지 확인
+     * 
+     * @return 응답메시지
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * 팩스전송내역 리스트 확인
+     * 
+     * @return 팩스전송내역 리스트
+     */
+    public List<FaxResult> getList() {
+        return list;
+    }
 }

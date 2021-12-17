@@ -22,248 +22,248 @@ package com.popbill.api.statement;
  * @version 1.0.0
  */
 public class StatementInfo {
-	private String itemKey;
-	private Integer itemCode;
-	private String invoiceNum;
-	private String mgtKey;
-	
-	private int stateCode;
-	private String taxType;
-	private String purposeType;
-	
-	private String writeDate;
-	private String senderCorpName;
-	private String senderCorpNum;
-	private boolean senderPrintYN;
-	private String receiverCorpName;
-	private String receiverCorpNum;
-	private boolean receiverPrintYN;
-	
-	private String supplyCostTotal;
-	private String taxTotal;
-	private String issueDT;
-	private String stateDT;
-	private boolean openYN;
-	private String openDT;
-	private String stateMemo;
-	private String regDT;
+    private String itemKey;
+    private Integer itemCode;
+    private String invoiceNum;
+    private String mgtKey;
 
-	/**
-	 * 팝빌번호 확인
-	 * 
-	 * @return 팝빌번호
-	 */
-	public String getItemKey() {
-		return itemKey;
-	}
+    private int stateCode;
+    private String taxType;
+    private String purposeType;
 
-	/**
-	 * 명세서 코드 확인
-	 * 
-	 * 121 : 거래명세서
-	 * 122 : 청구서
-	 * 123 : 견적서
-	 * 124 : 발주서
-	 * 125 : 입금표
-	 * 126 : 영수증
-	 * 
-	 * @return 명세서 코드
-	 */
-	public Integer getItemCode() {
-		return itemCode;
-	}
+    private String writeDate;
+    private String senderCorpName;
+    private String senderCorpNum;
+    private boolean senderPrintYN;
+    private String receiverCorpName;
+    private String receiverCorpNum;
+    private boolean receiverPrintYN;
 
-	/**
-	 * 명세서 코드 설정
-	 * 
-	 * 121 : 거래명세서
-	 * 122 : 청구서
-	 * 123 : 견적서
-	 * 124 : 발주서
-	 * 125 : 입금표
-	 * 126 : 영수증
-	 * 
-	 * @param itemCode
-	 * 		    명세서 코드
-	 */
+    private String supplyCostTotal;
+    private String taxTotal;
+    private String issueDT;
+    private String stateDT;
+    private boolean openYN;
+    private String openDT;
+    private String stateMemo;
+    private String regDT;
 
-	public String getInvoiceNum() {
-		return invoiceNum;
-	}
+    /**
+     * 팝빌번호 확인
+     * 
+     * @return 팝빌번호
+     */
+    public String getItemKey() {
+        return itemKey;
+    }
 
-	/**
-	 * 문서번호 확인
-	 * 
-	 * @return 문서번호
-	 */
-	public String getMgtKey() {
-		return mgtKey;
-	}
+    /**
+     * 명세서 코드 확인
+     * 
+     * 121 : 거래명세서
+     * 122 : 청구서
+     * 123 : 견적서
+     * 124 : 발주서
+     * 125 : 입금표
+     * 126 : 영수증
+     * 
+     * @return 명세서 코드
+     */
+    public Integer getItemCode() {
+        return itemCode;
+    }
 
+    /**
+     * 명세서 코드 설정
+     * 
+     * 121 : 거래명세서
+     * 122 : 청구서
+     * 123 : 견적서
+     * 124 : 발주서
+     * 125 : 입금표
+     * 126 : 영수증
+     * 
+     * @param itemCode
+     *                 명세서 코드
+     */
 
-	/**
-	 * 문서 상태코드 확인
-	 * 
-	 * @return 문서상태코드
-	 */
-	public int getStateCode() {
-		return stateCode;
-	}
+    public String getInvoiceNum() {
+        return invoiceNum;
+    }
 
-	/**
-	 * 세금형태 확인
-	 * 
-	 * @return 세금형태
-	 */
-	public String getTaxType() {
-		return taxType;
-	}
+    /**
+     * 문서번호 확인
+     * 
+     * @return 문서번호
+     */
+    public String getMgtKey() {
+        return mgtKey;
+    }
 
-	/**
-	 *  영수/청구 확인
-	 *  
-	 * @return 영수/청구
-	 */
-	public String getPurposeType() {
-		return purposeType;
-	}
-	
-	/**
-	 * 작성일자 확인
-	 * 
-	 * @return 작성일자
-	 */
-	public String getWriteDate() {
-		return writeDate;
-	}
+    /**
+     * 문서 상태코드 확인
+     * 
+     * @return 문서상태코드
+     */
+    public int getStateCode() {
+        return stateCode;
+    }
 
-	/**
-	 * 발신자 상호 확인
-	 * 
-	 * @return 발신자 상호
-	 */
-	public String getSenderCorpName() {
-		return senderCorpName;
-	}
+    /**
+     * 세금형태 확인
+     * 
+     * @return 세금형태
+     */
+    public String getTaxType() {
+        return taxType;
+    }
 
-	
-	/**
-	 * 발신자 사업자 등록번호 확인
-	 * 
-	 * @return 발신자 사업자 등록번호
-	 */
+    /**
+     * 영수/청구 확인
+     * 
+     * @return 영수/청구
+     */
+    public String getPurposeType() {
+        return purposeType;
+    }
 
-	public String getSenderCorpNum() {
-		return senderCorpNum;
-	}
+    /**
+     * 작성일자 확인
+     * 
+     * @return 작성일자
+     */
+    public String getWriteDate() {
+        return writeDate;
+    }
 
+    /**
+     * 발신자 상호 확인
+     * 
+     * @return 발신자 상호
+     */
+    public String getSenderCorpName() {
+        return senderCorpName;
+    }
 
-	/**
-	 *  수신자 상호명 확인
-	 *  
-	 * @return 수신자 상호 
-	 */
+    /**
+     * 발신자 사업자 등록번호 확인
+     * 
+     * @return 발신자 사업자 등록번호
+     */
 
-	public String getReceiverCorpName() {
-		return receiverCorpName;
-	}
+    public String getSenderCorpNum() {
+        return senderCorpNum;
+    }
 
-	/**
-	 * 수신자 사업자 등록번호 확인 
-	 * 
-	 * @return 수신자 사업자 등록번호 확인
-	 */
+    /**
+     * 수신자 상호명 확인
+     * 
+     * @return 수신자 상호
+     */
 
-	public String getReceiverCorpNum() {
-		return receiverCorpNum;
-	}
+    public String getReceiverCorpName() {
+        return receiverCorpName;
+    }
 
-	/**
-	 * 공급가액 합계 확인
-	 * 
-	 * @return 공급가액 합계
-	 */
+    /**
+     * 수신자 사업자 등록번호 확인
+     * 
+     * @return 수신자 사업자 등록번호 확인
+     */
 
-	public String getSupplyCostTotal() {
-		return supplyCostTotal;
-	}
-	
-	/**
-	 * 세액 합계 확인
-	 * 
-	 * @return 세액합계
-	 */
-	public String getTaxTotal() {
-		return taxTotal;
-	}
-	/**
-	 *  발행일시 확인
-	 *  
-	 * @return 발행일시
-	 */
-	public String getIssueDT() {
-		return issueDT;
-	}
+    public String getReceiverCorpNum() {
+        return receiverCorpNum;
+    }
 
-	/**
-	 * 문서 상태코드 확인
-	 * 
-	 * @return 문서 상태코드
-	 */
-	public String getStateDT() {
-		return stateDT;
-	}
+    /**
+     * 공급가액 합계 확인
+     * 
+     * @return 공급가액 합계
+     */
 
-	/**
-	 * 개봉여부 확인
-	 * @return 개봉여부 
-	 */
-	public boolean isOpenYN() {
-		return openYN;
-	}
-	/**
-	 * 개봉일시 확인
-	 * 
-	 * @return 개봉일시
-	 */
-	public String getOpenDT() {
-		return openDT;
-	}
-	/**
-	 * 상태메모 확인
-	 * 
-	 * @return 상태메모
-	 */
-	public String getStateMemo() {
-		return stateMemo;
-	}
+    public String getSupplyCostTotal() {
+        return supplyCostTotal;
+    }
 
+    /**
+     * 세액 합계 확인
+     * 
+     * @return 세액합계
+     */
+    public String getTaxTotal() {
+        return taxTotal;
+    }
 
-	/**
-	 * 등록일시 확인
-	 * 
-	 * @return 등록일시
-	 *
-	 */
-	public String getRegDT() {
-		return regDT;
-	}
+    /**
+     * 발행일시 확인
+     * 
+     * @return 발행일시
+     */
+    public String getIssueDT() {
+        return issueDT;
+    }
 
-	/**
-	 * 발신자 인쇄여부 확인 
-	 * 
-	 * @return 발신자 인쇄여부 
-	 */
-	public boolean isSenderPrintYN() {
-		return senderPrintYN;
-	}
+    /**
+     * 문서 상태코드 확인
+     * 
+     * @return 문서 상태코드
+     */
+    public String getStateDT() {
+        return stateDT;
+    }
 
-	/**
-	 * 수신자 인쇄여부 확인 
-	 * 
-	 * @return 수신자 인쇄여부 
-	 */
-	public boolean isReceiverPrintYN() {
-		return receiverPrintYN;
-	}
+    /**
+     * 개봉여부 확인
+     * 
+     * @return 개봉여부
+     */
+    public boolean isOpenYN() {
+        return openYN;
+    }
+
+    /**
+     * 개봉일시 확인
+     * 
+     * @return 개봉일시
+     */
+    public String getOpenDT() {
+        return openDT;
+    }
+
+    /**
+     * 상태메모 확인
+     * 
+     * @return 상태메모
+     */
+    public String getStateMemo() {
+        return stateMemo;
+    }
+
+    /**
+     * 등록일시 확인
+     * 
+     * @return 등록일시
+     *
+     */
+    public String getRegDT() {
+        return regDT;
+    }
+
+    /**
+     * 발신자 인쇄여부 확인
+     * 
+     * @return 발신자 인쇄여부
+     */
+    public boolean isSenderPrintYN() {
+        return senderPrintYN;
+    }
+
+    /**
+     * 수신자 인쇄여부 확인
+     * 
+     * @return 수신자 인쇄여부
+     */
+    public boolean isReceiverPrintYN() {
+        return receiverPrintYN;
+    }
 }

@@ -23,32 +23,36 @@ import java.io.Serializable;
  * @version 1.0.0
  */
 
-public class PlusFriendID implements Serializable{
-	
-	private static final long serialVersionUID = 3199331662598320029L;
-	
-	private String plusFriendID;
-	private String plusFriendName;
-	private String regDT;
-	
-	public String getPlusFriendID() {
-		return plusFriendID;
-	}
-	public void setPlusFriendID(String plusFriendID) {
-		this.plusFriendID = plusFriendID;
-	}
-	public String getPlusFriendName() {
-		return plusFriendName;
-	}
-	public void setPlusFriendName(String plusFriendName) {
-		this.plusFriendName = plusFriendName;
-	}
-	public String getRegDT() {
-		return regDT;
-	}
-	public void setRegDT(String regDT) {
-		this.regDT = regDT;
-	}
-	
+public class PlusFriendID implements Serializable {
+
+    private static final long serialVersionUID = 3199331662598320029L;
+
+    private String plusFriendID;
+    private String plusFriendName;
+    private String regDT;
+
+    public String getPlusFriendID() {
+        return plusFriendID;
+    }
+
+    public void setPlusFriendID(String plusFriendID) {
+        this.plusFriendID = plusFriendID;
+    }
+
+    public String getPlusFriendName() {
+        return plusFriendName;
+    }
+
+    public void setPlusFriendName(String plusFriendName) {
+        this.plusFriendName = plusFriendName;
+    }
+
+    public String getRegDT() {
+        return regDT;
+    }
+
+    public void setRegDT(String regDT) {
+        this.regDT = regDT;
+    }
 
 }

@@ -25,78 +25,78 @@ import java.util.List;
  */
 public class MSGSearchResult implements Serializable {
 
-	private static final long serialVersionUID = 2108299769673244915L;
-	
-	private String code;
-	private String total;
-	private String perPage;
-	private String pageNum;
-	private String pageCount;
-	private String message;
-		
-	private List<SentMessage> list;
+    private static final long serialVersionUID = 2108299769673244915L;
 
-	/**
-	 * 응답코드 확인 
-	 * 
-	 * @return 응답코드 
-	 */
-	public String getCode() {
-		return code;
-	}
+    private String code;
+    private String total;
+    private String perPage;
+    private String pageNum;
+    private String pageCount;
+    private String message;
 
-	/**
-	 * 전체 검색개수 확인 
-	 * 
-	 * @return 전체 검색개수 
-	 */
-	public String getTotal() {
-		return total;
-	}
+    private List<SentMessage> list;
 
-	/**
-	 * 페이지당 목록개수 확인 
-	 * 
-	 * @return 페이지당 목록개수 
-	 */
-	public String getPerPage() {
-		return perPage;
-	}
+    /**
+     * 응답코드 확인
+     * 
+     * @return 응답코드
+     */
+    public String getCode() {
+        return code;
+    }
 
-	/**
-	 * 페이지번호 확인 
-	 * 
-	 * @return 페이지 번호 
-	 */
-	public String getPageNum() {
-		return pageNum;
-	}
+    /**
+     * 전체 검색개수 확인
+     * 
+     * @return 전체 검색개수
+     */
+    public String getTotal() {
+        return total;
+    }
 
-	/**
-	 * 페이지개수 확인 
-	 * @return 페이지개수 
-	 */
-	public String getPageCount() {
-		return pageCount;
-	}
+    /**
+     * 페이지당 목록개수 확인
+     * 
+     * @return 페이지당 목록개수
+     */
+    public String getPerPage() {
+        return perPage;
+    }
 
-	/**
-	 * 응답메시지 확인 
-	 * 
-	 * @return 응답메시지 
-	 */
-	public String getMessage() {
-		return message;
-	}
+    /**
+     * 페이지번호 확인
+     * 
+     * @return 페이지 번호
+     */
+    public String getPageNum() {
+        return pageNum;
+    }
 
-	/**
-	 * 문자전송내역 목록 확인 
-	 * 
-	 * @return 문자전송내역 목록 
-	 */
-	public List<SentMessage> getList() {
-		return list;
-	}
+    /**
+     * 페이지개수 확인
+     * 
+     * @return 페이지개수
+     */
+    public String getPageCount() {
+        return pageCount;
+    }
 
+    /**
+     * 응답메시지 확인
+     * 
+     * @return 응답메시지
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * 문자전송내역 목록 확인
+     * 
+     * @return 문자전송내역 목록
+     */
+    public List<SentMessage> getList() {
+        return list;
+    }
 
 }

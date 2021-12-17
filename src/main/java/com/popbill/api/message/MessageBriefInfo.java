@@ -10,52 +10,51 @@ import java.io.Serializable;
  */
 public class MessageBriefInfo implements Serializable {
 
-	private static final long serialVersionUID = -5880243217009063354L;
-	
-	private String sn;
-	private String rNum;
-	private String stat;
-	private String sDT;
-	private String rDT;
-	private String rlt;
-	private String net;
-	private String srt;
-	
-	public String getSn() {
-		return sn;
-	}
+    private static final long serialVersionUID = -5880243217009063354L;
 
-	public String getrNum() {
-		return rNum;
-	}
+    private String sn;
+    private String rNum;
+    private String stat;
+    private String sDT;
+    private String rDT;
+    private String rlt;
+    private String net;
+    private String srt;
 
-	public String getStat() {
-		return stat;
-	}
+    public String getSn() {
+        return sn;
+    }
 
-	public String getsDT() {
-		return sDT;
-	}
+    public String getrNum() {
+        return rNum;
+    }
 
-	public String getrDT() {
-		return rDT;
-	}
+    public String getStat() {
+        return stat;
+    }
 
-	public String getRlt() {
-		return rlt;
-	}
+    public String getsDT() {
+        return sDT;
+    }
 
-	public String getNet() {
-		return net;
-	}
+    public String getrDT() {
+        return rDT;
+    }
 
-	public String getSrt() {
-		return srt;
-	}
+    public String getRlt() {
+        return rlt;
+    }
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+    public String getNet() {
+        return net;
+    }
 
+    public String getSrt() {
+        return srt;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
 
 }

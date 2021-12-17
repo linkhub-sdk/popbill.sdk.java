@@ -22,16 +22,16 @@ package com.popbill.api.hometax;
  * @version 1.0.0
  */
 public enum QueryType {
-	/**
-	 * 매출
-	 */
-	SELL,
-	/**
-	 * 매입
-	 */
-	BUY,
-	/**
-	 * 수탁
-	 */
-	TRUSTEE
+    /**
+     * 매출
+     */
+    SELL,
+    /**
+     * 매입
+     */
+    BUY,
+    /**
+     * 수탁
+     */
+    TRUSTEE
 }

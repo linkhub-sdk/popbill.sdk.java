@@ -21,16 +21,16 @@ package com.popbill.api.taxinvoice;
  * @version 1.0.0
  */
 public enum MgtKeyType {
-	/**
-	 * 매출
-	 */
-	SELL,
-	/**
-	 * 매입
-	 */
-	BUY,
-	/**
-	 * 수탁
-	 */
-	TRUSTEE
+    /**
+     * 매출
+     */
+    SELL,
+    /**
+     * 매입
+     */
+    BUY,
+    /**
+     * 수탁
+     */
+    TRUSTEE
 }

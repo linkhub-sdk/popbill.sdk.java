@@ -5,75 +5,74 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-public class KakaoReceiver implements Serializable{
+public class KakaoReceiver implements Serializable {
 
-	private static final long serialVersionUID = 1185486427910449441L;
-	
-	@SerializedName("rcv")
-	private String receiverNum;
-	
-	@SerializedName("rcvnm")
-	private String receiverName;
-	
-	@SerializedName("msg")
-	private String message;
-	
-	@SerializedName("altmsg")
-	private String altMessage;
-	
-	@SerializedName("btns")
-	private List<KakaoButton> btns;
-	
-	@SerializedName("interOPRefKey")
-	private String interOPRefKey;
-	
-	public String getReceiverNum() {
-		return receiverNum;
-	}
+    private static final long serialVersionUID = 1185486427910449441L;
 
-	public void setReceiverNum(String receiverNum) {
-		this.receiverNum = receiverNum;
-	}
+    @SerializedName("rcv")
+    private String receiverNum;
 
-	public String getReceiverName() {
-		return receiverName;
-	}
+    @SerializedName("rcvnm")
+    private String receiverName;
 
-	public void setReceiverName(String receiverName) {
-		this.receiverName = receiverName;
-	}
+    @SerializedName("msg")
+    private String message;
 
-	public String getMessage() {
-		return message;
-	}
+    @SerializedName("altmsg")
+    private String altMessage;
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    @SerializedName("btns")
+    private List<KakaoButton> btns;
 
-	public String getAltMessage() {
-		return altMessage;
-	}
+    @SerializedName("interOPRefKey")
+    private String interOPRefKey;
 
-	public void setAltMessage(String altMessage) {
-		this.altMessage = altMessage;
-	}
+    public String getReceiverNum() {
+        return receiverNum;
+    }
 
-	public List<KakaoButton> getBtns() {
-		return btns;
-	}
+    public void setReceiverNum(String receiverNum) {
+        this.receiverNum = receiverNum;
+    }
 
-	public void setBtns(List<KakaoButton> btns) {
-		this.btns = btns;
-	}
+    public String getReceiverName() {
+        return receiverName;
+    }
 
-	public String getInterOPRefKey() {
-		return interOPRefKey;
-	}
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
 
-	public void setInterOPRefKey(String interOPRefKey) {
-		this.interOPRefKey = interOPRefKey;
-	}
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getAltMessage() {
+        return altMessage;
+    }
+
+    public void setAltMessage(String altMessage) {
+        this.altMessage = altMessage;
+    }
+
+    public List<KakaoButton> getBtns() {
+        return btns;
+    }
+
+    public void setBtns(List<KakaoButton> btns) {
+        this.btns = btns;
+    }
+
+    public String getInterOPRefKey() {
+        return interOPRefKey;
+    }
+
+    public void setInterOPRefKey(String interOPRefKey) {
+        this.interOPRefKey = interOPRefKey;
+    }
 
 }
-

@@ -22,45 +22,45 @@ package com.popbill.api;
  */
 public class AttachedFile {
 
-	private Integer serialNum;
-	private String attachedFile;
-	private String displayName;
-	private String regDT;
+    private Integer serialNum;
+    private String attachedFile;
+    private String displayName;
+    private String regDT;
 
-	/**
-	 * returns attachedFile's ID used for deleteFile.
-	 * 
-	 * @return attachedFile
-	 */
-	public String getAttachedFile() {
-		return attachedFile;
-	}
+    /**
+     * returns attachedFile's ID used for deleteFile.
+     * 
+     * @return attachedFile
+     */
+    public String getAttachedFile() {
+        return attachedFile;
+    }
 
-	/**
-	 * returns DisplayName.
-	 * 
-	 * @return DisplayName.
-	 */
-	public String getDisplayName() {
-		return displayName;
-	}
+    /**
+     * returns DisplayName.
+     * 
+     * @return DisplayName.
+     */
+    public String getDisplayName() {
+        return displayName;
+    }
 
-	/**
-	 * returns registerd DateTime.
-	 * 
-	 * @return regDT
-	 */
-	public String getRegDT() {
-		return regDT;
-	}
+    /**
+     * returns registerd DateTime.
+     * 
+     * @return regDT
+     */
+    public String getRegDT() {
+        return regDT;
+    }
 
-	/**
-	 * returns serialNum
-	 * 
-	 * @return serialNum
-	 */
-	public Integer getSerialNum() {
-		return serialNum;
-	}
+    /**
+     * returns serialNum
+     * 
+     * @return serialNum
+     */
+    public Integer getSerialNum() {
+        return serialNum;
+    }
 
 }

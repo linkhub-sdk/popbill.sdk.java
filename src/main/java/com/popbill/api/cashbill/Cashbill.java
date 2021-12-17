@@ -58,10 +58,9 @@ public class Cashbill implements Serializable {
     private String confirmNum;
     private String orgConfirmNum;
     private String orgTradeDate;
-    
+
     private Integer cancelType;
     private String emailSubject;
-
 
     /**
      * 문서번호 확인
@@ -113,14 +112,18 @@ public class Cashbill implements Serializable {
      *
      * @return
      */
-    public String getTradeOpt() { return tradeOpt; }
+    public String getTradeOpt() {
+        return tradeOpt;
+    }
 
     /**
      * 거래유형 설정
      *
      * @param tradeOpt
      */
-    public void setTradeOpt(String tradeOpt) { this.tradeOpt = tradeOpt; }
+    public void setTradeOpt(String tradeOpt) {
+        this.tradeOpt = tradeOpt;
+    }
 
     /**
      * 문서형태 확인
@@ -420,7 +423,7 @@ public class Cashbill implements Serializable {
     }
 
     /**
-     *거래처 휴대폰 설정
+     * 거래처 휴대폰 설정
      *
      * @param hp the hp to set
      */
@@ -492,7 +495,7 @@ public class Cashbill implements Serializable {
     }
 
     /**
-     *  원본 현금영수증 국세청 승인번호
+     * 원본 현금영수증 국세청 승인번호
      *
      * @return the orgConfirmNum
      */
@@ -527,7 +530,6 @@ public class Cashbill implements Serializable {
         return memo;
     }
 
-
     /*
      * 원본현금영수증 거래일자
      *
@@ -536,7 +538,6 @@ public class Cashbill implements Serializable {
     public String getOrgTradeDate() {
         return orgTradeDate;
     }
-
 
     /*
      * 원본현금영수증 거래일자
@@ -563,11 +564,11 @@ public class Cashbill implements Serializable {
         this.cancelType = cancelType;
     }
 
-	public String getEmailSubject() {
-		return emailSubject;
-	}
+    public String getEmailSubject() {
+        return emailSubject;
+    }
 
-	public void setEmailSubject(String emailSubject) {
-		this.emailSubject = emailSubject;
-	}
+    public void setEmailSubject(String emailSubject) {
+        this.emailSubject = emailSubject;
+    }
 }

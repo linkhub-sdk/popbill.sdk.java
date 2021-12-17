@@ -25,49 +25,49 @@ import com.google.gson.annotations.SerializedName;
  * @version 1.0.0
  */
 public class Receiver implements Serializable {
-	private static final long serialVersionUID = 7734339056495610540L;
+    private static final long serialVersionUID = 7734339056495610540L;
 
-	@SerializedName("rcv")
-	private String receiveNum;
-	@SerializedName("rcvnm")
-	private String receiveName;
+    @SerializedName("rcv")
+    private String receiveNum;
+    @SerializedName("rcvnm")
+    private String receiveName;
 
-	/**
-	 * 수신번호 확인
-	 * 
-	 * @return 수신번호
-	 */
-	public String getReceiveNum() {
-		return receiveNum;
-	}
+    /**
+     * 수신번호 확인
+     * 
+     * @return 수신번호
+     */
+    public String getReceiveNum() {
+        return receiveNum;
+    }
 
-	/**
-	 * 수신번호 설정
-	 * 
-	 * @param receiveNum
-	 *            수신번호
-	 */
-	public void setReceiveNum(String receiveNum) {
-		this.receiveNum = receiveNum;
-	}
+    /**
+     * 수신번호 설정
+     * 
+     * @param receiveNum 
+     *          수신번호
+     */
+    public void setReceiveNum(String receiveNum) {
+        this.receiveNum = receiveNum;
+    }
 
-	/**
-	 * 수신자 명칭 확인
-	 * 
-	 * @return 수신자 명칭
-	 */
-	public String getReceiveName() {
-		return receiveName;
-	}
+    /**
+     * 수신자 명칭 확인
+     * 
+     * @return 수신자 명칭
+     */
+    public String getReceiveName() {
+        return receiveName;
+    }
 
-	/**
-	 * 수신자 명칭 설정
-	 * 
-	 * @param receiveName
-	 *            수신자 명칭
-	 */
-	public void setReceiveName(String receiveName) {
-		this.receiveName = receiveName;
-	}
+    /**
+     * 수신자 명칭 설정
+     * 
+     * @param receiveName 
+     *          수신자 명칭
+     */
+    public void setReceiveName(String receiveName) {
+        this.receiveName = receiveName;
+    }
 
 }
