@@ -29,7 +29,6 @@ import com.popbill.api.taxinvoice.TaxinvoiceDetail;
 import com.popbill.api.taxinvoice.TaxinvoiceInfo;
 import com.popbill.api.taxinvoice.TaxinvoiceLog;
 import com.popbill.api.taxinvoice.TaxinvoiceServiceImp;
-import com.popbill.api.taxinvoice.SendToNTSConfig;
 
 public class TaxinvoiceServiceTEST {
 
@@ -818,17 +817,17 @@ public class TaxinvoiceServiceTEST {
 	public void BulkSubmit_TEST() throws PopbillException {
 		
 		List<Taxinvoice> bulkTx = new ArrayList<Taxinvoice>();
-		
-		String SubmitID = "20210105-002";
+		List<Taxinvoice> bulkTx2 = new ArrayList<Taxinvoice>();
+		String SubmitID = "20211217-TEST003";
 		
 		for(int j=0; j<1; j++) {
 			//SubmitID += String.valueOf(j);
 			bulkTx = new ArrayList<Taxinvoice>();
-		for(int i=0; i<100; i++) {
+		for(int i=0; i<20; i++) {
 			
 			Taxinvoice taxinvoice = new Taxinvoice();
 
-			taxinvoice.setWriteDate("20210105"); // 필수, 기재상 작성일자
+			taxinvoice.setWriteDate("20211217"); // 필수, 기재상 작성일자
 			taxinvoice.setChargeDirection("정과금"); // 필수, {정과금, 역과금}
 			taxinvoice.setIssueType("정발행"); // 필수, {정발행, 역발행, 위수탁}
 			taxinvoice.setPurposeType("영수"); // 필수, {영수, 청구}
@@ -842,20 +841,20 @@ public class TaxinvoiceServiceTEST {
 			taxinvoice.setInvoicerAddr("Seller Company Address");
 			taxinvoice.setInvoicerBizClass("Seller Business Item");
 			taxinvoice.setInvoicerBizType("Seller Business Type");
-			taxinvoice.setInvoicerContactName("Seller Name of the person in charge");
+			taxinvoice.setInvoicerContactName("asd!@#@@#(*&$!)$*!(+__)+_)?><<\"\"dasd\"dsdasaㅁ＠▲＊＝");
 			taxinvoice.setInvoicerEmail("seller@email.com");
 			taxinvoice.setInvoicerTEL("070-7070-0707");
 			taxinvoice.setInvoicerSMSSendYN(false); // 발행시 문자발송기능 사용시 활용
 			
 			taxinvoice.setInvoiceeType("사업자");
 			taxinvoice.setInvoiceeCorpNum("8888888888");
-			taxinvoice.setInvoiceeCorpName("Buyer Name of Company");
+			taxinvoice.setInvoiceeCorpName("공급받는자 ASDASDWEQZXC");
 			taxinvoice.setInvoiceeMgtKey(null); // 문서관리번호 1~24자리까지 공급받는자 사업자번호별 중복없는
-			taxinvoice.setInvoiceeCEOName("Buyer Name of Representative");
-			taxinvoice.setInvoiceeAddr("Buyer Company Address");
-			taxinvoice.setInvoiceeBizClass("Buyer Business Item");
-			taxinvoice.setInvoiceeBizType("Buyer Business Type");
-			taxinvoice.setInvoiceeContactName1("Buyer Name of the person in charge");
+			taxinvoice.setInvoiceeCEOName("대표명");
+			taxinvoice.setInvoiceeAddr("공받주 주소");
+			taxinvoice.setInvoiceeBizClass("종목종목");
+			taxinvoice.setInvoiceeBizType("업태");
+			taxinvoice.setInvoiceeContactName1("담당자 이이름");
 			taxinvoice.setInvoiceeEmail1("buyer@email.com");
 			taxinvoice.setInvoiceeTEL1("070-7070-3456");
 			taxinvoice.setSupplyCostTotal("200000"); // 필수 공급가액 합계"
@@ -863,7 +862,7 @@ public class TaxinvoiceServiceTEST {
 			taxinvoice.setTotalAmount("220000"); // 필수 합계금액. 공급가액 + 세액
 //			taxinvoice.setModifyCode((short)1); // 수정세금계산서 작성시 1~6까지 선택기재.
 //			taxinvoice.setOrgNTSConfirmNum("20191008888888880000003e"); // 수정세금계산서 작성시 원본세금계산서의 ItemKey기재. ItemKey는 문서확인.
-			taxinvoice.setSerialNum("");
+			taxinvoice.setSerialNum("112342");
 			taxinvoice.setCash(""); // 현금
 			taxinvoice.setChkBill(""); // 수표
 			taxinvoice.setNote(""); // 어음
@@ -918,15 +917,11 @@ public class TaxinvoiceServiceTEST {
 			contact.setEmail("addcontact02@test.com");
 			
 			taxinvoice.getAddContactList().add(contact);
-			
-			
-			
-			
-			
+
 			bulkTx.add(taxinvoice);
+			bulkTx2.add(taxinvoice);
 		}
 		
-
 		BulkResponse response = taxinvoiceService.bulkSubmit("1234567890", SubmitID, bulkTx, false, "");
 		
 		assertNotNull(response);

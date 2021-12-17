@@ -38,13 +38,14 @@ import java.util.Map;
 import java.util.TimeZone;
 import java.util.zip.GZIPInputStream;
 
-import javax.xml.bind.DatatypeConverter;
+
 
 import com.google.gson.Gson;
 
 import kr.co.linkhub.auth.LinkhubException;
 import kr.co.linkhub.auth.Token;
 import kr.co.linkhub.auth.TokenBuilder;
+import kr.co.linkhub.auth.Base64;
 
 /**
  * Abstract class for Popbill Services.
@@ -656,10 +657,6 @@ public abstract class BaseServiceImp implements BaseService {
         } 
     }
 	
-	private static String base64Encode(byte[] input) {
-        return DatatypeConverter.printBase64Binary(input);
-    }
-	
 	protected <T> T httpBulkPost(String url, String CorpNum, String SubmitID, String PostData,
 			String UserID, String Action, Class<T> clazz)
 			throws PopbillException {
@@ -683,7 +680,7 @@ public abstract class BaseServiceImp implements BaseService {
 					+ getSessionToken(CorpNum, null));
 		}
 		
-		httpURLConnection.setRequestProperty("x-pb-message-digest", base64Encode(encryptSHA1(PostData)));
+		httpURLConnection.setRequestProperty("x-pb-message-digest", Base64.encode(encryptSHA1(PostData)));
 		
 		httpURLConnection.setRequestProperty("x-pb-submit-id", SubmitID);
 		
