@@ -1018,6 +1018,42 @@ public interface CashbillService extends BaseService{
                                  String[] TaxationType, String QString, int Page, int PerPage, String Order) throws PopbillException;
 
     /**
+     * 현금영수증 목록 조회
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param DType
+     *          검색일자 유형 [R-등록일자, T-거래일자, I-발행일시]
+     * @param SDate
+     *          시작일자 (yyyyMMdd)
+     * @param EDate
+     *          종료일자 (yyyyMMdd)
+     * @param State
+     *          상태코드 배열
+     * @param TradeType
+     *          문서형태 배열 [N-승인거래, C-취소거래]
+     * @param TradeUsage
+     *          거래구분 배열 [P-소득공제용, C-지출증빙용]
+     * @param TradeOpt
+     *          거래유형 배열 [N-일반, B-도서공연, T-대중교통]
+     * @param TaxationType
+     *          과세형태 배열 [T-과세, N-비과세]
+     * @param QString
+     *          식별번호, 휴대폰번호, 주민등록번호, 사업자등록번호 입력
+     * @param Page
+     *          페이지번호, 기본값 1
+     * @param PerPage
+     *          페이지당 검색개수, 기본값 500, 최대 1000
+     * @param FranchiseTaxRegID
+     *          가맹점 종사업장 번호
+     * @return 현금영수증 목록조회 결과. (see com.popbill.api.cashbill.CBSearchResult)
+     * @throws PopbillException
+     */
+    public CBSearchResult search(String CorpNum, String DType, String SDate,
+                                 String EDate, String[] State, String[] TradeType, String[] TradeUsage, String[] TradeOpt,
+                                 String[] TaxationType, String QString, int Page, int PerPage, String Order, String FranchiseTaxRegID) throws PopbillException;
+
+    /**
      *  과금정보 확인
      *  
      * @param CorpNum

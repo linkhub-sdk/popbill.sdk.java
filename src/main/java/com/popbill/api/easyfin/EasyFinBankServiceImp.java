@@ -60,10 +60,10 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
             throw new PopbillException(-99999999, "은행 계좌정보가 입력되지 않았습니다.");
 
         if (form.getBankCode() == null || form.getBankCode().isEmpty())
-            throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
 
         if (form.getBankCode().length() != 4)
-            throw new PopbillException(-99999999, "은행코드가 올바르지 않습니다.");
+            throw new PopbillException(-99999999, "기관코드가 유효하지 않습니다.");
 
         if (form.getAccountNumber() == null || form.getAccountNumber().isEmpty())
             throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
@@ -100,10 +100,10 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
     public Response closeBankAccount(String CorpNum, String BankCode, String AccountNumber, String CloseType,
             String UserID) throws PopbillException {
         if (BankCode == null || BankCode.isEmpty())
-            throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
 
         if (BankCode.length() != 4)
-            throw new PopbillException(-99999999, "은행코드가 올바르지 않습니다.");
+            throw new PopbillException(-99999999, "기관코드가 유효하지 않습니다.");
 
         if (AccountNumber == null || AccountNumber.isEmpty())
             throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
@@ -135,10 +135,10 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
             throws PopbillException {
 
         if (BankCode == null || BankCode.isEmpty())
-            throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
 
         if (BankCode.length() != 4)
-            throw new PopbillException(-99999999, "은행코드가 올바르지 않습니다.");
+            throw new PopbillException(-99999999, "기관코드가 유효하지 않습니다.");
 
         if (AccountNumber == null || AccountNumber.isEmpty())
             throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
@@ -162,10 +162,10 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
             throws PopbillException {
 
         if (BankCode == null || BankCode.isEmpty())
-            throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
 
         if (BankCode.length() != 4)
-            throw new PopbillException(-99999999, "은행코드가 올바르지 않습니다.");
+            throw new PopbillException(-99999999, "기관코드가 유효하지 않습니다.");
 
         if (AccountNumber == null || AccountNumber.isEmpty())
             throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
@@ -190,10 +190,10 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
             throw new PopbillException(-99999999, "은행 계좌정보가 입력되지 않았습니다.");
 
         if (form.getBankCode() == null || form.getBankCode().isEmpty())
-            throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
 
         if (form.getBankCode().length() != 4)
-            throw new PopbillException(-99999999, "은행코드가 올바르지 않습니다.");
+            throw new PopbillException(-99999999, "기관코드가 유효하지 않습니다.");
 
         if (form.getAccountNumber() == null || form.getAccountNumber().isEmpty())
             throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
@@ -229,9 +229,9 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
     public EasyFinBankAccount getBankAccountInfo(String CorpNum, String BankCode, String AccountNumber, String UserID)
             throws PopbillException {
         if (BankCode == null || BankCode.isEmpty())
-            throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
         if (BankCode.length() != 4)
-            throw new PopbillException(-99999999, "은행코드가 올바르지 않습니다.");
+            throw new PopbillException(-99999999, "기관코드가 유효하지 않습니다.");
         if (AccountNumber == null || AccountNumber.isEmpty())
             throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
 
@@ -284,7 +284,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
             String UserID) throws PopbillException {
 
         if (BankCode == null || BankCode.isEmpty())
-            throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
         if (AccountNumber == null || AccountNumber.isEmpty())
             throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
         if (SDate == null || SDate.isEmpty())
@@ -489,7 +489,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
             throws PopbillException {
 
         if (BankCode == null || BankCode.isEmpty())
-            throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
         if (AccountNumber == null || AccountNumber.isEmpty())
             throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
 

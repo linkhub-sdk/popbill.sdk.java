@@ -9,6 +9,7 @@ public class DepositorCheckInfo implements Serializable {
     private String accountNumber;
     private String accountName;
     private String checkDate;
+    private String result;
     private String resultCode;
     private String resultMessage;
     private String identityNum;
@@ -28,6 +29,10 @@ public class DepositorCheckInfo implements Serializable {
 
     public String getCheckDate() {
         return checkDate;
+    }
+
+    public String getResult() {
+        return result;
     }
 
     public String getResultCode() {

@@ -1038,6 +1038,16 @@ public interface StatementService extends BaseService{
      */
     public String getViewURL(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException;
 
-    
+    /**
+     *  팝빌 인감 및 첨부문서 등록 URL
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param UserID
+     *          연동회원 유저아이디
+     * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+     * @throws PopbillException
+     */
+    public String getSealURL(String CorpNum, String UserID) throws PopbillException;
 }
 

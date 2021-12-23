@@ -56,10 +56,10 @@ public class AccountCheckServiceImp extends BaseServiceImp implements AccountChe
     public AccountCheckInfo CheckAccountInfo(String MemberCorpNum, String BankCode, String AccountNumber, String UserID)
             throws PopbillException {
         if (BankCode == null || BankCode.isEmpty())
-            throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
 
         if (BankCode.length() != 4)
-            throw new PopbillException(-99999999, "은행코드가 올바르지 않습니다.");
+            throw new PopbillException(-99999999, "기관코드가 유효하지 않습니다.");
 
         if (AccountNumber == null || AccountNumber.isEmpty())
             throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
@@ -82,10 +82,10 @@ public class AccountCheckServiceImp extends BaseServiceImp implements AccountChe
     public DepositorCheckInfo CheckDepositorInfo(String MemberCorpNum, String BankCode, String AccountNumber,
             String IdentityNumType, String IdentityNum, String UserID) throws PopbillException {
         if (BankCode == null || BankCode.isEmpty())
-            throw new PopbillException(-99999999, "은행코드가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
 
         if (BankCode.length() != 4)
-            throw new PopbillException(-99999999, "은행코드가 올바르지 않습니다.");
+            throw new PopbillException(-99999999, "기관코드가 유효하지 않습니다.");
 
         if (AccountNumber == null || AccountNumber.isEmpty())
             throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");

@@ -10,6 +10,7 @@ public class AccountCheckInfo implements Serializable {
     private String accountNumber;
     private String accountName;
     private String checkDate;
+    private String result;
     private String resultCode;
     private String resultMessage;
 
@@ -27,6 +28,10 @@ public class AccountCheckInfo implements Serializable {
 
     public String getCheckDate() {
         return checkDate;
+    }
+
+    public String getResult() {
+    	return result;
     }
 
     public String getResultCode() {

@@ -487,6 +487,17 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
         return response.url;
     }
 
+    /* (non-Javadoc)
+     * @see com.popbill.api.StatementService#getSealURL(java.lang.String, java.lang.String)
+     */
+    @Override
+    public String getSealURL(String CorpNum, String UserID) throws PopbillException {
+
+        URLResponse response = httpget("/?TG=SEAL", CorpNum, UserID, URLResponse.class);
+
+        return response.url;
+    }
+
     /*
      * (non-Javadoc)
      * @see com.popbill.api.StatementService#attachFile(java.lang.String, int, java.lang.String, java.lang.String, java.io.InputStream)

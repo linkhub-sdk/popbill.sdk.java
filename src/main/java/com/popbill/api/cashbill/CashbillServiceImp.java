@@ -652,27 +652,47 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
                                  String EDate, String[] State, String[] TradeType,
                                  String[] TradeUsage, String[] TaxationType, int Page,
                                  int PerPage, String Order) throws PopbillException {
-        return search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TaxationType, "", Page, PerPage, Order);
+        return search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, null, TaxationType, null, Page, PerPage, Order, null);
     }
 
     /*
      * (non-Javadoc)
      * @see com.popbill.api.CashbillService#search(java.lang.String, java.lang.String, java.lang.String,
      *                                              java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[],
-     *                                              java.lang.String, java.lang.String, java.lang.String)
+     *                                              java.lang.String[], java.lang.String, int, int, java.lang.String)
      */
     @Override
     public CBSearchResult search(String CorpNum, String DType, String SDate,
                                  String EDate, String[] State, String[] TradeType,
                                  String[] TradeUsage, String[] TaxationType, String QString, int Page,
                                  int PerPage, String Order) throws PopbillException {
-        return search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, null, TaxationType, QString, Page, PerPage, Order);
+        return search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, null, TaxationType, QString, Page, PerPage, Order, null);
     }
 
+    /*
+     * (non-Javadoc)
+     * @see com.popbill.api.CashbillService#search(java.lang.String, java.lang.String, java.lang.String,
+     *                                              java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[],
+     *                                              java.lang.String[], java.lang.String[], java.lang.String, int, int, java.lang.String)
+     */
     @Override
     public CBSearchResult search(String CorpNum, String DType, String SDate, String EDate,
                                  String[] State, String[] TradeType, String[] TradeUsage, String[] TradeOpt, String[] TaxationType,
                                  String QString, int Page, int PerPage, String Order) throws PopbillException {
+        return search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TradeOpt, TaxationType, QString, Page, PerPage, Order, null);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.popbill.api.CashbillService#search(java.lang.String, java.lang.String, java.lang.String,
+     *                                              java.lang.String, java.lang.String[], java.lang.String[], java.lang.String[],
+     *                                              java.lang.String[], java.lang.String[], java.lang.String, int, int, java.lang.String,
+     *                                              java.lang.String)
+     */
+    @Override
+    public CBSearchResult search(String CorpNum, String DType, String SDate, String EDate,
+                                 String[] State, String[] TradeType, String[] TradeUsage, String[] TradeOpt, String[] TaxationType,
+                                 String QString, int Page, int PerPage, String Order, String FranchiseTaxRegID) throws PopbillException {
         if (DType == null || DType.isEmpty())
             throw new PopbillException(-99999999, "검색일자유형이  입력되지 않았습니다.");
         if (SDate == null || SDate.isEmpty())
@@ -700,6 +720,9 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
         uri += "&Page=" + Integer.toString(Page);
         uri += "&PerPage="+ Integer.toString(PerPage);
         uri += "&Order=" + Order;
+        if (FranchiseTaxRegID != null && FranchiseTaxRegID != "") {
+            uri += "&FranchiseTaxRegID=" + FranchiseTaxRegID;
+        }
 
         return httpget(uri, CorpNum, null, CBSearchResult.class);
     }

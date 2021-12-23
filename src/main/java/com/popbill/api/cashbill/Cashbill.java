@@ -39,6 +39,7 @@ public class Cashbill implements Serializable {
     private String totalAmount;
 
     private String franchiseCorpNum;
+    private String franchiseTaxRegID;
     private String franchiseCorpName;
     private String franchiseCEOName;
     private String franchiseAddr;
@@ -250,6 +251,24 @@ public class Cashbill implements Serializable {
     public void setFranchiseCorpNum(String franchiseCropNum) {
         this.franchiseCorpNum = franchiseCropNum;
     }
+
+    /**
+     * 가맹점 종사업자 번호 확인
+     *
+     * @return the franchiseTaxRegID
+     */
+    public String getFranchiseTaxRegID() {
+		return franchiseTaxRegID;
+	}
+
+    /**
+     * 가맹점 종사업자 번호 설정
+     *
+     * @param franchiseTaxRegID the franchiseTaxRegID to set
+     */
+	public void setFranchiseTaxRegID(String franchiseTaxRegID) {
+		this.franchiseTaxRegID = franchiseTaxRegID;
+	}
 
     /**
      * 가맹점 상호 확인
