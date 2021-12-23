@@ -258,17 +258,17 @@ public class Cashbill implements Serializable {
      * @return the franchiseTaxRegID
      */
     public String getFranchiseTaxRegID() {
-		return franchiseTaxRegID;
-	}
+        return franchiseTaxRegID;
+    }
 
     /**
      * 가맹점 종사업자 번호 설정
      *
      * @param franchiseTaxRegID the franchiseTaxRegID to set
      */
-	public void setFranchiseTaxRegID(String franchiseTaxRegID) {
-		this.franchiseTaxRegID = franchiseTaxRegID;
-	}
+    public void setFranchiseTaxRegID(String franchiseTaxRegID) {
+        this.franchiseTaxRegID = franchiseTaxRegID;
+    }
 
     /**
      * 가맹점 상호 확인

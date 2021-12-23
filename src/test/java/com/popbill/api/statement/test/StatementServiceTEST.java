@@ -362,7 +362,14 @@ public class StatementServiceTEST {
 		System.out.println(url);
 	}
 	
-	
+	@Test
+	public void getSealURL_TEST() throws PopbillException {
+		String url = statementService.getSealURL("1234567890", "testkorea");
+		
+		assertNotNull(url);
+		
+		System.out.println(url);
+	}
 	
 	@Test
 	public void cancel_TEST() throws PopbillException {

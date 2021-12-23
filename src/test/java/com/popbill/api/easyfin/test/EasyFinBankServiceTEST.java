@@ -40,7 +40,7 @@ public class EasyFinBankServiceTEST {
 		bankInfo.setAccountNumber("1012051447401");
 		bankInfo.setAccountPWD("");
 		bankInfo.setAccountType("법인");
-		bankInfo.setBankCode("");
+		bankInfo.setBankCode("12345");
 		bankInfo.setIdentityNumber("6798700433");
 		
 		

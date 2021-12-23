@@ -70,10 +70,11 @@ public class CashbillServiceTEST {
 		
 		Cashbill cashbill = new Cashbill();
 		
-		cashbill.setMgtKey("20210812JAVA003");
+		cashbill.setMgtKey("20211223JAVA02");
 		cashbill.setTradeType("승인거래");
 		cashbill.setTradeOpt("도서공연");
 		cashbill.setFranchiseCorpNum("1234567890");
+		cashbill.setFranchiseTaxRegID("0002");
 		cashbill.setFranchiseCorpName("발행자 상호");
 		cashbill.setFranchiseCEOName("발행자 대표자");
 		cashbill.setFranchiseAddr("발행자 주소");
@@ -133,7 +134,7 @@ public class CashbillServiceTEST {
 	@Test
 	public void issue_TEST() throws PopbillException {
 		
-		CBIssueResponse response = cashbillService.issue("1234567890", "20210812JAVA003", "발행메모",	"testkorea");
+		CBIssueResponse response = cashbillService.issue("1234567890", "20211223JAVA02", "발행메모",	"testkorea");
 		assertNotNull(response);
 		System.out.println(response.getMessage());
 		System.out.println(response.getCode());
@@ -186,9 +187,9 @@ public class CashbillServiceTEST {
 	@Test
 	public void getDetailInfo_TEST() throws PopbillException {
 		
-		Cashbill cashbill = cashbillService.getDetailInfo("1234567890", "20180813160709");
+		Cashbill cashbill = cashbillService.getDetailInfo("1234567890", "20211223JAVA02");
 		assertNotNull(cashbill);
-		System.out.println("Detail Info : "+ cashbill.getMgtKey());
+		System.out.println("Detail Info : "+ cashbill.getFranchiseTaxRegID());
 
 	}
 	
@@ -280,10 +281,11 @@ public class CashbillServiceTEST {
 		
 		Cashbill cashbill = new Cashbill();
 		
-		cashbill.setMgtKey("20210812JAVA01");
+		cashbill.setMgtKey("20211223JAVA01");
 		cashbill.setTradeType("승인거래");
 		cashbill.setTradeOpt("일반");
 		cashbill.setFranchiseCorpNum("1234567890");
+		cashbill.setFranchiseTaxRegID("0001");
 		cashbill.setFranchiseCorpName("발행자 상호");
 		cashbill.setFranchiseCEOName("발행자 대표자");
 		cashbill.setFranchiseAddr("발행자 주소");
@@ -314,20 +316,22 @@ public class CashbillServiceTEST {
     public void search_TEST() throws PopbillException{
         String CorpNum = "1234567890";
         String DType = "T";
-        String SDate = "20160701";
-        String EDate = "20160831";
+        String SDate = "20211220";
+        String EDate = "20211225";
 
         String[] State = {"100", "2**", "3**", "4**"};
         String[] TradeType = {"N", "C"};
         String[] TradeUsage = {"P", "C"};
+        String[] TradeOpt = {"N", "B", "T"};
         String[] TaxationType = {"T", "N"};
-        String QString = "0100001234";
+        String QString = "";
+        String FranchiseTaxRegID = "0001";
 
         int Page = 1;
         int PerPage = 20;
         String Order = "D";
 
-        CBSearchResult response = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TaxationType, QString, Page, PerPage, Order);
+        CBSearchResult response = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TradeOpt, TaxationType, QString, Page, PerPage, Order, FranchiseTaxRegID);
 
         assertNotNull(response);
 
