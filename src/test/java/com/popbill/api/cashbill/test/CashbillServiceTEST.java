@@ -324,14 +324,14 @@ public class CashbillServiceTEST {
         String[] TradeUsage = {"P", "C"};
         String[] TradeOpt = {"N", "B", "T"};
         String[] TaxationType = {"T", "N"};
-        String QString = "";
-        String FranchiseTaxRegID = "0001";
+        String QString = null;
+        String FranchiseTaxRegID = "0001,0002";
 
         int Page = 1;
         int PerPage = 20;
         String Order = "D";
 
-        CBSearchResult response = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TradeOpt, TaxationType, QString, Page, PerPage, Order, FranchiseTaxRegID);
+        CBSearchResult response = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TradeOpt, TaxationType, QString, Page, PerPage, Order);
 
         assertNotNull(response);
 

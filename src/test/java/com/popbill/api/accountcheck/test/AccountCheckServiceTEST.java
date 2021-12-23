@@ -67,12 +67,13 @@ public class AccountCheckServiceTEST {
 	@Test
 	public void CheckAccountInfo() throws PopbillException {
 		
-		AccountCheckInfo state = accountCheckService.CheckAccountInfo("1234567890", "12345", "1012051447401");
+		AccountCheckInfo state = accountCheckService.CheckAccountInfo("1234567890", "0034", "6111121245511");
 		
 		System.out.println(state.getAccountName());
 		System.out.println(state.getAccountNumber());
 		System.out.println(state.getBankCode());
 		System.out.println(state.getCheckDate());
+		System.out.println(state.getResult());
 		System.out.println(state.getResultCode());
 		System.out.println(state.getResultMessage());
 		
@@ -100,7 +101,7 @@ public class AccountCheckServiceTEST {
 	@Test
 	public void CheckDepositorInfo() throws PopbillException {
 		
-		DepositorCheckInfo state = accountCheckService.CheckDepositorInfo("1234567890", "12345", "1234567890","P","881211");
+		DepositorCheckInfo state = accountCheckService.CheckDepositorInfo("1234567890", "1245", "1234567890","P","881211");
 		
 		System.out.println(state.getAccountName());
 		System.out.println(state.getAccountNumber());
@@ -108,6 +109,7 @@ public class AccountCheckServiceTEST {
 		System.out.println(state.getCheckDate());
 		System.out.println(state.getIdentityNum());
 		System.out.println(state.getIdentityNumType());
+		System.out.println(state.getResult());
 		System.out.println(state.getResultCode());
 		System.out.println(state.getResultMessage());
 		

@@ -716,7 +716,9 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
         }
         uri += "&TaxationType=" + Arrays.toString(TaxationType)
                 .replaceAll("\\[|\\]|\\s", "");
-        uri += "&QString="+QString;
+        if (QString != null && QString != "") {
+            uri += "&QString=" + QString;
+        }
         uri += "&Page=" + Integer.toString(Page);
         uri += "&PerPage="+ Integer.toString(PerPage);
         uri += "&Order=" + Order;
