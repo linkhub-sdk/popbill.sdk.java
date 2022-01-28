@@ -30,6 +30,7 @@ import com.popbill.api.EmailSendConfig;
 import com.popbill.api.IssueResponse;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.TaxinvoiceCertificate;
 import com.popbill.api.TaxinvoiceService;
 
 /**
@@ -1360,5 +1361,17 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         public String ItemCode;
         public String MgtKey;
     }
+
+    @Override
+	public TaxinvoiceCertificate getTaxCertInfo(String CorpNum) throws PopbillException {
+		
+		return getTaxCertInfo(CorpNum, null);
+	}
+    
+	@Override
+	public TaxinvoiceCertificate getTaxCertInfo(String CorpNum, String UserID) throws PopbillException {
+		
+		return httpget("/Taxinvoice/Certificate", CorpNum, UserID, TaxinvoiceCertificate.class);
+	}
 
 }

@@ -18,6 +18,7 @@ import com.popbill.api.EmailSendConfig;
 import com.popbill.api.IssueResponse;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.TaxinvoiceCertificate;
 import com.popbill.api.TaxinvoiceService;
 import com.popbill.api.taxinvoice.BulkTaxinvoiceResult;
 import com.popbill.api.taxinvoice.EmailPublicKey;
@@ -58,6 +59,19 @@ public class TaxinvoiceServiceTEST {
 		System.out.println(chrgInfo.getChargeMethod());
 		System.out.println(chrgInfo.getUnitCost());
 		System.out.println(chrgInfo.getRateSystem());
+	}
+	
+	@Test
+	public void getTaxCertInfo() throws PopbillException {
+		
+		TaxinvoiceCertificate certInfo= taxinvoiceService.getTaxCertInfo("1234567890", "testkorea");
+
+		System.out.println(certInfo.getRegDT());
+		System.out.println(certInfo.getExpireDT());
+		System.out.println(certInfo.getIssuerDN());
+		System.out.println(certInfo.getSubjectDN());
+		System.out.println(certInfo.getIssuerName());
+		System.out.println(certInfo.getOid());
 	}
 	
 	@Test
