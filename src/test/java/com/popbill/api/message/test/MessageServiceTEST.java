@@ -1893,6 +1893,15 @@ public class MessageServiceTEST {
         System.out.println(url);
     }
 
+    @Test
+    public void checkSenderNumber_TEST() throws PopbillException {
+        Response response = messageService.checkSenderNumber("1234567890", "070-4304-2991");
+        assertNotNull(response);
+        
+        System.out.println(response.getCode());
+        System.out.println(response.getMessage());
+    }
+
 //private Date addMinutes(Date date, int i) {
 //    // TODO Auto-generated method stub
 //    return null;

@@ -568,6 +568,16 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
         return response.url;
     }
 
+    @Override
+    public Response checkSenderNumber(String CorpNum, String SenderNumber) throws PopbillException {
+        return checkSenderNumber(CorpNum, SenderNumber, null);
+    }
+
+    @Override
+    public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException {
+        return httpget("/KakaoTalk/CheckSenderNumber/"+SenderNumber, CorpNum, UserID, Response.class);
+    }
+
     protected class ATSSendRequest {
         public String templateCode;
         public String snd;

@@ -1497,11 +1497,21 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
         return httpget("/FAX/SenderNumber", corpNum, userID, SenderNumber[].class);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.popbill.api.FaxService#getPreviewURL(java.lang.String, java.lang.String)
+     */
     @Override
     public String getPreviewURL(String corpNum, String receiptNum) throws PopbillException {
         return getPreviewURL(corpNum, receiptNum, null);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.popbill.api.FaxService#getPreviewURL(java.lang.String, java.lang.String, java.lang.String)
+     */
     @Override
     public String getPreviewURL(String corpNum, String receiptNum, String userID) throws PopbillException {
         if (receiptNum == null || receiptNum.equals(""))
@@ -1514,6 +1524,11 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
         return response.url;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.popbill.api.FaxService#getSenderNumberMgtURL(java.lang.String, java.lang.String)
+     */
     @Override
     public String getSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException {
 
@@ -1522,12 +1537,37 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
         return response.url;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.popbill.api.FaxService#getSentListURL(java.lang.String, java.lang.String)
+     */
     @Override
     public String getSentListURL(String CorpNum, String UserID) throws PopbillException {
 
         URLResponse response = httpget("/FAX/?TG=BOX", CorpNum, UserID, URLResponse.class);
 
         return response.url;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.popbill.api.FaxService#checkSenderNumber(java.lang.String, java.lang.String)
+     */
+    @Override
+    public Response checkSenderNumber(String CorpNum, String SenderNumber) throws PopbillException {
+        return checkSenderNumber(CorpNum, SenderNumber, null);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.popbill.api.FaxService#checkSenderNumber(java.lang.String, java.lang.String, java.lang.String)
+     */
+    @Override
+    public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException {
+        return httpget("/FAX/CheckSenderNumber/"+SenderNumber, CorpNum, UserID, Response.class);
     }
 
     protected class SendRequest {

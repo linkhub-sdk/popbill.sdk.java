@@ -1189,16 +1189,31 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
         return httpget("/Message/ChargeInfo?Type=" + MsgType.name(), CorpNum, null, ChargeInfo.class);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.popbill.api.MessageService#getSenderNumberList(java.lang.String)
+     */
     @Override
     public SenderNumber[] getSenderNumberList(String CorpNum) throws PopbillException {
         return getSenderNumberList(CorpNum, null);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.popbill.api.MessageService#getSenderNumberList(java.lang.String, java.lang.String)
+     */
     @Override
     public SenderNumber[] getSenderNumberList(String CorpNum, String UserID) throws PopbillException {
         return httpget("/Message/SenderNumber", CorpNum, null, SenderNumber[].class);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.popbill.api.MessageService#getSenderNumberMgtURL(java.lang.String, java.lang.String)
+     */
     @Override
     public String getSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException {
 
@@ -1207,12 +1222,37 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
         return response.url;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.popbill.api.MessageService#getSentListURL(java.lang.String, java.lang.String)
+     */
     @Override
     public String getSentListURL(String CorpNum, String UserID) throws PopbillException {
 
         URLResponse response = httpget("/Message/?TG=BOX", CorpNum, UserID, URLResponse.class);
 
         return response.url;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.popbill.api.MessageService#checkSenderNumber(java.lang.String, java.lang.String)
+     */
+    @Override
+    public Response checkSenderNumber(String CorpNum, String SenderNumber) throws PopbillException {
+        return checkSenderNumber(CorpNum, SenderNumber, null);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.popbill.api.MessageService#checkSenderNumber(java.lang.String, java.lang.String, java.lang.String)
+     */
+    @Override
+    public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException {
+        return httpget("/Message/CheckSenderNumber/"+SenderNumber, CorpNum, UserID, Response.class);
     }
 
     protected class SendRequest {

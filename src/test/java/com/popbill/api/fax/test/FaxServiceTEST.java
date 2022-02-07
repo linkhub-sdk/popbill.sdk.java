@@ -1442,6 +1442,14 @@ public class FaxServiceTEST {
         System.out.println(url);
     }
 
+    @Test
+    public void checkSenderNumber_TEST() throws PopbillException {
+        Response response = faxService.checkSenderNumber("1234567890", "070-4304-2981");
+        assertNotNull(response);
+        
+        System.out.println(response.getCode());
+        System.out.println(response.getMessage());
+    }
 
     public static Date addMinutes(Date date, int minutes)
     {

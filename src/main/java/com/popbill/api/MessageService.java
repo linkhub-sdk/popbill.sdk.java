@@ -1588,4 +1588,31 @@ public interface MessageService extends BaseService {
      */
     public String getSentListURL(String CorpNum, String UserID) throws PopbillException;
 
+
+    /**
+     *  발신번호 등록여부 확인
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param SenderNumber
+     *          발신번호
+     * @return Response 응답
+     * @throws PopbillException
+     */
+    public Response checkSenderNumber(String CorpNum, String SenderNumber) throws PopbillException;
+
+    /**
+     *  발신번호 등록여부 확인
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param SenderNumber
+     *          발신번호
+     * @param UserID
+     *          연동회원 유저아이디
+     * @return Response 응답
+     * @throws PopbillException
+     */
+    public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException;
+
 }
