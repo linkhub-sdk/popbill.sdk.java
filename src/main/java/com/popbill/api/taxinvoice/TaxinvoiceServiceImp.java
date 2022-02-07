@@ -928,8 +928,8 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
     /* (non-Javadoc)
      * @see com.popbill.api.TaxinvoiceService#Search(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String,
-     * 													java.lang.String, java.lang.String, java.lang.String[], java.lang.String[],
-     * 													boolean, integer, integer)
+     *                                                     java.lang.String, java.lang.String, java.lang.String[], java.lang.String[],
+     *                                                     boolean, integer, integer)
      */
     @Override
     public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, String SDate, String EDate, String[] State, String[] Type,
@@ -1088,7 +1088,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
     /* (non-Javadoc)
      * @see com.popbill.api.TaxinvoiceService#registIssue(java.lang.String, com.popbill.api.Taxinvoice, Boolean, java.lang.string,
-     * 														Boolean, java.lang.String)
+     *                                                         Boolean, java.lang.String)
      */
     @Override
     public IssueResponse registIssue(String CorpNum, Taxinvoice taxinvoice, Boolean WriteSpecification, String Memo, Boolean ForceIssue,
@@ -1099,7 +1099,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
     /* (non-Javadoc)
      * @see com.popbill.api.TaxinvoiceService#registIssue(java.lang.String, com.popbill.api.Taxinvoice, Boolean, java.lang.string,
-     * 														Boolean, java.lang.String, java.lang.String, java.lang.String)
+     *                                                         Boolean, java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
     public IssueResponse registIssue(String CorpNum, Taxinvoice taxinvoice, Boolean WriteSpecification, String Memo, Boolean ForceIssue,
@@ -1363,15 +1363,15 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     }
 
     @Override
-	public TaxinvoiceCertificate getTaxCertInfo(String CorpNum) throws PopbillException {
-		
-		return getTaxCertInfo(CorpNum, null);
-	}
+    public TaxinvoiceCertificate getTaxCertInfo(String CorpNum) throws PopbillException {
+        
+        return getTaxCertInfo(CorpNum, null);
+    }
     
-	@Override
-	public TaxinvoiceCertificate getTaxCertInfo(String CorpNum, String UserID) throws PopbillException {
-		
-		return httpget("/Taxinvoice/Certificate", CorpNum, UserID, TaxinvoiceCertificate.class);
-	}
+    @Override
+    public TaxinvoiceCertificate getTaxCertInfo(String CorpNum, String UserID) throws PopbillException {
+        
+        return httpget("/Taxinvoice/Certificate", CorpNum, UserID, TaxinvoiceCertificate.class);
+    }
 
 }

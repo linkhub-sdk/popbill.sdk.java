@@ -31,7 +31,7 @@ public class AccountCheckInfo implements Serializable {
     }
 
     public String getResult() {
-    	return result;
+        return result;
     }
 
     public String getResultCode() {

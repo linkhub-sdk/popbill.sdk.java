@@ -600,7 +600,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 
     /* (non-Javadoc)
      * @see com.popbill.api.StatementService#registIssue(java.lang.String, com.popbill.api.statement.Statement, 
-     * 				java.lang.String)
+     *                 java.lang.String)
      */
     @Override
     public SMTIssueResponse registIssue(String CorpNum, Statement statement, String memo) throws PopbillException {
@@ -609,7 +609,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 
     /* (non-Javadoc)
      * @see com.popbill.api.StatementService#registIssue(java.lang.String, com.popbill.api.statement.Statement, 
-     * 				java.lang.String, java.lang.String)
+     *                 java.lang.String, java.lang.String)
      */
     @Override
     public SMTIssueResponse registIssue(String CorpNum, Statement statement, String memo, String UserID) throws PopbillException {
