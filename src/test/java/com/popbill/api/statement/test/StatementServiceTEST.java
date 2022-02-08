@@ -575,13 +575,13 @@ public class StatementServiceTEST {
     public void Search_TEST() throws PopbillException {
         String CorpNum = "1234567890";
         String DType = "W";
-        String SDate = "20160701";
-        String EDate = "20160831";
+        String SDate = "20220101";
+        String EDate = "20220125";
         String[] State = {"2**", "3**"};
         int[] ItemCode = {121,122,123,124,125,126};
         int Page = 1;
         int PerPage = 50;
-        String QString = "상호";
+        String QString = "수신자 상호";
         String Order = "D";
         
         StmtSearchResult response = statementService.search(CorpNum, DType, SDate, EDate, State, ItemCode, QString, Page, PerPage, Order);

@@ -1703,8 +1703,8 @@ public class KakaoServiceTest {
     @Test 
     public void search_TEST() throws PopbillException {
         
-        String SDate = "20180716";
-        String EDate = "20180719";
+        String SDate = "20220111";
+        String EDate = "20220206";
         String[] State = {"0", "1","2","3","4", "5"};
         String[] Item = {"ATS", "FTS", "FMS"};
         String ReserveYN = "";
@@ -1712,7 +1712,7 @@ public class KakaoServiceTest {
         int Page = 1;
         int PerPage = 3;
         String Order = "D";
-        String QString = "";
+        String QString = "지헌 테스트";
         
         KakaoSearchResult result = kakaoService.search("1234567890", SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order, "testkorea", QString);
         

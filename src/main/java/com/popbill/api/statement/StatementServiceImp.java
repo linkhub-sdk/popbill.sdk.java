@@ -15,7 +15,8 @@
 package com.popbill.api.statement;
 
 import java.io.InputStream;
-
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -682,7 +683,13 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
         uri += "&EDate=" + EDate;
         uri += "&State=" + Arrays.toString(State).replaceAll("\\[|\\]|\\s", "");
         uri += "&ItemCode=" + Arrays.toString(ItemCode).replaceAll("\\[|\\]|\\s", "");
-        uri += "&QString=" + QString;
+        if (QString != null && QString != "") {
+            try {
+                uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                throw new PopbillException(-99999999, "검색어(QString) 인코딩 오류");
+            }
+        }
         uri += "&Page=" + Integer.toString(Page);
         uri += "&PerPage=" + Integer.toString(PerPage);
         uri += "&Order=" + Order;

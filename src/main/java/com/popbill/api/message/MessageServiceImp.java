@@ -18,6 +18,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1162,8 +1164,13 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
         uri += "&PerPage=" + Integer.toString(PerPage);
         uri += "&Order=" + Order;
 
-        if (QString != null)
-            uri += "&QString=" + QString;
+        if (QString != null && QString != "") {
+            try {
+                uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                throw new PopbillException(-99999999, "검색어(QString) 인코딩 오류");
+            }
+        }
 
         return httpget(uri, CorpNum, null, MSGSearchResult.class);
     }

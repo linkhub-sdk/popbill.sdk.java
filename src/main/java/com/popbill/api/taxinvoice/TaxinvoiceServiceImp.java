@@ -15,6 +15,8 @@
 package com.popbill.api.taxinvoice;
 
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -1054,7 +1056,11 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         }
 
         if (QString != null && QString != "") {
-            uri += "&QString=" + QString;
+            try {
+                uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                throw new PopbillException(-99999999, "검색어(QString) 인코딩 오류");
+            }
         }
 
         if (MgtKey != null && MgtKey != "") {

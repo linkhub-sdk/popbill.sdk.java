@@ -662,8 +662,8 @@ public class TaxinvoiceServiceTEST {
         TISearchResult response = new TISearchResult();
         
         String DType = "W";
-        String SDate = "20210101";
-        String EDate = "20210131";
+        String SDate = "20220126";
+        String EDate = "20220208";
         String[] State = {"3**", "6**"};
         String[] Type = {"N", "M","Z"};
         String[] TaxType = {"T","N","Z"};
@@ -672,7 +672,7 @@ public class TaxinvoiceServiceTEST {
         String TaxRegIDType = "S";
         String TaxRegID = "";
         String TaxRegIDYN = "";
-        String QString = "";
+        String QString = "8888888888";
         int Page = 1;
         int PerPage = 50;
         String Order = "D";

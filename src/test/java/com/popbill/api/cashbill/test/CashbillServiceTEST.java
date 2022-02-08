@@ -316,22 +316,23 @@ public class CashbillServiceTEST {
     public void search_TEST() throws PopbillException{
         String CorpNum = "1234567890";
         String DType = "T";
-        String SDate = "20211220";
-        String EDate = "20211225";
+        String SDate = "20220201";
+        String EDate = "20220203";
 
         String[] State = {"100", "2**", "3**", "4**"};
         String[] TradeType = {"N", "C"};
         String[] TradeUsage = {"P", "C"};
         String[] TradeOpt = {"N", "B", "T"};
         String[] TaxationType = {"T", "N"};
-        String QString = null;
-        String FranchiseTaxRegID = "0001,0002";
+        String QString = "0101112222";
+        String FranchiseTaxRegID = null;
 
         int Page = 1;
         int PerPage = 20;
         String Order = "D";
 
-        CBSearchResult response = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TradeOpt, TaxationType, QString, Page, PerPage, Order);
+        CBSearchResult response = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TradeOpt,
+                TaxationType, QString, Page, PerPage, Order, FranchiseTaxRegID);
 
         assertNotNull(response);
 

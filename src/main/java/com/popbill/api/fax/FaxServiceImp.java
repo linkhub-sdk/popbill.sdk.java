@@ -18,6 +18,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1460,8 +1462,13 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
         uri += "&PerPage=" + Integer.toString(perPage);
         uri += "&Order=" + order;
 
-        if (qString != null)
-            uri += "&QString=" + qString;
+        if (qString != null && qString != "") {
+            try {
+                uri += "&QString=" + URLEncoder.encode(qString, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                throw new PopbillException(-99999999, "검색어(qString) 인코딩 오류");
+            }
+        }
 
         return httpget(uri, corpNum, null, FAXSearchResult.class);
     }
