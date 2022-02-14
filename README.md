@@ -7,5 +7,5 @@ popbill.sdk.java
     <dependency>
         <groupId>kr.co.linkhub</groupId>
         <artifactId>popbill-sdk</artifactId>
-        <version>1.53.0</version>
+        <version>1.54.0</version>
     </dependency>
