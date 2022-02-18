@@ -676,7 +676,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public BulkCashbillResult getBulkResult(String CorpNum, String SubmitID, String UserID) throws PopbillException {
 
-        if (SubmitID == null)
+        if (SubmitID == null || SubmitID.equals(""))
             throw new PopbillException(-99999999, "제출아이디(SubmitID)가 입력되지 않았습니다.");
         return httpget("/Cashbill/BULK/" + SubmitID + "/State", CorpNum, UserID, BulkCashbillResult.class);
     }

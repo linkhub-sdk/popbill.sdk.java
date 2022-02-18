@@ -1705,7 +1705,7 @@ public class MessageServiceTEST {
     @Test
     public void search_TEST() throws PopbillException{
         String SDate = "20220119";
-        String EDate = "20220208";
+        String EDate = "20220218";
         String[] State = {"1","2","3","4"};
         String[] Item = {"SMS", "LMS", "MMS"};
         Boolean ReserveYN = false;
@@ -1713,13 +1713,17 @@ public class MessageServiceTEST {
         int Page = 1;
         int PerPage = 50;
         String Order = "D";
-        String QString = "발행자 상호_수정";
+        String QString = null;
         
         MSGSearchResult response = messageService.search("1234567890", SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order, QString);
         
         assertNotNull(response);
         
-        System.out.println(response.getTotal() );
+        for(int i = 0 ; i < response.getList().size(); i++) {
+            System.out.print(response.getList().get(i).getReceiveNum() + "\t");
+            System.out.println(response.getList().get(i).getContent());
+        }
+        
     }
     
     @Test

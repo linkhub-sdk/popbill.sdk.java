@@ -1259,6 +1259,8 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      */
     @Override
     public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException {
+        if (SenderNumber == null || SenderNumber.equals(""))
+            throw new PopbillException(-99999999, "발신번호가 입력되지 않았습니다.");
         return httpget("/Message/CheckSenderNumber/"+SenderNumber, CorpNum, UserID, Response.class);
     }
 

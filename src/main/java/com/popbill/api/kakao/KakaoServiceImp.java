@@ -582,6 +582,8 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException {
+        if (SenderNumber == null || SenderNumber.equals(""))
+            throw new PopbillException(-99999999, "발신번호가 입력되지 않았습니다.");
         return httpget("/KakaoTalk/CheckSenderNumber/"+SenderNumber, CorpNum, UserID, Response.class);
     }
 

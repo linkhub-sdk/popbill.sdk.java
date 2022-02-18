@@ -1574,6 +1574,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
      */
     @Override
     public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException {
+        if (SenderNumber == null || SenderNumber.equals(""))
+            throw new PopbillException(-99999999, "발신번호가 입력되지 않았습니다.");
         return httpget("/FAX/CheckSenderNumber/"+SenderNumber, CorpNum, UserID, Response.class);
     }
 
