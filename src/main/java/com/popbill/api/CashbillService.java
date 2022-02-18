@@ -965,7 +965,6 @@ public interface CashbillService extends BaseService{
     */
    public BulkCashbillResult getBulkResult(String CorpNum, String SubmitID) throws PopbillException;
    
-   
    /**
     * @param CorpNum
     *          연동회원 사업자번호

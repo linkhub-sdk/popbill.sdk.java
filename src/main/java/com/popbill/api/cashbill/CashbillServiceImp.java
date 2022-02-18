@@ -649,7 +649,8 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
         return bulkSubmit(CorpNum, SubmitID, cashbillList, null);
 
     }
-    
+
+    @Override
     public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Cashbill> cashbillList,
             String UserID) throws PopbillException {
         if (SubmitID == null || SubmitID.equals(""))
