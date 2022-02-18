@@ -72,6 +72,8 @@ public class TaxinvoiceServiceTEST {
         System.out.println(certInfo.getSubjectDN());
         System.out.println(certInfo.getIssuerName());
         System.out.println(certInfo.getOid());
+        System.out.println(certInfo.getRegContactName());
+        System.out.println(certInfo.getRegContactID());
     }
     
     @Test

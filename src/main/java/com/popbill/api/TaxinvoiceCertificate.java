@@ -8,6 +8,8 @@ public class TaxinvoiceCertificate {
     private String subjectDN;
     private String issuerName;
     private String oid;
+    private String regContactName;
+    private String regContactID;
     
     public String getRegDT() {
         return regDT;
@@ -27,5 +29,10 @@ public class TaxinvoiceCertificate {
     public String getOid() {
         return oid;
     }
-    
+    public String getRegContactName() {
+        return regContactName;
+    }
+    public String getRegContactID() {
+        return regContactID;
+    }
 }
