@@ -6,15 +6,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
+import com.popbill.api.BulkResponse;
 import com.popbill.api.CBIssueResponse;
 import com.popbill.api.CashbillService;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.EmailSendConfig;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.cashbill.BulkCashbillIssueResult;
+import com.popbill.api.cashbill.BulkCashbillResult;
 import com.popbill.api.cashbill.CBSearchResult;
 import com.popbill.api.cashbill.Cashbill;
 import com.popbill.api.cashbill.CashbillInfo;
@@ -310,6 +315,72 @@ public class CashbillServiceTEST {
         assertNotNull(response);
         System.out.println("[" + response.getCode() + "] "+ response.getMessage());
         System.out.println(response.getConfirmNum() + ", " + response.getTradeDate());
+    }
+    
+    
+    @Test
+    public void bulkSubmit_TEST() throws PopbillException {
+        try {
+            List<Cashbill> cashbillList = new ArrayList<Cashbill>();
+            String submitID = "20220218-JAVA";
+            
+            for(int i = 0; i < 5; i++) {
+                Cashbill cashbill = new Cashbill();
+                
+                cashbill.setMgtKey("20220218-"+i);
+                cashbill.setTradeType("승인거래");
+                cashbill.setTradeOpt("도서공연");
+                cashbill.setFranchiseCorpNum("1234567890");
+                cashbill.setFranchiseCorpName("발행자 상호");
+                cashbill.setFranchiseCEOName("발행자 대표자");
+                cashbill.setIdentityNum("0100001234");
+                cashbill.setCustomerName("박지헌");
+                cashbill.setEmail("test@test.com");
+                cashbill.setItemName("상품명");
+                cashbill.setOrderNumber("주문번호");
+                cashbill.setServiceFee("0");
+                cashbill.setSupplyCost("5000");
+                cashbill.setTax("5000");
+                cashbill.setTotalAmount("10000");
+                cashbill.setTradeUsage("소득공제용");
+                cashbill.setTaxationType("과세");
+                cashbill.setSmssendYN(false);
+                
+                cashbillList.add(cashbill);
+            }
+            
+            BulkResponse bulkResponse = cashbillService.bulkSubmit("1234567890", submitID, cashbillList);
+            
+            System.out.println(bulkResponse.getCode());
+            System.out.println(bulkResponse.getMessage());
+            System.out.println(bulkResponse.getReceiptID());
+        } catch (PopbillException e) {
+            // TODO Auto-generated catch block
+            System.out.println(e.getCode()+ "\t" + e.getMessage());
+        }
+    }
+    
+    @Test
+    public void getBulkResult_TEST() throws PopbillException {
+        BulkCashbillResult bulkCashbillResult = cashbillService.getBulkResult("1234567890", "20220218-JAVA");
+        System.out.println(bulkCashbillResult.getCode());
+        System.out.println(bulkCashbillResult.getMessage());
+        System.out.println(bulkCashbillResult.getSubmitID());
+        System.out.println(bulkCashbillResult.getSubmitCount());
+        System.out.println(bulkCashbillResult.getSuccessCount());
+        System.out.println(bulkCashbillResult.getFailCount());
+        System.out.println(bulkCashbillResult.getTxState());
+        System.out.println(bulkCashbillResult.getTxStartDT());
+        System.out.println(bulkCashbillResult.getTxEndDT());
+        System.out.println(bulkCashbillResult.getReceiptDT());
+        System.out.println(bulkCashbillResult.getReceiptID());
+        for(int i = 0 ; i < bulkCashbillResult.getIssueResult().size() ; i++) {
+            BulkCashbillIssueResult bulkCashbillIssueResult = bulkCashbillResult.getIssueResult().get(i);
+            System.out.print(bulkCashbillIssueResult.getMgtKey() + "\t");
+            System.out.print(bulkCashbillIssueResult.getCode() + "\t");
+            System.out.print(bulkCashbillIssueResult.getConfirmNum() + "\t");
+            System.out.print(bulkCashbillIssueResult.getTradeDate() + "\n");
+        }
     }
     
     @Test

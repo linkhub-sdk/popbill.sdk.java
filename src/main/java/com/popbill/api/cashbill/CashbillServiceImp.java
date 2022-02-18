@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.popbill.api.BaseServiceImp;
+import com.popbill.api.BulkResponse;
 import com.popbill.api.CashbillService;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.EmailSendConfig;
@@ -641,6 +642,44 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
         return httppost("/Cashbill", CorpNum, PostData,
                 UserID, "ISSUE", CBIssueResponse.class);
     }
+
+    @Override
+    public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Cashbill> cashbillList) throws PopbillException {
+
+        return bulkSubmit(CorpNum, SubmitID, cashbillList, null);
+
+    }
+    
+    public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Cashbill> cashbillList,
+            String UserID) throws PopbillException {
+        if (SubmitID == null || SubmitID.equals(""))
+            throw new PopbillException(-99999999, "제출아이디(SubmitID)가 입력되지 않았습니다.");
+
+        if (cashbillList == null) {
+            throw new PopbillException(-99999999, "현금영수증 정보가 입력되지 않았습니다.");
+        }
+
+        BulkCashbillSubmit cs = new BulkCashbillSubmit();
+        cs.setCashList(cashbillList);
+        String PostData = toJsonString(cs);
+
+        return httpBulkPost("/Cashbill", CorpNum, SubmitID, PostData, UserID, "BULKISSUE", BulkResponse.class);
+    }
+
+    @Override
+    public BulkCashbillResult getBulkResult(String CorpNum, String SubmitID) throws PopbillException {
+
+        return getBulkResult(CorpNum, SubmitID, null);
+    }
+    
+    @Override
+    public BulkCashbillResult getBulkResult(String CorpNum, String SubmitID, String UserID) throws PopbillException {
+
+        if (SubmitID == null)
+            throw new PopbillException(-99999999, "제출아이디(SubmitID)가 입력되지 않았습니다.");
+        return httpget("/Cashbill/BULK/" + SubmitID + "/State", CorpNum, UserID, BulkCashbillResult.class);
+    }
+    
 
     /*
      * (non-Javadoc)

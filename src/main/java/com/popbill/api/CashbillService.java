@@ -14,6 +14,9 @@
  */
 package com.popbill.api;
 
+import java.util.List;
+
+import com.popbill.api.cashbill.BulkCashbillResult;
 import com.popbill.api.cashbill.CBSearchResult;
 import com.popbill.api.cashbill.Cashbill;
 import com.popbill.api.cashbill.CashbillInfo;
@@ -920,7 +923,62 @@ public interface CashbillService extends BaseService{
     public CBIssueResponse registIssue(String CorpNum, Cashbill cashbill, String memo, String UserID, 
             String emailSubject)
             throws PopbillException;
-    
+
+    /**
+    * 
+    * @param CorpNum
+    *          연동회원 사업자번호
+    * @param SubmitID
+    *          접수 아이디
+    * @param cashbillList
+    *          현금영수증 배열
+    * @return
+    * @throws PopbillException
+    */
+   public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Cashbill> cashbillList)
+           throws PopbillException;
+   
+   /**
+    * 
+    * @param CorpNum
+    *          연동회원 사업자번호
+    * @param SubmitID
+    *          접수 아이디
+    * @param cashbillList
+    *          현금영수증 배열
+    * @param UserID
+    *          팝빌 연동회원 아이디
+    * @return
+    * @throws PopbillException
+    */
+   public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Cashbill> cashbillList,
+           String UserID)
+           throws PopbillException;
+   
+   /**
+    * @param CorpNum
+    *          연동회원 사업자번호
+    * @param SubmitID
+    *          접수 아이디
+    * @return
+    * @throws PopbillException
+    */
+   public BulkCashbillResult getBulkResult(String CorpNum, String SubmitID) throws PopbillException;
+   
+   
+   /**
+    * @param CorpNum
+    *          연동회원 사업자번호
+    * @param SubmitID
+    *          접수 아이디
+    * @param UserID
+    *          팝빌 연동회원 아이디
+    * @return
+    * @throws PopbillException
+    */
+   public BulkCashbillResult getBulkResult(String CorpNum, String SubmitID,
+           String UserID) throws PopbillException;
+
     /**
      * 현금영수증 목록 조회 
      * 
