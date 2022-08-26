@@ -74,7 +74,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
         if (form.getAccountType() == null || form.getAccountType().isEmpty())
             throw new PopbillException(-99999999, "계좌유형이 입력되지 않았습니다.");
 
-        if (form.getAccountType() != "개인" && form.getAccountType() != "법인")
+        if (!form.getAccountType().equals("개인") && !form.getAccountType().equals("법인"))
             throw new PopbillException(-99999999, "계좌유형이 올바르지 않습니다.");
 
         if (form.getIdentityNumber() == null || form.getIdentityNumber().isEmpty())
@@ -111,7 +111,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
         if (CloseType == null || CloseType.isEmpty())
             throw new PopbillException(-99999999, "정액제 해지유형이 입력되지 않았습니다.");
 
-        if (CloseType != "중도" && CloseType != "일반")
+        if (!CloseType.equals("중도")  && !CloseType.equals("일반"))
             throw new PopbillException(-99999999, "정액제 해지유형이 올바르지 않습니다.");
 
         String uri = "/EasyFin/Bank/BankAccount/Close";

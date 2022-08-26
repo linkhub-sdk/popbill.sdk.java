@@ -194,7 +194,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
         if (TaxRegIDYN != "" && TaxRegIDYN != null)
             uri += "&TaxRegIDYN=" + TaxRegIDYN;
 
-        if (TaxRegID != "" && TaxRegIDYN != null)
+        if (TaxRegID != "" && TaxRegID != null)
             uri += "&TaxRegID=" + TaxRegID;
 
         if (SearchString != "" && SearchString != null) {
