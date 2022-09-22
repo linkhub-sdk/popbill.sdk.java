@@ -40,7 +40,7 @@ public class BizInfoCheckServiceImp extends BaseServiceImp implements BizInfoChe
     /*
      * (non-Javadoc)
      * 
-     * @see com.popbill.api.BizInfoCheckService#getUnitCost
+     * @see com.popbill.api.BizInfoCheckService#getUnitCost(java.lang.String)
      */
     @Override
     public float getUnitCost(String CorpNum) throws PopbillException {
@@ -52,11 +52,21 @@ public class BizInfoCheckServiceImp extends BaseServiceImp implements BizInfoChe
     /*
      * (non-Javadoc)
      * 
-     * @see com.popbill.api.BizInfoCheckService#CheckBizInfo
+     * @see com.popbill.api.BizInfoCheckService#CheckBizInfo(java.lang.String, java.lang.String)
      */
     @Override
     public BizInfoCheck CheckBizInfo(String MemberCorpNum, String CheckCorpNum) throws PopbillException {
         return httpget("/BizInfo/Check?CN=" + CheckCorpNum, MemberCorpNum, null, BizInfoCheck.class);
+    }
+    
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.popbill.api.BizInfoCheckService#CheckBizInfo(java.lang.String, java.lang.String, java.lang.String)
+     */
+    @Override
+    public BizInfoCheck CheckBizInfo(String MemberCorpNum, String CheckCorpNum, String UserId) throws PopbillException {
+        return httpget("/BizInfo/Check?CN=" + CheckCorpNum, MemberCorpNum, UserId, BizInfoCheck.class);
     }
 
     /*
