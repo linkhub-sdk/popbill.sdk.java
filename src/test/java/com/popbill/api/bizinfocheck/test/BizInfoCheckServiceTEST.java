@@ -2,7 +2,7 @@ package com.popbill.api.bizinfocheck.test;
 
 import org.junit.Test;
 
-import com.popbill.api.BizInfoCheck;
+import com.popbill.api.BizCheckInfo;
 import com.popbill.api.BizInfoCheckService;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.PopbillException;
@@ -47,7 +47,7 @@ public class BizInfoCheckServiceTEST {
     @Test
     public void CheckCorpNum() throws PopbillException {
         try {
-            BizInfoCheck state = bizInfoService.CheckBizInfo("1234567890", "6798700433");
+            BizCheckInfo state = bizInfoService.CheckBizInfo("1234567890", "1234567890");
             
             System.out.println(state.getCorpNum());
             System.out.println(state.getCheckDT());
@@ -84,7 +84,7 @@ public class BizInfoCheckServiceTEST {
     @Test
     public void CheckCorpNum2() throws PopbillException {
         try {
-            BizInfoCheck state = bizInfoService.CheckBizInfo("1234567890", "6798700433","testkorea");
+            BizCheckInfo state = bizInfoService.CheckBizInfo("1234567890", "6798700433","testkorea");
             
             System.out.println(state.getCorpNum());
             System.out.println(state.getCheckDT());

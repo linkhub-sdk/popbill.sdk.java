@@ -41,7 +41,7 @@ public interface BizInfoCheckService extends BaseService {
      *          휴폐업을 조회하고자 하는 사업자번호
      * @return 기업정보정보
      */
-    BizInfoCheck CheckBizInfo(String MemberCorpNum, String CheckCorpNum) throws PopbillException;
+    BizCheckInfo CheckBizInfo(String MemberCorpNum, String CheckCorpNum) throws PopbillException;
     
     /**
      * 기업정보 조회
@@ -54,7 +54,7 @@ public interface BizInfoCheckService extends BaseService {
      *          연동회원아이디
      * @return 기업정보정보
      */
-    BizInfoCheck CheckBizInfo(String MemberCorpNum, String CheckCorpNum, String UserId) throws PopbillException;
+    BizCheckInfo CheckBizInfo(String MemberCorpNum, String CheckCorpNum, String UserId) throws PopbillException;
 
     /**
      * 과금정보 확인

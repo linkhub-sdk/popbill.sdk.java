@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author shchoi
  * @version 1.0.0
  */
-public class BizInfoCheck implements Serializable {
+public class BizCheckInfo implements Serializable {
 
     /**
      * 
@@ -75,8 +75,8 @@ public class BizInfoCheck implements Serializable {
     }
 
     /**
-     * @return 확인일자
-     *         기업정보 확인 요청 일자
+     * @return 확인일시
+     *         기업정보 확인 요청 일시
      */
     public String getCheckDT() {
         return checkDT;
@@ -112,7 +112,7 @@ public class BizInfoCheck implements Serializable {
     }
 
     /**
-     * @return 기업규모
+     * @return 기업규모코드
      *         10 : 대기업
      *         11 : 대기업(금융)
      *         20 : 중견기업
@@ -175,7 +175,7 @@ public class BizInfoCheck implements Serializable {
     }
 
     /**
-     * @return 설립구분, 설립구분명
+     * @return 설립구분코드
      *         1 : 주식
      *         2 : 합자
      *         3 : 합명
@@ -201,7 +201,7 @@ public class BizInfoCheck implements Serializable {
     }
 
     /**
-     * @return 사업장부분,사업장구분명
+     * @return 사업장구분코드
      *         10 : 본사
      *         20 : 공장
      *         30 : 서울사무소
@@ -219,7 +219,7 @@ public class BizInfoCheck implements Serializable {
     }
 
     /**
-     * @return 주소구분, 주소구분명
+     * @return 주소구분코드
      *         1 : 도로명
      *         2 : 지번
      *         3 : 입력(입수)
@@ -267,12 +267,12 @@ public class BizInfoCheck implements Serializable {
     /**
      * @return 결과코드
      */
-    public int getResult() {
+    public Integer getResult() {
         return result;
     }
 
     /**
-     * @return 결과코드
+     * @return 결과메시지
      */
     public String getResultMessage() {
         return resultMessage;
@@ -285,9 +285,10 @@ public class BizInfoCheck implements Serializable {
      *         30 : 부가가치세 간이과세자
      *         31 : 부가가치세 간이과세자 (세금계산서 발급사업자)
      *         40 : 비영리법인 또는 국가기관, 고유번호가 부여된 단체
-     *         99 : 알수 없음 또는 등록되지 않는 사업자번호
+     *         99 : 알수 없음 
+     *         null : 등록되지 않는 사업자번호
      */
-    public int getCloseDownType() {
+    public Integer getCloseDownType() {
         return closeDownType;
     }
 
@@ -307,7 +308,7 @@ public class BizInfoCheck implements Serializable {
      *         3 : 휴업
      *         9 : 알수 없음
      */
-    public int getCloseDownState() {
+    public Integer getCloseDownState() {
         return closeDownState;
     }
 
