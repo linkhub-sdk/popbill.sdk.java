@@ -289,7 +289,7 @@ public class BizCheckInfo implements Serializable {
      *         30 : 부가가치세 간이과세자
      *         31 : 부가가치세 간이과세자 (세금계산서 발급사업자)
      *         40 : 비영리법인 또는 국가기관, 고유번호가 부여된 단체
-     *         99 : 마확인 
+     *         99 : 미확인 
      */
     public Integer getCloseDownTaxType() {
         return closeDownTaxType;
