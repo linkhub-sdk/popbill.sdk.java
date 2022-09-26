@@ -2,6 +2,8 @@ package com.popbill.api;
 
 import java.io.Serializable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Class for Corporation State Information.
  * 
@@ -37,6 +39,7 @@ public class BizCheckInfo implements Serializable {
 
     private Integer establishCode;
 
+    @SerializedName(value = "ceoname")
     private String CEOName;
 
     private Integer workPlaceCode;
@@ -59,9 +62,9 @@ public class BizCheckInfo implements Serializable {
 
     private String resultMessage;
 
-    private Integer closeDownType;
+    private Integer closeDownTaxType;
 
-    private String closeDownTypeDate;
+    private String closeDownTaxTypeDate;
 
     private Integer closeDownState;
 
@@ -289,7 +292,7 @@ public class BizCheckInfo implements Serializable {
      *         99 : 마확인 
      */
     public Integer getCloseDownTaxType() {
-        return closeDownType;
+        return closeDownTaxType;
     }
 
     /**
@@ -297,7 +300,7 @@ public class BizCheckInfo implements Serializable {
      *         해당 사업자의 과세유형이 전환된 일자
      */
     public String getCloseDownTaxTypeDate() {
-        return closeDownTypeDate;
+        return closeDownTaxTypeDate;
     }
 
     /**

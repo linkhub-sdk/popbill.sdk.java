@@ -47,7 +47,7 @@ public class BizInfoCheckServiceTEST {
     @Test
     public void CheckCorpNum() throws PopbillException {
         try {
-            BizCheckInfo state = bizInfoService.CheckBizInfo("1234567890", "1234567890");
+            BizCheckInfo state = bizInfoService.CheckBizInfo("1234567890", "6798700433");
             
             System.out.println(state.getCorpNum());
             System.out.println(state.getCheckDT());
@@ -71,8 +71,8 @@ public class BizInfoCheckServiceTEST {
             System.out.println(state.getBizType());
             System.out.println(state.getResult());
             System.out.println(state.getResultMessage());
-            System.out.println(state.getCloseDownType());
-            System.out.println(state.getCloseDownTypeDate());
+            System.out.println(state.getCloseDownTaxType());
+            System.out.println(state.getCloseDownTaxTypeDate());
             System.out.println(state.getCloseDownState());
             System.out.println(state.getCloseDownStateDate());
         } catch (PopbillException e) {
@@ -108,8 +108,8 @@ public class BizInfoCheckServiceTEST {
             System.out.println(state.getBizType());
             System.out.println(state.getResult());
             System.out.println(state.getResultMessage());
-            System.out.println(state.getCloseDownType());
-            System.out.println(state.getCloseDownTypeDate());
+            System.out.println(state.getCloseDownTaxType());
+            System.out.println(state.getCloseDownTaxTypeDate());
             System.out.println(state.getCloseDownState());
             System.out.println(state.getCloseDownStateDate());
         } catch (PopbillException e) {
