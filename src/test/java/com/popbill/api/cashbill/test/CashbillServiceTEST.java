@@ -84,13 +84,12 @@ public class CashbillServiceTEST {
         cashbill.setFranchiseCEOName("발행자 대표자");
         cashbill.setFranchiseAddr("발행자 주소");
         cashbill.setFranchiseTEL("07075103710");
-        cashbill.setIdentityNum("01041680206");
+        cashbill.setIdentityNum("0100001234");
         cashbill.setCustomerName("고객명");
         cashbill.setItemName("상품명");
         cashbill.setOrderNumber("주문번호");
         cashbill.setEmail("test@test.com");
-        cashbill.setHp("01043245117");
-        cashbill.setFax("07075103710");
+        cashbill.setHp("01011112222");
         cashbill.setServiceFee("0");
         cashbill.setSupplyCost("5000");
         cashbill.setTax("5000");
@@ -116,13 +115,12 @@ public class CashbillServiceTEST {
         cashbill.setFranchiseCEOName("발행자 대표자_수정");
         cashbill.setFranchiseAddr("발행자 주소");
         cashbill.setFranchiseTEL("07075103710");
-        cashbill.setIdentityNum("01043245117");
+        cashbill.setIdentityNum("0100001234");
         cashbill.setCustomerName("고개명");
         cashbill.setItemName("상품명");
         cashbill.setOrderNumber("주문번호");
         cashbill.setEmail("test@test.com");
-        cashbill.setHp("01043245117");
-        cashbill.setFax("07075103710");
+        cashbill.setHp("01011112222");
         cashbill.setServiceFee("0");
         cashbill.setSupplyCost("10000");
         cashbill.setTax("1000");
@@ -296,12 +294,12 @@ public class CashbillServiceTEST {
         cashbill.setFranchiseAddr("발행자 주소");
         cashbill.setFranchiseTEL("07075103710");
         
-        cashbill.setIdentityNum("01043245117");
+        cashbill.setIdentityNum("0100001234");
         cashbill.setCustomerName("고객명");
         cashbill.setItemName("상품명");
         cashbill.setOrderNumber("주문번호");
         cashbill.setEmail("code@test.co.kr");
-        cashbill.setHp("01043245117");
+        cashbill.setHp("01011112222");
         cashbill.setFax("07075103710");
         cashbill.setServiceFee("0");
         cashbill.setSupplyCost("10000");

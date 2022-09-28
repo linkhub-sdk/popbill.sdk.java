@@ -67,7 +67,7 @@ public class AccountCheckServiceTEST {
     @Test
     public void CheckAccountInfo() throws PopbillException {
         
-        AccountCheckInfo state = accountCheckService.CheckAccountInfo("1234567890", "0034", "6111121245511");
+        AccountCheckInfo state = accountCheckService.CheckAccountInfo("1234567890", "0034", "611121245511");
         
         System.out.println(state.getAccountName());
         System.out.println(state.getAccountNumber());

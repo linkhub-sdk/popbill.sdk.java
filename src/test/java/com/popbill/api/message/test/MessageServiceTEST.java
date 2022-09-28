@@ -62,7 +62,7 @@ public class MessageServiceTEST {
     @Test
     public void sendSMS_02_TEST() throws PopbillException {
         
-        String receiptNum = messageService.sendSMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendSMS("1234567890","010-1111-2222", "010-111-222",
                    "2수신자명","SMS 문자 02 테스트입니다.",null, 
                        true, "testkorea");
         
@@ -77,7 +77,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 03 테스트입니다_01");
         message0.setReceiver("010123123");
@@ -85,12 +85,12 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 03 테스트입니다_03");
         message2.setReceiver("010123123");
@@ -111,7 +111,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 04 테스트입니다 01");
         message0.setReceiver("010123123");
@@ -119,19 +119,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 04 테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;                
         
-        String receiptNum = messageService.sendSMS("1234567890","010-7175-4819", "SMS 문자 04 테스트입니다",
+        String receiptNum = messageService.sendSMS("1234567890","010-1111-2222", "SMS 문자 04 테스트입니다",
                 Messages, null, "testkorea");
         
         assertNotNull(receiptNum);
@@ -145,7 +145,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 05 테스트입니다 01");
         message0.setReceiver("010123123");
@@ -153,19 +153,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 05 테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendSMS("1234567890","010-7175-4819", "SMS 문자 05 테스트입니다",
+        String receiptNum = messageService.sendSMS("1234567890","010-1111-2222", "SMS 문자 05 테스트입니다",
                 Messages, null, false, "testkorea");
         
         assertNotNull(receiptNum);
@@ -179,7 +179,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 06 테스트입니다 01");
         message0.setReceiver("010123123");
@@ -187,19 +187,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 06 테스트입니다 02");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendSMS("1234567890","010-7175-4819", "발신자명06",
+        String receiptNum = messageService.sendSMS("1234567890","010-1111-2222", "발신자명06",
                 "SMS 문자 06 테스트입니다", Messages, null, true, "testkorea"      );
         
         assertNotNull(receiptNum);
@@ -211,7 +211,7 @@ public class MessageServiceTEST {
     public void sendSMS_07_TEST() throws PopbillException {
         Date reserveDT = new Date();
         reserveDT.setDate(reserveDT.getDate() + 15);
-        String receiptNum = messageService.sendSMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendSMS("1234567890","010-1111-2222", "010-111-222",
                    "수신자명07","SMS 문자 07 테스트입니다",reserveDT, "testkorea", "20180813155254");
         
         assertNotNull(receiptNum);
@@ -223,7 +223,7 @@ public class MessageServiceTEST {
     public void sendSMS_08_TEST() throws PopbillException {
         Date reserveDT = new Date();
         reserveDT.setDate(reserveDT.getDate() + 1);
-        String receiptNum = messageService.sendSMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendSMS("1234567890","010-1111-2222", "010-111-222",
                    "수신자명08","SMS 문자  08 테스트입니다",reserveDT, 
                        true, "testkorea", "20180723_SMS_38");
         
@@ -238,7 +238,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 09  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -246,12 +246,12 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 09  테스트입니다 03");
         message2.setReceiver("010123123");
@@ -272,7 +272,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 10  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -280,19 +280,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 10  테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendSMS("1234567890","010-7175-4819", "SMS 문자 10  테스트입니다",
+        String receiptNum = messageService.sendSMS("1234567890","010-1111-2222", "SMS 문자 10  테스트입니다",
                 Messages, null, "testkorea", "20180723_SMS_10");
         
         assertNotNull(receiptNum);
@@ -306,7 +306,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 11  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -314,19 +314,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 11  테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendSMS("1234567890","010-7175-4819", "SMS 문자 11  테스트입니다",
+        String receiptNum = messageService.sendSMS("1234567890","010-1111-2222", "SMS 문자 11  테스트입니다",
                 Messages, null, false, "testkorea", "20180723_SMS_11");
         
         assertNotNull(receiptNum);
@@ -340,7 +340,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 12  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -348,19 +348,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 12  테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendSMS("1234567890","010-7175-4819", "발신자명 12",
+        String receiptNum = messageService.sendSMS("1234567890","010-1111-2222", "발신자명 12",
                 "SMS 문자 12 테스트입니다", Messages, null, false, "testkorea", "20180723_SMS_12");
         
         assertNotNull(receiptNum);
@@ -372,7 +372,7 @@ public class MessageServiceTEST {
     @Test
     public void sendLMS_01_TEST() throws PopbillException {
         
-        String receiptNum = messageService.sendLMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendLMS("1234567890","010-1111-2222", "010-111-222",
                    "1수신자명", "LMS SUBJECT 01", "LMS 문자 01 테스트입니다.", null, "testkorea");
         
         assertNotNull(receiptNum);
@@ -383,7 +383,7 @@ public class MessageServiceTEST {
     @Test
     public void sendLMS_02_TEST() throws PopbillException {
         
-        String receiptNum = messageService.sendLMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendLMS("1234567890","010-1111-2222", "010-111-222",
                    "2수신자명","LMS SUBJECT 02", "LMS 문자 02 테스트입니다.",null, 
                        true, "testkorea");
         
@@ -398,7 +398,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("LMS 문자 03 테스트입니다_01");
         message0.setReceiver("010123123");
@@ -406,12 +406,12 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("LMS 문자 03 테스트입니다_03");
         message2.setReceiver("010123123");
@@ -432,7 +432,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 04 테스트입니다 01");
         message0.setReceiver("010123123");
@@ -440,19 +440,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 04 테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;                
         
-        String receiptNum = messageService.sendLMS("1234567890","010-7175-4819","LMS SUBJECT 04", 
+        String receiptNum = messageService.sendLMS("1234567890","010-1111-2222","LMS SUBJECT 04", 
                 "SMS 문자 04 테스트입니다",
                 Messages, null, "testkorea");
         
@@ -467,7 +467,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("LMS 문자 05 테스트입니다 01");
         message0.setReceiver("010123123");
@@ -475,19 +475,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("LMS 문자 05 테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendLMS("1234567890","010-7175-4819", "LMS SUBJECT 05", 
+        String receiptNum = messageService.sendLMS("1234567890","010-1111-2222", "LMS SUBJECT 05", 
                 "LMS 문자 05 테스트입니다",
                 Messages, null, false, "testkorea");
         
@@ -502,7 +502,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 06 테스트입니다 01");
         message0.setReceiver("010123123");
@@ -510,19 +510,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 06 테스트입니다 02");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendLMS("1234567890","010-7175-4819", "발신자명06",
+        String receiptNum = messageService.sendLMS("1234567890","010-1111-2222", "발신자명06",
                 "LMS SUBJECT 06", "LMS 문자 06 테스트입니다", Messages, null, true, "testkorea"      );
         
         assertNotNull(receiptNum);
@@ -533,7 +533,7 @@ public class MessageServiceTEST {
     @Test
     public void sendLMS_07_TEST() throws PopbillException {
         
-        String receiptNum = messageService.sendLMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendLMS("1234567890","010-1111-2222", "010-111-222",
                    "수신자명07","LMS SUBJECT 07", "LMS 문자 07 테스트입니다",null, "testkorea", "20180723_LMS_07");
         
         assertNotNull(receiptNum);
@@ -544,7 +544,7 @@ public class MessageServiceTEST {
     @Test
     public void sendLMS_08_TEST() throws PopbillException {
         
-        String receiptNum = messageService.sendLMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendLMS("1234567890","010-1111-2222", "010-111-222",
                    "수신자명08","LMS SUBJECT 08", "SMS 문자  08 테스트입니다",null, 
                        true, "testkorea", "20180723_LMS_08");
         
@@ -559,7 +559,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("LMS 문자 09  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -567,12 +567,12 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("LMS 문자 09  테스트입니다 03");
         message2.setReceiver("010123123");
@@ -593,7 +593,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("LMS 문자 10  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -601,19 +601,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("LMS 문자 10  테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendLMS("1234567890","010-7175-4819", "LMS SUBJECT 10", "LMS 문자 10  테스트입니다",
+        String receiptNum = messageService.sendLMS("1234567890","010-1111-2222", "LMS SUBJECT 10", "LMS 문자 10  테스트입니다",
                 Messages, null, "testkorea", "20180723_LMS_10");
         
         assertNotNull(receiptNum);
@@ -627,7 +627,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 11  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -635,19 +635,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 11  테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendLMS("1234567890","010-7175-4819", "LMS SUBJECT 11",  "LMS 문자 11  테스트입니다",
+        String receiptNum = messageService.sendLMS("1234567890","010-1111-2222", "LMS SUBJECT 11",  "LMS 문자 11  테스트입니다",
                 Messages, null, false, "testkorea", "20180723_LMS_11");
         
         assertNotNull(receiptNum);
@@ -661,7 +661,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("LMS 문자 12  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -669,19 +669,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("LMS 문자 12  테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendLMS("1234567890","010-7175-4819", "발신자명 12", "LMS SUBJECT12",
+        String receiptNum = messageService.sendLMS("1234567890","010-1111-2222", "발신자명 12", "LMS SUBJECT12",
                 "LMS 문자 12 테스트입니다", Messages, null, false, "testkorea", "20180723_LMS_12");
         
         assertNotNull(receiptNum);
@@ -694,7 +694,7 @@ public class MessageServiceTEST {
     public void sendMMS_01_TEST() throws PopbillException {
         File file = new File("/Users/김은혜/Desktop/산타할부지.jpg");        
         
-        String receiptNum = messageService.sendMMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendMMS("1234567890","010-1111-2222", "010-111-222",
                    "1수신자명", "MMS SUBJECT 01", "MMS 문자 01 테스트입니다.", file, null, "testkorea");
         
         assertNotNull(receiptNum);
@@ -705,7 +705,7 @@ public class MessageServiceTEST {
     @Test
     public void sendMMS_02_TEST() throws PopbillException {
         File file = new File("/Users/김은혜/Desktop/산타할부지.jpg");
-        String receiptNum = messageService.sendMMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendMMS("1234567890","010-1111-2222", "010-111-222",
                    "2수신자명","MMS SUBJECT 02", "MMS 문자 02 테스트입니다.", file,  null, 
                        true, "testkorea");
         
@@ -720,7 +720,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("MMS 문자 03 테스트입니다_01");
         message0.setReceiver("010123123");
@@ -728,12 +728,12 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("MMS 문자 03 테스트입니다_03");
         message2.setReceiver("010123123");
@@ -754,7 +754,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 04 테스트입니다 01");
         message0.setReceiver("010123123");
@@ -762,19 +762,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 04 테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;                
         
-        String receiptNum = messageService.sendMMS("1234567890","010-7175-4819","MMS SUBJECT 04", 
+        String receiptNum = messageService.sendMMS("1234567890","010-1111-2222","MMS SUBJECT 04", 
                 "MMS 문자 04 테스트입니다",
                 Messages, file,  null, "testkorea");
         
@@ -789,7 +789,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("MMS 문자 05 테스트입니다 01");
         message0.setReceiver("010123123");
@@ -797,19 +797,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("MMS 문자 05 테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendMMS("1234567890","010-7175-4819", "MMS SUBJECT 05", 
+        String receiptNum = messageService.sendMMS("1234567890","010-1111-2222", "MMS SUBJECT 05", 
                 "MMS 문자 05 테스트입니다",
                 Messages, file,  null, false, "testkorea");
         
@@ -824,7 +824,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("MMS 문자 06 테스트입니다 01");
         message0.setReceiver("010123123");
@@ -832,19 +832,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("MMS 문자 06 테스트입니다 02");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendMMS("1234567890","010-7175-4819", "발신자명06",
+        String receiptNum = messageService.sendMMS("1234567890","010-1111-2222", "발신자명06",
                 "MMS SUBJECT 06", "MMS 문자 06 테스트입니다", Messages, file,  null, true, "testkorea"      );
         
         assertNotNull(receiptNum);
@@ -855,7 +855,7 @@ public class MessageServiceTEST {
     @Test
     public void sendMMS_07_TEST() throws PopbillException {
         File file = new File("/Users/김은혜/Desktop/산타할부지.jpg");
-        String receiptNum = messageService.sendMMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendMMS("1234567890","010-1111-2222", "010-111-222",
                    "수신자명07","MMS SUBJECT 07", "MMS 문자 07 테스트입니다", file, null, "testkorea", "20180723_MMS_17");
         
         assertNotNull(receiptNum);
@@ -866,7 +866,7 @@ public class MessageServiceTEST {
     @Test
     public void sendMMS_08_TEST() throws PopbillException {
         File file = new File("/Users/김은혜/Desktop/산타할부지.jpg");
-        String receiptNum = messageService.sendMMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendMMS("1234567890","010-1111-2222", "010-111-222",
                    "수신자명08","MMS SUBJECT 08", "MMS 문자  08 테스트입니다",file,  null, 
                        true, "testkorea", "20180723_MMS_18");
         
@@ -881,7 +881,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("MMS 문자 09  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -889,12 +889,12 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("MMS 문자 09  테스트입니다 03");
         message2.setReceiver("010123123");
@@ -915,7 +915,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("MMS 문자 10  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -923,19 +923,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("MMS 문자 10  테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendMMS("1234567890","010-7175-4819", "MMS SUBJECT 10", "MMS 문자 10  테스트입니다",
+        String receiptNum = messageService.sendMMS("1234567890","010-1111-2222", "MMS SUBJECT 10", "MMS 문자 10  테스트입니다",
                 Messages, file, null, "testkorea", "20180723_MMS_20");
         
         assertNotNull(receiptNum);
@@ -949,7 +949,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("MMS 문자 11  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -957,19 +957,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("MMS 문자 11  테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendMMS("1234567890","010-7175-4819", "MMS SUBJECT 11",  "MMS 문자 11  테스트입니다",
+        String receiptNum = messageService.sendMMS("1234567890","010-1111-2222", "MMS SUBJECT 11",  "MMS 문자 11  테스트입니다",
                 Messages, file, null, false, "testkorea", "20180723_MMS_21");
         
         assertNotNull(receiptNum);
@@ -985,7 +985,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("MMS 문자 12  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -993,19 +993,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("MMS 문자 12  테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendMMS("1234567890","010-7175-4819", "발신자명 12", "MMS SUBJECT12",
+        String receiptNum = messageService.sendMMS("1234567890","010-1111-2222", "발신자명 12", "MMS SUBJECT12",
                 "MMS 문자 12 테스트입니다", Messages, file, reserveDT, false, "testkorea", "20180723_MMS_32");
         
         assertNotNull(receiptNum);
@@ -1016,7 +1016,7 @@ public class MessageServiceTEST {
     @Test
     public void sendXMS_01_TEST() throws PopbillException {
         
-        String receiptNum = messageService.sendXMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendXMS("1234567890","010-1111-2222", "010-111-222",
                    "1수신자명", "XMS SUBJECT 01", "XMS 문자 01 테스트입니다.", null, "testkorea");
         
         assertNotNull(receiptNum);
@@ -1027,7 +1027,7 @@ public class MessageServiceTEST {
     @Test
     public void sendXMS_02_TEST() throws PopbillException {
         
-        String receiptNum = messageService.sendXMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendXMS("1234567890","010-1111-2222", "010-111-222",
                    "2수신자명","XMS SUBJECT 02", "XMS 문자 02 테스트입니다.",null, 
                        true, "testkorea");
         
@@ -1042,7 +1042,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("XMS 문자 03 테스트입니다_01");
         message0.setReceiver("010123123");
@@ -1050,12 +1050,12 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("XMS 문자 03 테스트입니다_03");
         message2.setReceiver("010123123");
@@ -1076,7 +1076,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 04 테스트입니다 01");
         message0.setReceiver("010123123");
@@ -1084,19 +1084,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 04 테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;                
         
-        String receiptNum = messageService.sendXMS("1234567890","010-7175-4819","XMS SUBJECT 04", 
+        String receiptNum = messageService.sendXMS("1234567890","010-1111-2222","XMS SUBJECT 04", 
                 "SMS 문자 04 테스트입니다",
                 Messages, null, "testkorea");
         
@@ -1111,7 +1111,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("XMS 문자 05 테스트입니다 01");
         message0.setReceiver("010123123");
@@ -1119,19 +1119,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("XMS 문자 05 테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendXMS("1234567890","010-7175-4819", "XMS SUBJECT 05", 
+        String receiptNum = messageService.sendXMS("1234567890","010-1111-2222", "XMS SUBJECT 05", 
                 "XMS 문자 05 테스트입니다",
                 Messages, null, false, "testkorea");
         
@@ -1146,7 +1146,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 06 테스트입니다 01");
         message0.setReceiver("010123123");
@@ -1154,19 +1154,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 06 테스트입니다 02");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendXMS("1234567890","010-7175-4819", "발신자명06",
+        String receiptNum = messageService.sendXMS("1234567890","010-1111-2222", "발신자명06",
                 "XMS SUBJECT 06", "XMS 문자 06 테스트입니다", Messages, null, true, "testkorea"      );
         
         assertNotNull(receiptNum);
@@ -1177,7 +1177,7 @@ public class MessageServiceTEST {
     @Test
     public void sendXMS_07_TEST() throws PopbillException {
         
-        String receiptNum = messageService.sendXMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendXMS("1234567890","010-1111-2222", "010-111-222",
                    "수신자명07","XMS SUBJECT 07", "XMS 문자 07 테스트입니다",null, "testkorea", "20180723_XMS_07");
         
         assertNotNull(receiptNum);
@@ -1188,7 +1188,7 @@ public class MessageServiceTEST {
     @Test
     public void sendXMS_08_TEST() throws PopbillException {
         
-        String receiptNum = messageService.sendXMS("1234567890","010-7175-4819", "010-111-222",
+        String receiptNum = messageService.sendXMS("1234567890","010-1111-2222", "010-111-222",
                    "수신자명08","XMS SUBJECT 08", "SMS 문자  08 테스트입니다",null, 
                        true, "testkorea", "20180723_XMS_08");
         
@@ -1203,7 +1203,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("XMS 문자 09  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -1211,12 +1211,12 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("XMS 문자 09  테스트입니다 03");
         message2.setReceiver("010123123");
@@ -1237,7 +1237,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("XMS 문자 10  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -1245,19 +1245,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("XMS 문자 10  테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendXMS("1234567890","010-7175-4819", "XMS SUBJECT 10", "XMS 문자 10  테스트입니다",
+        String receiptNum = messageService.sendXMS("1234567890","010-1111-2222", "XMS SUBJECT 10", "XMS 문자 10  테스트입니다",
                 Messages, null, "testkorea", "20180723_XMS_10");
         
         assertNotNull(receiptNum);
@@ -1271,7 +1271,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 11  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -1279,19 +1279,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 11  테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendXMS("1234567890","010-7175-4819", "XMS SUBJECT 11",  "XMS 문자 11  테스트입니다",
+        String receiptNum = messageService.sendXMS("1234567890","010-1111-2222", "XMS SUBJECT 11",  "XMS 문자 11  테스트입니다",
                 Messages, null, false, "testkorea", "20180723_XMS_11");
         
         assertNotNull(receiptNum);
@@ -1306,7 +1306,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("XMS 문자 12  테스트입니다 01");
         message0.setReceiver("010123123");
@@ -1314,19 +1314,19 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("XMS 문자 12  테스트입니다 03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;            
         
-        String receiptNum = messageService.sendXMS("1234567890","010-7175-4819", "발신자명 12", "XMS SUBJECT12",
+        String receiptNum = messageService.sendXMS("1234567890","010-1111-2222", "발신자명 12", "XMS SUBJECT12",
                 "XMS 문자 12 테스트입니다", Messages, reserveDT, false, "testkorea", "20180723_XMS_22");
         
         assertNotNull(receiptNum);
@@ -1380,7 +1380,7 @@ public class MessageServiceTEST {
     @Test
     public void sendSMS_Single_TEST() throws PopbillException {
         
-        String receiptNum = messageService.sendSMS("1234567890","010-7175-4819", "010-111-222","수신자명","111단문문자메시지 내용_광고아닙니다.",null, true, "testkorea", "20180716_15");
+        String receiptNum = messageService.sendSMS("1234567890","010-1111-2222", "010-111-222","수신자명","111단문문자메시지 내용_광고아닙니다.",null, true, "testkorea", "20180716_15");
         
         assertNotNull(receiptNum);
         
@@ -1394,13 +1394,13 @@ public class MessageServiceTEST {
         Date reserveDT = new Date();
         reserveDT.setDate(reserveDT.getDate() + 1);
         
-//        String receiptNum = messageService.sendLMS("1234567890","010-7175-4819","010-111-222","수신자명~!!","test장문메시지 제목","222장문문자메시지 내용. 장문문자메시지의 내용은 2000byte까지입니다. 이거슨 광고가 아닙니다.",null, "testkorea", "20180717_01");
-//        String receiptNum = messageService.sendLMS("1234567890","010-7175-4819","010-111-222","2번째 수신자","장문메시지 제목","2번째 수신자에게 보내는 장문문자메시지 내용. 장문문자메시지의 내용은 2000byte까지입니다. 이거슨 광고가 아닙니다.",
+//        String receiptNum = messageService.sendLMS("1234567890","010-1111-2222","010-111-222","수신자명~!!","test장문메시지 제목","222장문문자메시지 내용. 장문문자메시지의 내용은 2000byte까지입니다. 이거슨 광고가 아닙니다.",null, "testkorea", "20180717_01");
+//        String receiptNum = messageService.sendLMS("1234567890","010-1111-2222","010-111-222","2번째 수신자","장문메시지 제목","2번째 수신자에게 보내는 장문문자메시지 내용. 장문문자메시지의 내용은 2000byte까지입니다. 이거슨 광고가 아닙니다.",
 //                null, true, "testkorea", "20180717_02");
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("내용_1");
         message0.setReceiver("010123123");
@@ -1408,12 +1408,12 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("내용_3");
         message2.setReceiver("010123123");
@@ -1517,7 +1517,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("내용_1");
         message0.setReceiver("010123123");
@@ -1525,7 +1525,7 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setSubject("제목_2");
         message1.setContent("내용_2 ㅎㅎㅎㅎㅎ~~~");
         message1.setSenderName("안녕하십니까? 발신자");
@@ -1534,7 +1534,7 @@ public class MessageServiceTEST {
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("내용_3");
         message2.setReceiver("010123123");
@@ -1542,8 +1542,8 @@ public class MessageServiceTEST {
         Messages[2] = message2;        
         
         
-//        String receiptNum = messageService.sendXMS("1234567890","010-7175-4819","010-111-222","수신자명!!!!","장문메시지 제목","메시지 길이에 따라 90Byte 이하는 단문, 이상은 장문으로 전송 이것도 광고는 아닙ㄴ다.", reserveDT, "testkorea", "20180717_20");
-//        String receiptNum = messageService.sendXMS("1234567890","010-7175-4819","010-111-222","수신자명!!!!","XML메시지 제목","테스트는 꼼꼼히 해야됩니다.메시지 길이에 따라 90Byte 이하는 단문, 이상은 장문으로 전송 이것도 광고는 아닙ㄴ다.", reserveDT, false, "testkorea", "20180717_21");
+//        String receiptNum = messageService.sendXMS("1234567890","010-1111-2222","010-111-222","수신자명!!!!","장문메시지 제목","메시지 길이에 따라 90Byte 이하는 단문, 이상은 장문으로 전송 이것도 광고는 아닙ㄴ다.", reserveDT, "testkorea", "20180717_20");
+//        String receiptNum = messageService.sendXMS("1234567890","010-1111-2222","010-111-222","수신자명!!!!","XML메시지 제목","테스트는 꼼꼼히 해야됩니다.메시지 길이에 따라 90Byte 이하는 단문, 이상은 장문으로 전송 이것도 광고는 아닙ㄴ다.", reserveDT, false, "testkorea", "20180717_21");
 //        String receiptNum = messageService.sendXMS("1234567890", Messages, reserveDT, "testkorea", "20180717_22");
 //        String receiptNum = messageService.sendXMS("1234567890","sender~~1", "subject~~2", "content~~3", Messages, null, "testkorea", "20180717_23");
 //        String receiptNum = messageService.sendXMS("1234567890","sender~~1", "subject~~2", "content~~3", Messages, reserveDT, true, "testkorea", "20180717_24");
@@ -1562,13 +1562,13 @@ public class MessageServiceTEST {
         
         File file = new File("/Users/김은혜/Desktop/산타할부지.jpg");
         
-//        String receiptNum = messageService.sendMMS("1234567890", "010-7175-4819", "010-111-222", "test~수신자명", "MMS 메시지 제목", "메시지내용_광고아닙니다!!!!!구리구리", file, reserveDT, "testkorea", "20180717_11");
-//        String receiptNum = messageService.sendMMS("1234567890", "010-7175-4819", "010-111-222", "test~수신자명", "MMS 메시지 제목", "광고일수도있고 아닐수도있고 알약알약알약", file, reserveDT, true, "testkorea", "20180717_12");
+//        String receiptNum = messageService.sendMMS("1234567890", "010-1111-2222", "010-111-222", "test~수신자명", "MMS 메시지 제목", "메시지내용_광고아닙니다!!!!!구리구리", file, reserveDT, "testkorea", "20180717_11");
+//        String receiptNum = messageService.sendMMS("1234567890", "010-1111-2222", "010-111-222", "test~수신자명", "MMS 메시지 제목", "광고일수도있고 아닐수도있고 알약알약알약", file, reserveDT, true, "testkorea", "20180717_12");
 
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setSubject("제목_1");
         message0.setContent("내용_1");
         message0.setReceiver("010123123");
@@ -1576,12 +1576,12 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setSubject("제목_3");
         message2.setContent("내용_3");
         message2.setReceiver("010123123");
@@ -1602,19 +1602,19 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
                 
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setReceiver("010123123");
         message0.setReceiverName("수신자명1");
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         message1.setReceiverName("수신자명2");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         Messages[2] = message2;
@@ -1624,7 +1624,7 @@ public class MessageServiceTEST {
         today.setDate(today.getDate() + 1);
         System.out.println(today);
         
-        String receiptNum = messageService.sendSMS("1234567890", "01071754819", "테스트발신자명!!!", "안녕하십니까 메시지 내용입니다. 테스트테스트!!!", Messages, today, false, "testkorea");
+        String receiptNum = messageService.sendSMS("1234567890", "01011112222", "테스트발신자명!!!", "안녕하십니까 메시지 내용입니다. 테스트테스트!!!", Messages, today, false, "testkorea");
         
         
         assertNotNull(receiptNum);
@@ -1637,7 +1637,7 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
                 
         Message message0 = new Message();
-        message0.setSender("010-7175-4819");
+        message0.setSender("010-1111-2222");
         message0.setReceiver("010123123");
         message0.setReceiverName("수신자명1");
         message0.setSubject("JAVA MMS 개별 메시지 제목");
@@ -1645,7 +1645,7 @@ public class MessageServiceTEST {
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-7175-4819");
+        message1.setSender("010-1111-2222");
         message1.setReceiver("010123123");
         message1.setReceiverName("수신자명2");
         message1.setSubject("JAVA MMS 개별 메시지 제목");
@@ -1653,7 +1653,7 @@ public class MessageServiceTEST {
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-7175-4819");
+        message2.setSender("010-1111-2222");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
         message2.setSubject("JAVA MMS 개별 메시지 제목");
