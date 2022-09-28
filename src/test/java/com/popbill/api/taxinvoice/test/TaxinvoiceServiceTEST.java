@@ -679,6 +679,16 @@ public class TaxinvoiceServiceTEST {
     }
 
     @Test
+    public void getXML_TEST() throws PopbillException {
+            TaxinvoiceXML taxinvoiceXML = taxinvoiceService.getXML("1234567890",
+                MgtKeyType.SELL, "20220920-002");
+    
+        assertNotNull(taxinvoiceXML);
+        System.out.println(taxinvoiceXML.getCode() + " | " + taxinvoiceXML.getMessage());
+        System.out.println(taxinvoiceXML.getRetObject());
+    }
+
+    @Test
     public void search_TEST() throws PopbillException {
         TISearchResult response = new TISearchResult();
         

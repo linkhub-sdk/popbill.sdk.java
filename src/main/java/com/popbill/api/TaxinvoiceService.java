@@ -624,6 +624,21 @@ public interface TaxinvoiceService extends BaseService {
             MgtKeyType KeyType, String MgtKey) throws PopbillException;
 
     /**
+     * 세금계산서 상세정보(XML) 확인.
+     *
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @param KeyType
+     *            세금계산서 유형
+     * @param MgtKey
+     *            문서번호
+     * @return Response 응답
+     * @throws PopbillException
+     */
+    public TaxinvoiceXML getXML(String CorpNum,
+            MgtKeyType KeyType, String MgtKey) throws PopbillException;
+
+    /**
      * 세금계산서 목록조회
      *
      * @param CorpNum
