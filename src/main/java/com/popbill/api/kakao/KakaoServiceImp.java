@@ -25,66 +25,11 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     }
 
     @Override
-    public float getUnitCost(String CorpNum, KakaoType kakaoType) throws PopbillException {
-        if (kakaoType == null)
-            throw new PopbillException(-99999999, "카카오톡 전송유형이 입력되지 않았습니다.");
-
-        UnitCostResponse response = httpget("/KakaoTalk/UnitCost?Type=" + kakaoType.name(), CorpNum, null, UnitCostResponse.class);
-
-        return response.unitCost;
-    }
-
-    @Override
-    public String getURL(String CorpNum, String TOGO, String UserID) throws PopbillException {
-
-        String uri = "/KakaoTalk/?TG=";
-        if (TOGO == "SENDER")
-            uri = "/Message/?TG=";
-
-        URLResponse response = httpget(uri + TOGO, CorpNum, UserID, URLResponse.class);
-
+    public String getPlusFriendMgtURL(String CorpNum, String UserID) throws PopbillException {
+    
+        URLResponse response = httpget("/KakaoTalk/?TG=PLUSFRIEND", CorpNum, UserID, URLResponse.class);
+    
         return response.url;
-    }
-
-    @Override
-    public Response cancelReserve(String CorpNum, String receiptNum) throws PopbillException {
-        return cancelReserve(CorpNum, receiptNum, null);
-    }
-
-    @Override
-    public Response cancelReserve(String CorpNum, String receiptNum, String UserID) throws PopbillException {
-        if (receiptNum == null || receiptNum == "")
-            throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
-
-        return httpget("/KakaoTalk/" + receiptNum + "/Cancel", CorpNum, UserID, Response.class);
-    }
-
-    @Override
-    public Response cancelReserveRN(String CorpNum, String requestNum) throws PopbillException {
-        return cancelReserveRN(CorpNum, requestNum, null);
-    }
-
-    @Override
-    public Response cancelReserveRN(String CorpNum, String requestNum, String UserID) throws PopbillException {
-        if (requestNum == null || requestNum == "")
-            throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
-
-        return httpget("/KakaoTalk/Cancel/" + requestNum, CorpNum, UserID, Response.class);
-    }
-
-    @Override
-    public ChargeInfo getChargeInfo(String CorpNum, KakaoType kakaoType) throws PopbillException {
-        return httpget("/KakaoTalk/ChargeInfo?Type=" + kakaoType.name(), CorpNum, null, ChargeInfo.class);
-    }
-
-    @Override
-    public SenderNumber[] getSenderNumberList(String CorpNum) throws PopbillException {
-        return getSenderNumberList(CorpNum, null);
-    }
-
-    @Override
-    public SenderNumber[] getSenderNumberList(String CorpNum, String UserID) throws PopbillException {
-        return httpget("/Message/SenderNumber", CorpNum, null, SenderNumber[].class);
     }
 
     @Override
@@ -98,6 +43,44 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     }
 
     @Override
+    public Response checkSenderNumber(String CorpNum, String SenderNumber) throws PopbillException {
+        return checkSenderNumber(CorpNum, SenderNumber, null);
+    }
+
+    @Override
+    public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException {
+        if (SenderNumber == null || SenderNumber.equals(""))
+            throw new PopbillException(-99999999, "발신번호가 입력되지 않았습니다.");
+        return httpget("/KakaoTalk/CheckSenderNumber/"+SenderNumber, CorpNum, UserID, Response.class);
+    }
+
+    @Override
+    public String getSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException {
+    
+        URLResponse response = httpget("/Message/?TG=SENDER", CorpNum, UserID, URLResponse.class);
+    
+        return response.url;
+    }
+
+    @Override
+    public SenderNumber[] getSenderNumberList(String CorpNum) throws PopbillException {
+        return getSenderNumberList(CorpNum, null);
+    }
+
+    @Override
+    public SenderNumber[] getSenderNumberList(String CorpNum, String UserID) throws PopbillException {
+        return httpget("/Message/SenderNumber", CorpNum, null, SenderNumber[].class);
+    }
+
+    @Override
+    public String getATSTemplateMgtURL(String CorpNum, String UserID) throws PopbillException {
+    
+        URLResponse response = httpget("/KakaoTalk/?TG=TEMPLATE", CorpNum, UserID, URLResponse.class);
+    
+        return response.url;
+    }
+
+    @Override
     public ATSTemplate getATSTemplate(String CorpNum, String templateCode) throws PopbillException {
         return getATSTemplate(CorpNum, templateCode, null);
     }
@@ -106,7 +89,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     public ATSTemplate getATSTemplate(String CorpNum, String templateCode, String UserID) throws PopbillException {
         if (templateCode == null || templateCode.isEmpty())
             throw new PopbillException(-99999999, "알림톡 템플릿코드(templateCode)가 입력되지 않았습니다.");
-
+    
         return httpget("/KakaoTalk/GetATSTemplate/" + templateCode, CorpNum, UserID, ATSTemplate.class);
     }
 
@@ -470,6 +453,32 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     }
 
     @Override
+    public Response cancelReserve(String CorpNum, String receiptNum) throws PopbillException {
+        return cancelReserve(CorpNum, receiptNum, null);
+    }
+
+    @Override
+    public Response cancelReserve(String CorpNum, String receiptNum, String UserID) throws PopbillException {
+        if (receiptNum == null || receiptNum == "")
+            throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
+    
+        return httpget("/KakaoTalk/" + receiptNum + "/Cancel", CorpNum, UserID, Response.class);
+    }
+
+    @Override
+    public Response cancelReserveRN(String CorpNum, String requestNum) throws PopbillException {
+        return cancelReserveRN(CorpNum, requestNum, null);
+    }
+
+    @Override
+    public Response cancelReserveRN(String CorpNum, String requestNum, String UserID) throws PopbillException {
+        if (requestNum == null || requestNum == "")
+            throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
+    
+        return httpget("/KakaoTalk/Cancel/" + requestNum, CorpNum, UserID, Response.class);
+    }
+
+    @Override
     public KakaoSentInfo getMessages(String CorpNum, String receiptNum) throws PopbillException {
         return getMessages(CorpNum, receiptNum, null);
     }
@@ -544,30 +553,6 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     }
 
     @Override
-    public String getPlusFriendMgtURL(String CorpNum, String UserID) throws PopbillException {
-
-        URLResponse response = httpget("/KakaoTalk/?TG=PLUSFRIEND", CorpNum, UserID, URLResponse.class);
-
-        return response.url;
-    }
-
-    @Override
-    public String getSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException {
-
-        URLResponse response = httpget("/Message/?TG=SENDER", CorpNum, UserID, URLResponse.class);
-
-        return response.url;
-    }
-
-    @Override
-    public String getATSTemplateMgtURL(String CorpNum, String UserID) throws PopbillException {
-
-        URLResponse response = httpget("/KakaoTalk/?TG=TEMPLATE", CorpNum, UserID, URLResponse.class);
-
-        return response.url;
-    }
-
-    @Override
     public String getSentListURL(String CorpNum, String UserID) throws PopbillException {
 
         URLResponse response = httpget("/KakaoTalk/?TG=BOX", CorpNum, UserID, URLResponse.class);
@@ -576,15 +561,30 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     }
 
     @Override
-    public Response checkSenderNumber(String CorpNum, String SenderNumber) throws PopbillException {
-        return checkSenderNumber(CorpNum, SenderNumber, null);
+    public String getURL(String CorpNum, String TOGO, String UserID) throws PopbillException {
+    
+        String uri = "/KakaoTalk/?TG=";
+        if (TOGO == "SENDER")
+            uri = "/Message/?TG=";
+    
+        URLResponse response = httpget(uri + TOGO, CorpNum, UserID, URLResponse.class);
+    
+        return response.url;
     }
 
     @Override
-    public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException {
-        if (SenderNumber == null || SenderNumber.equals(""))
-            throw new PopbillException(-99999999, "발신번호가 입력되지 않았습니다.");
-        return httpget("/KakaoTalk/CheckSenderNumber/"+SenderNumber, CorpNum, UserID, Response.class);
+    public float getUnitCost(String CorpNum, KakaoType kakaoType) throws PopbillException {
+        if (kakaoType == null)
+            throw new PopbillException(-99999999, "카카오톡 전송유형이 입력되지 않았습니다.");
+    
+        UnitCostResponse response = httpget("/KakaoTalk/UnitCost?Type=" + kakaoType.name(), CorpNum, null, UnitCostResponse.class);
+    
+        return response.unitCost;
+    }
+
+    @Override
+    public ChargeInfo getChargeInfo(String CorpNum, KakaoType kakaoType) throws PopbillException {
+        return httpget("/KakaoTalk/ChargeInfo?Type=" + kakaoType.name(), CorpNum, null, ChargeInfo.class);
     }
 
     protected class ATSSendRequest {

@@ -38,30 +38,43 @@ public class KakaoServiceTest {
     }
     
     @Test
-    public void getChargeInfo_TEST() throws PopbillException {
-        
-        ChargeInfo chrgInfo = kakaoService.getChargeInfo("1234567890", KakaoType.FMS);
-        
-        System.out.println(chrgInfo.getChargeMethod());
-        System.out.println(chrgInfo.getRateSystem());
-        System.out.println(chrgInfo.getUnitCost());
-    }
+    public void GetPlusFriendMgtURL_TEST() throws PopbillException {
     
-    @Test
-    public void getUnitCost_TEST() throws PopbillException {
-        float UnitCost = kakaoService.getUnitCost("1234567890",KakaoType.FMS);
-        System.out.println(UnitCost);
-    }
+        String url = kakaoService.getPlusFriendMgtURL("1234567890","testkorea");
     
-    @Test
-    public void getURL_TEST() throws PopbillException {
-        
-        String url =  kakaoService.getURL("1234567890", "PLUSFRIEND", "testkorea");
-
-        assertNotNull(url);
         System.out.println(url);
     }
+
+    @Test
+    public void listPlusFriend_TEST() throws PopbillException {
+        
+        PlusFriendID[] friendList = kakaoService.listPlusFriendID("1234567890");
+        
+        int i;
+        for (i=0; i<friendList.length; i++){
+            System.out.println(friendList[i].getPlusFriendID());
+            System.out.println(friendList[i].getPlusFriendName());
+            System.out.println(friendList[i].getRegDT());
+        }
+    }
+
+    @Test
+    public void checkSenderNumber_TEST() throws PopbillException {
+        Response response = kakaoService.checkSenderNumber("1234567890", "010-4324-5117");
+        assertNotNull(response);
+        
+        System.out.println(response.getCode());
+        System.out.println(response.getMessage());
+    }
+
+    @Test
+    public void GetSenderNumerMgtURL_TEST() throws PopbillException {
     
+        String url = kakaoService.getSenderNumberMgtURL("1234567890","testkorea");
+    
+        System.out.println(url);
+    }
+
     @Test
     public void getSenderNumberList_TEST() throws PopbillException {
         
@@ -75,20 +88,32 @@ public class KakaoServiceTest {
             System.out.println(listInfo[i].getMemo());
         }
     }
-    
+
     @Test
-    public void listPlusFriend_TEST() throws PopbillException {
-        
-        PlusFriendID[] friendList = kakaoService.listPlusFriendID("1234567890");
-        
-        int i;
-        for (i=0; i<friendList.length; i++){
-            System.out.println(friendList[i].getPlusFriendID());
-            System.out.println(friendList[i].getPlusFriendName());
-            System.out.println(friendList[i].getRegDT());
-        }
-    }
+    public void GetATSTemplateMgtURL_TEST() throws PopbillException {
     
+        String url = kakaoService.getATSTemplateMgtURL("1234567890","testkorea");
+    
+        System.out.println(url);
+    }
+
+    @Test
+    public void getATSTemplate_TEST() throws PopbillException {
+        
+        ATSTemplate templateInfo = kakaoService.getATSTemplate("1234567890", "020120000476");
+        
+        assertNotNull(templateInfo);
+        
+        System.out.println(templateInfo.getPlusFriendID());
+        System.out.println(templateInfo.getTemplateCode());
+        System.out.println(templateInfo.getTemplateName());
+        System.out.println(templateInfo.getTemplate());
+        System.out.println(templateInfo.getAds());
+        System.out.println(templateInfo.getAppendix());
+        System.out.println(templateInfo.getBtns().size());
+        
+    }
+
     @Test
     public void listATSTempalte_TEST() throws PopbillException {
         
@@ -104,9 +129,7 @@ public class KakaoServiceTest {
             System.out.println(templateList[i].getAppendix());
         }
     }
-    
 
-    
     @Test
     public void sendATS_01_TEST() throws PopbillException {
         String testCorpNum = "1234567890";        
@@ -1758,52 +1781,27 @@ public class KakaoServiceTest {
     }
 
     @Test
-    public void GetSenderNumerMgtURL_TEST() throws PopbillException {
-
-        String url = kakaoService.getSenderNumberMgtURL("1234567890","testkorea");
-
-        System.out.println(url);
-    }
-
-    @Test
-    public void GetATSTemplateMgtURL_TEST() throws PopbillException {
-
-        String url = kakaoService.getATSTemplateMgtURL("1234567890","testkorea");
-
-        System.out.println(url);
-    }
-
-    @Test
-    public void GetPlusFriendMgtURL_TEST() throws PopbillException {
-
-        String url = kakaoService.getPlusFriendMgtURL("1234567890","testkorea");
-
-        System.out.println(url);
-    }
+    public void getURL_TEST() throws PopbillException {
+        
+        String url =  kakaoService.getURL("1234567890", "PLUSFRIEND", "testkorea");
     
-    @Test
-    public void getATSTemplate_TEST() throws PopbillException {
-        
-        ATSTemplate templateInfo = kakaoService.getATSTemplate("1234567890", "020120000476");
-        
-        assertNotNull(templateInfo);
-        
-        System.out.println(templateInfo.getPlusFriendID());
-        System.out.println(templateInfo.getTemplateCode());
-        System.out.println(templateInfo.getTemplateName());
-        System.out.println(templateInfo.getTemplate());
-        System.out.println(templateInfo.getAds());
-        System.out.println(templateInfo.getAppendix());
-        System.out.println(templateInfo.getBtns().size());
-        
+        assertNotNull(url);
+        System.out.println(url);
     }
-    
+
     @Test
-    public void checkSenderNumber_TEST() throws PopbillException {
-        Response response = kakaoService.checkSenderNumber("1234567890", "010-4324-5117");
-        assertNotNull(response);
+    public void getUnitCost_TEST() throws PopbillException {
+        float UnitCost = kakaoService.getUnitCost("1234567890",KakaoType.FMS);
+        System.out.println(UnitCost);
+    }
+
+    @Test
+    public void getChargeInfo_TEST() throws PopbillException {
         
-        System.out.println(response.getCode());
-        System.out.println(response.getMessage());
+        ChargeInfo chrgInfo = kakaoService.getChargeInfo("1234567890", KakaoType.FMS);
+        
+        System.out.println(chrgInfo.getChargeMethod());
+        System.out.println(chrgInfo.getRateSystem());
+        System.out.println(chrgInfo.getUnitCost());
     }
 }

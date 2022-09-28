@@ -32,33 +32,80 @@ import com.popbill.api.kakao.SenderNumber;
  * 
  */
 public interface KakaoService extends BaseService {
-    public float getUnitCost(String CorpNum, KakaoType KakaoType) 
-        throws PopbillException;
-    
-    public String getURL(String CorpNum, String TOGO, String UserID)
-        throws PopbillException;
-        
-    public ChargeInfo getChargeInfo(String CorpNum, KakaoType kakaoType) 
-        throws PopbillException;
-    
-    public SenderNumber[] getSenderNumberList(String CorpNum) 
-            throws PopbillException;
-    
-    public SenderNumber[] getSenderNumberList(String CorpNum, String UserID) 
-            throws PopbillException;
-    
+    /**
+     * 플러스친구 계정관리 팝업 URL을 반환
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param UserID
+     *          연동회원 유저아이디
+     * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+     * @throws PopbillException
+     */
+    public String getPlusFriendMgtURL(String CorpNum, String UserID) throws PopbillException;
+
     public PlusFriendID[] listPlusFriendID(String CorpNum)
-        throws PopbillException;
-    
+    throws PopbillException;
+
     public PlusFriendID[] listPlusFriendID(String CorpNum, String UserID)
-            throws PopbillException;
-    
-    public ATSTemplate[] listATSTemplate(String CorpNum)
-        throws PopbillException;
-    
-    public ATSTemplate[] listATSTemplate(String CorpNum, String UserID)
-        throws PopbillException;
-    
+    throws PopbillException;
+
+    /**
+     *  발신번호 등록여부 확인
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param SenderNumber
+     *          발신번호
+     * @return Response 응답
+     * @throws PopbillException
+     */
+    public Response checkSenderNumber(String CorpNum, String SenderNumber) throws PopbillException;
+
+    /**
+     *  발신번호 등록여부 확인
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param SenderNumber
+     *          발신번호
+     * @param UserID
+     *          연동회원 유저아이디
+     * @return Response 응답
+     * @throws PopbillException
+     */
+    public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException;
+
+    /**
+     * 발신번호 관리 팝업 URL을 반환
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param UserID
+     *          연동회원 유저아이디
+     * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+     * @throws PopbillException
+     */
+    public String getSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException;
+
+    public SenderNumber[] getSenderNumberList(String CorpNum) 
+    throws PopbillException;
+
+    public SenderNumber[] getSenderNumberList(String CorpNum, String UserID) 
+    throws PopbillException;
+
+    /**
+     * 알림톡 템플릿관리 팝업 URL을 반환
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param UserID
+     *          연동회원 유저아이디
+     * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
+     * @throws PopbillException
+     */
+    public String getATSTemplateMgtURL(String CorpNum, String UserID) throws PopbillException;
+
     /**
      *  템플릿 정보 확인
      *
@@ -70,8 +117,7 @@ public interface KakaoService extends BaseService {
      * @throws PopbillException
      */
     public ATSTemplate getATSTemplate(String CorpNum, String templateCode) throws PopbillException;
-    
-    
+
     /**
      *  템플릿 정보 확인
      *
@@ -85,7 +131,12 @@ public interface KakaoService extends BaseService {
      * @throws PopbillException
      */
     public ATSTemplate getATSTemplate(String Corpnum, String templateCode, String UserID) throws PopbillException;
+
+    public ATSTemplate[] listATSTemplate(String CorpNum)
+        throws PopbillException;
     
+    public ATSTemplate[] listATSTemplate(String CorpNum, String UserID)
+        throws PopbillException;
     
     /**
      * 알림톡 단건전송 
@@ -517,6 +568,40 @@ public interface KakaoService extends BaseService {
             throws PopbillException;
     
     /**
+     * 예약전송 취소
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @param receiptNum
+     *            접수번호
+     * @param UserID
+     *            연동회원 아이디
+     * @return Response 응답
+     * @throws PopbillException
+     */
+    public Response cancelReserve(String CorpNum, String receiptNum) 
+            throws PopbillException;
+
+    public Response cancelReserve(String CorpNum, String receiptNum, String UserID) 
+    throws PopbillException;
+
+    /**
+     * 예약전송 취소
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @param requestNum
+     *            전송요청번호
+     * @param UserID
+     *            연동회원 아이디
+     * @return Response 응답
+     * @throws PopbillException
+     */
+    public Response cancelReserveRN(String CorpNum, String requestNum) 
+            throws PopbillException;
+
+    public Response cancelReserveRN(String CorpNum, String requestNum, String UserID) 
+    throws PopbillException;
+
+    /**
      * 카카오톡 전송내역 상세조회
      * 
      * @param CorpNum
@@ -592,79 +677,6 @@ public interface KakaoService extends BaseService {
             throws PopbillException;
 
     /**
-     * 예약전송 취소
-     * @param CorpNum
-     *            연동회원 사업자번호
-     * @param receiptNum
-     *            접수번호
-     * @param UserID
-     *            연동회원 아이디
-     * @return Response 응답
-     * @throws PopbillException
-     */
-    public Response cancelReserve(String CorpNum, String receiptNum) 
-            throws PopbillException;
-        
-    public Response cancelReserve(String CorpNum, String receiptNum, String UserID) 
-            throws PopbillException;
-    
-    /**
-     * 예약전송 취소
-     * @param CorpNum
-     *            연동회원 사업자번호
-     * @param requestNum
-     *            전송요청번호
-     * @param UserID
-     *            연동회원 아이디
-     * @return Response 응답
-     * @throws PopbillException
-     */
-    public Response cancelReserveRN(String CorpNum, String requestNum) 
-            throws PopbillException;
-        
-    public Response cancelReserveRN(String CorpNum, String requestNum, String UserID) 
-            throws PopbillException;
-
-
-    /**
-     * 플러스친구 계정관리 팝업 URL을 반환
-     *
-     * @param CorpNum
-     *          연동회원 사업자번호
-     * @param UserID
-     *          연동회원 유저아이디
-     * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
-     * @throws PopbillException
-     */
-    public String getPlusFriendMgtURL(String CorpNum, String UserID) throws PopbillException;
-
-
-    /**
-     * 발신번호 관리 팝업 URL을 반환
-     *
-     * @param CorpNum
-     *          연동회원 사업자번호
-     * @param UserID
-     *          연동회원 유저아이디
-     * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
-     * @throws PopbillException
-     */
-    public String getSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException;
-
-
-    /**
-     * 알림톡 템플릿관리 팝업 URL을 반환
-     *
-     * @param CorpNum
-     *          연동회원 사업자번호
-     * @param UserID
-     *          연동회원 유저아이디
-     * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
-     * @throws PopbillException
-     */
-    public String getATSTemplateMgtURL(String CorpNum, String UserID) throws PopbillException;
-
-    /**
      *  카카오톡 전송내역 팝업 URL을 반환
      *
      * @param CorpNum
@@ -676,30 +688,13 @@ public interface KakaoService extends BaseService {
      */
     public String getSentListURL(String CorpNum, String UserID) throws PopbillException;
 
-    /**
-     *  발신번호 등록여부 확인
-     *
-     * @param CorpNum
-     *          연동회원 사업자번호
-     * @param SenderNumber
-     *          발신번호
-     * @return Response 응답
-     * @throws PopbillException
-     */
-    public Response checkSenderNumber(String CorpNum, String SenderNumber) throws PopbillException;
+    public String getURL(String CorpNum, String TOGO, String UserID)
+    throws PopbillException;
 
-    /**
-     *  발신번호 등록여부 확인
-     *
-     * @param CorpNum
-     *          연동회원 사업자번호
-     * @param SenderNumber
-     *          발신번호
-     * @param UserID
-     *          연동회원 유저아이디
-     * @return Response 응답
-     * @throws PopbillException
-     */
-    public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException;
+    public float getUnitCost(String CorpNum, KakaoType KakaoType) 
+    throws PopbillException;
+
+    public ChargeInfo getChargeInfo(String CorpNum, KakaoType kakaoType) 
+    throws PopbillException;
 
 }
