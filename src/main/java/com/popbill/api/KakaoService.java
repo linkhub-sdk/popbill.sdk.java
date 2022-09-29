@@ -33,7 +33,7 @@ import com.popbill.api.kakao.SenderNumber;
  */
 public interface KakaoService extends BaseService {
     /**
-     * 플러스친구 계정관리 팝업 URL을 반환
+     * 카카오톡 검색용 계정관리 팝업 URL을 반환
      *
      * @param CorpNum
      *          연동회원 사업자번호
@@ -341,7 +341,7 @@ public interface KakaoService extends BaseService {
      * @param CorpNum
      *            연동회원 사업자번호
      * @param plusFriendID
-     *            플러스친구 아이디
+     *            카카오톡 검색용 아이디
      * @param senderNum
      *            발신번호
      * @param content
@@ -385,7 +385,7 @@ public interface KakaoService extends BaseService {
      * @param CorpNum
      *            연동회원 사업자번호
      * @param plusFriendID
-     *            플러스친구 아이디
+     *            카카오톡 검색용 아이디
      * @param senderNum
      *            발신번호
      * @param altSendType
@@ -420,7 +420,7 @@ public interface KakaoService extends BaseService {
      * @param CorpNum
      *            연동회원 사업자번호
      * @param plusFriendID
-     *            플러스친구 아이디
+     *            카카오톡 검색용 아이디
      * @param senderNum
      *            발신번호
      * @param content
@@ -462,7 +462,7 @@ public interface KakaoService extends BaseService {
      * @param CorpNum
      *            연동회원 사업자번호
      * @param plusFriendID
-     *            플러스친구 아이디
+     *            카카오톡 검색용 아이디
      * @param senderNum
      *            발신번호
      * @param content
@@ -510,7 +510,7 @@ public interface KakaoService extends BaseService {
      * @param CorpNum
      *            연동회원 사업자번호
      * @param plusFriendID
-     *            플러스친구 아이디
+     *            카카오톡 검색용 아이디
      * @param senderNum
      *            발신번호
      * @param altSendType
@@ -549,7 +549,7 @@ public interface KakaoService extends BaseService {
      * @param CorpNum
      *            연동회원 사업자번호
      * @param plusFriendID
-     *            플러스친구 아이디
+     *            카카오톡 검색용 아이디
      * @param senderNum
      *            발신번호
      * @param content

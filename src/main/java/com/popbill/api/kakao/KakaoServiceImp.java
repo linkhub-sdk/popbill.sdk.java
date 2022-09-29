@@ -437,7 +437,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
             KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, String UserID, String requestNum) throws PopbillException {
 
         if (plusFriendID == null || plusFriendID == "")
-            throw new PopbillException(-99999999, "플러스친구 아이디가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "카카오톡 검색용 아이디가 입력되지 않았습니다.");
 
         FTSSendRequest request = new FTSSendRequest();
         request.plusFriendID = plusFriendID;
@@ -581,7 +581,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
             String altSendType, KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL,
             String UserID, String requestNum) throws PopbillException {
         if (plusFriendID == null || plusFriendID == "")
-            throw new PopbillException(-99999999, "플러스친구 아이디가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "카카오톡 검색용 아이디가 입력되지 않았습니다.");
 
         FTSSendRequest request = new FTSSendRequest();
         request.plusFriendID = plusFriendID;

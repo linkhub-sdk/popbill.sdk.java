@@ -62,7 +62,7 @@ public class KakaoServiceTest {
 
     @Test
     public void checkSenderNumber_TEST() throws PopbillException {
-        Response response = kakaoService.checkSenderNumber("1234567890", "010-4324-5117");
+        Response response = kakaoService.checkSenderNumber("1234567890", "1400-00");
         assertNotNull(response);
         
         System.out.println(response.getCode());
