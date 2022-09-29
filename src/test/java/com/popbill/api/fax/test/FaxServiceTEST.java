@@ -238,21 +238,23 @@ public class FaxServiceTEST {
     @Test
     public void sendFAX_09_TEST() throws PopbillException {
         
-        File file = new File("./test.pdf");
+        File file = new File("C:/Users/jhPark/Desktop/fax_test.txt");
         
         Receiver receiver1 = new Receiver();
         receiver1.setReceiveName("수신자명09_1");
         receiver1.setReceiveNum("070111222");
+        receiver1.setInterOPRefKey("20220929-001");
         
         Receiver receiver2 = new Receiver();
         receiver2.setReceiveName("수신자명09_2");
         receiver2.setReceiveNum("070111222");
+        receiver2.setInterOPRefKey("20220929-001");
         
-        Receiver[] receivers = new Receiver[] {receiver1, receiver2};        
+        Receiver[] receivers = new Receiver[] {receiver1, receiver2};
         
         String receiptNum = faxService.sendFAX("1234567890", "070-4304-2999", receivers, file, null, false);
         
-        assertNotNull(receiptNum);        
+        assertNotNull(receiptNum);
         System.out.println(receiptNum);
     }
     
@@ -1238,7 +1240,7 @@ public class FaxServiceTEST {
     
     @Test
     public void getFaxResult_TEST() throws PopbillException {
-        String receiptNum = "021091715443100001";
+        String receiptNum = "022092917383200001";
         FaxResult[] messages = faxService.getFaxResult("1234567890", receiptNum);
         
         assertNotNull(messages);
@@ -1266,6 +1268,7 @@ public class FaxServiceTEST {
             System.out.println(messages[i].getResult()); 
             System.out.println(messages[i].getReceiptNum()); 
             System.out.println(messages[i].getRequestNum());
+            System.out.println(messages[i].getInterOPRefKey());
             System.out.println(messages[i].getiSuccessPageCnt());
             System.out.println(messages[i].getReceiveNumType());
             System.out.println("getChargePageCnt :"+ messages[i].getChargePageCnt());
@@ -1303,6 +1306,7 @@ public class FaxServiceTEST {
             System.out.println(messages[i].getResultDT()); 
             System.out.println(messages[i].getSendResult()); 
             System.out.println(messages[i].getReceiptDT()); 
+            System.out.println(messages[i].getInterOPRefKey());
             System.out.println(messages[i].getTitle()); 
             System.out.println(messages[i].getState()); 
             System.out.println(messages[i].getResult()); 

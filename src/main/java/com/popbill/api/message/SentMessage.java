@@ -16,6 +16,8 @@ package com.popbill.api.message;
 
 import java.io.Serializable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Class for Messages Sent State.
  * 
@@ -42,6 +44,7 @@ public class SentMessage implements Serializable {
     private String receiptDT;
     private String receiptNum;
     private String requestNum;
+    private String interOPRefKey;
 
     /**
      * 전송상태 확인 0 : 접수 1 : 대기중 2 : 처리중 3 : 완료 4 : 취소
@@ -194,6 +197,14 @@ public class SentMessage implements Serializable {
      */
     public String getReceiptNum() {
         return receiptNum;
+    }
+
+    /**
+     * 파트너 지정 키  확인.
+     * @return
+     */
+    public String getInterOPRefKey() {
+        return interOPRefKey;
     }
 
 }

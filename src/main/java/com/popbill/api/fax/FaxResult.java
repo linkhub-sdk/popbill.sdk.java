@@ -43,6 +43,7 @@ public class FaxResult {
     private Integer result;
     private String receiptNum;
     private String requestNum;
+    private String interOPRefKey;
     private Integer chargePageCnt;
     private String tiffFileSize;
     private Integer iSuccessPageCnt;
@@ -244,6 +245,15 @@ public class FaxResult {
      */
     public String getRequestNum() {
         return requestNum;
+    }
+
+    /**
+     * 파트너 지정 키 확인
+     * 
+     * @return 파트너 지정 키
+     */
+    public String getInterOPRefKey() {
+        return interOPRefKey;
     }
 
     /**

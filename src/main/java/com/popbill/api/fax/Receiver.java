@@ -31,6 +31,8 @@ public class Receiver implements Serializable {
     private String receiveNum;
     @SerializedName("rcvnm")
     private String receiveName;
+    @SerializedName("interOPRefKey")
+    private String interOPRefKey;
 
     /**
      * 수신번호 확인
@@ -68,6 +70,25 @@ public class Receiver implements Serializable {
      */
     public void setReceiveName(String receiveName) {
         this.receiveName = receiveName;
+    }
+
+    /**
+     * 파트너 지정 키 확인.
+     * 
+     * @return 파트너 지정 키
+     */
+    public String getInterOPRefKey() {
+        return interOPRefKey;
+    }
+
+    /**
+     * 파트너 지정 키 설정.
+     * 
+     * @param interOPRefKey
+     *          파트너 지정 키
+     */
+    public void setInterOPRefKey(String interOPRefKey) {
+        this.interOPRefKey = interOPRefKey;
     }
 
 }

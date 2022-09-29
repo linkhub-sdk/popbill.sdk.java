@@ -77,24 +77,27 @@ public class MessageServiceTEST {
         Message[] Messages = new Message[3];
         
         Message message0 = new Message();
-        message0.setSender("010-1111-2222");
+        message0.setSender("140000");
         message0.setSubject("제목_1");
         message0.setContent("SMS 문자 03 테스트입니다_01");
         message0.setReceiver("010123123");
         message0.setReceiverName("수신자명1");
+        message0.setInterOPRefKey("20220929-001");
         Messages[0] = message0;
         
         Message message1 = new Message();
-        message1.setSender("010-1111-2222");
+        message1.setSender("140000");
         message1.setReceiver("010123123");
+        message1.setInterOPRefKey("20220929-002");
         Messages[1] = message1;
         
         Message message2 = new Message();
-        message2.setSender("010-1111-2222");
+        message2.setSender("140000");
         message2.setSubject("제목_3");
         message2.setContent("SMS 문자 03 테스트입니다_03");
         message2.setReceiver("010123123");
         message2.setReceiverName("수신자명3");
+        message2.setInterOPRefKey("20220929-003");
         Messages[2] = message2;                
         
         String receiptNum = messageService.sendSMS("1234567890", Messages, null, 
@@ -1433,7 +1436,7 @@ public class MessageServiceTEST {
     @Test
     public void getMessages_TEST() throws PopbillException {
         
-        SentMessage[] messages = messageService.getMessages("1234567890", "018081315000000061");
+        SentMessage[] messages = messageService.getMessages("1234567890", "022092916000000046");
         
         assertNotNull(messages);
         
@@ -1455,6 +1458,8 @@ public class MessageServiceTEST {
             System.out.println(messages[i].getTranNet()); 
             System.out.println(messages[i].getReceiptNum()); 
             System.out.println(messages[i].getRequestNum()); 
+            System.out.println(messages[i].getInterOPRefKey()); 
+            System.out.println("=============================================");
         }
             
     }        
@@ -1483,6 +1488,8 @@ public class MessageServiceTEST {
             System.out.println(messages[i].getTranNet()); 
             System.out.println(messages[i].getReceiptNum()); 
             System.out.println(messages[i].getRequestNum()); 
+            System.out.println(messages[i].getInterOPRefKey()); 
+            System.out.println("=============================================");
         }
     }
 

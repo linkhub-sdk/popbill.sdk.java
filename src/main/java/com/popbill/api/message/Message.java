@@ -39,6 +39,8 @@ public class Message implements Serializable {
     private String content;
     @SerializedName("sjt")
     private String subject;
+    @SerializedName("interOPRefKey")
+    private String interOPRefKey;
 
     /**
      * 발신자 번호 확인
@@ -152,6 +154,24 @@ public class Message implements Serializable {
      */
     public void setSenderName(String senderName) {
         this.senderName = senderName;
+    }
+
+    /**
+     * 파트너 지정 키 확인
+     * 
+     * @return 파트너 지정 키.
+     */
+    public String getInterOPRefKey() {
+        return interOPRefKey;
+    }
+
+    /**
+     * 파트너 지정 키 설정.
+     * @param interOPRefKey
+     *                      파트너 지정 키.
+     */
+    public void setInterOPRefKey(String interOPRefKey) {
+        this.interOPRefKey = interOPRefKey;
     }
 
 }
