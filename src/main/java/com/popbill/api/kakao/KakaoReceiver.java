@@ -17,6 +17,9 @@ public class KakaoReceiver implements Serializable {
 
     @SerializedName("msg")
     private String message;
+    
+    @SerializedName("altsjt")
+    private String altSubject;
 
     @SerializedName("altmsg")
     private String altMessage;
@@ -57,6 +60,14 @@ public class KakaoReceiver implements Serializable {
 
     public void setAltMessage(String altMessage) {
         this.altMessage = altMessage;
+    }
+
+    public String getAltSubject() {
+        return altSubject;
+    }
+
+    public void setAltSubject(String altSubject) {
+        this.altSubject = altSubject;
     }
 
     public List<KakaoButton> getBtns() {

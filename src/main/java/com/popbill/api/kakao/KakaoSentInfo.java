@@ -10,6 +10,7 @@ public class KakaoSentInfo implements Serializable {
     private String templateCode;
     private String plusFriendID;
     private String sendNum;
+    private String altSubject;
     private String altContent;
     private String altSendType;
     private String reserveDT;
@@ -53,6 +54,14 @@ public class KakaoSentInfo implements Serializable {
 
     public void setSendNum(String sendNum) {
         this.sendNum = sendNum;
+    }
+
+    public String getAltSubject() {
+        return altSubject;
+    }
+
+    public void setAltSubject(String altSubject) {
+        this.altSubject = altSubject;
     }
 
     public String getAltContent() {

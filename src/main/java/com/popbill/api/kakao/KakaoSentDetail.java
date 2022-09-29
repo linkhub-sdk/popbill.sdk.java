@@ -17,6 +17,7 @@ public class KakaoSentDetail implements Serializable {
     private String content;
     private Integer result;
     private String resultDT;
+    private String altSubject;
     private String altContent;
     private Integer altContentType;
     private String altSendDT;
@@ -82,6 +83,14 @@ public class KakaoSentDetail implements Serializable {
 
     public void setResultDT(String resultDT) {
         this.resultDT = resultDT;
+    }
+
+    public String getAltSubject() {
+        return altSubject;
+    }
+
+    public void setAltSubject(String altSubject) {
+        this.altSubject = altSubject;
     }
 
     public String getAltContent() {
