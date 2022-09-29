@@ -30,6 +30,8 @@ public class PlusFriendID implements Serializable {
     private String plusFriendID;
     private String plusFriendName;
     private String regDT;
+    private String state;
+    private String stateDT;
 
     public String getPlusFriendID() {
         return plusFriendID;
@@ -53,6 +55,22 @@ public class PlusFriendID implements Serializable {
 
     public void setRegDT(String regDT) {
         this.regDT = regDT;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getStateDT() {
+        return stateDT;
+    }
+
+    public void setStateDT(String stateDT) {
+        this.stateDT = stateDT;
     }
 
 }

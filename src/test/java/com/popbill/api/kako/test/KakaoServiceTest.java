@@ -55,6 +55,8 @@ public class KakaoServiceTest {
             System.out.println(friendList[i].getPlusFriendID());
             System.out.println(friendList[i].getPlusFriendName());
             System.out.println(friendList[i].getRegDT());
+            System.out.println(friendList[i].getState());
+            System.out.println(friendList[i].getStateDT());
         }
     }
 
