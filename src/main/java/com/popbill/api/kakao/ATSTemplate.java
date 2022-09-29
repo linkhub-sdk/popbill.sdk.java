@@ -28,6 +28,9 @@ public class ATSTemplate implements Serializable {
     private String ads;
     private String appendix;
     private List<KakaoButton> btns;
+    private Boolean secureYN;
+    private String state;
+    private String stateDT;
 
     public String getTemplateCode() {
         return templateCode;
@@ -95,6 +98,30 @@ public class ATSTemplate implements Serializable {
 
     public void setBtns(List<KakaoButton> btns) {
         this.btns = btns;
+    }
+
+    public Boolean getSecureYN() {
+        return secureYN;
+    }
+
+    public void setSecureYN(Boolean secureYN) {
+        this.secureYN = secureYN;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getStateDT() {
+        return stateDT;
+    }
+
+    public void setStateDT(String stateDT) {
+        this.stateDT = stateDT;
     }
 
 }
