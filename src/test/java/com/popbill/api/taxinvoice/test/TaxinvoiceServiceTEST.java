@@ -169,7 +169,7 @@ public class TaxinvoiceServiceTEST {
             
             List<Taxinvoice> bulkTx = new ArrayList<Taxinvoice>();
             List<Taxinvoice> bulkTx2 = new ArrayList<Taxinvoice>();
-            String SubmitID = "20211217-TEST003";
+            String SubmitID = "20220930-TEST";
             
             for(int j=0; j<1; j++) {
                 //SubmitID += String.valueOf(j);
@@ -284,7 +284,7 @@ public class TaxinvoiceServiceTEST {
     @Test
     public void getBulkResult_TEST() throws PopbillException {
     
-        BulkTaxinvoiceResult bulkResult = taxinvoiceService.getBulkResult("1234567890", "20210105-002", "");
+        BulkTaxinvoiceResult bulkResult = taxinvoiceService.getBulkResult("1234567890", "20220930-TEST", "");
         
         assertNotNull(bulkResult);
         System.out.println(bulkResult.getReceiptDT());
@@ -307,9 +307,10 @@ public class TaxinvoiceServiceTEST {
             
             String n1 = bulkResult.getIssueResult().get(i).getInvoicerMgtKey();
             long n2 = bulkResult.getIssueResult().get(i).getCode();
-            String n3 = bulkResult.getIssueResult().get(i).getNtsconfirmNum();
-            String n4 = bulkResult.getIssueResult().get(i).getTrusteeMgtKey();
-            String n5 = bulkResult.getIssueResult().get(i).getIssueDT();
+            String n3 = bulkResult.getIssueResult().get(i).getMessage();
+            String n4 = bulkResult.getIssueResult().get(i).getNtsconfirmNum();
+            String n5 = bulkResult.getIssueResult().get(i).getTrusteeMgtKey();
+            String n6 = bulkResult.getIssueResult().get(i).getIssueDT();
             System.out.println(n1+ " " + String.valueOf(n2) +" "+n3+" | "+n4+" | "+n5);
         }        
     }

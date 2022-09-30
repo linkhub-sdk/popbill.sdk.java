@@ -9,7 +9,7 @@ public class BulkTaxinvoiceIssueResult implements Serializable {
     private String invoicerMgtKey;
     private String trusteeMgtKey;
     private long code;
-
+    private String message;
     private String issueDT;
     private String ntsconfirmNum;
 
@@ -27,6 +27,10 @@ public class BulkTaxinvoiceIssueResult implements Serializable {
 
     public long getCode() {
         return code;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     public String getIssueDT() {

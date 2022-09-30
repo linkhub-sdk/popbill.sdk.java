@@ -320,19 +320,19 @@ public class CashbillServiceTEST {
     public void bulkSubmit_TEST() throws PopbillException {
         try {
             List<Cashbill> cashbillList = new ArrayList<Cashbill>();
-            String submitID = "20220218-JAVA";
+            String submitID = "20220930-JAVA3";
             
             for(int i = 0; i < 5; i++) {
                 Cashbill cashbill = new Cashbill();
                 
-                cashbill.setMgtKey("20220218-"+i);
+                cashbill.setMgtKey("20220930-"+i);
                 cashbill.setTradeType("승인거래");
                 cashbill.setTradeOpt("도서공연");
                 cashbill.setFranchiseCorpNum("1234567890");
                 cashbill.setFranchiseCorpName("발행자 상호");
                 cashbill.setFranchiseCEOName("발행자 대표자");
                 cashbill.setIdentityNum("0100001234");
-                cashbill.setCustomerName("박지헌");
+                cashbill.setCustomerName("");
                 cashbill.setEmail("test@test.com");
                 cashbill.setItemName("상품명");
                 cashbill.setOrderNumber("주문번호");
@@ -360,7 +360,7 @@ public class CashbillServiceTEST {
     
     @Test
     public void getBulkResult_TEST() throws PopbillException {
-        BulkCashbillResult bulkCashbillResult = cashbillService.getBulkResult("1234567890", "20220218-JAVA");
+        BulkCashbillResult bulkCashbillResult = cashbillService.getBulkResult("1234567890", "20220930-JAVA3");
         System.out.println(bulkCashbillResult.getCode());
         System.out.println(bulkCashbillResult.getMessage());
         System.out.println(bulkCashbillResult.getSubmitID());
@@ -376,6 +376,7 @@ public class CashbillServiceTEST {
             BulkCashbillIssueResult bulkCashbillIssueResult = bulkCashbillResult.getIssueResult().get(i);
             System.out.print(bulkCashbillIssueResult.getMgtKey() + "\t");
             System.out.print(bulkCashbillIssueResult.getCode() + "\t");
+            System.out.print(bulkCashbillIssueResult.getMessage() + "\t");
             System.out.print(bulkCashbillIssueResult.getConfirmNum() + "\t");
             System.out.print(bulkCashbillIssueResult.getTradeDate() + "\n");
         }
