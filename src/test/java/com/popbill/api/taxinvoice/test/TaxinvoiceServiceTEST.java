@@ -736,7 +736,7 @@ public class TaxinvoiceServiceTEST {
     @Test
     public void getURL_TEST() throws PopbillException {
         
-        String url = taxinvoiceService.getURL("1234567890", "PBOX");
+        String url = taxinvoiceService.getURL("1234567890", "SWBOX");
     
         assertNotNull(url);
         System.out.println(url);
@@ -1103,90 +1103,6 @@ public class TaxinvoiceServiceTEST {
         System.out.println(chrgInfo.getChargeMethod());
         System.out.println(chrgInfo.getUnitCost());
         System.out.println(chrgInfo.getRateSystem());
-    }
-    
-    @Test
-    public void send_TEST() throws PopbillException {
-        TaxinvoiceServiceImp taxinvoiceService = new TaxinvoiceServiceImp();
-
-        taxinvoiceService.setLinkID(testLinkID);
-        taxinvoiceService.setSecretKey(testSecretKey);
-        taxinvoiceService.setTest(true);
-
-        Response response = taxinvoiceService.send("1231212312",
-                MgtKeyType.SELL, "1234", "발행예정 메모", "userid");
-
-        assertNotNull(response);
-
-        System.out.println(response.getMessage());
-
-    }
-
-    @Test
-    public void cancelSend_TEST() throws PopbillException {
-        TaxinvoiceServiceImp taxinvoiceService = new TaxinvoiceServiceImp();
-
-        taxinvoiceService.setLinkID(testLinkID);
-        taxinvoiceService.setSecretKey(testSecretKey);
-        taxinvoiceService.setTest(true);
-
-        Response response = taxinvoiceService.cancelSend("1231212312",
-                MgtKeyType.SELL, "1234", "발행예정 취소 메모", "userid");
-
-        assertNotNull(response);
-
-        System.out.println(response.getMessage());
-
-    }
-
-    @Test
-    public void accept_TEST() throws PopbillException {
-        
-
-        Response response = taxinvoiceService.accept("1231212312",
-                MgtKeyType.BUY, "1234", "승인 메모", "userid");
-
-        assertNotNull(response);
-
-        System.out.println(response.getMessage());
-
-    }
-
-    @Test
-    public void deny_TEST() throws PopbillException {
-        
-        Response response = taxinvoiceService.deny("1231212312",
-                MgtKeyType.BUY, "1234", "거부 메모", "userid");
-
-        assertNotNull(response);
-
-        System.out.println(response.getMessage());
-
-    }
-
-    @Test
-    public void GetPDF_TEST() throws PopbillException {
-        
-        byte[] pdfByte = taxinvoiceService.getPDF("1234567890", MgtKeyType.SELL, "20201126-001 ");
-        
-//        File outfile = new File("C:/pdf_test/PDF_Update/20200901_Taxinvoice_TEST_T1.pdf");
-//        FileOutputStream fileoutputstream;
-//        try {
-//            fileoutputstream = new FileOutputStream(outfile);
-//            try {
-//                fileoutputstream.write(pdfByte);
-//                System.out.println("다운로드 성공");
-//            } catch (IOException e1) {
-//                e1.printStackTrace();
-//            }
-//            try {
-//                fileoutputstream.close();
-//            } catch (IOException e2) {
-//                e2.printStackTrace();
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
     }
 
 }

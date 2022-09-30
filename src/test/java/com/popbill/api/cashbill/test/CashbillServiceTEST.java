@@ -71,81 +71,6 @@ public class CashbillServiceTEST {
     }
 
     @Test
-    public void register_TEST() throws PopbillException {
-        
-        Cashbill cashbill = new Cashbill();
-        
-        cashbill.setMgtKey("20211223JAVA02");
-        cashbill.setTradeType("승인거래");
-        cashbill.setTradeOpt("도서공연");
-        cashbill.setFranchiseCorpNum("1234567890");
-        cashbill.setFranchiseTaxRegID("0002");
-        cashbill.setFranchiseCorpName("발행자 상호");
-        cashbill.setFranchiseCEOName("발행자 대표자");
-        cashbill.setFranchiseAddr("발행자 주소");
-        cashbill.setFranchiseTEL("07075103710");
-        cashbill.setIdentityNum("0100001234");
-        cashbill.setCustomerName("고객명");
-        cashbill.setItemName("상품명");
-        cashbill.setOrderNumber("주문번호");
-        cashbill.setEmail("test@test.com");
-        cashbill.setHp("01011112222");
-        cashbill.setServiceFee("0");
-        cashbill.setSupplyCost("5000");
-        cashbill.setTax("5000");
-        cashbill.setTotalAmount("10000");
-        cashbill.setTradeUsage("소득공제용");
-        cashbill.setTaxationType("과세");
-        cashbill.setSmssendYN(false);
-        
-        Response response = cashbillService.register("1234567890", cashbill);
-        assertNotNull(response);
-        System.out.println(response.getMessage());
-    }
-    
-    @Test
-    public void update_TEST() throws PopbillException {
-        
-        Cashbill cashbill = new Cashbill();
-        
-        cashbill.setMgtKey("20150317-01");
-        cashbill.setTradeType("승인거래");
-        cashbill.setFranchiseCorpNum("1234567890");
-        cashbill.setFranchiseCorpName("발행자 상호_수정");
-        cashbill.setFranchiseCEOName("발행자 대표자_수정");
-        cashbill.setFranchiseAddr("발행자 주소");
-        cashbill.setFranchiseTEL("07075103710");
-        cashbill.setIdentityNum("0100001234");
-        cashbill.setCustomerName("고개명");
-        cashbill.setItemName("상품명");
-        cashbill.setOrderNumber("주문번호");
-        cashbill.setEmail("test@test.com");
-        cashbill.setHp("01011112222");
-        cashbill.setServiceFee("0");
-        cashbill.setSupplyCost("10000");
-        cashbill.setTax("1000");
-        cashbill.setTotalAmount("11000");
-        cashbill.setTradeUsage("소득공제용");
-        cashbill.setTaxationType("과세");
-        cashbill.setSmssendYN(false);
-        
-        Response response = cashbillService.update("1234567890", "20150318-02", cashbill, "testkorea");
-        assertNotNull(response);
-        System.out.println(response.getMessage());
-    }
-    
-    @Test
-    public void issue_TEST() throws PopbillException {
-        
-        CBIssueResponse response = cashbillService.issue("1234567890", "20211223JAVA02", "발행메모",    "testkorea");
-        assertNotNull(response);
-        System.out.println(response.getMessage());
-        System.out.println(response.getCode());
-        System.out.println(response.getConfirmNum());
-        System.out.println(response.getTradeDate());
-    }
-    
-    @Test
     public void checkMgtKeyInUse_TEST() throws PopbillException {
         boolean useYN = cashbillService.checkMgtKeyInUse("1234567890", "20150318-02");
         assertNotNull(useYN);
@@ -262,14 +187,6 @@ public class CashbillServiceTEST {
         
         assertNotNull(url);
         System.out.println(url);
-    }
-    
-    @Test
-    public void getLogs_TEST() throws PopbillException {
-        CashbillLog[] logList = cashbillService.getLogs("1234567890", "20170306-05");
-        for(int i=0; i<logList.length; i++){
-            System.out.println(logList[i].getProcMemo());
-        }
     }
     
     @Test
@@ -499,59 +416,6 @@ public class CashbillServiceTEST {
         System.out.println(response.getTradeDate());
     }
     
-    @Test
-    public void revokeRegister01_TEST() throws PopbillException{
-        String CorpNum = "1234567890";
-        String mgtKey = "20171114-13";
-        String orgConfirmNum = "133367419";
-        String orgTradeDate = "20171112";
-        Boolean smssendYN = false; 
-        Boolean isPartCancel = true;
-        Integer cancelType = 1;
-        String supplyCost = "10000";
-        String tax = "1000";
-        String serviceFee = "0";
-        String totalAmount = "11000";
-        
-        Response response = cashbillService.revokeRegister(CorpNum, mgtKey, orgConfirmNum,
-                orgTradeDate, smssendYN, isPartCancel, cancelType, supplyCost, 
-                tax, serviceFee, totalAmount, "testkorea");
-        
-        assertNotNull(response);
-        
-        System.out.println(response.getMessage());
-    }
-    
-    @Test
-    public void revokeRegister02_TEST() throws PopbillException{
-        String CorpNum = "1234567890";
-        String mgtKey = "20170816-12";
-        String orgConfirmNum = "820116333";
-        String orgTradeDate = "20170711";
-        Boolean smssendYN = true;
-        
-        Response response = cashbillService.revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN);
-        
-        assertNotNull(response);
-        
-        System.out.println(response.getMessage());
-    }
-    
-    @Test
-    public void revokeRegister03_TEST() throws PopbillException{
-        String CorpNum = "1234567890";
-        String mgtKey = "20170816-13";
-        String orgConfirmNum = "820116333";
-        String orgTradeDate = "20170711";
-        Boolean smssendYN = true;
-        String userID = "testkorea";
-        
-        Response response = cashbillService.revokeRegister(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, userID);
-        
-        assertNotNull(response);
-        
-        System.out.println(response.getMessage());
-    }
     
     @Test
     public void listEmailConfig_TEST() throws PopbillException{
@@ -596,30 +460,5 @@ public class CashbillServiceTEST {
 
         System.out.println(url);
     }
-    
-    @Test
-    public void GetPDF_TEST() throws PopbillException {
-        
-        byte[] pdfByte = cashbillService.getPDF("1234567890", "20200806-01");
-        
-        File outfile = new File("C:/pdf_test/PDF_Update/20200901_Cashbill_TEST_1.pdf");
-        FileOutputStream fileoutputstream;
-        try {
-            fileoutputstream = new FileOutputStream(outfile);
-            try {
-                fileoutputstream.write(pdfByte);
-                System.out.println("다운로드 성공");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                fileoutputstream.close();
-            } catch (IOException e2) {
-                e2.printStackTrace();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-}
 
+}

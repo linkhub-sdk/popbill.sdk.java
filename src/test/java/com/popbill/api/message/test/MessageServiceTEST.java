@@ -1869,24 +1869,6 @@ public class MessageServiceTEST {
             System.out.println(listInfo[i].getMemo());
         }
     }
-    
-    @Test
-    public void getStates_TEST() throws PopbillException {
-        String[] ReceiptNumList = new String[] {"018071909000000004", "asdfasdf", "018071909000000003", "018071909000000002", "018071711000000032"};        
-        MessageBriefInfo[] listInfo = messageService.getStates("1234567890", ReceiptNumList, "testkorea");
-        int i;
-        for (i=0; i<listInfo.length; i++){
-            System.out.println("rNum : " + listInfo[i].getrNum());
-            System.out.println("sn : " + listInfo[i].getSn());
-            System.out.println("Stat : " + listInfo[i].getStat());
-            System.out.println("rlt : " + listInfo[i].getRlt());
-            System.out.println("sDT : " + listInfo[i].getsDT());
-            System.out.println("rDT : " + listInfo[i].getrDT());
-            System.out.println("net : " + listInfo[i].getNet());
-            System.out.println("srt : " + listInfo[i].getSrt());
-            System.out.println("==========");
-        }
-    }
 
     @Test
     public void GetSenderNumberMgtURL_TEST() throws PopbillException {
@@ -1913,8 +1895,4 @@ public class MessageServiceTEST {
         System.out.println(response.getMessage());
     }
 
-//private Date addMinutes(Date date, int i) {
-//    // TODO Auto-generated method stub
-//    return null;
-//}
 }
