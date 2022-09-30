@@ -42,7 +42,7 @@ public class FaxServiceTEST {
     @Test
     public void getChargeInfo_TEST() throws PopbillException {
         
-        ChargeInfo chrgInfo = faxService.getChargeInfo("1234567890");
+        ChargeInfo chrgInfo = faxService.getChargeInfo("1234567890", "지능");
 
         System.out.println(chrgInfo.getChargeMethod());
         System.out.println(chrgInfo.getRateSystem());
@@ -52,7 +52,7 @@ public class FaxServiceTEST {
     @Test
     public void getUnitCost_TEST() throws PopbillException {
         
-        float UnitCost = faxService.getUnitCost("1234567890");
+        float UnitCost = faxService.getUnitCost("1234567890", "지능");
 
         System.out.println(UnitCost);
     }

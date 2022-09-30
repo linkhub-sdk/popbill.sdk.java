@@ -39,6 +39,17 @@ public interface FaxService extends BaseService {
      * @throws PopbillException
      */
     public float getUnitCost(String corpNum) throws PopbillException;
+    
+    /**
+     * 
+     * @param corpNum
+     *            연동회원 사업자번호
+     * @param ReceiveNumType
+     *            수신번호 유형
+     * @return 단가 (ex 55.0)
+     * @throws PopbillException
+     */
+    public float getUnitCost(String corpNum, String ReceiveNumType) throws PopbillException;
 
     /**
      * 팝빌 팩스전송 관련 URL 확인. 반환한 url은 30초이내에 브라우져에 표시하여야 함.
@@ -1662,6 +1673,17 @@ public interface FaxService extends BaseService {
      * @throws PopbillException
      */
     public ChargeInfo getChargeInfo(String corpNum) throws PopbillException;
+    
+    /**
+     * 
+     * @param corpNum
+     *          연동회원 사업자번호
+     * @param ReceiveNumType
+     *          수신번호 유형
+     * @return 과금정보. see.com.popbill.api.ChargeInfo
+     * @throws PopbillException
+     */
+    public ChargeInfo getChargeInfo(String corpNum, String ReceiveNumType) throws PopbillException;
     
     /**
      * 등록된 발신번호 목록 확인 

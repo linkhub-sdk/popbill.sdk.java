@@ -45,7 +45,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
     @Override
     protected List<String> getScopes() {
-        return Arrays.asList("160");
+        return Arrays.asList("160", "161");
     }
 
     /*
@@ -56,6 +56,18 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
     @Override
     public float getUnitCost(String corpNum) throws PopbillException {
         UnitCostResponse response = httpget("/FAX/UnitCost", corpNum, null, UnitCostResponse.class);
+
+        return response.unitCost;
+    }
+    
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.popbill.api.FaxService#getUnitCost
+     */
+    @Override
+    public float getUnitCost(String corpNum, String receiveNumType) throws PopbillException {
+        UnitCostResponse response = httpget("/FAX/UnitCost?receiveNumType=" + receiveNumType, corpNum, null, UnitCostResponse.class);
 
         return response.unitCost;
     }
@@ -1481,6 +1493,12 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
     @Override
     public ChargeInfo getChargeInfo(String corpNum) throws PopbillException {
         return httpget("/FAX/ChargeInfo", corpNum, null, ChargeInfo.class);
+    }
+    
+    
+    @Override
+    public ChargeInfo getChargeInfo(String corpNum, String receiveNumType) throws PopbillException {
+        return httpget("/FAX/ChargeInfo?receiveNumType=" + receiveNumType, corpNum, null, ChargeInfo.class);
     }
 
     /*
