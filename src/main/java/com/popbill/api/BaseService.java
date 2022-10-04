@@ -95,7 +95,72 @@ public interface BaseService {
      */
     public abstract String getPartnerURL(String CorpNum, String TOGO) throws PopbillException;
     
+    /**
+     * 포인트 사용내역 확인
+     * 
+     * @param CorpNum 사업자번호
+     * @param SDate 조회 기간의 시작일자
+     * @param EDate 조회 기간의 종료일자
+     * @param Page 목록 페이지번호 (기본값 1)
+     * @param PerPage 페이지당 표시할 목록 개수 (기본값 500, 최대 1000)
+     * @param Order 거래일자를 기준으로 하는 목록 정렬 방향
+     * @return
+     * @throws PopbillException
+     */
+    public abstract UseHistoryResult getUseHistory(String CorpNum, String SDate, String EDate, Integer Page, Integer PerPage, String Order) throws PopbillException;
 
+    /**
+     * 포인트 결제내역 확인.
+     * 
+     * @param CorpNum 사업자번호
+     * @param SDate 조회 기간의 시작일자
+     * @param EDate 조회 기간의 종료일자
+     * @param Page 목록 페이지번호 (기본값 1)
+     * @param PerPage 페이지당 표시할 목록 개수 (기본값 500, 최대 1000)
+     * @return
+     * @throws PopbillException
+     */
+    public abstract PaymentHistoryResult getPaymentHistory(String CorpNum, String SDate, String EDate, Integer Page, Integer PerPage) throws PopbillException;
+
+    /**
+     * 환분신청 내역 확인.
+     * 
+     * @param CorpNum 사업자번호
+     * @param Page 목록 페이지번호 (기본값 1)
+     * @param PerPage 페이지당 표시할 목록 개수 (기본값 500, 최대 1000)
+     * @return
+     * @throws PopbillException
+     */
+    public abstract RefundHistoryResult getRefundHistory(String CorpNum, Integer Page, Integer PerPage) throws PopbillException;
+
+    /**
+     * 환불 신청.
+     * 
+     * @param CorpNum
+     * @return Response
+     * @throws PopbillException
+     */
+    public abstract Response refund(String CorpNum, RefundForm refundForm) throws PopbillException;
+
+    /**
+     * 무통장 입금신청.
+     * 
+     * @param CorpNum
+     * @return Payment
+     * @throws PopbillException
+     */
+    public abstract PaymentResponse paymentRequest(String CorpNum, PaymentForm payment) throws PopbillException;
+    
+    /**
+     * 무통장 입금신청 정보확인.
+     * 
+     * @param CorpNum
+     * @param settleCode
+     * @return SettleResult
+     * @throws PopbillException
+     */
+    public abstract PaymentHistory getSettleResult(String CorpNum, String settleCode) throws PopbillException;
+    
     /**
      * 연동회원의 가입여부 확인.
      * 

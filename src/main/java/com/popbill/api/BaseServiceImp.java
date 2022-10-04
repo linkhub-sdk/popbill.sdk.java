@@ -392,7 +392,6 @@ public abstract class BaseServiceImp implements BaseService {
     @Override
     public String getPopbillURL(String CorpNum, String TOGO) throws PopbillException {
         URLResponse response = httpget("/?TG=" + TOGO, CorpNum, null, URLResponse.class);
-
         return response.url;
     }
 
@@ -405,9 +404,55 @@ public abstract class BaseServiceImp implements BaseService {
     @Override
     public String getPopbillURL(String CorpNum, String UserID, String TOGO) throws PopbillException {
         URLResponse response = httpget("/?TG=" + TOGO, CorpNum, UserID, URLResponse.class);
-
         return response.url;
     }
+    
+    @Override
+    public UseHistoryResult getUseHistory(String CorpNum, String SDate, String EDate, Integer Page, Integer PerPage, String Order) throws PopbillException {
+        String url = "/UseHistory";
+        url += "?SDate=" + (SDate != null ? SDate : "");
+        url += "&EDate=" + (EDate != null ? EDate : "");
+        url += "&Page=" + (Page != null ? Page : "");
+        url += "&PerPage=" + (PerPage != null ? PerPage : "");
+        url += "&Order=" + (Order != null ? Order : "");
+        return httpget(url, CorpNum, null, UseHistoryResult.class);
+    };
+
+    @Override
+    public PaymentHistoryResult getPaymentHistory(String CorpNum, String SDate, String EDate, Integer Page, Integer PerPage) throws PopbillException {
+        String url = "/PaymentHistory";
+        url += "?SDate=" + (SDate != null ? SDate : "");
+        url += "&EDate=" + (EDate != null ? EDate : "");
+        url += "&Page=" + (Page != null ? Page : "");
+        url += "&PerPage=" + (PerPage != null ? PerPage : "");
+        return httpget(url, CorpNum, null, PaymentHistoryResult.class);
+    };
+
+    @Override
+    public RefundHistoryResult getRefundHistory(String CorpNum, Integer Page, Integer PerPage) throws PopbillException {
+        String url = "/RefundHistory";
+        url += "?Page=" + (Page != null ? Page : "");
+        url += "&PerPage=" + (PerPage != null ? PerPage : "");
+        return httpget(url, CorpNum, null, RefundHistoryResult.class);
+    };
+
+    @Override
+    public Response refund(String CorpNum, RefundForm refundForm) throws PopbillException {
+        String postData = toJsonString(refundForm);
+        return httppost("/Refund", CorpNum, postData, null, Response.class);
+        
+    };
+
+    @Override
+    public PaymentResponse paymentRequest(String CorpNum, PaymentForm paymentForm) throws PopbillException {
+        String postData = toJsonString(paymentForm);
+        return httppost("/Payment", CorpNum, postData, null, PaymentResponse.class);
+        };
+
+    @Override
+    public PaymentHistory getSettleResult(String CorpNum, String settleCode) throws PopbillException {
+        return httpget("/Payment/" + settleCode, CorpNum, null, PaymentHistory.class);
+    };
 
     /*
      * (non-Javadoc)
