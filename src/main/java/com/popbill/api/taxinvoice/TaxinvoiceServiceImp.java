@@ -472,18 +472,23 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     
         return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "?Detail", CorpNum, null, Taxinvoice.class);
     }
+    
+    @Override
+    public TaxinvoiceXML getXML(String CorpNum, MgtKeyType KeyType, String MgtKey) throws PopbillException {
+        return getXML(CorpNum, KeyType, "");
+    }
 
     /* (non-Javadoc)
      * @see com.popbill.api.TaxinvoiceService#getXML(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String)
      */
     @Override
-    public TaxinvoiceXML getXML(String CorpNum, MgtKeyType KeyType, String MgtKey) throws PopbillException {
+    public TaxinvoiceXML getXML(String CorpNum, MgtKeyType KeyType, String MgtKey, String UserID) throws PopbillException {
         if (KeyType == null)
             throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
     
-        return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "?XML", CorpNum, null, TaxinvoiceXML.class);
+        return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "?XML", CorpNum, UserID, TaxinvoiceXML.class);
     }
 
     /* (non-Javadoc)

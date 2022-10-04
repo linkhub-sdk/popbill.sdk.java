@@ -409,48 +409,78 @@ public abstract class BaseServiceImp implements BaseService {
     
     @Override
     public UseHistoryResult getUseHistory(String CorpNum, String SDate, String EDate, Integer Page, Integer PerPage, String Order) throws PopbillException {
+        return getUseHistory(CorpNum, SDate, EDate, Page, PerPage, Order, "");
+    }
+    
+    @Override
+    public UseHistoryResult getUseHistory(String CorpNum, String SDate, String EDate, Integer Page, Integer PerPage, String Order, String UserID) throws PopbillException {
         String url = "/UseHistory";
         url += "?SDate=" + (SDate != null ? SDate : "");
         url += "&EDate=" + (EDate != null ? EDate : "");
         url += "&Page=" + (Page != null ? Page : "");
         url += "&PerPage=" + (PerPage != null ? PerPage : "");
         url += "&Order=" + (Order != null ? Order : "");
-        return httpget(url, CorpNum, null, UseHistoryResult.class);
+        return httpget(url, CorpNum, UserID, UseHistoryResult.class);
     };
 
     @Override
     public PaymentHistoryResult getPaymentHistory(String CorpNum, String SDate, String EDate, Integer Page, Integer PerPage) throws PopbillException {
+        return getPaymentHistory(CorpNum, SDate, EDate, Page, PerPage, "");
+    }
+    
+    @Override
+    public PaymentHistoryResult getPaymentHistory(String CorpNum, String SDate, String EDate, Integer Page, Integer PerPage, String UserID) throws PopbillException {
         String url = "/PaymentHistory";
         url += "?SDate=" + (SDate != null ? SDate : "");
         url += "&EDate=" + (EDate != null ? EDate : "");
         url += "&Page=" + (Page != null ? Page : "");
         url += "&PerPage=" + (PerPage != null ? PerPage : "");
-        return httpget(url, CorpNum, null, PaymentHistoryResult.class);
+        return httpget(url, CorpNum, UserID, PaymentHistoryResult.class);
     };
 
     @Override
     public RefundHistoryResult getRefundHistory(String CorpNum, Integer Page, Integer PerPage) throws PopbillException {
+        return getRefundHistory(CorpNum, Page, PerPage, "");
+    }
+    
+    @Override
+    public RefundHistoryResult getRefundHistory(String CorpNum, Integer Page, Integer PerPage, String UserID) throws PopbillException {
         String url = "/RefundHistory";
         url += "?Page=" + (Page != null ? Page : "");
         url += "&PerPage=" + (PerPage != null ? PerPage : "");
-        return httpget(url, CorpNum, null, RefundHistoryResult.class);
+        return httpget(url, CorpNum, UserID, RefundHistoryResult.class);
     };
 
     @Override
     public Response refund(String CorpNum, RefundForm refundForm) throws PopbillException {
+        return refund(CorpNum, refundForm, "");
+    }
+    
+    @Override
+    public Response refund(String CorpNum, RefundForm refundForm, String UserID) throws PopbillException {
         String postData = toJsonString(refundForm);
-        return httppost("/Refund", CorpNum, postData, null, Response.class);
+        return httppost("/Refund", CorpNum, postData, UserID, Response.class);
         
     };
 
     @Override
     public PaymentResponse paymentRequest(String CorpNum, PaymentForm paymentForm) throws PopbillException {
+        return paymentRequest(CorpNum, paymentForm, "");
+    }
+
+    @Override
+    public PaymentResponse paymentRequest(String CorpNum, PaymentForm paymentForm, String UserID) throws PopbillException {
         String postData = toJsonString(paymentForm);
-        return httppost("/Payment", CorpNum, postData, null, PaymentResponse.class);
+        return httppost("/Payment", CorpNum, postData, UserID, PaymentResponse.class);
         };
 
     @Override
     public PaymentHistory getSettleResult(String CorpNum, String settleCode) throws PopbillException {
+        return getSettleResult(CorpNum, settleCode, "");
+    }
+
+    @Override
+    public PaymentHistory getSettleResult(String CorpNum, String settleCode, String UserID) throws PopbillException {
         return httpget("/Payment/" + settleCode, CorpNum, null, PaymentHistory.class);
     };
 
