@@ -475,7 +475,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     
     @Override
     public TaxinvoiceXML getXML(String CorpNum, MgtKeyType KeyType, String MgtKey) throws PopbillException {
-        return getXML(CorpNum, KeyType, null);
+        return getXML(CorpNum, KeyType, MgtKey, null);
     }
 
     /* (non-Javadoc)
