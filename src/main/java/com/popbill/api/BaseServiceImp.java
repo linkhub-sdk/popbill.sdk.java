@@ -409,7 +409,7 @@ public abstract class BaseServiceImp implements BaseService {
     
     @Override
     public UseHistoryResult getUseHistory(String CorpNum, String SDate, String EDate, Integer Page, Integer PerPage, String Order) throws PopbillException {
-        return getUseHistory(CorpNum, SDate, EDate, Page, PerPage, Order, "");
+        return getUseHistory(CorpNum, SDate, EDate, Page, PerPage, Order, null);
     }
     
     @Override
@@ -425,7 +425,7 @@ public abstract class BaseServiceImp implements BaseService {
 
     @Override
     public PaymentHistoryResult getPaymentHistory(String CorpNum, String SDate, String EDate, Integer Page, Integer PerPage) throws PopbillException {
-        return getPaymentHistory(CorpNum, SDate, EDate, Page, PerPage, "");
+        return getPaymentHistory(CorpNum, SDate, EDate, Page, PerPage, null);
     }
     
     @Override
@@ -440,7 +440,7 @@ public abstract class BaseServiceImp implements BaseService {
 
     @Override
     public RefundHistoryResult getRefundHistory(String CorpNum, Integer Page, Integer PerPage) throws PopbillException {
-        return getRefundHistory(CorpNum, Page, PerPage, "");
+        return getRefundHistory(CorpNum, Page, PerPage, null);
     }
     
     @Override
@@ -453,7 +453,7 @@ public abstract class BaseServiceImp implements BaseService {
 
     @Override
     public Response refund(String CorpNum, RefundForm refundForm) throws PopbillException {
-        return refund(CorpNum, refundForm, "");
+        return refund(CorpNum, refundForm, null);
     }
     
     @Override
@@ -465,7 +465,7 @@ public abstract class BaseServiceImp implements BaseService {
 
     @Override
     public PaymentResponse paymentRequest(String CorpNum, PaymentForm paymentForm) throws PopbillException {
-        return paymentRequest(CorpNum, paymentForm, "");
+        return paymentRequest(CorpNum, paymentForm, null);
     }
 
     @Override
@@ -476,7 +476,7 @@ public abstract class BaseServiceImp implements BaseService {
 
     @Override
     public PaymentHistory getSettleResult(String CorpNum, String settleCode) throws PopbillException {
-        return getSettleResult(CorpNum, settleCode, "");
+        return getSettleResult(CorpNum, settleCode, null);
     }
 
     @Override
