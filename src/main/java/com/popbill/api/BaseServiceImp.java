@@ -802,8 +802,6 @@ public abstract class BaseServiceImp implements BaseService {
 
         httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
 
-        httpURLConnection.setRequestProperty("User-Agent", "JAVA POPBILL SDK");
-
         if (UserID != null && UserID.isEmpty() == false) {
             httpURLConnection.setRequestProperty("x-pb-userid", UserID);
         }
@@ -894,8 +892,6 @@ public abstract class BaseServiceImp implements BaseService {
 
         httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
 
-        httpURLConnection.setRequestProperty("User-Agent", "JAVA POPBILL SDK");
-
         if (UserID != null && UserID.isEmpty() == false) {
             httpURLConnection.setRequestProperty("x-pb-userid", UserID);
         }
@@ -983,8 +979,6 @@ public abstract class BaseServiceImp implements BaseService {
         }
 
         httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
-
-        httpURLConnection.setRequestProperty("User-Agent", "JAVA POPBILL SDK");
 
         try {
             httpURLConnection.setRequestMethod("POST");
@@ -1089,8 +1083,6 @@ public abstract class BaseServiceImp implements BaseService {
         }
 
         httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
-
-        httpURLConnection.setRequestProperty("User-Agent", "JAVA POPBILL SDK");
 
         if (httpURLConnection.getContentType().toLowerCase().equals("application/pdf;charset=utf-8")) {
 
