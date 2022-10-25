@@ -1514,6 +1514,29 @@ public class MessageServiceTEST {
         System.out.println(response.getMessage());
         
     }    
+    @Test
+    public void cancelReservebyRCV_TEST() throws PopbillException {
+        String receiptNum = "022102418000000001";
+        String receiveNum = "01012341111";
+        
+        Response response = messageService.cancelReservebyRCV("1234567890", receiptNum, receiveNum);
+        assertNotNull(response);
+        
+        System.out.println(response.getMessage());
+        
+    }
+    
+    @Test
+    public void cancelReserveRNbyRCV_TEST() throws PopbillException {
+        String requestNum = "20221024_001";
+        String receiveNum = "0101112222";
+        
+        Response response = messageService.cancelReserveRNbyRCV("1234567890", requestNum, receiveNum);
+        assertNotNull(response);
+        
+        System.out.println(response.getMessage());
+        
+    }    
     
     
     @Test

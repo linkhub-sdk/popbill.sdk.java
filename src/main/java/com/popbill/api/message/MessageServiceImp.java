@@ -1280,4 +1280,40 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
         public String receiptNum;
     }
 
+    @Override
+    public Response cancelReservebyRCV(String CorpNum, String receiptNum, String receiveNum) throws PopbillException {
+        return cancelReservebyRCV(CorpNum, receiptNum, receiveNum, null);
+    }
+
+    @Override
+    public Response cancelReservebyRCV(String CorpNum, String receiptNum, String receiveNum, String UserID)
+            throws PopbillException {
+        if (receiptNum == null || receiptNum.equals(""))
+            throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
+        if (receiveNum == null || receiveNum.equals(""))
+            throw new PopbillException(-99999999, "수신번호가 입력되지 않았습니다.");
+        
+        String PostData = toJsonString(receiveNum);
+
+        return httppost("/Message/" + receiptNum + "/Cancel", CorpNum, PostData, UserID, Response.class);
+    }
+
+    @Override
+    public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum) throws PopbillException {
+        return cancelReserveRNbyRCV(CorpNum, requestNum, receiveNum, null);
+    }
+
+    @Override
+    public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum, String UserID)
+            throws PopbillException {
+        if (requestNum == null || requestNum.equals(""))
+            throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
+        if (receiveNum == null || receiveNum.equals(""))
+            throw new PopbillException(-99999999, "수신번호가 입력되지 않았습니다.");
+        
+        String PostData = toJsonString(receiveNum);
+
+        return httppost("/Message/Cancel/" +requestNum, CorpNum, PostData, UserID, Response.class);
+    }
+
 }
