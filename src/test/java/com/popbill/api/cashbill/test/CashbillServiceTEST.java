@@ -2,10 +2,6 @@ package com.popbill.api.cashbill.test;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +19,6 @@ import com.popbill.api.cashbill.BulkCashbillResult;
 import com.popbill.api.cashbill.CBSearchResult;
 import com.popbill.api.cashbill.Cashbill;
 import com.popbill.api.cashbill.CashbillInfo;
-import com.popbill.api.cashbill.CashbillLog;
 import com.popbill.api.cashbill.CashbillServiceImp;
 
 public class CashbillServiceTEST {
@@ -197,12 +192,57 @@ public class CashbillServiceTEST {
     }
     
     @Test
+    public void regiter() throws Exception {
+     
+        Cashbill cashbill = new Cashbill();
+        
+        cashbill.setMgtKey("20221104JAVA03");
+        cashbill.setTradeType("승인거래");
+        cashbill.setTradeDT("20221104000000");
+        cashbill.setTradeOpt("일반");
+        cashbill.setFranchiseCorpNum("1234567890");
+        cashbill.setFranchiseTaxRegID("0001");
+        cashbill.setFranchiseCorpName("발행자 상호");
+        cashbill.setFranchiseCEOName("발행자 대표자");
+        cashbill.setFranchiseAddr("발행자 주소");
+        cashbill.setFranchiseTEL("07075103710");
+        
+        cashbill.setIdentityNum("0100001234");
+        cashbill.setCustomerName("고객명");
+        cashbill.setItemName("상품명");
+        cashbill.setOrderNumber("주문번호");
+        cashbill.setEmail("code@test.co.kr");
+        cashbill.setHp("01011112222");
+        cashbill.setFax("07075103710");
+        cashbill.setServiceFee("0");
+        cashbill.setSupplyCost("10000");
+        cashbill.setTax("1000");
+        cashbill.setTotalAmount("11000");
+        cashbill.setTradeUsage("소득공제용");
+        cashbill.setTaxationType("과세");
+        cashbill.setSmssendYN(false);
+        
+        Response response = cashbillService.register("1234567890", cashbill);
+        assertNotNull(response);
+        System.out.println("[" + response.getCode() + "] "+ response.getMessage());
+    }
+    
+    @Test
+    public void issue() throws Exception {
+        CBIssueResponse response = cashbillService.issue("1234567890", "20221104JAVA03", "메모 입니다. Getinfo [StateMemo] 필드");
+
+        System.out.println("[" + response.getCode() + "] "+ response.getMessage());
+        System.out.println(response.getConfirmNum() + ", " + response.getTradeDate() +", " + response.getTradeDT());
+    }
+    
+    @Test
     public void registIssue_TEST() throws PopbillException {
         
         Cashbill cashbill = new Cashbill();
         
-        cashbill.setMgtKey("20211223JAVA01");
+        cashbill.setMgtKey("20221104JAVA02");
         cashbill.setTradeType("승인거래");
+        cashbill.setTradeDT("20221104000000");
         cashbill.setTradeOpt("일반");
         cashbill.setFranchiseCorpNum("1234567890");
         cashbill.setFranchiseTaxRegID("0001");
@@ -237,12 +277,12 @@ public class CashbillServiceTEST {
     public void bulkSubmit_TEST() throws PopbillException {
         try {
             List<Cashbill> cashbillList = new ArrayList<Cashbill>();
-            String submitID = "20220930-JAVA3";
+            String submitID = "20221104-JAVA3";
             
             for(int i = 0; i < 5; i++) {
                 Cashbill cashbill = new Cashbill();
                 
-                cashbill.setMgtKey("20220930-"+i);
+                cashbill.setMgtKey("20221104-"+i);
                 cashbill.setTradeType("승인거래");
                 cashbill.setTradeOpt("도서공연");
                 cashbill.setFranchiseCorpNum("1234567890");
@@ -277,7 +317,7 @@ public class CashbillServiceTEST {
     
     @Test
     public void getBulkResult_TEST() throws PopbillException {
-        BulkCashbillResult bulkCashbillResult = cashbillService.getBulkResult("1234567890", "20220930-JAVA3");
+        BulkCashbillResult bulkCashbillResult = cashbillService.getBulkResult("1234567890", "20221104-JAVA3");
         System.out.println(bulkCashbillResult.getCode());
         System.out.println(bulkCashbillResult.getMessage());
         System.out.println(bulkCashbillResult.getSubmitID());
@@ -295,7 +335,8 @@ public class CashbillServiceTEST {
             System.out.print(bulkCashbillIssueResult.getCode() + "\t");
             System.out.print(bulkCashbillIssueResult.getMessage() + "\t");
             System.out.print(bulkCashbillIssueResult.getConfirmNum() + "\t");
-            System.out.print(bulkCashbillIssueResult.getTradeDate() + "\n");
+            System.out.print(bulkCashbillIssueResult.getTradeDate() + "\t");
+            System.out.print(bulkCashbillIssueResult.getTradeDT() + "\n");
         }
     }
     
@@ -359,9 +400,9 @@ public class CashbillServiceTEST {
     @Test
     public void revokeRegistIssue01_TEST() throws PopbillException{
         String CorpNum = "1234567890";
-        String mgtKey = "20170816-04";
-        String orgConfirmNum = "820116333";
-        String orgTradeDate = "20170711";
+        String mgtKey = "20221104-94";
+        String orgConfirmNum = "TB0000122";
+        String orgTradeDate = "20221103";
         
         CBIssueResponse response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate);
         
@@ -414,6 +455,29 @@ public class CashbillServiceTEST {
         System.out.println(response.getCode());
         System.out.println(response.getConfirmNum());
         System.out.println(response.getTradeDate());
+    }
+    
+    @Test
+    public void revokeRegistIssue04_TEST() throws PopbillException{
+        String CorpNum = "1234567890";
+        String mgtKey = "20221104-Revoke002";
+        String orgConfirmNum = "TB0000122";
+        String orgTradeDate = "20221103";
+        Boolean smssendYN = true;
+        String memo = "취소현금영수증 즉시발행";
+        String tradeDT = "";
+        
+        CBIssueResponse response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, 
+                orgTradeDate, smssendYN, memo, null, null, null, 
+                null, null, null, null, null , tradeDT);
+        
+        assertNotNull(response);
+        
+        System.out.println(response.getMessage());
+        System.out.println(response.getCode());
+        System.out.println(response.getConfirmNum());
+        System.out.println(response.getTradeDate());
+        System.out.println(response.getTradeDT());
     }
     
     

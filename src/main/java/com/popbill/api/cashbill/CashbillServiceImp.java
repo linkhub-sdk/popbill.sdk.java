@@ -645,7 +645,6 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 
     @Override
     public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Cashbill> cashbillList) throws PopbillException {
-
         return bulkSubmit(CorpNum, SubmitID, cashbillList, null);
 
     }
@@ -847,7 +846,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
             String orgConfirmNum, String orgTradeDate) throws PopbillException {
 
         return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, false, null,
-                false, null, null, null, null, null, null);
+                false, null, null, null, null, null, null, null, null);
     }
 
     @Override
@@ -856,7 +855,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
             throws PopbillException {
 
         return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, null,
-                false, null, null, null, null, null, null);
+                false, null, null, null, null, null, null, null, null);
     }
 
     @Override
@@ -865,7 +864,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
             String memo) throws PopbillException {
 
         return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo,
-                false, null, null, null, null, null, null);
+                false, null, null, null, null, null, null, null, null);
     }
 
     @Override
@@ -874,7 +873,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
             String memo, String userID) throws PopbillException {
 
         return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo,
-                false, null, null, null, null, null, userID, null);
+                false, null, null, null, null, null, userID, null, null);
     }
     
     @Override
@@ -883,7 +882,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
             String memo, String userID, String emailSubject) throws PopbillException {
 
         return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo,
-                false, null, null, null, null, null, userID, emailSubject);
+                false, null, null, null, null, null, userID, emailSubject, null);
     }
 
     @Override
@@ -893,7 +892,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
             String tax, String serviceFee, String totalAmount) throws PopbillException {
 
         return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo,
-                isPartCancel, cancelType, supplyCost, tax, serviceFee, totalAmount, null);
+                isPartCancel, cancelType, supplyCost, tax, serviceFee, totalAmount, null, null, null);
     }
 
     @Override
@@ -903,7 +902,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
             String tax, String serviceFee, String totalAmount, String userID) throws PopbillException {
 
         return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo,
-                isPartCancel, cancelType, supplyCost, tax, serviceFee, totalAmount, null, null);
+                isPartCancel, cancelType, supplyCost, tax, serviceFee, totalAmount, null, null, null);
     }
     
     @Override
@@ -912,13 +911,23 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
             Boolean isPartCancel, Integer cancelType, String supplyCost,
             String tax, String serviceFee, String totalAmount, String userID, String emailSubject) throws PopbillException {
 
+        return revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo,
+                isPartCancel, cancelType, supplyCost, tax, serviceFee, totalAmount, null, null, null);
+    }
+    
+    @Override
+    public CBIssueResponse revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum,
+            String orgTradeDate, Boolean smssendYN, String memo,
+            Boolean isPartCancel, Integer cancelType, String supplyCost,
+            String tax, String serviceFee, String totalAmount, String userID, String emailSubject, String tradeDT) throws PopbillException {
+        
         if (mgtKey == null)
             throw new PopbillException(-99999999, "취소현금영수증 문서번호가 입력되지 않았습니다.");
         
         RevokeRequest request = new RevokeRequest();
         
         if (emailSubject != null) request.emailSubject = emailSubject;
-
+        
         request.mgtKey = mgtKey;
         request.orgConfirmNum = orgConfirmNum;
         request.orgTradeDate = orgTradeDate;
@@ -930,9 +939,10 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
         request.serviceFee = serviceFee;
         request.tax = tax;
         request.totalAmount = totalAmount;
-
+        request.tradeDT = tradeDT;
+        
         String PostData = toJsonString(request);
-
+        
         return httppost("/Cashbill", CorpNum, PostData,
                 userID, "REVOKEISSUE", CBIssueResponse.class);
     }
@@ -1008,5 +1018,6 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
         public String serviceFee;
         public String totalAmount;
         public String emailSubject;
+        public String tradeDT;
     }
 }

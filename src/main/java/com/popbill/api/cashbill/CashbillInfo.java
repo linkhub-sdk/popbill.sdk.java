@@ -25,6 +25,7 @@ public class CashbillInfo {
     private String itemKey;
     private String mgtKey;
     private String tradeDate;
+    private String tradeDT;
     private String issueDT;
     private String customerName;
 
@@ -78,6 +79,15 @@ public class CashbillInfo {
      */
     public String getTradeDate() {
         return tradeDate;
+    }
+
+    /**
+     * 거래일시 확인
+     *
+     * @return the tradeDT
+     */
+    public String getTradeDT() {
+        return tradeDT;
     }
 
     /**

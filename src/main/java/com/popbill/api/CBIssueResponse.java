@@ -8,6 +8,7 @@ public class CBIssueResponse {
     private String message;
     private String confirmNum;
     private String tradeDate;
+    private String tradeDT;
 
     public long getCode() {
         return code;
@@ -23,5 +24,9 @@ public class CBIssueResponse {
 
     public String getTradeDate() {
         return tradeDate;
+    }
+
+    public String getTradeDT() {
+        return tradeDT;
     }
 }

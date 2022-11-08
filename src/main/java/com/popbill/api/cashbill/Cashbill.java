@@ -31,6 +31,7 @@ public class Cashbill implements Serializable {
     private String tradeUsage;
     private String tradeOpt;
     private String tradeType;
+    private String tradeDT;
 
     private String taxationType;
     private String supplyCost;
@@ -88,6 +89,25 @@ public class Cashbill implements Serializable {
      */
     public String getTradeDate() {
         return tradeDate;
+    }
+    
+   
+    /**
+     * 거래일시 확인
+     *
+     * @return the tradeDT
+     */
+    public String getTradeDT() {
+        return tradeDT;
+    }
+
+    /**
+     * 거래일시 설정
+     *
+     * @return the tradeDT
+     */
+    public void setTradeDT(String tradeDT) {
+        this.tradeDT = tradeDT;
     }
 
     /**
