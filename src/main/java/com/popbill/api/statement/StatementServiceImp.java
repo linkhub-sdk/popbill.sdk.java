@@ -185,7 +185,11 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
         if (MgtKey == null || MgtKey.isEmpty())
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
-        String PostData = toJsonString(new MemoRequest(Memo));
+        MemoRequest request = new MemoRequest();
+        request.memo = Memo;
+        request.emailSubject = EmailSubject;
+        
+        String PostData = toJsonString(request);
 
         return httppost("/Statement/" + ItemCode + "/" + MgtKey, CorpNum, PostData, UserID, "ISSUE", Response.class);
     }
@@ -208,8 +212,11 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
     public Response cancel(String CorpNum, int ItemCode, String MgtKey, String Memo, String UserID) throws PopbillException {
         if (MgtKey == null || MgtKey.isEmpty())
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
+        
+        MemoRequest request = new MemoRequest();
+        request.memo = Memo;
 
-        String PostData = toJsonString(new MemoRequest(Memo));
+        String PostData = toJsonString(request);
 
         return httppost("/Statement/" + ItemCode + "/" + MgtKey, CorpNum, PostData, UserID, "CANCEL", Response.class);
     }
@@ -749,11 +756,8 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
     }
 
     protected class MemoRequest {
-        public MemoRequest(String memo) {
-            this.memo = memo;
-        }
-
-        public String memo;
+    	public String memo;
+        public String emailSubject;
     }
 
     protected class ResendRequest {
