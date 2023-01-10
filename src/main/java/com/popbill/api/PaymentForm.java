@@ -6,7 +6,7 @@ public class PaymentForm {
 
     private String settlerEmail;
 
-    private String settlerHP;
+    private String notifyHP;
 
     private String paymentName;
 
@@ -20,8 +20,8 @@ public class PaymentForm {
         this.settlerEmail = settlerEmail;
     }
 
-    public void setSettlerHP(String settlerHP) {
-        this.settlerHP = settlerHP;
+    public void setNotifyHP(String notifyHP) {
+        this.notifyHP = notifyHP;
     }
 
     public void setPaymentName(String paymentName) {
