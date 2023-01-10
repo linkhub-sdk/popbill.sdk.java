@@ -6,7 +6,7 @@ public class BulkCashbillIssueResult {
     private String message;
     private String confirmNum;
     private String tradeDate;
-    private String tradeDT;
+    private String issueDT;
 
     public String getMgtKey() {
         return mgtKey;
@@ -24,6 +24,6 @@ public class BulkCashbillIssueResult {
         return tradeDate;
     }
     public String getTradeDT() {
-        return tradeDT;
+        return issueDT;
     }
 }
