@@ -1880,6 +1880,13 @@ public class MessageServiceTEST {
     }
     
     @Test
+    public void getAutoDenyNumberInfo_TEST() throws PopbillException{
+        AutoDeny response = messageService.getAutoDenyNumberInfo("1234567890");
+        assertNotNull(response);
+        System.out.println(response.getSmsdenyNumber() + " " + response.getRegDT());
+    }
+    
+    @Test
     public void getSenderNumberList_TEST() throws PopbillException {
         
         SenderNumber[] listInfo = messageService.getSenderNumberList("1234567890", "testkorea");
