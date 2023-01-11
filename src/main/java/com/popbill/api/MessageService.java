@@ -1591,6 +1591,15 @@ public interface MessageService extends BaseService {
     public AutoDeny[] getAutoDenyList(String CorpNum) throws PopbillException;
     
     /**
+     * 080 수신거부 번호 확인
+     * @param CorpNum
+     * @param UserID
+     * @return 080수신거부목록 
+     * @throws PopbillException
+     */
+    public AutoDeny getAutoDenyNumberInfo(String CorpNum) throws PopbillException;
+    
+    /**
      * 과금정보 확인 
      * 
      * @param CorpNum
