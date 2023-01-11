@@ -153,7 +153,7 @@ public class KakaoServiceTest {
         String altSendType = "";
         String receiverNum = "01011112222";
         String receiverName = "01수신자명";
-        String sndDT = "20230111130000";
+        String sndDT = "20230111180000";
                         
         String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, content, altContent, altSendType, 
                 receiverNum, receiverName, sndDT);
@@ -204,7 +204,7 @@ public class KakaoServiceTest {
         String sndDT = "20230111180000";
                         
         String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, content, altContent, altSendType, 
-                receiverNum, receiverName, sndDT, "testkorea", "20230111_ats_20");
+                receiverNum, receiverName, sndDT, "testkorea", "20230111_ats_23");
         
         assertNotNull(receiptNum);
         System.out.println(receiptNum);
@@ -1871,7 +1871,7 @@ public class KakaoServiceTest {
     
     @Test
     public void cancelReservebyRCV_TEST() throws PopbillException {
-    	String receiptNum = "023011111391100001";
+    	String receiptNum = "023011114473900001";
         String receiveNum = "01011112222";
         
         Response response = kakaoService.cancelReservebyRCV("1234567890", receiptNum, receiveNum);
@@ -1882,7 +1882,7 @@ public class KakaoServiceTest {
     
     @Test
     public void cancelReserveRNbyRCV_TEST() throws PopbillException {
-    	String requestNum = "20230111_ats_20";
+    	String requestNum = "20230111_ats_23";
         String receiveNum = "01022223333";
         
         Response response = kakaoService.cancelReserveRNbyRCV("1234567890", requestNum, receiveNum);
