@@ -622,6 +622,38 @@ public interface KakaoService extends BaseService {
 
     public Response cancelReserveRN(String CorpNum, String requestNum, String UserID) 
     throws PopbillException;
+    
+    /**
+     * 예약 메시지 전송 취소. 예약시간 기준 10분전의 건만 취소 가능
+     * 
+     * @param CorpNum 연동회원 사업자번호
+     * @param requestNum 전송시 접수번호
+     * @param receiveNum 전송시 수신번호
+     * @param UserID 연동회원 아이디
+     * @return Response 응답
+     * @throws PopbillException
+     */
+    public Response cancelReservebyRCV(String CorpNum, String receiptNum, String receiveNum) 
+    		throws PopbillException;
+    
+    public Response cancelReservebyRCV(String CorpNum, String receiptNum, String receiveNum, String UserID) 
+    		throws PopbillException;
+    
+    /**
+     * 예약 메시지 전송 취소. 예약시간 기준 10분전의 건만 취소 가능
+     * 
+     * @param CorpNum 연동회원 사업자번호
+     * @param requestNum 전송시 요청번호
+     * @param receiveNum 전송시 수신번호
+     * @param UserID 연동회원 아이디
+     * @return Response 응답
+     * @throws PopbillException
+     */
+	public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum) 
+			throws PopbillException;
+
+    public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum, String UserID) 
+    		throws PopbillException;
 
     /**
      * 카카오톡 전송내역 상세조회
