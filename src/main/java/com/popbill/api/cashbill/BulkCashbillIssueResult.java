@@ -23,7 +23,7 @@ public class BulkCashbillIssueResult {
     public String getTradeDate() {
         return tradeDate;
     }
-    public String getTradeDT() {
+    public String getIssueDT() {
         return issueDT;
     }
 }
