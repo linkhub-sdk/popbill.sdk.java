@@ -27,6 +27,7 @@ public class AutoDeny implements Serializable {
     private static final long serialVersionUID = -730974577212506133L;
 
     private String number;
+    private String smsdenyNumber;
     private String regDT;
 
     /**
@@ -36,6 +37,15 @@ public class AutoDeny implements Serializable {
      */
     public String getNumber() {
         return number;
+    }
+    
+    /**
+     * 080수신거부번호 확인
+     * 
+     * @return 수신거부번호
+     */
+    public String getSmsdenyNumber() {
+    	return smsdenyNumber;
     }
 
     /**
