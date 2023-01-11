@@ -1203,7 +1203,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      */
 	@Override
 	public AutoDeny checkAutoDenyNumber(String CorpNum, String UserID) throws PopbillException {
-		return httpget("/Message/AutoDenyNumberInfo", CorpNum, null, AutoDeny.class);
+		return httpget("/Message/AutoDenyNumberInfo", CorpNum, UserID, AutoDeny.class);
 	}
 
 	/*
