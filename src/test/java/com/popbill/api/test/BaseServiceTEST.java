@@ -19,6 +19,8 @@ import org.junit.Test;
 import com.popbill.api.ContactInfo;
 import com.popbill.api.CorpInfo;
 import com.popbill.api.JoinForm;
+import com.popbill.api.PaymentForm;
+import com.popbill.api.PaymentResponse;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.TaxinvoiceService;
@@ -314,5 +316,22 @@ public class BaseServiceTEST {
         System.out.println(contactInfo.getSearchAllAllowYN());
     }
     
+    @Test
+    public void getPaymentRequest() throws PopbillException {
+    	PaymentForm paymentForm = new PaymentForm();
+    	
+    	paymentForm.setSettlerName("담당자명");
+    	paymentForm.setSettlerEmail("test@test.com");
+    	paymentForm.setNotifyHP("01022223333");
+    	paymentForm.setPaymentName("홍길동");
+    	paymentForm.setSettleCost("10000");
+    	
+    	PaymentResponse response = taxinvoiceService.paymentRequest("1234567890", paymentForm, "testkorea");
+    	assertNotNull(response);
+    	
+    	System.out.println(response.getCode());
+    	System.out.println(response.getMessage());
+    	System.out.println(response.getSettleCode());
+    }
 }
 
