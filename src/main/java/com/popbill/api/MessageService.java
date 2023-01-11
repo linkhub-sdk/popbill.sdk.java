@@ -1599,7 +1599,7 @@ public interface MessageService extends BaseService {
      */
     public AutoDeny checkAutoDenyNumber(String CorpNum) throws PopbillException;
     
-	/**
+    /**
 	 * 080 수신거부 번호 확인
 	 * 
 	 * @param CorpNum 연동회원 사업자번호 
