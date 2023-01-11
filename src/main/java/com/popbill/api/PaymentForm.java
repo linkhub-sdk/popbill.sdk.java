@@ -3,13 +3,13 @@ package com.popbill.api;
 public class PaymentForm {
 
     private String settlerName;
-
+    
     private String settlerEmail;
-
+    
     private String notifyHP;
-
+    
     private String paymentName;
-
+    
     private String settleCost;
 
     public void setSettlerName(String settlerName) {

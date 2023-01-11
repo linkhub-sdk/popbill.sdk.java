@@ -336,7 +336,7 @@ public class CashbillServiceTEST {
             System.out.print(bulkCashbillIssueResult.getMessage() + "\t");
             System.out.print(bulkCashbillIssueResult.getConfirmNum() + "\t");
             System.out.print(bulkCashbillIssueResult.getTradeDate() + "\t");
-            System.out.print(bulkCashbillIssueResult.getTradeDT() + "\n");
+            System.out.print(bulkCashbillIssueResult.getIssueDT() + "\n");
         }
     }
     
