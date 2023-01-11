@@ -232,7 +232,7 @@ public class CashbillServiceTEST {
         CBIssueResponse response = cashbillService.issue("1234567890", "20221104JAVA03", "메모 입니다. Getinfo [StateMemo] 필드");
 
         System.out.println("[" + response.getCode() + "] "+ response.getMessage());
-        System.out.println(response.getConfirmNum() + ", " + response.getTradeDate() +", " + response.getTradeDT());
+        System.out.println(response.getConfirmNum() + ", " + response.getTradeDate());
     }
     
     @Test
@@ -477,7 +477,6 @@ public class CashbillServiceTEST {
         System.out.println(response.getCode());
         System.out.println(response.getConfirmNum());
         System.out.println(response.getTradeDate());
-        System.out.println(response.getTradeDT());
     }
     
     
