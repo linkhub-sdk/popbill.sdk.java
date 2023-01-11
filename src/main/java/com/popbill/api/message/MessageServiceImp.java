@@ -1180,9 +1180,9 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      * 
      * @see com.popbill.api.MessageService#getAutoDenyList(java.lang.String)
      */
-	@Override
-	public AutoDeny[] getAutoDenyList(String CorpNum) throws PopbillException {
-		return httpget("/Message/Denied", CorpNum, null, AutoDeny[].class);
+    @Override
+    public AutoDeny[] getAutoDenyList(String CorpNum) throws PopbillException {
+    	return httpget("/Message/Denied", CorpNum, null, AutoDeny[].class);
 	}
     
     /*
@@ -1190,10 +1190,10 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      * 
      * @see com.popbill.api.MessageService#checkAutoDenyNumber(java.lang.String)
      */
-	@Override
-	public AutoDeny checkAutoDenyNumber(String CorpNum) throws PopbillException {
-		return checkAutoDenyNumber(CorpNum, null);
-	}
+    @Override
+    public AutoDeny checkAutoDenyNumber(String CorpNum) throws PopbillException {
+    	return checkAutoDenyNumber(CorpNum, null);
+    }
 	
 	
 	/*
@@ -1201,10 +1201,10 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      * 
      * @see com.popbill.api.MessageService#checkAutoDenyNumber(java.lang.String, java.lang.String)
      */
-	@Override
-	public AutoDeny checkAutoDenyNumber(String CorpNum, String UserID) throws PopbillException {
-		return httpget("/Message/AutoDenyNumberInfo", CorpNum, UserID, AutoDeny.class);
-	}
+    @Override
+    public AutoDeny checkAutoDenyNumber(String CorpNum, String UserID) throws PopbillException {
+    	return httpget("/Message/AutoDenyNumberInfo", CorpNum, UserID, AutoDeny.class);
+    }
 
 	/*
      * (non-Javadoc)
