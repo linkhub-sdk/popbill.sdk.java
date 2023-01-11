@@ -1600,13 +1600,13 @@ public interface MessageService extends BaseService {
     public AutoDeny checkAutoDenyNumber(String CorpNum) throws PopbillException;
     
     /**
-	 * 080 수신거부 번호 확인
-	 * 
-	 * @param CorpNum 연동회원 사업자번호 
-	 * @param UserID 연동회원 유저아이디
-	 * @return 080수신거부 응답
-	 * @throws PopbillException
-	 */
+     * 080 수신거부 번호 확인
+     * 
+     * @param CorpNum 연동회원 사업자번호 
+     * @param UserID 연동회원 유저아이디
+     * @return 080수신거부 응답
+     * @throws PopbillException
+     */
     public AutoDeny checkAutoDenyNumber(String CorpNum, String UserID) throws PopbillException;
     
     /**
