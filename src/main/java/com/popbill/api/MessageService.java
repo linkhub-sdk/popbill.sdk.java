@@ -1597,7 +1597,7 @@ public interface MessageService extends BaseService {
      * @return 080수신거부 응답
      * @throws PopbillException
      */
-	public AutoDeny checkAutoDenyNumber(String CorpNum) throws PopbillException;
+    public AutoDeny checkAutoDenyNumber(String CorpNum) throws PopbillException;
     
 	/**
 	 * 080 수신거부 번호 확인
