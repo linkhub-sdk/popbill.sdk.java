@@ -82,7 +82,7 @@ public class StatementServiceTEST {
         statement.setTaxType("과세");
         statement.setFormCode("");
         statement.setItemCode((short) 121);
-        statement.setMgtKey("20170306-04");
+        statement.setMgtKey("20230111-02");
         statement.setSenderCorpNum("1234567890");
         statement.setSenderCorpName("공급자 상호");
         statement.setSenderAddr("공급자 주소");
@@ -254,7 +254,7 @@ public class StatementServiceTEST {
     
     @Test
     public void issue_TEST() throws PopbillException{
-        Response response = statementService.issue("1234567890", 121, "20150318-01", "발행메모");
+        Response response = statementService.issue("1234567890", 121, "20230111-02", "발행메모", "test@receiver.com", null);
         
         System.out.println(response.getMessage());
     }
