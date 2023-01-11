@@ -651,9 +651,9 @@ public interface KakaoService extends BaseService {
      */
 	public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum) 
 			throws PopbillException;
-
-    public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum, String UserID) 
-    		throws PopbillException;
+	
+	public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum, String UserID) 
+			throws PopbillException;
 
     /**
      * 카카오톡 전송내역 상세조회
@@ -667,11 +667,11 @@ public interface KakaoService extends BaseService {
      * @return 카카오톡 전송내역 (see com.popbill.api.kakao.KakaoSentInfo)
      * @throws PopbillException
      */
-    public KakaoSentInfo getMessages(String CorpNum, String receiptNum) 
-            throws PopbillException;
-    
-    public KakaoSentInfo getMessages(String CorpNum, String receiptNum, String UserID) 
-            throws PopbillException;
+	public KakaoSentInfo getMessages(String CorpNum, String receiptNum) 
+	        throws PopbillException;
+	
+	public KakaoSentInfo getMessages(String CorpNum, String receiptNum, String UserID) 
+	        throws PopbillException;
     
     /**
      * 카카오톡 전송내역 상세조회
