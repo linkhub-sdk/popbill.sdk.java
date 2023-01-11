@@ -151,9 +151,9 @@ public class KakaoServiceTest {
                 + "감사합니다.";
         String altContent = "대체문자 내용";
         String altSendType = "";
-        String receiverNum = "010111222";
+        String receiverNum = "01011112222";
         String receiverName = "01수신자명";
-        String sndDT = "";
+        String sndDT = "20230111130000";
                         
         String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, content, altContent, altSendType, 
                 receiverNum, receiverName, sndDT);
@@ -199,12 +199,12 @@ public class KakaoServiceTest {
                 + "감사합니다.";
         String altContent = "대체문자 내용";
         String altSendType = "";
-        String receiverNum = "010111222";
+        String receiverNum = "01022223333";
         String receiverName = "03수신자명";
-        String sndDT = "";
+        String sndDT = "20230111180000";
                         
         String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, content, altContent, altSendType, 
-                receiverNum, receiverName, sndDT, "testkorea", "20180724_ats_13");
+                receiverNum, receiverName, sndDT, "testkorea", "20230111_ats_20");
         
         assertNotNull(receiptNum);
         System.out.println(receiptNum);
@@ -252,12 +252,12 @@ public class KakaoServiceTest {
         KakaoReceiver[] receivers = new KakaoReceiver[2];
         
         KakaoReceiver message = new KakaoReceiver();
-        message.setReceiverNum("010111222");
+        message.setReceiverNum("01011112222");
         message.setReceiverName("04-1수신자명");
         message.setMessage(content);
         message.setAltMessage(altContent);
         receivers[0] = message;
-        message.setReceiverNum("010111222");
+        message.setReceiverNum("01011112222");
         message.setReceiverName("04-2수신자명");
         message.setMessage(content);
         message.setAltMessage(altContent);
@@ -413,7 +413,7 @@ public class KakaoServiceTest {
         String sndDT = "";
         
         String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, content, altContent, 
-                altSendType, receivers, sndDT, "testkorea");
+                altSendType, receivers, sndDT, "testkorea", "");
         
         assertNotNull(receiptNum);
         System.out.println(receiptNum);
@@ -1861,10 +1861,31 @@ public class KakaoServiceTest {
     
     @Test
     public void cancelReserve_TEST() throws PopbillException {
-        
         String receiptNum = "018072410120300001";
         
         Response response = kakaoService.cancelReserve("1234567890", receiptNum);
+        assertNotNull(response);
+        
+        System.out.println(response.getMessage());
+    }
+    
+    @Test
+    public void cancelReservebyRCV_TEST() throws PopbillException {
+    	String receiptNum = "023011111391100001";
+        String receiveNum = "01011112222";
+        
+        Response response = kakaoService.cancelReservebyRCV("1234567890", receiptNum, receiveNum);
+        assertNotNull(response);
+        
+        System.out.println(response.getMessage());
+    }
+    
+    @Test
+    public void cancelReserveRNbyRCV_TEST() throws PopbillException {
+    	String requestNum = "20230111_ats_20";
+        String receiveNum = "01022223333";
+        
+        Response response = kakaoService.cancelReserveRNbyRCV("1234567890", requestNum, receiveNum);
         assertNotNull(response);
         
         System.out.println(response.getMessage());
@@ -1931,7 +1952,7 @@ public class KakaoServiceTest {
     @Test
     public void getMessageRN_TEST() throws PopbillException {
         
-        String requestNum = "20180724_fms_19";
+        String requestNum = "20230111_ats_17";
         
         KakaoSentInfo result = kakaoService.getMessagesRN("1234567890", requestNum);
         
