@@ -14,6 +14,7 @@ public class EasyFinBankSearchResult implements Serializable {
     private long pageCount;
     private String message;
     private String lastScrapDT;
+    private String balance;
 
     private List<EasyFinBankSearchDetail> list;
 
@@ -49,4 +50,7 @@ public class EasyFinBankSearchResult implements Serializable {
         return lastScrapDT;
     }
 
+	public String getBalance() {
+		return balance;
+	}
 }

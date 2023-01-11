@@ -188,10 +188,10 @@ public class EasyFinBankServiceTEST {
     
     @Test
     public void requestJob() throws PopbillException {
-        String AccountNumber = "74620246488";
-        String BankCode = "0023";
-        String SDate = "20210505";
-        String EDate = "20210506";
+        String AccountNumber = "50396101006169";
+        String BankCode = "0071";
+        String SDate = "20221205";
+        String EDate = "20230103";
         String jobID = easyFinBankService.requestJob("1234567890", BankCode, AccountNumber, SDate, EDate);
         
         assertNotNull(jobID);
@@ -246,7 +246,7 @@ public class EasyFinBankServiceTEST {
         Integer PerPage = 10;
         String Order = "D";
         
-        EasyFinBankSearchResult result = easyFinBankService.search("1234567890", "020080711000000001", TradeType, SearchString, Page, PerPage, Order);
+        EasyFinBankSearchResult result = easyFinBankService.search("1234567890", "023011115000000207", TradeType, SearchString, Page, PerPage, Order);
         
         
         assertNotNull ( result ) ;
@@ -259,6 +259,7 @@ public class EasyFinBankServiceTEST {
         System.out.println(result.getPerPage());
         System.out.println(result.getTotal());
         System.out.println(result.getLastScrapDT());
+        System.out.println(result.getBalance());
         
         for ( int i=0; i<result.getList().size(); i++ ) {
             System.out.println("\n========["+ (i+1) +"] Search Result List Detail ========");
