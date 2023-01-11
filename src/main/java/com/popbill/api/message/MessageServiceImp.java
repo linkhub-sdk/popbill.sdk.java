@@ -1183,7 +1183,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
     @Override
     public AutoDeny[] getAutoDenyList(String CorpNum) throws PopbillException {
     	return httpget("/Message/Denied", CorpNum, null, AutoDeny[].class);
-	}
+    }
     
     /*
      * (non-Javadoc)
