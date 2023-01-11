@@ -649,8 +649,44 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     
         return httpget("/KakaoTalk/Cancel/" + requestNum, CorpNum, UserID, Response.class);
     }
-
+    
     @Override
+	public Response cancelReservebyRCV(String CorpNum, String receiptNum, String receiveNum) throws PopbillException {
+		return cancelReservebyRCV(CorpNum, receiptNum, receiveNum, null);
+	}
+
+	@Override
+	public Response cancelReservebyRCV(String CorpNum, String receiptNum, String receiveNum, String UserID) 
+			throws PopbillException {
+		if (receiptNum == null || receiptNum.equals(""))
+            throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
+        if (receiveNum == null || receiveNum.equals(""))
+            throw new PopbillException(-99999999, "수신번호가 입력되지 않았습니다.");
+        
+        String PostData = toJsonString(receiveNum);
+        
+        return httppost("/KakaoTalk/" + receiptNum + "/Cancel", CorpNum, PostData, UserID, Response.class);
+	}
+
+	@Override
+	public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum) throws PopbillException {
+		return cancelReserveRNbyRCV(CorpNum, requestNum, receiveNum, null);
+	}
+
+	@Override
+	public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum, String UserID)
+			throws PopbillException {
+		if (requestNum == null || requestNum.equals(""))
+            throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
+        if (receiveNum == null || receiveNum.equals(""))
+            throw new PopbillException(-99999999, "수신번호가 입력되지 않았습니다.");
+        
+        String PostData = toJsonString(receiveNum);
+        
+        return httppost("/KakaoTalk/Cancel/" +requestNum, CorpNum, PostData, UserID, Response.class);
+	}
+
+	@Override
     public KakaoSentInfo getMessages(String CorpNum, String receiptNum) throws PopbillException {
         return getMessages(CorpNum, receiptNum, null);
     }
