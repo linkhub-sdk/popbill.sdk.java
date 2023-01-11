@@ -1196,7 +1196,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
     }
 	
 	
-	/*
+    /*
      * (non-Javadoc)
      * 
      * @see com.popbill.api.MessageService#checkAutoDenyNumber(java.lang.String, java.lang.String)
@@ -1206,7 +1206,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
     	return httpget("/Message/AutoDenyNumberInfo", CorpNum, UserID, AutoDeny.class);
     }
 
-	/*
+    /*
      * (non-Javadoc)
      * 
      * @see com.popbill.api.MessageService#getChargeInfo(java.lang.String,
