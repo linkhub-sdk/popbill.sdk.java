@@ -1191,7 +1191,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      * @see com.popbill.api.MessageService#checkAutoDenyNumber(java.lang.String)
      */
     @Override
-    public AutoDeny checkAutoDenyNumber(String CorpNum) throws PopbillException {
+    public AutoDenyNumberInfo checkAutoDenyNumber(String CorpNum) throws PopbillException {
     	return checkAutoDenyNumber(CorpNum, null);
     }
 	
@@ -1202,8 +1202,8 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      * @see com.popbill.api.MessageService#checkAutoDenyNumber(java.lang.String, java.lang.String)
      */
     @Override
-    public AutoDeny checkAutoDenyNumber(String CorpNum, String UserID) throws PopbillException {
-    	return httpget("/Message/AutoDenyNumberInfo", CorpNum, UserID, AutoDeny.class);
+    public AutoDenyNumberInfo checkAutoDenyNumber(String CorpNum, String UserID) throws PopbillException {
+    	return httpget("/Message/AutoDenyNumberInfo", CorpNum, UserID, AutoDenyNumberInfo.class);
     }
 
     /*

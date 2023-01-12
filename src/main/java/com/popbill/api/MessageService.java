@@ -18,6 +18,7 @@ import java.io.File;
 import java.util.Date;
 
 import com.popbill.api.message.AutoDeny;
+import com.popbill.api.message.AutoDenyNumberInfo;
 import com.popbill.api.message.MSGSearchResult;
 import com.popbill.api.message.Message;
 import com.popbill.api.message.MessageBriefInfo;
@@ -1591,23 +1592,23 @@ public interface MessageService extends BaseService {
     public AutoDeny[] getAutoDenyList(String CorpNum) throws PopbillException;
     
     /**
-     * 080 수신거부 번호 확인
+     * 080 번호 확인
      * 
      * @param CorpNum 연동회원 사업자번호 
      * @return 080수신거부 응답
      * @throws PopbillException
      */
-    public AutoDeny checkAutoDenyNumber(String CorpNum) throws PopbillException;
+    public AutoDenyNumberInfo checkAutoDenyNumber(String CorpNum) throws PopbillException;
     
     /**
-     * 080 수신거부 번호 확인
+     * 080 번호 확인
      * 
      * @param CorpNum 연동회원 사업자번호 
      * @param UserID 연동회원 유저아이디
      * @return 080수신거부 응답
      * @throws PopbillException
      */
-    public AutoDeny checkAutoDenyNumber(String CorpNum, String UserID) throws PopbillException;
+    public AutoDenyNumberInfo checkAutoDenyNumber(String CorpNum, String UserID) throws PopbillException;
     
     /**
      * 과금정보 확인 

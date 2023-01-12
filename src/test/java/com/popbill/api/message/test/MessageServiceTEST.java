@@ -15,6 +15,7 @@ import com.popbill.api.MessageService;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.message.AutoDeny;
+import com.popbill.api.message.AutoDenyNumberInfo;
 import com.popbill.api.message.MSGSearchResult;
 import com.popbill.api.message.Message;
 import com.popbill.api.message.MessageBriefInfo;
@@ -1881,14 +1882,14 @@ public class MessageServiceTEST {
     
     @Test
     public void checkAutoDenyNumber_01_TEST() throws PopbillException{
-        AutoDeny response = messageService.checkAutoDenyNumber("1234567890");
+    	AutoDenyNumberInfo response = messageService.checkAutoDenyNumber("1234567890");
         assertNotNull(response);
         System.out.println(response.getSmsdenyNumber() + " " + response.getRegDT());
     }
     
     @Test
     public void checkAutoDenyNumber_02_TEST() throws PopbillException{
-        AutoDeny response = messageService.checkAutoDenyNumber("1234567890", "testkorea");
+    	AutoDenyNumberInfo response = messageService.checkAutoDenyNumber("1234567890", "testkorea");
         assertNotNull(response);
         System.out.println(response.getSmsdenyNumber() + " " + response.getRegDT());
     }
