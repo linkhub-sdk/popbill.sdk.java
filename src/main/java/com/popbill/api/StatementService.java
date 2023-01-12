@@ -222,13 +222,13 @@ public interface StatementService extends BaseService{
      *          문서번호
      * @param Memo
      *          처리 메모
-     * @param UserID
-     *          연동회원의 회원아이디
+     * @param EmailSubject
+     *          발행메일 제목, 미기재시 기본양식으로 전송
      * @return Response 
      * @throws PopbillException
      */
     public Response issue(String CorpNum, int ItemCode,
-            String MgtKey, String Memo, String UserID) throws PopbillException;
+            String MgtKey, String Memo, String EmailSubject) throws PopbillException;
     
     /**
      * 명세서 발행
