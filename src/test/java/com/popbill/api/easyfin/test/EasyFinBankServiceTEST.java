@@ -246,7 +246,7 @@ public class EasyFinBankServiceTEST {
         Integer PerPage = 10;
         String Order = "D";
         
-        EasyFinBankSearchResult result = easyFinBankService.search("1234567890", "023011115000000207", TradeType, SearchString, Page, PerPage, Order);
+        EasyFinBankSearchResult result = easyFinBankService.search("1234567890", "023011214000000537", TradeType, SearchString, Page, PerPage, Order);
         
         
         assertNotNull ( result ) ;

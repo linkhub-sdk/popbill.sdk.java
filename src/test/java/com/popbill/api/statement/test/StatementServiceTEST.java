@@ -82,7 +82,8 @@ public class StatementServiceTEST {
         statement.setTaxType("과세");
         statement.setFormCode("");
         statement.setItemCode((short) 121);
-        statement.setMgtKey("20230111-02");
+        statement.setMgtKey("20230112-MVC007");
+        
         statement.setSenderCorpNum("1234567890");
         statement.setSenderCorpName("공급자 상호");
         statement.setSenderAddr("공급자 주소");
@@ -102,7 +103,7 @@ public class StatementServiceTEST {
         statement.setReceiverBizClass("공급받는자 업종");
         statement.setReceiverBizType("공급받는자 업태");
         statement.setReceiverContactName("공급받는자 담당자명");
-        statement.setReceiverEmail("test@receiver.com");
+        statement.setReceiverEmail("lshk955@naver.com");
 
         statement.setSupplyCostTotal("200000");         //필수 공급가액 합계
         statement.setTaxTotal("20000");                 //필수 세액 합계
@@ -254,7 +255,7 @@ public class StatementServiceTEST {
     
     @Test
     public void issue_TEST() throws PopbillException{
-        Response response = statementService.issue("1234567890", 121, "20230111-02", "발행메모", "test@receiver.com", null);
+        Response response = statementService.issue("1234567890", 121, "20230112-MVC007", "발행메모", "테스트메일", null);
         
         System.out.println(response.getMessage());
     }
