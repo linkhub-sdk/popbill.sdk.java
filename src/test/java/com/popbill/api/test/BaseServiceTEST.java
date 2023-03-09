@@ -20,6 +20,7 @@ import com.popbill.api.ContactInfo;
 import com.popbill.api.CorpInfo;
 import com.popbill.api.JoinForm;
 import com.popbill.api.PaymentForm;
+import com.popbill.api.PaymentHistory;
 import com.popbill.api.PaymentResponse;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
@@ -33,7 +34,7 @@ public class BaseServiceTEST {
     private final String testSecretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
 
     private TaxinvoiceService taxinvoiceService;
-    
+
     public BaseServiceTEST() {
         TaxinvoiceServiceImp service = new TaxinvoiceServiceImp();
 
@@ -41,19 +42,18 @@ public class BaseServiceTEST {
         service.setLinkID(testLinkID);
         service.setSecretKey(testSecretKey);
         service.setTest(true);
-        
-        
+
         taxinvoiceService = service;
     }
-    
+
     @Test
     public void getListContact_TEST() throws PopbillException {
         ContactInfo[] contactList = taxinvoiceService.listContact("1234567890","testkorea");
-        
+
         System.out.println(contactList.length);
-                
+
         for(int i=0; i< contactList.length; i++){
-        
+
         System.out.println("id : " + contactList[i].getId());
         System.out.println("personName : " + contactList[i].getPersonName());
         System.out.println("email : " + contactList[i].getEmail());
@@ -68,11 +68,11 @@ public class BaseServiceTEST {
         System.out.println("=======================");
         }
 
-    }    
-    
+    }
+
     @Test
     public void getPopbillURL_TEST() throws PopbillException {
-        
+
         String url = taxinvoiceService.getPopbillURL("1234567890", "testkorea",    "LOGIN");
 
         assertNotNull(url);
@@ -112,7 +112,7 @@ public class BaseServiceTEST {
     @Test
     public void getBalance_TEST() throws PopbillException {
 
-        
+
         double balance = taxinvoiceService.getBalance("1234567890");
 
         System.out.println(balance);
@@ -125,76 +125,75 @@ public class BaseServiceTEST {
 
         System.out.println(balance);
     }
-    
 
-    
+
+
     @Test
     public void getUTCTime_TEST() throws PopbillException, LinkhubException{
         TokenBuilder tokenBuilder;
         Token token = null;
         Boolean expired;
-        
+
         tokenBuilder = TokenBuilder
                 .newInstance(testLinkID, testSecretKey)
                 .ServiceID("POPBILL_TEST")
                 .addScope("member")
                 .addScope("110");
-        
-            
+
         try {
             token = tokenBuilder.build("1234567890", "");
         } catch (LinkhubException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
         }
-                
+
         Date expiration = null;
-        
+
         Date UTCTime = null;
-        
+
         SimpleDateFormat format = new SimpleDateFormat(
                 "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         format.setTimeZone(TimeZone.getTimeZone("UTC"));
-        
+
         SimpleDateFormat format2 = new SimpleDateFormat(
                 "yyyy-MM-dd'T'HH:mm:ss'Z'");
         format2.setTimeZone(TimeZone.getTimeZone("UTC"));
-                    
+
         try {
             UTCTime = format2.parse("2016-01-18T14:05:37Z");
         } catch (ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
+
         try {
             expiration = format.parse(token.getExpiration());
             expired = expiration.before(UTCTime);
             System.out.println(token.getExpiration()+ " "+UTCTime+ " "+ expired);
             assertNotNull(expiration);
-            
+
         } catch (ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-    
+
     @Test
     public void httpGET_GZIP_TEST() throws PopbillException, LinkhubException{
         TokenBuilder tokenBuilder;
         Token token = null;
         HttpURLConnection httpURLConnection;
-        
+
         String corpNum = "1234567890";
-        
+
         tokenBuilder = TokenBuilder
                 .newInstance(testLinkID, testSecretKey)
                 .ServiceID("POPBILL_TEST")
                 .addScope("member")
                 .addScope("110");
-        
+
         token = tokenBuilder.build(corpNum, "");
-        
+
         try {
             URL uri = new URL("https://popbill_test.linkhub.co.kr/Taxinvoice/EmailPublicKeys");
             httpURLConnection = (HttpURLConnection) uri.openConnection();
@@ -211,17 +210,17 @@ public class BaseServiceTEST {
                 "1.0");
 
         httpURLConnection.setRequestProperty("x-pb-userid", "testkorea");
-        
+
         httpURLConnection.setRequestProperty("Accept-Encoding",
                 "gzip");
-        
+
         assertEquals("gzip",httpURLConnection.getContentEncoding());
     }
-    
+
     @Test
     public void UpdateContact_TEST() throws PopbillException {
         ContactInfo contInfo = new ContactInfo();
-        
+
         contInfo.setPersonName("링크허브 담당자");
         contInfo.setTel("02-1234-1234");
         contInfo.setHp("010-1234-1234");
@@ -229,18 +228,18 @@ public class BaseServiceTEST {
         contInfo.setFax("02-6442-9700");
         contInfo.setSearchAllAllowYN(true);
         contInfo.setMgrYN(true);
-        
+
         Response response = taxinvoiceService.updateContact("1234567890", contInfo, "testkorea");
 
         assertNotNull(response);
 
         System.out.println(response.getMessage());
     }
-    
+
     @Test
     public void RegistContact_TEST() throws PopbillException{
         ContactInfo contInfo = new ContactInfo();
-        
+
         contInfo.setId("JAVA_ResgistContact_Password001");
         contInfo.setPwd("qwe123!@#");
         contInfo.setPassword("qwe123!@#");
@@ -252,21 +251,21 @@ public class BaseServiceTEST {
         contInfo.setSearchAllAllowYN(true);
         contInfo.setMgrYN(false);
         contInfo.setSearchRole(2);
-        
+
         Response response = taxinvoiceService.registContact("1234567890", contInfo, "testkorea");
-        
+
         assertNotNull(response);
-        
+
         System.out.println(response.getMessage());
     }
-    
+
     @Test
     public void CheckID_TEST() throws PopbillException{
         Response response = taxinvoiceService.checkID("testkorea");
         assertNotNull(response);
         System.out.println("["+response.getCode() + "] " + response.getMessage());
     }
-    
+
 
     @Test
     public void UpdateCorpInfo_TEST() throws PopbillException{
@@ -276,33 +275,32 @@ public class BaseServiceTEST {
         corpInfo.setBizType("업태테스트");
         corpInfo.setCeoname("대표자성명 설정 테스트");
         corpInfo.setCorpName("상호 테스트");
-        
+
         Response response = taxinvoiceService.updateCorpInfo("1234567890", corpInfo, "testkorea");
         assertNotNull(response);
         System.out.println("["+response.getCode()+"] "+response.getMessage());
     }
-    
-    
+
     @Test
     public void GetCorpInfo_TEST() throws PopbillException{
         CorpInfo corpInfo = taxinvoiceService.getCorpInfo("1234567890","testkorea");
-        
+
         assertNotNull(corpInfo);
-        
+
         System.out.println(corpInfo.getBizClass());
         System.out.println(corpInfo.getAddr());
         System.out.println(corpInfo.getBizType());
         System.out.println(corpInfo.getCeoname());
         System.out.println(corpInfo.getCorpName());
-        
+
     }
-    
+
     @Test
     public void getContactInfo_Test() throws PopbillException{
         ContactInfo contactInfo = taxinvoiceService.getContactInfo("1234567890", "JAVARegistContact01", "testkorea");
-        
+
         assertNotNull(contactInfo);
-        
+
         System.out.println(contactInfo.getState());
         System.out.println(contactInfo.getId());
         System.out.println(contactInfo.getPersonName());
@@ -315,23 +313,32 @@ public class BaseServiceTEST {
         System.out.println(contactInfo.getSearchRole());
         System.out.println(contactInfo.getSearchAllAllowYN());
     }
-    
+
     @Test
     public void getPaymentRequest() throws PopbillException {
     	PaymentForm paymentForm = new PaymentForm();
-    	
+
     	paymentForm.setSettlerName("담당자명");
     	paymentForm.setSettlerEmail("test@test.com");
     	paymentForm.setNotifyHP("01022223333");
     	paymentForm.setPaymentName("홍길동");
     	paymentForm.setSettleCost("10000");
-    	
+
     	PaymentResponse response = taxinvoiceService.paymentRequest("1234567890", paymentForm, "testkorea");
     	assertNotNull(response);
-    	
+
     	System.out.println(response.getCode());
     	System.out.println(response.getMessage());
     	System.out.println(response.getSettleCode());
+    }
+
+    @Test
+    public void getSettleResultTest() throws PopbillException {
+        String corpNum = "1234567890";
+        String settleCode = "202303070000000052";
+        PaymentHistory result = taxinvoiceService.getSettleResult(corpNum, settleCode);
+
+        System.out.println(result.toString());
     }
 }
 
