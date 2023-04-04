@@ -456,4 +456,23 @@ public interface BaseService {
      * @throws PopbillException
      */
     public abstract String getUseHistoryURL(String CorpNum, String UserID) throws PopbillException;
+    
+    /**
+     *  회원탈퇴
+     * @param CorpNum 연동회원 사업자번호
+     * @param quitReason 탈퇴사유
+     * @return 
+     * @throws PopbillException
+     */
+    public abstract Response quitMember(String CorpNum, String quitReason) throws PopbillException;
+    
+    /**
+     * 회원탈퇴
+     * @param CorpNum 연동회원 사업자번호
+     * @param quitReason 탈퇴사유
+     * @param UserID 연동회원 아이디
+     * @return
+     * @throws PopbillException
+     */
+    public abstract Response quitMember(String CorpNum, String quitReason, String UserID) throws PopbillException;
 }

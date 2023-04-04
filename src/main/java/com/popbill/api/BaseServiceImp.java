@@ -543,6 +543,23 @@ public abstract class BaseServiceImp implements BaseService {
 
         return httppost("/IDs", CorpNum, postData, UserID, Response.class);
     }
+    
+    @Override
+    public Response quitMember(String CorpNum, String quitReason) throws PopbillException {
+
+    	return quitMember(CorpNum, quitReason, null);
+    }
+    
+    @Override
+    public Response quitMember(String CorpNum, String quitReason, String UserID) throws PopbillException {
+
+    	if (quitReason == null || quitReason.isEmpty())
+            throw new PopbillException(-99999999, "탈퇴사유가 입력되지 않았습니다.");
+    	
+    	String postData = "{'quitReason' :" + "'" + quitReason + "'}";
+
+        return httppost("/QuitRequest", CorpNum, postData, UserID, Response.class);
+    }
 
     /*
      * (non-Javadoc)
