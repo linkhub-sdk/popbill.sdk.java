@@ -26,10 +26,10 @@ import java.util.zip.GZIPInputStream;
 
 import com.google.gson.Gson;
 
+import kr.co.linkhub.auth.Base64;
 import kr.co.linkhub.auth.LinkhubException;
 import kr.co.linkhub.auth.Token;
 import kr.co.linkhub.auth.TokenBuilder;
-import kr.co.linkhub.auth.Base64;
 
 /**
  * Abstract class for Popbill Services.
@@ -438,16 +438,26 @@ public abstract class BaseServiceImp implements BaseService {
     };
 
     @Override
-    public Response refund(String CorpNum, RefundForm refundForm) throws PopbillException {
+    public RefundResponse refund(String CorpNum, RefundForm refundForm) throws PopbillException {
         return refund(CorpNum, refundForm, null);
     }
     
     @Override
-    public Response refund(String CorpNum, RefundForm refundForm, String UserID) throws PopbillException {
+    public RefundResponse refund(String CorpNum, RefundForm refundForm, String UserID) throws PopbillException {
         String postData = toJsonString(refundForm);
-        return httppost("/Refund", CorpNum, postData, UserID, Response.class);
+        return httppost("/Refund", CorpNum, postData, UserID, RefundResponse.class);
         
     };
+    
+    @Override
+    public RefundHistory getRefundInfo(String CorpNum, String RefundCode) throws PopbillException {
+        return getRefundInfo(CorpNum, RefundCode, null);
+    }
+    
+    @Override
+    public RefundHistory getRefundInfo(String CorpNum, String RefundCode, String UserID) throws PopbillException {
+        return httpget("/Refund/"+RefundCode, CorpNum, UserID, RefundHistory.class);
+    }
 
     @Override
     public PaymentResponse paymentRequest(String CorpNum, PaymentForm paymentForm) throws PopbillException {

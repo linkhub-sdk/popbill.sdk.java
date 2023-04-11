@@ -182,7 +182,7 @@ public interface BaseService {
      * @return Response
      * @throws PopbillException
      */
-    public abstract Response refund(String CorpNum, RefundForm refundForm) throws PopbillException;
+    public abstract RefundResponse refund(String CorpNum, RefundForm refundForm) throws PopbillException;
 
     /**
      * 환불 신청.
@@ -193,8 +193,29 @@ public interface BaseService {
      * @return Response
      * @throws PopbillException
      */
-    public abstract Response refund(String CorpNum, RefundForm refundForm, String UserID) throws PopbillException;
-
+    public abstract RefundResponse refund(String CorpNum, RefundForm refundForm, String UserID) throws PopbillException;
+    
+    
+    /**
+     * 환불신청 상태확인
+     * 
+     * @param CorpNum 사업자번호 
+     * @param RefundCode 환불코드
+     * @return RefundHistory
+     * @throws PopbillException
+     */
+    public abstract RefundHistory getRefundInfo(String CorpNum, String RefundCode) throws PopbillException;
+    
+    /**
+     * 환불신청 상태확인
+     * 
+     * @param CorpNum 사업자번호 
+     * @param RefundCode 환불코드 
+     * @param UserID 회원아이디
+     * @return RefundHistory
+     * @throws PopbillException
+     */
+    public abstract RefundHistory getRefundInfo(String CorpNum, String RefundCode, String UserID) throws PopbillException;
     /**
      * 무통장 입금신청.
      * 
