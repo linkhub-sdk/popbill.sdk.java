@@ -10,10 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-import kr.co.linkhub.auth.LinkhubException;
-import kr.co.linkhub.auth.Token;
-import kr.co.linkhub.auth.TokenBuilder;
-
 import org.junit.Test;
 
 import com.popbill.api.ContactInfo;
@@ -23,10 +19,14 @@ import com.popbill.api.PaymentForm;
 import com.popbill.api.PaymentHistory;
 import com.popbill.api.PaymentResponse;
 import com.popbill.api.PopbillException;
+import com.popbill.api.RefundHistory;
 import com.popbill.api.Response;
 import com.popbill.api.TaxinvoiceService;
-
 import com.popbill.api.taxinvoice.TaxinvoiceServiceImp;
+
+import kr.co.linkhub.auth.LinkhubException;
+import kr.co.linkhub.auth.Token;
+import kr.co.linkhub.auth.TokenBuilder;
 
 public class BaseServiceTEST {
 
@@ -339,6 +339,44 @@ public class BaseServiceTEST {
         PaymentHistory result = taxinvoiceService.getSettleResult(corpNum, settleCode);
 
         System.out.println(result.toString());
+    }
+    
+    @Test
+    public void getRefundInfoTest() throws PopbillException{
+    	try {
+    		String corpNum = "1234567890";
+        	String refundCode = "023040000006";
+        	
+        	RefundHistory result = taxinvoiceService.getRefundInfo(corpNum, refundCode);
+        	
+        	System.out.println(result.getState());
+        	System.out.println(result.getAccountBank());
+        	System.out.println(result.getAccountName());
+        	System.out.println(result.getAccountNum());
+        	System.out.println(result.getReason());
+    	} catch(PopbillException e) {
+    		System.out.println(e.getCode());
+    		System.out.println(e.getMessage());
+    	}
+    	
+    	
+    }
+    
+    @Test
+    public void quitReqeustTest() throws PopbillException{
+    	String corpNum = "1234567890";
+    	String quitReason = "탈퇴사유";
+    	
+    	try {
+    		Response rst = taxinvoiceService.quitMember(corpNum, quitReason);
+    	    
+        	System.out.println(rst.getCode());
+        	System.out.println(rst.getMessage());
+    	} catch(PopbillException e) {
+    		System.out.println(e.getCode());
+    		System.out.println(e.getMessage());
+    	}
+    	
     }
 }
 
