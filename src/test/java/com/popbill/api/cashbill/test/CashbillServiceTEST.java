@@ -111,6 +111,8 @@ public class CashbillServiceTEST {
     public void getDetailInfo_TEST() throws PopbillException {
         
         Cashbill cashbill = cashbillService.getDetailInfo("1234567890", "20211223JAVA02");
+        
+        
         assertNotNull(cashbill);
         System.out.println("Detail Info : "+ cashbill.getFranchiseTaxRegID());
 
@@ -119,6 +121,7 @@ public class CashbillServiceTEST {
     @Test
     public void getInfo_TEST() throws PopbillException {
         CashbillInfo cashbillInfo = cashbillService.getInfo("1234567890", "20180813160709");
+        System.out.println(cashbillInfo.getIssueDT());
         assertNotNull(cashbillInfo);
         System.out.println("Get INfo : "+ cashbillInfo.getMgtKey()+" "+cashbillInfo.getStateMemo());
         

@@ -320,7 +320,7 @@ public class TaxinvoiceServiceTEST {
         
         Taxinvoice taxinvoice = new Taxinvoice();
     
-        taxinvoice.setWriteDate("20190226"); // 필수, 기재상 작성일자
+        taxinvoice.setWriteDate("20230412"); // 필수, 기재상 작성일자
         taxinvoice.setChargeDirection("정과금"); // 필수, {정과금, 역과금}
         taxinvoice.setIssueType("정발행"); // 필수, {정발행, 역발행, 위수탁}
         taxinvoice.setPurposeType("영수"); // 필수, {영수, 청구}
@@ -330,7 +330,7 @@ public class TaxinvoiceServiceTEST {
         taxinvoice.setInvoicerCorpNum("1234567890");
         taxinvoice.setInvoicerTaxRegID(""); // 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
         taxinvoice.setInvoicerCorpName("공급자 상호");
-        taxinvoice.setInvoicerMgtKey("20190226-09"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
+        taxinvoice.setInvoicerMgtKey("20230412-10"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
                                                 // 동일한 형태로 추가 기재.
         taxinvoice.setInvoicerCEOName("공급자 대표자 성명");
         taxinvoice.setInvoicerAddr("공급자 주소");

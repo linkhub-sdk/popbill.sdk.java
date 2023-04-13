@@ -341,11 +341,13 @@ public class BaseServiceTEST {
         System.out.println(result.toString());
     }
     
+
+    
     @Test
     public void getRefundInfoTest() throws PopbillException{
     	try {
     		String corpNum = "1234567890";
-        	String refundCode = "023040000006";
+        	String refundCode = "023040000007";
         	
         	RefundHistory result = taxinvoiceService.getRefundInfo(corpNum, refundCode);
         	
@@ -364,8 +366,8 @@ public class BaseServiceTEST {
     
     @Test
     public void quitReqeustTest() throws PopbillException{
-    	String corpNum = "1234567890";
-    	String quitReason = "탈퇴사유";
+    	String corpNum = "8814000517";
+    	String quitReason = "탈퇴사유java sdk";
     	
     	try {
     		Response rst = taxinvoiceService.quitMember(corpNum, quitReason);
