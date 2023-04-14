@@ -30,7 +30,7 @@ import kr.co.linkhub.auth.TokenBuilder;
 
 public class BaseServiceTEST {
 
-    private final String testLinkID = "TESTER";
+	private final String testLinkID = "TESTER";
     private final String testSecretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
 
     private TaxinvoiceService taxinvoiceService;
@@ -221,15 +221,16 @@ public class BaseServiceTEST {
     public void UpdateContact_TEST() throws PopbillException {
         ContactInfo contInfo = new ContactInfo();
 
-        contInfo.setPersonName("링크허브 담당자");
-        contInfo.setTel("02-1234-1234");
-        contInfo.setHp("010-1234-1234");
-        contInfo.setEmail("test@test.com");
-        contInfo.setFax("02-6442-9700");
+        contInfo.setPersonName("김인숙 부장");
+        contInfo.setTel("031-989-0687");
+        contInfo.setHp("031-989-0687");
+        contInfo.setEmail("kisttc@nate.com");
+        contInfo.setFax("");
         contInfo.setSearchAllAllowYN(true);
         contInfo.setMgrYN(true);
+        contInfo.setState(1);
 
-        Response response = taxinvoiceService.updateContact("1234567890", contInfo, "testkorea");
+        Response response = taxinvoiceService.updateContact("1378162966", contInfo, "submall1385");
 
         assertNotNull(response);
 
@@ -356,6 +357,23 @@ public class BaseServiceTEST {
         	System.out.println(result.getAccountName());
         	System.out.println(result.getAccountNum());
         	System.out.println(result.getReason());
+    	} catch(PopbillException e) {
+    		System.out.println(e.getCode());
+    		System.out.println(e.getMessage());
+    	}
+    	
+    	
+    }
+    
+    @Test
+    public void getRefundableBalance() throws PopbillException{
+    	try {
+    		String corpNum = "1234567890";
+        	
+        	double refundableBalance = taxinvoiceService.getRefundableBalance(corpNum);
+        	
+        	System.out.println(refundableBalance);
+        	
     	} catch(PopbillException e) {
     		System.out.println(e.getCode());
     		System.out.println(e.getMessage());

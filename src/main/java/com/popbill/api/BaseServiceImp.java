@@ -342,6 +342,8 @@ public abstract class BaseServiceImp implements BaseService {
             throw new PopbillException(le);
         }
     }
+    
+    
 
     /*
      * (non-Javadoc)
@@ -457,6 +459,19 @@ public abstract class BaseServiceImp implements BaseService {
     @Override
     public RefundHistory getRefundInfo(String CorpNum, String RefundCode, String UserID) throws PopbillException {
         return httpget("/Refund/"+RefundCode, CorpNum, UserID, RefundHistory.class);
+    }
+    
+    
+    @Override
+    public double getRefundableBalance(String CorpNum) throws PopbillException {
+    	return getRefundableBalance(CorpNum, null);
+    }
+    
+    
+    @Override
+    public double getRefundableBalance(String CorpNum, String UserID) throws PopbillException {
+    	RefundableBalance rfn = httpget("/RefundPoint", CorpNum, UserID, RefundableBalance.class);
+    	return rfn.getRefundableBalance();
     }
 
     @Override
