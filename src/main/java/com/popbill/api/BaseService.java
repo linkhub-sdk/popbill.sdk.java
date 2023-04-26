@@ -510,7 +510,6 @@ public interface BaseService {
      * 환불가능포인트 확인
      * 
      * @param CorpNum 연동회원 사업자번호
-     * @param quitReason 탈퇴사유
      * @return
      * @throws PopbillException
      */
