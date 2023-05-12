@@ -27,6 +27,7 @@ public class CashbillInfo {
 
     private String stateDT;
     private boolean printYN;
+    private boolean interOPYN;
 
     private String confirmNum;
     private String orgTradeDate;
@@ -132,7 +133,7 @@ public class CashbillInfo {
 
     /**
      * 거래 구분 확인
-     * 
+     *
      * @return the tradeUsage
      */
     public String getTradeUsage() {
@@ -141,7 +142,7 @@ public class CashbillInfo {
 
     /**
      * 거래 유형 확인
-     * 
+     *
      * @return the tradeOpt
      */
     public String getTradeOpt() {
@@ -182,6 +183,15 @@ public class CashbillInfo {
      */
     public boolean isPrintYN() {
         return printYN;
+    }
+
+    /**
+     * 연동문서여부 확인
+     *
+     * @return the interYN
+     */
+    public boolean isInterOPYN() {
+        return interOPYN;
     }
 
     /**
