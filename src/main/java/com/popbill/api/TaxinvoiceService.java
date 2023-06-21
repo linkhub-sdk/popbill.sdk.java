@@ -3,7 +3,6 @@ package com.popbill.api;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
-
 import com.popbill.api.taxinvoice.BulkTaxinvoiceResult;
 import com.popbill.api.taxinvoice.EmailPublicKey;
 import com.popbill.api.taxinvoice.MgtKeyType;
@@ -933,7 +932,7 @@ public interface TaxinvoiceService extends BaseService {
     public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, String SDate, String EDate, String[] State,
             String[] Type, String[] TaxType, String[] IssueType, Boolean LateOnly, String TaxRegIDType, String TaxRegID,
             String TaxRegIDYN, String QString, Integer Page, Integer PerPage, String Order, String InterOPYN,
-            String[] RegType, String[] CloseDownState, String MgtKey) throws PopbillException;
+            String[] RegType, String[] CloseDownState, String MgtKey, String UserID) throws PopbillException;
 
     /**
      * 세금계산서 문서이력 확인.
