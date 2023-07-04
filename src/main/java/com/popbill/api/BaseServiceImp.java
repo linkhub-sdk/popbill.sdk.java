@@ -1,21 +1,33 @@
 package com.popbill.api;
 
-import com.google.gson.Gson;
-import kr.co.linkhub.auth.Base64;
-import kr.co.linkhub.auth.LinkhubException;
-import kr.co.linkhub.auth.Token;
-import kr.co.linkhub.auth.TokenBuilder;
-
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.ProtocolException;
+import java.net.Proxy;
 import java.net.Proxy.Type;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TimeZone;
 import java.util.zip.GZIPInputStream;
+import com.google.gson.Gson;
+import kr.co.linkhub.auth.Base64;
+import kr.co.linkhub.auth.LinkhubException;
+import kr.co.linkhub.auth.Token;
+import kr.co.linkhub.auth.TokenBuilder;
 
 /**
  * Abstract class for Popbill Services.
@@ -786,7 +798,7 @@ public abstract class BaseServiceImp implements BaseService {
 
       MessageDigest md = MessageDigest.getInstance("SHA-1");
 
-      byte[] messageDigest = md.digest(input.getBytes());
+      byte[] messageDigest = md.digest(input.getBytes(Charset.forName("UTF-8")));
 
       return messageDigest;
 
