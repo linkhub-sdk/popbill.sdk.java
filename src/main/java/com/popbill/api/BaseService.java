@@ -14,6 +14,8 @@
  */
 package com.popbill.api;
 
+import kr.co.linkhub.auth.MemberPointDetail;
+
 /**
  * Popbill BaserService Interface.
  * 
@@ -31,6 +33,8 @@ public interface BaseService {
      * @throws PopbillException
      */
     public abstract double getBalance(String CorpNum) throws PopbillException;
+    
+    public abstract MemberPointDetail getPointInfo(String CorpNum) throws PopbillException;
 
     /**
      * 연동 파트너의 잔여포인트 확인

@@ -25,6 +25,7 @@ import com.popbill.api.TaxinvoiceService;
 import com.popbill.api.taxinvoice.TaxinvoiceServiceImp;
 
 import kr.co.linkhub.auth.LinkhubException;
+import kr.co.linkhub.auth.MemberPointDetail;
 import kr.co.linkhub.auth.Token;
 import kr.co.linkhub.auth.TokenBuilder;
 
@@ -116,6 +117,24 @@ public class BaseServiceTEST {
         double balance = taxinvoiceService.getBalance("1234567890");
 
         System.out.println(balance);
+    }
+    
+    @Test
+    public void getPointInfo_TEST() throws PopbillException {
+    	
+    	try {
+    		MemberPointDetail balance = taxinvoiceService.getPointInfo("1234567890");
+
+            System.out.println("통합포인트 : "+balance.getTotalPoint());
+            System.out.println("결제포인트 : "+balance.getChargePoint());
+            System.out.println("보너스포인트 : "+balance.getBonusPoint());
+            
+    	} catch (PopbillException pe) {
+    		System.out.println(pe.getCode());
+    		System.out.println(pe.getMessage());
+    	}
+    	
+        
     }
 
     @Test

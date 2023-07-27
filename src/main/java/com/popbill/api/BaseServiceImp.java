@@ -23,9 +23,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 import java.util.zip.GZIPInputStream;
+
 import com.google.gson.Gson;
+
 import kr.co.linkhub.auth.Base64;
 import kr.co.linkhub.auth.LinkhubException;
+import kr.co.linkhub.auth.MemberPointDetail;
 import kr.co.linkhub.auth.Token;
 import kr.co.linkhub.auth.TokenBuilder;
 
@@ -340,6 +343,15 @@ public abstract class BaseServiceImp implements BaseService {
     } catch (LinkhubException le) {
       throw new PopbillException(le);
     }
+  }
+  
+  
+  public MemberPointDetail getPointInfo(String CorpNum) throws PopbillException{
+	  try {
+		  return getTokenbuilder().getBalanceDetail(this.getSessionToken(CorpNum, null));
+	  }catch (LinkhubException le) {
+		  throw new PopbillException(le);
+	  }
   }
 
 

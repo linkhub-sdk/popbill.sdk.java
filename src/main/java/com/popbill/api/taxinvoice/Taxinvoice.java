@@ -96,6 +96,11 @@ public class Taxinvoice implements Serializable {
     private List<TaxinvoiceDetail> detailList;
     private List<TaxinvoiceAddContact> addContactList;
     private String originalTaxinvoiceKey;
+    
+    private String certCipher;
+    private String certPublicKey;
+    private String certPrivateKey;
+    
 
     /**
      * 작성일자 확인
@@ -1619,4 +1624,28 @@ public class Taxinvoice implements Serializable {
     public void setOrgNTSConfirmNum(String orgNTSConfirmNum) {
         this.orgNTSConfirmNum = orgNTSConfirmNum;
     }
+
+	public String getCertCipher() {
+		return certCipher;
+	}
+
+	public void setCertCipher(String certCipher) {
+		this.certCipher = certCipher;
+	}
+
+	public String getCertPublicKey() {
+		return certPublicKey;
+	}
+
+	public void setCertPublicKey(String certPublicKey) {
+		this.certPublicKey = certPublicKey;
+	}
+
+	public String getCertPrivateKey() {
+		return certPrivateKey;
+	}
+
+	public void setCertPrivateKey(String certPrivateKey) {
+		this.certPrivateKey = certPrivateKey;
+	}
 }
