@@ -50,6 +50,8 @@ public abstract class BaseServiceImp implements BaseService {
   private static final String ServiceURL_Static_TEST = "https://static-popbill-test.linkhub.co.kr";
   private static final String ServiceURL_GA_REAL = "https://ga-popbill.linkhub.co.kr";
   private static final String ServiceURL_GA_TEST = "https://ga-popbill-test.linkhub.co.kr";
+  private static final String[] apiHeaderList = { "Authorization", "Accept-Encoding", "Connection", "Content-Type", "Content-Length", "X-HTTP-Method-Override" };
+  
   private final String APIVersion = "1.0";
   private String ServiceURL = null;
   private String TestServiceURL = null;
@@ -60,6 +62,7 @@ public abstract class BaseServiceImp implements BaseService {
   private TokenBuilder tokenBuilder;
 
   private boolean isTest;
+  private Map<String, String> customHeader;
   private boolean isIPRestrictOnOff;
   private boolean useStaticIP;
   private boolean useGAIP;
@@ -88,6 +91,7 @@ public abstract class BaseServiceImp implements BaseService {
   public boolean isTest() {
     return isTest;
   }
+  
 
   public boolean isIPRestrictOnOff() {
     return isIPRestrictOnOff;
@@ -253,6 +257,10 @@ public abstract class BaseServiceImp implements BaseService {
       if (ProxyIP != null && ProxyPort != null) {
         tokenBuilder.setProxyIP(ProxyIP);
         tokenBuilder.setProxyPort(ProxyPort);
+      }
+      
+      if(this.customHeader != null && this.customHeader.size() > 0) {
+    	  tokenBuilder.addCustomHeader(this.customHeader);
       }
 
       for (String scope : getScopes())
@@ -821,6 +829,7 @@ public abstract class BaseServiceImp implements BaseService {
 
   protected <T> T httpBulkPost(String url, String CorpNum, String SubmitID, String PostData, String UserID,
                                String Action, Class<T> clazz) throws PopbillException {
+	  
     HttpURLConnection httpURLConnection;
     try {
       URL uri = new URL(getServiceURL() + url);
@@ -857,6 +866,8 @@ public abstract class BaseServiceImp implements BaseService {
     if (UserID != null && UserID.isEmpty() == false) {
       httpURLConnection.setRequestProperty("x-pb-userid", UserID);
     }
+    
+    checkCustomHeaderValidation(httpURLConnection);
 
     try {
       httpURLConnection.setRequestMethod("POST");
@@ -910,6 +921,7 @@ public abstract class BaseServiceImp implements BaseService {
    */
   protected <T> T httppost(String url, String CorpNum, String PostData, String UserID, String Action, Class<T> clazz,
                            String ContentType) throws PopbillException {
+	  
     HttpURLConnection httpURLConnection;
     try {
       URL uri = new URL(getServiceURL() + url);
@@ -946,6 +958,8 @@ public abstract class BaseServiceImp implements BaseService {
     if (UserID != null && UserID.isEmpty() == false) {
       httpURLConnection.setRequestProperty("x-pb-userid", UserID);
     }
+    
+    checkCustomHeaderValidation(httpURLConnection);
 
     try {
       httpURLConnection.setRequestMethod("POST");
@@ -1001,6 +1015,7 @@ public abstract class BaseServiceImp implements BaseService {
    */
   protected <T> T httppostFiles(String url, String CorpNum, String form, List<UploadFile> files, String UserID,
                                 Class<T> clazz) throws PopbillException {
+	    
     HttpURLConnection httpURLConnection;
     try {
       URL uri = new URL(getServiceURL() + url);
@@ -1029,6 +1044,8 @@ public abstract class BaseServiceImp implements BaseService {
     }
 
     httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
+    
+    checkCustomHeaderValidation(httpURLConnection);
 
     try {
       httpURLConnection.setRequestMethod("POST");
@@ -1096,6 +1113,24 @@ public abstract class BaseServiceImp implements BaseService {
 
     return fromJsonString(Result, clazz);
   }
+  
+  private void checkCustomHeaderValidation(HttpURLConnection httpURLConnection) throws PopbillException{
+	  if(getCustomHeader() != null && getCustomHeader().size() > 0) {
+			for(String customHeader : getCustomHeader().keySet()){
+			  for(String apiHeader : apiHeaderList) {
+			  	  if(customHeader.toLowerCase().equals(apiHeader.toLowerCase())){
+					  throw new PopbillException(-99999999, "허용되지 않은 Custom Header 입니다."+"["+customHeader+"]");
+				  } else if ("x-pb".equals(customHeader.toLowerCase().substring(0, 4)) || "x-lh".equals(customHeader.toLowerCase().substring(0, 4))  
+						  || "x-bc".equals(customHeader.toLowerCase().substring(0, 4))) {
+					  throw new PopbillException(-99999999, "허용되지 않은 Custom Header 입니다."+"["+customHeader+"]");
+				  }
+			  }
+			  
+			  httpURLConnection.setRequestProperty(customHeader, getCustomHeader().get(customHeader));
+		  }
+	  }
+  }
+  
 
   /**
    * @param url
@@ -1107,6 +1142,7 @@ public abstract class BaseServiceImp implements BaseService {
    */
   protected <T> T httpget(String url, String CorpNum, String UserID, Class<T> clazz) throws PopbillException {
     HttpURLConnection httpURLConnection;
+    
     try {
       URL uri = new URL(getServiceURL() + url);
 
@@ -1132,6 +1168,8 @@ public abstract class BaseServiceImp implements BaseService {
     }
 
     httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
+    
+    checkCustomHeaderValidation(httpURLConnection);
 
     if (httpURLConnection.getContentType()
                          .toLowerCase()
@@ -1433,5 +1471,13 @@ public abstract class BaseServiceImp implements BaseService {
 
     return Result;
   }
+
+public Map<String, String> getCustomHeader() {
+	return customHeader;
+}
+
+public void setCustomHeader(Map<String, String> customHeader) {
+	this.customHeader = customHeader;
+}
 
 }

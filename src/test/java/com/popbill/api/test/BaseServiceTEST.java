@@ -8,6 +8,8 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TimeZone;
 
 import org.junit.Test;
@@ -43,30 +45,43 @@ public class BaseServiceTEST {
         service.setLinkID(testLinkID);
         service.setSecretKey(testSecretKey);
         service.setTest(true);
+        
+        Map<String, String> customHeader = new HashMap<String, String>();
+        customHeader.put("appKey", "test");
+        service.setCustomHeader(customHeader);
+        //service.setAuthURL("https://webhook.site/8d2fe7f0-be21-463b-bdf5-26e0139c8878");
+        //service.setTestServiceURL("https://webhook.site/8d2fe7f0-be21-463b-bdf5-26e0139c8878");
 
         taxinvoiceService = service;
     }
 
     @Test
     public void getListContact_TEST() throws PopbillException {
-        ContactInfo[] contactList = taxinvoiceService.listContact("1234567890","testkorea");
+    	ContactInfo[] contactList = null;
+    	
+    	try {
+    		contactList = taxinvoiceService.listContact("1234567890","testkorea");
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+        
 
         System.out.println(contactList.length);
 
         for(int i=0; i< contactList.length; i++){
-
-        System.out.println("id : " + contactList[i].getId());
-        System.out.println("personName : " + contactList[i].getPersonName());
-        System.out.println("email : " + contactList[i].getEmail());
-        System.out.println("hp : " + contactList[i].getHp());
-        System.out.println("fax : " + contactList[i].getFax());
-        System.out.println("tel : " + contactList[i].getTel());
-        System.out.println("regDT : " + contactList[i].getRegDT());
-        System.out.println("searchAllAllowYN : " + contactList[i].getSearchAllAllowYN());
-        System.out.println("mgrYN : " + contactList[i].getMgrYN());
-        System.out.println("state : " + contactList[i].getState());
-        System.out.println("searchRole :" + contactList[i].getSearchRole());
-        System.out.println("=======================");
+//	
+//	        System.out.println("id : " + contactList[i].getId());
+//	        System.out.println("personName : " + contactList[i].getPersonName());
+//	        System.out.println("email : " + contactList[i].getEmail());
+//	        System.out.println("hp : " + contactList[i].getHp());
+//	        System.out.println("fax : " + contactList[i].getFax());
+//	        System.out.println("tel : " + contactList[i].getTel());
+//	        System.out.println("regDT : " + contactList[i].getRegDT());
+//	        System.out.println("searchAllAllowYN : " + contactList[i].getSearchAllAllowYN());
+//	        System.out.println("mgrYN : " + contactList[i].getMgrYN());
+//	        System.out.println("state : " + contactList[i].getState());
+//	        System.out.println("searchRole :" + contactList[i].getSearchRole());
+//	        System.out.println("=======================");
         }
 
     }
