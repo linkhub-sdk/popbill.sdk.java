@@ -70,9 +70,33 @@ public abstract class BaseServiceImp implements BaseService {
   private String linkID;
   private String secretKey;
   private Gson _gsonParser = new Gson();
+  
+  private String mleKeyID;
+  private String mleKeyName;
+  private String mlePublicKey;
 
   private Map<String, Token> tokenTable = new HashMap<String, Token>();
+  
+  public Map<String, String> getCustomHeader() {
+	  return customHeader;
+	}
+	
+	public void setCustomHeader(Map<String, String> customHeader) {
+		this.customHeader = customHeader;
+	}
+	
+	public void setMleKeyID(String mleKeyID) {
+		this.mleKeyID = mleKeyID;
+	}
 
+	public void setMleKeyName(String mleKeyName) {
+		this.mleKeyName = mleKeyName;
+	}
+
+	public void setMlePublicKey(String mlePublicKey) {
+		this.mlePublicKey = mlePublicKey;
+	}
+	
   /**
    * IP 제한 여부 기본값 True
    */
@@ -80,7 +104,7 @@ public abstract class BaseServiceImp implements BaseService {
     isIPRestrictOnOff = true;
     useStaticIP = false;
     useGAIP = false;
-    useLocalTimeYN = true;
+    useLocalTimeYN = true;    
   }
 
   /**
@@ -397,8 +421,7 @@ public abstract class BaseServiceImp implements BaseService {
    */
   @Override
   public String getPopbillURL(String CorpNum, String TOGO) throws PopbillException {
-    URLResponse response = httpget("/?TG=" + TOGO, CorpNum, null, URLResponse.class);
-    return response.url;
+    return getPopbillURL(CorpNum, null, TOGO);
   }
 
   /*
@@ -409,7 +432,7 @@ public abstract class BaseServiceImp implements BaseService {
    */
   @Override
   public String getPopbillURL(String CorpNum, String UserID, String TOGO) throws PopbillException {
-    URLResponse response = httpget("/?TG=" + TOGO, CorpNum, UserID, URLResponse.class);
+    URLResponse response = httpget("/Member?TG=" + TOGO, CorpNum, UserID, URLResponse.class);
     return response.url;
   }
 
@@ -828,85 +851,107 @@ public abstract class BaseServiceImp implements BaseService {
   }
 
   protected <T> T httpBulkPost(String url, String CorpNum, String SubmitID, String PostData, String UserID,
-                               String Action, Class<T> clazz) throws PopbillException {
-	  
-    HttpURLConnection httpURLConnection;
-    try {
-      URL uri = new URL(getServiceURL() + url);
-
-      if (ProxyIP != null && ProxyPort != null) {
-        Proxy prx = new Proxy(Type.HTTP, new InetSocketAddress(ProxyIP, ProxyPort));
-        httpURLConnection = (HttpURLConnection) uri.openConnection(prx);
-      } else {
-        httpURLConnection = (HttpURLConnection) uri.openConnection();
-      }
-
-    } catch (Exception e) {
-      throw new PopbillException(-99999999, "팝빌 API 서버 접속 실패", e);
-    }
-
-    if (CorpNum != null && CorpNum.isEmpty() == false) {
-      httpURLConnection.setRequestProperty("Authorization", "Bearer " + getSessionToken(CorpNum, null));
-    }
-
-    httpURLConnection.setRequestProperty("x-pb-message-digest", Base64.encode(encryptSHA1(PostData)));
-
-    httpURLConnection.setRequestProperty("x-pb-submit-id", SubmitID);
-
-    httpURLConnection.setRequestProperty("x-pb-version".toLowerCase(), APIVersion);
-
-    if (Action != null && Action.isEmpty() == false) {
-      httpURLConnection.setRequestProperty("X-HTTP-Method-Override", Action);
-    }
-
-    httpURLConnection.setRequestProperty("Content-Type", "application/json; charset=utf8");
-
-    httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
-
-    if (UserID != null && UserID.isEmpty() == false) {
-      httpURLConnection.setRequestProperty("x-pb-userid", UserID);
-    }
-    
-    checkCustomHeaderValidation(httpURLConnection);
-
-    try {
-      httpURLConnection.setRequestMethod("POST");
-    } catch (ProtocolException e1) {
-    }
-
-    httpURLConnection.setUseCaches(false);
-    httpURLConnection.setDoOutput(true);
-
-    if ((PostData == null || PostData.isEmpty()) == false) {
-
-      byte[] btPostData = PostData.getBytes(Charset.forName("UTF-8"));
-
-      httpURLConnection.setRequestProperty("Content-Length", String.valueOf(btPostData.length));
-
-      DataOutputStream output = null;
-
-      try {
-        output = new DataOutputStream(httpURLConnection.getOutputStream());
-        output.write(btPostData);
-        output.flush();
-      } catch (Exception e) {
-        throw new PopbillException(-99999999, "Fail to POST data to Server.", e);
-      } finally {
-        try {
-          if (output != null) {
-            output.close();
-          }
-        } catch (IOException e1) {
-          throw new PopbillException(-99999999, "Popbill httppost func DataOutputStream close() Exception",
-              e1);
-        }
-      }
-    }
-
-    String Result = parseResponse(httpURLConnection);
-
-    return fromJsonString(Result, clazz);
-  }
+          String Action, Class<T> clazz) throws PopbillException {
+	
+	return httpBulkPost(url, CorpNum, SubmitID, PostData, UserID, Action, clazz,null);
+	
+	}
+  
+	protected <T> T httpBulkPost(String url, String CorpNum, String SubmitID, String PostData, String UserID,
+			String Action, Class<T> clazz,String ContentType) throws PopbillException {
+	
+		HttpURLConnection httpURLConnection;
+		try {
+			URL uri = new URL(getServiceURL() + url);
+	
+			if (ProxyIP != null && ProxyPort != null) {
+				Proxy prx = new Proxy(Type.HTTP, new InetSocketAddress(ProxyIP, ProxyPort));
+				httpURLConnection = (HttpURLConnection) uri.openConnection(prx);
+			} else {
+				httpURLConnection = (HttpURLConnection) uri.openConnection();
+			}
+	
+		} catch (Exception e) {
+			throw new PopbillException(-99999999, "팝빌 API 서버 접속 실패", e);
+		}
+	
+		if (CorpNum != null && CorpNum.isEmpty() == false) {
+			httpURLConnection.setRequestProperty("Authorization", "Bearer " + getSessionToken(CorpNum, null));
+		}
+	
+		httpURLConnection.setRequestProperty("x-pb-message-digest", Base64.encode(encryptSHA1(PostData)));
+	
+		httpURLConnection.setRequestProperty("x-pb-submit-id", SubmitID);
+	
+		httpURLConnection.setRequestProperty("x-pb-version".toLowerCase(), APIVersion);
+	
+		if (Action != null && Action.isEmpty() == false) {
+			httpURLConnection.setRequestProperty("X-HTTP-Method-Override", Action);
+		}
+	
+		if (ContentType != null && ContentType.isEmpty() == false) {
+	      httpURLConnection.setRequestProperty("Content-Type", ContentType);
+	    } else {
+	      httpURLConnection.setRequestProperty("Content-Type", "application/json; charset=utf8");
+	    }
+	
+		httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
+	
+		if (UserID != null && UserID.isEmpty() == false) {
+			httpURLConnection.setRequestProperty("x-pb-userid", UserID);
+		}
+	
+		checkCustomHeaderValidation(httpURLConnection);
+	
+		try {
+			httpURLConnection.setRequestMethod("POST");
+		} catch (ProtocolException e1) {
+		}
+	
+	httpURLConnection.setUseCaches(false);
+	httpURLConnection.setDoOutput(true);
+	
+	if ((PostData == null || PostData.isEmpty()) == false) {
+	
+		byte[] btPostData = PostData.getBytes(Charset.forName("UTF-8"));
+		
+		if( "application/lh-encrypted".equalsIgnoreCase(ContentType) ) {
+			
+			try {
+	    		  Encryptor pb_enc = Encryptor.getInstance(this.mleKeyID, this.mleKeyName, this.mlePublicKey);
+	    	  	  btPostData = pb_enc.Encrypt(btPostData);
+	    	  } catch(PopbillException PE) {
+	    		  throw PE;
+		  	  } catch(Exception E) {
+		  		  throw new PopbillException(-99999999, "Message Level Encryption is failed.", E);
+		  	  }
+	    }
+		
+		httpURLConnection.setRequestProperty("Content-Length", String.valueOf(btPostData.length));
+		
+		DataOutputStream output = null;
+		
+		try {
+			output = new DataOutputStream(httpURLConnection.getOutputStream());
+			output.write(btPostData);
+			output.flush();
+		} catch (Exception e) {
+			throw new PopbillException(-99999999, "Fail to POST data to Server.", e);
+		} finally {
+			try {
+				if (output != null) {
+					output.close();
+				}
+			} catch (IOException e1) {
+				throw new PopbillException(-99999999, "Popbill httppost func DataOutputStream close() Exception",e1);
+			}
+		}
+	}
+	
+	String Result = parseResponse(httpURLConnection);
+	
+	return fromJsonString(Result, clazz);
+	}
 
   /**
    * @param url
@@ -972,6 +1017,18 @@ public abstract class BaseServiceImp implements BaseService {
     if ((PostData == null || PostData.isEmpty()) == false) {
 
       byte[] btPostData = PostData.getBytes(Charset.forName("UTF-8"));
+      
+      if( "application/lh-encrypted".equalsIgnoreCase(ContentType) ) {
+    	  
+    	  try {
+    		  Encryptor pb_enc = Encryptor.getInstance(this.mleKeyID, this.mleKeyName, this.mlePublicKey);
+    	  	  btPostData = pb_enc.Encrypt(btPostData);
+    	  } catch(PopbillException PE) {
+    		  throw PE;
+    	  } catch(Exception E) {
+    		  throw new PopbillException(-99999999, "Message Level Encryption is failed.", E);
+    	  }
+      }
 
       httpURLConnection.setRequestProperty("Content-Length", String.valueOf(btPostData.length));
 
@@ -1472,12 +1529,7 @@ public abstract class BaseServiceImp implements BaseService {
     return Result;
   }
 
-public Map<String, String> getCustomHeader() {
-	return customHeader;
-}
 
-public void setCustomHeader(Map<String, String> customHeader) {
-	this.customHeader = customHeader;
-}
+
 
 }

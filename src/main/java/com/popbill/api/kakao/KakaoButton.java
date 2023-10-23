@@ -10,6 +10,7 @@ public class KakaoButton implements Serializable {
     private String t;
     private String u1;
     private String u2;
+    private String tg;
 
     public String getN() {
         return n;
@@ -42,5 +43,13 @@ public class KakaoButton implements Serializable {
     public void setU2(String u2) {
         this.u2 = u2;
     }
+
+	public String getTg() {
+		return tg;
+	}
+
+	public void setTg(String tg) {
+		this.tg = tg;
+	}
 
 }

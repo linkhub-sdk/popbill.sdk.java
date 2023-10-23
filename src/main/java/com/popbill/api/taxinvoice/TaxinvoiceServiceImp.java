@@ -129,6 +129,33 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
         return httppost("/Taxinvoice", CorpNum, PostData, UserID, "ISSUE", IssueResponse.class);
     }
+    
+    @Override
+    public IssueResponse registIssueMLE(String CorpNum, Taxinvoice taxinvoice, Boolean WriteSpecification, String Memo, Boolean ForceIssue,
+            String DealInvoiceKey, String EmailSubject, String UserID) throws PopbillException {
+
+        if (taxinvoice == null)
+            throw new PopbillException(-99999999, "세금계산서 정보가 입력되지 않았습니다.");
+
+        if (WriteSpecification)
+            taxinvoice.setWriteSpecification(true);
+
+        if (Memo != null)
+            taxinvoice.setMemo(Memo);
+
+        if (ForceIssue)
+            taxinvoice.setForceIssue(true);
+
+        if (DealInvoiceKey != null)
+            taxinvoice.setDealInvoiceMgtKey(DealInvoiceKey);
+
+        if (EmailSubject != null)
+            taxinvoice.setEmailSubject(EmailSubject);
+
+        String PostData = toJsonString(taxinvoice);
+
+        return httppost("/Taxinvoice", CorpNum, PostData, UserID, "ISSUE", IssueResponse.class,"application/lh-encrypted");
+    }
 
     @Override
     public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, boolean ForceIssue) throws PopbillException {
@@ -153,6 +180,25 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         String PostData = toJsonString(tx);
 
         return httpBulkPost("/Taxinvoice", CorpNum, SubmitID, PostData, UserID, "BULKISSUE", BulkResponse.class);
+    }
+    
+    @Override
+    public BulkResponse bulkSubmitMLE(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, boolean ForceIssue, String UserID)
+            throws PopbillException {
+
+        if (SubmitID == null || SubmitID.equals(""))
+            throw new PopbillException(-99999999, "제출아이디(SubmitID)가 입력되지 않았습니다.");
+
+        if (taxinvoiceList == null) {
+            throw new PopbillException(-99999999, "세금계산서 정보가 입력되지 않았습니다.");
+        }
+
+        BulkTaxinvoiceSubmit tx = new BulkTaxinvoiceSubmit();
+        tx.setForceIssue(ForceIssue);
+        tx.setInvoices(taxinvoiceList);
+        String PostData = toJsonString(tx);
+
+        return httpBulkPost("/Taxinvoice", CorpNum, SubmitID, PostData, UserID, "BULKISSUE", BulkResponse.class,"application/lh-encrypted");
     }
 
     @Override

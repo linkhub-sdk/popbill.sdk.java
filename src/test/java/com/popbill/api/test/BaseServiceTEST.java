@@ -46,12 +46,6 @@ public class BaseServiceTEST {
         service.setSecretKey(testSecretKey);
         service.setTest(true);
         
-        Map<String, String> customHeader = new HashMap<String, String>();
-        customHeader.put("appKey", "test");
-        service.setCustomHeader(customHeader);
-        //service.setAuthURL("https://webhook.site/8d2fe7f0-be21-463b-bdf5-26e0139c8878");
-        //service.setTestServiceURL("https://webhook.site/8d2fe7f0-be21-463b-bdf5-26e0139c8878");
-
         taxinvoiceService = service;
     }
 

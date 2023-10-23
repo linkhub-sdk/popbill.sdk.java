@@ -1887,4 +1887,40 @@ public interface TaxinvoiceService extends BaseService {
     public Response cancelSend(String CorpNum, MgtKeyType KeyType,
             String MgtKey, String Memo, String UserID) throws PopbillException;
 
+    /**
+     * 세금계산서 즉시발행 (MLE - Message Level Encryption)
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param taxinvoice
+     *          세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
+     * @param WriteSpecification
+     *          거래명세서 동시작성 여부
+     * @param Memo
+     *          즉시발행 메모, 최대 200자
+     * @param ForceIssue
+     *          지연발행 강제여부
+     * @param DealInvoiceKey
+     *          거래명세서 문서번호, 최대 24자
+     * @param EmailSubject
+     *          안내메일 제목, 최대 300자
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return
+     * @throws PopbillException
+     */
+	public IssueResponse registIssueMLE(String CorpNum, Taxinvoice taxinvoice, Boolean WriteSpecification, String Memo,
+			Boolean ForceIssue, String DealInvoiceKey, String EmailSubject, String UserID) throws PopbillException;
+
+	/**
+	 * @param CorpNum
+	 * @param SubmitID
+	 * @param taxinvoiceList
+	 * @param ForceIssue
+	 * @param UserID
+	 * @return
+	 * @throws PopbillException
+	 */
+	public BulkResponse bulkSubmitMLE(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, boolean ForceIssue,
+			String UserID) throws PopbillException;
+
 }
