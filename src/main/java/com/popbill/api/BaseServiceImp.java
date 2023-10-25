@@ -739,7 +739,7 @@ public abstract class BaseServiceImp implements BaseService {
   @Override
   public String getAccessURL(String CorpNum, String UserID) throws PopbillException {
 
-    URLResponse response = httpget("/?TG=LOGIN", CorpNum, UserID, URLResponse.class);
+    URLResponse response = httpget("/Member?TG=LOGIN", CorpNum, UserID, URLResponse.class);
 
     return response.url;
   }
@@ -753,7 +753,7 @@ public abstract class BaseServiceImp implements BaseService {
   @Override
   public String getChargeURL(String CorpNum, String UserID) throws PopbillException {
 
-    URLResponse response = httpget("/?TG=CHRG", CorpNum, UserID, URLResponse.class);
+    URLResponse response = httpget("/Member?TG=CHRG", CorpNum, UserID, URLResponse.class);
 
     return response.url;
   }
@@ -767,7 +767,7 @@ public abstract class BaseServiceImp implements BaseService {
   @Override
   public String getPaymentURL(String CorpNum, String UserID) throws PopbillException {
 
-    URLResponse response = httpget("/?TG=PAYMENT", CorpNum, UserID, URLResponse.class);
+    URLResponse response = httpget("/Member?TG=PAYMENT", CorpNum, UserID, URLResponse.class);
 
     return response.url;
   }
@@ -781,7 +781,7 @@ public abstract class BaseServiceImp implements BaseService {
   @Override
   public String getUseHistoryURL(String CorpNum, String UserID) throws PopbillException {
 
-    URLResponse response = httpget("/?TG=USEHISTORY", CorpNum, UserID, URLResponse.class);
+    URLResponse response = httpget("/Member?TG=USEHISTORY", CorpNum, UserID, URLResponse.class);
 
     return response.url;
   }

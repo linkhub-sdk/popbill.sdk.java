@@ -83,7 +83,7 @@ public class BaseServiceTEST {
     @Test
     public void getPopbillURL_TEST() throws PopbillException {
 
-        String url = taxinvoiceService.getPopbillURL("1234567890", "testkorea",    "LOGIN");
+        String url = taxinvoiceService.getPopbillURL("1234567890", "testkorea",    "CHRG");
 
         assertNotNull(url);
 

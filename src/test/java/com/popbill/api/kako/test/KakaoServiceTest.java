@@ -276,12 +276,14 @@ public class KakaoServiceTest {
         String testCorpNum = "1234567890";
         String templateCode = "018060000159";
         String senderNum = "01011112222";
-        String content = "[믿을 수 있는 팝빌]"
-                + "안녕하세요. "
-                + "고객 님!고객님의 공인인증서가 등록처리 되었음을 알려드립니다!"
-                + "- 등록일자 : 2018-07-24 "
-                + "- 인증서용도 : 전자세금계산서용 공인인증서 삭제는 팝빌 사이트에서 가능합니다. "
-                + "감사합니다.";
+        String content = "[[주문완료 안내]\r\n" + 
+        		"1234님, 팝빌에 가입해주셔서 감사합니다~!\r\n" + 
+        		"\r\n" + 
+        		"1234님께서 신청해주신 서비스는 5일 이내로 연동 신청 될 예정입니다\r\n" + 
+        		"\r\n" + 
+        		"[ 서비스 정보 ]\r\n" + 
+        		"▶ 신청하신 서비스명: 1234\r\n" + 
+        		"▶ 신청 일자 : 20231025";
         String altContent = "대체문자 내용";
         String altSendType = "";
         
@@ -422,22 +424,24 @@ public class KakaoServiceTest {
     @Test
     public void sendATS_10_TEST() throws PopbillException {
         String testCorpNum = "1234567890";
-        String templateCode = "019020000163";
-        String senderNum = "07043042991";
-        String content = "[ 팝빌 ]\n"
-                + "신청하신 #{템플릿코드}에 대한 심사가 완료되어 승인 처리되었습니다."
-                + "해당 템플릿으로 전송 가능합니다.\n\n"
-                + "문의사항 있으시면 파트너센터로 편하게 연락주시기 바랍니다.\n\n"
-                + "팝빌 파트너센터 : 1600-8536\n"
-                + "support@linkhub.co.kr";
+        String templateCode = "023100000450";
+        String senderNum = "07012341234";
+        String content = "[주문완료 안내]\r\n" + 
+        		"1234님, 팝빌에 가입해주셔서 감사합니다~!\r\n" + 
+        		"\r\n" + 
+        		"1234님께서 신청해주신 서비스는 5일 이내로 연동 신청 될 예정입니다\r\n" + 
+        		"\r\n" + 
+        		"[ 서비스 정보 ]\r\n" + 
+        		"▶ 신청하신 서비스명: 1234\r\n" + 
+        		"▶ 신청 일자 : 20231025";
         String altContent = "대체문자 내용";
         String altSendType = "";
         
-        KakaoReceiver[] receivers = new KakaoReceiver[2];
+        KakaoReceiver[] receivers = new KakaoReceiver[1];
         
         KakaoReceiver message = new KakaoReceiver();
-        message.setReceiverNum("01022223333");
-        message.setReceiverName("09-1수신자명");
+        message.setReceiverNum("01043245117");
+        message.setReceiverName("1234");
         message.setMessage(content);
         message.setAltMessage(altContent);
         receivers[0] = message;
@@ -446,10 +450,11 @@ public class KakaoServiceTest {
         
         KakaoButton[] btns = new KakaoButton[1];
         KakaoButton button = new KakaoButton();
-        button.setN("템플릿 안내");
+        button.setN("사이트 연결");
         button.setT("WL");
-        button.setU1("https://www.popbill.com");
-        button.setU2("http://test.popbill.com");
+        button.setU1("https://www.popbill.com/");
+        button.setU2("https://www.popbill.com/");
+//        button.setTg("out");
         btns[0] = button;
         
         String receiptNum = kakaoService.sendATS(testCorpNum, templateCode, senderNum, content, altContent, 
