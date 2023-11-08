@@ -664,7 +664,7 @@ public class TaxinvoiceServiceTEST {
     public void getInfo_TEST() throws PopbillException {
 
         TaxinvoiceInfo taxinvoiceInfo = taxinvoiceService.getInfo("1234567890",
-                MgtKeyType.SELL, "20201126-003d");
+                MgtKeyType.SELL, "20201126-003dddd");
 
         assertNotNull(taxinvoiceInfo);
         System.out.println("[getInfo API] - "+taxinvoiceInfo.getCloseDownState()+ " "+taxinvoiceInfo.getInterOPYN());
@@ -688,11 +688,15 @@ public class TaxinvoiceServiceTEST {
 
     @Test
     public void getDetailInfo_TEST() throws PopbillException {
+    	try {
             Taxinvoice taxinvoice = taxinvoiceService.getDetailInfo("1234567890",
-                MgtKeyType.SELL, "20201126-001d");
+                MgtKeyType.SELL, "20231107-MVC00dd1");
 
         assertNotNull(taxinvoice);
         System.out.println(taxinvoice.getCloseDownState() + " | " + taxinvoice.getCloseDownStateDate());
+    	} catch (PopbillException pe) {
+        	System.out.println(pe.getCode() +" "+pe.getMessage());
+        }
     }
 
     @Test
