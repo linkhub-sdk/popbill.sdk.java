@@ -33,16 +33,7 @@ public class MLETaxinvoiceServiceTETS {
 
 	        service.setUseLocalTimeYN(false);
 	        service.setUseGAIP(false);
-	        service.setMleKeyID("8175f0a8-6c88-4456-8feb-2e05d25ddf1b");
-	        service.setMleKeyName("LINKHUB_PROD_FLE_RSA");
-	        service.setMlePublicKey("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqskRjY9ReTFgogaJteSZ\n" + 
-	        		"RFJpm9F/3epTCLgDDKrSYSgTdbbFoyNIufOIwpNrvT1mKDEvlaDv7rTa7oht86V3\n" + 
-	        		"oWl4oiJlmJ/mNoWKfufLv046rMJ41xUZPCFG/jKDf+430M65SPHvMK7P8u78SYOv\n" + 
-	        		"OJpDsMKl3doVEKm8i2WijaMZkigsWlk4tagbBEY78m8GtXtucc7pPhhuYMvaCOiL\n" + 
-	        		"tj2PL/BTSnC2qWiyXh4IV1v7Mqzs7AQWZPY2zH+wmo+YMLnD+ZyI0pO0WPcrZtQC\n" + 
-	        		"M19FWpfzv5894w6eVPw5von6VQDQWpwEo5tgFIzFZwO6Xx1WnjdSFXOkobS/wjx9\n" + 
-	        		"FwIDAQAB");
-	        
+
 	        taxinvoiceService = service;
 	    }
 
