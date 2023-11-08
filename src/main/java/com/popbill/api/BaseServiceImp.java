@@ -1372,7 +1372,15 @@ public abstract class BaseServiceImp implements BaseService {
 
       try {
         errorIs = httpURLConnection.getErrorStream();
-        result = fromStream(errorIs);
+        
+        if (null != httpURLConnection.getContentEncoding()
+            && httpURLConnection.getContentEncoding()
+                                .equals("gzip")) {
+          result = fromGzipStream(errorIs);
+        } else {
+          result = fromStream(errorIs);
+        }
+        
         error = fromJsonString(result, ErrorResponse.class);
       } catch (Exception ignored) {
 
@@ -1429,7 +1437,15 @@ public abstract class BaseServiceImp implements BaseService {
       ErrorResponse error = null;
       try {
         errorIs = httpURLConnection.getErrorStream();
-        errorResult = fromStream(errorIs);
+        
+        if (null != httpURLConnection.getContentEncoding()
+            && httpURLConnection.getContentEncoding()
+                                .equals("gzip")) {
+        	errorResult = fromGzipStream(errorIs);
+        } else {
+        	errorResult = fromStream(errorIs);
+        }
+            
         error = fromJsonString(errorResult, ErrorResponse.class);
 
       } catch (Exception ignored) {

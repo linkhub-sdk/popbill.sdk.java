@@ -33,6 +33,15 @@ public class MLETaxinvoiceServiceTETS {
 
 	        service.setUseLocalTimeYN(false);
 	        service.setUseGAIP(false);
+	        service.setMleKeyID("8175f0a8-6c88-4456-8feb-2e05d25ddf1b");
+	        service.setMleKeyName("LINKHUB_PROD_FLE_RSA");
+	        service.setMlePublicKey("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqskRjY9ReTFgogaJteSZ\n" + 
+	        		"RFJpm9F/3epTCLgDDKrSYSgTdbbFoyNIufOIwpNrvT1mKDEvlaDv7rTa7oht86V3\n" + 
+	        		"oWl4oiJlmJ/mNoWKfufLv046rMJ41xUZPCFG/jKDf+430M65SPHvMK7P8u78SYOv\n" + 
+	        		"OJpDsMKl3doVEKm8i2WijaMZkigsWlk4tagbBEY78m8GtXtucc7pPhhuYMvaCOiL\n" + 
+	        		"tj2PL/BTSnC2qWiyXh4IV1v7Mqzs7AQWZPY2zH+wmo+YMLnD+ZyI0pO0WPcrZtQC\n" + 
+	        		"M19FWpfzv5894w6eVPw5von6VQDQWpwEo5tgFIzFZwO6Xx1WnjdSFXOkobS/wjx9\n" + 
+	        		"FwIDAQAB");
 	        
 	        taxinvoiceService = service;
 	    }
@@ -46,16 +55,16 @@ public class MLETaxinvoiceServiceTETS {
 		    		
 		            Taxinvoice taxinvoice = new Taxinvoice();
 		
-		            taxinvoice.setWriteDate("20231023"); // 필수, 기재상 작성일자
+		            taxinvoice.setWriteDate("20231025"); // 필수, 기재상 작성일자
 		            taxinvoice.setChargeDirection("정과금"); // 필수, {정과금, 역과금}
 		            taxinvoice.setIssueType("정발행"); // 필수, {정발행, 역발행, 위수탁}
 		            taxinvoice.setPurposeType("영수"); // 필수, {영수, 청구}
 		            taxinvoice.setIssueTiming("직접발행"); // 필수, {직접발행, 승인시자동발행}
 		            taxinvoice.setTaxType("과세"); // 필수, {과세, 영세, 면세}
-		            taxinvoice.setInvoicerCorpNum("6798700433");
+		            taxinvoice.setInvoicerCorpNum("1234567890");
 		            taxinvoice.setInvoicerTaxRegID(""); // 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
 		            taxinvoice.setInvoicerCorpName("Seller Name of Company");
-		            taxinvoice.setInvoicerMgtKey("20231023-04"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
+		            taxinvoice.setInvoicerMgtKey("20231025-06"); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
 		            taxinvoice.setInvoicerCEOName("Seller Name of Representative");
 		            taxinvoice.setInvoicerAddr("Seller Company Address");
 		            taxinvoice.setInvoicerBizClass("Seller Business Item");
@@ -136,7 +145,7 @@ public class MLETaxinvoiceServiceTETS {
 		            taxinvoice.getAddContactList().add(contact);
 		            
 		
-		            IssueResponse response = taxinvoiceService.registIssue("6798700433", taxinvoice, false, "memo", false, null, "Custom Email Title", "");
+		            IssueResponse response = taxinvoiceService.registIssue("1234567890", taxinvoice, false, "memo", false, null, "Custom Email Title", "");
 		
 		            assertNotNull(response);
 		
@@ -155,19 +164,19 @@ public class MLETaxinvoiceServiceTETS {
 	        public void BulkSubmit_TEST() throws PopbillException {
 
 	            List<Taxinvoice> bulkTx = new ArrayList<Taxinvoice>();
-	            String SubmitID = "20231023-000001";
+	            String SubmitID = "20231025-000002";
 
 	            for(int i=0; i<2; i++) {
 
 	                Taxinvoice taxinvoice = new Taxinvoice();
 
-	                taxinvoice.setWriteDate("20231023"); // 필수, 기재상 작성일자
+	                taxinvoice.setWriteDate("20231025"); // 필수, 기재상 작성일자
 	                taxinvoice.setChargeDirection("정과금"); // 필수, {정과금, 역과금}
 	                taxinvoice.setIssueType("정발행"); // 필수, {정발행, 역발행, 위수탁}
 	                taxinvoice.setPurposeType("영수"); // 필수, {영수, 청구}
 	                taxinvoice.setIssueTiming("직접발행"); // 필수, {직접발행, 승인시자동발행}
 	                taxinvoice.setTaxType("과세"); // 필수, {과세, 영세, 면세}
-	                taxinvoice.setInvoicerCorpNum("6798700433");
+	                taxinvoice.setInvoicerCorpNum("1234567890");
 	                taxinvoice.setInvoicerTaxRegID(""); // 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
 	                taxinvoice.setInvoicerCorpName("Seller Name of Company");
 	                taxinvoice.setInvoicerMgtKey(SubmitID+"-"+ String.valueOf(i)); // 공급자 발행까지 API로 발행하고자 할경우 정발행과
@@ -253,7 +262,7 @@ public class MLETaxinvoiceServiceTETS {
 	                bulkTx.add(taxinvoice);
 	            }
 
-	            BulkResponse response = taxinvoiceService.bulkSubmit("6798700433", SubmitID, bulkTx, false, "");
+	            BulkResponse response = taxinvoiceService.bulkSubmit("1234567890", SubmitID, bulkTx, false, "");
 
 	            assertNotNull(response);
 
