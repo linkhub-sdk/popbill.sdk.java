@@ -17,6 +17,7 @@ package com.popbill.api.taxinvoice;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,11 +29,14 @@ import com.popbill.api.BaseServiceImp;
 import com.popbill.api.BulkResponse;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.EmailSendConfig;
+import com.popbill.api.Encryptor;
 import com.popbill.api.IssueResponse;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.TaxinvoiceCertificate;
 import com.popbill.api.TaxinvoiceService;
+
+import kr.co.linkhub.auth.Base64;
 
 /**
  * Implementation of Popbill TaxinvoiceService Interface
@@ -128,6 +132,52 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         String PostData = toJsonString(taxinvoice);
 
         return httppost("/Taxinvoice", CorpNum, PostData, UserID, "ISSUE", IssueResponse.class);
+    }
+    
+    
+    @Override
+    public Response registTaxCert(String CorpNum, String certPublicKey, String certPrivateKey, String certCipher) throws PopbillException{
+    	
+    	return registTaxCert(CorpNum, certPublicKey, certPrivateKey, certCipher, null);
+    }
+    
+    
+    @Override
+    public Response registTaxCert(String CorpNum, String certPublicKey, String certPrivateKey, String certCipher, String UserID) throws PopbillException{
+    	
+    	Encryptor pb_enc;
+    	
+    	TaxCertRequest request;
+    	
+    	if (certPublicKey == null || certPublicKey.equals("")) {
+            throw new PopbillException(-99999999, "공동인증서 공개키(certPublicKey)가 입력되지 않았습니다.");
+    	}
+    	
+    	if (certPrivateKey == null || certPrivateKey.equals("")) {
+            throw new PopbillException(-99999999, "공동인증서 비밀키(certPrivateKey)가 입력되지 않았습니다.");
+    	}
+    	
+    	if (certCipher == null || certCipher.equals("")) {
+            throw new PopbillException(-99999999, "공동인증서 비밀번호(certCipher)가 입력되지 않았습니다.");
+    	}
+    	
+    	try {
+    		pb_enc = Encryptor.getInstance(getMleKeyID(), getMleKeyName(), getMlePublicKey());
+  			request = new TaxCertRequest();
+  			
+	        request.certPublicKey = Base64.encode(pb_enc.Encrypt(Base64.decode(certPublicKey)));
+	        request.certPrivateKey = Base64.encode(pb_enc.Encrypt(Base64.decode(certPrivateKey)));;
+	        request.certCipher = Base64.encode(pb_enc.Encrypt(certCipher.getBytes(Charset.forName("UTF-8"))));
+	        
+    	} catch(PopbillException PE) {
+    		  throw PE;
+  	  	} catch(Exception E) {
+  	  		throw new PopbillException(-99999999, "공동인증서 정보 Field Level 암호화 실패.", E);
+  	  	}
+
+        String PostData = toJsonString(request);
+        
+        return httppost("/Taxinvoice/Certificate", CorpNum, PostData, UserID, null, Response.class);
     }
     
     @Override
@@ -1421,6 +1471,12 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         public String memo;
     }
 
+    protected class TaxCertRequest {
+    	public String certPublicKey;
+    	public String certPrivateKey;
+    	public String certCipher;
+    }
+    
     protected class SendRequest {
         public String memo;
         public String emailSubject;

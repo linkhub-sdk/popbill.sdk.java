@@ -1923,4 +1923,10 @@ public interface TaxinvoiceService extends BaseService {
 	public BulkResponse bulkSubmitMLE(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, boolean ForceIssue,
 			String UserID) throws PopbillException;
 
+	Response registTaxCert(String CorpNum, String certPublicKey, String certPrivateKey, String certCipher,
+			String UserID) throws PopbillException;
+
+	Response registTaxCert(String CorpNum, String certPublicKey, String certPrivateKey, String certCipher)
+			throws PopbillException;
+
 }

@@ -30,14 +30,12 @@ public class MLETaxinvoiceServiceTETS {
 	        service.setLinkID(testLinkID);
 	        service.setSecretKey(testSecretKey);
 	        service.setTest(true);
-
+	        
 	        service.setUseLocalTimeYN(false);
 	        service.setUseGAIP(false);
 
 	        taxinvoiceService = service;
 	    }
-
-	
 
 	    @Test
 	        public void RegistIssue_TEST() throws PopbillException {
@@ -262,3 +260,4 @@ public class MLETaxinvoiceServiceTETS {
        }
 	   
 }
+

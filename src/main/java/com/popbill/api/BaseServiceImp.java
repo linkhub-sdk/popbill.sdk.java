@@ -97,7 +97,19 @@ public abstract class BaseServiceImp implements BaseService {
 		this.mlePublicKey = mlePublicKey;
 	}
 	
-  /**
+	public String getMleKeyID() {
+		return mleKeyID;
+	}
+
+	public String getMleKeyName() {
+		return mleKeyName;
+	}
+
+	public String getMlePublicKey() {
+		return mlePublicKey;
+	}
+
+/**
    * IP 제한 여부 기본값 True
    */
   public BaseServiceImp() {
