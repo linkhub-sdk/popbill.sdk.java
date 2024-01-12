@@ -1150,7 +1150,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
         Receiver receiver = null;
 
-        if (!receiveNum.isEmpty() || !receiveName.isEmpty()) {
+        if ((receiveNum != null && !receiveNum.isEmpty()) || (receiveName != null && !receiveName.isEmpty())) {
             receiver = new Receiver();
             receiver.setReceiveNum(receiveNum);
             receiver.setReceiveName(receiveName);
@@ -1170,7 +1170,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
         Receiver receiver = null;
 
-        if (!receiveNum.isEmpty() || !receiveName.isEmpty()) {
+        if ((receiveNum != null && !receiveNum.isEmpty()) || (receiveName != null && !receiveName.isEmpty())) {
             receiver = new Receiver();
             receiver.setReceiveNum(receiveNum);
             receiver.setReceiveName(receiveName);
@@ -1191,7 +1191,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
         Receiver receiver = null;
 
-        if (!receiveNum.isEmpty() || !receiveName.isEmpty()) {
+        if ((receiveNum != null && !receiveNum.isEmpty()) || (receiveName != null && !receiveName.isEmpty())) {
             receiver = new Receiver();
             receiver.setReceiveNum(receiveNum);
             receiver.setReceiveName(receiveName);
@@ -1287,7 +1287,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
         Receiver receiver = null;
 
-        if (!receiveNum.isEmpty() || !receiveName.isEmpty()) {
+        if ((receiveNum != null && !receiveNum.isEmpty()) || (receiveName != null && !receiveName.isEmpty())) {
             receiver = new Receiver();
             receiver.setReceiveNum(receiveNum);
             receiver.setReceiveName(receiveName);
