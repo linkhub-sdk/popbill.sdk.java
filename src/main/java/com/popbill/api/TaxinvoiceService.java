@@ -1923,10 +1923,42 @@ public interface TaxinvoiceService extends BaseService {
 	public BulkResponse bulkSubmitMLE(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, boolean ForceIssue,
 			String UserID) throws PopbillException;
 
+        /**
+         * 공동인증서 등록 API
+         * @param CorpNum
+         *              연동회원 사업자번호
+         * @param certPublicKey
+         *              공동인증서 공개키
+         * @param certPrivateKey
+         *              공동인증서 개인키
+         * @param certCipher
+         *              공동인증서 비밀번호
+         * @param UserID
+         *              팝빌회원 아이디
+         * @return
+         * @throws PopbillException
+         */
 	Response registTaxCert(String CorpNum, String certPublicKey, String certPrivateKey, String certCipher,
 			String UserID) throws PopbillException;
 
 	Response registTaxCert(String CorpNum, String certPublicKey, String certPrivateKey, String certCipher)
 			throws PopbillException;
 
+        /**
+         * 공동인증서 PFX 등록 API
+         * @param CorpNum
+         *              연동회원 사업자번호
+         * @param certPFX
+         *              공동인증서 PFX파일(Base64 Encoded)
+         * @param certCipher
+         *              공동인증서 PFX파일 비밀번호
+         * @param UserID
+         *              팝빌회원 아이디
+         * @return
+         * @throws PopbillException
+         */
+        Response registTaxCertPFX(String CorpNum, String certPFX, String certCipher, String UserID) throws PopbillException;
+        
+        Response registTaxCertPFX(String CorpNum, String certPFX, String certCipher) throws PopbillException;
+        
 }

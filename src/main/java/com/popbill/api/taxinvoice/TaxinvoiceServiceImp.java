@@ -181,6 +181,44 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     }
     
     @Override
+    public Response registTaxCertPFX(String CorpNum, String PFX, String password) throws PopbillException {
+    	
+    	return registTaxCertPFX(CorpNum, PFX, password, null);
+    }
+
+    @Override
+    public Response registTaxCertPFX(String CorpNum, String PFX, String password, String UserID) throws PopbillException {
+    	Encryptor enc;
+    	
+    	CertPFXRequest request;
+    	
+    	if (PFX == null || PFX.equals("")) {
+            throw new PopbillException(-99999999, "공동인증서 PFX파일(Base64 Encoded)이 입력되지 않았습니다.");
+    	}
+    	
+    	if (password == null || password.equals("")) {
+            throw new PopbillException(-99999999, "공동인증서 PFX파일의 비밀번호(password)가 입력되지 않았습니다.");
+    	}
+    	
+    	try {
+    		enc = Encryptor.getInstance(getMleKeyID(), getMleKeyName(), getMlePublicKey());
+  			request = new CertPFXRequest();
+  			
+	        request.pfx = Base64.encode(enc.Encrypt(Base64.decode(PFX)));
+	        request.password = Base64.encode(enc.Encrypt(password.getBytes(Charset.forName("UTF-8"))));
+
+    	} catch(PopbillException PE) {
+    		  throw PE;
+  	  	} catch(Exception E) {
+  	  		throw new PopbillException(-99999999, "공동인증서 PFX파일 정보 Field Level 암호화 실패.", E);
+  	  	}
+
+        String PostData = toJsonString(request);
+        
+        return httppost("/Taxinvoice/CertificatePFX", CorpNum, PostData, UserID, null, Response.class);
+    }
+
+    @Override
     public IssueResponse registIssueMLE(String CorpNum, Taxinvoice taxinvoice, Boolean WriteSpecification, String Memo, Boolean ForceIssue,
             String DealInvoiceKey, String EmailSubject, String UserID) throws PopbillException {
 
@@ -1477,6 +1515,11 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     	public String certCipher;
     }
     
+    protected class CertPFXRequest {
+    	public String pfx;
+    	public String password;
+    }
+
     protected class SendRequest {
         public String memo;
         public String emailSubject;
