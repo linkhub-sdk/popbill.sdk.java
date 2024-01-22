@@ -44,6 +44,12 @@ public class Cashbill implements Serializable {
     private boolean smssendYN;
 
     private String confirmNum;
+
+
+    public void setConfirmNum(String confirmNum) {
+        this.confirmNum = confirmNum;
+    }
+
     private String orgConfirmNum;
     private String orgTradeDate;
 

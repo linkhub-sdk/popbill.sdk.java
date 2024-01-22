@@ -979,7 +979,103 @@ public interface CashbillService extends BaseService{
    public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Cashbill> cashbillList,
            String UserID)
            throws PopbillException;
-   
+
+
+    /**
+     * 현금영수증 즉시발행 (승인번호 할당)
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param cashbill
+     *          현금영수증 정보. (see com.popbill.api.cashbill.Cashbill)
+     * @return Response 응답.
+     * @throws PopbillException
+     */
+    public CBIssueResponse registIssueCN(String CorpNum, Cashbill cashbill)
+            throws PopbillException;
+
+
+    /**
+     * 현금영수증 즉시발행 (승인번호 할당)
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param cashbill
+     *          현금영수증 정보. (see com.popbill.api.cashbill.Cashbill)
+     * @param Memo
+     *          메모
+     * @return CBIssueResponse 응답.
+     * @throws PopbillException
+     */
+    public CBIssueResponse registIssueCN(String CorpNum, Cashbill cashbill, String Memo)
+            throws PopbillException;
+
+    /**
+     * 현금영수증 즉시발행 (승인번호 할당)
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param cashbill
+     *          현금영수증 정보. (see com.popbill.api.cashbill.Cashbill)
+     * @param Memo
+     *          메모
+     * @param UserID
+     *          연동회원 아이디
+     * @return CBIssueResponse 응답.
+     * @throws PopbillException
+     */
+    public CBIssueResponse registIssueCN(String CorpNum, Cashbill cashbill, String Memo,
+                                       String UserID) throws PopbillException;
+    /**
+     * 현금영수증 즉시발행 (승인번호 할당)
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param cashbill
+     *          현금영수증 정보. (see com.popbill.api.cashbill.Cashbill)
+     * @param Memo
+     *          메모
+     * @param UserID
+     *          연동회원 아이디
+     * @return CBIssueResponse 응답.
+     * @throws PopbillException
+     */
+    public CBIssueResponse registIssueCN(String CorpNum, Cashbill cashbill, String Memo,
+                                       String UserID, String emailSubject) throws PopbillException;
+
+    /**
+    * 현금영수증 대량발행 (승인번호 할당)
+    *
+    * @param CorpNum
+    *          연동회원 사업자번호
+    * @param SubmitID
+    *          접수 아이디
+    * @param cashbillList
+    *          현금영수증 배열
+    * @return
+    * @throws PopbillException
+    */
+   public BulkResponse bulkSubmitCN(String CorpNum, String SubmitID, List<Cashbill> cashbillList)
+           throws PopbillException;
+
+   /**
+    * 현금영수증 대량발행 (승인번호 할당)
+    * @param CorpNum
+    *          연동회원 사업자번호
+    * @param SubmitID
+    *          접수 아이디
+    * @param cashbillList
+    *          현금영수증 배열
+    * @param UserID
+    *          팝빌 연동회원 아이디
+    * @return
+    * @throws PopbillException
+    */
+   public BulkResponse bulkSubmitCN(String CorpNum, String SubmitID, List<Cashbill> cashbillList,
+           String UserID)
+           throws PopbillException;
+
+
    /**
     * @param CorpNum
     *          연동회원 사업자번호

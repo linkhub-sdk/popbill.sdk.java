@@ -653,6 +653,60 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     }
 
     @Override
+    public CBIssueResponse registIssueCN(String CorpNum, Cashbill cashbill) throws PopbillException {
+        return registIssueCN(CorpNum, cashbill, null, null);
+    }
+
+    @Override
+    public CBIssueResponse registIssueCN(String CorpNum, Cashbill cashbill, String memo) throws PopbillException {
+        return registIssueCN(CorpNum, cashbill, memo, null);
+    }
+
+    @Override
+    public CBIssueResponse registIssueCN(String CorpNum, Cashbill cashbill, String memo, String UserID) throws PopbillException {
+        return registIssueCN(CorpNum, cashbill, memo, UserID, null);
+    }
+
+    @Override
+    public CBIssueResponse registIssueCN(String CorpNum, Cashbill cashbill, String memo, String UserID, String emailSubject) throws PopbillException {
+        if (cashbill == null)
+            throw new PopbillException(-99999999, "현금영수증정보가 입력되지 않았습니다.");
+        if (memo != null)
+            cashbill.setMemo(memo);
+
+        if (emailSubject != null)
+            cashbill.setEmailSubject(emailSubject);
+
+        String PostData = toJsonString(cashbill);
+
+
+        return httppost("/Cashbill", CorpNum, PostData,
+                UserID, "ISSUECN", CBIssueResponse.class);
+    }
+
+    @Override
+    public BulkResponse bulkSubmitCN(String CorpNum, String SubmitID, List<Cashbill> cashbillList) throws PopbillException {
+        return bulkSubmitCN(CorpNum, SubmitID, cashbillList, null);
+    }
+
+    @Override
+    public BulkResponse bulkSubmitCN(String CorpNum, String SubmitID, List<Cashbill> cashbillList, String UserID) throws PopbillException {
+            if (SubmitID == null || SubmitID.equals(""))
+                throw new PopbillException(-99999999, "제출아이디(SubmitID)가 입력되지 않았습니다.");
+
+            if (cashbillList == null) {
+                throw new PopbillException(-99999999, "현금영수증 정보가 입력되지 않았습니다.");
+            }
+
+            BulkCashbillSubmit cs = new BulkCashbillSubmit();
+            cs.setCashList(cashbillList);
+            String PostData = toJsonString(cs);
+
+            return httpBulkPost("/Cashbill", CorpNum, SubmitID, PostData, UserID, "BULKISSUECN", BulkResponse.class);
+    }
+
+
+    @Override
     public BulkCashbillResult getBulkResult(String CorpNum, String SubmitID) throws PopbillException {
 
         return getBulkResult(CorpNum, SubmitID, null);
