@@ -1304,7 +1304,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     @Override
     public String getTaxCertURL(String CorpNum, String UserID) throws PopbillException {
 
-        URLResponse response = httpget("/?TG=CERT", CorpNum, UserID, URLResponse.class);
+        URLResponse response = httpget("/Member?TG=CERT", CorpNum, UserID, URLResponse.class);
 
         return response.url;
     }

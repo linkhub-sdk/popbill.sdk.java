@@ -487,7 +487,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
     @Override
     public String getSealURL(String CorpNum, String UserID) throws PopbillException {
 
-        URLResponse response = httpget("/?TG=SEAL", CorpNum, UserID, URLResponse.class);
+        URLResponse response = httpget("/Member?TG=SEAL", CorpNum, UserID, URLResponse.class);
 
         return response.url;
     }
