@@ -964,6 +964,8 @@ public abstract class BaseServiceImp implements BaseService {
 	
 	return fromJsonString(Result, clazz);
 	}
+        httpURLConnection.setConnectTimeout(10 * 1000);
+        httpURLConnection.setReadTimeout(180 * 1000);
 
   /**
    * @param url
@@ -1103,10 +1105,16 @@ public abstract class BaseServiceImp implements BaseService {
     if (CorpNum != null && CorpNum.isEmpty() == false) {
       httpURLConnection.setRequestProperty("Authorization", "Bearer " + getSessionToken(CorpNum, null));
     }
+        httpURLConnection.setConnectTimeout(10 * 1000);
+        httpURLConnection.setReadTimeout(180 * 1000);
 
-    httpURLConnection.setRequestProperty("x-pb-version".toLowerCase(), APIVersion);
-    httpURLConnection.setRequestProperty("Connection", "Keep-Alive");
-    httpURLConnection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+        if (CorpNum != null && CorpNum.isEmpty() == false) {
+            httpURLConnection.setRequestProperty("Authorization", "Bearer " + getSessionToken(CorpNum, null));
+        }
+
+        httpURLConnection.setRequestProperty("x-pb-version".toLowerCase(), APIVersion);
+        httpURLConnection.setRequestProperty("Connection", "Keep-Alive");
+        httpURLConnection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
 
     if (UserID != null && UserID.isEmpty() == false) {
       httpURLConnection.setRequestProperty("x-pb-userid", UserID);
@@ -1226,11 +1234,14 @@ public abstract class BaseServiceImp implements BaseService {
       throw new PopbillException(-99999999, "팝빌 API 서버 접속 실패", e);
     }
 
-    if (CorpNum != null && CorpNum.isEmpty() == false) {
-      httpURLConnection.setRequestProperty("Authorization", "Bearer " + getSessionToken(CorpNum, null));
-    }
+        if (CorpNum != null && CorpNum.isEmpty() == false) {
+          httpURLConnection.setRequestProperty("Authorization", "Bearer " + getSessionToken(CorpNum, null));
+        }
 
-    httpURLConnection.setRequestProperty("x-pb-version".toLowerCase(), APIVersion);
+        httpURLConnection.setConnectTimeout(10 * 1000);
+        httpURLConnection.setReadTimeout(180 * 1000);
+
+        httpURLConnection.setRequestProperty("x-pb-version".toLowerCase(), APIVersion);
 
     if (UserID != null && UserID.isEmpty() == false) {
       httpURLConnection.setRequestProperty("x-pb-userid", UserID);
