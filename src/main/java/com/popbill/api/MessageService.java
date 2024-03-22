@@ -66,23 +66,23 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            발신자번호
-     * @param receiver
+     * @param Receiver
      *            수신자번호
-     * @param receiverName
+     * @param ReceiverName
      *            수신자명칭
-     * @param content
+     * @param Content
      *            단문메시지 내용 최대 90Byte.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
      *            연동회원의 회원아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendSMS(String CorpNum, String sender, String receiver,
-            String receiverName, String content, Date reserveDT, String UserID)
+    public String sendSMS(String CorpNum, String Sender, String Receiver,
+            String ReceiverName, String Content, Date ReserveDT, String UserID)
             throws PopbillException;
     
     /**
@@ -90,25 +90,80 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            발신자번호
-     * @param receiver
+     * @param Receiver
      *            수신자번호
-     * @param receiverName
+     * @param ReceiverName
      *            수신자명칭
-     * @param content
+     * @param Content
      *            단문메시지 내용 최대 90Byte.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약전송시 예약일시.
-     * @param adsYN
+     * @param AdsYN
      *            광고문자 전송여부 
      * @param UserID
      *            연동회원의 회원아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendSMS(String CorpNum, String sender, String receiver,
-            String receiverName, String content, Date reserveDT, Boolean adsYN, String UserID)
+    public String sendSMS(String CorpNum, String Sender, String Receiver,
+            String ReceiverName, String Content, Date ReserveDT, Boolean AdsYN, String UserID)
+            throws PopbillException;
+
+
+    /**
+     * 단문문자메시지 1건 전송
+     *
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @param Sender
+     *            발신자번호
+     * @param Receiver
+     *            수신자번호
+     * @param ReceiverName
+     *            수신자명칭
+     * @param Content
+     *            단문메시지 내용 최대 90Byte.
+     * @param ReserveDT
+     *            예약전송시 예약일시.
+     * @param UserID
+     *            연동회원의 회원아이디
+     * @param RequestNum
+     *            전송요청번호
+     * @return ReceiptNum 접수번호.
+     * @throws PopbillException
+     */
+    public String sendSMS(String CorpNum, String Sender, String Receiver,
+                          String ReceiverName, String Content, Date ReserveDT, String UserID, String RequestNum)
+            throws PopbillException;
+
+    /**
+     * 단문문자메시지 1건 전송
+     *
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @param Sender
+     *            발신자번호
+     * @param Receiver
+     *            수신자번호
+     * @param ReceiverName
+     *            수신자명칭
+     * @param Content
+     *            단문메시지 내용 최대 90Byte.
+     * @param ReserveDT
+     *            예약전송시 예약일시.
+     * @param AdsYN
+     *            광고문자 전송여부
+     * @param UserID
+     *            연동회원의 회원아이디
+     * @param RequestNum
+     *            전송요청번호
+     * @return ReceiptNum 접수번호.
+     * @throws PopbillException
+     */
+    public String sendSMS(String CorpNum, String Sender, String Receiver,
+                          String ReceiverName, String Content, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum)
             throws PopbillException;
 
     /**
@@ -118,14 +173,14 @@ public interface MessageService extends BaseService {
      *            연동회원 사업자번호
      * @param Messages
      *            메시지 배열.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendSMS(String CorpNum, Message[] Messages, Date reserveDT,
+    public String sendSMS(String CorpNum, Message[] Messages, Date ReserveDT,
             String UserID) throws PopbillException;
 
     /**
@@ -133,21 +188,21 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param content
+     * @param Content
      *            동보전송 단문문자메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendSMS(String CorpNum, String sender, String content,
-            Message[] Messages, Date reserveDT, String UserID)
+    public String sendSMS(String CorpNum, String Sender, String Content,
+            Message[] Messages, Date ReserveDT, String UserID)
             throws PopbillException;
     
     /**
@@ -155,23 +210,23 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param content
+     * @param Content
      *            동보전송 단문문자메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
-     * @param adsYN
+     * @param AdsYN
      *            광고문자 전송여부
      * @param UserID
      *            연동회원 아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendSMS(String CorpNum, String sender, String content,
-            Message[] Messages, Date reserveDT, Boolean adsYN, String UserID)
+    public String sendSMS(String CorpNum, String Sender, String Content,
+            Message[] Messages, Date ReserveDT, Boolean AdsYN, String UserID)
             throws PopbillException;
     
     /**
@@ -179,80 +234,27 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param senderName
+     * @param SenderName
      *            동보전송 발신자명
-     * @param content
+     * @param Content
      *            동보전송 단문문자메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
-     * @param adsYN
+     * @param AdsYN
      *            광고문자 전송여부
      * @param UserID
      *            연동회원 아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendSMS(String CorpNum, String sender, String senderName, String content,
-            Message[] Messages, Date reserveDT, Boolean adsYN, String UserID)
+    public String sendSMS(String CorpNum, String Sender, String SenderName, String Content,
+            Message[] Messages, Date ReserveDT, Boolean AdsYN, String UserID)
             throws PopbillException;
 
-    /**
-     * 단문문자메시지 1건 전송
-     * 
-     * @param CorpNum
-     *            연동회원 사업자번호
-     * @param sender
-     *            발신자번호
-     * @param receiver
-     *            수신자번호
-     * @param receiverName
-     *            수신자명칭
-     * @param content
-     *            단문메시지 내용 최대 90Byte.
-     * @param reserveDT
-     *            예약전송시 예약일시.
-     * @param UserID
-     *            연동회원의 회원아이디
-     * @param requestNum
-     *            전송요청번호
-     * @return receiptNum 접수번호.
-     * @throws PopbillException
-     */
-    public String sendSMS(String CorpNum, String sender, String receiver,
-            String receiverName, String content, Date reserveDT, String UserID, String requestNum)
-            throws PopbillException;
-    
-    /**
-     * 단문문자메시지 1건 전송
-     * 
-     * @param CorpNum
-     *            연동회원 사업자번호
-     * @param sender
-     *            발신자번호
-     * @param receiver
-     *            수신자번호
-     * @param receiverName
-     *            수신자명칭
-     * @param content
-     *            단문메시지 내용 최대 90Byte.
-     * @param reserveDT
-     *            예약전송시 예약일시.
-     * @param adsYN
-     *            광고문자 전송여부 
-     * @param UserID
-     *            연동회원의 회원아이디
-     * @param requestNum
-     *            전송요청번호
-     * @return receiptNum 접수번호.
-     * @throws PopbillException
-     */
-    public String sendSMS(String CorpNum, String sender, String receiver,
-            String receiverName, String content, Date reserveDT, Boolean adsYN, String UserID, String requestNum)
-            throws PopbillException;
 
     /**
      * 단문문자메시지 다량 전송. 1회 최대 1000건.
@@ -261,40 +263,40 @@ public interface MessageService extends BaseService {
      *            연동회원 사업자번호
      * @param Messages
      *            메시지 배열.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendSMS(String CorpNum, Message[] Messages, Date reserveDT,
-            String UserID, String requestNum) throws PopbillException;
+    public String sendSMS(String CorpNum, Message[] Messages, Date ReserveDT,
+            String UserID, String RequestNum) throws PopbillException;
 
     /**
      * 단문문자메시지 다량전송. 발신번호, 내용 동보전송. 1회 최대 1000건.
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param content
+     * @param Content
      *            동보전송 단문문자메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendSMS(String CorpNum, String sender, String content,
-            Message[] Messages, Date reserveDT, String UserID, String requestNum)
+    public String sendSMS(String CorpNum, String Sender, String Content,
+            Message[] Messages, Date ReserveDT, String UserID, String RequestNum)
             throws PopbillException;
     
     /**
@@ -302,25 +304,25 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param content
+     * @param Content
      *            동보전송 단문문자메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
-     * @param adsYN
+     * @param AdsYN
      *            광고문자 전송여부
      * @param UserID
      *            연동회원 아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendSMS(String CorpNum, String sender, String content,
-            Message[] Messages, Date reserveDT, Boolean adsYN, String UserID, String requestNum)
+    public String sendSMS(String CorpNum, String Sender, String Content,
+            Message[] Messages, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum)
             throws PopbillException;
     
     /**
@@ -328,27 +330,27 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param senderName
+     * @param SenderName
      *            동보전송 발신자명
-     * @param content
+     * @param Content
      *            동보전송 단문문자메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
-     * @param adsYN
+     * @param AdsYN
      *            광고문자 전송여부
      * @param UserID
      *            연동회원 아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendSMS(String CorpNum, String sender, String senderName, String content,
-            Message[] Messages, Date reserveDT, Boolean adsYN, String UserID, String requestNum)
+    public String sendSMS(String CorpNum, String Sender, String SenderName, String Content,
+            Message[] Messages, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum)
             throws PopbillException;
 
     /**
@@ -356,54 +358,54 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            발신자번호
-     * @param receiver
+     * @param Receiver
      *            수신자번호
-     * @param receiverName
+     * @param ReceiverName
      *            수신자명칭
-     * @param subject
+     * @param Subject
      *            장문메시지 제목
-     * @param content
+     * @param Content
      *            장문메시지 내용 최대 2000Byte.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
      *            연동회원의 회원아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendLMS(String CorpNum, String sender, String receiver,
-            String receiverName, String subject, String content,
-            Date reserveDT, String UserID) throws PopbillException;
+    public String sendLMS(String CorpNum, String Sender, String Receiver,
+            String ReceiverName, String Subject, String Content,
+            Date ReserveDT, String UserID) throws PopbillException;
     
     /**
      * 장문문자메시지 1건 전송
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            발신자번호
-     * @param receiver
+     * @param Receiver
      *            수신자번호
-     * @param receiverName
+     * @param ReceiverName
      *            수신자명칭
-     * @param subject
+     * @param Subject
      *            장문메시지 제목
-     * @param content
+     * @param Content
      *            장문메시지 내용 최대 2000Byte.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약전송시 예약일시.
-     * @param adsYN
+     * @param AdsYN
      *            광고문자 전송여부 
      * @param UserID
      *            연동회원의 회원아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendLMS(String CorpNum, String sender, String receiver,
-            String receiverName, String subject, String content,
-            Date reserveDT, Boolean adsYN, String UserID) throws PopbillException;
+    public String sendLMS(String CorpNum, String Sender, String Receiver,
+            String ReceiverName, String Subject, String Content,
+            Date ReserveDT, Boolean AdsYN, String UserID) throws PopbillException;
 
     /**
      * 장문문자메시지 다량 전송. 1회 최대 1000건.
@@ -412,14 +414,14 @@ public interface MessageService extends BaseService {
      *            연동회원 사업자번호
      * @param Messages
      *            메시지 배열.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendLMS(String CorpNum, Message[] Messages, Date reserveDT,
+    public String sendLMS(String CorpNum, Message[] Messages, Date ReserveDT,
             String UserID) throws PopbillException;
 
     /**
@@ -427,23 +429,23 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param subject
+     * @param Subject
      *            동보전송 장문메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 장문메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendLMS(String CorpNum, String sender, String subject,
-            String content, Message[] Messages, Date reserveDT, String UserID)
+    public String sendLMS(String CorpNum, String Sender, String Subject,
+            String Content, Message[] Messages, Date ReserveDT, String UserID)
             throws PopbillException;
     
     /**
@@ -451,25 +453,25 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param subject
+     * @param Subject
      *            동보전송 장문메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 장문메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
-     * @parma adsYN
+     * @parma AdsYN
      *            광고문자 전송여부 
      * @param UserID
      *            연동회원 아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendLMS(String CorpNum, String sender, String subject, String content, 
-            Message[] Messages, Date reserveDT, Boolean adsYN, String UserID)
+    public String sendLMS(String CorpNum, String Sender, String Subject, String Content, 
+            Message[] Messages, Date ReserveDT, Boolean AdsYN, String UserID)
             throws PopbillException;
     
     /**
@@ -477,27 +479,27 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param senderName
+     * @param SenderName
      *            동보전송 발신자명
-     * @param subject
+     * @param Subject
      *            동보전송 장문메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 장문메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
-     * @parma adsYN
+     * @parma AdsYN
      *            광고문자 전송여부 
      * @param UserID
      *            연동회원 아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendLMS(String CorpNum, String sender, String senderName, String subject, String content, 
-            Message[] Messages, Date reserveDT, Boolean adsYN, String UserID)
+    public String sendLMS(String CorpNum, String Sender, String SenderName, String Subject, String Content, 
+            Message[] Messages, Date ReserveDT, Boolean AdsYN, String UserID)
             throws PopbillException;
 
     /**
@@ -505,58 +507,58 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            발신자번호
-     * @param receiver
+     * @param Receiver
      *            수신자번호
-     * @param receiverName
+     * @param ReceiverName
      *            수신자명칭
-     * @param subject
+     * @param Subject
      *            장문메시지 제목
-     * @param content
+     * @param Content
      *            장문메시지 내용 최대 2000Byte.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
      *            연동회원의 회원아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendLMS(String CorpNum, String sender, String receiver,
-            String receiverName, String subject, String content,
-            Date reserveDT, String UserID, String requestNum) throws PopbillException;
+    public String sendLMS(String CorpNum, String Sender, String Receiver,
+            String ReceiverName, String Subject, String Content,
+            Date ReserveDT, String UserID, String RequestNum) throws PopbillException;
     
     /**
      * 장문문자메시지 1건 전송
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            발신자번호
-     * @param receiver
+     * @param Receiver
      *            수신자번호
-     * @param receiverName
+     * @param ReceiverName
      *            수신자명칭
-     * @param subject
+     * @param Subject
      *            장문메시지 제목
-     * @param content
+     * @param Content
      *            장문메시지 내용 최대 2000Byte.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약전송시 예약일시.
-     * @param adsYN
+     * @param AdsYN
      *            광고문자 전송여부 
      * @param UserID
      *            연동회원의 회원아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendLMS(String CorpNum, String sender, String receiver,
-            String receiverName, String subject, String content,
-            Date reserveDT, Boolean adsYN, String UserID, String requestNum) throws PopbillException;
+    public String sendLMS(String CorpNum, String Sender, String Receiver,
+            String ReceiverName, String Subject, String Content,
+            Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum) throws PopbillException;
 
     /**
      * 장문문자메시지 다량 전송. 1회 최대 1000건.
@@ -565,42 +567,42 @@ public interface MessageService extends BaseService {
      *            연동회원 사업자번호
      * @param Messages
      *            메시지 배열.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendLMS(String CorpNum, Message[] Messages, Date reserveDT,
-            String UserID, String requestNum) throws PopbillException;
+    public String sendLMS(String CorpNum, Message[] Messages, Date ReserveDT,
+            String UserID, String RequestNum) throws PopbillException;
 
     /**
      * 장문문자메시지 다량전송. 발신번호, 내용 동보전송. 1회 최대 1000건.
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param subject
+     * @param Subject
      *            동보전송 장문메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 장문메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendLMS(String CorpNum, String sender, String subject,
-            String content, Message[] Messages, Date reserveDT, String UserID, String requestNum)
+    public String sendLMS(String CorpNum, String Sender, String Subject,
+            String Content, Message[] Messages, Date ReserveDT, String UserID, String RequestNum)
             throws PopbillException;
     
     /**
@@ -608,27 +610,27 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param subject
+     * @param Subject
      *            동보전송 장문메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 장문메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
-     * @parma adsYN
+     * @parma AdsYN
      *            광고문자 전송여부 
      * @param UserID
      *            연동회원 아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendLMS(String CorpNum, String sender, String subject, String content, 
-            Message[] Messages, Date reserveDT, Boolean adsYN, String UserID, String requestNum)
+    public String sendLMS(String CorpNum, String Sender, String Subject, String Content, 
+            Message[] Messages, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum)
             throws PopbillException;
     
     /**
@@ -636,29 +638,29 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param senderName
+     * @param SenderName
      *            동보전송 발신자명
-     * @param subject
+     * @param Subject
      *            동보전송 장문메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 장문메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
-     * @parma adsYN
+     * @parma AdsYN
      *            광고문자 전송여부 
      * @param UserID
      *            연동회원 아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendLMS(String CorpNum, String sender, String senderName, String subject, String content, 
-            Message[] Messages, Date reserveDT, Boolean adsYN, String UserID, String requestNum)
+    public String sendLMS(String CorpNum, String Sender, String SenderName, String Subject, String Content, 
+            Message[] Messages, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum)
             throws PopbillException;
     
     /**
@@ -666,58 +668,58 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            발신자번호
-     * @param receiver
+     * @param Receiver
      *            수신자번호
-     * @param receiverName
+     * @param ReceiverName
      *            수신자명칭
-     * @param subject
+     * @param Subject
      *            장문메시지 제목
-     * @param content
+     * @param Content
      *            장문메시지 내용 최대 2000Byte.
-     * @param file
+     * @param File
      *            전송파일 최대크기 300Kbyte
-     * @param reserveDT
+     * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
      *            연동회원의 회원아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendMMS(String CorpNum, String sender, String receiver,
-            String receiverName, String subject, String content, File file,
-            Date reserveDT, String UserID) throws PopbillException;
+    public String sendMMS(String CorpNum, String Sender, String Receiver,
+            String ReceiverName, String Subject, String Content, File File,
+            Date ReserveDT, String UserID) throws PopbillException;
     
     /**
      * 멀티문자메시지 1건 전송
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            발신자번호
-     * @param receiver
+     * @param Receiver
      *            수신자번호
-     * @param receiverName
+     * @param ReceiverName
      *            수신자명칭
-     * @param subject
+     * @param Subject
      *            장문메시지 제목
-     * @param content
+     * @param Content
      *            장문메시지 내용 최대 2000Byte.
-     * @param file
+     * @param File
      *            전송파일 최대크기 300Kbyte
-     * @param reserveDT
+     * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
      *            연동회원의 회원아이디
-     * @param adsYN
+     * @param AdsYN
      *            광고문자 전송여부 
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendMMS(String CorpNum, String sender, String receiver,
-            String receiverName, String subject, String content, File file,
-            Date reserveDT, Boolean adsYN, String UserID) throws PopbillException;
+    public String sendMMS(String CorpNum, String Sender, String Receiver,
+            String ReceiverName, String Subject, String Content, File File,
+            Date ReserveDT, Boolean AdsYN, String UserID) throws PopbillException;
 
     /**
      * 멀티 문자메시지 다량 전송. 1회 최대 1000건.
@@ -726,16 +728,16 @@ public interface MessageService extends BaseService {
      *            연동회원 사업자번호
      * @param Messages
      *            메시지 배열.
-     * @param file
+     * @param File
      *            전송파일 최대크기 300Kbyte
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendMMS(String CorpNum, Message[] Messages, File file, Date reserveDT,
+    public String sendMMS(String CorpNum, Message[] Messages, File File, Date ReserveDT,
             String UserID) throws PopbillException;
 
     /**
@@ -743,25 +745,25 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param subject
+     * @param Subject
      *            동보전송 장문메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 장문메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param file
+     * @param File
      *            전송파일 최대크기 300Kbyte
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendMMS(String CorpNum, String sender, String subject,
-            String content, Message[] Messages, File file, Date reserveDT, String UserID)
+    public String sendMMS(String CorpNum, String Sender, String Subject,
+            String Content, Message[] Messages, File File, Date ReserveDT, String UserID)
             throws PopbillException;
     
     /**
@@ -769,27 +771,27 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param subject
+     * @param Subject
      *            동보전송 장문메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 장문메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param file
+     * @param File
      *            전송파일 최대크기 300Kbyte
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
-     * @param adsYN
+     * @param AdsYN
      *          광고문자 전송여부 
      * @param UserID
      *            연동회원 아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendMMS(String CorpNum, String sender, String subject, String content, 
-            Message[] Messages, File file, Date reserveDT, Boolean adsYN, String UserID)
+    public String sendMMS(String CorpNum, String Sender, String Subject, String Content, 
+            Message[] Messages, File File, Date ReserveDT, Boolean AdsYN, String UserID)
             throws PopbillException;
     
     /**
@@ -797,29 +799,29 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param senderName
+     * @param SenderName
      *            동보전송 발신자명
-     * @param subject
+     * @param Subject
      *            동보전송 장문메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 장문메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param file
+     * @param File
      *            전송파일 최대크기 300Kbyte
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
-     * @param adsYN
+     * @param AdsYN
      *          광고문자 전송여부 
      * @param UserID
      *            연동회원 아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendMMS(String CorpNum, String sender, String senderName, String subject, String content, 
-            Message[] Messages, File file, Date reserveDT, Boolean adsYN, String UserID)
+    public String sendMMS(String CorpNum, String Sender, String SenderName, String Subject, String Content, 
+            Message[] Messages, File File, Date ReserveDT, Boolean AdsYN, String UserID)
             throws PopbillException;
 
     /**
@@ -827,62 +829,62 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            발신자번호
-     * @param receiver
+     * @param Receiver
      *            수신자번호
-     * @param receiverName
+     * @param ReceiverName
      *            수신자명칭
-     * @param subject
+     * @param Subject
      *            장문메시지 제목
-     * @param content
+     * @param Content
      *            장문메시지 내용 최대 2000Byte.
-     * @param file
+     * @param File
      *            전송파일 최대크기 300Kbyte
-     * @param reserveDT
+     * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
      *            연동회원의 회원아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendMMS(String CorpNum, String sender, String receiver,
-            String receiverName, String subject, String content, File file,
-            Date reserveDT, String UserID, String requestNum) throws PopbillException;
+    public String sendMMS(String CorpNum, String Sender, String Receiver,
+            String ReceiverName, String Subject, String Content, File File,
+            Date ReserveDT, String UserID, String RequestNum) throws PopbillException;
     
     /**
      * 멀티문자메시지 1건 전송
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            발신자번호
-     * @param receiver
+     * @param Receiver
      *            수신자번호
-     * @param receiverName
+     * @param ReceiverName
      *            수신자명칭
-     * @param subject
+     * @param Subject
      *            장문메시지 제목
-     * @param content
+     * @param Content
      *            장문메시지 내용 최대 2000Byte.
-     * @param file
+     * @param File
      *            전송파일 최대크기 300Kbyte
-     * @param reserveDT
+     * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
      *            연동회원의 회원아이디
-     * @param adsYN
+     * @param AdsYN
      *            광고문자 전송여부 
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendMMS(String CorpNum, String sender, String receiver,
-            String receiverName, String subject, String content, File file,
-            Date reserveDT, Boolean adsYN, String UserID, String requestNum) throws PopbillException;
+    public String sendMMS(String CorpNum, String Sender, String Receiver,
+            String ReceiverName, String Subject, String Content, File File,
+            Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum) throws PopbillException;
 
     /**
      * 멀티 문자메시지 다량 전송. 1회 최대 1000건.
@@ -891,46 +893,46 @@ public interface MessageService extends BaseService {
      *            연동회원 사업자번호
      * @param Messages
      *            메시지 배열.
-     * @param file
+     * @param File
      *            전송파일 최대크기 300Kbyte
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendMMS(String CorpNum, Message[] Messages, File file, Date reserveDT,
-            String UserID, String requestNum) throws PopbillException;
+    public String sendMMS(String CorpNum, Message[] Messages, File File, Date ReserveDT,
+            String UserID, String RequestNum) throws PopbillException;
 
     /**
      * 멀티 문자메시지 다량 전송. 발신번호, 내용 동보전송. 1회 최대 1000건.
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param subject
+     * @param Subject
      *            동보전송 장문메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 장문메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param file
+     * @param File
      *            전송파일 최대크기 300Kbyte
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendMMS(String CorpNum, String sender, String subject,
-            String content, Message[] Messages, File file, Date reserveDT, String UserID, String requestNum)
+    public String sendMMS(String CorpNum, String Sender, String Subject,
+            String Content, Message[] Messages, File File, Date ReserveDT, String UserID, String RequestNum)
             throws PopbillException;
     
     /**
@@ -938,29 +940,29 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param subject
+     * @param Subject
      *            동보전송 장문메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 장문메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param file
+     * @param File
      *            전송파일 최대크기 300Kbyte
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
-     * @param adsYN
+     * @param AdsYN
      *          광고문자 전송여부 
      * @param UserID
      *            연동회원 아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendMMS(String CorpNum, String sender, String subject, String content, 
-            Message[] Messages, File file, Date reserveDT, Boolean adsYN, String UserID, String requestNum)
+    public String sendMMS(String CorpNum, String Sender, String Subject, String Content, 
+            Message[] Messages, File File, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum)
             throws PopbillException;
     
     /**
@@ -968,31 +970,31 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param senderName
+     * @param SenderName
      *            동보전송 발신자명
-     * @param subject
+     * @param Subject
      *            동보전송 장문메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 장문메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param file
+     * @param File
      *            전송파일 최대크기 300Kbyte
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
-     * @param adsYN
+     * @param AdsYN
      *          광고문자 전송여부 
      * @param UserID
      *            연동회원 아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendMMS(String CorpNum, String sender, String senderName, String subject, String content, 
-            Message[] Messages, File file, Date reserveDT, Boolean adsYN, String UserID, String requestNum)
+    public String sendMMS(String CorpNum, String Sender, String SenderName, String Subject, String Content, 
+            Message[] Messages, File File, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum)
             throws PopbillException;
 
     /**
@@ -1000,54 +1002,54 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            발신자번호
-     * @param receiver
+     * @param Receiver
      *            수신자번호
-     * @param receiverName
+     * @param ReceiverName
      *            수신자명칭
-     * @param subject
+     * @param Subject
      *            메시지 제목
-     * @param content
+     * @param Content
      *            메시지 내용
-     * @param reserveDT
+     * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
      *            연동회원의 회원아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendXMS(String CorpNum, String sender, String receiver,
-            String receiverName, String subject, String content,
-            Date reserveDT, String UserID) throws PopbillException;
+    public String sendXMS(String CorpNum, String Sender, String Receiver,
+            String ReceiverName, String Subject, String Content,
+            Date ReserveDT, String UserID) throws PopbillException;
     
     /**
      * 단/장문 문자메시지(메시지 길이에 따라 단문/장문을 선택하여 전송) 1건 전송
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            발신자번호
-     * @param receiver
+     * @param Receiver
      *            수신자번호
-     * @param receiverName
+     * @param ReceiverName
      *            수신자명칭
-     * @param subject
+     * @param Subject
      *            메시지 제목
-     * @param content
+     * @param Content
      *            메시지 내용
-     * @param reserveDT
+     * @param ReserveDT
      *            예약전송시 예약일시.
-     * @param adsYN
+     * @param AdsYN
      *            광고문자 전송여부.
      * @param UserID
      *            연동회원의 회원아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendXMS(String CorpNum, String sender, String receiver,
-            String receiverName, String subject, String content,
-            Date reserveDT, Boolean adsYN, String UserID) throws PopbillException;
+    public String sendXMS(String CorpNum, String Sender, String Receiver,
+            String ReceiverName, String Subject, String Content,
+            Date ReserveDT, Boolean AdsYN, String UserID) throws PopbillException;
 
     /**
      * 단/장문 문자메시지(메시지 길이에 따라 단문/장문을 선택하여 전송) 다량 전송. 1회 최대 1000건.
@@ -1056,14 +1058,14 @@ public interface MessageService extends BaseService {
      *            연동회원 사업자번호
      * @param Messages
      *            메시지 배열.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendXMS(String CorpNum, Message[] Messages, Date reserveDT,
+    public String sendXMS(String CorpNum, Message[] Messages, Date ReserveDT,
             String UserID) throws PopbillException;
 
     /**
@@ -1071,23 +1073,23 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param subject
+     * @param Subject
      *            동보전송 메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendXMS(String CorpNum, String sender, String subject,
-            String content, Message[] Messages, Date reserveDT, String UserID)
+    public String sendXMS(String CorpNum, String Sender, String Subject,
+            String Content, Message[] Messages, Date ReserveDT, String UserID)
             throws PopbillException;
     
     /**
@@ -1095,25 +1097,25 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param subject
+     * @param Subject
      *            동보전송 메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
+     * @param AdsYN
+     *            광고문자 전송여부
      * @param UserID
      *            연동회원 아이디
-     * @param tranNet
-     *            광고문자 전송여부 
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendXMS(String CorpNum, String sender, String subject,
-            String content, Message[] Messages, Date reserveDT, Boolean adsYN, String UserID)
+    public String sendXMS(String CorpNum, String Sender, String Subject,
+            String Content, Message[] Messages, Date ReserveDT, Boolean AdsYN, String UserID)
             throws PopbillException;
     
     /**
@@ -1121,27 +1123,27 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param senderName
+     * @param SenderName
      *            동보전송 발신자명
-     * @param subject
+     * @param Subject
      *            동보전송 메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
+     * @param AdsYN
+     *            광고문자 전송여부
      * @param UserID
      *            연동회원 아이디
-     * @param tranNet
-     *            광고문자 전송여부 
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendXMS(String CorpNum, String sender, String senderName, String subject,
-            String content, Message[] Messages, Date reserveDT, Boolean adsYN, String UserID)
+    public String sendXMS(String CorpNum, String Sender, String SenderName, String Subject,
+            String Content, Message[] Messages, Date ReserveDT, Boolean AdsYN, String UserID)
             throws PopbillException;
 
     /**
@@ -1149,58 +1151,58 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            발신자번호
-     * @param receiver
+     * @param Receiver
      *            수신자번호
-     * @param receiverName
+     * @param ReceiverName
      *            수신자명칭
-     * @param subject
+     * @param Subject
      *            메시지 제목
-     * @param content
+     * @param Content
      *            메시지 내용
-     * @param reserveDT
+     * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
      *            연동회원의 회원아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendXMS(String CorpNum, String sender, String receiver,
-            String receiverName, String subject, String content,
-            Date reserveDT, String UserID, String requestNum) throws PopbillException;
+    public String sendXMS(String CorpNum, String Sender, String Receiver,
+            String ReceiverName, String Subject, String Content,
+            Date ReserveDT, String UserID, String RequestNum) throws PopbillException;
     
     /**
      * 단/장문 문자메시지(메시지 길이에 따라 단문/장문을 선택하여 전송) 1건 전송
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            발신자번호
-     * @param receiver
+     * @param Receiver
      *            수신자번호
-     * @param receiverName
+     * @param ReceiverName
      *            수신자명칭
-     * @param subject
+     * @param Subject
      *            메시지 제목
-     * @param content
+     * @param Content
      *            메시지 내용
-     * @param reserveDT
+     * @param ReserveDT
      *            예약전송시 예약일시.
-     * @param adsYN
+     * @param AdsYN
      *            광고문자 전송여부.
      * @param UserID
      *            연동회원의 회원아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendXMS(String CorpNum, String sender, String receiver,
-            String receiverName, String subject, String content,
-            Date reserveDT, Boolean adsYN, String UserID, String requestNum) throws PopbillException;
+    public String sendXMS(String CorpNum, String Sender, String Receiver,
+            String ReceiverName, String Subject, String Content,
+            Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum) throws PopbillException;
 
     /**
      * 단/장문 문자메시지(메시지 길이에 따라 단문/장문을 선택하여 전송) 다량 전송. 1회 최대 1000건.
@@ -1209,42 +1211,42 @@ public interface MessageService extends BaseService {
      *            연동회원 사업자번호
      * @param Messages
      *            메시지 배열.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendXMS(String CorpNum, Message[] Messages, Date reserveDT,
-            String UserID, String requestNum) throws PopbillException;
+    public String sendXMS(String CorpNum, Message[] Messages, Date ReserveDT,
+            String UserID, String RequestNum) throws PopbillException;
 
     /**
      * 단/장문 문자메시지(메시지 길이에 따라 단문/장문을 선택하여 전송) 다량전송. 발신번호, 내용 동보전송. 1회 최대 1000건.
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param subject
+     * @param Subject
      *            동보전송 메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
      * @param UserID
      *            연동회원 아이디
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendXMS(String CorpNum, String sender, String subject,
-            String content, Message[] Messages, Date reserveDT, String UserID, String requestNum)
+    public String sendXMS(String CorpNum, String Sender, String Subject,
+            String Content, Message[] Messages, Date ReserveDT, String UserID, String RequestNum)
             throws PopbillException;
     
     /**
@@ -1252,27 +1254,27 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param subject
+     * @param Subject
      *            동보전송 메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
+     * @param AdsYN
+     *            광고문자 전송여부
      * @param UserID
      *            연동회원 아이디
-     * @param tranNet
-     *            광고문자 전송여부 
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendXMS(String CorpNum, String sender, String subject,
-            String content, Message[] Messages, Date reserveDT, Boolean adsYN, String UserID, String requestNum)
+    public String sendXMS(String CorpNum, String Sender, String Subject,
+            String Content, Message[] Messages, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum)
             throws PopbillException;
     
     /**
@@ -1280,29 +1282,29 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param sender
+     * @param Sender
      *            동보전송 발신번호
-     * @param senderName
+     * @param SenderName
      *            동보전송 발신자명
-     * @param subject
+     * @param Subject
      *            동보전송 메시지 제목
-     * @param content
+     * @param Content
      *            동보전송 메시지 내용.
      * @param Messages
      *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
-     * @param reserveDT
+     * @param ReserveDT
      *            예약일시
+     * @param AdsYN
+     *            광고문자 전송여부
      * @param UserID
      *            연동회원 아이디
-     * @param tranNet
-     *            광고문자 전송여부 
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @return receiptNum 접수번호.
+     * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
-    public String sendXMS(String CorpNum, String sender, String senderName, String subject,
-            String content, Message[] Messages, Date reserveDT, Boolean adsYN, String UserID, String requestNum)
+    public String sendXMS(String CorpNum, String Sender, String SenderName, String Subject,
+            String Content, Message[] Messages, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum)
             throws PopbillException;    
     
     /**
@@ -1310,12 +1312,12 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param receiptNum
+     * @param ReceiptNum
      *            전송시 접수번호.
      * @return SentMessage 배열.
      * @throws PopbillException
      */
-    public SentMessage[] getMessages(String CorpNum, String receiptNum)
+    public SentMessage[] getMessages(String CorpNum, String ReceiptNum)
             throws PopbillException;
     
     /**
@@ -1323,14 +1325,14 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param receiptNum
+     * @param ReceiptNum
      *            전송시 접수번호.
-     * @param userID
+     * @param UserID
      *            연동회원 아이디
      * @return SentMessage 배열.
      * @throws PopbillException
      */
-    public SentMessage[] getMessages(String CorpNum, String receiptNum, String userID)
+    public SentMessage[] getMessages(String CorpNum, String ReceiptNum, String UserID)
             throws PopbillException;    
     
     /**
@@ -1338,12 +1340,12 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
      * @return SentMessage 배열.
      * @throws PopbillException
      */
-    public SentMessage[] getMessagesRN(String CorpNum, String requestNum)
+    public SentMessage[] getMessagesRN(String CorpNum, String RequestNum)
             throws PopbillException;
     
     /**
@@ -1351,14 +1353,14 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param requestNum
+     * @param RequestNum
      *            전송요청번호
-     * @param userID
+     * @param UserID
      *            연동회원 아이디
      * @return SentMessage 배열.
      * @throws PopbillException
      */
-    public SentMessage[] getMessagesRN(String CorpNum, String requestNum, String userID)
+    public SentMessage[] getMessagesRN(String CorpNum, String RequestNum, String UserID)
             throws PopbillException;        
 
     /**
@@ -1366,143 +1368,143 @@ public interface MessageService extends BaseService {
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param receiptNumList
+     * @param ReceiptNumList
      *            문자전송 접수번호 배열
      * @return MessageBriefInfo 배열
      * @throws PopbillException
      */
-    public MessageBriefInfo[] getStates(String corpNum, String[] receiptNumList)
+    public MessageBriefInfo[] getStates(String CorpNum, String[] ReceiptNumList)
             throws PopbillException;    
 
     /**
      * 전송내역 요약정보 확인
      * 
-     * @param corpNum
+     * @param CorpNum
      *            연동회원 사업자번호
-     * @param receiptNumList
+     * @param ReceiptNumList
      *            문자전송 접수번호 배열
-     * @param userID
+     * @param UserID
      *            연동회원 아이디
      * @return MessageBriefInfo 배열
      * @throws PopbillException
      */
-    public MessageBriefInfo[] getStates(String corpNum, String[] receiptNumList, String userID)
+    public MessageBriefInfo[] getStates(String CorpNum, String[] ReceiptNumList, String UserID)
             throws PopbillException;    
     
     /**
      * 예약 메시지 전송 취소. 예약시간 기준 10분전의 건만 취소 가능.
      * 
-     * @param corpNum
+     * @param CorpNum
      *            연동회원 사업자번호
-     * @param receiptNum
+     * @param ReceiptNum
      *            전송시 접수번호.
      * @return Response 응답
      * @throws PopbillException
      */
-    public Response cancelReserve(String CorpNum, String receiptNum) throws PopbillException;
+    public Response cancelReserve(String CorpNum, String ReceiptNum) throws PopbillException;
 
     /**
      * 예약 메시지 전송 취소. 예약시간 기준 10분전의 건만 취소 가능.
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param receiptNum
+     * @param ReceiptNum
      *            전송시 접수번호.
      * @param UserID
      *            연동회원 아이디
      * @return Response 응답
      * @throws PopbillException
      */
-    public Response cancelReserve(String CorpNum, String receiptNum,
+    public Response cancelReserve(String CorpNum, String ReceiptNum,
             String UserID) throws PopbillException;
-    
-    /**
-     * 예약 메시지 전송 취소. 예약시간 기준 10분전의 건만 취소 가능.
-     * 
-     * @param corpNum
-     *            연동회원 사업자번호
-     * @param requestNum
-     *            전송요청번호
-     * @return Response 응답
-     * @throws PopbillException
-     */
-    public Response cancelReserveRN(String CorpNum, String requestNum) throws PopbillException; 
     
     /**
      * 예약 메시지 전송 취소. 예약시간 기준 10분전의 건만 취소 가능.
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param requestNum
+     * @param RequestNum
+     *            전송요청번호
+     * @return Response 응답
+     * @throws PopbillException
+     */
+    public Response cancelReserveRN(String CorpNum, String RequestNum) throws PopbillException; 
+    
+    /**
+     * 예약 메시지 전송 취소. 예약시간 기준 10분전의 건만 취소 가능.
+     * 
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @param RequestNum
      *            전송요청번호
      * @param UserID
      *            연동회원 아이디
      * @return Response 응답
      * @throws PopbillException
      */
-    public Response cancelReserveRN(String CorpNum, String requestNum,
+    public Response cancelReserveRN(String CorpNum, String RequestNum,
             String UserID) throws PopbillException; 
     
     /**
      * 예약 메시지 전송 취소. 예약시간 기준 10분전의 건만 취소 가능.
      * 
-     * @param corpNum
+     * @param CorpNum
      *            연동회원 사업자번호
-     * @param receiptNum
+     * @param ReceiptNum
      *            전송시 접수번호.
-     * @param receiveNum
+     * @param ReceiveNum
      *            전송시 수신번호
      * @return Response 응답
      * @throws PopbillException
      */
-    public Response cancelReservebyRCV(String CorpNum, String receiptNum, String receiveNum) throws PopbillException;
+    public Response cancelReservebyRCV(String CorpNum, String ReceiptNum, String ReceiveNum) throws PopbillException;
     
     /**
      * 예약 메시지 전송 취소. 예약시간 기준 10분전의 건만 취소 가능.
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param receiptNum
+     * @param ReceiptNum
      *            전송시 접수번호.
-     * @param receiveNum
+     * @param ReceiveNum
      *            전송시 수신번호
      * @param UserID
      *            연동회원 아이디
      * @return Response 응답
      * @throws PopbillException
      */
-    public Response cancelReservebyRCV(String CorpNum, String receiptNum, String receiveNum, 
+    public Response cancelReservebyRCV(String CorpNum, String ReceiptNum, String ReceiveNum, 
             String UserID) throws PopbillException;
     
     /**
      * 예약 메시지 전송 취소. 예약시간 기준 10분전의 건만 취소 가능.
      * 
-     * @param corpNum
+     * @param CorpNum
      *            연동회원 사업자번호
-     * @param requestNum
+     * @param RequestNum
      *            전송시 요청번호
-     * @param receiveNum
+     * @param ReceiveNum
      *            전송시 수신번호
      * @return Response 응답
      * @throws PopbillException
      */
-    public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum) throws PopbillException; 
+    public Response cancelReserveRNbyRCV(String CorpNum, String RequestNum, String ReceiveNum) throws PopbillException; 
     
     /**
      * 예약 메시지 전송 취소. 예약시간 기준 10분전의 건만 취소 가능.
      * 
      * @param CorpNum
      *            연동회원 사업자번호
-     * @param requestNum
+     * @param RequestNum
      *            전송시 요청번호
-     * @param receiveNum
+     * @param ReceiveNum
      *            전송시 수신번호
      * @param UserID
      *            연동회원 아이디
      * @return Response 응답
      * @throws PopbillException
      */
-    public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum,
+    public Response cancelReserveRNbyRCV(String CorpNum, String RequestNum, String ReceiveNum,
             String UserID) throws PopbillException; 
     
     /**
@@ -1533,7 +1535,7 @@ public interface MessageService extends BaseService {
      */
     public MSGSearchResult search(String CorpNum, String SDate, String EDate, 
             String[] State, String[] Item, Boolean ReserveYN, Boolean SenderYN, 
-            int Page, int PerPage, String Order) throws PopbillException;
+            Integer Page, Integer PerPage, String Order) throws PopbillException;
     
     /**
      * 문자전송내역 조회 
@@ -1565,8 +1567,42 @@ public interface MessageService extends BaseService {
      */
     public MSGSearchResult search(String CorpNum, String SDate, String EDate, 
             String[] State, String[] Item, Boolean ReserveYN, Boolean SenderYN, 
-            int Page, int PerPage, String Order, String QString) throws PopbillException;   
-    
+            Integer Page, Integer PerPage, String Order, String QString) throws PopbillException;
+
+    /**
+     * 문자전송내역 조회
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param SDate
+     *          시작일자(yyyyMMdd)
+     * @param EDate
+     *          종료일자(yyyyMMdd)
+     * @param State
+     *          전송상태 배열, 1-대기, 2-성공, 3-실패, 4-취소
+     * @param Item
+     *          검색대상 배열, SMS-단문, LMS-장문 ,MMS-포토
+     * @param ReserveYN
+     *          예약여부, true-예약전송조회, false-전체조회
+     * @param SenderYN
+     *          개인조회여부, true-개인조회, false-전체조회
+     * @param Page
+     *          페이지번호
+     * @param PerPage
+     *          페이지당 검색갯수, 기본값 500, 최대값 1000
+     * @param Order
+     *          정렬방향, D-내림차순, A-오름차순
+     * @param QString
+     *          조회검색어. 발신자명 또는 수신자명 기재
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return 전송내역 조회 (see, com.popbill.api.message.MSGSearchResult)
+     * @throws PopbillException
+     */
+    public MSGSearchResult search(String CorpNum, String SDate, String EDate,
+            String[] State, String[] Item, Boolean ReserveYN, Boolean SenderYN,
+            Integer Page, Integer PerPage, String Order, String QString, String UserID) throws PopbillException;
+
     /**
      * 080 수신거부목록 확인 
      * 
@@ -1576,7 +1612,18 @@ public interface MessageService extends BaseService {
      * @throws PopbillException
      */
     public AutoDeny[] getAutoDenyList(String CorpNum) throws PopbillException;
-    
+    /**
+     * 080 수신거부목록 확인
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return 080수신거부목록
+     * @throws PopbillException
+     */
+    public AutoDeny[] getAutoDenyList(String CorpNum, String UserID) throws PopbillException;
+
     /**
      * 080 번호 확인
      * 
