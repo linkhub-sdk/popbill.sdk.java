@@ -117,9 +117,12 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 
         uri += "?TradeUsage=" + Arrays.toString(TradeUsage).replaceAll("\\[|\\]|\\s", "");
         uri += "&TradeType=" + Arrays.toString(TradeType).replaceAll("\\[|\\]|\\s", "");
-        uri += "&Page=" + Integer.toString(Page);
-        uri += "&PerPage=" + Integer.toString(PerPage);
-        uri += "&Order=" + Order;
+        if(Page != null)
+            uri += "&Page=" + Integer.toString(Page);
+        if(PerPage != null)
+            uri += "&PerPage=" + Integer.toString(PerPage);
+        if(Order != null && !Order.isEmpty())
+            uri += "&Order=" + Order;
 
         return httpget(uri, CorpNum, UserID, HTCashbillSearchResult.class);
     }

@@ -45,7 +45,7 @@ public interface HTCashbillService extends BaseService{
      * 
      * @param CorpNum
      *          연동회원 사업자번호 
-     * @param queryType
+     * @param QueryType
      *          현금영수증 유형, SELL-매출 현금영수증, BUY-매입 현금영수증 
      * @param SDate
      *          시작일자 (yyyyMMdd)
@@ -54,7 +54,7 @@ public interface HTCashbillService extends BaseService{
      * @return 작업아이디 (jobID)
      * @throws PopbillException
      */
-    public String requestJob(String CorpNum, QueryType queryType, String SDate, String EDate) throws PopbillException;
+    public String requestJob(String CorpNum, QueryType QueryType, String SDate, String EDate) throws PopbillException;
     
     
     /**
@@ -62,7 +62,7 @@ public interface HTCashbillService extends BaseService{
      * 
      * @param CorpNum
      *          연동회원 사업자번호 
-     * @param queryType
+     * @param QueryType
      *          현금영수증 유형, SELL-매출 현금영수증, BUY-매입 현금영수증 
      * @param SDate
      *          시작일자 (yyyyMMdd)
@@ -73,7 +73,7 @@ public interface HTCashbillService extends BaseService{
      * @return 작업아이디 (jobID)
      * @throws PopbillException
      */
-    public String requestJob(String CorpNum, QueryType queryType, String SDate, String EDate, String UserID) throws PopbillException;
+    public String requestJob(String CorpNum, QueryType QueryType, String SDate, String EDate, String UserID) throws PopbillException;
     
     
     /**
@@ -303,9 +303,9 @@ public interface HTCashbillService extends BaseService{
      * 
      * @param CorpNum
      *          연동회원 사업자번호
-     * @param HTUserID
+     * @param DeptUserID
      *          홈택스 부서사용자 계정 아이디
-     * @param HTUserPW
+     * @param DeptUserPWD
      *          홈택스 부서사용자 계정 비밀번호
      * @return Response
      * @throws PopbillException
