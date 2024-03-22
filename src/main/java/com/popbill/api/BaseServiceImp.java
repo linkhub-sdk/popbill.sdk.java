@@ -650,10 +650,15 @@ public abstract class BaseServiceImp implements BaseService {
     if (quitReason == null || quitReason.isEmpty())
       throw new PopbillException(-99999999, "탈퇴사유가 입력되지 않았습니다.");
 
-    String postData = "{'quitReason' :" + "'" + quitReason + "'}";
+        String postData = "{'quitReason' :" + "'" + quitReason + "'}";
+        Response quitResponse = httppost("/QuitRequest", CorpNum, postData, UserID, Response.class);
 
-    return httppost("/QuitRequest", CorpNum, postData, UserID, Response.class);
-  }
+        if (quitResponse.getCode() == 1) {
+            // 토큰 테이블 캐시 삭제
+            tokenTable.remove(CorpNum);
+        }
+        return quitResponse;
+    }
 
   /*
    * (non-Javadoc)
