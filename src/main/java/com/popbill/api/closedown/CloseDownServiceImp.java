@@ -41,8 +41,13 @@ public class CloseDownServiceImp extends BaseServiceImp implements CloseDownServ
      * @see com.popbill.api.CloseDownService#CheckCorpNum
      */
     @Override
-    public CorpState CheckCorpNum(String MemberCorpNum, String CheckCorpNum) throws PopbillException {
-        return httpget("/CloseDown?CN=" + CheckCorpNum, MemberCorpNum, null, CorpState.class);
+    public CorpState CheckCorpNum(String CorpNum, String CheckCorpNum) throws PopbillException {
+        return CheckCorpNum(CorpNum, CheckCorpNum, null);
+    }
+
+    @Override
+    public CorpState CheckCorpNum(String CorpNum, String CheckCorpNum, String UserID) throws PopbillException {
+        return httpget("/CloseDown?CN=" + CheckCorpNum, CorpNum, UserID, CorpState.class);
     }
 
     /*
@@ -51,11 +56,16 @@ public class CloseDownServiceImp extends BaseServiceImp implements CloseDownServ
      * @see com.popbill.api.CloseDownService#CheckCorpNum
      */
     @Override
-    public CorpState[] CheckCorpNum(String MemberCorpNum, String[] CorpNumList) throws PopbillException {
+    public CorpState[] CheckCorpNum(String CorpNum, String[] CorpNumList) throws PopbillException {
+        return CheckCorpNum(CorpNum, CorpNumList, null);
+    }
+
+    @Override
+    public CorpState[] CheckCorpNum(String CorpNum, String[] CorpNumList, String UserID) throws PopbillException {
 
         String PostData = toJsonString(CorpNumList);
 
-        return httppost("/CloseDown", MemberCorpNum, PostData, null, CorpState[].class);
+        return httppost("/CloseDown", CorpNum, PostData, UserID, CorpState[].class);
     }
 
     /*
@@ -65,6 +75,11 @@ public class CloseDownServiceImp extends BaseServiceImp implements CloseDownServ
      */
     @Override
     public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
-        return httpget("/CloseDown/ChargeInfo", CorpNum, null, ChargeInfo.class);
+        return getChargeInfo(CorpNum, null);
+    }
+
+    @Override
+    public ChargeInfo getChargeInfo(String CorpNum, String UserID) throws PopbillException {
+        return httpget("/CloseDown/ChargeInfo", CorpNum, UserID, ChargeInfo.class);
     }
 }
