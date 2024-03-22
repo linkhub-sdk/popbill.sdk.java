@@ -487,16 +487,32 @@ public interface HTTaxinvoiceService extends BaseService{
     /**
      * 부서사용자 계정등록
      * 
-     * @param corpNum
+     * @param CorpNum
      *          연동회원 사업자번호
-     * @param deptUserID
+     * @param DeptUserID
      *          홈택스 부서사용자 계정 아이디
-     * @param deptUserPWD
+     * @param DeptUserPWD
      *          홈택스 부서사용자 계정 비밀번호
      * @return Response
      * @throws PopbillException
      */
-    public Response registDeptUser(String corpNum, String deptUserID, String deptUserPWD) throws PopbillException;
+    public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD) throws PopbillException;
+
+    /**
+     * 부서사용자 계정등록
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param DeptUserID
+     *          홈택스 부서사용자 계정 아이디
+     * @param DeptUserPWD
+     *          홈택스 부서사용자 계정 비밀번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return Response
+     * @throws PopbillException
+     */
+    public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String UserID) throws PopbillException;
 
     /**
      * 부서사용자 등록정보 확인

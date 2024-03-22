@@ -191,9 +191,12 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
             }
         }
 
-        uri += "&Page=" + Integer.toString(Page);
-        uri += "&PerPage=" + Integer.toString(PerPage);
-        uri += "&Order=" + Order;
+        if(Page!=null)
+            uri += "&Page=" + Integer.toString(Page);
+        if(PerPage!=null)
+            uri += "&PerPage=" + Integer.toString(PerPage);
+        if(Order!=null && !Order.isEmpty())
+            uri += "&Order=" + Order;
 
         return httpget(uri, CorpNum, UserID, HTTaxinvoiceSearchResult.class);
     }
@@ -408,21 +411,26 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      * (non-Javadoc)
      * @see com.popbill.api.HTTaxinvoiceService#registDeptUser(java.lang.String, java.lang.String, java.lang.String)
      */
-    public Response registDeptUser(String corpNum, String deptUserID, String deptUserPWD) throws PopbillException {
-        if (corpNum == null || corpNum.isEmpty())
-            throw new PopbillException(-99999999, "연동회원 사업자번호(corpNum)가 입력되지 않았습니다.");
-        if (deptUserID == null || deptUserID.isEmpty())
+    public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD) throws PopbillException {
+        return registDeptUser(CorpNum, DeptUserID, DeptUserPWD, null);
+    }
+
+    @Override
+    public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String UserID) throws PopbillException {
+        if (CorpNum == null || CorpNum.isEmpty())
+            throw new PopbillException(-99999999, "연동회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
+        if (DeptUserID == null || DeptUserID.isEmpty())
             throw new PopbillException(-99999999, "홈택스 부서사용자 계정 아이디(deptUserID)가 입력되지 않았습니다.");
-        if (deptUserPWD == null || deptUserPWD.isEmpty())
-            throw new PopbillException(-99999999, "홈택스 부서사용자 계정 비밀번호(deptUserPWD)가 입력되지 않았습니다.");
+        if (DeptUserPWD == null || DeptUserPWD.isEmpty())
+            throw new PopbillException(-99999999, "홈택스 부서사용자 계정 비밀번호(DeptUserPWD)가 입력되지 않았습니다.");
 
         DeptRequest request = new DeptRequest();
-        request.id = deptUserID;
-        request.pwd = deptUserPWD;
+        request.id = DeptUserID;
+        request.pwd = DeptUserPWD;
 
         String PostData = toJsonString(request);
 
-        return httppost("/HomeTax/Taxinvoice/DeptUser", corpNum, PostData, null, Response.class);
+        return httppost("/HomeTax/Taxinvoice/DeptUser", CorpNum, PostData, UserID, Response.class);
     }
 
     /*
