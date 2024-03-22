@@ -15,18 +15,20 @@ public interface AccountCheckService extends BaseService {
     public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException;
 
     public float getUnitCost(String CorpNum, String serviceType) throws PopbillException;
+    public float getUnitCost(String CorpNum, String serviceType, String UserID) throws PopbillException;
 
     public ChargeInfo getChargeInfo(String CorpNum, String serviceType) throws PopbillException;
+    public ChargeInfo getChargeInfo(String CorpNum, String serviceType, String UserID) throws PopbillException;
 
-    AccountCheckInfo CheckAccountInfo(String MemberCorpNum, String BankCode, String AccountNumber)
+    AccountCheckInfo CheckAccountInfo(String CorpNum, String BankCode, String AccountNumber)
             throws PopbillException;
 
-    AccountCheckInfo CheckAccountInfo(String MemberCorpNum, String BankCode, String AccountNumber, String UserID)
+    AccountCheckInfo CheckAccountInfo(String CorpNum, String BankCode, String AccountNumber, String UserID)
             throws PopbillException;
 
-    DepositorCheckInfo CheckDepositorInfo(String MemberCorpNum, String BankCode, String AccountNumber,
+    DepositorCheckInfo CheckDepositorInfo(String CorpNum, String BankCode, String AccountNumber,
             String IdentityNumType, String IdentityNum) throws PopbillException;
 
-    DepositorCheckInfo CheckDepositorInfo(String MemberCorpNum, String BankCode, String AccountNumber,
+    DepositorCheckInfo CheckDepositorInfo(String CorpNum, String BankCode, String AccountNumber,
             String IdentityNumType, String IdentityNum, String UserID) throws PopbillException;
 }

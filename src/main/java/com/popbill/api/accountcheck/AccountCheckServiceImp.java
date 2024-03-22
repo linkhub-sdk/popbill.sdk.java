@@ -24,21 +24,37 @@ public class AccountCheckServiceImp extends BaseServiceImp implements AccountChe
     @Override
     @Deprecated
     public float getUnitCost(String CorpNum) throws PopbillException {
-        UnitCostResponse response = httpget("/EasyFin/AccountCheck/UnitCost", CorpNum, null, UnitCostResponse.class);
+        return getUnitCost(CorpNum, null, null);
+    }
+
+    @Override
+    public float getUnitCost(String CorpNum, String serviceType) throws PopbillException {
+        return getUnitCost(CorpNum, serviceType, null);
+    }
+
+    @Override
+    public float getUnitCost(String CorpNum, String serviceType, String UserID) throws PopbillException {
+        UnitCostResponse response = null;
+
+        if(serviceType == null){
+            response = httpget("/EasyFin/AccountCheck/UnitCost", CorpNum, null,
+                    UnitCostResponse.class);
+        }else{
+            response = httpget("/EasyFin/AccountCheck/UnitCost?serviceType=" + serviceType, CorpNum, null,
+                    UnitCostResponse.class);
+        }
         return response.unitCost;
     }
 
     @Override
     @Deprecated
     public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
-        return httpget("/EasyFin/AccountCheck/ChargeInfo", CorpNum, null, ChargeInfo.class);
+        return getChargeInfo(CorpNum, null, null);
     }
 
     @Override
-    public float getUnitCost(String CorpNum, String serviceType) throws PopbillException {
-        UnitCostResponse response = httpget("/EasyFin/AccountCheck/UnitCost?serviceType=" + serviceType, CorpNum, null,
-                UnitCostResponse.class);
-        return response.unitCost;
+    public ChargeInfo getChargeInfo(String CorpNum, String serviceType, String UserID) throws PopbillException {
+        return httpget("/EasyFin/AccountCheck/ChargeInfo", CorpNum, null, ChargeInfo.class);
     }
 
     @Override
@@ -47,13 +63,13 @@ public class AccountCheckServiceImp extends BaseServiceImp implements AccountChe
     }
 
     @Override
-    public AccountCheckInfo CheckAccountInfo(String MemberCorpNum, String BankCode, String AccountNumber)
+    public AccountCheckInfo CheckAccountInfo(String CorpNum, String BankCode, String AccountNumber)
             throws PopbillException {
-        return CheckAccountInfo(MemberCorpNum, BankCode, AccountNumber, null);
+        return CheckAccountInfo(CorpNum, BankCode, AccountNumber, null);
     }
 
     @Override
-    public AccountCheckInfo CheckAccountInfo(String MemberCorpNum, String BankCode, String AccountNumber, String UserID)
+    public AccountCheckInfo CheckAccountInfo(String CorpNum, String BankCode, String AccountNumber, String UserID)
             throws PopbillException {
         if (BankCode == null || BankCode.isEmpty())
             throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
@@ -69,17 +85,17 @@ public class AccountCheckServiceImp extends BaseServiceImp implements AccountChe
         uri += "?c=" + BankCode;
         uri += "&n=" + AccountNumber;
 
-        return httppost(uri, MemberCorpNum, null, UserID, AccountCheckInfo.class);
+        return httppost(uri, CorpNum, null, UserID, AccountCheckInfo.class);
     }
 
     @Override
-    public DepositorCheckInfo CheckDepositorInfo(String MemberCorpNum, String BankCode, String AccountNumber,
+    public DepositorCheckInfo CheckDepositorInfo(String CorpNum, String BankCode, String AccountNumber,
             String IdentityNumType, String IdentityNum) throws PopbillException {
-        return CheckDepositorInfo(MemberCorpNum, BankCode, AccountNumber, IdentityNumType, IdentityNum, null);
+        return CheckDepositorInfo(CorpNum, BankCode, AccountNumber, IdentityNumType, IdentityNum, null);
     }
 
     @Override
-    public DepositorCheckInfo CheckDepositorInfo(String MemberCorpNum, String BankCode, String AccountNumber,
+    public DepositorCheckInfo CheckDepositorInfo(String CorpNum, String BankCode, String AccountNumber,
             String IdentityNumType, String IdentityNum, String UserID) throws PopbillException {
         if (BankCode == null || BankCode.isEmpty())
             throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
@@ -109,7 +125,7 @@ public class AccountCheckServiceImp extends BaseServiceImp implements AccountChe
         uri += "&t=" + IdentityNumType;
         uri += "&p=" + IdentityNum;
 
-        return httppost(uri, MemberCorpNum, null, UserID, DepositorCheckInfo.class);
+        return httppost(uri, CorpNum, null, UserID, DepositorCheckInfo.class);
     }
 
 }
