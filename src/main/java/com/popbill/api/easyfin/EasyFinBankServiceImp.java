@@ -22,7 +22,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * com.popbill.api.EasyFinBankService#getBankAccountMgtURL(java.lang.String)
      */
@@ -34,7 +34,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * com.popbill.api.EasyFinBankService#getBankAccountMgtURL(java.lang.String,
      * java.lang.String)
@@ -47,44 +47,44 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
     }
 
     @Override
-    public Response registBankAccount(String CorpNum, EasyFinBankAccountForm form) throws PopbillException {
+    public Response registBankAccount(String CorpNum, EasyFinBankAccountForm AccountForm) throws PopbillException {
 
-        return registBankAccount(CorpNum, form, null);
+        return registBankAccount(CorpNum, AccountForm, null);
     }
 
     @Override
-    public Response registBankAccount(String CorpNum, EasyFinBankAccountForm form, String UserID)
+    public Response registBankAccount(String CorpNum, EasyFinBankAccountForm AccountForm, String UserID)
             throws PopbillException {
 
-        if (form == null)
+        if (AccountForm == null)
             throw new PopbillException(-99999999, "은행 계좌정보가 입력되지 않았습니다.");
 
-        if (form.getBankCode() == null || form.getBankCode().isEmpty())
+        if (AccountForm.getBankCode() == null || AccountForm.getBankCode().isEmpty())
             throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
 
-        if (form.getBankCode().length() != 4)
+        if (AccountForm.getBankCode().length() != 4)
             throw new PopbillException(-99999999, "기관코드가 유효하지 않습니다.");
 
-        if (form.getAccountNumber() == null || form.getAccountNumber().isEmpty())
+        if (AccountForm.getAccountNumber() == null || AccountForm.getAccountNumber().isEmpty())
             throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
 
-        if (form.getAccountPWD() == null || form.getAccountPWD().isEmpty())
+        if (AccountForm.getAccountPWD() == null || AccountForm.getAccountPWD().isEmpty())
             throw new PopbillException(-99999999, "계좌 비밀번호가 입력되지 않았습니다.");
 
-        if (form.getAccountType() == null || form.getAccountType().isEmpty())
+        if (AccountForm.getAccountType() == null || AccountForm.getAccountType().isEmpty())
             throw new PopbillException(-99999999, "계좌유형이 입력되지 않았습니다.");
 
-        if (!form.getAccountType().equals("개인") && !form.getAccountType().equals("법인"))
+        if (!AccountForm.getAccountType().equals("개인") && !AccountForm.getAccountType().equals("법인"))
             throw new PopbillException(-99999999, "계좌유형이 올바르지 않습니다.");
 
-        if (form.getIdentityNumber() == null || form.getIdentityNumber().isEmpty())
+        if (AccountForm.getIdentityNumber() == null || AccountForm.getIdentityNumber().isEmpty())
             throw new PopbillException(-99999999, "예금주 식별정보가 입력되지 않았습니다.");
 
         String uri = "/EasyFin/Bank/BankAccount/Regist";
-        if (null != form.getUsePeriod())
-            uri += "?UsePeriod=" + form.getUsePeriod();
+        if (null != AccountForm.getUsePeriod())
+            uri += "?UsePeriod=" + AccountForm.getUsePeriod();
 
-        String PostData = toJsonString(form);
+        String PostData = toJsonString(AccountForm);
 
         return httppost(uri, CorpNum, PostData, UserID, Response.class);
     }
@@ -98,7 +98,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     @Override
     public Response closeBankAccount(String CorpNum, String BankCode, String AccountNumber, String CloseType,
-            String UserID) throws PopbillException {
+                                     String UserID) throws PopbillException {
         if (BankCode == null || BankCode.isEmpty())
             throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
 
@@ -111,7 +111,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
         if (CloseType == null || CloseType.isEmpty())
             throw new PopbillException(-99999999, "정액제 해지유형이 입력되지 않았습니다.");
 
-        if (!CloseType.equals("중도")  && !CloseType.equals("일반"))
+        if (!CloseType.equals("중도") && !CloseType.equals("일반"))
             throw new PopbillException(-99999999, "정액제 해지유형이 올바르지 않습니다.");
 
         String uri = "/EasyFin/Bank/BankAccount/Close";
@@ -178,39 +178,39 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
     }
 
     @Override
-    public Response updateBankAccount(String CorpNum, EasyFinBankAccountForm form) throws PopbillException {
-        return updateBankAccount(CorpNum, form, null);
+    public Response updateBankAccount(String CorpNum, EasyFinBankAccountForm AccountForm) throws PopbillException {
+        return updateBankAccount(CorpNum, AccountForm, null);
     }
 
     @Override
-    public Response updateBankAccount(String CorpNum, EasyFinBankAccountForm form, String UserID)
+    public Response updateBankAccount(String CorpNum, EasyFinBankAccountForm AccountForm, String UserID)
             throws PopbillException {
 
-        if (form == null)
+        if (AccountForm == null)
             throw new PopbillException(-99999999, "은행 계좌정보가 입력되지 않았습니다.");
 
-        if (form.getBankCode() == null || form.getBankCode().isEmpty())
+        if (AccountForm.getBankCode() == null || AccountForm.getBankCode().isEmpty())
             throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
 
-        if (form.getBankCode().length() != 4)
+        if (AccountForm.getBankCode().length() != 4)
             throw new PopbillException(-99999999, "기관코드가 유효하지 않습니다.");
 
-        if (form.getAccountNumber() == null || form.getAccountNumber().isEmpty())
+        if (AccountForm.getAccountNumber() == null || AccountForm.getAccountNumber().isEmpty())
             throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
 
-        if (form.getAccountPWD() == null || form.getAccountPWD().isEmpty())
+        if (AccountForm.getAccountPWD() == null || AccountForm.getAccountPWD().isEmpty())
             throw new PopbillException(-99999999, "계좌 비밀번호가 입력되지 않았습니다.");
 
-        String uri = "/EasyFin/Bank/BankAccount/" + form.getBankCode() + "/" + form.getAccountNumber() + "/Update";
+        String uri = "/EasyFin/Bank/BankAccount/" + AccountForm.getBankCode() + "/" + AccountForm.getAccountNumber() + "/Update";
 
-        String PostData = toJsonString(form);
+        String PostData = toJsonString(AccountForm);
 
         return httppost(uri, CorpNum, PostData, UserID, Response.class);
     }
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#getBankAccountInfo(java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
@@ -222,7 +222,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#getBankAccountInfo(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
@@ -242,7 +242,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#listBankAccount(java.lang.String)
      */
     @Override
@@ -253,7 +253,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#listBankAccount(java.lang.String, java.lang.String)
      */
     @Override
@@ -264,7 +264,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#requestJob(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
@@ -276,12 +276,12 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#requestJob(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
     public String requestJob(String CorpNum, String BankCode, String AccountNumber, String SDate, String EDate,
-            String UserID) throws PopbillException {
+                             String UserID) throws PopbillException {
 
         if (BankCode == null || BankCode.isEmpty())
             throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
@@ -300,7 +300,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#getJobState(java.lang.String, java.lang.String)
      */
     @Override
@@ -311,7 +311,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#getJobState(java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
@@ -324,7 +324,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#listActiveJob(java.lang.String)
      */
     @Override
@@ -335,7 +335,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#listActiveJob(java.lang.String, java.lang.String)
      */
     @Override
@@ -346,24 +346,24 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#search(java.lang.String, java.lang.String, java.lang.String[], java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String)
      */
     @Override
     public EasyFinBankSearchResult search(String CorpNum, String JobID, String[] TradeType, String SearchString,
-            Integer Page, Integer PerPage, String Order) throws PopbillException {
+                                          Integer Page, Integer PerPage, String Order) throws PopbillException {
 
         return search(CorpNum, JobID, TradeType, SearchString, Page, PerPage, Order, null);
     }
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#search(java.lang.String, java.lang.String, java.lang.String[], java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
      */
     @Override
     public EasyFinBankSearchResult search(String CorpNum, String JobID, String[] TradeType, String SearchString,
-            Integer Page, Integer PerPage, String Order, String UserID) throws PopbillException {
+                                          Integer Page, Integer PerPage, String Order, String UserID) throws PopbillException {
 
         if (JobID.length() != 18)
             throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
@@ -380,16 +380,19 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
             }
         }
 
-        uri += "&Page=" + Integer.toString(Page);
-        uri += "&PerPage=" + Integer.toString(PerPage);
-        uri += "&Order=" + Order;
+        if (Page != null)
+            uri += "&Page=" + Integer.toString(Page);
+        if (PerPage != null)
+            uri += "&PerPage=" + Integer.toString(PerPage);
+        if (Order != null && !Order.isEmpty())
+            uri += "&Order=" + Order;
 
         return httpget(uri, CorpNum, UserID, EasyFinBankSearchResult.class);
     }
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#summary(java.lang.String, java.lang.String, java.lang.String[], java.lang.String)
      */
     @Override
@@ -401,12 +404,12 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#summary(java.lang.String, java.lang.String, java.lang.String[], java.lang.String, java.lang.String)
      */
     @Override
     public EasyFinBankSummary summary(String CorpNum, String JobID, String[] TradeType, String SearchString,
-            String UserID) throws PopbillException {
+                                      String UserID) throws PopbillException {
 
         if (JobID.length() != 18)
             throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
@@ -428,7 +431,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#saveMemo(java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
@@ -439,7 +442,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#saveMemo(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
@@ -469,7 +472,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#getFlatRateState(java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
@@ -481,7 +484,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#getFlatRateState(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
@@ -500,7 +503,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#getFlatRatePopUpURL(java.lang.String)
      */
     @Override
@@ -511,7 +514,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#getFlatRatePopUpURL(java.lang.String, java.lang.String)
      */
     @Override
@@ -524,12 +527,17 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.popbill.api.EasyFinBankService#getChargeInfo(java.lang.String)
      */
     @Override
     public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
 
+        return getChargeInfo(CorpNum, null);
+    }
+
+    @Override
+    public ChargeInfo getChargeInfo(String CorpNum, String UserID) throws PopbillException {
         return httpget("/EasyFin/Bank/ChargeInfo", CorpNum, null, ChargeInfo.class);
     }
 

@@ -19,7 +19,7 @@ public interface EasyFinBankService extends BaseService{
     /**
      * 계좌 관리 팝업 URL
      * 
-     * @param CorpNum
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
      * @return
      * @throws PopbillException
      */
@@ -28,8 +28,8 @@ public interface EasyFinBankService extends BaseService{
     /**
      * 계좌 관리 팝업 URL
      * 
-     * @param CorpNum
-     * @param UserID
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -39,53 +39,54 @@ public interface EasyFinBankService extends BaseService{
     /**
      * 계좌 등록
      * 
-     * @param CorpNum
-     * @param form
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param AccountForm 등록할 계좌 객체정보
      * @return
      * @throws PopbillException
      */
-    public Response registBankAccount(String CorpNum, EasyFinBankAccountForm form) throws PopbillException;
+    public Response registBankAccount(String CorpNum, EasyFinBankAccountForm AccountForm) throws PopbillException;
     
     
     /**
      * 계좌 등록
-     * 
-     * @param CorpNum
-     * @param form
-     * @param UserID
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param AccountForm 등록할 계좌 객체정보
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
-    public Response registBankAccount(String CorpNum, EasyFinBankAccountForm form, String UserID) throws PopbillException;
+    public Response registBankAccount(String CorpNum, EasyFinBankAccountForm AccountForm, String UserID) throws PopbillException;
     
     /**
      * 계좌정보 수정
-     * 
-     * @param CorpNum
-     * @param form
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param AccountForm 수정할 계좌 객체정보
      * @return
      * @throws PopbillException
      */
-    public Response updateBankAccount(String CorpNum, EasyFinBankAccountForm form) throws PopbillException;
+    public Response updateBankAccount(String CorpNum, EasyFinBankAccountForm AccountForm) throws PopbillException;
     
     /**
      * 계좌정보 수정
-     * 
-     * @param CorpNum
-     * @param form
-     * @param UserID
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param AccountForm 수정할 계좌 객체정보
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
-    public Response updateBankAccount(String CorpNum, EasyFinBankAccountForm form, String UserID) throws PopbillException;
-    
+    public Response updateBankAccount(String CorpNum, EasyFinBankAccountForm AccountForm, String UserID) throws PopbillException;
+
+
     /**
      * 계좌 정액제 해지 요청
      * 
-     * @param CorpNum
-     * @param BankCode
-     * @param AccountNumber
-     * @param CloseType
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param BankCode 은행 기관코드
+     * @param AccountNumber 계좌번호
+     * @param CloseType 정액제 해지 구분 ('일반', '중도')
      * @return
      * @throws PopbillException
      */
@@ -93,12 +94,12 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 계좌 정액제 해지 요청 
-     * 
-     * @param CorpNum
-     * @param BankCode
-     * @param AccountNumber
-     * @param CloseType
-     * @param UserID
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param BankCode 은행 기관코드
+     * @param AccountNumber 계좌번호
+     * @param CloseType 정액제 해지 구분 ('일반', '중도')
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -107,10 +108,10 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 계좌 정액제 해지요청 취소
-     * 
-     * @param CorpNum
-     * @param BankCode
-     * @param AccountNumber
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param BankCode 은행 기관코드
+     * @param AccountNumber 계좌번호
      * @return
      * @throws PopbillException
      */
@@ -119,11 +120,11 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 계좌 정액제 해지요청 취소
-     * 
-     * @param CorpNum
-     * @param BankCode
-     * @param AccountNumber
-     * @param UserID
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param BankCode 은행 기관코드
+     * @param AccountNumber 계좌번호
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -131,10 +132,10 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 종량제 이용시 등록된 계좌 삭제
-     * 
-     * @param CorpNum
-     * @param BankCode
-     * @param AccountNumber
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param BankCode 은행 기관코드
+     * @param AccountNumber 계좌번호
      * @return
      * @throws PopbillException
      */
@@ -142,11 +143,11 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 종량제 이용시 등록된 계좌 삭제
-     * 
-     * @param CorpNum
-     * @param BankCode
-     * @param AccountNumber
-     * @param UserID
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param BankCode 은행 기관코드
+     * @param AccountNumber 계좌번호
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -154,22 +155,21 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 계좌정보 조회 
-     * 
-     * @param CorpNum
-     * @param BankCode
-     * @param AccountNumber
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param BankCode 은행 기관코드
+     * @param AccountNumber 계좌번호
      * @return EasyFinBankAccount Class
      * @throws PopbillException
      */
     public EasyFinBankAccount getBankAccountInfo(String CorpNum, String BankCode, String AccountNumber) throws PopbillException;
-    
-    
+
     /**
-     * 계좌정보 조호 
-     * @param CorpNum
-     * @param BankCode
-     * @param AccountNumber
-     * @param UserID
+     * 계좌정보 조회
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param BankCode 은행 기관코드
+     * @param AccountNumber 계좌번호
+     * @param UserID 팝빌회원 아이디
      * @return EasyFinBankAccount Class
      * @throws PopbillException
      */
@@ -178,8 +178,8 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 계좌 목록 조회 
-     * 
-     * @param CorpNum
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
      * @return
      * @throws PopbillException
      */
@@ -187,9 +187,9 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 계좌 목록 조회 
-     * 
-     * @param CorpNum
-     * @param UserID
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -197,12 +197,12 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 수집 요청 
-     * 
-     * @param CorpNum
-     * @param BankCode
-     * @param AccountNumber
-     * @param SDate
-     * @param EDate
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param BankCode 은행 기관코드
+     * @param AccountNumber 계좌번호
+     * @param SDate 조회 기간의 시작일자
+     * @param EDate 조회 기간의 종료일자
      * @return
      * @throws PopbillException
      */
@@ -211,12 +211,12 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 수집 요청 
-     * @param CorpNum
-     * @param BankCode
-     * @param AccountNumber
-     * @param SDate
-     * @param EDate
-     * @param UserID
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param BankCode 은행 기관코드
+     * @param AccountNumber 계좌번호
+     * @param SDate 조회 기간의 시작일자
+     * @param EDate 조회 기간의 종료일자
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -224,9 +224,9 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 수집 상태 목록 확인 
-     * 
-     * @param CorpNum
-     * @param JobID
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param JobID 작업아이디
      * @return
      * @throws PopbillException
      */
@@ -234,10 +234,10 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 수집 상태 확인 
-     * 
-     * @param CorpNum
-     * @param JobID
-     * @param UserID
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param JobID 작업아이디
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -246,8 +246,8 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 수집 상태 목록 확인 
-     * 
-     * @param CorpNum
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
      * @return
      * @throws PopbillException
      */
@@ -256,9 +256,9 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 수집 상태 목록 확인 
-     * 
-     * @param CorpNum
-     * @param UserID
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -266,10 +266,10 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 수집내역 조회
-     * @param CorpNum
-     * @param JobID
-     * @param TradeType
-     * @param SearchString
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param JobID 작업아이디
+     * @param TradeType 거래유형 (다중선택 가능)
+     * @param SearchString 조회 검색어
      * @return
      * @throws PopbillException
      */
@@ -277,10 +277,14 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 수집내역 조회 
-     * @param CorpNum
-     * @param JobID
-     * @param TradeType
-     * @param SearchString
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param JobID 작업아이디
+     * @param TradeType 거래유형 (다중선택 가능)
+     * @param SearchString 조회 검색어
+     * @param Page 목록 페이지 번호
+     * @param PerPage 페이지당 표시할 목록 건수
+     * @param Order 거래일자를 기준으로 하는 목록 정렬 방향
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -288,11 +292,11 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 수집내역 요약정보 
-     * 
-     * @param CorpNum
-     * @param JobID
-     * @param TradeType
-     * @param SearchString
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param JobID 작업아이디
+     * @param TradeType 거래유형 (다중선택 가능)
+     * @param SearchString 조회 검색어
      * @return
      * @throws PopbillException
      */
@@ -300,12 +304,12 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 수집내역 요약정보 
-     * 
-     * @param CorpNum
-     * @param JobID
-     * @param TradeType
-     * @param SearchString
-     * @param UserID
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param JobID 작업아이디
+     * @param TradeType 거래유형 (다중선택 가능)
+     * @param SearchString 조회 검색어
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -313,9 +317,9 @@ public interface EasyFinBankService extends BaseService{
     
     /**
       계좌 거래내역 메모 저장
-     * @param CorpNum
-     * @param TID
-     * @param Memo
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param TID 메모를 저장할 거래내역 아이디
+     * @param Memo 거래 내역에 저장할 메모
      * @return
      * @throws PopbillException
      */
@@ -323,10 +327,10 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 계좌 거래내역 메모 저장 
-     * @param CorpNum
-     * @param TID
-     * @param Memo
-     * @param UserID
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param TID 메모를 저장할 거래내역 아이디
+     * @param Memo 거래 내역에 저장할 메모
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -334,9 +338,9 @@ public interface EasyFinBankService extends BaseService{
     
     /**
       정액제 서비스 상태 확인 
-     * @param CorpNum
-     * @param BankCode
-     * @param AccountNumber
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param BankCode 은행 기관코드
+     * @param AccountNumber 은행 계좌번호(하이픈 '-' 제외)
      * @return
      * @throws PopbillException
      */
@@ -344,10 +348,10 @@ public interface EasyFinBankService extends BaseService{
     
     /**
       정액제 서비스 상태 확인
-     * @param CorpNum
-     * @param BankCode
-     * @param AccountNumber
-     * @param UserID
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param BankCode 은행 기관코드
+     * @param AccountNumber 은행 계좌번호(하이픈 '-' 제외)
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -355,7 +359,7 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 정액제 신청 URL
-     * @param CorpNum
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
      * @return URL
      * @throws PopbillException
      */
@@ -364,8 +368,8 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 정액제 신청 URL
-     * @param CorpNum
-     * @param UserID
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -374,9 +378,19 @@ public interface EasyFinBankService extends BaseService{
     
     /**
      * 과금정보 확인
-     * @param CorpNum
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
      * @return
      * @throws PopbillException
      */
     public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException;
+
+
+    /**
+     * 과금정보 확인
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param UserID 팝빌회원 아이디
+     * @return
+     * @throws PopbillException
+     */
+    public ChargeInfo getChargeInfo(String CorpNum, String UserID) throws PopbillException;
 }
