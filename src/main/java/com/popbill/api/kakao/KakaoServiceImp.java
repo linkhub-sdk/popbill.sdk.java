@@ -26,9 +26,9 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public String getPlusFriendMgtURL(String CorpNum, String UserID) throws PopbillException {
-    
+
         URLResponse response = httpget("/KakaoTalk/?TG=PLUSFRIEND", CorpNum, UserID, URLResponse.class);
-    
+
         return response.url;
     }
 
@@ -49,16 +49,16 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException {
-        if (SenderNumber == null || SenderNumber.equals(""))
+        if (SenderNumber == null || SenderNumber.isEmpty())
             throw new PopbillException(-99999999, "발신번호가 입력되지 않았습니다.");
-        return httpget("/KakaoTalk/CheckSenderNumber/"+SenderNumber, CorpNum, UserID, Response.class);
+        return httpget("/KakaoTalk/CheckSenderNumber/" + SenderNumber, CorpNum, UserID, Response.class);
     }
 
     @Override
     public String getSenderNumberMgtURL(String CorpNum, String UserID) throws PopbillException {
-    
+
         URLResponse response = httpget("/Message/?TG=SENDER", CorpNum, UserID, URLResponse.class);
-    
+
         return response.url;
     }
 
@@ -74,9 +74,9 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public String getATSTemplateMgtURL(String CorpNum, String UserID) throws PopbillException {
-    
+
         URLResponse response = httpget("/KakaoTalk/?TG=TEMPLATE", CorpNum, UserID, URLResponse.class);
-    
+
         return response.url;
     }
 
@@ -89,7 +89,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     public ATSTemplate getATSTemplate(String CorpNum, String templateCode, String UserID) throws PopbillException {
         if (templateCode == null || templateCode.isEmpty())
             throw new PopbillException(-99999999, "알림톡 템플릿코드(templateCode)가 입력되지 않았습니다.");
-    
+
         return httpget("/KakaoTalk/GetATSTemplate/" + templateCode, CorpNum, UserID, ATSTemplate.class);
     }
 
@@ -108,42 +108,43 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
      ******************/
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType,
-            String receiverNum, String receiverName, String sndDT) throws PopbillException {
+                          String receiverNum, String receiverName, String sndDT) throws PopbillException {
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
         receiver.setReceiverName(receiverName);
         receiver.setMessage(content);
         receiver.setAltMessage(altContent);
 
-        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, sndDT, null, null, null);
+        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, sndDT, null, null, null);
     }
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType,
-            String receiverNum, String receiverName, String sndDT, String UserID) throws PopbillException {
+                          String receiverNum, String receiverName, String sndDT, String UserID) throws PopbillException {
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
         receiver.setReceiverName(receiverName);
         receiver.setMessage(content);
         receiver.setAltMessage(altContent);
 
-        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, sndDT, UserID, null, null);
+        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, sndDT, UserID, null, null);
     }
+
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType,
-            String receiverNum, String receiverName, String sndDT, String UserID, String requestNum) throws PopbillException {
+                          String receiverNum, String receiverName, String sndDT, String UserID, String requestNum) throws PopbillException {
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
         receiver.setReceiverName(receiverName);
         receiver.setMessage(content);
         receiver.setAltMessage(altContent);
 
-        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, sndDT, UserID, requestNum, null);
+        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, sndDT, UserID, requestNum, null);
     }
-    
+
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altSubject, String altContent,
-            String altSendType, String receiverNum, String receiverName, String sndDT, String UserID, String requestNum) throws PopbillException {
+                          String altSendType, String receiverNum, String receiverName, String sndDT, String UserID, String requestNum) throws PopbillException {
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
         receiver.setReceiverName(receiverName);
@@ -151,7 +152,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
         receiver.setAltSubject(altSubject);
         receiver.setAltMessage(altContent);
 
-        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, sndDT, UserID, requestNum, null);
+        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, sndDT, UserID, requestNum, null);
     }
 
     /********************
@@ -160,44 +161,44 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType,
-            String receiverNum, String receiverName, String sndDT, KakaoButton[] Buttons) throws PopbillException {
+                          String receiverNum, String receiverName, String sndDT, KakaoButton[] Buttons) throws PopbillException {
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
         receiver.setReceiverName(receiverName);
         receiver.setMessage(content);
         receiver.setAltMessage(altContent);
 
-        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, sndDT, null, null, Buttons);
+        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, sndDT, null, null, Buttons);
     }
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType,
-            String receiverNum, String receiverName, String sndDT, String UserID, KakaoButton[] Buttons) throws PopbillException {
+                          String receiverNum, String receiverName, String sndDT, String UserID, KakaoButton[] Buttons) throws PopbillException {
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
         receiver.setReceiverName(receiverName);
         receiver.setMessage(content);
         receiver.setAltMessage(altContent);
 
-        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, sndDT, UserID, null, Buttons);
+        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, sndDT, UserID, null, Buttons);
     }
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType,
-            String receiverNum, String receiverName, String sndDT, String UserID, String requestNum, KakaoButton[] Buttons) throws PopbillException {
+                          String receiverNum, String receiverName, String sndDT, String UserID, String requestNum, KakaoButton[] Buttons) throws PopbillException {
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
         receiver.setReceiverName(receiverName);
         receiver.setMessage(content);
         receiver.setAltMessage(altContent);
 
-        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, sndDT, UserID, requestNum,
+        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, sndDT, UserID, requestNum,
                 Buttons);
     }
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altSubject, String altContent, String altSendType,
-            String receiverNum, String receiverName, String sndDT, String UserID, String requestNum, KakaoButton[] Buttons) throws PopbillException {
+                          String receiverNum, String receiverName, String sndDT, String UserID, String requestNum, KakaoButton[] Buttons) throws PopbillException {
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
         receiver.setReceiverName(receiverName);
@@ -205,7 +206,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
         receiver.setAltSubject(altSubject);
         receiver.setAltMessage(altContent);
 
-        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, sndDT, UserID, requestNum,
+        return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, sndDT, UserID, requestNum,
                 Buttons);
     }
 
@@ -221,13 +222,13 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String altSendType, KakaoReceiver[] Receivers, String sndDT,
-            String UserID) throws PopbillException {
+                          String UserID) throws PopbillException {
         return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, Receivers, sndDT, UserID, null, null);
     }
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String altSendType, KakaoReceiver[] Receivers, String sndDT,
-            String UserID, String requestNum) throws PopbillException {
+                          String UserID, String requestNum) throws PopbillException {
         return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, Receivers, sndDT, UserID, requestNum, null);
     }
 
@@ -237,47 +238,47 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String altSendType, KakaoReceiver[] Receivers, String sndDT,
-            KakaoButton[] Buttons) throws PopbillException {
+                          KakaoButton[] Buttons) throws PopbillException {
         return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, Receivers, sndDT, null, null, Buttons);
     }
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String altSendType, KakaoReceiver[] Receivers, String sndDT,
-            String UserID, KakaoButton[] Buttons) throws PopbillException {
+                          String UserID, KakaoButton[] Buttons) throws PopbillException {
         return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, Receivers, sndDT, UserID, null, Buttons);
     }
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String altSendType, KakaoReceiver[] Receivers, String sndDT,
-            String UserID, String requestNum, KakaoButton[] Buttons) throws PopbillException {
+                          String UserID, String requestNum, KakaoButton[] Buttons) throws PopbillException {
         return sendATS(CorpNum, templateCode, senderNum, null, null, null, altSendType, Receivers, sndDT, UserID, requestNum, Buttons);
     }
-    
+
     /********************
      * 알림톡 동일내용 대량전송
      ********************/
-    
+
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType,
-            KakaoReceiver[] Receivers, String sndDT) throws PopbillException {
+                          KakaoReceiver[] Receivers, String sndDT) throws PopbillException {
         return sendATS(CorpNum, templateCode, senderNum, content, null, altContent, altSendType, Receivers, sndDT, null, null, null);
     }
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType,
-            KakaoReceiver[] Receivers, String sndDT, String UserID) throws PopbillException {
+                          KakaoReceiver[] Receivers, String sndDT, String UserID) throws PopbillException {
         return sendATS(CorpNum, templateCode, senderNum, content, null, altContent, altSendType, Receivers, sndDT, UserID, null, null);
     }
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType,
-            KakaoReceiver[] Receivers, String sndDT, String UserID, String requestNum) throws PopbillException {
+                          KakaoReceiver[] Receivers, String sndDT, String UserID, String requestNum) throws PopbillException {
         return sendATS(CorpNum, templateCode, senderNum, content, null, altContent, altSendType, Receivers, sndDT, UserID, requestNum, null);
     }
-    
+
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altSubject, String altContent,
-            String altSendType, KakaoReceiver[] Receivers, String sndDT, String UserID, String requestNum) throws PopbillException {
+                          String altSendType, KakaoReceiver[] Receivers, String sndDT, String UserID, String requestNum) throws PopbillException {
         return sendATS(CorpNum, templateCode, senderNum, content, altSubject, altContent, altSendType, Receivers, sndDT, UserID, requestNum, null);
     }
 
@@ -287,28 +288,28 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType,
-            KakaoReceiver[] Receivers, String sndDT, KakaoButton[] Buttons) throws PopbillException {
+                          KakaoReceiver[] Receivers, String sndDT, KakaoButton[] Buttons) throws PopbillException {
 
         return sendATS(CorpNum, templateCode, senderNum, content, null, altContent, altSendType, Receivers, sndDT, null, null, Buttons);
     }
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType,
-            KakaoReceiver[] Receivers, String sndDT, String UserID, KakaoButton[] Buttons) throws PopbillException {
+                          KakaoReceiver[] Receivers, String sndDT, String UserID, KakaoButton[] Buttons) throws PopbillException {
         return sendATS(CorpNum, templateCode, senderNum, content, null, altContent, altSendType, Receivers, sndDT, UserID, null, Buttons);
     }
 
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altContent, String altSendType,
-            KakaoReceiver[] Receivers, String sndDT, String UserID, String requestNum, KakaoButton[] Buttons) throws PopbillException {
-        return sendATS(CorpNum, templateCode, senderNum, content, null, altContent, altSendType, Receivers, sndDT, UserID, requestNum, Buttons); 
+                          KakaoReceiver[] Receivers, String sndDT, String UserID, String requestNum, KakaoButton[] Buttons) throws PopbillException {
+        return sendATS(CorpNum, templateCode, senderNum, content, null, altContent, altSendType, Receivers, sndDT, UserID, requestNum, Buttons);
     }
-        
+
     @Override
     public String sendATS(String CorpNum, String templateCode, String senderNum, String content, String altSubject, String altContent, String altSendType,
-            KakaoReceiver[] Receivers, String sndDT, String UserID, String requestNum, KakaoButton[] Buttons) throws PopbillException {
+                          KakaoReceiver[] Receivers, String sndDT, String UserID, String requestNum, KakaoButton[] Buttons) throws PopbillException {
 
-        if (templateCode == null || templateCode == "")
+        if (templateCode == null || templateCode.isEmpty())
             throw new PopbillException(-99999999, "알림톡 템플릿코드(templateCode)가 입력되지 않았습니다.");
 
         ATSSendRequest request = new ATSSendRequest();
@@ -331,39 +332,37 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
         return response.receiptNum;
     }
 
-    
-    
-    
+
     /**************
      * 친구톡 단건전송
      **************/
     @Override
     public String sendFTS(String CorpNum, String plusFriendID, String senderNum, String content, String altContent, String altSendType,
-            KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT, Boolean adsYN) throws PopbillException {
+                          KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT, Boolean adsYN) throws PopbillException {
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
         receiver.setReceiverName(receiverName);
         receiver.setMessage(content);
         receiver.setAltMessage(altContent);
 
-        return sendFTS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, Buttons, sndDT, adsYN, null, null);
+        return sendFTS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, Buttons, sndDT, adsYN, null, null);
     }
 
     @Override
     public String sendFTS(String CorpNum, String plusFriendID, String senderNum, String content, String altContent, String altSendType,
-            KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT, Boolean adsYN, String UserID) throws PopbillException {
+                          KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT, Boolean adsYN, String UserID) throws PopbillException {
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
         receiver.setReceiverName(receiverName);
         receiver.setMessage(content);
         receiver.setAltMessage(altContent);
 
-        return sendFTS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, Buttons, sndDT, adsYN, UserID, null);
+        return sendFTS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, Buttons, sndDT, adsYN, UserID, null);
     }
 
     @Override
     public String sendFTS(String CorpNum, String plusFriendID, String senderNum, String content, String altContent, String altSendType,
-            KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT, Boolean adsYN, String UserID, String requestNum)
+                          KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT, Boolean adsYN, String UserID, String requestNum)
             throws PopbillException {
 
         KakaoReceiver receiver = new KakaoReceiver();
@@ -372,13 +371,13 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
         receiver.setMessage(content);
         receiver.setAltMessage(altContent);
 
-        return sendFTS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, Buttons, sndDT, adsYN, UserID, requestNum);
+        return sendFTS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, Buttons, sndDT, adsYN, UserID, requestNum);
     }
-    
+
     @Override
     public String sendFTS(String CorpNum, String plusFriendID, String senderNum, String content, String altSubject, String altContent,
-            String altSendType, KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT, Boolean adsYN, String UserID,
-            String requestNum) throws PopbillException {
+                          String altSendType, KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT, Boolean adsYN, String UserID,
+                          String requestNum) throws PopbillException {
 
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
@@ -387,7 +386,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
         receiver.setAltSubject(altSubject);
         receiver.setAltMessage(altContent);
 
-        return sendFTS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, Buttons, sndDT, adsYN, UserID, requestNum);
+        return sendFTS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, Buttons, sndDT, adsYN, UserID, requestNum);
     }
 
     /*********************
@@ -395,19 +394,19 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
      *********************/
     @Override
     public String sendFTS(String CorpNum, String plusFriendID, String senderNum, String altSendType, KakaoReceiver[] Receivers, KakaoButton[] Buttons,
-            String sndDT, Boolean adsYN) throws PopbillException {
+                          String sndDT, Boolean adsYN) throws PopbillException {
         return sendFTS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, Receivers, Buttons, sndDT, adsYN, null, null);
     }
 
     @Override
     public String sendFTS(String CorpNum, String plusFriendID, String senderNum, String altSendType, KakaoReceiver[] Receivers, KakaoButton[] Buttons,
-            String sndDT, Boolean adsYN, String UserID) throws PopbillException {
+                          String sndDT, Boolean adsYN, String UserID) throws PopbillException {
         return sendFTS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, Receivers, Buttons, sndDT, adsYN, UserID, null);
     }
 
     @Override
     public String sendFTS(String CorpNum, String plusFriendID, String senderNum, String altSendType, KakaoReceiver[] Receivers, KakaoButton[] Buttons,
-            String sndDT, Boolean adsYN, String UserID, String requestNum) throws PopbillException {
+                          String sndDT, Boolean adsYN, String UserID, String requestNum) throws PopbillException {
         return sendFTS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, Receivers, Buttons, sndDT, adsYN, UserID, requestNum);
     }
 
@@ -416,27 +415,27 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
      *********************/
     @Override
     public String sendFTS(String CorpNum, String plusFriendID, String senderNum, String content, String altContent, String altSendType,
-            KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN) throws PopbillException {
+                          KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN) throws PopbillException {
         return sendFTS(CorpNum, plusFriendID, senderNum, content, null, altContent, altSendType, Receivers, Buttons, sndDT, adsYN, null, null);
     }
 
     @Override
     public String sendFTS(String CorpNum, String plusFriendID, String senderNum, String content, String altContent, String altSendType,
-            KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, String UserID) throws PopbillException {
+                          KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, String UserID) throws PopbillException {
         return sendFTS(CorpNum, plusFriendID, senderNum, content, null, altContent, altSendType, Receivers, Buttons, sndDT, adsYN, UserID, null);
     }
 
     @Override
     public String sendFTS(String CorpNum, String plusFriendID, String senderNum, String content, String altContent, String altSendType,
-            KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, String UserID, String requestNum) throws PopbillException {
+                          KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, String UserID, String requestNum) throws PopbillException {
         return sendFTS(CorpNum, plusFriendID, senderNum, content, null, altContent, altSendType, Receivers, Buttons, sndDT, adsYN, UserID, requestNum);
     }
-        
+
     @Override
     public String sendFTS(String CorpNum, String plusFriendID, String senderNum, String content, String altSubject, String altContent, String altSendType,
-            KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, String UserID, String requestNum) throws PopbillException {
+                          KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, String UserID, String requestNum) throws PopbillException {
 
-        if (plusFriendID == null || plusFriendID == "")
+        if (plusFriendID == null || plusFriendID.isEmpty())
             throw new PopbillException(-99999999, "카카오톡 검색용 아이디가 입력되지 않았습니다.");
 
         FTSSendRequest request = new FTSSendRequest();
@@ -458,15 +457,14 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
         return response.receiptNum;
     }
 
-    
-    
+
     /*******************
      * 친구톡 이미지 단건전송
      *******************/
     @Override
     public String sendFMS(String CorpNum, String plusFriendID, String senderNum, String content, String altContent,
-            String altSendType, KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT, Boolean adsYN,
-            File file, String imageURL) throws PopbillException {
+                          String altSendType, KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT, Boolean adsYN,
+                          File file, String imageURL) throws PopbillException {
 
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
@@ -474,14 +472,14 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
         receiver.setMessage(content);
         receiver.setAltMessage(altContent);
 
-        return sendFMS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, Buttons,
+        return sendFMS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, Buttons,
                 sndDT, adsYN, file, imageURL, null, null);
     }
 
     @Override
     public String sendFMS(String CorpNum, String plusFriendID, String senderNum, String content, String altContent,
-            String altSendType, KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT, Boolean adsYN,
-            File file, String imageURL, String UserID) throws PopbillException {
+                          String altSendType, KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT, Boolean adsYN,
+                          File file, String imageURL, String UserID) throws PopbillException {
 
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
@@ -489,14 +487,14 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
         receiver.setMessage(content);
         receiver.setAltMessage(altContent);
 
-        return sendFMS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, Buttons,
+        return sendFMS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, Buttons,
                 sndDT, adsYN, file, imageURL, UserID, null);
     }
 
     @Override
     public String sendFMS(String CorpNum, String plusFriendID, String senderNum, String content, String altContent,
-            String altSendType, KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT, Boolean adsYN,
-            File file, String imageURL, String UserID, String requestNum) throws PopbillException {
+                          String altSendType, KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT, Boolean adsYN,
+                          File file, String imageURL, String UserID, String requestNum) throws PopbillException {
 
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
@@ -504,14 +502,14 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
         receiver.setMessage(content);
         receiver.setAltMessage(altContent);
 
-        return sendFMS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, Buttons,
+        return sendFMS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, Buttons,
                 sndDT, adsYN, file, imageURL, UserID, requestNum);
     }
-    
+
     @Override
-    public String sendFMS(String CorpNum, String plusFriendID, String senderNum, String content, String altSubject, 
-            String altContent, String altSendType, KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT,
-            Boolean adsYN, File file, String imageURL, String UserID, String requestNum) throws PopbillException {
+    public String sendFMS(String CorpNum, String plusFriendID, String senderNum, String content, String altSubject,
+                          String altContent, String altSendType, KakaoButton[] Buttons, String receiverNum, String receiverName, String sndDT,
+                          Boolean adsYN, File file, String imageURL, String UserID, String requestNum) throws PopbillException {
 
         KakaoReceiver receiver = new KakaoReceiver();
         receiver.setReceiverNum(receiverNum);
@@ -520,31 +518,31 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
         receiver.setAltSubject(altSubject);
         receiver.setAltMessage(altContent);
 
-        return sendFMS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[] { receiver }, Buttons,
+        return sendFMS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, new KakaoReceiver[]{receiver}, Buttons,
                 sndDT, adsYN, file, imageURL, UserID, requestNum);
     }
 
-    
+
     /**************************
      * 친구톡 이미지 개별내용 대량전송
      **************************/
     @Override
     public String sendFMS(String CorpNum, String plusFriendID, String senderNum, String altSendType, KakaoReceiver[] Receivers,
-            KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL) throws PopbillException {
+                          KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL) throws PopbillException {
         return sendFMS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, Receivers, Buttons, sndDT, adsYN, file,
                 imageURL, null, null);
     }
 
     @Override
     public String sendFMS(String CorpNum, String plusFriendID, String senderNum, String altSendType, KakaoReceiver[] Receivers,
-            KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL, String UserID) throws PopbillException {
+                          KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL, String UserID) throws PopbillException {
         return sendFMS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, Receivers, Buttons, sndDT, adsYN, file,
                 imageURL, UserID, null);
     }
 
     @Override
     public String sendFMS(String CorpNum, String plusFriendID, String senderNum, String altSendType, KakaoReceiver[] Receivers,
-            KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL, String UserID, String requestNum)
+                          KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL, String UserID, String requestNum)
             throws PopbillException {
         return sendFMS(CorpNum, plusFriendID, senderNum, null, null, null, altSendType, Receivers, Buttons, sndDT, adsYN, file,
                 imageURL, UserID, requestNum);
@@ -555,14 +553,14 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
      *************************/
     @Override
     public String sendFMS(String CorpNum, String plusFriendID, String senderNum, String content, String altContent, String altSendType,
-            KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL) throws PopbillException {
+                          KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL) throws PopbillException {
         return sendFMS(CorpNum, plusFriendID, senderNum, content, null, altContent, altSendType, Receivers, Buttons, sndDT, adsYN, file,
                 imageURL, null, null);
     }
 
     @Override
     public String sendFMS(String CorpNum, String plusFriendID, String senderNum, String content, String altContent, String altSendType,
-            KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL, String UserID)
+                          KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL, String UserID)
             throws PopbillException {
         return sendFMS(CorpNum, plusFriendID, senderNum, content, null, altContent, altSendType, Receivers, Buttons, sndDT, adsYN, file,
                 imageURL, UserID, null);
@@ -570,17 +568,17 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public String sendFMS(String CorpNum, String plusFriendID, String senderNum, String content, String altContent, String altSendType,
-            KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL, String UserID,
-            String requestNum) throws PopbillException {
+                          KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL, String UserID,
+                          String requestNum) throws PopbillException {
         return sendFMS(CorpNum, plusFriendID, senderNum, content, null, altContent, altSendType, Receivers, Buttons, sndDT, adsYN, file,
                 imageURL, UserID, requestNum);
     }
-    
+
     @Override
     public String sendFMS(String CorpNum, String plusFriendID, String senderNum, String content, String altSubject, String altContent,
-            String altSendType, KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL,
-            String UserID, String requestNum) throws PopbillException {
-        if (plusFriendID == null || plusFriendID == "")
+                          String altSendType, KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL,
+                          String UserID, String requestNum) throws PopbillException {
+        if (plusFriendID == null || plusFriendID.isEmpty())
             throw new PopbillException(-99999999, "카카오톡 검색용 아이디가 입력되지 않았습니다.");
 
         FTSSendRequest request = new FTSSendRequest();
@@ -631,9 +629,9 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public Response cancelReserve(String CorpNum, String receiptNum, String UserID) throws PopbillException {
-        if (receiptNum == null || receiptNum == "")
+        if (receiptNum == null || receiptNum.isEmpty())
             throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
-    
+
         return httpget("/KakaoTalk/" + receiptNum + "/Cancel", CorpNum, UserID, Response.class);
     }
 
@@ -644,56 +642,56 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public Response cancelReserveRN(String CorpNum, String requestNum, String UserID) throws PopbillException {
-        if (requestNum == null || requestNum == "")
+        if (requestNum == null || requestNum.isEmpty())
             throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
-    
+
         return httpget("/KakaoTalk/Cancel/" + requestNum, CorpNum, UserID, Response.class);
     }
-    
-    @Override
-	public Response cancelReservebyRCV(String CorpNum, String receiptNum, String receiveNum) throws PopbillException {
-    	return cancelReservebyRCV(CorpNum, receiptNum, receiveNum, null);
-	}
 
-	@Override
-	public Response cancelReservebyRCV(String CorpNum, String receiptNum, String receiveNum, String UserID) 
-			throws PopbillException {
-		if (receiptNum == null || receiptNum.equals(""))
-	        throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
-	    if (receiveNum == null || receiveNum.equals(""))
-	        throw new PopbillException(-99999999, "수신번호가 입력되지 않았습니다.");
-	    
-	    String PostData = toJsonString(receiveNum);
-	    
-	    return httppost("/KakaoTalk/" + receiptNum + "/Cancel", CorpNum, PostData, UserID, Response.class);
-	}
-	
-	@Override
-	public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum) throws PopbillException {
-		return cancelReserveRNbyRCV(CorpNum, requestNum, receiveNum, null);
-	}
-	
-	@Override
-	public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum, String UserID)
-			throws PopbillException {
-		if (requestNum == null || requestNum.equals(""))
-	        throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
-	    if (receiveNum == null || receiveNum.equals(""))
-	        throw new PopbillException(-99999999, "수신번호가 입력되지 않았습니다.");
-	    
-	    String PostData = toJsonString(receiveNum);
-	    
-	    return httppost("/KakaoTalk/Cancel/" +requestNum, CorpNum, PostData, UserID, Response.class);
-	}
-	
-	@Override
-	public KakaoSentInfo getMessages(String CorpNum, String receiptNum) throws PopbillException {
-	    return getMessages(CorpNum, receiptNum, null);
-	}
-	
-	@Override
+    @Override
+    public Response cancelReservebyRCV(String CorpNum, String receiptNum, String receiveNum) throws PopbillException {
+        return cancelReservebyRCV(CorpNum, receiptNum, receiveNum, null);
+    }
+
+    @Override
+    public Response cancelReservebyRCV(String CorpNum, String receiptNum, String receiveNum, String UserID)
+            throws PopbillException {
+        if (receiptNum == null || receiptNum.isEmpty())
+            throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
+        if (receiveNum == null || receiveNum.isEmpty())
+            throw new PopbillException(-99999999, "수신번호가 입력되지 않았습니다.");
+
+        String PostData = toJsonString(receiveNum);
+
+        return httppost("/KakaoTalk/" + receiptNum + "/Cancel", CorpNum, PostData, UserID, Response.class);
+    }
+
+    @Override
+    public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum) throws PopbillException {
+        return cancelReserveRNbyRCV(CorpNum, requestNum, receiveNum, null);
+    }
+
+    @Override
+    public Response cancelReserveRNbyRCV(String CorpNum, String requestNum, String receiveNum, String UserID)
+            throws PopbillException {
+        if (requestNum == null || requestNum.isEmpty())
+            throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
+        if (receiveNum == null || receiveNum.isEmpty())
+            throw new PopbillException(-99999999, "수신번호가 입력되지 않았습니다.");
+
+        String PostData = toJsonString(receiveNum);
+
+        return httppost("/KakaoTalk/Cancel/" + requestNum, CorpNum, PostData, UserID, Response.class);
+    }
+
+    @Override
+    public KakaoSentInfo getMessages(String CorpNum, String receiptNum) throws PopbillException {
+        return getMessages(CorpNum, receiptNum, null);
+    }
+
+    @Override
     public KakaoSentInfo getMessages(String CorpNum, String receiptNum, String UserID) throws PopbillException {
-        if (receiptNum == null || receiptNum == "")
+        if (receiptNum == null || receiptNum.isEmpty())
             throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
         return httpget("/KakaoTalk/" + receiptNum, CorpNum, UserID, KakaoSentInfo.class);
     }
@@ -705,26 +703,26 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public KakaoSentInfo getMessagesRN(String CorpNum, String requestNum, String UserID) throws PopbillException {
-        if (requestNum == null || requestNum == "")
+        if (requestNum == null || requestNum.isEmpty())
             throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
         return httpget("/KakaoTalk/Get/" + requestNum, CorpNum, UserID, KakaoSentInfo.class);
     }
 
     @Override
     public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderYN,
-            int Page, int PerPage, String Order) throws PopbillException {
+                                    Integer Page, Integer PerPage, String Order) throws PopbillException {
         return search(CorpNum, SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order, null);
     }
 
     @Override
     public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderYN,
-            int Page, int PerPage, String Order, String UserID) throws PopbillException {
+                                    Integer Page, Integer PerPage, String Order, String UserID) throws PopbillException {
         return search(CorpNum, SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order, UserID, null);
     }
 
     @Override
     public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderYN,
-            int Page, int PerPage, String Order, String UserID, String QString) throws PopbillException {
+                                    Integer Page, Integer PerPage, String Order, String UserID, String QString) throws PopbillException {
         if (SDate == null)
             throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
         if (EDate == null)
@@ -745,11 +743,14 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
             uri += "&SenderYN=0";
         }
 
-        uri += "&Page=" + Integer.toString(Page);
-        uri += "&PerPage=" + Integer.toString(PerPage);
-        uri += "&Order=" + Order;
+        if (Page != null)
+            uri += "&Page=" + Integer.toString(Page);
+        if (PerPage != null)
+            uri += "&PerPage=" + Integer.toString(PerPage);
+        if (Order != null && !Order.isEmpty())
+            uri += "&Order=" + Order;
 
-        if (QString != null && QString != "") {
+        if (QString != null && !QString.isEmpty()) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");
             } catch (UnsupportedEncodingException e) {
@@ -770,13 +771,14 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public String getURL(String CorpNum, String TOGO, String UserID) throws PopbillException {
-    
+
         String uri = "/KakaoTalk/?TG=";
-        if (TOGO == "SENDER")
+
+        if (TOGO != null && TOGO.equals("SENDER"))
             uri = "/Message/?TG=";
-    
+
         URLResponse response = httpget(uri + TOGO, CorpNum, UserID, URLResponse.class);
-    
+
         return response.url;
     }
 
@@ -784,9 +786,9 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     public float getUnitCost(String CorpNum, KakaoType kakaoType) throws PopbillException {
         if (kakaoType == null)
             throw new PopbillException(-99999999, "카카오톡 전송유형이 입력되지 않았습니다.");
-    
+
         UnitCostResponse response = httpget("/KakaoTalk/UnitCost?Type=" + kakaoType.name(), CorpNum, null, UnitCostResponse.class);
-    
+
         return response.unitCost;
     }
 
