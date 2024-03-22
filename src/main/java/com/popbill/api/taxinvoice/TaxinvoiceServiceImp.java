@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
 import com.popbill.api.AttachedFile;
 import com.popbill.api.BaseServiceImp;
 import com.popbill.api.BulkResponse;
@@ -36,6 +38,7 @@ import com.popbill.api.Response;
 import com.popbill.api.TaxinvoiceCertificate;
 import com.popbill.api.TaxinvoiceService;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import kr.co.linkhub.auth.Base64;
 
 /**
@@ -98,7 +101,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public IssueResponse registIssue(String CorpNum, Taxinvoice taxinvoice, Boolean WriteSpecification, String Memo, Boolean ForceIssue,
-            String DealInvoiceKey) throws PopbillException {
+                                     String DealInvoiceKey) throws PopbillException {
 
         return registIssue(CorpNum, taxinvoice, WriteSpecification, Memo, ForceIssue, DealInvoiceKey, null, null);
     }
@@ -109,19 +112,24 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public IssueResponse registIssue(String CorpNum, Taxinvoice taxinvoice, Boolean WriteSpecification, String Memo, Boolean ForceIssue,
-            String DealInvoiceKey, String EmailSubject, String UserID) throws PopbillException {
+                                     String DealInvoiceKey, String EmailSubject, String UserID) throws PopbillException {
 
         if (taxinvoice == null)
             throw new PopbillException(-99999999, "세금계산서 정보가 입력되지 않았습니다.");
 
-        if (WriteSpecification)
-            taxinvoice.setWriteSpecification(true);
+
+        if (WriteSpecification == null)
+            taxinvoice.setWriteSpecification(false);
+        else
+            taxinvoice.setWriteSpecification(WriteSpecification);
 
         if (Memo != null)
             taxinvoice.setMemo(Memo);
 
-        if (ForceIssue)
-            taxinvoice.setForceIssue(true);
+        if (ForceIssue == null)
+            taxinvoice.setForceIssue(false);
+        else
+            taxinvoice.setForceIssue(ForceIssue);
 
         if (DealInvoiceKey != null)
             taxinvoice.setDealInvoiceMgtKey(DealInvoiceKey);
@@ -133,94 +141,95 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
         return httppost("/Taxinvoice", CorpNum, PostData, UserID, "ISSUE", IssueResponse.class);
     }
-    
-    
+
+
     @Override
-    public Response registTaxCert(String CorpNum, String certPublicKey, String certPrivateKey, String certCipher) throws PopbillException{
-    	
-    	return registTaxCert(CorpNum, certPublicKey, certPrivateKey, certCipher, null);
+    public Response registTaxCert(String CorpNum, String certPublicKey, String certPrivateKey, String certCipher) throws PopbillException {
+
+        return registTaxCert(CorpNum, certPublicKey, certPrivateKey, certCipher, null);
     }
-    
-    
+
+
     @Override
-    public Response registTaxCert(String CorpNum, String certPublicKey, String certPrivateKey, String certCipher, String UserID) throws PopbillException{
-    	
-    	Encryptor pb_enc;
-    	
-    	TaxCertRequest request;
-    	
-    	if (certPublicKey == null || certPublicKey.equals("")) {
+    public Response registTaxCert(String CorpNum, String certPublicKey, String certPrivateKey, String certCipher, String UserID) throws PopbillException {
+
+        Encryptor pb_enc;
+
+        TaxCertRequest request;
+
+        if (certPublicKey == null || certPublicKey.equals("")) {
             throw new PopbillException(-99999999, "공동인증서 공개키(certPublicKey)가 입력되지 않았습니다.");
-    	}
-    	
-    	if (certPrivateKey == null || certPrivateKey.equals("")) {
+        }
+
+        if (certPrivateKey == null || certPrivateKey.equals("")) {
             throw new PopbillException(-99999999, "공동인증서 비밀키(certPrivateKey)가 입력되지 않았습니다.");
-    	}
-    	
-    	if (certCipher == null || certCipher.equals("")) {
+        }
+
+        if (certCipher == null || certCipher.equals("")) {
             throw new PopbillException(-99999999, "공동인증서 비밀번호(certCipher)가 입력되지 않았습니다.");
-    	}
-    	
-    	try {
-    		pb_enc = Encryptor.getInstance(getMleKeyID(), getMleKeyName(), getMlePublicKey());
-  			request = new TaxCertRequest();
-  			
-	        request.certPublicKey = Base64.encode(pb_enc.Encrypt(Base64.decode(certPublicKey)));
-	        request.certPrivateKey = Base64.encode(pb_enc.Encrypt(Base64.decode(certPrivateKey)));;
-	        request.certCipher = Base64.encode(pb_enc.Encrypt(certCipher.getBytes(Charset.forName("UTF-8"))));
-	        
-    	} catch(PopbillException PE) {
-    		  throw PE;
-  	  	} catch(Exception E) {
-  	  		throw new PopbillException(-99999999, "공동인증서 정보 Field Level 암호화 실패.", E);
-  	  	}
+        }
+
+        try {
+            pb_enc = Encryptor.getInstance(getMleKeyID(), getMleKeyName(), getMlePublicKey());
+            request = new TaxCertRequest();
+
+            request.certPublicKey = Base64.encode(pb_enc.Encrypt(Base64.decode(certPublicKey)));
+            request.certPrivateKey = Base64.encode(pb_enc.Encrypt(Base64.decode(certPrivateKey)));
+            ;
+            request.certCipher = Base64.encode(pb_enc.Encrypt(certCipher.getBytes(Charset.forName("UTF-8"))));
+
+        } catch (PopbillException PE) {
+            throw PE;
+        } catch (Exception E) {
+            throw new PopbillException(-99999999, "공동인증서 정보 Field Level 암호화 실패.", E);
+        }
 
         String PostData = toJsonString(request);
-        
+
         return httppost("/Taxinvoice/Certificate", CorpNum, PostData, UserID, null, Response.class);
     }
-    
+
     @Override
     public Response registTaxCertPFX(String CorpNum, String PFX, String password) throws PopbillException {
-    	
-    	return registTaxCertPFX(CorpNum, PFX, password, null);
+
+        return registTaxCertPFX(CorpNum, PFX, password, null);
     }
 
     @Override
     public Response registTaxCertPFX(String CorpNum, String PFX, String password, String UserID) throws PopbillException {
-    	Encryptor enc;
-    	
-    	CertPFXRequest request;
-    	
-    	if (PFX == null || PFX.equals("")) {
-            throw new PopbillException(-99999999, "공동인증서 PFX파일(Base64 Encoded)이 입력되지 않았습니다.");
-    	}
-    	
-    	if (password == null || password.equals("")) {
-            throw new PopbillException(-99999999, "공동인증서 PFX파일의 비밀번호(password)가 입력되지 않았습니다.");
-    	}
-    	
-    	try {
-    		enc = Encryptor.getInstance(getMleKeyID(), getMleKeyName(), getMlePublicKey());
-  			request = new CertPFXRequest();
-  			
-	        request.pfx = Base64.encode(enc.Encrypt(Base64.decode(PFX)));
-	        request.password = Base64.encode(enc.Encrypt(password.getBytes(Charset.forName("UTF-8"))));
+        Encryptor enc;
 
-    	} catch(PopbillException PE) {
-    		  throw PE;
-  	  	} catch(Exception E) {
-  	  		throw new PopbillException(-99999999, "공동인증서 PFX파일 정보 Field Level 암호화 실패.", E);
-  	  	}
+        CertPFXRequest request;
+
+        if (PFX == null || PFX.equals("")) {
+            throw new PopbillException(-99999999, "공동인증서 PFX파일(Base64 Encoded)이 입력되지 않았습니다.");
+        }
+
+        if (password == null || password.equals("")) {
+            throw new PopbillException(-99999999, "공동인증서 PFX파일의 비밀번호(password)가 입력되지 않았습니다.");
+        }
+
+        try {
+            enc = Encryptor.getInstance(getMleKeyID(), getMleKeyName(), getMlePublicKey());
+            request = new CertPFXRequest();
+
+            request.pfx = Base64.encode(enc.Encrypt(Base64.decode(PFX)));
+            request.password = Base64.encode(enc.Encrypt(password.getBytes(Charset.forName("UTF-8"))));
+
+        } catch (PopbillException PE) {
+            throw PE;
+        } catch (Exception E) {
+            throw new PopbillException(-99999999, "공동인증서 PFX파일 정보 Field Level 암호화 실패.", E);
+        }
 
         String PostData = toJsonString(request);
-        
+
         return httppost("/Taxinvoice/CertificatePFX", CorpNum, PostData, UserID, null, Response.class);
     }
 
     @Override
     public IssueResponse registIssueMLE(String CorpNum, Taxinvoice taxinvoice, Boolean WriteSpecification, String Memo, Boolean ForceIssue,
-            String DealInvoiceKey, String EmailSubject, String UserID) throws PopbillException {
+                                        String DealInvoiceKey, String EmailSubject, String UserID) throws PopbillException {
 
         if (taxinvoice == null)
             throw new PopbillException(-99999999, "세금계산서 정보가 입력되지 않았습니다.");
@@ -242,17 +251,19 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
         String PostData = toJsonString(taxinvoice);
 
-        return httppost("/Taxinvoice", CorpNum, PostData, UserID, "ISSUE", IssueResponse.class,"application/lh-encrypted");
+        return httppost("/Taxinvoice", CorpNum, PostData, UserID, "ISSUE", IssueResponse.class, "application/lh-encrypted");
     }
 
     @Override
-    public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, boolean ForceIssue) throws PopbillException {
+    public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, Boolean ForceIssue) throws PopbillException {
 
         return bulkSubmit(CorpNum, SubmitID, taxinvoiceList, ForceIssue, null);
 
     }
 
-    public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, boolean ForceIssue, String UserID)
+
+    @Override
+    public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, Boolean ForceIssue, String UserID)
             throws PopbillException {
 
         if (SubmitID == null || SubmitID.equals(""))
@@ -263,18 +274,22 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         }
 
         BulkTaxinvoiceSubmit tx = new BulkTaxinvoiceSubmit();
-        tx.setForceIssue(ForceIssue);
+
+        if (ForceIssue == null)
+            tx.setForceIssue(false);
+        else
+            tx.setForceIssue(ForceIssue);
         tx.setInvoices(taxinvoiceList);
         String PostData = toJsonString(tx);
 
         return httpBulkPost("/Taxinvoice", CorpNum, SubmitID, PostData, UserID, "BULKISSUE", BulkResponse.class);
     }
-    
+
     @Override
-    public BulkResponse bulkSubmitMLE(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, boolean ForceIssue, String UserID)
+    public BulkResponse bulkSubmitMLE(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, Boolean ForceIssue, String UserID)
             throws PopbillException {
 
-        if (SubmitID == null || SubmitID.equals(""))
+        if (SubmitID == null || SubmitID.isEmpty())
             throw new PopbillException(-99999999, "제출아이디(SubmitID)가 입력되지 않았습니다.");
 
         if (taxinvoiceList == null) {
@@ -282,11 +297,14 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         }
 
         BulkTaxinvoiceSubmit tx = new BulkTaxinvoiceSubmit();
-        tx.setForceIssue(ForceIssue);
+        if (ForceIssue == null)
+            tx.setForceIssue(false);
+        else
+            tx.setForceIssue(ForceIssue);
         tx.setInvoices(taxinvoiceList);
         String PostData = toJsonString(tx);
 
-        return httpBulkPost("/Taxinvoice", CorpNum, SubmitID, PostData, UserID, "BULKISSUE", BulkResponse.class,"application/lh-encrypted");
+        return httpBulkPost("/Taxinvoice", CorpNum, SubmitID, PostData, UserID, "BULKISSUE", BulkResponse.class, "application/lh-encrypted");
     }
 
     @Override
@@ -323,13 +341,13 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      * @see com.popbill.api.TaxinvoiceService#register(java.lang.String, com.popbill.api.taxinvoice.Taxinvoice, java.lang.String, boolean)
      */
     @Override
-    public Response register(String CorpNum, Taxinvoice taxinvoice, String UserID, boolean writeSpecification) throws PopbillException {
+    public Response register(String CorpNum, Taxinvoice taxinvoice, String UserID, Boolean writeSpecification) throws PopbillException {
         if (taxinvoice == null)
             throw new PopbillException(-99999999, "세금계산서 정보가 입력되지 않았습니다.");
 
         String PostData = toJsonString(taxinvoice);
 
-        if (writeSpecification) {
+        if (writeSpecification != null && writeSpecification) {
             PostData = "{\"writeSpecification\":true," + PostData.substring(1);
         }
 
@@ -382,7 +400,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      * @see com.popbill.api.TaxinvoiceService#issue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, boolean, java.lang.String)
      */
     @Override
-    public IssueResponse issue(String CorpNum, MgtKeyType KeyType, String MgtKey, String Memo, boolean ForceIssue, String UserID)
+    public IssueResponse issue(String CorpNum, MgtKeyType KeyType, String MgtKey, String Memo, Boolean ForceIssue, String UserID)
             throws PopbillException {
         return issue(CorpNum, KeyType, MgtKey, Memo, null, ForceIssue, UserID);
     }
@@ -391,7 +409,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      * @see com.popbill.api.TaxinvoiceService#issue(java.lang.String, com.popbill.api.taxinvoice.MgtKeyType, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String)
      */
     @Override
-    public IssueResponse issue(String CorpNum, MgtKeyType KeyType, String MgtKey, String Memo, String EmailSubject, boolean ForceIssue, String UserID)
+    public IssueResponse issue(String CorpNum, MgtKeyType KeyType, String MgtKey, String Memo, String EmailSubject, Boolean ForceIssue, String UserID)
             throws PopbillException {
         if (KeyType == null)
             throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
@@ -401,7 +419,10 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         IssueRequest request = new IssueRequest();
         request.memo = Memo;
         request.emailSubject = EmailSubject;
-        request.forceIssue = ForceIssue;
+        if (ForceIssue == null)
+            request.forceIssue = false;
+        else
+            request.forceIssue = ForceIssue;
 
         String PostData = toJsonString(request);
 
@@ -570,12 +591,18 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public TaxinvoiceInfo getInfo(String CorpNum, MgtKeyType KeyType, String MgtKey) throws PopbillException {
+        return getInfo(CorpNum, KeyType, MgtKey, "");
+    }
+
+
+    @Override
+    public TaxinvoiceInfo getInfo(String CorpNum, MgtKeyType KeyType, String MgtKey, String UserID) throws PopbillException {
         if (KeyType == null)
             throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
-        return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey, CorpNum, null, TaxinvoiceInfo.class);
+        return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey, CorpNum, UserID, TaxinvoiceInfo.class);
     }
 
     /* (non-Javadoc)
@@ -583,6 +610,11 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public TaxinvoiceInfo[] getInfos(String CorpNum, MgtKeyType KeyType, String[] MgtKeyList) throws PopbillException {
+        return getInfos(CorpNum, KeyType, MgtKeyList, "");
+    }
+
+    @Override
+    public TaxinvoiceInfo[] getInfos(String CorpNum, MgtKeyType KeyType, String[] MgtKeyList, String UserID) throws PopbillException {
         if (KeyType == null)
             throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKeyList == null || MgtKeyList.length == 0)
@@ -590,7 +622,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
         String PostData = toJsonString(MgtKeyList);
 
-        return httppost("/Taxinvoice/" + KeyType.name(), CorpNum, PostData, null, TaxinvoiceInfo[].class);
+        return httppost("/Taxinvoice/" + KeyType.name(), CorpNum, PostData, UserID, TaxinvoiceInfo[].class);
     }
 
     /* (non-Javadoc)
@@ -598,12 +630,17 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public Taxinvoice getDetailInfo(String CorpNum, MgtKeyType KeyType, String MgtKey) throws PopbillException {
+        return getDetailInfo(CorpNum, KeyType, MgtKey, "");
+    }
+
+    @Override
+    public Taxinvoice getDetailInfo(String CorpNum, MgtKeyType KeyType, String MgtKey, String UserID) throws PopbillException {
         if (KeyType == null)
             throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
-        return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "?Detail", CorpNum, null, Taxinvoice.class);
+        return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "?Detail", CorpNum, UserID, Taxinvoice.class);
     }
 
     @Override
@@ -631,7 +668,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, String SDate, String EDate, String[] State, String[] Type,
-            String[] TaxType, Boolean LateOnly, Integer Page, Integer PerPage, String Order) throws PopbillException {
+                                 String[] TaxType, Boolean LateOnly, Integer Page, Integer PerPage, String Order) throws PopbillException {
 
         return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly, null, null, null, null, Page, PerPage, Order, null,
                 null, null, null, null);
@@ -643,7 +680,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, String SDate, String EDate, String[] State, String[] Type,
-            String[] TaxType, Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN, Integer Page, Integer PerPage, String Order)
+                                 String[] TaxType, Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN, Integer Page, Integer PerPage, String Order)
             throws PopbillException {
 
         return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN, null, Page,
@@ -656,16 +693,16 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, String SDate, String EDate, String[] State, String[] Type,
-            String[] TaxType, Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN, String QString, Integer Page,
-            Integer PerPage, String Order) throws PopbillException {
+                                 String[] TaxType, Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN, String QString, Integer Page,
+                                 Integer PerPage, String Order) throws PopbillException {
         return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page,
                 PerPage, Order, null);
     }
 
     @Override
     public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, String SDate, String EDate, String[] State, String[] Type,
-            String[] TaxType, Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN, String QString, Integer Page,
-            Integer PerPage, String Order, String InterOPYN) throws PopbillException {
+                                 String[] TaxType, Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN, String QString, Integer Page,
+                                 Integer PerPage, String Order, String InterOPYN) throws PopbillException {
 
         return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page,
                 PerPage, Order, InterOPYN, null, null, null, null);
@@ -677,16 +714,16 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, String SDate, String EDate, String[] State, String[] Type,
-            String[] TaxType, String[] IssueType, Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN, String QString,
-            Integer Page, Integer PerPage, String Order, String InterOPYN) throws PopbillException {
+                                 String[] TaxType, String[] IssueType, Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN, String QString,
+                                 Integer Page, Integer PerPage, String Order, String InterOPYN) throws PopbillException {
         return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page,
                 PerPage, Order, InterOPYN, null, null, null, null);
     }
 
     @Override
     public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, String SDate, String EDate, String[] State, String[] Type,
-            String[] TaxType, String[] IssueType, Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN, String QString,
-            Integer Page, Integer PerPage, String Order, String InterOPYN, String[] RegType) throws PopbillException {
+                                 String[] TaxType, String[] IssueType, Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN, String QString,
+                                 Integer Page, Integer PerPage, String Order, String InterOPYN, String[] RegType) throws PopbillException {
 
         return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page,
                 PerPage, Order, InterOPYN, null, null, null, null);
@@ -694,8 +731,8 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
     @Override
     public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, String SDate, String EDate, String[] State, String[] Type,
-            String[] TaxType, String[] IssueType, Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN, String QString,
-            Integer Page, Integer PerPage, String Order, String InterOPYN, String[] RegType, String[] CloseDownState, String MgtKey, String UserID)
+                                 String[] TaxType, String[] IssueType, Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN, String QString,
+                                 Integer Page, Integer PerPage, String Order, String InterOPYN, String[] RegType, String[] CloseDownState, String MgtKey, String UserID)
             throws PopbillException {
 
         if (KeyType == null)
@@ -735,23 +772,23 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
             }
         }
 
-        if (TaxRegIDType != null && TaxRegIDType != "") {
+        if (TaxRegIDType != null && !TaxRegIDType.isEmpty()) {
             uri += "&TaxRegIDType=" + TaxRegIDType;
         }
 
-        if (TaxRegID != null && TaxRegID != "") {
+        if (TaxRegID != null && !TaxRegID.isEmpty()) {
             uri += "&TaxRegID=" + TaxRegID;
         }
 
-        if (TaxRegIDYN != null && TaxRegIDYN != "") {
+        if (TaxRegIDYN != null && !TaxRegIDYN.isEmpty()) {
             uri += "&TaxRegIDYN=" + TaxRegIDYN;
         }
 
-        if (InterOPYN != null && InterOPYN != "") {
+        if (InterOPYN != null && !InterOPYN.isEmpty()) {
             uri += "&InterOPYN=" + InterOPYN;
         }
 
-        if (QString != null && QString != "") {
+        if (QString != null && !QString.isEmpty()) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");
             } catch (UnsupportedEncodingException e) {
@@ -759,13 +796,16 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
             }
         }
 
-        if (MgtKey != null && MgtKey != "") {
+        if (MgtKey != null && !MgtKey.isEmpty()) {
             uri += "&MgtKey=" + MgtKey;
         }
 
-        uri += "&Page=" + Integer.toString(Page);
-        uri += "&PerPage=" + Integer.toString(PerPage);
-        uri += "&Order=" + Order;
+        if (Page != null)
+            uri += "&Page=" + Integer.toString(Page);
+        if (PerPage != null)
+            uri += "&PerPage=" + Integer.toString(PerPage);
+        if (Order != null && !Order.isEmpty())
+            uri += "&Order=" + Order;
 
         return httpget(uri, CorpNum, UserID, TISearchResult.class);
     }
@@ -775,12 +815,17 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public TaxinvoiceLog[] getLogs(String CorpNum, MgtKeyType KeyType, String MgtKey) throws PopbillException {
+        return getLogs(CorpNum, KeyType, MgtKey, "");
+    }
+
+    @Override
+    public TaxinvoiceLog[] getLogs(String CorpNum, MgtKeyType KeyType, String MgtKey, String UserID) throws PopbillException {
         if (KeyType == null)
             throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
-        return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "/Logs", CorpNum, null, TaxinvoiceLog[].class);
+        return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "/Logs", CorpNum, UserID, TaxinvoiceLog[].class);
     }
 
     /*
@@ -1009,7 +1054,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     @Override
     public String getSealURL(String CorpNum, String UserID) throws PopbillException {
 
-        URLResponse response = httpget("/?TG=SEAL", CorpNum, UserID, URLResponse.class);
+        URLResponse response = httpget("/Member?TG=SEAL", CorpNum, UserID, URLResponse.class);
 
         return response.url;
     }
@@ -1077,12 +1122,17 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public AttachedFile[] getFiles(String CorpNum, MgtKeyType KeyType, String MgtKey) throws PopbillException {
+        return getFiles(CorpNum, KeyType, MgtKey, "");
+    }
+
+    @Override
+    public AttachedFile[] getFiles(String CorpNum, MgtKeyType KeyType, String MgtKey, String UserID) throws PopbillException {
         if (KeyType == null)
             throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
         if (MgtKey == null || MgtKey.isEmpty())
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
-        return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "/Files", CorpNum, null, AttachedFile[].class);
+        return httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "/Files", CorpNum, UserID, AttachedFile[].class);
     }
 
     /* (non-Javadoc)
@@ -1180,6 +1230,11 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public Response attachStatement(String CorpNum, MgtKeyType KeyType, String MgtKey, int SubItemCode, String SubMgtKey) throws PopbillException {
+        return attachStatement(CorpNum, KeyType, MgtKey, SubItemCode, SubMgtKey, "");
+    }
+
+    @Override
+    public Response attachStatement(String CorpNum, MgtKeyType KeyType, String MgtKey, int SubItemCode, String SubMgtKey, String UserID) throws PopbillException {
 
         DocRequest request = new DocRequest();
         request.ItemCode = Integer.toString(SubItemCode);
@@ -1187,7 +1242,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
         String PostData = toJsonString(request);
 
-        return httppost("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "/AttachStmt", CorpNum, PostData, null, "", Response.class);
+        return httppost("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "/AttachStmt", CorpNum, PostData, UserID, "", Response.class);
     }
 
     /*
@@ -1196,6 +1251,11 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public Response detachStatement(String CorpNum, MgtKeyType KeyType, String MgtKey, int SubItemCode, String SubMgtKey) throws PopbillException {
+        return detachStatement(CorpNum, KeyType, MgtKey, SubItemCode, SubMgtKey, "");
+    }
+
+    @Override
+    public Response detachStatement(String CorpNum, MgtKeyType KeyType, String MgtKey, int SubItemCode, String SubMgtKey, String UserID) throws PopbillException {
 
         DocRequest request = new DocRequest();
         request.ItemCode = Integer.toString(SubItemCode);
@@ -1203,7 +1263,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
 
         String PostData = toJsonString(request);
 
-        return httppost("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "/DetachStmt", CorpNum, PostData, null, "", Response.class);
+        return httppost("/Taxinvoice/" + KeyType.name() + "/" + MgtKey + "/DetachStmt", CorpNum, PostData, UserID, "", Response.class);
     }
 
     /* (non-Javadoc)
@@ -1247,7 +1307,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public EmailSendConfig[] listEmailConfig(String CorpNum) throws PopbillException {
-        return httpget("/Taxinvoice/EmailSendConfig", CorpNum, null, EmailSendConfig[].class);
+        return listEmailConfig(CorpNum, null);
     }
 
     /*
@@ -1314,8 +1374,13 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public Date getCertificateExpireDate(String CorpNum) throws PopbillException {
+        return getCertificateExpireDate(CorpNum, null);
+    }
 
-        CertResponse response = httpget("/Taxinvoice?cfg=CERT", CorpNum, null, CertResponse.class);
+    @Override
+    public Date getCertificateExpireDate(String CorpNum, String UserID) throws PopbillException {
+
+        CertResponse response = httpget("/Taxinvoice?cfg=CERT", CorpNum, UserID, CertResponse.class);
 
         try {
             return new SimpleDateFormat("yyyyMMddHHmmss").parse(response.certificateExpiration);
@@ -1328,11 +1393,17 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      * (non-Javadoc)
      * @see com.popbill.api.TaxinvoiceService#checkCertValidation(java.lang.String)
      */
+    @Override
     public Response checkCertValidation(String CorpNum) throws PopbillException {
+        return checkCertValidation(CorpNum, null);
+    }
+
+    @Override
+    public Response checkCertValidation(String CorpNum, String UserID) throws PopbillException {
         if (CorpNum == null || CorpNum.isEmpty())
             throw new PopbillException(-99999999, "연동회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
 
-        return httpget("/Taxinvoice/CertCheck", CorpNum, null, Response.class);
+        return httpget("/Taxinvoice/CertCheck", CorpNum, UserID, Response.class);
     }
 
     @Override
@@ -1352,7 +1423,12 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public float getUnitCost(String CorpNum) throws PopbillException {
-        UnitCostResponse response = httpget("/Taxinvoice?cfg=UNITCOST", CorpNum, null, UnitCostResponse.class);
+        return getUnitCost(CorpNum, null);
+    }
+
+    @Override
+    public float getUnitCost(String CorpNum, String UserID) throws PopbillException {
+        UnitCostResponse response = httpget("/Taxinvoice?cfg=UNITCOST", CorpNum, UserID, UnitCostResponse.class);
 
         return response.unitCost;
     }
@@ -1363,7 +1439,16 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
-        return httpget("/Taxinvoice/ChargeInfo", CorpNum, null, ChargeInfo.class);
+        return getChargeInfo(CorpNum, null);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.popbill.api.TaxinvoiceService#getChargeInfo(java.lang.String)
+     */
+    @Override
+    public ChargeInfo getChargeInfo(String CorpNum, String UserID) throws PopbillException {
+        return httpget("/Taxinvoice/ChargeInfo", CorpNum, UserID, ChargeInfo.class);
     }
 
     /* (non-Javadoc)
@@ -1510,14 +1595,14 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     }
 
     protected class TaxCertRequest {
-    	public String certPublicKey;
-    	public String certPrivateKey;
-    	public String certCipher;
+        public String certPublicKey;
+        public String certPrivateKey;
+        public String certCipher;
     }
-    
+
     protected class CertPFXRequest {
-    	public String pfx;
-    	public String password;
+        public String pfx;
+        public String password;
     }
 
     protected class SendRequest {

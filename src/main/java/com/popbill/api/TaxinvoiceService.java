@@ -126,7 +126,7 @@ public interface TaxinvoiceService extends BaseService {
      * @throws PopbillException
      */
     public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList,
-            boolean ForceIssue)
+            Boolean ForceIssue)
             throws PopbillException;
 
     /**
@@ -140,7 +140,7 @@ public interface TaxinvoiceService extends BaseService {
      * @throws PopbillException
      */
     public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList,
-            boolean ForceIssue, String UserID)
+            Boolean ForceIssue, String UserID)
             throws PopbillException;
 
     /**
@@ -204,7 +204,7 @@ public interface TaxinvoiceService extends BaseService {
      * @throws PopbillException
      */
     public Response register(String CorpNum, Taxinvoice taxinvoice,
-            String UserID, boolean writeSpecification) throws PopbillException;
+            String UserID, Boolean writeSpecification) throws PopbillException;
 
     /**
      * 임시저장된 세금계산서 정보 수정.
@@ -298,7 +298,7 @@ public interface TaxinvoiceService extends BaseService {
      * @throws PopbillException
      */
     public IssueResponse issue(String CorpNum, MgtKeyType KeyType,
-            String MgtKey, String Memo, boolean ForceIssue, String UserID)
+            String MgtKey, String Memo, Boolean ForceIssue, String UserID)
             throws PopbillException;
 
     /**
@@ -323,7 +323,7 @@ public interface TaxinvoiceService extends BaseService {
      */
     public IssueResponse issue(String CorpNum, MgtKeyType KeyType,
             String MgtKey, String Memo, String EmailSubject,
-            boolean ForceIssue, String UserID) throws PopbillException;
+            Boolean ForceIssue, String UserID) throws PopbillException;
 
     /**
      * 세금계산서 발행취소 처리.
@@ -579,6 +579,22 @@ public interface TaxinvoiceService extends BaseService {
             String MgtKey) throws PopbillException;
 
     /**
+     *
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @param KeyType
+     *            세금계산서 유형
+     * @param MgtKey
+     *            문서번호
+     * @param UserID
+     *            팝빌회원 아이디
+     * @return Response 응답
+     * @throws PopbillException
+     */
+    public TaxinvoiceInfo getInfo(String CorpNum, MgtKeyType KeyType,
+            String MgtKey, String UserID) throws PopbillException;
+
+    /**
      * 세금계산서 상태정보 대량(최대 1000건) 확인.
      *
      * @param CorpNum
@@ -594,6 +610,22 @@ public interface TaxinvoiceService extends BaseService {
             MgtKeyType KeyType, String[] MgtKeyList) throws PopbillException;
 
     /**
+     * 세금계산서 상태정보 대량(최대 1000건) 확인.
+     *
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @param KeyType
+     *            세금계산서 유형
+     * @param MgtKeyList
+     *            문서번호 목록
+     * @param UserID
+     *            팝빌회원 아이디
+     * @return TaxinvoiceInfo 배열.
+     * @throws PopbillException
+     */
+    public TaxinvoiceInfo[] getInfos(String CorpNum, MgtKeyType KeyType, String[] MgtKeyList, String UserID) throws PopbillException;
+
+    /**
      * 세금계산서 상세정보 확인.
      *
      * @param CorpNum
@@ -607,6 +639,22 @@ public interface TaxinvoiceService extends BaseService {
      */
     public Taxinvoice getDetailInfo(String CorpNum,
             MgtKeyType KeyType, String MgtKey) throws PopbillException;
+    /**
+     * 세금계산서 상세정보 확인.
+     *
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @param KeyType
+     *            세금계산서 유형
+     * @param MgtKey
+     *            문서번호
+     * @param UserID
+     *            팝빌회원 아이디
+     * @return Response 응답
+     * @throws PopbillException
+     */
+    public Taxinvoice getDetailInfo(String CorpNum,
+            MgtKeyType KeyType, String MgtKey, String UserID) throws PopbillException;
 
     /**
      * 세금계산서 상세정보(XML) 확인.
@@ -948,6 +996,23 @@ public interface TaxinvoiceService extends BaseService {
      */
     public TaxinvoiceLog[] getLogs(String CorpNum, MgtKeyType KeyType,
             String MgtKey) throws PopbillException;
+
+    /**
+     * 세금계산서 문서이력 확인.
+     *
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @param KeyType
+     *            세금계산서 유형
+     * @param MgtKey
+     *            문서번호
+     * @param UserID
+     *            팝빌회원 아이디
+     * @return TaxinvoiceLog 배열.
+     * @throws PopbillException
+     */
+    public TaxinvoiceLog[] getLogs(String CorpNum, MgtKeyType KeyType,
+            String MgtKey, String UserID) throws PopbillException;
 
     /**
      * 팝빌 세금계산서 관련 URL 확인. 반환한 url은 30초이내에 브라우져에 표시하여야 함.
@@ -1336,6 +1401,23 @@ public interface TaxinvoiceService extends BaseService {
             String MgtKey) throws PopbillException;
 
     /**
+     * 첨부파일 목록 확인.
+     *
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @param KeyType
+     *            세금계산서 유형
+     * @param MgtKey
+     *            문서번호
+     * @param UserID
+     *            팝빌 회원 아이디
+     * @return AttachedFile 배열.
+     * @throws PopbillException
+     */
+    public AttachedFile[] getFiles(String CorpNum, MgtKeyType KeyType,
+            String MgtKey, String UserID) throws PopbillException;
+
+    /**
      * 이메일 재전송 요청.
      *
      * @param CorpNum
@@ -1479,6 +1561,26 @@ public interface TaxinvoiceService extends BaseService {
     public Response attachStatement(String CorpNum, MgtKeyType KeyType,
             String MgtKey, int SubItemCode, String SubMgtKey) throws PopbillException;
     /**
+     * 전자명세서 첨부
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param KeyType
+     *          발행유형
+     * @param MgtKey
+     *          세금계산서 문서번호
+     * @param SubItemCode
+     *          첨부할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
+     * @param SubMgtKey
+     *          첨부할 명세서 문서번호
+     * @param UserID
+     *          팝빌 회원 아이디
+     * @return Response.
+     * @throws PopbillException
+     */
+    public Response attachStatement(String CorpNum, MgtKeyType KeyType,
+            String MgtKey, int SubItemCode, String SubMgtKey, String UserID) throws PopbillException;
+    /**
      * 전자명세서 첨부해제
      *
      * @param CorpNum
@@ -1496,6 +1598,26 @@ public interface TaxinvoiceService extends BaseService {
      */
     public Response detachStatement(String CorpNum, MgtKeyType KeyType,
             String MgtKey, int SubItemCode, String SubMgtKey) throws PopbillException;
+    /**
+     * 전자명세서 첨부해제
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param KeyType
+     *          발행유형
+     * @param MgtKey
+     *          세금계산서 문서번호
+     * @param SubItemCode
+     *          첨부해제할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
+     * @param SubMgtKey
+     *          첨부해제할 명세서 문서번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return Response.
+     * @throws PopbillException
+     */
+    public Response detachStatement(String CorpNum, MgtKeyType KeyType,
+            String MgtKey, int SubItemCode, String SubMgtKey, String UserID) throws PopbillException;
 
 
     /**
@@ -1642,6 +1764,18 @@ public interface TaxinvoiceService extends BaseService {
      */
     public Date getCertificateExpireDate(String CorpNum)
             throws PopbillException;
+    /**
+     * 연동회원이 등록한 공인인증서의 만료일시 확인.
+     *
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @param UserID
+     *            팝빌회원 아이디
+     * @return 만료일시
+     * @throws PopbillException
+     */
+    public Date getCertificateExpireDate(String CorpNum, String UserID)
+            throws PopbillException;
 
     /**
      *  공인인증서 만료일 확인
@@ -1651,6 +1785,8 @@ public interface TaxinvoiceService extends BaseService {
      * @return Response
      */
     public Response checkCertValidation(String CorpNum) throws PopbillException;
+
+    public Response checkCertValidation(String CorpNum, String UserID) throws PopbillException;
 
     /**
      * 전세금 공동인증서 정보 확인
@@ -1681,6 +1817,15 @@ public interface TaxinvoiceService extends BaseService {
      * @throws PopbillException
      */
     public float getUnitCost(String CorpNum) throws PopbillException;
+    /**
+     * 회원의 세금계산서 발행단가 확인
+     *
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @return 단가 (ex. 200.0)
+     * @throws PopbillException
+     */
+    public float getUnitCost(String CorpNum, String UserID) throws PopbillException;
 
     /**
      *  과금정보 확인
@@ -1691,6 +1836,16 @@ public interface TaxinvoiceService extends BaseService {
      * @throws PopbillException
      */
     public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException;
+
+    /**
+     *  과금정보 확인
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @return ChargeInfo 과금정보.
+     * @throws PopbillException
+     */
+    public ChargeInfo getChargeInfo(String CorpNum, String UserID) throws PopbillException;
 
     /**
      * 세금계산서 PDF파일 다운로드
@@ -1920,7 +2075,7 @@ public interface TaxinvoiceService extends BaseService {
 	 * @return
 	 * @throws PopbillException
 	 */
-	public BulkResponse bulkSubmitMLE(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, boolean ForceIssue,
+	public BulkResponse bulkSubmitMLE(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, Boolean ForceIssue,
 			String UserID) throws PopbillException;
 
         /**
@@ -1958,7 +2113,7 @@ public interface TaxinvoiceService extends BaseService {
          * @throws PopbillException
          */
         Response registTaxCertPFX(String CorpNum, String certPFX, String certCipher, String UserID) throws PopbillException;
-        
+
         Response registTaxCertPFX(String CorpNum, String certPFX, String certCipher) throws PopbillException;
-        
+
 }
