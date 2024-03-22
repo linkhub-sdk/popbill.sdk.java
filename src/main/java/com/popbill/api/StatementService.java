@@ -77,10 +77,28 @@ public interface StatementService extends BaseService{
      * @throws PopbillException
      * 
      */
-
-    public boolean checkMgtKeyInUse(String CorpNum, int ItemCode, 
+    public boolean checkMgtKeyInUse(String CorpNum, int ItemCode,
             String MgtKey) throws PopbillException;
-    
+
+    /**
+     * 문서번호 사용여부 확인
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param ItemCode
+     *          명세서 코드
+     * @param MgtKey
+     *          문서번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return 사용여부, true : 사용중 / false : 미사용중
+     * @throws PopbillException
+     *
+     */
+    public boolean checkMgtKeyInUse(String CorpNum, int ItemCode,
+            String MgtKey, String UserID) throws PopbillException;
+
+
     /**
      * 명세서 1건 임시저장
      * 
@@ -446,7 +464,24 @@ public interface StatementService extends BaseService{
      */
     public StatementInfo getInfo(String CorpNum, int ItemCode, 
             String MgtKey) throws PopbillException;
-    
+
+    /**
+     * 명세서 상태/요약 정보 확인.
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param ItemCode
+     *          명세서 코드
+     * @param MgtKey
+     *          문서번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return StatementInfo
+     * @throws PopbillException
+     */
+    public StatementInfo getInfo(String CorpNum, int ItemCode,
+            String MgtKey, String UserID) throws PopbillException;
+
     /**
      * 명세서 상태/요약 정보 대량확인 (최대 1000건).
      * 
@@ -462,7 +497,25 @@ public interface StatementService extends BaseService{
      */
     public StatementInfo[] getInfos(String CorpNum, int ItemCode,
             String[] MgtKeyList) throws PopbillException;
-    
+
+    /**
+     * 명세서 상태/요약 정보 대량확인 (최대 1000건).
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param ItemCode
+     *          명세서 코드
+     * @param MgtKeyList
+     *          문서번호 목록
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return StatementInfo 배열
+     * @throws PopbillException
+     *
+     */
+    public StatementInfo[] getInfos(String CorpNum, int ItemCode,
+            String[] MgtKeyList, String UserID) throws PopbillException;
+
     
     /**
      * 명세서 문서이력 확인.
@@ -478,6 +531,23 @@ public interface StatementService extends BaseService{
      */
     public StatementLog[] getLogs(String CorpNum, int ItemCode, 
             String MgtKey) throws PopbillException;
+
+    /**
+     * 명세서 문서이력 확인.
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param ItemCode
+     *          명세서 코드
+     * @param MgtKey
+     *          문서번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return StatementLog 배열.
+     * @throws PopbillException
+     */
+    public StatementLog[] getLogs(String CorpNum, int ItemCode,
+            String MgtKey, String UserID) throws PopbillException;
 
     /**
      * 명세서 팝빌화면 팝업 URL 확인
@@ -701,7 +771,25 @@ public interface StatementService extends BaseService{
      */
     public AttachedFile[] getFiles(String CorpNum, int ItemCode, 
             String MgtKey) throws PopbillException;
-    
+
+    /**
+     * 첨부파일 목록 확인
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param ItemCode
+     *          명세서 코드
+     * @param MgtKey
+     *          문서번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return AttachedFile 배열
+     * @throws PopbillException
+     *
+     */
+    public AttachedFile[] getFiles(String CorpNum, int ItemCode,
+            String MgtKey, String UserID) throws PopbillException;
+
     /**
      * 첨부파일 삭제
      * 
@@ -857,7 +945,28 @@ public interface StatementService extends BaseService{
      */
     public Response attachStatement(String CorpNum, int ItemCode, String MgtKey,
             int SubItemCode, String SubMgtKey) throws PopbillException;
-    
+
+    /**
+     * 다른 전자명세서 첨부
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param ItemCode
+     *          명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
+     * @param MgtKey
+     *          명세서 문서번호
+     * @param SubItemCode
+     *          첨부할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
+     * @param SubMgtKey
+     *          첨부할 명세서 문서번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return Response.
+     * @throws PopbillException
+     */
+    public Response attachStatement(String CorpNum, int ItemCode, String MgtKey,
+            int SubItemCode, String SubMgtKey, String UserID) throws PopbillException;
+
     
     /**
      * 다른 전자명세서 첨부해제 
@@ -877,7 +986,28 @@ public interface StatementService extends BaseService{
      */
     public Response detachStatement(String CorpNum, int ItemCode, String MgtKey,
             int SubItemCode, String SubMgtKey) throws PopbillException;
-    
+
+    /**
+     * 다른 전자명세서 첨부해제
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param ItemCode
+     *          명세서 코드,  121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
+     * @param MgtKey
+     *          명세서 문서번호
+     * @param SubItemCode
+     *          첨부해제할 명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
+     * @param SubMgtKey
+     *          첨부해제할 명세서 문서번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return Response.
+     * @throws PopbillException
+     */
+    public Response detachStatement(String CorpNum, int ItemCode, String MgtKey,
+            int SubItemCode, String SubMgtKey, String UserID) throws PopbillException;
+
     /**
      * 전자명세서 목록 조회 
      * 
@@ -903,8 +1033,8 @@ public interface StatementService extends BaseService{
      * @throws PopbillException
      */
     public StmtSearchResult search(String CorpNum, String DType, String SDate,
-            String EDate, String[] State, int[] ItemCode, int Page,
-            int PerPage, String Order) throws PopbillException;
+            String EDate, String[] State, int[] ItemCode, Integer Page,
+            Integer PerPage, String Order) throws PopbillException;
     
     /**
      * 전자명세서 목록 조회 
@@ -933,8 +1063,41 @@ public interface StatementService extends BaseService{
      * @throws PopbillException
      */
     public StmtSearchResult search(String CorpNum, String DType, String SDate,
-            String EDate, String[] State, int[] ItemCode, String QString, int Page,
-            int PerPage, String Order) throws PopbillException;
+            String EDate, String[] State, int[] ItemCode, String QString, Integer Page,
+            Integer PerPage, String Order) throws PopbillException;
+
+    /**
+     * 전자명세서 목록 조회
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param DType
+     *          검색일자 유형, R-등록일자, W-작성일자, I-발행일자
+     * @param SDate
+     *          시작일자(yyyyMMdd)
+     * @param EDate
+     *          종료일자(yyyyMMdd)
+     * @param State
+     *          전자명세서상태 배열
+     * @param ItemCode
+     *          전자명세서코드 배열, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
+     * @param QString
+     *          통합검색 키워드, (거래처명 또는 거래처 사업자등록번호 조회)
+     * @param Page
+     *          페이지 번호
+     * @param PerPage
+     *          페이지당 목록 개수, 기본값 500, 최대 1000
+     * @param Order
+     *          정렬방향
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return 전자명세서 목록조회 결과. see com.popbill.api.statement.StmtSearchResuilt
+     * @throws PopbillException
+     */
+    public StmtSearchResult search(String CorpNum, String DType, String SDate,
+            String EDate, String[] State, int[] ItemCode, String QString, Integer Page,
+            Integer PerPage, String Order, String UserID) throws PopbillException;
+
     /**
      * 과금정보 확인
      * @param CorpNum
@@ -945,7 +1108,20 @@ public interface StatementService extends BaseService{
      * @throws PopbillException
      */
     public ChargeInfo getChargeInfo(String CorpNum, int ItemCode) throws PopbillException;
-    
+
+    /**
+     * 과금정보 확인
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param ItemCode
+     *          전자명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return 과금정보. see com.popbill.api.ChargeInfo
+     * @throws PopbillException
+     */
+    public ChargeInfo getChargeInfo(String CorpNum, int ItemCode, String UserID) throws PopbillException;
+
     /**
      *  알림메일 전송설정 수정
      * 
@@ -1036,4 +1212,3 @@ public interface StatementService extends BaseService{
      */
     public String getSealURL(String CorpNum, String UserID) throws PopbillException;
 }
-

@@ -66,11 +66,16 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public boolean checkMgtKeyInUse(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
+        return checkMgtKeyInUse(CorpNum, ItemCode, MgtKey, null);
+    }
+
+    @Override
+    public boolean checkMgtKeyInUse(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
         if (MgtKey == null || MgtKey.isEmpty())
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         try {
-            StatementInfo info = httpget("/Statement/" + ItemCode + "/" + MgtKey, CorpNum, null, StatementInfo.class);
+            StatementInfo info = httpget("/Statement/" + ItemCode + "/" + MgtKey, CorpNum, UserID, StatementInfo.class);
 
             return (info.getItemKey() == null || info.getItemKey().isEmpty()) == false;
 
@@ -79,7 +84,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
                 return false;
             throw PE;
         }
-
     }
 
     /* (non-Javadoc)
@@ -316,10 +320,15 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public StatementInfo getInfo(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
+        return getInfo(CorpNum, ItemCode, MgtKey, null);
+    }
+
+    @Override
+    public StatementInfo getInfo(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
         if (MgtKey == null || MgtKey.isEmpty())
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
-        return httpget("/Statement/" + ItemCode + "/" + MgtKey, CorpNum, null, StatementInfo.class);
+        return httpget("/Statement/" + ItemCode + "/" + MgtKey, CorpNum, UserID, StatementInfo.class);
     }
 
     /* (non-Javadoc)
@@ -327,12 +336,17 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public StatementInfo[] getInfos(String CorpNum, int ItemCode, String[] MgtKeyList) throws PopbillException {
+        return getInfos(CorpNum, ItemCode, MgtKeyList, null);
+    }
+
+    @Override
+    public StatementInfo[] getInfos(String CorpNum, int ItemCode, String[] MgtKeyList, String UserID) throws PopbillException {
         if (MgtKeyList == null)
             throw new PopbillException(-99999999, "문서번호 배열이 입력되지 않았습니다.");
 
         String PostData = toJsonString(MgtKeyList);
 
-        return httppost("/Statement/" + ItemCode, CorpNum, PostData, null, StatementInfo[].class);
+        return httppost("/Statement/" + ItemCode, CorpNum, PostData, UserID, StatementInfo[].class);
     }
 
     /* (non-Javadoc)
@@ -340,10 +354,15 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public StatementLog[] getLogs(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
+        return getLogs(CorpNum, ItemCode, MgtKey, null);
+    }
+
+    @Override
+    public StatementLog[] getLogs(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
         if (MgtKey == null || MgtKey.isEmpty())
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
-        return httpget("/Statement/" + ItemCode + "/" + MgtKey + "/Logs", CorpNum, null, StatementLog[].class);
+        return httpget("/Statement/" + ItemCode + "/" + MgtKey + "/Logs", CorpNum, UserID, StatementLog[].class);
     }
 
     /*
@@ -530,10 +549,15 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public AttachedFile[] getFiles(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
+        return getFiles(CorpNum, ItemCode, MgtKey, null);
+    }
+
+    @Override
+    public AttachedFile[] getFiles(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
         if (MgtKey == null || MgtKey.isEmpty())
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
-        return httpget("/Statement/" + ItemCode + "/" + MgtKey + "/Files", CorpNum, null, AttachedFile[].class);
+        return httpget("/Statement/" + ItemCode + "/" + MgtKey + "/Files", CorpNum, UserID, AttachedFile[].class);
     }
 
     /* (non-Javadoc)
@@ -630,14 +654,18 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response attachStatement(String CorpNum, int ItemCode, String MgtKey, int SubItemCode, String SubMgtKey) throws PopbillException {
+        return attachStatement(CorpNum, ItemCode, MgtKey, SubItemCode, SubMgtKey, null);
+    }
+
+    @Override
+    public Response attachStatement(String CorpNum, int ItemCode, String MgtKey, int SubItemCode, String SubMgtKey, String UserID) throws PopbillException {
         DocRequest request = new DocRequest();
         request.ItemCode = SubItemCode;
         request.MgtKey = SubMgtKey;
 
         String PostData = toJsonString(request);
 
-        return httppost("/Statement/" + ItemCode + "/" + MgtKey + "/AttachStmt/", CorpNum, PostData, null, Response.class);
-
+        return httppost("/Statement/" + ItemCode + "/" + MgtKey + "/AttachStmt/", CorpNum, PostData, UserID, Response.class);
     }
 
     /*
@@ -646,24 +674,34 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response detachStatement(String CorpNum, int ItemCode, String MgtKey, int SubItemCode, String SubMgtKey) throws PopbillException {
+        return detachStatement(CorpNum, ItemCode, MgtKey, SubItemCode, SubMgtKey, null);
+    }
+
+    @Override
+    public Response detachStatement(String CorpNum, int ItemCode, String MgtKey, int SubItemCode, String SubMgtKey, String UserID) throws PopbillException {
         DocRequest request = new DocRequest();
         request.ItemCode = SubItemCode;
         request.MgtKey = SubMgtKey;
 
         String PostData = toJsonString(request);
 
-        return httppost("/Statement/" + ItemCode + "/" + MgtKey + "/DetachStmt/", CorpNum, PostData, null, Response.class);
+        return httppost("/Statement/" + ItemCode + "/" + MgtKey + "/DetachStmt/", CorpNum, PostData, UserID, Response.class);
     }
 
     @Override
-    public StmtSearchResult search(String CorpNum, String DType, String SDate, String EDate, String[] State, int[] ItemCode, int Page, int PerPage,
+    public StmtSearchResult search(String CorpNum, String DType, String SDate, String EDate, String[] State, int[] ItemCode, Integer Page, Integer PerPage,
             String Order) throws PopbillException {
         return search(CorpNum, DType, SDate, EDate, State, ItemCode, "", Page, PerPage, Order);
     }
 
     @Override
-    public StmtSearchResult search(String CorpNum, String DType, String SDate, String EDate, String[] State, int[] ItemCode, String QString, int Page,
-            int PerPage, String Order) throws PopbillException {
+    public StmtSearchResult search(String CorpNum, String DType, String SDate, String EDate, String[] State, int[] ItemCode, String QString, Integer Page,
+            Integer PerPage, String Order) throws PopbillException {
+        return search(CorpNum, DType, SDate, EDate, State, ItemCode, QString, Page, PerPage, Order, null);
+    }
+
+    @Override
+    public StmtSearchResult search(String CorpNum, String DType, String SDate, String EDate, String[] State, int[] ItemCode, String QString, Integer Page, Integer PerPage, String Order, String UserID) throws PopbillException {
         if (DType == null || DType.isEmpty())
             throw new PopbillException(-99999999, "검색일자유형이 입력되지 않았습니다.");
         if (SDate == null || SDate.isEmpty())
@@ -683,11 +721,14 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
                 throw new PopbillException(-99999999, "검색어(QString) 인코딩 오류");
             }
         }
-        uri += "&Page=" + Integer.toString(Page);
-        uri += "&PerPage=" + Integer.toString(PerPage);
-        uri += "&Order=" + Order;
+        if(Page != null)
+            uri += "&Page=" + Integer.toString(Page);
+        if(PerPage != null)
+            uri += "&PerPage=" + Integer.toString(PerPage);
+        if (Order != null && !Order.isEmpty())
+            uri += "&Order=" + Order;
 
-        return httpget(uri, CorpNum, null, StmtSearchResult.class);
+        return httpget(uri, CorpNum, UserID, StmtSearchResult.class);
     }
 
     /*
@@ -696,7 +737,12 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public ChargeInfo getChargeInfo(String CorpNum, int ItemCode) throws PopbillException {
-        return httpget("/Statement/ChargeInfo/" + Integer.toString(ItemCode), CorpNum, null, ChargeInfo.class);
+        return getChargeInfo(CorpNum, ItemCode, null);
+    }
+
+    @Override
+    public ChargeInfo getChargeInfo(String CorpNum, int ItemCode, String UserID) throws PopbillException {
+        return httpget("/Statement/ChargeInfo/" + Integer.toString(ItemCode), CorpNum, UserID, ChargeInfo.class);
     }
 
     /*
