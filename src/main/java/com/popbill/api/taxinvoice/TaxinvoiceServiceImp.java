@@ -1401,7 +1401,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     @Override
     public Response checkCertValidation(String CorpNum, String UserID) throws PopbillException {
         if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "연동회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "팝빌회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
 
         return httpget("/Taxinvoice/CertCheck", CorpNum, UserID, Response.class);
     }

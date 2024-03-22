@@ -24,7 +24,7 @@ public interface MessageService extends BaseService {
      * 회원의 문자메시지 전송단가 확인
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param MsgType
      *            메시지 유형
      * @return 단가 (ex. 11.0)
@@ -37,7 +37,7 @@ public interface MessageService extends BaseService {
      * 팝빌 문자메시지 관련 URL 확인. 반환한 url은 30초이내에 브라우져에 표시하여야 함.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호.
+     *            팝빌회원 사업자번호
      * @param TOGO
      *            지정값. (BOX : 문자전송 내역 조회 팝업)
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
@@ -50,9 +50,9 @@ public interface MessageService extends BaseService {
      * 팝빌 문자메시지 관련 URL 확인. 반환한 url은 30초이내에 브라우져에 표시하여야 함.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호.
+     *            팝빌회원 사업자번호
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원의 회원아이디
      * @param TOGO
      *            지정값. (BOX : 문자전송 내역 조회 팝업)
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
@@ -65,7 +65,7 @@ public interface MessageService extends BaseService {
      * 단문문자메시지 1건 전송
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            발신자번호
      * @param Receiver
@@ -77,7 +77,7 @@ public interface MessageService extends BaseService {
      * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -89,7 +89,7 @@ public interface MessageService extends BaseService {
      * 단문문자메시지 1건 전송
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            발신자번호
      * @param Receiver
@@ -103,7 +103,7 @@ public interface MessageService extends BaseService {
      * @param AdsYN
      *            광고문자 전송여부 
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -116,7 +116,7 @@ public interface MessageService extends BaseService {
      * 단문문자메시지 1건 전송
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            발신자번호
      * @param Receiver
@@ -128,7 +128,7 @@ public interface MessageService extends BaseService {
      * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @param RequestNum
      *            전송요청번호
      * @return ReceiptNum 접수번호.
@@ -142,7 +142,7 @@ public interface MessageService extends BaseService {
      * 단문문자메시지 1건 전송
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            발신자번호
      * @param Receiver
@@ -156,7 +156,7 @@ public interface MessageService extends BaseService {
      * @param AdsYN
      *            광고문자 전송여부
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @param RequestNum
      *            전송요청번호
      * @return ReceiptNum 접수번호.
@@ -170,13 +170,13 @@ public interface MessageService extends BaseService {
      * 단문문자메시지 다량 전송. 1회 최대 1000건.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Messages
      *            메시지 배열.
      * @param ReserveDT
      *            예약일시
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -187,7 +187,7 @@ public interface MessageService extends BaseService {
      * 단문문자메시지 다량전송. 발신번호, 내용 동보전송. 1회 최대 1000건.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            동보전송 발신번호
      * @param Content
@@ -197,7 +197,7 @@ public interface MessageService extends BaseService {
      * @param ReserveDT
      *            예약일시
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -209,7 +209,7 @@ public interface MessageService extends BaseService {
      * 단문문자메시지 다량전송. 발신번호, 내용 동보전송. 1회 최대 1000건.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            동보전송 발신번호
      * @param Content
@@ -221,7 +221,7 @@ public interface MessageService extends BaseService {
      * @param AdsYN
      *            광고문자 전송여부
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -233,7 +233,7 @@ public interface MessageService extends BaseService {
      * 단문문자메시지 다량전송. 발신번호, 내용 동보전송. 1회 최대 1000건.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            동보전송 발신번호
      * @param SenderName
@@ -247,7 +247,7 @@ public interface MessageService extends BaseService {
      * @param AdsYN
      *            광고문자 전송여부
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -260,13 +260,13 @@ public interface MessageService extends BaseService {
      * 단문문자메시지 다량 전송. 1회 최대 1000건.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Messages
      *            메시지 배열.
      * @param ReserveDT
      *            예약일시
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param RequestNum
      *            전송요청번호
      * @return ReceiptNum 접수번호.
@@ -279,7 +279,7 @@ public interface MessageService extends BaseService {
      * 단문문자메시지 다량전송. 발신번호, 내용 동보전송. 1회 최대 1000건.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            동보전송 발신번호
      * @param Content
@@ -289,7 +289,7 @@ public interface MessageService extends BaseService {
      * @param ReserveDT
      *            예약일시
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param RequestNum
      *            전송요청번호
      * @return ReceiptNum 접수번호.
@@ -303,7 +303,7 @@ public interface MessageService extends BaseService {
      * 단문문자메시지 다량전송. 발신번호, 내용 동보전송. 1회 최대 1000건.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            동보전송 발신번호
      * @param Content
@@ -315,7 +315,7 @@ public interface MessageService extends BaseService {
      * @param AdsYN
      *            광고문자 전송여부
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param RequestNum
      *            전송요청번호
      * @return ReceiptNum 접수번호.
@@ -329,7 +329,7 @@ public interface MessageService extends BaseService {
      * 단문문자메시지 다량전송. 발신번호, 내용 동보전송. 1회 최대 1000건.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            동보전송 발신번호
      * @param SenderName
@@ -343,7 +343,7 @@ public interface MessageService extends BaseService {
      * @param AdsYN
      *            광고문자 전송여부
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param RequestNum
      *            전송요청번호
      * @return ReceiptNum 접수번호.
@@ -357,7 +357,7 @@ public interface MessageService extends BaseService {
      * 장문문자메시지 1건 전송
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            발신자번호
      * @param Receiver
@@ -371,7 +371,7 @@ public interface MessageService extends BaseService {
      * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -383,7 +383,7 @@ public interface MessageService extends BaseService {
      * 장문문자메시지 1건 전송
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            발신자번호
      * @param Receiver
@@ -399,7 +399,7 @@ public interface MessageService extends BaseService {
      * @param AdsYN
      *            광고문자 전송여부 
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -411,13 +411,13 @@ public interface MessageService extends BaseService {
      * 장문문자메시지 다량 전송. 1회 최대 1000건.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Messages
      *            메시지 배열.
      * @param ReserveDT
      *            예약일시
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -428,7 +428,7 @@ public interface MessageService extends BaseService {
      * 장문문자메시지 다량전송. 발신번호, 내용 동보전송. 1회 최대 1000건.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            동보전송 발신번호
      * @param Subject
@@ -440,7 +440,7 @@ public interface MessageService extends BaseService {
      * @param ReserveDT
      *            예약일시
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -452,7 +452,7 @@ public interface MessageService extends BaseService {
      * 장문문자메시지 다량전송. 발신번호, 내용 동보전송. 1회 최대 1000건.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            동보전송 발신번호
      * @param Subject
@@ -466,7 +466,7 @@ public interface MessageService extends BaseService {
      * @parma AdsYN
      *            광고문자 전송여부 
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -478,7 +478,7 @@ public interface MessageService extends BaseService {
      * 장문문자메시지 다량전송. 발신번호, 내용 동보전송. 1회 최대 1000건.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param Sender
      *            동보전송 발신번호
      * @param SenderName
@@ -494,7 +494,7 @@ public interface MessageService extends BaseService {
      * @parma AdsYN
      *            광고문자 전송여부 
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -520,7 +520,7 @@ public interface MessageService extends BaseService {
      * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @param RequestNum
      *            전송요청번호
      * @return ReceiptNum 접수번호.
@@ -550,7 +550,7 @@ public interface MessageService extends BaseService {
      * @param AdsYN
      *            광고문자 전송여부 
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @param RequestNum
      *            전송요청번호
      * @return ReceiptNum 접수번호.
@@ -683,7 +683,7 @@ public interface MessageService extends BaseService {
      * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -711,7 +711,7 @@ public interface MessageService extends BaseService {
      * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고문자 전송여부 
      * @return ReceiptNum 접수번호.
@@ -844,7 +844,7 @@ public interface MessageService extends BaseService {
      * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @param RequestNum
      *            전송요청번호
      * @return ReceiptNum 접수번호.
@@ -874,7 +874,7 @@ public interface MessageService extends BaseService {
      * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고문자 전송여부 
      * @param RequestNum
@@ -1015,7 +1015,7 @@ public interface MessageService extends BaseService {
      * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -1043,7 +1043,7 @@ public interface MessageService extends BaseService {
      * @param AdsYN
      *            광고문자 전송여부.
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @return ReceiptNum 접수번호.
      * @throws PopbillException
      */
@@ -1164,7 +1164,7 @@ public interface MessageService extends BaseService {
      * @param ReserveDT
      *            예약전송시 예약일시.
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @param RequestNum
      *            전송요청번호
      * @return ReceiptNum 접수번호.
@@ -1194,7 +1194,7 @@ public interface MessageService extends BaseService {
      * @param AdsYN
      *            광고문자 전송여부.
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @param RequestNum
      *            전송요청번호
      * @return ReceiptNum 접수번호.

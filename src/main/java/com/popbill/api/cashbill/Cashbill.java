@@ -526,7 +526,7 @@ public class Cashbill implements Serializable {
     }
 
     /**
-     * 원본 현금영수증 국세청 승인번호
+     * 당초 승인 현금영수증 국세청 승인번호
      *
      * @return the orgConfirmNum
      */
@@ -535,7 +535,7 @@ public class Cashbill implements Serializable {
     }
 
     /**
-     * 원본 현금영수증 국세청 승인번호 설정
+     * 당초 승인 현금영수증 국세청 승인번호 설정
      *
      * @param orgConfirmNum
      */
@@ -562,16 +562,16 @@ public class Cashbill implements Serializable {
     }
 
     /*
-     * 원본현금영수증 거래일자
+     * 당초 승인 현금영수증 거래일자
      *
-     * @return 원본 현금영수증 거래일자.yyyy-mm-dd
+     * @return 당초 승인 현금영수증 거래일자.yyyy-mm-dd
      */
     public String getOrgTradeDate() {
         return orgTradeDate;
     }
 
     /*
-     * 원본현금영수증 거래일자
+     * 당초 승인 현금영수증 거래일자
      *
      * @param orgTradeDate
      */

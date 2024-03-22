@@ -204,7 +204,7 @@ public class CashbillInfo {
     }
 
     /**
-     * 원본 현금영수증 거래일자
+     * 당초 승인 현금영수증 거래일자
      *
      * @return the orgTradeDate
      */
@@ -213,7 +213,7 @@ public class CashbillInfo {
     }
 
     /**
-     * 원본 현금영수증 국새청 승인번호
+     * 당초 승인 현금영수증 국새청 승인번호
      *
      * @return the orgConfirmNum
      */

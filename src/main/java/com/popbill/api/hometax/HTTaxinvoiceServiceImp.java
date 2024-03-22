@@ -402,7 +402,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      */
     public Response checkCertValidation(String CorpNum) throws PopbillException {
         if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "연동회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "팝빌회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
 
         return httpget("/HomeTax/Taxinvoice/CertCheck", CorpNum, null, Response.class);
     }
@@ -418,7 +418,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
     @Override
     public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String UserID) throws PopbillException {
         if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "연동회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "팝빌회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
         if (DeptUserID == null || DeptUserID.isEmpty())
             throw new PopbillException(-99999999, "홈택스 부서사용자 계정 아이디(deptUserID)가 입력되지 않았습니다.");
         if (DeptUserPWD == null || DeptUserPWD.isEmpty())
@@ -439,7 +439,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      */
     public Response checkDeptUser(String CorpNum) throws PopbillException {
         if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "연동회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "팝빌회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
 
         return httpget("/HomeTax/Taxinvoice/DeptUser", CorpNum, null, Response.class);
     }
@@ -450,7 +450,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      */
     public Response checkLoginDeptUser(String CorpNum) throws PopbillException {
         if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "연동회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "팝빌회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
 
         return httpget("/HomeTax/Taxinvoice/DeptUser/Check", CorpNum, null, Response.class);
     }
@@ -461,7 +461,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      */
     public Response deleteDeptUser(String corpNum) throws PopbillException {
         if (corpNum == null || corpNum.isEmpty())
-            throw new PopbillException(-99999999, "연동회원 사업자번호(corpNum)가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "팝빌회원 사업자번호(corpNum)가 입력되지 않았습니다.");
 
         return httppost("/HomeTax/Taxinvoice/DeptUser", corpNum, null, null, "DELETE", Response.class);
     }

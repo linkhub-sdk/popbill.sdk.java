@@ -21,7 +21,7 @@ public interface HTTaxinvoiceService extends BaseService{
     /**
      * 정액제 신청 URL
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @return 정액제 신청 url
      * @throws PopbillException
      */
@@ -31,9 +31,9 @@ public interface HTTaxinvoiceService extends BaseService{
     /**
      * 정액제 신청 URL
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디
      * @return 정액제 신청 url
      * @throws PopbillException
      */
@@ -44,7 +44,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 과금정보 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @return 과금정보 (see. com.popbill.api.ChargeInfo)
      * @throws PopbillException
      */
@@ -55,34 +55,34 @@ public interface HTTaxinvoiceService extends BaseService{
      * 홈택스 전자(세금)계산서 수집 요청 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
-     * @param queryType
+     *          팝빌회원 사업자번호
+     * @param QueryType
      *          수집유형, 매출, 매입, 수탁 중 반환 
      * @return 작업아이디(jobID)
      * @throws PopbillException
      */
-    public String requestJob(String CorpNum, QueryType queryType, String DType, String SDate, String EDate) throws PopbillException;
+    public String requestJob(String CorpNum, QueryType QueryType, String DType, String SDate, String EDate) throws PopbillException;
     
 
     /**
      * 홈택스 전자(세금)계산서 수집 요청
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
-     * @param queryType
+     *          팝빌회원 사업자번호
+     * @param QueryType
      *          수집유형, 매출,매입,수탁 중 반환
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디
      * @return 작업아이디(jobID)
      * @throws PopbillException
      */
-    public String requestJob(String CorpNum, QueryType queryType, String DType, String SDate, String EDate, String UserID) throws PopbillException;
+    public String requestJob(String CorpNum, QueryType QueryType, String DType, String SDate, String EDate, String UserID) throws PopbillException;
     
     /**
      * 수집 상태 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @param JobID
      *          수집요청시 반환받은 작업아이디 
      * @return 수집 상태 (see. com.popbill.api.httaxinvoice.HTTaxinvoiceJobState)
@@ -94,11 +94,11 @@ public interface HTTaxinvoiceService extends BaseService{
      * 수집 상태 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
-     * @param JobId
+     *          팝빌회원 사업자번호
+     * @param JobID
      *          수집요청시 반환받은 작업아이디 
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디 
      * @return 수집 상태 (see. com.popbill.api.httaxinvoice.HTTaxinvoiceJobState)
      * @throws PopbillException
      */
@@ -108,7 +108,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 수집 상태 목록 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호 
      * @return 수집상태 배열 (see. com.popbill.api.httaxinvoice.HTTaxinvoiceJobState)
      * @throws PopbillException
      */
@@ -119,9 +119,9 @@ public interface HTTaxinvoiceService extends BaseService{
      * 수집 상태 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호 
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디 
      * @return 수집 상태 (see. com.popbill.api.httaxinvoice.HTTaxinvoiceJobState)
      * @throws PopbillException
      */
@@ -131,7 +131,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 수집 결과 조회 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호 
      * @param JobID
      *          작업 아이디 
      * @param Type
@@ -162,7 +162,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 수집 결과 조회 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호 
      * @param JobID
      *          작업 아이디 
      * @param Type
@@ -184,7 +184,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * @param Order
      *          정렬방향 
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디 
      * @return 수집 결과 (see. com.popbill.api.httaxinvoice.HTTaxinvoiceSearchResult)
      */
     public HTTaxinvoiceSearchResult search(String CorpNum, String JobID, String[] Type, 
@@ -195,7 +195,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 수집 결과 조회 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호 
      * @param JobID
      *          작업 아이디 
      * @param Type
@@ -217,7 +217,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * @param Order
      *          정렬방향 
      * @param UserID
-     *          연동회원 아이디
+     *          팝빌회원 아이디
      * @param SearchString
      *           검색어 
      * @return 수집 결과 (see. com.popbill.api.httaxinvoice.HTTaxinvoiceSearchResult)
@@ -230,7 +230,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 수집 결과 요약정보 조회 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호 
      * @param JobID
      *          수집요청시 반환받은 작업아이디 
      * @param Type
@@ -256,7 +256,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 수집 결과 요약정보 조회 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호 
      * @param JobID
      *          수집요청시 반환받은 작업아이디 
      * @param Type
@@ -272,7 +272,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * @param TaxRegID
      *          종사업장번호, 다수 기재시 콤마(",")로 구분하여 구성
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디 
      * @return 수집 결과 요약정보 (see. com.popbill.api.httaxinvoice.HTTaxinvoiceSearchSummary)
      * @throws PopbillException
      */
@@ -284,7 +284,7 @@ public interface HTTaxinvoiceService extends BaseService{
     * 수집 결과 요약정보 조회 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호 
      * @param JobID
      *          수집요청시 반환받은 작업아이디 
      * @param Type
@@ -300,7 +300,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * @param TaxRegID
      *          종사업장번호, 다수 기재시 콤마(",")로 구분하여 구성
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디 
      * @param SearchString
      *          검색어
      * @return 수집 결과 요약정보 (see. com.popbill.api.httaxinvoice.HTTaxinvoiceSearchSummary)
@@ -313,7 +313,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 상세정보 확인 - JSON 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호 
      * @param NTSConfirmNum
      *          국세청승인번호 
      * @return  전자(세금)계산서 상세정보 (see. com.popbill.api.httaxinvoice.HTTaxinvoice)
@@ -325,11 +325,11 @@ public interface HTTaxinvoiceService extends BaseService{
      * 상세정보 확인 - JSON 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호 
      * @param NTSConfirmNum
      *          국세청승인번호 
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디 
      * @return  전자(세금)계산서 상세정보 (see. com.popbill.api.httaxinvoice.HTTaxinvoice)
      * @throws PopbillException
      */
@@ -340,7 +340,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 상세정보 확인 - XML
      * 
      * @param CorpNum
-     *           연동회원 사업자번호 
+     *           팝빌회원 사업자번호 
      * @param NTSConfirmNum
      *          국세청 승인번호 
      * @return 전자(세금)계산서 XML 정보 (see. com.popbill.api.httaxinvoiceHTTaxinvoiceXMLResponse)
@@ -353,11 +353,11 @@ public interface HTTaxinvoiceService extends BaseService{
      * 상세정보 확인 - XML
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호 
      * @param NTSConfirmNum
      *          국세청승인번호 
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디 
      * @return 전자(세금)계산서 XML 정보 (see. com.popbill.api.httaxinvoiceHTTaxinvoiceXMLResponse)
      * @throws PopbillException
      */
@@ -367,7 +367,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 정액제 서비스 상태 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호 
      * @return 정액제 서비스 상태 (see. com.popbill.api.FlatRateState)
      * @throws PopbillException
      */
@@ -377,9 +377,9 @@ public interface HTTaxinvoiceService extends BaseService{
      * 정액제 서비스 상태 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호 
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디
      * @return 정액제 서비스 상태 (see. com.popbill.api.FlatRateState)
      * @throws PopbillException
      */
@@ -389,7 +389,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 홈택스연계 공인인증서 등록 URL 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @return 홈택스연계 공인인증서 등록 URL
      * @throws PopbillException
      */
@@ -400,9 +400,9 @@ public interface HTTaxinvoiceService extends BaseService{
      * 홈택스연계 공인인증서 등록 URL 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디
      * @return 홈택스연계 공인인증서 등록 URL
      * @throws PopbillException
      */
@@ -413,7 +413,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 홈택스연계 공인인증서 만료일시 확인
      * 
      * @param CorpNum
-     *          연동회원 사업자번호. 
+     *          팝빌회원 사업자번호 
      * @return 만료일시 
      * @throws PopbillException
      */
@@ -424,7 +424,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 홈택스 전자세금계산서 팝업 URL
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param NTSConfirmNum
      *          세금계산서 국세청 승인번호
      * @return
@@ -437,7 +437,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 홈택스 전자세금계산서 팝업 URL
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param NTSConfirmNum
      *          세금계산서 국세청 승인번호
      * @param UserID
@@ -451,7 +451,7 @@ public interface HTTaxinvoiceService extends BaseService{
     /**
      * 홈택스 전자세금계산서 인쇄 팝업 URL
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param NTSConfirmNum
      *          세금계산서 국세청 승인번호
      * @return
@@ -463,11 +463,11 @@ public interface HTTaxinvoiceService extends BaseService{
     /**
      * 홈택스 전자세금계산서 인쇄 팝업 URL
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param NTSConfirmNum
      *          세금계산서 국세청 승인번호
      * @param UserID
-     *          연동회원 아이디
+     *          팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -478,7 +478,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 홈택스 공인인증서 로그인 테스트
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @return Response
      * @throws PopbillException
      */
@@ -488,7 +488,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 부서사용자 계정등록
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param DeptUserID
      *          홈택스 부서사용자 계정 아이디
      * @param DeptUserPWD
@@ -502,7 +502,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 부서사용자 계정등록
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param DeptUserID
      *          홈택스 부서사용자 계정 아이디
      * @param DeptUserPWD
@@ -518,8 +518,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 부서사용자 등록정보 확인
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
-     * @param UserID
+     *          팝빌회원 사업자번호
      * @return Response
      * @throws PopbillException
      */
@@ -529,7 +528,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 부서사용자 로그인 테스트
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @return Response
      * @throws PopbillException
      */
@@ -539,7 +538,7 @@ public interface HTTaxinvoiceService extends BaseService{
      * 부서사용자 등록정보 삭제
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @return Response
      * @throws PopbillException
      */

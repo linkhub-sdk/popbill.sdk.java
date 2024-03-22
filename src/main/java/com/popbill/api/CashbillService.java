@@ -20,7 +20,7 @@ public interface CashbillService extends BaseService{
     /**
      * 팝빌 현금영수증 관련 URL 확인, 반환된 URL은 30초 이내에 브라우저에 표시해야 함
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param TOGO
      *          지정값(TBOX : 임시문서함 URL, SBOX : 발행 문서함 URL)
      * @return 팝빌URL(AccessToken값 포함, Token값은 응답후 30초까지만 유효함)
@@ -32,9 +32,9 @@ public interface CashbillService extends BaseService{
     /**
      * 팝빌 현금영수증 관련 URL 확인, 반환된 URL은 30초 이내에 브라우저에 표시해야 함
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param UserID
-     *          연동회원의 회원아이디
+     *          팝빌회원 아이디
      * @param TOGO
      *          지정값(TBOX : 임시문서함 URL, SBOX : 발행 문서함 URL)
      * @return 팝빌URL(AccessToken값 포함, Token값은 응답후 30초까지만 유효함)
@@ -46,7 +46,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 발행단가 확인
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @return 단가( ex. 10.0)
      * @throws PopbillException
      */
@@ -56,7 +56,7 @@ public interface CashbillService extends BaseService{
     /**
      * 문서번호 사용여부 확인
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @return 사용여부, true - 사용중 / false - 미사용
@@ -68,7 +68,7 @@ public interface CashbillService extends BaseService{
     /**
      * 문서번호 사용여부 확인
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param UserID
@@ -82,7 +82,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 1건 임시저장
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param Cashbill
      *          현금영수증 정보.(see. com.popbill.api.cashbill.Cashbill)
      * @return Response
@@ -94,11 +94,11 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 1건 임시저장
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param Cashbill
      *          현금영수증 정보. (see. com.popbill.api.cashbill.Cashbill)
      * @param UserID
-     *          연동회원아이디
+     *          팝빌회원아이디
      * @return Response
      * @throws PopbillException
      */
@@ -108,7 +108,7 @@ public interface CashbillService extends BaseService{
     /**
      * 취소현금영수증 1건 임시저장
      * @param CorpNum
-     *          팝빌 연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
@@ -124,7 +124,7 @@ public interface CashbillService extends BaseService{
     /**
      * 취소현금영수증 1건 임시저장
      * @param CorpNum
-     *          팝빌 연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
@@ -142,7 +142,7 @@ public interface CashbillService extends BaseService{
     /**
      * 취소현금영수증 1건 임시저장
      * @param CorpNum
-     *          팝빌연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          취소현금영수증 문서
      * @param orgConfirmNum
@@ -152,7 +152,7 @@ public interface CashbillService extends BaseService{
      * @param smssendYN
      *          발행안내 문자전송여부
      * @param UserID
-     *          팝빌연동회원 아이디
+     *          팝빌회원 아이디
      * @return Response
      * @throws PopbillException
      */
@@ -162,7 +162,7 @@ public interface CashbillService extends BaseService{
     /**
      * 취소현금영수증 1건 임시저장
      * @param CorpNum
-     *          팝빌연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
@@ -193,7 +193,7 @@ public interface CashbillService extends BaseService{
     /**
      * 취소현금영수증 1건 임시저장
      * @param CorpNum
-     *          팝빌연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          취소현금영수증 문서
      * @param orgConfirmNum
@@ -215,7 +215,7 @@ public interface CashbillService extends BaseService{
      * @param totalAmount 
      *          [취소] 합계금액
      * @param UserID
-     *          팝빌연동회원 아이디 
+     *          팝빌회원 아이디
      * @return Response
      * @throws PopbillException
      */
@@ -227,7 +227,7 @@ public interface CashbillService extends BaseService{
      * 취소현금영수증 1건 즉시발행
      * 
      * @param CorpNum
-     *          팝빌연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
@@ -244,7 +244,7 @@ public interface CashbillService extends BaseService{
      * 취소현금영수증 1건 즉시발행
      * 
      * @param CorpNum
-     *          팝빌연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
@@ -263,7 +263,7 @@ public interface CashbillService extends BaseService{
      * 취소현금영수증 1건 즉시발행
      * 
      * @param CorpNum
-     *          팝빌연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
@@ -284,7 +284,7 @@ public interface CashbillService extends BaseService{
      * 취소현금영수증 1건 즉시발행
      * 
      * @param CorpNum
-     *          팝빌연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
@@ -296,7 +296,7 @@ public interface CashbillService extends BaseService{
      * @param memo
      *          메모
      * @param UserID
-     *          팝빌연동회원 아이디
+     *          팝빌회원 아이디
      * @return CBIssueResponse
      * @throws PopbillException
      */
@@ -306,7 +306,7 @@ public interface CashbillService extends BaseService{
      * 취소현금영수증 1건 즉시발행
      * 
      * @param CorpNum
-     *          팝빌연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
@@ -318,7 +318,7 @@ public interface CashbillService extends BaseService{
      * @param memo
      *          메모
      * @param UserID
-     *          팝빌연동회원 아이디
+     *          팝빌회원 아이디
      * @param emailSubject
      *          발행안내 메일 제목
      * @return CBIssueResponse
@@ -331,7 +331,7 @@ public interface CashbillService extends BaseService{
      * 취소현금영수증 1건 즉시발행
      * 
      * @param CorpNum
-     *          팝빌연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
@@ -366,7 +366,7 @@ public interface CashbillService extends BaseService{
      * 취소현금영수증 1건 즉시발행
      * 
      * @param CorpNum
-     *          팝빌연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
@@ -403,7 +403,7 @@ public interface CashbillService extends BaseService{
      * 취소현금영수증 1건 즉시발행
      * 
      * @param CorpNum
-     *          팝빌연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
@@ -440,7 +440,7 @@ public interface CashbillService extends BaseService{
      * 취소현금영수증 1건 즉시발행
      * 
      * @param CorpNum
-     *          팝빌연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
@@ -479,7 +479,7 @@ public interface CashbillService extends BaseService{
     /**
      * 임시저장된 현금영수증 수정
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param Cashbill
@@ -493,13 +493,13 @@ public interface CashbillService extends BaseService{
     /**
      * 임시저장된 현금영수증 수정
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param Cashbill
      *          현금영수증 정보. (see. com.popbill.api.cashbill.Cashbill)
      * @param UserID
-     *          연동회원 아이디
+     *          팝빌회원 아이디
      * @return Response
      * @throws PopbillException
      */
@@ -509,7 +509,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 삭제
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @return Response
@@ -521,11 +521,11 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 삭제
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param UserID
-     *          연동회원아이디
+     *          팝빌회원아이디
      * @return Response
      * @throws PopbillException
      */
@@ -535,7 +535,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 발행
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param Memo
@@ -549,13 +549,13 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 발행
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param Memo
      *          처리 메모
      * @param UserID
-     *          연동회원아이디
+     *          팝빌회원 아이디
      * @return Response
      * @throws PopbillException
      */
@@ -565,7 +565,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 발행취소
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param Memo
@@ -579,13 +579,13 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 발행취소
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param Memo
      *          처리메모
      * @param UserID
-     *          연동회원아이디
+     *          팝빌회원 아이디
      * @return Response
      * @throws PopbillException
      */
@@ -595,7 +595,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 알림메일 전송
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param Receiver
@@ -609,13 +609,13 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 알림메일 전송
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param Receiver
      *          수신 이메일주소
      * @param UserID
-     *          연동회원아이디
+     *          팝빌회원 아이디
      * @return Response
      * @throws PopbillException
      */
@@ -625,7 +625,7 @@ public interface CashbillService extends BaseService{
     /**
      * 알림문자 전송
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param Sender
@@ -644,7 +644,7 @@ public interface CashbillService extends BaseService{
     /**
      * 알림문자 전송
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param Sender
@@ -654,7 +654,7 @@ public interface CashbillService extends BaseService{
      * @param Contents
      *          메시지내용
      * @param UserID
-     *          연동회원 아이디
+     *          팝빌회원 아이디
      * @return Response
      * @throws PopbillException
      */
@@ -665,7 +665,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 팩스 전송
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param Sender
@@ -681,7 +681,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 팩스 전송
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param Sender
@@ -689,7 +689,7 @@ public interface CashbillService extends BaseService{
      * @param Receiver
      *          수신팩스번호
      * @param UserID
-     *          연동회원아이디
+     *          팝빌회원 아이디
      * @return Response
      * @throws PopbillException
      */
@@ -699,7 +699,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 상세내역 조회
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @return Cashbill
@@ -711,7 +711,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 상세내역 조회
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param UserID
@@ -725,7 +725,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 요약/상태 정보 조회
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @return CashbillInfo
@@ -737,7 +737,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 요약/상태 정보 조회
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param UserID
@@ -751,7 +751,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 요약/상태 정보 대량 조회( 최대 1000건)
      * @param CorpNum
-     *          연동회원 사업자번
+     *          팝빌회원 사업자번
      * @param MgtKeyList
      *          문서번호 배열
      * @return CashbillInfo 배열
@@ -763,7 +763,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 요약/상태 정보 대량 조회( 최대 1000건)
      * @param CorpNum
-     *          연동회원 사업자번
+     *          팝빌회원 사업자번
      * @param MgtKeyList
      *          문서번호 배열
      * @param UserID
@@ -777,7 +777,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 문서 이력 조회
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @return CashbillLog 배열
@@ -789,7 +789,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 인쇄 URL
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @return 팝빌 url
@@ -800,11 +800,11 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 인쇄 URL
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param UserID
-     *          연동회원 아이디
+     *          팝빌회원 아이디
      * @return 팝빌 url
      * @throws PopbillException
      */
@@ -815,7 +815,7 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 인쇄 URL(공급받는자용)
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @return 팝빌 URL
@@ -826,11 +826,11 @@ public interface CashbillService extends BaseService{
     /**
      * 현금영수증 인쇄 URL(공급받는자용)
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param UserID
-     *          연동회원 아이디
+     *          팝빌회원 아이디
      * @return 팝빌 URL
      * @throws PopbillException
      */
@@ -841,7 +841,7 @@ public interface CashbillService extends BaseService{
     /**
      * 다량 현금영수증 인쇄 URL 
      * @param CorpNum
-     *          연동회원  사업자번호
+     *          팝빌회원  사업자번호
      * @param MgtKeyList
      *          문서번호 배열
      * @return 팝빌 URL
@@ -853,11 +853,11 @@ public interface CashbillService extends BaseService{
     /**
      * 다량 현금영수증 인쇄 URL 
      * @param CorpNum
-     *          연동회원  사업자번호
+     *          팝빌회원  사업자번호
      * @param MgtKeyList
      *          문서번호 배열
      * @param UserID
-     *          연동회원 아이디
+     *          팝빌회원 아이디
      * @return 팝빌 URL
      * @throws PopbillException
      */
@@ -867,7 +867,7 @@ public interface CashbillService extends BaseService{
     /**
      * 공급받는자 메일링크 URL 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @return 팝빌 URL
@@ -878,11 +878,11 @@ public interface CashbillService extends BaseService{
     /**
      * 공급받는자 메일링크 URL 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @param UserID
-     *          연동회원 아이디
+     *          팝빌회원 아이디
      * @return 팝빌 URL
      * @throws PopbillException
      */
@@ -997,7 +997,7 @@ public interface CashbillService extends BaseService{
      * @param emailSubject
      *          발행안내메일 제목
      * @param UserID
-     *          팝빌 연동회원 아이디
+     *          팝빌회원 아이디
      * @return CBIssueResponse 응답 코드/메시지
      * @throws PopbillException
      */
@@ -1028,7 +1028,7 @@ public interface CashbillService extends BaseService{
     * @param CashbillList
     *          현금영수증 배열
     * @param UserID
-    *          팝빌 연동회원 아이디
+    *          팝빌회원 아이디
     * @return
     * @throws PopbillException
     */
@@ -1123,7 +1123,7 @@ public interface CashbillService extends BaseService{
     * @param CashbillList
     *          현금영수증 배열
     * @param UserID
-    *          팝빌 연동회원 아이디
+    *          팝빌회원 아이디
     * @return
     * @throws PopbillException
     */
@@ -1148,7 +1148,7 @@ public interface CashbillService extends BaseService{
     * @param SubmitID
     *          접수 아이디
     * @param UserID
-    *          팝빌 연동회원 아이디
+    *          팝빌회원 아이디
     * @return
     * @throws PopbillException
     */

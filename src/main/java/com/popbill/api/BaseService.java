@@ -25,7 +25,7 @@ import kr.co.linkhub.auth.MemberPointDetail;
 public interface BaseService {
 
     /**
-     * 연동회원 잔여 포인트 확인.
+     * 팝빌회원 잔여 포인트 확인.
      * 
      * @param CorpNum
      *            Member's CorpNum
@@ -50,13 +50,13 @@ public interface BaseService {
     /**
      * 연동회원 가입요청.
      * 
-     * @param joinInfo
+     * @param JoinForm
      *            Join Information. see JoinForm
      * @return Response of Join Process.
      * @throws PopbillException
      * @see com.popbill.api.JoinForm
      */
-    public abstract Response joinMember(JoinForm joinInfo)
+    public abstract Response joinMember(JoinForm JoinInfo)
             throws PopbillException;
 
     /**
@@ -266,9 +266,9 @@ public interface BaseService {
      * 연동회원의 가입여부 확인.
      * 
      * @param CorpNum
-     *            CorpNum to Check.
-     * @param UserID
-     *            USerID to Check.
+     *            팝빌회원 사업자번호
+     * @param LinkID
+     *            연동신청시 팝빌에서 발급받은 링크아이디
      * @return CorpNum is Member or not.
      * @throws PopbillException
      */
@@ -285,29 +285,29 @@ public interface BaseService {
      * @return 
      * @throws PopbillException
      */
-    public abstract ContactInfo getContactInfo(String CorpNum, String contactID)
+    public abstract ContactInfo getContactInfo(String CorpNum, String ContactID)
             throws PopbillException;
     
     /**
      * 담당자 정보확인.
      * 
      * @param CorpNum
-     *            CorpNum to Check.
+     *            팝빌회원 사업자번호
      * @param ContactID
-     *            ContactID to Check.
+     *            담당자 아이디
      * @param UserID
-     *            UserID to Check.
+     *            팝빌회원 아이디
      * @return 
      * @throws PopbillException
      */
-    public abstract ContactInfo getContactInfo(String CorpNum, String contactID, String UserID)
+    public abstract ContactInfo getContactInfo(String CorpNum, String ContactID, String UserID)
             throws PopbillException;
     
     /**
      * 담당자 목록조회
      * 
      * @param CorpNum
-     *          Member's CorpNum
+     *          팝빌회원 사업자번호
      * @return Contact member list
      * @throws PopbillException
      */
@@ -318,9 +318,9 @@ public interface BaseService {
      * 담당자 목록조회
      * 
      * @param CorpNum
-     *          Member's CorpNum
+     *          팝빌회원 사업자번호
      * @param UserID
-     *          UserID to Check
+     *          팝빌회원 아이디
      * @return Contact member list
      * @throws PopbillException
      */
@@ -331,61 +331,61 @@ public interface BaseService {
      * 담당자 정보수정 
      * 
      * @param CorpNum
-     *          Member's CorpNum
+     *          팝빌회원 사업자번호
      * @param ContactInfo
-     *          Contact's Information. see ContactInfo
+     *          담당자 객체정보
      * @param UserID
-     *          UserID to Check
+     *          팝빌회원 아이디
      * @return Contact Info Update success or fail.
      * @throws PopbillException
      *  
      */
-    public abstract Response updateContact(String CorpNum, ContactInfo contactInfo, String UserID)
+    public abstract Response updateContact(String CorpNum, ContactInfo ContactInfo, String UserID)
             throws PopbillException;
 
     /**
      * 담당차 등록 
-     * 
+     *
      * @param CorpNum
-     *          Member's CorpNum
+     *          팝빌회원 사업자번호
      * @param ContactInfo
-     *          Contact's Infomation. see ContactInfo
+     *          담당자 객체정보
      * @return Response of RegistContact process.
      * @thorws PopbillException
      */
-    public abstract Response registContact(String CorpNum, ContactInfo contactInfo)
+    public abstract Response registContact(String CorpNum, ContactInfo ContactInfo)
             throws PopbillException;
     
     /**
      * 담당차 등록 
-     * 
+     *
      * @param CorpNum
-     *          Member's CorpNum
+     *          팝빌회원 사업자번호
      * @param ContactInfo
-     *          Contact's Infomation. see ContactInfo
+     *          담당자 객체정보
      * @param UserID
-     *          Member's UserID
+     *          팝빌회원 아이디
      * @return Response of RegistContact process.
      * @thorws PopbillException
      */
-    public abstract Response registContact(String CorpNum, ContactInfo contactInfo, String UserID)
+    public abstract Response registContact(String CorpNum, ContactInfo ContactInfo, String UserID)
             throws PopbillException;
     
     /**
      * 팝빌회원 아이디 중복체크 
      * 
-     * @param id
+     * @param CheckID 중복여부를 확인할 아이디
      * @return Response of ID is using 
      * @throws PopbillException
      */
-    public abstract Response checkID(String id)
+    public abstract Response checkID(String CheckID)
             throws PopbillException;
 
     /**
      * 회사정보 확인
      * 
      * @param CorpNum
-     *          Member's CorpNum
+     *          팝빌회원 사업자번호
      * @return CorpInfo. see CorpInfo
      * @throws PopbillException
      */
@@ -396,9 +396,9 @@ public interface BaseService {
      * 회사정보 확인
      * 
      * @param CorpNum
-     *          Member's CorpNum
+     *          팝빌회원 사업자번호
      * @param UserID
-     *          Member's UserID
+     *          팝빌회원 아이디
      * @return CorpInfo. see CorpInfo
      * @throws PopbillException
      */
@@ -409,37 +409,37 @@ public interface BaseService {
      * 회사정보 수정 
      * 
      * @param CorpNum
-     *          Member's CorpNum
-     * @param corpInfo
-     *          CorpInfo. see CorpInfo
+     *          팝빌회원 사업자번호
+     * @param CorpInfo
+     *          회사 객체정보
      * @return CorpInfo's Information updating success or not.
      * @throws PopbillException
      */
-    public abstract Response updateCorpInfo(String CorpNum, CorpInfo corpInfo)
+    public abstract Response updateCorpInfo(String CorpNum, CorpInfo CorpInfo)
             throws PopbillException;    
     
     /**
      * 회사정보 수정 
-     * 
+     *
      * @param CorpNum
-     *          Member's CorpNum
-     * @param corpInfo
-     *          CorpInfo. see CorpInfo
+     *          팝빌회원 사업자번호
+     * @param CorpInfo
+     *          회사 객체정보
      * @param UserID
-     *          Member's UserID
+     *          팝빌회원 아이디
      * @return CorpInfo's Information updating success or not.
      * @throws PopbillException
      */
-    public abstract Response updateCorpInfo(String CorpNum, CorpInfo corpInfo, String UserID)
+    public abstract Response updateCorpInfo(String CorpNum, CorpInfo CorpInfo, String UserID)
             throws PopbillException;
 
     /**
      *  팝빌 로그인 URL
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 유저아이디
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
      * @throws PopbillException
      */
@@ -450,9 +450,9 @@ public interface BaseService {
      *  연동회원 포인트충전 팝업 URL
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 유저아이디
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
      * @throws PopbillException
      */
@@ -462,9 +462,9 @@ public interface BaseService {
      *  연동회원 포인트 결재내역 팝업 URL
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 유저아이디
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
      * @throws PopbillException
      */
@@ -474,9 +474,9 @@ public interface BaseService {
      *  연동회원 포인트 사용내역 팝업 URL
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 유저아이디
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
      * @throws PopbillException
      */
@@ -484,7 +484,7 @@ public interface BaseService {
     
     /**
      *  회원탈퇴
-     * @param CorpNum 연동회원 사업자번호
+     * @param CorpNum 팝빌회원 사업자번호
      * @param quitReason 탈퇴사유
      * @return 
      * @throws PopbillException
@@ -493,9 +493,9 @@ public interface BaseService {
     
     /**
      * 회원탈퇴
-     * @param CorpNum 연동회원 사업자번호
+     * @param CorpNum 팝빌회원 사업자번호
      * @param quitReason 탈퇴사유
-     * @param UserID 연동회원 아이디
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -504,7 +504,7 @@ public interface BaseService {
     /**
      * 환불가능포인트 확인
      *  
-     * @param CorpNum 연동회원 사업자번호
+     * @param CorpNum 팝빌회원 사업자번호
      * @return
      * @throws PopbillException
      */
@@ -513,7 +513,8 @@ public interface BaseService {
     /**
      * 환불가능포인트 확인
      * 
-     * @param CorpNum 연동회원 사업자번호
+     * @param CorpNum 팝빌회원 사업자번호
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */

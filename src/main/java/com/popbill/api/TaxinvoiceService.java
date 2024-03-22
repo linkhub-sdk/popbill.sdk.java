@@ -24,7 +24,7 @@ public interface TaxinvoiceService extends BaseService {
      * 문서번호 사용여부 확인.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -39,7 +39,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 즉시발행
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param taxinvoice
      *          세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
      * @param WriteSpecification
@@ -54,7 +54,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 즉시발행
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param taxinvoice
      *          세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
      * @param Memo
@@ -71,7 +71,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 즉시발행
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param taxinvoice
      *          세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
      * @param WriteSpecification
@@ -93,7 +93,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 즉시발행
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param taxinvoice
      *          세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
      * @param WriteSpecification
@@ -165,7 +165,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 1건 임시저장.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param taxinvoice
      *            세금계산서 정보.(see com.popbill.api.taxinvoice.Taxinvoice)
      * @return Response 응답.
@@ -178,7 +178,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 1건 임시저장.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param taxinvoice
      *            세금계산서 정보. (see com.popbill.api.taxinvoice.Taxinvoice)
      * @param UserID
@@ -193,7 +193,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 1건 임시저장.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param taxinvoice
      *            세금계산서 정보. (see com.popbill.api.taxinvoice.Taxinvoice)
      * @param UserID
@@ -210,7 +210,7 @@ public interface TaxinvoiceService extends BaseService {
      * 임시저장된 세금계산서 정보 수정.
      *
      * @param CorpNum
-     *            연동회원 사업자번호.
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형.
      * @param MgtKey
@@ -227,7 +227,7 @@ public interface TaxinvoiceService extends BaseService {
      * 임시저장된 세금계산서 정보 수정.
      *
      * @param CorpNum
-     *            연동회원 사업자번호.
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형.
      * @param MgtKey
@@ -247,7 +247,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 발행.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -264,7 +264,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 발행.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -283,7 +283,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 발행.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -305,7 +305,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 발행.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -329,7 +329,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 발행취소 처리.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -346,7 +346,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 발행취소 처리.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -365,7 +365,7 @@ public interface TaxinvoiceService extends BaseService {
      *  역발행 즉시 요청
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param taxinvoice
      *            세금계산서 정보.(see com.popbill.api.taxinvoice.Taxinvoice)
      * @param Memo
@@ -379,13 +379,13 @@ public interface TaxinvoiceService extends BaseService {
      *  역발행 즉시 요청
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param taxinvoice
      *            세금계산서 정보.(see com.popbill.api.taxinvoice.Taxinvoice)
      * @param Memo
      *            처리 메모
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 유저아이디
      * @return Response 응답.
      * @throws PopbillException
      */
@@ -395,7 +395,7 @@ public interface TaxinvoiceService extends BaseService {
      * 역발행 세금계산서의 역)발행요청 처리.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -412,7 +412,7 @@ public interface TaxinvoiceService extends BaseService {
      * 역발행 세금계산서의 역)발행요청 처리.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -431,7 +431,7 @@ public interface TaxinvoiceService extends BaseService {
      * 역발행 세금계산서의 역)발행요청 취소 처리.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -448,7 +448,7 @@ public interface TaxinvoiceService extends BaseService {
      * 역발행 세금계산서의 역)발행요청 취소 처리.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -467,7 +467,7 @@ public interface TaxinvoiceService extends BaseService {
      * 역발행 세금계산서의 공급자의 발행거부 처리.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -484,7 +484,7 @@ public interface TaxinvoiceService extends BaseService {
      * 역발행 세금계산서의 공급자의 발행거부 처리.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -503,7 +503,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 삭제. 삭제가능한 건만 삭제처리되고, 불가능한 건은 PopbillException 발생함.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -518,7 +518,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 삭제. 삭제가능한 건만 삭제처리되고, 불가능한 건은 PopbillException 발생함.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -535,7 +535,7 @@ public interface TaxinvoiceService extends BaseService {
      * 발행된 세금계산서의 국세청 즉시 전송 요청.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -550,7 +550,7 @@ public interface TaxinvoiceService extends BaseService {
      * 발행된 세금계산서의 국세청 즉시 전송 요청.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -567,7 +567,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 상태정보 확인.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -581,7 +581,7 @@ public interface TaxinvoiceService extends BaseService {
     /**
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -598,7 +598,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 상태정보 대량(최대 1000건) 확인.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKeyList
@@ -613,7 +613,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 상태정보 대량(최대 1000건) 확인.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKeyList
@@ -629,7 +629,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 상세정보 확인.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -643,7 +643,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 상세정보 확인.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -660,7 +660,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 상세정보(XML) 확인.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -674,7 +674,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 상세정보(XML) 확인.
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param KeyType
      *            세금계산서 유형
      * @param MgtKey
@@ -690,7 +690,7 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 목록조회
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param KeyType
      *          연동문서 종류
      * @param DType
@@ -726,7 +726,7 @@ public interface TaxinvoiceService extends BaseService {
       * 세금계산서 목록조회
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param KeyType
      *          연동문서 종류
      * @param DType
@@ -766,7 +766,7 @@ public interface TaxinvoiceService extends BaseService {
       * 세금계산서 목록조회
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param KeyType
      *          연동문서 종류
      * @param DType
@@ -811,7 +811,7 @@ public interface TaxinvoiceService extends BaseService {
       * 세금계산서 목록조회
      *
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param KeyType
      *          연동문서 종류
      * @param DType
@@ -1018,7 +1018,7 @@ public interface TaxinvoiceService extends BaseService {
      * 팝빌 세금계산서 관련 URL 확인. 반환한 url은 30초이내에 브라우져에 표시하여야 함.
      *
      * @param CorpNum
-     *            연동회원 사업자번호.
+     *            팝빌회원 사업자번호
      * @param TOGO
      *            지정값. (TBOX: 임시문서함, SWBOX: 매출 발행 대기함, PWBOX: 매입 발행 대기함, SBOX: 매출 문서함, PBOX: 매입 문서함, WRITE: 매출 문서작성)
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
@@ -1031,9 +1031,9 @@ public interface TaxinvoiceService extends BaseService {
      * 팝빌 세금계산서 관련 URL 확인. 반환한 url은 30초이내에 브라우져에 표시하여야 함.
      *
      * @param CorpNum
-     *            연동회원 사업자번호.
+     *            팝빌회원 사업자번호
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원 아이디
      * @param TOGO
      *            지정값. (TBOX: 임시문서함, SWBOX: 매출 발행 대기함, PWBOX: 매입 발행 대기함, SBOX: 매출 문서함, PBOX: 매입 문서함, WRITE: 매출 문서작성)
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)

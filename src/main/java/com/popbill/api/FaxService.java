@@ -20,7 +20,7 @@ public interface FaxService extends BaseService {
      * 회원의 팩스 전송단가 확인
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @return 단가 (ex. 55.0)
      * @throws PopbillException
      */
@@ -29,7 +29,7 @@ public interface FaxService extends BaseService {
     /**
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param ReceiveNumType
      *            수신번호 유형
      * @return 단가 (ex 55.0)
@@ -40,7 +40,7 @@ public interface FaxService extends BaseService {
     /**
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param ReceiveNumType
      *            수신번호 유형
      * @param UserID
@@ -54,7 +54,7 @@ public interface FaxService extends BaseService {
      * 팝빌 팩스전송 관련 URL 확인. 반환한 url은 30초이내에 브라우져에 표시하여야 함.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호.
+     *            팝빌회원 사업자번호
      * @param TOGO
      *            지정값. (BOX : 팩스 전송 내역 조회 팝업)
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
@@ -67,9 +67,9 @@ public interface FaxService extends BaseService {
      * 팝빌 팩스전송 관련 URL 확인. 반환한 url은 30초이내에 브라우져에 표시하여야 함.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호.
+     *            팝빌회원 사업자번호
      * @param UserID
-     *            연동회원의 회원아이디
+     *            팝빌회원의 회원아이디
      * @param TOGO
      *            지정값. (BOX : 팩스 전송 내역 조회 팝업)
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
@@ -82,7 +82,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 단일 수신자.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param ReceiveNum
@@ -104,7 +104,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param ReceiveNum
@@ -125,7 +125,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 단일 수신자. (광고팩스)
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param ReceiveNum
@@ -150,7 +150,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param ReceiveNum
@@ -174,7 +174,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 단일 수신자. (광고팩스)
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param ReceiveNum
@@ -201,7 +201,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param ReceiveNum
@@ -226,7 +226,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 단일 수신자.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param ReceiveNum
@@ -238,7 +238,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return receiptNum 접수번호
      * @throws PopbillException
      */
@@ -251,7 +251,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param ReceiveNum
@@ -263,7 +263,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return receiptNum 접수번호
      * @throws PopbillException
      */
@@ -275,7 +275,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 단일 수신자 (광고팩스).
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param ReceiveNum
@@ -287,7 +287,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @return receiptNum 접수번호
@@ -302,7 +302,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param ReceiveNum
@@ -314,7 +314,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @return receiptNum 접수번호
@@ -327,7 +327,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 단일 수신자 (팩스제목)
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param ReceiveNum
@@ -339,7 +339,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title
@@ -357,7 +357,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param ReceiveNum
@@ -369,7 +369,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title
@@ -385,7 +385,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 단일 수신자 (팩스제목)
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param ReceiveNum
@@ -397,7 +397,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title
@@ -416,7 +416,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param ReceiveNum
@@ -428,7 +428,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title
@@ -447,7 +447,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 동보전송.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -467,7 +467,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리 동보전송)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -486,7 +486,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 동보전송. (광고팩스)
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -507,7 +507,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리 동보전송)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -528,7 +528,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 동보전송. (팩스제목)
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -551,7 +551,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리 동보전송)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -574,7 +574,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 동보전송. (팩스제목)
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -599,7 +599,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리 동보전송)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -624,7 +624,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 동보전송.
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -634,7 +634,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return receiptNum 접수번호
      * @throws PopbillException
      */
@@ -645,7 +645,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리 동보전송)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -655,7 +655,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return receiptNum 접수번호
      * @throws PopbillException
      */
@@ -665,7 +665,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 동보전송. (팩스제목)
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -675,7 +675,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title 
      *            팩스제목
      * @return receiptNum 접수번호
@@ -688,7 +688,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리 동보전송)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -698,7 +698,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스제목
      * @return receiptNum 접수번호
@@ -710,7 +710,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 동보전송. (팩스제목)
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -720,7 +720,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title 
      *            팩스제목
      * @param RequestNum 
@@ -735,7 +735,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리 동보전송)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -745,7 +745,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스제목
      * @param RequestNum
@@ -760,7 +760,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 동보전송. (광고팩스)
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -770,7 +770,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @return receiptNum 접수번호
@@ -783,7 +783,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리 동보전송)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -793,7 +793,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @return receiptNum 접수번호
@@ -805,7 +805,7 @@ public interface FaxService extends BaseService {
      * 팩스전송 단일파일 동보전송. (팩스제목)
      * 
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers
@@ -815,7 +815,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title 
@@ -831,7 +831,7 @@ public interface FaxService extends BaseService {
      * 팩스 전송 (바이너리 동보전송)
      *
      * @param CorpNum
-     *            연동회원 사업자번호
+     *            팝빌회원 사업자번호
      * @param SendNum
      *            발신번호
      * @param Receivers

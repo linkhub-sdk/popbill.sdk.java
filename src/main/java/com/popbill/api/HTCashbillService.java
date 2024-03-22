@@ -34,7 +34,7 @@ public interface HTCashbillService extends BaseService{
      * 과금정보 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @return 과금정보 (see. com.popbill.api.ChargeInfo)
      * @throws PopbillException
      */
@@ -44,7 +44,7 @@ public interface HTCashbillService extends BaseService{
      * 수집 요청 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @param QueryType
      *          현금영수증 유형, SELL-매출 현금영수증, BUY-매입 현금영수증 
      * @param SDate
@@ -61,7 +61,7 @@ public interface HTCashbillService extends BaseService{
      * 수집 요청 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @param QueryType
      *          현금영수증 유형, SELL-매출 현금영수증, BUY-매입 현금영수증 
      * @param SDate
@@ -69,7 +69,7 @@ public interface HTCashbillService extends BaseService{
      * @param EDate
      *          종료일자 (yyyyMMdd)
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디
      * @return 작업아이디 (jobID)
      * @throws PopbillException
      */
@@ -80,7 +80,7 @@ public interface HTCashbillService extends BaseService{
      * 수집 상태 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param JobID
      *          수집요청시 반환받은 작업아이디 
      * @return 수집 상태 (see. com.popbill.api.htcashbill.HTCashbillJobState)
@@ -92,11 +92,11 @@ public interface HTCashbillService extends BaseService{
      * 수집 상태 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param JobID
      *          수집요청시 반환받은 작업아이디 
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디
      * @return 수집 상태 (see. com.popbill.api.htcashbill.HTCashbillJobState)
      * @throws PopbillException
      */
@@ -106,7 +106,7 @@ public interface HTCashbillService extends BaseService{
      * 수집 상태 목록 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @return 수집상태 배열 (see. com.popbill.api.htcashbill.HTCashbillJobState)
      * @throws PopbillException
      */
@@ -116,9 +116,9 @@ public interface HTCashbillService extends BaseService{
      * 수집 상태 목록 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @param UserID 
-     *          연동회원 아이디 
+     *          팝빌회원 아이디
      * @return 수집상태 배열 (see. com.popbill.api.htcashbill.HTCashbillJobState)
      * @throws PopbillException
      */
@@ -128,7 +128,7 @@ public interface HTCashbillService extends BaseService{
      * 수집 결과 조회 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @param JobID
      *          작업 아이디 
      * @param TradeUsage
@@ -151,7 +151,7 @@ public interface HTCashbillService extends BaseService{
      * 수집 결과 조회 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @param JobID
      *          작업 아이디 
      * @param TradeUsage
@@ -165,7 +165,7 @@ public interface HTCashbillService extends BaseService{
      * @param Order
      *          정렬방향 
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디
      * @return 수집 결과 (see. com.popbill.api.htcashbill.HTCashbillSearchResult)
      * @throws PopbillException
      */
@@ -176,7 +176,7 @@ public interface HTCashbillService extends BaseService{
      * 수집 결과 요약정보 조회 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @param JobID
      *          작업 아이디 
      * @param TradeUsage
@@ -193,7 +193,7 @@ public interface HTCashbillService extends BaseService{
      * 수집 결과 요약정보 조회 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @param JobID
      *          작업 아이디 
      * @param TradeUsage
@@ -201,7 +201,7 @@ public interface HTCashbillService extends BaseService{
      * @param TradeType
      *          현금영수증 형태 배열, N-일반현금영수증, C-취소현금영수증
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디
      * @return 수집 결과 (see. com.popbill.api.htcashbil.HTCashbillSummary)
      * @throws PopbillException
      */
@@ -212,7 +212,7 @@ public interface HTCashbillService extends BaseService{
      * 정액제 신청 URL
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @return 정액제 신청 url
      * @throws PopbillException
      */
@@ -223,9 +223,9 @@ public interface HTCashbillService extends BaseService{
      * 정액제 신청 URL
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디
      * @return 정액제 신청 url
      * @throws PopbillException
      */
@@ -236,7 +236,7 @@ public interface HTCashbillService extends BaseService{
      * 홈택스 현금영수증 공인인증서 등록 URL
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @return 홈택스 공인인증서 등록 URL
      * @throws PopbillException
      */
@@ -247,9 +247,9 @@ public interface HTCashbillService extends BaseService{
      * 홈택스 현금영수증 공인인증서 등록 URL
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디
      * @return 홈택스 공인인증서 등록 URL
      * @throws PopbillException
      */
@@ -260,7 +260,7 @@ public interface HTCashbillService extends BaseService{
      * 정액제 서비스 상태 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @return 정액제 서비스 상태 (see. com.popbill.api.FlatRateState)
      * @throws PopbillException
      */
@@ -270,9 +270,9 @@ public interface HTCashbillService extends BaseService{
      * 정액제 서비스 상태 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디
      * @return 정액제 서비스 상태 (see. com.popbill.api.FlatRateState)
      * @throws PopbillException
      */
@@ -282,7 +282,7 @@ public interface HTCashbillService extends BaseService{
      * 홈택스연계 공인인증서 만료일시 확인 
      * 
      * @param CorpNum
-     *          연동회원 사업자번호 
+     *          팝빌회원 사업자번호
      * @return 만료일시
      * @throws PopbillException
      */
@@ -292,7 +292,7 @@ public interface HTCashbillService extends BaseService{
      * 홈택스 공인인증서 로그인 테스트
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @return Response
      * @throws PopbillException
      */
@@ -302,7 +302,7 @@ public interface HTCashbillService extends BaseService{
      * 부서사용자 계정등록
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @param DeptUserID
      *          홈택스 부서사용자 계정 아이디
      * @param DeptUserPWD
@@ -316,7 +316,7 @@ public interface HTCashbillService extends BaseService{
      * 부서사용자 등록정보 확인
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @return Response
      * @throws PopbillException
      */
@@ -326,7 +326,7 @@ public interface HTCashbillService extends BaseService{
      * 부서사용자 로그인 테스트
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @return Response
      * @throws PopbillException
      */
@@ -336,7 +336,7 @@ public interface HTCashbillService extends BaseService{
      * 부서사용자 등록정보 삭제
      * 
      * @param CorpNum
-     *          연동회원 사업자번호
+     *          팝빌회원 사업자번호
      * @return Response
      * @throws PopbillException
      */
