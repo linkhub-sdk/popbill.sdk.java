@@ -41,8 +41,8 @@ public class BizInfoCheckServiceImp extends BaseServiceImp implements BizInfoChe
      * @see com.popbill.api.BizInfoCheckService#CheckBizInfo(java.lang.String, java.lang.String)
      */
     @Override
-    public BizCheckInfo CheckBizInfo(String MemberCorpNum, String CheckCorpNum) throws PopbillException {
-        return httpget("/BizInfo/Check?CN=" + CheckCorpNum, MemberCorpNum, null, BizCheckInfo.class);
+    public BizCheckInfo CheckBizInfo(String CorpNum, String CheckCorpNum) throws PopbillException {
+        return CheckBizInfo(CorpNum, CheckCorpNum, null);
     }
     
     /*
@@ -51,8 +51,8 @@ public class BizInfoCheckServiceImp extends BaseServiceImp implements BizInfoChe
      * @see com.popbill.api.BizInfoCheckService#CheckBizInfo(java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
-    public BizCheckInfo CheckBizInfo(String MemberCorpNum, String CheckCorpNum, String UserId) throws PopbillException {
-        return httpget("/BizInfo/Check?CN=" + CheckCorpNum, MemberCorpNum, UserId, BizCheckInfo.class);
+    public BizCheckInfo CheckBizInfo(String CorpNum, String CheckCorpNum, String UserId) throws PopbillException {
+        return httpget("/BizInfo/Check?CN=" + CheckCorpNum, CorpNum, UserId, BizCheckInfo.class);
     }
 
     /*
@@ -62,6 +62,11 @@ public class BizInfoCheckServiceImp extends BaseServiceImp implements BizInfoChe
      */
     @Override
     public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
+        return getChargeInfo(CorpNum, null);
+    }
+
+    @Override
+    public ChargeInfo getChargeInfo(String CorpNum, String UserID) throws PopbillException {
         return httpget("/BizInfo/ChargeInfo", CorpNum, null, ChargeInfo.class);
     }
 }
