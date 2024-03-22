@@ -55,86 +55,100 @@ public interface CashbillService extends BaseService{
 
     /**
      * 문서번호 사용여부 확인
-     * @param Corpnum
+     * @param CorpNum
      *          연동회원 사업자번호
      * @param MgtKey
      *          문서번호
      * @return 사용여부, true - 사용중 / false - 미사용
      * @throws PopbillException
      */
-    public boolean checkMgtKeyInUse(String Corpnum, String MgtKey) 
+    public boolean checkMgtKeyInUse(String CorpNum, String MgtKey)
             throws PopbillException;
-    
+
+    /**
+     * 문서번호 사용여부 확인
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param MgtKey
+     *          문서번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return 사용여부, true - 사용중 / false - 미사용
+     * @throws PopbillException
+     */
+    public boolean checkMgtKeyInUse(String CorpNum, String MgtKey, String UserID)
+            throws PopbillException;
+
     /**
      * 현금영수증 1건 임시저장
      * @param CorpNum
      *          연동회원 사업자번호
-     * @param cashbill
+     * @param Cashbill
      *          현금영수증 정보.(see. com.popbill.api.cashbill.Cashbill)
      * @return Response
      * @throws PopbillException
      */
-    public Response register(String CorpNum, Cashbill cashbill)
+    public Response register(String CorpNum, Cashbill Cashbill)
             throws PopbillException;
     
     /**
      * 현금영수증 1건 임시저장
      * @param CorpNum
      *          연동회원 사업자번호
-     * @param cashbill
+     * @param Cashbill
      *          현금영수증 정보. (see. com.popbill.api.cashbill.Cashbill)
      * @param UserID
      *          연동회원아이디
      * @return Response
      * @throws PopbillException
      */
-    public Response register(String CorpNum, Cashbill cashbill, 
+    public Response register(String CorpNum, Cashbill Cashbill, 
             String UserID) throws PopbillException;
     
     /**
      * 취소현금영수증 1건 임시저장
      * @param CorpNum
      *          팝빌 연동회원 사업자번호
-     * @param mgtKey
+     * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
-     *          원본현금영수증 승인번호
+     *          당초 승인 현금영수증 승인번호
      * @param orgTradeDate
-     *          원본현금영수증 거래일자
+     *          당초 승인 현금영수증 거래일자
      * @return Response
      * @throws PopbillException
      */ 
-    public Response revokeRegister(String CorpNum, String mgtKey, String orgConfirmNum,
+    public Response revokeRegister(String CorpNum, String MgtKey, String orgConfirmNum,
             String orgTradeDate) throws PopbillException;
     
     /**
      * 취소현금영수증 1건 임시저장
      * @param CorpNum
      *          팝빌 연동회원 사업자번호
-     * @param mgtKey
+     * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
-     *          원본현금영수증 승인번호
+     *          당초 승인 현금영수증 승인번호
      * @param orgTradeDate
-     *          원본현금영수증 거래일자
+     *          당초 승인 현금영수증 거래일자
      * @param smssendYN
      *          발행안내 문자전송여부
      * @return Response
      * @throws PopbillException
      */
-    public Response revokeRegister(String CorpNum, String mgtKey, String orgConfirmNum,
+    public Response revokeRegister(String CorpNum, String MgtKey, String orgConfirmNum,
             String orgTradeDate, Boolean smssendYN) throws PopbillException;
     
     /**
      * 취소현금영수증 1건 임시저장
      * @param CorpNum
      *          팝빌연동회원 사업자번호
-     * @param mgtKey
+     * @param MgtKey
      *          취소현금영수증 문서
      * @param orgConfirmNum
-     *          원본현금영수증 승인번호
+     *          당초 승인 현금영수증 승인번호
      * @param orgTradeDate
-     *          원본현금영수증 거래일자
+     *          당초 승인 현금영수증 거래일자
      * @param smssendYN
      *          발행안내 문자전송여부
      * @param UserID
@@ -142,19 +156,19 @@ public interface CashbillService extends BaseService{
      * @return Response
      * @throws PopbillException
      */
-    public Response revokeRegister(String CorpNum, String mgtKey, String orgConfirmNum,
+    public Response revokeRegister(String CorpNum, String MgtKey, String orgConfirmNum,
             String orgTradeDate, Boolean smssendYN, String UserID) throws PopbillException;
     
     /**
      * 취소현금영수증 1건 임시저장
      * @param CorpNum
      *          팝빌연동회원 사업자번호
-     * @param mgtKey
+     * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
-     *          원본현금영수증 승인번호
+     *          당초 승인 현금영수증 승인번호
      * @param orgTradeDate
-     *          원본현금영수증 거래일자
+     *          당초 승인 현금영수증 거래일자
      * @param smssendYN
      *          발행안내 문자전송여부
      * @param isPartCancel
@@ -172,7 +186,7 @@ public interface CashbillService extends BaseService{
      * @return Response
      * @throws PopbillException
      */
-    public Response revokeRegister(String CorpNum, String mgtKey, String orgConfirmNum,
+    public Response revokeRegister(String CorpNum, String MgtKey, String orgConfirmNum,
             String orgTradeDate, Boolean smssendYN, Boolean isPartCancel, Integer cancelType, 
             String supplyCost, String tax, String serviceFee, String totalAmount) throws PopbillException;
 
@@ -180,12 +194,12 @@ public interface CashbillService extends BaseService{
      * 취소현금영수증 1건 임시저장
      * @param CorpNum
      *          팝빌연동회원 사업자번호
-     * @param mgtKey
+     * @param MgtKey
      *          취소현금영수증 문서
      * @param orgConfirmNum
-     *          원본현금영수증 승인번호
+     *          당초 승인 현금영수증 승인번호
      * @param orgTradeDate
-     *          원본현금영수증 거래일자
+     *          당초 승인 현금영수증 거래일자
      * @param smssendYN
      *          발행안내 문자전송여부
      * @param isPartCancel
@@ -205,7 +219,7 @@ public interface CashbillService extends BaseService{
      * @return Response
      * @throws PopbillException
      */
-    public Response revokeRegister(String CorpNum, String mgtKey, String orgConfirmNum,
+    public Response revokeRegister(String CorpNum, String MgtKey, String orgConfirmNum,
             String orgTradeDate, Boolean smssendYN, Boolean isPartCancel, Integer cancelType, 
             String supplyCost, String tax, String serviceFee, String totalAmount, String UserID) throws PopbillException;   
     
@@ -214,16 +228,16 @@ public interface CashbillService extends BaseService{
      * 
      * @param CorpNum
      *          팝빌연동회원 사업자번호
-     * @param mgtKey
+     * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
-     *          원본현금영수증 승인번호
+     *          당초 승인 현금영수증 승인번호
      * @param orgTradeDate
-     *          원본현금영수증 거래일자
+     *          당초 승인 현금영수증 거래일자
      * @return CBIssueResponse
      * @throws PopbillException
      */
-    public CBIssueResponse revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
+    public CBIssueResponse revokeRegistIssue(String CorpNum, String MgtKey, String orgConfirmNum, 
             String orgTradeDate) throws PopbillException;
     
     /**
@@ -231,18 +245,18 @@ public interface CashbillService extends BaseService{
      * 
      * @param CorpNum
      *          팝빌연동회원 사업자번호
-     * @param mgtKey
+     * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
-     *          원본현금영수증 승인번호
+     *          당초 승인 현금영수증 승인번호
      * @param orgTradeDate
-     *          원본현금영수증 거래일자
+     *          당초 승인 현금영수증 거래일자
      * @param smssendYN
      *          발행안내 문자전송여부
      * @return CBIssueResponse
      * @throws PopbillException
      */
-    public CBIssueResponse revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
+    public CBIssueResponse revokeRegistIssue(String CorpNum, String MgtKey, String orgConfirmNum, 
             String orgTradeDate, Boolean smssendYN) throws PopbillException;
 
     /**
@@ -250,12 +264,12 @@ public interface CashbillService extends BaseService{
      * 
      * @param CorpNum
      *          팝빌연동회원 사업자번호
-     * @param mgtKey
+     * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
-     *          원본현금영수증 승인번호
+     *          당초 승인 현금영수증 승인번호
      * @param orgTradeDate
-     *          원본현금영수증 거래일자
+     *          당초 승인 현금영수증 거래일자
      * @param smssendYN
      *          발행안내 문자전송여부
      * @param memo
@@ -263,7 +277,7 @@ public interface CashbillService extends BaseService{
      * @return CBIssueResponse
      * @throws PopbillException
      */
-    public CBIssueResponse revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
+    public CBIssueResponse revokeRegistIssue(String CorpNum, String MgtKey, String orgConfirmNum, 
             String orgTradeDate, Boolean smssendYN, String memo) throws PopbillException;
     
     /**
@@ -271,59 +285,59 @@ public interface CashbillService extends BaseService{
      * 
      * @param CorpNum
      *          팝빌연동회원 사업자번호
-     * @param mgtKey
+     * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
-     *          원본현금영수증 승인번호
+     *          당초 승인 현금영수증 승인번호
      * @param orgTradeDate
-     *          원본현금영수증 거래일자
+     *          당초 승인 현금영수증 거래일자
      * @param smssendYN
      *          발행안내 문자전송여부
      * @param memo
      *          메모
-     * @param userID
+     * @param UserID
      *          팝빌연동회원 아이디
      * @return CBIssueResponse
      * @throws PopbillException
      */
-    public CBIssueResponse revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
-            String orgTradeDate, Boolean smssendYN, String memo, String userID) throws PopbillException;
+    public CBIssueResponse revokeRegistIssue(String CorpNum, String MgtKey, String orgConfirmNum, 
+            String orgTradeDate, Boolean smssendYN, String memo, String UserID) throws PopbillException;
     /**
      * 취소현금영수증 1건 즉시발행
      * 
      * @param CorpNum
      *          팝빌연동회원 사업자번호
-     * @param mgtKey
+     * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
-     *          원본현금영수증 승인번호
+     *          당초 승인 현금영수증 승인번호
      * @param orgTradeDate
-     *          원본현금영수증 거래일자
+     *          당초 승인 현금영수증 거래일자
      * @param smssendYN
      *          발행안내 문자전송여부
      * @param memo
      *          메모
-     * @param userID
+     * @param UserID
      *          팝빌연동회원 아이디
      * @param emailSubject
      *          발행안내 메일 제목
      * @return CBIssueResponse
      * @throws PopbillException
      */
-    public CBIssueResponse revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
-            String orgTradeDate, Boolean smssendYN, String memo, String userID, String emailSubject) throws PopbillException;
+    public CBIssueResponse revokeRegistIssue(String CorpNum, String MgtKey, String orgConfirmNum, 
+            String orgTradeDate, Boolean smssendYN, String memo, String UserID, String emailSubject) throws PopbillException;
     
     /**
      * 취소현금영수증 1건 즉시발행
      * 
      * @param CorpNum
      *          팝빌연동회원 사업자번호
-     * @param mgtKey
+     * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
-     *          원본현금영수증 승인번호
+     *          당초 승인 현금영수증 승인번호
      * @param orgTradeDate
-     *          원본현금영수증 거래일자
+     *          당초 승인 현금영수증 거래일자
      * @param smssendYN
      *          발행안내 문자전송여부
      * @param memo
@@ -343,7 +357,7 @@ public interface CashbillService extends BaseService{
      * @return CBIssueResponse
      * @throws PopbillException
      */
-    public CBIssueResponse revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
+    public CBIssueResponse revokeRegistIssue(String CorpNum, String MgtKey, String orgConfirmNum, 
             String orgTradeDate, Boolean smssendYN, String memo, Boolean isPartCancel,
             Integer cancelType, String supplyCost, String tax, String serviceFee,
             String totalAmount) throws PopbillException;
@@ -353,12 +367,12 @@ public interface CashbillService extends BaseService{
      * 
      * @param CorpNum
      *          팝빌연동회원 사업자번호
-     * @param mgtKey
+     * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
-     *          원본현금영수증 승인번호
+     *          당초 승인 현금영수증 승인번호
      * @param orgTradeDate
-     *          원본현금영수증 거래일자
+     *          당초 승인 현금영수증 거래일자
      * @param smssendYN
      *          발행안내 문자전송여부
      * @param memo
@@ -380,7 +394,7 @@ public interface CashbillService extends BaseService{
      * @return CBIssueResponse
      * @throws PopbillException
      */
-    public CBIssueResponse revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, 
+    public CBIssueResponse revokeRegistIssue(String CorpNum, String MgtKey, String orgConfirmNum, 
             String orgTradeDate, Boolean smssendYN, String memo, Boolean isPartCancel,
             Integer cancelType, String supplyCost, String tax, String serviceFee,
             String totalAmount, String UserID) throws PopbillException;
@@ -390,12 +404,12 @@ public interface CashbillService extends BaseService{
      * 
      * @param CorpNum
      *          팝빌연동회원 사업자번호
-     * @param mgtKey
+     * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
-     *          원본현금영수증 승인번호
+     *          당초 승인 현금영수증 승인번호
      * @param orgTradeDate
-     *          원본현금영수증 거래일자
+     *          당초 승인 현금영수증 거래일자
      * @param smssendYN
      *          발행안내 문자전송여부
      * @param memo
@@ -412,27 +426,27 @@ public interface CashbillService extends BaseService{
      *          [취소] 봉사료
      * @param totalAmount
      *          [취소] 공급가액합계금액
-     * @param userID
+     * @param UserID
      *          팝빌회원 아이디
      * @param emailSubject
      *          발행 안내메일 제목
      * @return CBIssueResponse
      * @throws PopbillException
      */
-    public CBIssueResponse revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, String orgTradeDate,
+    public CBIssueResponse revokeRegistIssue(String CorpNum, String MgtKey, String orgConfirmNum, String orgTradeDate,
             Boolean smssendYN, String memo, Boolean isPartCancel, Integer cancelType, String supplyCost, String tax,
-            String serviceFee, String totalAmount, String userID, String emailSubject) throws PopbillException;
+            String serviceFee, String totalAmount, String UserID, String emailSubject) throws PopbillException;
     /**
      * 취소현금영수증 1건 즉시발행
      * 
      * @param CorpNum
      *          팝빌연동회원 사업자번호
-     * @param mgtKey
+     * @param MgtKey
      *          취소현금영수증 문서번호
      * @param orgConfirmNum
-     *          원본현금영수증 승인번호
+     *          당초 승인 현금영수증 승인번호
      * @param orgTradeDate
-     *          원본현금영수증 거래일자
+     *          당초 승인 현금영수증 거래일자
      * @param smssendYN
      *          발행안내 문자전송여부
      * @param memo
@@ -449,7 +463,7 @@ public interface CashbillService extends BaseService{
      *          [취소] 봉사료
      * @param totalAmount
      *          [취소] 공급가액합계금액
-     * @param userID
+     * @param UserID
      *          팝빌회원 아이디
      * @param emailSubject
      *          발행 안내메일 제목
@@ -458,9 +472,9 @@ public interface CashbillService extends BaseService{
      * @return CBIssueResponse
      * @throws PopbillException
      */
-    public CBIssueResponse revokeRegistIssue(String CorpNum, String mgtKey, String orgConfirmNum, String orgTradeDate,
+    public CBIssueResponse revokeRegistIssue(String CorpNum, String MgtKey, String orgConfirmNum, String orgTradeDate,
             Boolean smssendYN, String memo, Boolean isPartCancel, Integer cancelType, String supplyCost, String tax,
-            String serviceFee, String totalAmount, String userID, String emailSubject, String tradeDT) throws PopbillException;
+            String serviceFee, String totalAmount, String UserID, String emailSubject, String tradeDT) throws PopbillException;
     
     /**
      * 임시저장된 현금영수증 수정
@@ -468,13 +482,13 @@ public interface CashbillService extends BaseService{
      *          연동회원 사업자번호
      * @param MgtKey
      *          문서번호
-     * @param cashbill
+     * @param Cashbill
      *          현금영수증 정보. (see. com.popbill.api.cashbill.Cashbill)
      * @return Response
      * @throws PopbillException
      */
     public Response update(String CorpNum, String MgtKey, 
-            Cashbill cashbill) throws PopbillException;
+            Cashbill Cashbill) throws PopbillException;
     
     /**
      * 임시저장된 현금영수증 수정
@@ -482,7 +496,7 @@ public interface CashbillService extends BaseService{
      *          연동회원 사업자번호
      * @param MgtKey
      *          문서번호
-     * @param cashbill
+     * @param Cashbill
      *          현금영수증 정보. (see. com.popbill.api.cashbill.Cashbill)
      * @param UserID
      *          연동회원 아이디
@@ -490,7 +504,7 @@ public interface CashbillService extends BaseService{
      * @throws PopbillException
      */
     public Response update(String CorpNum, String MgtKey, 
-            Cashbill cashbill, String UserID) throws PopbillException;
+            Cashbill Cashbill, String UserID) throws PopbillException;
         
     /**
      * 현금영수증 삭제
@@ -693,7 +707,21 @@ public interface CashbillService extends BaseService{
      */
     public Cashbill getDetailInfo(String CorpNum, String MgtKey)
             throws PopbillException;
-    
+
+    /**
+     * 현금영수증 상세내역 조회
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param MgtKey
+     *          문서번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return Cashbill
+     * @throws PopbillException
+     */
+    public Cashbill getDetailInfo(String CorpNum, String MgtKey, String UserID)
+            throws PopbillException;
+
     /**
      * 현금영수증 요약/상태 정보 조회
      * @param CorpNum
@@ -705,7 +733,21 @@ public interface CashbillService extends BaseService{
      */
     public CashbillInfo getInfo(String CorpNum, String MgtKey)
             throws PopbillException;
-    
+
+    /**
+     * 현금영수증 요약/상태 정보 조회
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param MgtKey
+     *          문서번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return CashbillInfo
+     * @throws PopbillException
+     */
+    public CashbillInfo getInfo(String CorpNum, String MgtKey, String UserID)
+            throws PopbillException;
+
     /**
      * 현금영수증 요약/상태 정보 대량 조회( 최대 1000건)
      * @param CorpNum
@@ -717,7 +759,21 @@ public interface CashbillService extends BaseService{
      */
     public CashbillInfo[] getInfos(String CorpNum, String[] MgtKeyList)
             throws PopbillException;
-    
+
+    /**
+     * 현금영수증 요약/상태 정보 대량 조회( 최대 1000건)
+     * @param CorpNum
+     *          연동회원 사업자번
+     * @param MgtKeyList
+     *          문서번호 배열
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return CashbillInfo 배열
+     * @throws PopbillException
+     */
+    public CashbillInfo[] getInfos(String CorpNum, String[] MgtKeyList, String UserID)
+            throws PopbillException;
+
     /**
      * 현금영수증 문서 이력 조회
      * @param CorpNum
@@ -882,19 +938,19 @@ public interface CashbillService extends BaseService{
      * @return
      * @throws PopbillException
      */
-    public String getViewURL(String Corpnum, String Mgtkey, String UserID) throws PopbillException;
+    public String getViewURL(String CorpNum, String MgtKey, String UserID) throws PopbillException;
     
     /**
      * 현금영수증 즉시발행 
      * 
      * @param CorpNum
      *          연동회원 사업자번호 
-     * @param cashbill
+     * @param Cashbill
      *          현금영수증 정보. (see com.popbill.api.cashbill.Cashbill)
      * @return Response 응답. 
      * @throws PopbillException
      */
-    public CBIssueResponse registIssue(String CorpNum, Cashbill cashbill)
+    public CBIssueResponse registIssue(String CorpNum, Cashbill Cashbill)
             throws PopbillException;
     
     
@@ -903,14 +959,14 @@ public interface CashbillService extends BaseService{
      * 
      * @param CorpNum
      *          연동회원 사업자번호 
-     * @param cashbill
+     * @param Cashbill
      *          현금영수증 정보. (see com.popbill.api.cashbill.Cashbill)
      * @param Memo
      *          메모
      * @return CBIssueResponse 응답. 
      * @throws PopbillException
      */
-    public CBIssueResponse registIssue(String CorpNum, Cashbill cashbill, String Memo)
+    public CBIssueResponse registIssue(String CorpNum, Cashbill Cashbill, String Memo)
             throws PopbillException;
     
     /**
@@ -918,7 +974,7 @@ public interface CashbillService extends BaseService{
      * 
      * @param CorpNum
      *          연동회원 사업자번호 
-     * @param cashbill
+     * @param Cashbill
      *          현금영수증 정보. (see com.popbill.api.cashbill.Cashbill) 
      * @param Memo
      *          메모 
@@ -927,14 +983,14 @@ public interface CashbillService extends BaseService{
      * @return CBIssueResponse 응답. 
      * @throws PopbillException
      */
-    public CBIssueResponse registIssue(String CorpNum, Cashbill cashbill, String Memo,
+    public CBIssueResponse registIssue(String CorpNum, Cashbill Cashbill, String Memo,
             String UserID) throws PopbillException;
     
     /**
      * 현금영수증 즉시발행
      * @param CorpNum
      *          연동회원 사업자번호
-     * @param cashbill
+     * @param Cashbill
      *          현금영수증 Object
      * @param memo
      *           메모
@@ -945,7 +1001,7 @@ public interface CashbillService extends BaseService{
      * @return CBIssueResponse 응답 코드/메시지
      * @throws PopbillException
      */
-    public CBIssueResponse registIssue(String CorpNum, Cashbill cashbill, String memo, String UserID, 
+    public CBIssueResponse registIssue(String CorpNum, Cashbill Cashbill, String memo, String UserID, 
             String emailSubject)
             throws PopbillException;
 
@@ -955,12 +1011,12 @@ public interface CashbillService extends BaseService{
     *          연동회원 사업자번호
     * @param SubmitID
     *          접수 아이디
-    * @param cashbillList
+    * @param CashbillList
     *          현금영수증 배열
     * @return
     * @throws PopbillException
     */
-   public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Cashbill> cashbillList)
+   public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Cashbill> CashbillList)
            throws PopbillException;
    
    /**
@@ -969,14 +1025,14 @@ public interface CashbillService extends BaseService{
     *          연동회원 사업자번호
     * @param SubmitID
     *          접수 아이디
-    * @param cashbillList
+    * @param CashbillList
     *          현금영수증 배열
     * @param UserID
     *          팝빌 연동회원 아이디
     * @return
     * @throws PopbillException
     */
-   public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Cashbill> cashbillList,
+   public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Cashbill> CashbillList,
            String UserID)
            throws PopbillException;
 
@@ -986,12 +1042,12 @@ public interface CashbillService extends BaseService{
      *
      * @param CorpNum
      *          연동회원 사업자번호
-     * @param cashbill
+     * @param Cashbill
      *          현금영수증 정보. (see com.popbill.api.cashbill.Cashbill)
      * @return Response 응답.
      * @throws PopbillException
      */
-    public CBIssueResponse registIssueCN(String CorpNum, Cashbill cashbill)
+    public CBIssueResponse registIssueCN(String CorpNum, Cashbill Cashbill)
             throws PopbillException;
 
 
@@ -1000,14 +1056,14 @@ public interface CashbillService extends BaseService{
      *
      * @param CorpNum
      *          연동회원 사업자번호
-     * @param cashbill
+     * @param Cashbill
      *          현금영수증 정보. (see com.popbill.api.cashbill.Cashbill)
      * @param Memo
      *          메모
      * @return CBIssueResponse 응답.
      * @throws PopbillException
      */
-    public CBIssueResponse registIssueCN(String CorpNum, Cashbill cashbill, String Memo)
+    public CBIssueResponse registIssueCN(String CorpNum, Cashbill Cashbill, String Memo)
             throws PopbillException;
 
     /**
@@ -1015,7 +1071,7 @@ public interface CashbillService extends BaseService{
      *
      * @param CorpNum
      *          연동회원 사업자번호
-     * @param cashbill
+     * @param Cashbill
      *          현금영수증 정보. (see com.popbill.api.cashbill.Cashbill)
      * @param Memo
      *          메모
@@ -1024,14 +1080,14 @@ public interface CashbillService extends BaseService{
      * @return CBIssueResponse 응답.
      * @throws PopbillException
      */
-    public CBIssueResponse registIssueCN(String CorpNum, Cashbill cashbill, String Memo,
+    public CBIssueResponse registIssueCN(String CorpNum, Cashbill Cashbill, String Memo,
                                        String UserID) throws PopbillException;
     /**
      * 현금영수증 즉시발행 (승인번호 할당)
      *
      * @param CorpNum
      *          연동회원 사업자번호
-     * @param cashbill
+     * @param Cashbill
      *          현금영수증 정보. (see com.popbill.api.cashbill.Cashbill)
      * @param Memo
      *          메모
@@ -1040,7 +1096,7 @@ public interface CashbillService extends BaseService{
      * @return CBIssueResponse 응답.
      * @throws PopbillException
      */
-    public CBIssueResponse registIssueCN(String CorpNum, Cashbill cashbill, String Memo,
+    public CBIssueResponse registIssueCN(String CorpNum, Cashbill Cashbill, String Memo,
                                        String UserID, String emailSubject) throws PopbillException;
 
     /**
@@ -1050,12 +1106,12 @@ public interface CashbillService extends BaseService{
     *          연동회원 사업자번호
     * @param SubmitID
     *          접수 아이디
-    * @param cashbillList
+    * @param CashbillList
     *          현금영수증 배열
     * @return
     * @throws PopbillException
     */
-   public BulkResponse bulkSubmitCN(String CorpNum, String SubmitID, List<Cashbill> cashbillList)
+   public BulkResponse bulkSubmitCN(String CorpNum, String SubmitID, List<Cashbill> CashbillList)
            throws PopbillException;
 
    /**
@@ -1064,14 +1120,14 @@ public interface CashbillService extends BaseService{
     *          연동회원 사업자번호
     * @param SubmitID
     *          접수 아이디
-    * @param cashbillList
+    * @param CashbillList
     *          현금영수증 배열
     * @param UserID
     *          팝빌 연동회원 아이디
     * @return
     * @throws PopbillException
     */
-   public BulkResponse bulkSubmitCN(String CorpNum, String SubmitID, List<Cashbill> cashbillList,
+   public BulkResponse bulkSubmitCN(String CorpNum, String SubmitID, List<Cashbill> CashbillList,
            String UserID)
            throws PopbillException;
 
@@ -1127,7 +1183,7 @@ public interface CashbillService extends BaseService{
      */
     public CBSearchResult search(String CorpNum, String DType, String SDate, 
             String EDate, String[] State, String[] TradeType, String[] TradeUsage,
-            String[] TaxationType, int Page, int PerPage, String Order) throws PopbillException;
+            String[] TaxationType, Integer Page, Integer PerPage, String Order) throws PopbillException;
 
     /**
      * 현금영수증 목록 조회
@@ -1159,7 +1215,7 @@ public interface CashbillService extends BaseService{
      */
     public CBSearchResult search(String CorpNum, String DType, String SDate, 
             String EDate, String[] State, String[] TradeType, String[] TradeUsage,
-            String[] TaxationType, String QString, int Page, int PerPage, String Order) throws PopbillException;
+            String[] TaxationType, String QString, Integer Page, Integer PerPage, String Order) throws PopbillException;
 
     /**
      * 현금영수증 목록 조회
@@ -1193,7 +1249,7 @@ public interface CashbillService extends BaseService{
      */
     public CBSearchResult search(String CorpNum, String DType, String SDate,
                                  String EDate, String[] State, String[] TradeType, String[] TradeUsage, String[] TradeOpt,
-                                 String[] TaxationType, String QString, int Page, int PerPage, String Order) throws PopbillException;
+                                 String[] TaxationType, String QString, Integer Page, Integer PerPage, String Order) throws PopbillException;
 
     /**
      * 현금영수증 목록 조회
@@ -1229,7 +1285,45 @@ public interface CashbillService extends BaseService{
      */
     public CBSearchResult search(String CorpNum, String DType, String SDate,
                                  String EDate, String[] State, String[] TradeType, String[] TradeUsage, String[] TradeOpt,
-                                 String[] TaxationType, String QString, int Page, int PerPage, String Order, String FranchiseTaxRegID) throws PopbillException;
+                                 String[] TaxationType, String QString, Integer Page, Integer PerPage, String Order, String FranchiseTaxRegID) throws PopbillException;
+
+    /**
+     * 현금영수증 목록 조회
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param DType
+     *          검색일자 유형 [R-등록일자, T-거래일자, I-발행일시]
+     * @param SDate
+     *          시작일자 (yyyyMMdd)
+     * @param EDate
+     *          종료일자 (yyyyMMdd)
+     * @param State
+     *          상태코드 배열
+     * @param TradeType
+     *          문서형태 배열 [N-승인거래, C-취소거래]
+     * @param TradeUsage
+     *          거래구분 배열 [P-소득공제용, C-지출증빙용]
+     * @param TradeOpt
+     *          거래유형 배열 [N-일반, B-도서공연, T-대중교통]
+     * @param TaxationType
+     *          과세형태 배열 [T-과세, N-비과세]
+     * @param QString
+     *          식별번호, 휴대폰번호, 주민등록번호, 사업자등록번호 입력
+     * @param Page
+     *          페이지번호, 기본값 1
+     * @param PerPage
+     *          페이지당 검색개수, 기본값 500, 최대 1000
+     * @param FranchiseTaxRegID
+     *          가맹점 종사업장 번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return 현금영수증 목록조회 결과. (see com.popbill.api.cashbill.CBSearchResult)
+     * @throws PopbillException
+     */
+    public CBSearchResult search(String CorpNum, String DType, String SDate,
+                                 String EDate, String[] State, String[] TradeType, String[] TradeUsage, String[] TradeOpt,
+                                 String[] TaxationType, String QString, Integer Page, Integer PerPage, String Order, String FranchiseTaxRegID, String UserID) throws PopbillException;
 
     /**
      *  과금정보 확인
@@ -1240,7 +1334,19 @@ public interface CashbillService extends BaseService{
      * @throws PopbillException
      */
     public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException;
-    
+
+    /**
+     *  과금정보 확인
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return ChargeInfo 과금정보.
+     * @throws PopbillException
+     */
+    public ChargeInfo getChargeInfo(String CorpNum, String UserID) throws PopbillException;
+
     /**
      * 알림메일 전송설정 수정
      * 
@@ -1297,8 +1403,8 @@ public interface CashbillService extends BaseService{
 
     /**
      * 
-     * @param CorpNum
-     * @param MgtKey
+     * @param CorpNum 연동회원 사업자번호
+     * @param MgtKey 문서번호
      * @return
      * @throws PopbillException
      */
@@ -1306,9 +1412,9 @@ public interface CashbillService extends BaseService{
 
     /**
      * 
-     * @param CorpNum
-     * @param MgtKey
-     * @param UserID
+     * @param CorpNum 연동회원 사업자번호
+     * @param MgtKey 문서번호
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -1316,30 +1422,30 @@ public interface CashbillService extends BaseService{
 
     /**
      * 
-     * @param corpNum
-     * @param itemKey
-     * @param mgtKey
+     * @param CorpNum 연동회원 사업자번호
+     * @param ItemKey 팝빌에서 현금영수증 관리 목적으로 할당한 식별번호
+     * @param MgtKey 파트너가 할당한 문서번호
      * @return
      * @throws PopbillException
      */
-    Response assignMgtKey(String corpNum, String itemKey, String mgtKey) throws PopbillException;
+    Response assignMgtKey(String CorpNum, String ItemKey, String MgtKey) throws PopbillException;
 
     /**
      * 
-     * @param corpNum
-     * @param itemKey
-     * @param mgtKey
-     * @param userID
+     * @param CorpNum 연동회원 사업자번호
+     * @param ItemKey 팝빌에서 현금영수증 관리 목적으로 할당한 식별번호
+     * @param MgtKey 파트너가 할당한 문서번호
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
-    Response assignMgtKey(String corpNum, String itemKey, String mgtKey, String userID) throws PopbillException;
+    Response assignMgtKey(String CorpNum, String ItemKey, String MgtKey, String UserID) throws PopbillException;
 
     /**
      * 
      * @param CorpNum
      *          연동회원 사업자 번호
-     * @param Mgtkey
+     * @param MgtKey
      *          문서관리 번호         
      * @return
      * @throws PopbillException

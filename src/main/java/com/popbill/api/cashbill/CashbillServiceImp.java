@@ -69,11 +69,16 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public boolean checkMgtKeyInUse(String CorpNum, String MgtKey)
             throws PopbillException {
+        return checkMgtKeyInUse(CorpNum, MgtKey, null);
+    }
+
+    @Override
+    public boolean checkMgtKeyInUse(String CorpNum, String MgtKey, String UserID) throws PopbillException {
         if (MgtKey == null || MgtKey.isEmpty())
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         try{
-            CashbillInfo info = httpget("/Cashbill/" + MgtKey, CorpNum, null, CashbillInfo.class);
+            CashbillInfo info = httpget("/Cashbill/" + MgtKey, CorpNum, UserID, CashbillInfo.class);
 
             return (info.getItemKey() == null || info.getItemKey().isEmpty()) == false;
 
@@ -317,11 +322,16 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public Cashbill getDetailInfo(String CorpNum, String MgtKey)
             throws PopbillException {
+        return getDetailInfo(CorpNum, MgtKey, null);
+    }
+
+    @Override
+    public Cashbill getDetailInfo(String CorpNum, String MgtKey, String UserID) throws PopbillException {
         if (MgtKey == null || MgtKey.isEmpty())
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return httpget("/Cashbill/" + MgtKey + "?Detail", CorpNum,
-                null, Cashbill.class);
+                UserID, Cashbill.class);
     }
 
     /* (non-Javadoc)
@@ -330,11 +340,16 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public CashbillInfo getInfo(String CorpNum, String MgtKey)
             throws PopbillException {
+        return getInfo(CorpNum, MgtKey, null);
+    }
+
+    @Override
+    public CashbillInfo getInfo(String CorpNum, String MgtKey, String UserID) throws PopbillException {
         if (MgtKey == null || MgtKey.isEmpty())
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return httpget("/Cashbill/" + MgtKey, CorpNum,
-                null, CashbillInfo.class);
+                UserID, CashbillInfo.class);
     }
 
     /* (non-Javadoc)
@@ -343,13 +358,18 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public CashbillInfo[] getInfos(String CorpNum, String[] MgtKeyList)
             throws PopbillException {
+        return getInfos(CorpNum, MgtKeyList, null);
+    }
+
+    @Override
+    public CashbillInfo[] getInfos(String CorpNum, String[] MgtKeyList, String UserID) throws PopbillException {
         if (MgtKeyList == null || MgtKeyList.length == 0)
             throw new PopbillException(-99999999, "문서번호배열이 입력되지 않았습니다.");
 
         String PostData = toJsonString(MgtKeyList);
 
         return httppost("/Cashbill/States", CorpNum, PostData,
-                null, CashbillInfo[].class);
+                UserID, CashbillInfo[].class);
     }
 
     /* (non-Javadoc)
@@ -729,8 +749,8 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
      */
     public CBSearchResult search(String CorpNum, String DType, String SDate,
                                  String EDate, String[] State, String[] TradeType,
-                                 String[] TradeUsage, String[] TaxationType, int Page,
-                                 int PerPage, String Order) throws PopbillException {
+                                 String[] TradeUsage, String[] TaxationType, Integer Page,
+                                 Integer PerPage, String Order) throws PopbillException {
         return search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, null, TaxationType, null, Page, PerPage, Order, null);
     }
 
@@ -743,8 +763,8 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public CBSearchResult search(String CorpNum, String DType, String SDate,
                                  String EDate, String[] State, String[] TradeType,
-                                 String[] TradeUsage, String[] TaxationType, String QString, int Page,
-                                 int PerPage, String Order) throws PopbillException {
+                                 String[] TradeUsage, String[] TaxationType, String QString, Integer Page,
+                                 Integer PerPage, String Order) throws PopbillException {
         return search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, null, TaxationType, QString, Page, PerPage, Order, null);
     }
 
@@ -757,7 +777,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public CBSearchResult search(String CorpNum, String DType, String SDate, String EDate,
                                  String[] State, String[] TradeType, String[] TradeUsage, String[] TradeOpt, String[] TaxationType,
-                                 String QString, int Page, int PerPage, String Order) throws PopbillException {
+                                 String QString, Integer Page, Integer PerPage, String Order) throws PopbillException {
         return search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TradeOpt, TaxationType, QString, Page, PerPage, Order, null);
     }
 
@@ -771,7 +791,12 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public CBSearchResult search(String CorpNum, String DType, String SDate, String EDate,
                                  String[] State, String[] TradeType, String[] TradeUsage, String[] TradeOpt, String[] TaxationType,
-                                 String QString, int Page, int PerPage, String Order, String FranchiseTaxRegID) throws PopbillException {
+                                 String QString, Integer Page, Integer PerPage, String Order, String FranchiseTaxRegID) throws PopbillException {
+        return search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TradeOpt, TaxationType, QString, Page, PerPage, Order, FranchiseTaxRegID, null);
+    }
+
+    @Override
+    public CBSearchResult search(String CorpNum, String DType, String SDate, String EDate, String[] State, String[] TradeType, String[] TradeUsage, String[] TradeOpt, String[] TaxationType, String QString, Integer Page, Integer PerPage, String Order, String FranchiseTaxRegID, String UserID) throws PopbillException {
         if (DType == null || DType.isEmpty())
             throw new PopbillException(-99999999, "검색일자유형이  입력되지 않았습니다.");
         if (SDate == null || SDate.isEmpty())
@@ -797,14 +822,18 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
                 .replaceAll("\\[|\\]|\\s", "");
         if (QString != null && QString != "")
             uri += "&QString=" + QString;
-        uri += "&Page=" + Integer.toString(Page);
-        uri += "&PerPage="+ Integer.toString(PerPage);
-        uri += "&Order=" + Order;
-        if (FranchiseTaxRegID != null && FranchiseTaxRegID != "") {
+
+        if (Page != null)
+            uri += "&Page=" + Integer.toString(Page);
+        if(PerPage != null)
+            uri += "&PerPage="+ Integer.toString(PerPage);
+        if(Order != null && !Order.isEmpty())
+            uri += "&Order=" + Order;
+        if (FranchiseTaxRegID != null && !FranchiseTaxRegID.isEmpty()) {
             uri += "&FranchiseTaxRegID=" + FranchiseTaxRegID;
         }
 
-        return httpget(uri, CorpNum, null, CBSearchResult.class);
+        return httpget(uri, CorpNum, UserID, CBSearchResult.class);
     }
 
     /*
@@ -813,7 +842,12 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
      */
     @Override
     public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
-        return httpget("/Cashbill/ChargeInfo", CorpNum, null, ChargeInfo.class);
+        return getChargeInfo(CorpNum, null);
+    }
+
+    @Override
+    public ChargeInfo getChargeInfo(String CorpNum, String UserID) throws PopbillException {
+        return httpget("/Cashbill/ChargeInfo", CorpNum, UserID, ChargeInfo.class);
     }
 
     @Override
