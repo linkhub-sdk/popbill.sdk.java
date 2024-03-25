@@ -1,5 +1,7 @@
 package com.popbill.api.cashbill;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
 
@@ -820,14 +822,20 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
         }
         uri += "&TaxationType=" + Arrays.toString(TaxationType)
                 .replaceAll("\\[|\\]|\\s", "");
-        if (QString != null && QString != "")
-            uri += "&QString=" + QString;
 
-        if (Page != null)
+        if (QString != null && !QString.isEmpty()) {
+            try {
+                uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                throw new PopbillException(-99999999, "검색어(QString) 인코딩 오류");
+            }
+        }
+
+        if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
-        if(PerPage != null)
+        if(PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage="+ Integer.toString(PerPage);
-        if(Order != null && !Order.isEmpty())
+        if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
         if (FranchiseTaxRegID != null && !FranchiseTaxRegID.isEmpty()) {
             uri += "&FranchiseTaxRegID=" + FranchiseTaxRegID;

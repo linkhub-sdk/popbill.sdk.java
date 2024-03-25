@@ -104,12 +104,12 @@ public interface StatementService extends BaseService{
      * 
      * @param CorpNum
      *          팝빌회원 사업자번호
-     * @param statement
+     * @param Statement
      *          명세서 정보.(see. com.popbill.api.statement.Statement)
      * @return Response
      * @throws PopbillException
      */
-    public Response register(String CorpNum, Statement statement)
+    public Response register(String CorpNum, Statement Statement)
             throws PopbillException;
     
     /**
@@ -117,14 +117,14 @@ public interface StatementService extends BaseService{
      * 
      * @param CorpNum
      *          팝빌회원 사업자번호
-     * @param statement     
+     * @param Statement     
      *          명세서 정보.(see. com.popbill.api.statement.Statement)
      * @param UserID
      *          팝빌회원 아이디
      * @return Response 
      * @throws PopbillException
      */
-    public Response register(String CorpNum, Statement statement, 
+    public Response register(String CorpNum, Statement Statement, 
             String UserID) throws PopbillException;
     
     /**
@@ -136,13 +136,13 @@ public interface StatementService extends BaseService{
      *          명세서 코드
      * @param MgtKey
      *          문서번호
-     * @param statement
+     * @param Statement
      *          명세서 정보.(see. com.popbill.api.statement.Statement)
      * @return Response
      * @throws PopbillException
      */
     public Response update(String CorpNum, int ItemCode, 
-            String MgtKey, Statement statement) throws PopbillException;
+            String MgtKey, Statement Statement) throws PopbillException;
     
     /**
      * 임시저장된 전자명세서 정보 수정
@@ -153,7 +153,7 @@ public interface StatementService extends BaseService{
      *          명세서 코드
      * @param MgtKey 
      *          문서번호
-     * @param statement
+     * @param Statement
      *          명세서 정보.(see. com.popbill.api.statement.Statement)
      * @param UserID
      *          팝빌회원 아이디
@@ -161,7 +161,7 @@ public interface StatementService extends BaseService{
      * @throws PopbillException
      */
     public Response update(String CorpNum, int ItemCode, 
-            String MgtKey, Statement statement, String UserID) 
+            String MgtKey, Statement Statement, String UserID) 
             throws PopbillException;
     
     /**
@@ -835,13 +835,13 @@ public interface StatementService extends BaseService{
      * 
      * @param CorpNum
      *          연동회원 사업자번호
-     * @param statement     
+     * @param Statement     
      *          명세서 정보.(see. com.popbill.api.statement.Statement)
      * @return receiptNum 
      *          팩스전송 접수번호 
      * @throws PopbillException
      */
-    public String FAXSend(String CorpNum, Statement statement, String SendNum, String receiveNum) 
+    public String FAXSend(String CorpNum, Statement Statement, String SendNum, String ReceiveNum)
             throws PopbillException;
     
     /**
@@ -850,16 +850,16 @@ public interface StatementService extends BaseService{
      *  
      * @param CorpNum
      *          연동회원 사업자번호
-     * @param statement     
+     * @param Statement     
      *          명세서 정보.(see. com.popbill.api.statement.Statement)
      * @param UserID
-     *          연동회원 아이디
+     *          팝빌회원 아이디
      * @return receiptNum 
      *          팩스전송 접수번호 
      * @throws PopbillException
      */
-    public String FAXSend(String CorpNum, Statement statement, 
-            String sendNum, String receiveNum,
+    public String FAXSend(String CorpNum, Statement Statement,
+            String SendNum, String ReceiveNum,
             String UserID) throws PopbillException;
     
     /**
@@ -867,12 +867,12 @@ public interface StatementService extends BaseService{
      * 
      * @param CorpNum
      *          연동회원 사업자번호 
-     * @param statement
+     * @param Statement
      *          전자명세서 객체. see com.popbill.api.statement
      * @return SMTIssueResponse 
      * @throws PopbillException
      */
-    public SMTIssueResponse registIssue(String CorpNum, Statement statement) 
+    public SMTIssueResponse registIssue(String CorpNum, Statement Statement) 
             throws PopbillException;
 
     /**
@@ -880,14 +880,14 @@ public interface StatementService extends BaseService{
      * 
      * @param CorpNum
      *          연동회원 사업자번호 
-     * @param statement
+     * @param Statement
      *          전자명세서 객체. see com.popbill.api.statement
      * @param Memo
      *          메모  
      * @return SMTIssueResponse 
      * @throws PopbillException
      */
-    public SMTIssueResponse registIssue(String CorpNum, Statement statement,
+    public SMTIssueResponse registIssue(String CorpNum, Statement Statement,
             String Memo) throws PopbillException;
     
     /**
@@ -895,16 +895,16 @@ public interface StatementService extends BaseService{
      * 
      * @param CorpNum
      *          연동회원 사업자번호 
-     * @param statement
+     * @param Statement
      *          전자명세서 객체. see com.popbill.api.statement
      * @param Memo
      *          메모  
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디 
      * @return SMTIssueResponse 
      * @throws PopbillException
      */
-    public SMTIssueResponse registIssue(String CorpNum, Statement statement,
+    public SMTIssueResponse registIssue(String CorpNum, Statement Statement,
             String Memo, String UserID)
             throws PopbillException;
     
@@ -913,18 +913,18 @@ public interface StatementService extends BaseService{
      * 
      * @param CorpNum
      *          연동회원 사업자번호 
-     * @param statement
+     * @param Statement
      *          전자명세서 객체. see com.popbill.api.statement
      * @param Memo
      *          메모  
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디 
      * @return SMTIssueResponse 
      * @throws PopbillException
      */
     
-    public SMTIssueResponse registIssue(String CorpNum, Statement statement, String memo, String 
-            UserID, String emailSubject)
+    public SMTIssueResponse registIssue(String CorpNum, Statement Statement, String Memo, String 
+            UserID, String EmailSubject)
             throws PopbillException;    
     
     /**
@@ -1206,7 +1206,7 @@ public interface StatementService extends BaseService{
      * @param CorpNum
      *          연동회원 사업자번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 아이디
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
      * @throws PopbillException
      */

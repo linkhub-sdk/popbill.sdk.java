@@ -170,20 +170,20 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 
         String uri = "/HomeTax/Taxinvoice/" + JobID;
 
-        uri += "?Type=" + Arrays.toString(Type).replaceAll("\\[|\\]|\\s", "");
-        uri += "&TaxType=" + Arrays.toString(TaxType).replaceAll("\\[|\\]|\\s", "");
-        uri += "&PurposeType=" + Arrays.toString(PurposeType).replaceAll("\\[|\\]|\\s", "");
+        uri += "?Type=" + Arrays.toString(Type == null ? new String[]{} : Type).replaceAll("\\[|\\]|\\s", "");
+        uri += "&TaxType=" + Arrays.toString(TaxType == null ? new String[]{} : TaxType).replaceAll("\\[|\\]|\\s", "");
+        uri += "&PurposeType=" + Arrays.toString(PurposeType == null ? new String[]{} : PurposeType).replaceAll("\\[|\\]|\\s", "");
 
-        if (TaxRegIDType != "" && TaxRegIDType != null)
+        if (TaxRegIDType != null && !TaxRegIDType.isEmpty())
             uri += "&TaxRegIDType=" + TaxRegIDType;
 
-        if (TaxRegIDYN != "" && TaxRegIDYN != null)
+        if (TaxRegIDYN != null && !TaxRegIDYN.isEmpty())
             uri += "&TaxRegIDYN=" + TaxRegIDYN;
 
-        if (TaxRegID != "" && TaxRegID != null)
+        if (TaxRegID != null && !TaxRegID.isEmpty())
             uri += "&TaxRegID=" + TaxRegID;
 
-        if (SearchString != "" && SearchString != null) {
+        if (SearchString != null && !SearchString.isEmpty()) {
             try {
                 uri += "&SearchString=" + URLEncoder.encode(SearchString, "UTF-8");
             } catch (UnsupportedEncodingException e) {
@@ -191,11 +191,11 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
             }
         }
 
-        if(Page!=null)
+        if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
-        if(PerPage!=null)
+        if (PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage=" + Integer.toString(PerPage);
-        if(Order!=null && !Order.isEmpty())
+        if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
 
         return httpget(uri, CorpNum, UserID, HTTaxinvoiceSearchResult.class);

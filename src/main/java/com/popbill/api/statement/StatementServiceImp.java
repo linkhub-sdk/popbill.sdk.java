@@ -713,19 +713,21 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
         uri += "&SDate=" + SDate;
         uri += "&EDate=" + EDate;
         uri += "&State=" + Arrays.toString(State).replaceAll("\\[|\\]|\\s", "");
-        uri += "&ItemCode=" + Arrays.toString(ItemCode).replaceAll("\\[|\\]|\\s", "");
-        if (QString != null && QString != "") {
+        uri += "&ItemCode=" + Arrays.toString(ItemCode == null ? new int[]{} : ItemCode).replaceAll("\\[|\\]|\\s", "");
+
+        if (QString != null && !QString.isEmpty()) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 throw new PopbillException(-99999999, "검색어(QString) 인코딩 오류");
             }
         }
-        if(Page != null)
+
+        if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
-        if(PerPage != null)
+        if (PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage=" + Integer.toString(PerPage);
-        if (Order != null && !Order.isEmpty())
+        if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
 
         return httpget(uri, CorpNum, UserID, StmtSearchResult.class);

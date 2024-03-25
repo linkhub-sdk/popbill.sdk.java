@@ -115,13 +115,15 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 
         String uri = "/HomeTax/Cashbill/" + JobID;
 
-        uri += "?TradeUsage=" + Arrays.toString(TradeUsage).replaceAll("\\[|\\]|\\s", "");
-        uri += "&TradeType=" + Arrays.toString(TradeType).replaceAll("\\[|\\]|\\s", "");
-        if(Page != null)
+        uri += "?TradeUsage=" + Arrays.toString(TradeUsage == null ? new String[]{} : TradeUsage).replaceAll("\\[|\\]|\\s", "");
+        uri += "&TradeType=" + Arrays.toString(TradeType == null ? new String[]{} : TradeType).replaceAll("\\[|\\]|\\s", "");
+
+
+        if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
-        if(PerPage != null)
+        if (PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage=" + Integer.toString(PerPage);
-        if(Order != null && !Order.isEmpty())
+        if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
 
         return httpget(uri, CorpNum, UserID, HTCashbillSearchResult.class);

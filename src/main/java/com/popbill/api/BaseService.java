@@ -439,7 +439,7 @@ public interface BaseService {
      * @param CorpNum
      *          팝빌회원 사업자번호
      * @param UserID
-     *          팝빌회원 유저아이디
+     *          팝빌회원 아이디
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
      * @throws PopbillException
      */
@@ -452,7 +452,7 @@ public interface BaseService {
      * @param CorpNum
      *          팝빌회원 사업자번호
      * @param UserID
-     *          팝빌회원 유저아이디
+     *          팝빌회원 아이디
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
      * @throws PopbillException
      */
@@ -464,7 +464,7 @@ public interface BaseService {
      * @param CorpNum
      *          팝빌회원 사업자번호
      * @param UserID
-     *          팝빌회원 유저아이디
+     *          팝빌회원 아이디
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
      * @throws PopbillException
      */
@@ -476,7 +476,7 @@ public interface BaseService {
      * @param CorpNum
      *          팝빌회원 사업자번호
      * @param UserID
-     *          팝빌회원 유저아이디
+     *          팝빌회원 아이디
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
      * @throws PopbillException
      */

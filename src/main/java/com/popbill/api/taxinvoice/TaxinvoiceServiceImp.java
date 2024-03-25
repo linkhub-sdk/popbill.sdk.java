@@ -800,11 +800,11 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
             uri += "&MgtKey=" + MgtKey;
         }
 
-        if (Page != null)
+        if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
-        if (PerPage != null)
-            uri += "&PerPage=" + Integer.toString(PerPage);
-        if (Order != null && !Order.isEmpty())
+        if(PerPage != null && PerPage > 0 && PerPage <= 1000)
+            uri += "&PerPage="+ Integer.toString(PerPage);
+        if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
 
         return httpget(uri, CorpNum, UserID, TISearchResult.class);

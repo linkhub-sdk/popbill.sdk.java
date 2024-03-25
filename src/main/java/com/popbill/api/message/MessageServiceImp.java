@@ -1181,27 +1181,21 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 
         String uri = "/Message/Search?SDate=" + SDate;
         uri += "&EDate=" + EDate;
-        uri += "&State=" + Arrays.toString(State).replaceAll("\\[|\\]|\\s", "");
+        uri += "&State=" + Arrays.toString(State == null ? new String[]{} : State).replaceAll("\\[|\\]|\\s", "");
 
         uri += "&Item=" + Arrays.toString(Item).replaceAll("\\[|\\]|\\s", "");
         if (ReserveYN != null)
-            if (ReserveYN) {
-                uri += "&ReserveYN=1";
-            } else {
-                uri += "&ReserveYN=";
-            }
-        SenderYN = SenderYN == null ? false : true;
-        if (SenderYN) {
-            uri += "&SenderYN=1";
-        } else {
-            uri += "&SenderYN=0";
-        }
+            uri += "&ReserveYN=" + ReserveYN;
 
-        if (Page != null)
+        if(SenderYN != null)
+            uri += "&SenderYN=" + SenderYN;
+
+
+        if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
-        if (PerPage != null)
+        if (PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage=" + Integer.toString(PerPage);
-        if (Order != null && !Order.isEmpty())
+        if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
 
         if (QString != null && !QString.isEmpty()) {
@@ -1260,7 +1254,12 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      */
     @Override
     public ChargeInfo getChargeInfo(String CorpNum, MessageType MsgType) throws PopbillException {
-        return httpget("/Message/ChargeInfo?Type=" + MsgType.name(), CorpNum, null,
+        return getChargeInfo(CorpNum, MsgType, null);
+    }
+
+    @Override
+    public ChargeInfo getChargeInfo(String CorpNum, MessageType MsgType, String UserID) throws PopbillException {
+        return httpget("/Message/ChargeInfo?Type=" + MsgType.name(), CorpNum, UserID,
                 ChargeInfo.class);
     }
 

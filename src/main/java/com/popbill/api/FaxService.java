@@ -841,7 +841,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title
@@ -867,7 +867,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title 
@@ -896,7 +896,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title
@@ -1121,7 +1121,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return receiptNum 접수번호
      * @throws PopbillException
      */
@@ -1145,7 +1145,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return receiptNum 접수번호
      * @throws PopbillException
      */
@@ -1168,7 +1168,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *            팩스제목
      * @return receiptNum 접수번호
@@ -1194,7 +1194,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스제목
      * @return receiptNum 접수번호
@@ -1219,7 +1219,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *            팩스제목
      * @param RequestNum
@@ -1248,7 +1248,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스제목
      * @param RequestNum
@@ -1276,7 +1276,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @return receiptNum 접수번호
@@ -1302,7 +1302,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @return receiptNum 접수번호
@@ -1327,7 +1327,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title 
@@ -1355,7 +1355,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title
@@ -1382,7 +1382,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title 
@@ -1412,7 +1412,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title
@@ -1440,7 +1440,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return receiptNum 접수번호
      * @throws PopbillException
      */
@@ -1463,7 +1463,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return receiptNum 접수번호
      * @throws PopbillException
      */
@@ -1485,7 +1485,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *            팩스제목
      * @return receiptNum 접수번호
@@ -1510,7 +1510,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스제목
      * @return receiptNum 접수번호
@@ -1533,7 +1533,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *            팩스제목
      * @param RequestNum
@@ -1560,7 +1560,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스제목
      * @param RequestNum
@@ -1586,7 +1586,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @return receiptNum 접수번호
@@ -1611,7 +1611,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @return receiptNum 접수번호
@@ -1634,7 +1634,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title
@@ -1661,7 +1661,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title
@@ -1686,7 +1686,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title
@@ -1715,7 +1715,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title
@@ -1888,7 +1888,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return receiptNum 접수번호
      * @throws PopbillException
      */
@@ -1913,7 +1913,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return receiptNum 접수번호
      * @throws PopbillException
      */
@@ -1938,7 +1938,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스제목
      * @return receiptNum 접수번호
@@ -1965,7 +1965,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스제목
      * @return receiptNum 접수번호
@@ -1991,7 +1991,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스제목
      * @param RequestNum
@@ -2020,7 +2020,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스제목
      * @param RequestNum
@@ -2048,7 +2048,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부            
      * @return receiptNum 접수번호
@@ -2075,7 +2075,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @return receiptNum 접수번호
@@ -2101,7 +2101,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부     
      * @param Title
@@ -2131,7 +2131,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title
@@ -2159,7 +2159,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN      
      *            광고팩스 전송여부     
      * @param Title
@@ -2189,7 +2189,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param AdsYN
      *            광고팩스 전송여부
      * @param Title
@@ -2221,7 +2221,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return receiptNum 접수번호
      * @throws PopbillException
      */
@@ -2247,7 +2247,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스 제목
      * @return receiptNum 접수번호
@@ -2275,7 +2275,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스 제목
      * @param RequestNum
@@ -2326,7 +2326,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return receiptNum 접수번호
      * @throws PopbillException
      */
@@ -2351,7 +2351,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스제목
      * @return receiptNum 접수번호
@@ -2377,7 +2377,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스제목
      * @param RequestNum
@@ -2407,7 +2407,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스 제목
      * @param OrgRequestNum
@@ -2436,7 +2436,7 @@ public interface FaxService extends BaseService {
      * @param ReserveDT
      *            예약일시, (형태 yyyyMMddHHmmss)
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @param Title
      *          팩스제목
      * @param OrgRequestNum
@@ -2464,6 +2464,21 @@ public interface FaxService extends BaseService {
 
     /**
      * 전송결과 확인
+     *
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @param ReceiptNum
+     *            팩스전송 접수번호
+     * @param UserID
+     *            팝빌회원 아이디
+     * @return FaxResult 배열. (see com.popbill.api.fax.FaxResult)
+     * @throws PopbillException
+     */
+    public FaxResult[] getFaxResult(String CorpNum, String ReceiptNum, String UserID)
+            throws PopbillException;
+
+    /**
+     * 전송결과 확인
      * 
      * @param CorpNum
      *            연동회원 사업자번호
@@ -2473,6 +2488,21 @@ public interface FaxService extends BaseService {
      * @throws PopbillException
      */
     public FaxResult[] getFaxResultRN(String CorpNum, String RequestNum)
+            throws PopbillException;
+
+    /**
+     * 전송결과 확인
+     *
+     * @param CorpNum
+     *            연동회원 사업자번호
+     * @param RequestNum
+     *            전송요청번호
+     * @param UserID
+     *            팝빌회원 아이디
+     * @return FaxResult 배열. (see com.popbill.api.fax.FaxResult)
+     * @throws PopbillException
+     */
+    public FaxResult[] getFaxResultRN(String CorpNum, String RequestNum, String UserID)
             throws PopbillException;
 
     /**
@@ -2496,7 +2526,7 @@ public interface FaxService extends BaseService {
      * @param ReceiptNum
      *            팩스전송 접수번호
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return Response 응답
      * @throws PopbillException
      */
@@ -2524,7 +2554,7 @@ public interface FaxService extends BaseService {
      * @param RequestNum
      *            전송요청번호
      * @param UserID
-     *            연동회원 아이디
+     *            팝빌회원 아이디
      * @return Response 응답
      * @throws PopbillException
      */
@@ -2543,7 +2573,7 @@ public interface FaxService extends BaseService {
      *          전송상태 
      * @param ReserveYN
      *          예약전송여부 
-     * @param SenderOnlyYN
+     * @param SenderOnly
      *          개인조회 여부 
      * @param Page
      *          페이지 번호, 기본값 1
@@ -2555,7 +2585,7 @@ public interface FaxService extends BaseService {
      * @throws PopbillException
      */
     public FAXSearchResult search(String CorpNum, String SDate, String EDate,
-            String[] State, Boolean ReserveYN, Boolean SenderOnlyYN, 
+            String[] State, Boolean ReserveYN, Boolean SenderOnly,
             Integer Page, Integer PerPage, String Order) throws PopbillException;
 
     /**
@@ -2570,7 +2600,7 @@ public interface FaxService extends BaseService {
      *          전송상태 
      * @param ReserveYN
      *          예약전송여부 
-     * @param SenderOnlyYN
+     * @param SenderOnly
      *          개인조회 여부 
      * @param Page
      *          페이지 번호, 기본값 1
@@ -2584,9 +2614,40 @@ public interface FaxService extends BaseService {
      * @throws PopbillException
      */
     public FAXSearchResult search(String CorpNum, String SDate, String EDate,
-            String[] State, Boolean ReserveYN, Boolean SenderOnlyYN, 
+            String[] State, Boolean ReserveYN, Boolean SenderOnly,
             Integer Page, Integer PerPage, String Order, String QString) throws PopbillException;   
-    
+
+    /**
+     *
+     * @param CorpNum
+     *          연동회원 사업자번호
+     * @param SDate
+     *          시작일자 (yyyyMMdd)
+     * @param EDate
+     *          종료일자 (yyyyMMdd)
+     * @param State
+     *          전송상태
+     * @param ReserveYN
+     *          예약전송여부
+     * @param SenderOnly
+     *          개인조회 여부
+     * @param Page
+     *          페이지 번호, 기본값 1
+     * @param PerPage
+     *          페이지당 목록갯수, 기본값 500, 최대값 1000
+     * @param Order
+     *          정렬방향, D-내림차순, A-오름차순
+     * @param QString
+     *           조회검색어. 발신자명 또는 수신자명 기재
+     * @param UserID
+     *           팝빌회원 아이디
+     * @return 팩스전송내역. see com.popbill.api.fax.FAXSearchResult
+     * @throws PopbillException
+     */
+    public FAXSearchResult search(String CorpNum, String SDate, String EDate,
+            String[] State, Boolean ReserveYN, Boolean SenderOnly,
+            Integer Page, Integer PerPage, String Order, String QString, String UserID) throws PopbillException;
+
     /**
      * 과금정보 조회
      * 
@@ -2637,7 +2698,7 @@ public interface FaxService extends BaseService {
      * @param CorpNum
      *          연동회원 사업자번호
      * @param UserID 
-     *          연동회원 아이디
+     *          팝빌회원 아이디
      * @return 발신번호 목록  
      * @throws PopbillException
      */
@@ -2661,7 +2722,7 @@ public interface FaxService extends BaseService {
      * @param CorpNum 
      *          연동회원 사업자번호
      * @param ReceiptNum 접수번호
-     * @param UserID 연동회원 아이디
+     * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -2674,7 +2735,7 @@ public interface FaxService extends BaseService {
      * @param CorpNum
      *          연동회원 사업자번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 아이디
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
      * @throws PopbillException
      */
@@ -2687,7 +2748,7 @@ public interface FaxService extends BaseService {
      * @param CorpNum
      *          연동회원 사업자번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 아이디
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
      * @throws PopbillException
      */
@@ -2714,7 +2775,7 @@ public interface FaxService extends BaseService {
      * @param SenderNumber
      *          발신번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 아이디
      * @return Response 응답
      * @throws PopbillException
      */

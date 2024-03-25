@@ -1349,12 +1349,17 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
      */
     @Override
     public FaxResult[] getFaxResult(String CorpNum, String ReceiptNum) throws PopbillException {
+        return getFaxResult(CorpNum, ReceiptNum, null);
+    }
+
+    @Override
+    public FaxResult[] getFaxResult(String CorpNum, String ReceiptNum, String UserID) throws PopbillException {
         if (ReceiptNum == null)
             throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
         if (ReceiptNum.length() != 18)
             throw new PopbillException(-99999999, "접수번호가 올바르지 않았습니다.");
 
-        return httpget("/FAX/" + ReceiptNum, CorpNum, null, FaxResult[].class);
+        return httpget("/FAX/" + ReceiptNum, CorpNum, UserID, FaxResult[].class);
     }
 
     /*
@@ -1364,10 +1369,16 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
      */
     @Override
     public FaxResult[] getFaxResultRN(String CorpNum, String RequestNum) throws PopbillException {
+        return getFaxResultRN(CorpNum, RequestNum, null);
+    }
+
+    @Override
+    public FaxResult[] getFaxResultRN(String CorpNum, String RequestNum, String UserID) throws PopbillException {
+
         if (RequestNum == null)
             throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
 
-        return httpget("/FAX/Get/" + RequestNum, CorpNum, null, FaxResult[].class);
+        return httpget("/FAX/Get/" + RequestNum, CorpNum, UserID, FaxResult[].class);
     }
 
     /*
@@ -1436,7 +1447,12 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
      */
     @Override
     public FAXSearchResult search(String CorpNum, String SDate, String EDate, String[] State, Boolean ReserveYN, Boolean SenderOnly, Integer Page,
-            Integer PerPage, String Order, String QString) throws PopbillException {
+                                  Integer PerPage, String Order, String QString) throws PopbillException {
+        return search(CorpNum, SDate, EDate, State, ReserveYN, SenderOnly, Page, PerPage, Order, null, null);
+    }
+
+    @Override
+    public FAXSearchResult search(String CorpNum, String SDate, String EDate, String[] State, Boolean ReserveYN, Boolean SenderOnly, Integer Page, Integer PerPage, String Order, String QString, String UserID) throws PopbillException {
         if (SDate == null)
             throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
         if (EDate == null)
@@ -1444,25 +1460,19 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
         String uri = "/FAX/Search?SDate=" + SDate;
         uri += "&EDate=" + EDate;
-        uri += "&State=" + Arrays.toString(State).replaceAll("\\[|\\]|\\s", "");
+        uri += "&State=" + Arrays.toString(State == null ? new String[]{} : State).replaceAll("\\[|\\]|\\s", "");
 
-        if (ReserveYN) {
-            uri += "&ReserveYN=1";
-        } else {
-            uri += "&ReserveYN=0";
-        }
+        if (ReserveYN != null )
+            uri += "&ReserveYN=" + ReserveYN;
 
-        if (SenderOnly) {
-            uri += "&SenderOnly=1";
-        } else {
-            uri += "&SenderOnly=0";
-        }
+        if (SenderOnly != null)
+            uri += "&SenderOnly=" + SenderOnly;
 
-        if(Page != null)
+        if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
-        if(PerPage != null)
+        if (PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage=" + Integer.toString(PerPage);
-        if(Order != null && !Order.isEmpty())
+        if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
 
         if (QString != null && !QString.isEmpty()) {
@@ -1473,7 +1483,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
             }
         }
 
-        return httpget(uri, CorpNum, null, FAXSearchResult.class);
+        return httpget(uri, CorpNum, UserID, FAXSearchResult.class);
     }
 
     /*

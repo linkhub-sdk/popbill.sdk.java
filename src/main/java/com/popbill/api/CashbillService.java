@@ -908,7 +908,7 @@ public interface CashbillService extends BaseService{
      * @param MgtKey
      *          문서번호
      * @param UserID
-     *          연동회원 아이디
+     *          팝빌회원 아이디
      * @return 팝빌 URL
      * @throws PopbillException
      */
@@ -934,7 +934,7 @@ public interface CashbillService extends BaseService{
      * @param MgtKey
      *          문서번호
      * @param UserID
-     *          연동회원 아이디
+     *          팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -979,7 +979,7 @@ public interface CashbillService extends BaseService{
      * @param Memo
      *          메모 
      * @param UserID
-     *          연동회원 아이디 
+     *          팝빌회원 아이디 
      * @return CBIssueResponse 응답. 
      * @throws PopbillException
      */
@@ -1076,7 +1076,7 @@ public interface CashbillService extends BaseService{
      * @param Memo
      *          메모
      * @param UserID
-     *          연동회원 아이디
+     *          팝빌회원 아이디
      * @return CBIssueResponse 응답.
      * @throws PopbillException
      */
@@ -1092,7 +1092,7 @@ public interface CashbillService extends BaseService{
      * @param Memo
      *          메모
      * @param UserID
-     *          연동회원 아이디
+     *          팝빌회원 아이디
      * @return CBIssueResponse 응답.
      * @throws PopbillException
      */

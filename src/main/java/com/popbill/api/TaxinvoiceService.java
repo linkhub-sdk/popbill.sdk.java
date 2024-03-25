@@ -385,7 +385,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param Memo
      *            처리 메모
      * @param UserID
-     *          팝빌회원 유저아이디
+     *          팝빌회원 아이디
      * @return Response 응답.
      * @throws PopbillException
      */
@@ -1098,7 +1098,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param MgtKey
      *          문서번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -1287,7 +1287,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param MgtKey
      *          문서번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -1300,7 +1300,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param CorpNum
      *          연동회원 사업자번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 아이디
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
      * @throws PopbillException
      */
@@ -1736,7 +1736,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param CorpNum
      *          연동회원 사업자번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -1748,7 +1748,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param CorpNum
      *          연동회원 사업자번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 아이디
      * @return 팝빌 URL (AccessToken값 포함. Token값은 응답후 30초까지만 유효함)
      * @throws PopbillException
      */
@@ -1802,7 +1802,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param CorpNum
      *          연동회원 사업자번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
@@ -1870,7 +1870,7 @@ public interface TaxinvoiceService extends BaseService {
      * @param MgtKey
      *          문서번호
      * @param UserID
-     *          연동회원 유저아이디
+     *          팝빌회원 아이디
      * @return
      * @throws PopbillException
      */
