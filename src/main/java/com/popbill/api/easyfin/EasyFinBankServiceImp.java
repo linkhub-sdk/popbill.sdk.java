@@ -208,6 +208,26 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
         return httppost(uri, CorpNum, PostData, UserID, Response.class);
     }
 
+    @Override
+    public Response updateBankAccount(String CorpNum, String BankCode, String AccountNumber, UpdateEasyFinBankAccountForm BankAccountInfo) throws PopbillException {
+        return updateBankAccount(CorpNum, BankCode, AccountNumber, BankAccountInfo, null);
+    }
+
+    @Override
+    public Response updateBankAccount(String CorpNum, String BankCode, String AccountNumber, UpdateEasyFinBankAccountForm BankAccountInfo, String UserID) throws PopbillException {
+
+        if(BankCode == null || BankCode.isEmpty()) throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
+        if(BankCode.length() != 4) throw new PopbillException(-99999999, "기관코드가 유효하지 않습니다.");
+
+        if(AccountNumber == null || AccountNumber.isEmpty()) throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
+
+        String uri = "/EasyFin/Bank/BankAccount/" + BankCode + "/" + AccountNumber + "/Update";
+
+        String PostData = toJsonString(BankAccountInfo);
+
+        return httppost(uri, CorpNum, PostData, UserID, Response.class);
+    }
+
     /*
      * (non-Javadoc)
      *

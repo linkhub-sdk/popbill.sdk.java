@@ -5,6 +5,7 @@ import com.popbill.api.easyfin.EasyFinBankAccountForm;
 import com.popbill.api.easyfin.EasyFinBankJobState;
 import com.popbill.api.easyfin.EasyFinBankSearchResult;
 import com.popbill.api.easyfin.EasyFinBankSummary;
+import com.popbill.api.easyfin.UpdateEasyFinBankAccountForm;
 
 /**
  * EasyFin Service Interface.
@@ -79,6 +80,31 @@ public interface EasyFinBankService extends BaseService{
      */
     public Response updateBankAccount(String CorpNum, EasyFinBankAccountForm AccountForm, String UserID) throws PopbillException;
 
+    /**
+     * 계좌정보 수정
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param BankCode 은행 기관코드
+     * @param AccountNumber 계좌번호
+     * @param BankAccountInfo 수정할 계좌 객체정보
+     * @return
+     *
+     * @throws PopbillException
+     */
+    public Response updateBankAccount(String CorpNum, String BankCode, String AccountNumber, UpdateEasyFinBankAccountForm BankAccountInfo) throws PopbillException;
+    /**
+     * 계좌정보 수정
+     *
+     * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
+     * @param BankCode 은행 기관코드
+     * @param AccountNumber 계좌번호
+     * @param BankAccountInfo 수정할 계좌 객체정보
+     * @param UserID 팝빌회원 아이디
+     * @return
+     *
+     * @throws PopbillException
+     */
+    public Response updateBankAccount(String CorpNum, String BankCode, String AccountNumber, UpdateEasyFinBankAccountForm BankAccountInfo, String UserID) throws PopbillException;
 
     /**
      * 계좌 정액제 해지 요청
