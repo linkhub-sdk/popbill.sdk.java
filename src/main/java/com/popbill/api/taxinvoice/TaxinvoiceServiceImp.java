@@ -14,6 +14,19 @@
  */
 package com.popbill.api.taxinvoice;
 
+import com.popbill.api.AttachedFile;
+import com.popbill.api.BaseServiceImp;
+import com.popbill.api.BulkResponse;
+import com.popbill.api.ChargeInfo;
+import com.popbill.api.EmailSendConfig;
+import com.popbill.api.Encryptor;
+import com.popbill.api.IssueResponse;
+import com.popbill.api.PopbillException;
+import com.popbill.api.Response;
+import com.popbill.api.TaxinvoiceCertificate;
+import com.popbill.api.TaxinvoiceService;
+import kr.co.linkhub.auth.Base64;
+
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

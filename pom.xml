@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>kr.co.linkhub</groupId>
     <artifactId>popbill-sdk</artifactId>
-    <version>1.65.0</version>
+    <version>1.65.1</version>
     <packaging>jar</packaging>
 
     <name>Popbill API SDK</name>
@@ -41,7 +41,7 @@
         <dependency>
             <groupId>kr.co.linkhub</groupId>
             <artifactId>linkhub-auth</artifactId>
-            <version>1.9.1</version>
+            <version>1.9.2</version>
         </dependency>
 
         <dependency>
