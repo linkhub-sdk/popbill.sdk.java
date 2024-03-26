@@ -157,22 +157,6 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
                 RequestNum);
     }
 
-
-    @Override
-    public String sendSMS(String CorpNum, String Sender, String SenderName, String Receiver, String ReceiverName, String Content, Date ReserveDT, String UserID) throws PopbillException {
-        return sendSMS(CorpNum, Sender, SenderName, Receiver, ReceiverName, Content, ReserveDT, null, UserID, null);
-    }
-
-    @Override
-    public String sendSMS(String CorpNum, String Sender, String SenderName, String Receiver, String ReceiverName, String Content, Date ReserveDT, Boolean AdsYN, String UserID) throws PopbillException {
-        return sendSMS(CorpNum, Sender, SenderName, Receiver, ReceiverName, Content, ReserveDT, AdsYN, UserID, null);
-    }
-
-    @Override
-    public String sendSMS(String CorpNum, String Sender, String SenderName, String Receiver, String ReceiverName, String Content, Date ReserveDT, String UserID, String RequestNum) throws PopbillException {
-        return sendSMS(CorpNum, Sender, SenderName, Receiver, ReceiverName, Content, ReserveDT, null, UserID, RequestNum);
-    }
-
     @Override
     public String sendSMS(String CorpNum, String Sender, String SenderName, String Receiver, String ReceiverName, String Content, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum) throws PopbillException {
         Message message = new Message();
@@ -439,6 +423,21 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
                 RequestNum);
     }
 
+    @Override
+    public String sendLMS(String CorpNum, String Sender, String SenderName, String Receiver, String ReceiverName, String Subject, String Content, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum) throws PopbillException {
+        Message message = new Message();
+
+        message.setSender(Sender);
+        message.setSenderName(SenderName);
+        message.setReceiver(Receiver);
+        message.setReceiverName(ReceiverName);
+        message.setContent(Content);
+        message.setSubject(Subject);
+
+        return sendLMS(CorpNum, null, null, null, new Message[]{message}, ReserveDT, AdsYN, UserID,
+                RequestNum);
+    }
+
     /*
      * (non-Javadoc)
      *
@@ -631,6 +630,21 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
         Message message = new Message();
 
         message.setSender(Sender);
+        message.setReceiver(Receiver);
+        message.setReceiverName(ReceiverName);
+        message.setContent(Content);
+        message.setSubject(Subject);
+
+        return sendXMS(CorpNum, null, null, null, new Message[]{message}, ReserveDT, AdsYN, UserID,
+                RequestNum);
+    }
+
+    @Override
+    public String sendXMS(String CorpNum, String Sender, String SenderName, String Receiver, String ReceiverName, String Subject, String Content, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum) throws PopbillException {
+        Message message = new Message();
+
+        message.setSender(Sender);
+        message.setSenderName(SenderName);
         message.setReceiver(Receiver);
         message.setReceiverName(ReceiverName);
         message.setContent(Content);
@@ -1013,6 +1027,22 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
         Message message = new Message();
 
         message.setSender(Sender);
+        message.setReceiver(Receiver);
+        message.setReceiverName(ReceiverName);
+        message.setContent(Content);
+        message.setSubject(Subject);
+
+        return sendMMS(CorpNum, null, null, null, new Message[]{message}, File, ReserveDT, AdsYN,
+                UserID, RequestNum);
+    }
+
+    @Override
+    public String sendMMS(String CorpNum, String Sender, String SenderName, String Receiver, String ReceiverName, String Subject, String Content, File File, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum) throws PopbillException {
+
+        Message message = new Message();
+
+        message.setSender(Sender);
+        message.setSenderName(SenderName);
         message.setReceiver(Receiver);
         message.setReceiverName(ReceiverName);
         message.setContent(Content);
