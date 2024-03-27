@@ -40,14 +40,14 @@ public interface TaxinvoiceService extends BaseService {
      *
      * @param CorpNum
      *          팝빌회원 사업자번호
-     * @param taxinvoice
-     *          세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
+     * @param Taxinvoice
+     *          세금계산서 객체 (see. com.popbill.api.Taxinvoice.Taxinvoice)
      * @param WriteSpecification
      *          거래명세서 동시작성 여부
      * @return Response 응답.
      * @throws PopbillException
      */
-    public IssueResponse registIssue(String CorpNum, Taxinvoice taxinvoice,
+    public IssueResponse registIssue(String CorpNum, Taxinvoice Taxinvoice,
             Boolean WriteSpecification) throws PopbillException;
 
     /**
@@ -55,8 +55,8 @@ public interface TaxinvoiceService extends BaseService {
      *
      * @param CorpNum
      *          팝빌회원 사업자번호
-     * @param taxinvoice
-     *          세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
+     * @param Taxinvoice
+     *          세금계산서 객체 (see. com.popbill.api.Taxinvoice.Taxinvoice)
      * @param Memo
      *          즉시발행 메모, 최대 200자
      * @param ForceIssue
@@ -64,7 +64,7 @@ public interface TaxinvoiceService extends BaseService {
      * @return Response 응답.
      * @throws PopbillException
      */
-    public IssueResponse registIssue(String CorpNum, Taxinvoice taxinvoice,
+    public IssueResponse registIssue(String CorpNum, Taxinvoice Taxinvoice,
             String Memo, Boolean ForceIssue) throws PopbillException;
 
     /**
@@ -72,8 +72,8 @@ public interface TaxinvoiceService extends BaseService {
      *
      * @param CorpNum
      *          팝빌회원 사업자번호
-     * @param taxinvoice
-     *          세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
+     * @param Taxinvoice
+     *          세금계산서 객체 (see. com.popbill.api.Taxinvoice.Taxinvoice)
      * @param WriteSpecification
      *          거래명세서 동시작성 여부
      * @param Memo
@@ -85,7 +85,7 @@ public interface TaxinvoiceService extends BaseService {
      * @return Response 응답.
      * @throws PopbillException
      */
-    public IssueResponse registIssue(String CorpNum, Taxinvoice taxinvoice,
+    public IssueResponse registIssue(String CorpNum, Taxinvoice Taxinvoice,
             Boolean WriteSpecification, String Memo, Boolean ForceIssue,
             String DealInvoiceKey) throws PopbillException;
 
@@ -94,8 +94,8 @@ public interface TaxinvoiceService extends BaseService {
      *
      * @param CorpNum
      *          팝빌회원 사업자번호
-     * @param taxinvoice
-     *          세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
+     * @param Taxinvoice
+     *          세금계산서 객체 (see. com.popbill.api.Taxinvoice.Taxinvoice)
      * @param WriteSpecification
      *          거래명세서 동시작성 여부
      * @param Memo
@@ -111,7 +111,7 @@ public interface TaxinvoiceService extends BaseService {
      * @return
      * @throws PopbillException
      */
-    public IssueResponse registIssue(String CorpNum, Taxinvoice taxinvoice,
+    public IssueResponse registIssue(String CorpNum, Taxinvoice Taxinvoice,
             Boolean WriteSpecification, String Memo, Boolean ForceIssue,
             String DealInvoiceKey, String EmailSubject, String UserID)
             throws PopbillException;
@@ -120,12 +120,12 @@ public interface TaxinvoiceService extends BaseService {
      *
      * @param CorpNum
      * @param SubmitID
-     * @param taxinvoiceList
+     * @param TaxinvoiceList
      * @param ForceIssue
      * @return
      * @throws PopbillException
      */
-    public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList,
+    public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> TaxinvoiceList,
             Boolean ForceIssue)
             throws PopbillException;
 
@@ -133,13 +133,13 @@ public interface TaxinvoiceService extends BaseService {
      *
      * @param CorpNum
      * @param SubmitID
-     * @param taxinvoiceList
+     * @param TaxinvoiceList
      * @param ForceIssue
      * @param UserID
      * @return
      * @throws PopbillException
      */
-    public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList,
+    public BulkResponse bulkSubmit(String CorpNum, String SubmitID, List<Taxinvoice> TaxinvoiceList,
             Boolean ForceIssue, String UserID)
             throws PopbillException;
 
@@ -166,12 +166,12 @@ public interface TaxinvoiceService extends BaseService {
      *
      * @param CorpNum
      *            팝빌회원 사업자번호
-     * @param taxinvoice
-     *            세금계산서 정보.(see com.popbill.api.taxinvoice.Taxinvoice)
+     * @param Taxinvoice
+     *            세금계산서 정보.(see com.popbill.api.Taxinvoice.Taxinvoice)
      * @return Response 응답.
      * @throws PopbillException
      */
-    public Response register(String CorpNum, Taxinvoice taxinvoice)
+    public Response register(String CorpNum, Taxinvoice Taxinvoice)
             throws PopbillException;
 
     /**
@@ -179,14 +179,14 @@ public interface TaxinvoiceService extends BaseService {
      *
      * @param CorpNum
      *            팝빌회원 사업자번호
-     * @param taxinvoice
-     *            세금계산서 정보. (see com.popbill.api.taxinvoice.Taxinvoice)
+     * @param Taxinvoice
+     *            세금계산서 정보. (see com.popbill.api.Taxinvoice.Taxinvoice)
      * @param UserID
      *            회원아이디
      * @return Response 응답.
      * @throws PopbillException
      */
-    public Response register(String CorpNum, Taxinvoice taxinvoice,
+    public Response register(String CorpNum, Taxinvoice Taxinvoice,
             String UserID) throws PopbillException;
 
     /**
@@ -194,17 +194,17 @@ public interface TaxinvoiceService extends BaseService {
      *
      * @param CorpNum
      *            팝빌회원 사업자번호
-     * @param taxinvoice
-     *            세금계산서 정보. (see com.popbill.api.taxinvoice.Taxinvoice)
+     * @param Taxinvoice
+     *            세금계산서 정보. (see com.popbill.api.Taxinvoice.Taxinvoice)
      * @param UserID
      *            회원아이디
-     * @param writeSpecification
+     * @param WriteSpecification
      *            거래명세서 동시작성여부. 기본값 : false
      * @return Response 응답.
      * @throws PopbillException
      */
-    public Response register(String CorpNum, Taxinvoice taxinvoice,
-            String UserID, Boolean writeSpecification) throws PopbillException;
+    public Response register(String CorpNum, Taxinvoice Taxinvoice,
+            String UserID, Boolean WriteSpecification) throws PopbillException;
 
     /**
      * 임시저장된 세금계산서 정보 수정.
@@ -215,13 +215,13 @@ public interface TaxinvoiceService extends BaseService {
      *            세금계산서 유형.
      * @param MgtKey
      *            문서번호
-     * @param taxinvoice
-     *            세금계산서 정보. (see com.popbill.api.taxinvoice.Taxinvoice)
+     * @param Taxinvoice
+     *            세금계산서 정보. (see com.popbill.api.Taxinvoice.Taxinvoice)
      * @return Response 응답
      * @throws PopbillException
      */
     public Response update(String CorpNum, MgtKeyType KeyType,
-            String MgtKey, Taxinvoice taxinvoice) throws PopbillException;
+            String MgtKey, Taxinvoice Taxinvoice) throws PopbillException;
 
     /**
      * 임시저장된 세금계산서 정보 수정.
@@ -232,15 +232,15 @@ public interface TaxinvoiceService extends BaseService {
      *            세금계산서 유형.
      * @param MgtKey
      *            문서번호
-     * @param taxinvoice
-     *            세금계산서 정보. (see com.popbill.api.taxinvoice.Taxinvoice)
+     * @param Taxinvoice
+     *            세금계산서 정보. (see com.popbill.api.Taxinvoice.Taxinvoice)
      * @param UserID
      *            회원 아이디.
      * @return Response 응답
      * @throws PopbillException
      */
     public Response update(String CorpNum, MgtKeyType KeyType,
-            String MgtKey, Taxinvoice taxinvoice, String UserID)
+            String MgtKey, Taxinvoice Taxinvoice, String UserID)
             throws PopbillException;
 
     /**
@@ -1634,36 +1634,36 @@ public interface TaxinvoiceService extends BaseService {
     /**
      *  문서번호 할당
      *
-     * @param corpNum
+     * @param CorpNum
      *          연동회원 사업자번호
-     * @param keyType
+     * @param KeyType
      *          발행유형
-     * @param itemKey
+     * @param ItemKey
      *          세금계산서 팝빌번호
-     * @param mgtKey
+     * @param MgtKey
      *          세금계산서 문서번호
      * @return Response.
      * @throws PopbillException
      */
-    public Response assignMgtKey(String corpNum, MgtKeyType keyType, String itemKey, String mgtKey) throws PopbillException;
+    public Response assignMgtKey(String CorpNum, MgtKeyType KeyType, String ItemKey, String MgtKey) throws PopbillException;
 
     /**
      *  문서번호 할당
      *
-     * @param corpNum
+     * @param CorpNum
      *          연동회원 사업자번호
-     * @param keyType
+     * @param KeyType
      *          발행유형
-     * @param itemKey
+     * @param ItemKey
      *          세금계산서 팝빌번호
-     * @param mgtKey
+     * @param MgtKey
      *          세금계산서 문서번호
-     * @param userID
+     * @param UserID
      *          팝빌회원 아이디
      * @return Response.
      * @throws PopbillException
      */
-    public Response assignMgtKey(String corpNum, MgtKeyType keyType, String itemKey, String mgtKey, String userID) throws PopbillException;
+    public Response assignMgtKey(String CorpNum, MgtKeyType KeyType, String ItemKey, String MgtKey, String UserID) throws PopbillException;
 
     /**
      *  알림메일 전송목록 조회
@@ -2046,8 +2046,8 @@ public interface TaxinvoiceService extends BaseService {
      * 세금계산서 즉시발행 (MLE - Message Level Encryption)
      * @param CorpNum
      *          연동회원 사업자번호
-     * @param taxinvoice
-     *          세금계산서 객체 (see. com.popbill.api.taxinvoice.Taxinvoice)
+     * @param Taxinvoice
+     *          세금계산서 객체 (see. com.popbill.api.Taxinvoice.Taxinvoice)
      * @param WriteSpecification
      *          거래명세서 동시작성 여부
      * @param Memo
@@ -2063,57 +2063,57 @@ public interface TaxinvoiceService extends BaseService {
      * @return
      * @throws PopbillException
      */
-	public IssueResponse registIssueMLE(String CorpNum, Taxinvoice taxinvoice, Boolean WriteSpecification, String Memo,
+	public IssueResponse registIssueMLE(String CorpNum, Taxinvoice Taxinvoice, Boolean WriteSpecification, String Memo,
 			Boolean ForceIssue, String DealInvoiceKey, String EmailSubject, String UserID) throws PopbillException;
 
 	/**
 	 * @param CorpNum
 	 * @param SubmitID
-	 * @param taxinvoiceList
+	 * @param TaxinvoiceList
 	 * @param ForceIssue
 	 * @param UserID
 	 * @return
 	 * @throws PopbillException
 	 */
-	public BulkResponse bulkSubmitMLE(String CorpNum, String SubmitID, List<Taxinvoice> taxinvoiceList, Boolean ForceIssue,
+	public BulkResponse bulkSubmitMLE(String CorpNum, String SubmitID, List<Taxinvoice> TaxinvoiceList, Boolean ForceIssue,
 			String UserID) throws PopbillException;
 
         /**
          * 공동인증서 등록 API
          * @param CorpNum
          *              연동회원 사업자번호
-         * @param certPublicKey
+         * @param CertPublicKey
          *              공동인증서 공개키
-         * @param certPrivateKey
+         * @param CertPrivateKey
          *              공동인증서 개인키
-         * @param certCipher
+         * @param CertCipher
          *              공동인증서 비밀번호
          * @param UserID
          *              팝빌회원 아이디
          * @return
          * @throws PopbillException
          */
-	Response registTaxCert(String CorpNum, String certPublicKey, String certPrivateKey, String certCipher,
+	Response registTaxCert(String CorpNum, String CertPublicKey, String CertPrivateKey, String CertCipher,
 			String UserID) throws PopbillException;
 
-	Response registTaxCert(String CorpNum, String certPublicKey, String certPrivateKey, String certCipher)
+	Response registTaxCert(String CorpNum, String CertPublicKey, String CertPrivateKey, String CertCipher)
 			throws PopbillException;
 
         /**
          * 공동인증서 PFX 등록 API
          * @param CorpNum
          *              연동회원 사업자번호
-         * @param certPFX
+         * @param CertPFX
          *              공동인증서 PFX파일(Base64 Encoded)
-         * @param certCipher
+         * @param CertCipher
          *              공동인증서 PFX파일 비밀번호
          * @param UserID
          *              팝빌회원 아이디
          * @return
          * @throws PopbillException
          */
-        Response registTaxCertPFX(String CorpNum, String certPFX, String certCipher, String UserID) throws PopbillException;
+        Response registTaxCertPFX(String CorpNum, String CertPFX, String CertCipher, String UserID) throws PopbillException;
 
-        Response registTaxCertPFX(String CorpNum, String certPFX, String certCipher) throws PopbillException;
+        Response registTaxCertPFX(String CorpNum, String CertPFX, String CertCipher) throws PopbillException;
 
 }
