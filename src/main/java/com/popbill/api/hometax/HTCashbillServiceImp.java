@@ -42,8 +42,8 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      * @see com.popbill.api.HTCashbillService#requestJob(java.lang.String, com.popbill.api.hometaxcashbill.QueryType, java.lang.String, java.lang.String)
      */
     @Override
-    public String requestJob(String CorpNum, QueryType queryType, String SDate, String EDate) throws PopbillException {
-        return requestJob(CorpNum, queryType, SDate, EDate, null);
+    public String requestJob(String CorpNum, QueryType QueryType, String SDate, String EDate) throws PopbillException {
+        return requestJob(CorpNum, QueryType, SDate, EDate, null);
     }
 
     /*
