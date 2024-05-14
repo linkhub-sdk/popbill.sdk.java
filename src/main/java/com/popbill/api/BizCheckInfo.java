@@ -130,8 +130,8 @@ public class BizCheckInfo implements Serializable {
 
     /**
      * @return 개인법인코드
-     *         1 : 개인
-     *         2 : 법인
+     *         1 : 법인
+     *         2 : 개인
      *         99 : 기타
      */
     public Integer getPersonCorpCode() {
