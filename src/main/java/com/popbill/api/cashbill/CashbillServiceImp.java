@@ -630,7 +630,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     public CBIssueResponse registIssue(String CorpNum, Cashbill Cashbill, String Memo,
             String UserID) throws PopbillException {
         
-        return registIssue(CorpNum, Cashbill, Memo, null, null);
+        return registIssue(CorpNum, Cashbill, Memo, UserID, null);
     }
     
     @Override
