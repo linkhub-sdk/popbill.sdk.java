@@ -21,7 +21,7 @@ public interface BizInfoCheckService extends BaseService {
      * 기업정보 조회
      *
      * @param CorpNum 팝빌회원 사업자번호
-     * @param CheckCorpNum  휴폐업을 조회하고자 하는 사업자번호
+     * @param CheckCorpNum  기업정보를 조회하고자 하는 사업자번호
      * @return 기업정보정보
      */
     BizCheckInfo CheckBizInfo(String CorpNum, String CheckCorpNum) throws PopbillException;
@@ -30,7 +30,7 @@ public interface BizInfoCheckService extends BaseService {
      * 기업정보 조회
      *
      * @param CorpNum 팝빌회원 사업자번호
-     * @param CheckCorpNum  휴폐업을 조회하고자 하는 사업자번호
+     * @param CheckCorpNum  기업정보를 조회하고자 하는 사업자번호
      * @param UserID        팝빌회원 아이디
      * @return 기업정보정보
      */

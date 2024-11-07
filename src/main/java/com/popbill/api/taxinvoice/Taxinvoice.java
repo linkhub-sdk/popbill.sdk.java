@@ -1604,7 +1604,7 @@ public class Taxinvoice implements Serializable {
     }
 
     /**
-     * 세금계산서 발행시 공급받는자 휴폐업상태정보
+     * 세금계산서 발행시 공급받는자 휴폐업상태
      * 
      * @return 휴폐업 상태
      */

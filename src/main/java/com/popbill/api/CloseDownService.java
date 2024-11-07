@@ -10,7 +10,7 @@ package com.popbill.api;
 public interface CloseDownService extends BaseService {
 
     /**
-     * 회원의 휴폐업 조회단가 확인
+     * 회원의 사업자등록상태조회 단가 확인
      * 
      * @param CorpNum
      *            팝빌회원 사업자번호
@@ -20,46 +20,46 @@ public interface CloseDownService extends BaseService {
     public float getUnitCost(String CorpNum) throws PopbillException;
 
     /**
-     * 휴폐업상태 조회
+     * 사업자등록상태조회
      * @param CorpNum
      *              팝빌회원 사업자번호
      * @param CheckCorpNum 
-     *              휴폐업을 조회하고자 하는 사업자번호
-     * @return 휴폐업상태정보
+     *              사업자등록상태를 조회하고자 하는 사업자번호
+     * @return 사업자등록상태정보
      */
     CorpState CheckCorpNum(String CorpNum, String CheckCorpNum) throws PopbillException;
 
     /**
-     * 휴폐업상태 조회
+     * 사업자등록상태조회
      * @param CorpNum
      *              팝빌회원 사업자번호
      * @param CheckCorpNum
-     *              휴폐업을 조회하고자 하는 사업자번호
+     *              사업자등록상태를 조회하고자 하는 사업자번호
      * @param UserID
      *              팝빌회원 아이디
-     * @return 휴폐업상태정보
+     * @return 사업자등록상태정보
      */
     CorpState CheckCorpNum(String CorpNum, String CheckCorpNum, String UserID) throws PopbillException;
 
     /**
-     * 휴폐업상태 다량 조회
+     * 사업자등록상태 다량 조회
      * @param CorpNum
      *          팝빌회원 사업자번호
      * @param CorpNumList 
-     *          조회하고자 하는 사업자번호 목록.
-     * @return 휴폐업상태정보 목록
+     *          사업자등록상태를 조회하고자 하는 사업자번호 목록
+     * @return 사업자등록상태정보 목록
      */
     CorpState[] CheckCorpNum(String CorpNum, String[] CorpNumList) throws PopbillException;
 
     /**
-     * 휴폐업상태 다량 조회
+     * 사업자등록상태 다량 조회
      * @param CorpNum
      *          팝빌회원 사업자번호
      * @param CorpNumList
-     *          조회하고자 하는 사업자번호 목록.
+     *          사업자등록상태를 조회하고자 하는 사업자번호 목록
      * @param UserID
      *          팝빌회원 아이디
-     * @return 휴폐업상태정보 목록
+     * @return 사업자등록상태정보 목록
      */
     CorpState[] CheckCorpNum(String CorpNum, String[] CorpNumList, String UserID) throws PopbillException;
 
