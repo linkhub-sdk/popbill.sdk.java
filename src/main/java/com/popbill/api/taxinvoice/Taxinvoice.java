@@ -1604,16 +1604,16 @@ public class Taxinvoice implements Serializable {
     }
 
     /**
-     * 세금계산서 발행시 공급받는자 휴폐업상태
+     * 세금계산서 발행시 공급받는자 사업자등록상태조회(휴폐업상태)
      * 
-     * @return 휴폐업 상태
+     * @return 공급받는자 휴폐업상태
      */
     public Integer getCloseDownState() {
         return closeDownState;
     }
 
     /**
-     * 세금계산서 발행시 공급받는자 휴폐업일자
+     * 세금계산서 발행시 공급받는자 사업자등록상태조회(휴폐업일자)
      * 
      * @return 공급받는자 휴폐업일자
      */
