@@ -944,16 +944,16 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
         SendRequest request = new SendRequest();
         request.snd = Sender;
 
-        request.Content = Content;
-        request.Subject = Subject;
+        request.content = Content;
+        request.subject = Subject;
 
         if (SenderName != null)
             request.sndnm = SenderName;
 
         if (AdsYN) {
-            request.AdsYN = true;
+            request.adsYN = true;
         } else {
-            request.AdsYN = false;
+            request.adsYN = false;
         }
 
         if (ReserveDT != null)
@@ -1113,16 +1113,16 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
         SendRequest request = new SendRequest();
         request.snd = Sender;
 
-        request.Content = Content;
-        request.Subject = Subject;
+        request.content = Content;
+        request.subject = Subject;
 
         if (SenderName != null)
             request.sndnm = SenderName;
 
         if (AdsYN) {
-            request.AdsYN = true;
+            request.adsYN = true;
         } else {
-            request.AdsYN = false;
+            request.adsYN = false;
         }
 
         if (ReserveDT != null)
@@ -1174,16 +1174,16 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 
         SendRequest request = new SendRequest();
         request.snd = Sender;
-        request.Content = Content;
-        request.Subject = Subject;
+        request.content = Content;
+        request.subject = Subject;
 
         if (SenderName != null)
             request.sndnm = SenderName;
 
         if (AdsYN) {
-            request.AdsYN = true;
+            request.adsYN = true;
         } else {
-            request.AdsYN = false;
+            request.adsYN = false;
         }
 
         if (ReserveDT != null)
@@ -1398,10 +1398,10 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
     protected class SendRequest {
         public String snd;
         public String sndnm;
-        public String Content;
-        public String Subject;
+        public String content;
+        public String subject;
         public String sndDT;
-        public Boolean AdsYN;
+        public Boolean adsYN;
         public String requestNum;
 
         public Message[] msgs;
