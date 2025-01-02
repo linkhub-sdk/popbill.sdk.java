@@ -51,6 +51,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException {
         if (SenderNumber == null || SenderNumber.isEmpty())
             throw new PopbillException(-99999999, "발신번호가 입력되지 않았습니다.");
+
         return httpget("/KakaoTalk/CheckSenderNumber/" + SenderNumber, CorpNum, UserID, Response.class);
     }
 
@@ -738,7 +739,6 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
         if (SenderYN != null)
             uri += "&SenderYN=" + SenderYN;
-
 
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);

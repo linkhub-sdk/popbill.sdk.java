@@ -67,6 +67,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
     @Override
     public String requestJob(String CorpNum, QueryType queryType, String DType, String SDate, String EDate)
             throws PopbillException {
+
         return requestJob(CorpNum, queryType, DType, SDate, EDate, null);
     }
 
@@ -98,6 +99,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      */
     @Override
     public HTTaxinvoiceJobState getJobState(String CorpNum, String JobID) throws PopbillException {
+
         return getJobState(CorpNum, JobID, null);
     }
 
@@ -109,6 +111,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
     public HTTaxinvoiceJobState getJobState(String CorpNum, String JobID, String UserID) throws PopbillException {
         if (JobID.length() != 18)
             throw new PopbillException(-99999999, "작업아이디가 올바르지 않았습니다.");
+
         return httpget("/HomeTax/Taxinvoice/" + JobID + "/State", CorpNum, UserID, HTTaxinvoiceJobState.class);
     }
 
@@ -118,6 +121,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      */
     @Override
     public HTTaxinvoiceJobState[] listActiveJob(String CorpNum) throws PopbillException {
+
         return listActiveJob(CorpNum, null);
     }
 
@@ -127,6 +131,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      */
     @Override
     public HTTaxinvoiceJobState[] listActiveJob(String CorpNum, String UserID) throws PopbillException {
+
         return httpget("/HomeTax/Taxinvoice/JobList", CorpNum, UserID, HTTaxinvoiceJobState[].class);
     }
 
@@ -153,7 +158,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
             throws PopbillException {
 
         return search(CorpNum, JobID, Type, TaxType, PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID, Page, PerPage, Order,
-                null, null);
+                UserID, null);
     }
 
     /*
@@ -218,7 +223,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
     @Override
     public HTTaxinvoiceSummary summary(String CorpNum, String JobID, String[] Type, String[] TaxType, String[] PurposeType,
             String TaxRegIDYN, String TaxRegIDType, String TaxRegID, String UserID) throws PopbillException {
-        return summary(CorpNum, JobID, Type, TaxType, PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID, null, null);
+        return summary(CorpNum, JobID, Type, TaxType, PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID, UserID, null);
     }
 
     @Override
@@ -362,6 +367,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
     public String getPopUpURL(String CorpNum, String NTSConfirmNum) throws PopbillException {
         if (NTSConfirmNum.length() != 24)
             throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
+
         URLResponse response = httpget("/HomeTax/Taxinvoice/" + NTSConfirmNum + "/PopUp", CorpNum, null, URLResponse.class);
 
         return response.url;
@@ -375,6 +381,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
     public String getPopUpURL(String CorpNum, String NTSConfirmNum, String UserID) throws PopbillException {
         if (NTSConfirmNum.length() != 24)
             throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
+
         URLResponse response = httpget("/HomeTax/Taxinvoice/" + NTSConfirmNum + "/PopUp", CorpNum, UserID, URLResponse.class);
 
         return response.url;
@@ -384,6 +391,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
     public String getPrintURL(String CorpNum, String NTSConfirmNum) throws PopbillException {
         if (NTSConfirmNum.length() != 24)
             throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
+
         URLResponse response = httpget("/HomeTax/Taxinvoice/" + NTSConfirmNum + "/Print", CorpNum, null, URLResponse.class);
         return response.url;
     }
@@ -392,6 +400,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
     public String getPrintURL(String CorpNum, String NTSConfirmNum, String UserID) throws PopbillException {
         if (NTSConfirmNum.length() != 24)
             throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
+
         URLResponse response = httpget("/HomeTax/Taxinvoice/" + NTSConfirmNum + "/Print", CorpNum, UserID, URLResponse.class);
         return response.url;
     }

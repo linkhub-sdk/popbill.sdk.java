@@ -79,6 +79,7 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
     public HTCashbillJobState getJobState(String CorpNum, String JobID, String UserID) throws PopbillException {
         if (JobID.length() != 18)
             throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
+
         return httpget("/HomeTax/Cashbill/" + JobID + "/State", CorpNum, UserID, HTCashbillJobState.class);
     }
 
@@ -117,7 +118,6 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 
         uri += "?TradeUsage=" + Arrays.toString(TradeUsage == null ? new String[]{} : TradeUsage).replaceAll("\\[|\\]|\\s", "");
         uri += "&TradeType=" + Arrays.toString(TradeType == null ? new String[]{} : TradeType).replaceAll("\\[|\\]|\\s", "");
-
 
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);

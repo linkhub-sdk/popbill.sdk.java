@@ -121,8 +121,6 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public Response update(String CorpNum, String MgtKey, Cashbill Cashbill)
             throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return update(CorpNum, MgtKey, Cashbill, null);
     }
@@ -148,8 +146,6 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public Response delete(String CorpNum, String MgtKey)
             throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return delete(CorpNum, MgtKey, null);
     }
@@ -173,10 +169,8 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public CBIssueResponse issue(String CorpNum, String MgtKey, String Memo)
             throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
-        return issue(CorpNum, MgtKey, Memo, null);
+        return issue(CorpNum, MgtKey, Memo,null);
     }
 
     /* (non-Javadoc)
@@ -200,8 +194,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public Response cancelIssue(String CorpNum, String MgtKey, String Memo)
              throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
+
         return cancelIssue(CorpNum, MgtKey, Memo, null);
     }
 
@@ -226,8 +219,6 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public Response sendEmail(String CorpNum, String MgtKey, String Receiver)
              throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return sendEmail(CorpNum, MgtKey, Receiver, null);
     }
@@ -258,8 +249,6 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     public Response sendSMS(String CorpNum, String MgtKey, String Sender,
             String Receiver, String Contents)
             throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return sendSMS(CorpNum, MgtKey, Sender, Receiver, Contents, null);
     }
@@ -292,8 +281,6 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public Response sendFAX(String CorpNum, String MgtKey, String Sender,
             String Receiver) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return sendFAX(CorpNum, MgtKey, Sender, Receiver, null);
     }
@@ -324,6 +311,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public Cashbill getDetailInfo(String CorpNum, String MgtKey)
             throws PopbillException {
+
         return getDetailInfo(CorpNum, MgtKey, null);
     }
 
@@ -342,6 +330,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public CashbillInfo getInfo(String CorpNum, String MgtKey)
             throws PopbillException {
+
         return getInfo(CorpNum, MgtKey, null);
     }
 
@@ -994,7 +983,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
             String Tax, String ServiceFee, String TotalAmount, String UserID, String EmailSubject) throws PopbillException {
 
         return revokeRegistIssue(CorpNum, MgtKey, OrgConfirmNum, OrgTradeDate, SMSSendYN, Memo,
-                IsPartCancel, CancelType, SupplyCost, Tax, ServiceFee, TotalAmount, null, null, null);
+                IsPartCancel, CancelType, SupplyCost, Tax, ServiceFee, TotalAmount, UserID, EmailSubject, null);
     }
     
     @Override

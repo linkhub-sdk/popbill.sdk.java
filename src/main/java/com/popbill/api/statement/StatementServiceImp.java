@@ -110,8 +110,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response update(String CorpNum, int ItemCode, String MgtKey, Statement statement) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return update(CorpNum, ItemCode, MgtKey, statement, null);
     }
@@ -134,8 +132,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response delete(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return delete(CorpNum, ItemCode, MgtKey, null);
     }
@@ -189,8 +185,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response cancel(String CorpNum, int ItemCode, String MgtKey, String Memo) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return cancel(CorpNum, ItemCode, MgtKey, Memo, null);
     }
@@ -216,8 +210,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response sendEmail(String CorpNum, int ItemCode, String MgtKey, String Receiver) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return sendEmail(CorpNum, ItemCode, MgtKey, Receiver, null);
     }
@@ -273,6 +265,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response sendFAX(String CorpNum, int ItemCode, String MgtKey, String Sender, String Receiver) throws PopbillException {
+
         return sendFAX(CorpNum, ItemCode, MgtKey, Sender, Receiver, null);
     }
 
@@ -300,6 +293,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Statement getDetailInfo(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
+
         return getDetailInfo(CorpNum, ItemCode, MgtKey, null);
     }
 
@@ -320,6 +314,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public StatementInfo getInfo(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
+
         return getInfo(CorpNum, ItemCode, MgtKey, null);
     }
 
@@ -336,6 +331,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public StatementInfo[] getInfos(String CorpNum, int ItemCode, String[] MgtKeyList) throws PopbillException {
+
         return getInfos(CorpNum, ItemCode, MgtKeyList, null);
     }
 
@@ -354,6 +350,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public StatementLog[] getLogs(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
+
         return getLogs(CorpNum, ItemCode, MgtKey, null);
     }
 
@@ -371,8 +368,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String getPopUpURL(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return getPopUpURL(CorpNum, ItemCode, MgtKey, null);
     }
@@ -392,8 +387,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 
     @Override
     public String getViewURL(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
+
         return getViewURL(CorpNum, ItemCode, MgtKey, null);
     }
 
@@ -413,8 +407,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String getPrintURL(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
-            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
+
         return getPrintURL(CorpNum, ItemCode, MgtKey, null);
     }
 
@@ -460,6 +453,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String getMailURL(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
+
         return getMailURL(CorpNum, ItemCode, MgtKey, null);
     }
 
@@ -482,6 +476,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String getMassPrintURL(String CorpNum, int ItemCode, String[] MgtKeyList) throws PopbillException {
+
         return getMassPrintURL(CorpNum, ItemCode, MgtKeyList, null);
     }
 
@@ -517,6 +512,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response attachFile(String CorpNum, int ItemCode, String MgtKey, String DisplayName, InputStream FileData) throws PopbillException {
+
         return attachFile(CorpNum, ItemCode, MgtKey, DisplayName, FileData, null);
     }
 
@@ -549,6 +545,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public AttachedFile[] getFiles(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
+
         return getFiles(CorpNum, ItemCode, MgtKey, null);
     }
 
@@ -585,6 +582,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 
     @Override
     public String FAXSend(String CorpNum, Statement statement, String sendNum, String receiveNum) throws PopbillException {
+
         return FAXSend(CorpNum, statement, sendNum, receiveNum, null);
     }
 
@@ -613,6 +611,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public SMTIssueResponse registIssue(String CorpNum, Statement statement) throws PopbillException {
+
         return registIssue(CorpNum, statement, null, null, null);
     }
 
@@ -622,6 +621,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public SMTIssueResponse registIssue(String CorpNum, Statement statement, String memo) throws PopbillException {
+
         return registIssue(CorpNum, statement, memo, null, null);
     }
 
@@ -631,6 +631,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public SMTIssueResponse registIssue(String CorpNum, Statement statement, String memo, String UserID) throws PopbillException {
+
         return registIssue(CorpNum, statement, memo, UserID, null);
     }
 
@@ -654,6 +655,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response attachStatement(String CorpNum, int ItemCode, String MgtKey, int SubItemCode, String SubMgtKey) throws PopbillException {
+
         return attachStatement(CorpNum, ItemCode, MgtKey, SubItemCode, SubMgtKey, null);
     }
 
@@ -674,6 +676,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response detachStatement(String CorpNum, int ItemCode, String MgtKey, int SubItemCode, String SubMgtKey) throws PopbillException {
+
         return detachStatement(CorpNum, ItemCode, MgtKey, SubItemCode, SubMgtKey, null);
     }
 
@@ -691,12 +694,14 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
     @Override
     public StmtSearchResult search(String CorpNum, String DType, String SDate, String EDate, String[] State, int[] ItemCode, Integer Page, Integer PerPage,
             String Order) throws PopbillException {
+
         return search(CorpNum, DType, SDate, EDate, State, ItemCode, "", Page, PerPage, Order);
     }
 
     @Override
     public StmtSearchResult search(String CorpNum, String DType, String SDate, String EDate, String[] State, int[] ItemCode, String QString, Integer Page,
             Integer PerPage, String Order) throws PopbillException {
+
         return search(CorpNum, DType, SDate, EDate, State, ItemCode, QString, Page, PerPage, Order, null);
     }
 
@@ -739,6 +744,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public ChargeInfo getChargeInfo(String CorpNum, int ItemCode) throws PopbillException {
+
         return getChargeInfo(CorpNum, ItemCode, null);
     }
 
@@ -753,6 +759,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN) throws PopbillException {
+
         return updateEmailConfig(CorpNum, EmailType, SendYN, null);
     }
 

@@ -1448,7 +1448,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
     @Override
     public FAXSearchResult search(String CorpNum, String SDate, String EDate, String[] State, Boolean ReserveYN, Boolean SenderOnly, Integer Page,
                                   Integer PerPage, String Order, String QString) throws PopbillException {
-        return search(CorpNum, SDate, EDate, State, ReserveYN, SenderOnly, Page, PerPage, Order, null, null);
+        return search(CorpNum, SDate, EDate, State, ReserveYN, SenderOnly, Page, PerPage, Order, QString, null);
     }
 
     @Override

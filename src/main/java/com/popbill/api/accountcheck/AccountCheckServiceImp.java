@@ -54,7 +54,7 @@ public class AccountCheckServiceImp extends BaseServiceImp implements AccountChe
 
     @Override
     public ChargeInfo getChargeInfo(String CorpNum, String serviceType, String UserID) throws PopbillException {
-        return httpget("/EasyFin/AccountCheck/ChargeInfo", CorpNum, null, ChargeInfo.class);
+        return httpget("/EasyFin/AccountCheck/ChargeInfo", CorpNum, UserID, ChargeInfo.class);
     }
 
     @Override

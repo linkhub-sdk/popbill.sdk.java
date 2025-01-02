@@ -714,12 +714,12 @@ public class TaxinvoiceServiceTEST {
         TISearchResult response = new TISearchResult();
 
         String DType = "W";
-        String SDate = "20220126";
-        String EDate = "20220208";
+        String SDate = "20241201";
+        String EDate = "20241231";
         String[] State = {"3**", "6**"};
-        String[] Type = {"N", "M","Z"};
-        String[] TaxType = {"T","N","Z"};
-        String[] IssueType = {"N","R","T"};
+        String[] Type = {"N", "M"};
+        String[] TaxType = {"T", "N", "Z"};
+        String[] IssueType = {"N", "R", "T"};
         Boolean LateOnly = false;
         String TaxRegIDType = "S";
         String TaxRegID = "";

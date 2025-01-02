@@ -729,7 +729,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public TISearchResult Search(String CorpNum, MgtKeyType KeyType, String DType, String SDate, String EDate, String[] State, String[] Type,
                                  String[] TaxType, String[] IssueType, Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN, String QString,
                                  Integer Page, Integer PerPage, String Order, String InterOPYN) throws PopbillException {
-        return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page,
+        return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, IssueType, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page,
                 PerPage, Order, InterOPYN, null, null, null, null);
     }
 
@@ -738,8 +738,8 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                                  String[] TaxType, String[] IssueType, Boolean LateOnly, String TaxRegIDType, String TaxRegID, String TaxRegIDYN, String QString,
                                  Integer Page, Integer PerPage, String Order, String InterOPYN, String[] RegType) throws PopbillException {
 
-        return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, null, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page,
-                PerPage, Order, InterOPYN, null, null, null, null);
+        return Search(CorpNum, KeyType, DType, SDate, EDate, State, Type, TaxType, IssueType, LateOnly, TaxRegIDType, TaxRegID, TaxRegIDYN, QString, Page,
+                PerPage, Order, InterOPYN, RegType, null, null, null);
     }
 
     @Override
