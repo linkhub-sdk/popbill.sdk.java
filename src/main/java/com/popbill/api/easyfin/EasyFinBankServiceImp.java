@@ -388,10 +388,10 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
         if (JobID.length() != 18)
             throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
 
-        String uri = "/EasyFin/Bank/" + JobID;
+        String uri = "/EasyFin/Bank/" + JobID + "?TradeType=";
 
-        uri += "?TradeType=" + Arrays.toString(TradeType).replaceAll("\\[|\\]|\\s", "");
-
+        if (TradeType != null)
+            uri += Arrays.toString(TradeType).replaceAll("\\[|\\]|\\s", "");
         if (SearchString != "" && SearchString != null) {
             try {
                 uri += "&SearchString=" + URLEncoder.encode(SearchString, "UTF-8");
@@ -399,12 +399,11 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
                 throw new PopbillException(-99999999, "검색어(SearchString) 인코딩 오류");
             }
         }
-
-        if (Page != null)
+        if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
-        if (PerPage != null)
+        if (PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage=" + Integer.toString(PerPage);
-        if (Order != null && !Order.isEmpty())
+        if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
 
         return httpget(uri, CorpNum, UserID, EasyFinBankSearchResult.class);
@@ -434,9 +433,10 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
         if (JobID.length() != 18)
             throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
 
-        String uri = "/EasyFin/Bank/" + JobID + "/Summary";
+        String uri = "/EasyFin/Bank/" + JobID + "/Summary" + "?TradeType=";
 
-        uri += "?TradeType=" + Arrays.toString(TradeType).replaceAll("\\[|\\]|\\s", "");
+        if (TradeType != null)
+        uri += Arrays.toString(TradeType).replaceAll("\\[|\\]|\\s", "");
 
         if (SearchString != "" && SearchString != null) {
             try {

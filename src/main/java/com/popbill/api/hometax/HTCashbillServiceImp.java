@@ -114,11 +114,12 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
         if (JobID.length() != 18)
             throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
 
-        String uri = "/HomeTax/Cashbill/" + JobID;
+        String uri = "/HomeTax/Cashbill/" + JobID + "?TradeUsage=";
 
-        uri += "?TradeUsage=" + Arrays.toString(TradeUsage == null ? new String[]{} : TradeUsage).replaceAll("\\[|\\]|\\s", "");
-        uri += "&TradeType=" + Arrays.toString(TradeType == null ? new String[]{} : TradeType).replaceAll("\\[|\\]|\\s", "");
-
+        if (TradeUsage != null)
+            uri += Arrays.toString(TradeUsage == null ? new String[]{} : TradeUsage).replaceAll("\\[|\\]|\\s", "");
+        if (TradeType != null)
+            uri += "&TradeType=" + Arrays.toString(TradeType == null ? new String[]{} : TradeType).replaceAll("\\[|\\]|\\s", "");
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)
@@ -147,10 +148,12 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
         if (JobID.length() != 18)
             throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
 
-        String uri = "/HomeTax/Cashbill/" + JobID + "/Summary";
+        String uri = "/HomeTax/Cashbill/" + JobID + "/Summary" + "?TradeUsage=";
 
-        uri += "?TradeUsage=" + Arrays.toString(TradeUsage).replaceAll("\\[|\\]|\\s", "");
-        uri += "&TradeType=" + Arrays.toString(TradeType).replaceAll("\\[|\\]|\\s", "");
+        if (TradeUsage != null)
+            uri += Arrays.toString(TradeUsage).replaceAll("\\[|\\]|\\s", "");
+        if (TradeType != null)
+            uri += "&TradeType=" + Arrays.toString(TradeType).replaceAll("\\[|\\]|\\s", "");
 
         return httpget(uri, CorpNum, UserID, HTCashbillSummary.class);
     }

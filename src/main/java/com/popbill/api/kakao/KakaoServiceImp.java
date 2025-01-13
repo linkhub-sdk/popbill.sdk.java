@@ -728,25 +728,25 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
             throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
         if (EDate == null)
             throw new PopbillException(-99999999, "종료일자가 입력되지 않았습니다.");
+        if (State == null || State.length == 0)
+            throw new PopbillException(-99999999, "전송상태가 입력되지 않았습니다.");
 
         String uri = "/KakaoTalk/Search?SDate=" + SDate;
         uri += "&EDate=" + EDate;
         uri += "&State=" + Arrays.toString(State == null ? new String[]{} : State).replaceAll("\\[|\\]|\\s", "");
-        uri += "&Item=" + Arrays.toString(Item).replaceAll("\\[|\\]|\\s", "");
 
-        if (ReserveYN != null)
+        if (Item != null)
+            uri += "&Item=" + Arrays.toString(Item).replaceAll("\\[|\\]|\\s", "");
+        if (ReserveYN != null && !ReserveYN.isEmpty())
             uri += "&ReserveYN=" + ReserveYN;
-
         if (SenderYN != null)
             uri += "&SenderYN=" + SenderYN;
-
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage=" + Integer.toString(PerPage);
         if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
-
         if (QString != null && !QString.isEmpty()) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");

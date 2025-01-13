@@ -717,9 +717,11 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
         String uri = "/Statement/Search?DType=" + DType;
         uri += "&SDate=" + SDate;
         uri += "&EDate=" + EDate;
-        uri += "&State=" + Arrays.toString(State).replaceAll("\\[|\\]|\\s", "");
-        uri += "&ItemCode=" + Arrays.toString(ItemCode == null ? new int[]{} : ItemCode).replaceAll("\\[|\\]|\\s", "");
 
+        if (State != null)
+            uri += "&State=" + Arrays.toString(State).replaceAll("\\[|\\]|\\s", "");
+        if (ItemCode != null)
+            uri += "&ItemCode=" + Arrays.toString(ItemCode == null ? new int[]{} : ItemCode).replaceAll("\\[|\\]|\\s", "");
         if (QString != null && !QString.isEmpty()) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");
@@ -727,7 +729,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
                 throw new PopbillException(-99999999, "검색어(QString) 인코딩 오류");
             }
         }
-
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)

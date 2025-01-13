@@ -749,7 +749,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
             throws PopbillException {
 
         if (KeyType == null)
-            throw new PopbillException(-99999999, "문서번호 형태가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "세금계산서 유형이 입력되지 않았습니다.");
         if (DType == null || DType.isEmpty())
             throw new PopbillException(-99999999, "검색일자 유형이 입력되지 않았습니다.");
         if (SDate == null || SDate.isEmpty())
@@ -761,22 +761,15 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         uri += "?DType=" + DType;
         uri += "&SDate=" + SDate;
         uri += "&EDate=" + EDate;
-        uri += "&State=" + Arrays.toString(State).replaceAll("\\[|\\]|\\s", "");
-        uri += "&Type=" + Arrays.toString(Type).replaceAll("\\[|\\]|\\s", "");
-        uri += "&TaxType=" + Arrays.toString(TaxType).replaceAll("\\[|\\]|\\s", "");
 
-        if (IssueType != null) {
+        if (State != null)
+            uri += "&State=" + Arrays.toString(State).replaceAll("\\[|\\]|\\s", "");
+        if (Type != null)
+            uri += "&Type=" + Arrays.toString(Type).replaceAll("\\[|\\]|\\s", "");
+        if (TaxType != null)
+            uri += "&TaxType=" + Arrays.toString(TaxType).replaceAll("\\[|\\]|\\s", "");
+        if (IssueType != null)
             uri += "&IssueType=" + Arrays.toString(IssueType).replaceAll("\\[|\\]|\\s", "");
-        }
-
-        if (RegType != null) {
-            uri += "&RegType=" + Arrays.toString(RegType).replaceAll("\\[|\\]|\\s", "");
-        }
-
-        if (CloseDownState != null) {
-            uri += "&CloseDownState=" + Arrays.toString(CloseDownState).replaceAll("\\[|\\]|\\s", "");
-        }
-
         if (LateOnly != null) {
             if (LateOnly) {
                 uri += "&LateOnly=1";
@@ -784,23 +777,12 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                 uri += "&LateOnly=0";
             }
         }
-
-        if (TaxRegIDType != null && !TaxRegIDType.isEmpty()) {
+        if (TaxRegIDType != null && !TaxRegIDType.isEmpty())
             uri += "&TaxRegIDType=" + TaxRegIDType;
-        }
-
-        if (TaxRegID != null && !TaxRegID.isEmpty()) {
+        if (TaxRegID != null && !TaxRegID.isEmpty())
             uri += "&TaxRegID=" + TaxRegID;
-        }
-
-        if (TaxRegIDYN != null && !TaxRegIDYN.isEmpty()) {
+        if (TaxRegIDYN != null && !TaxRegIDYN.isEmpty())
             uri += "&TaxRegIDYN=" + TaxRegIDYN;
-        }
-
-        if (InterOPYN != null && !InterOPYN.isEmpty()) {
-            uri += "&InterOPYN=" + InterOPYN;
-        }
-
         if (QString != null && !QString.isEmpty()) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");
@@ -808,17 +790,20 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
                 throw new PopbillException(-99999999, "검색어(QString) 인코딩 오류");
             }
         }
-
-        if (MgtKey != null && !MgtKey.isEmpty()) {
-            uri += "&MgtKey=" + MgtKey;
-        }
-
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
         if(PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage="+ Integer.toString(PerPage);
         if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
+        if (InterOPYN != null && !InterOPYN.isEmpty())
+            uri += "&InterOPYN=" + InterOPYN;
+        if (RegType != null)
+            uri += "&RegType=" + Arrays.toString(RegType).replaceAll("\\[|\\]|\\s", "");
+        if (CloseDownState != null)
+            uri += "&CloseDownState=" + Arrays.toString(CloseDownState).replaceAll("\\[|\\]|\\s", "");
+        if (MgtKey != null && !MgtKey.isEmpty())
+            uri += "&MgtKey=" + MgtKey;
 
         return httpget(uri, CorpNum, UserID, TISearchResult.class);
     }

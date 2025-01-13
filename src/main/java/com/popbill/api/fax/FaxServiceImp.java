@@ -1460,21 +1460,19 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
         String uri = "/FAX/Search?SDate=" + SDate;
         uri += "&EDate=" + EDate;
-        uri += "&State=" + Arrays.toString(State == null ? new String[]{} : State).replaceAll("\\[|\\]|\\s", "");
 
-        if (ReserveYN != null )
+        if (State != null)
+            uri += "&State=" + Arrays.toString(State == null ? new String[]{} : State).replaceAll("\\[|\\]|\\s", "");
+        if (ReserveYN != null)
             uri += "&ReserveYN=" + ReserveYN;
-
         if (SenderOnly != null)
             uri += "&SenderOnly=" + SenderOnly;
-
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage=" + Integer.toString(PerPage);
         if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
-
         if (QString != null && !QString.isEmpty()) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");

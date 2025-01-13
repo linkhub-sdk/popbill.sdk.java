@@ -799,19 +799,17 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 
         uri += "&SDate=" + SDate;
         uri += "&EDate=" + EDate;
-        uri += "&State=" + Arrays.toString(State)
-                .replaceAll("\\[|\\]|\\s", "");
-        uri += "&TradeType=" + Arrays.toString(TradeType)
-                .replaceAll("\\[|\\]|\\s", "");
-        uri += "&TradeUsage=" + Arrays.toString(TradeUsage)
-                .replaceAll("\\[|\\]|\\s", "");
-        if (TradeOpt != null){
-            uri += "&TradeOpt=" + Arrays.toString(TradeOpt)
-                    .replaceAll("\\[|\\]|\\s", "");
-        }
-        uri += "&TaxationType=" + Arrays.toString(TaxationType)
-                .replaceAll("\\[|\\]|\\s", "");
 
+        if (State != null)
+            uri += "&State=" + Arrays.toString(State).replaceAll("\\[|\\]|\\s", "");
+        if (TradeType != null)
+            uri += "&TradeType=" + Arrays.toString(TradeType).replaceAll("\\[|\\]|\\s", "");
+        if (TradeUsage != null)
+            uri += "&TradeUsage=" + Arrays.toString(TradeUsage).replaceAll("\\[|\\]|\\s", "");
+        if (TradeOpt != null)
+            uri += "&TradeOpt=" + Arrays.toString(TradeOpt).replaceAll("\\[|\\]|\\s", "");
+        if (TaxationType != null)
+            uri += "&TaxationType=" + Arrays.toString(TaxationType).replaceAll("\\[|\\]|\\s", "");
         if (QString != null && !QString.isEmpty()) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");
@@ -819,7 +817,6 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
                 throw new PopbillException(-99999999, "검색어(QString) 인코딩 오류");
             }
         }
-
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
         if(PerPage != null && PerPage > 0 && PerPage <= 1000)
