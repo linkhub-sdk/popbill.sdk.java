@@ -740,7 +740,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
         if (ReserveYN != null && !ReserveYN.isEmpty())
             uri += "&ReserveYN=" + ReserveYN;
         if (SenderYN != null)
-            uri += "&SenderYN=" + SenderYN;
+            uri += "&SenderOnly=" + SenderYN;
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)

@@ -1250,7 +1250,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
         if (ReserveYN != null)
             uri += "&ReserveYN=" + ReserveYN;
         if (SenderYN != null)
-            uri += "&SenderYN=" + SenderYN;
+            uri += "&SenderOnly=" + SenderYN;
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)
