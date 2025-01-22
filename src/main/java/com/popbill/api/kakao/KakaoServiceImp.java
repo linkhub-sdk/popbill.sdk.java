@@ -733,10 +733,10 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
         String uri = "/KakaoTalk/Search?SDate=" + SDate;
         uri += "&EDate=" + EDate;
-        uri += "&State=" + Arrays.toString(State == null ? new String[]{} : State).replaceAll("\\[|\\]|\\s", "");
+        uri += "&State=" + replaceInvalidUriChars(State);
 
         if (Item != null)
-            uri += "&Item=" + Arrays.toString(Item).replaceAll("\\[|\\]|\\s", "");
+            uri += "&Item=" + replaceInvalidUriChars(Item);
         if (ReserveYN != null && !ReserveYN.isEmpty())
             uri += "&ReserveYN=" + ReserveYN;
         if (SenderYN != null)

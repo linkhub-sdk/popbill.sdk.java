@@ -66,8 +66,8 @@ public class HTTaxinvoiceServiceTEST {
     public void getRequestJob_TEST() throws PopbillException {
         
         String DType = "S";
-        String SDate = "20190901";
-        String EDate = "20191001";
+        String SDate = "20241201";
+        String EDate = "20241231";
         
         String jobID = hometaxTIService.requestJob("1234567890", QueryType.SELL, DType, SDate, EDate);
         
@@ -127,7 +127,7 @@ public class HTTaxinvoiceServiceTEST {
         String[] Type = {"N", "M"};
         String[] TaxType = {"T", "Z", "N"};
         String[] PurposeType = {"R", "C", "N"};
-        String TaxRegIDType = "S";
+        String TaxRegIDType = "";
         String TaxRegID = "";
         String TaxRegIDYN = "";
         Integer Page = 1;
@@ -195,7 +195,7 @@ public class HTTaxinvoiceServiceTEST {
         String[] Type = {"N","M"};
         String[] TaxType = {"T", "Z", "N"};
         String[] PurposeType = {"R","C", "N"};
-        String TaxRegIDType = "S";
+        String TaxRegIDType = "";
         String TaxRegID = "";
         String TaxRegIDYN = "";
         

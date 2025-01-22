@@ -801,15 +801,15 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
         uri += "&EDate=" + EDate;
 
         if (State != null)
-            uri += "&State=" + Arrays.toString(State).replaceAll("\\[|\\]|\\s", "");
+            uri += "&State=" + replaceInvalidUriChars(State);
         if (TradeType != null)
-            uri += "&TradeType=" + Arrays.toString(TradeType).replaceAll("\\[|\\]|\\s", "");
+            uri += "&TradeType=" + replaceInvalidUriChars(TradeType);
         if (TradeUsage != null)
-            uri += "&TradeUsage=" + Arrays.toString(TradeUsage).replaceAll("\\[|\\]|\\s", "");
+            uri += "&TradeUsage=" + replaceInvalidUriChars(TradeUsage);
         if (TradeOpt != null)
-            uri += "&TradeOpt=" + Arrays.toString(TradeOpt).replaceAll("\\[|\\]|\\s", "");
+            uri += "&TradeOpt=" + replaceInvalidUriChars(TradeOpt);
         if (TaxationType != null)
-            uri += "&TaxationType=" + Arrays.toString(TaxationType).replaceAll("\\[|\\]|\\s", "");
+            uri += "&TaxationType=" + replaceInvalidUriChars(TaxationType);
         if (QString != null && !QString.isEmpty()) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");

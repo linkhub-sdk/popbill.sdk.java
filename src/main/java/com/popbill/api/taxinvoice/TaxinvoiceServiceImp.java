@@ -763,13 +763,13 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         uri += "&EDate=" + EDate;
 
         if (State != null)
-            uri += "&State=" + Arrays.toString(State).replaceAll("\\[|\\]|\\s", "");
+            uri += "&State=" + replaceInvalidUriChars(State);
         if (Type != null)
-            uri += "&Type=" + Arrays.toString(Type).replaceAll("\\[|\\]|\\s", "");
+            uri += "&Type=" + replaceInvalidUriChars(Type);
         if (TaxType != null)
-            uri += "&TaxType=" + Arrays.toString(TaxType).replaceAll("\\[|\\]|\\s", "");
+            uri += "&TaxType=" + replaceInvalidUriChars(TaxType);
         if (IssueType != null)
-            uri += "&IssueType=" + Arrays.toString(IssueType).replaceAll("\\[|\\]|\\s", "");
+            uri += "&IssueType=" + replaceInvalidUriChars(IssueType);
         if (LateOnly != null) {
             if (LateOnly) {
                 uri += "&LateOnly=1";
@@ -799,12 +799,14 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         if (InterOPYN != null && !InterOPYN.isEmpty())
             uri += "&InterOPYN=" + InterOPYN;
         if (RegType != null)
-            uri += "&RegType=" + Arrays.toString(RegType).replaceAll("\\[|\\]|\\s", "");
+            uri += "&RegType=" + replaceInvalidUriChars(RegType);
         if (CloseDownState != null)
-            uri += "&CloseDownState=" + Arrays.toString(CloseDownState).replaceAll("\\[|\\]|\\s", "");
+            uri += "&CloseDownState=" + replaceInvalidUriChars(CloseDownState);
         if (MgtKey != null && !MgtKey.isEmpty())
             uri += "&MgtKey=" + MgtKey;
 
+        System.out.println(uri);
+//        return null;
         return httpget(uri, CorpNum, UserID, TISearchResult.class);
     }
 

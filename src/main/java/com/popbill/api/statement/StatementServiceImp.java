@@ -719,9 +719,9 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
         uri += "&EDate=" + EDate;
 
         if (State != null)
-            uri += "&State=" + Arrays.toString(State).replaceAll("\\[|\\]|\\s", "");
+            uri += "&State=" + replaceInvalidUriChars(State);
         if (ItemCode != null)
-            uri += "&ItemCode=" + Arrays.toString(ItemCode == null ? new int[]{} : ItemCode).replaceAll("\\[|\\]|\\s", "");
+            uri += "&ItemCode=" + replaceInvalidUriChars(ItemCode);
         if (QString != null && !QString.isEmpty()) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");

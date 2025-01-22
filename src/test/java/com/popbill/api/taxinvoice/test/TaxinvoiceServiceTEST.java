@@ -721,10 +721,10 @@ public class TaxinvoiceServiceTEST {
         String[] TaxType = {"T", "N", "Z"};
         String[] IssueType = {"N", "R", "T"};
         Boolean LateOnly = false;
-        String TaxRegIDType = "S";
+        String TaxRegIDType = "";
         String TaxRegID = "";
         String TaxRegIDYN = "";
-        String QString = "8888888888";
+        String QString = "";
         int Page = 1;
         int PerPage = 50;
         String Order = "D";

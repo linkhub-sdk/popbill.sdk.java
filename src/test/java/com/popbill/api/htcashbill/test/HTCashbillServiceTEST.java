@@ -40,8 +40,8 @@ public class HTCashbillServiceTEST {
     @Test
     public void getRequestJob_TEST() throws PopbillException {
 
-        String SDate = "20180101";
-        String EDate = "20181231";
+        String SDate = "20241201";
+        String EDate = "20241231";
 
         String jobID = htCashbillService.requestJob("6798700433", QueryType.BUY, SDate, EDate);
 
@@ -155,7 +155,7 @@ public class HTCashbillServiceTEST {
         String[] TypeUsage = {"P","C"};
         String[] TradeType = {"N", "C"};
 
-        String UserID = "innoposttest";
+        String UserID = "";
 
         HTCashbillSummary result = htCashbillService.summary(CorpNum, JobID, TypeUsage, TradeType, UserID);
 

@@ -176,11 +176,11 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
         String uri = "/HomeTax/Taxinvoice/" + JobID + "?Type=";
 
         if (Type != null)
-            uri += Arrays.toString(Type == null ? new String[]{} : Type).replaceAll("\\[|\\]|\\s", "");
+            uri += replaceInvalidUriChars(Type);
         if (TaxType != null)
-            uri += "&TaxType=" + Arrays.toString(TaxType == null ? new String[]{} : TaxType).replaceAll("\\[|\\]|\\s", "");
+            uri += "&TaxType=" + replaceInvalidUriChars(TaxType);
         if (PurposeType != null)
-            uri += "&PurposeType=" + Arrays.toString(PurposeType == null ? new String[]{} : PurposeType).replaceAll("\\[|\\]|\\s", "");
+            uri += "&PurposeType=" + replaceInvalidUriChars(PurposeType);
         if (TaxRegIDYN != null && !TaxRegIDYN.isEmpty())
             uri += "&TaxRegIDYN=" + TaxRegIDYN;
         if (TaxRegIDType != null && !TaxRegIDType.isEmpty())
@@ -235,11 +235,11 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
         String uri = "/HomeTax/Taxinvoice/" + JobID + "/Summary" + "?Type=";
 
         if (Type != null)
-            uri += Arrays.toString(Type).replaceAll("\\[|\\]|\\s", "");
+            uri += replaceInvalidUriChars(Type);
         if (TaxType != null)
-            uri += "&TaxType=" + Arrays.toString(TaxType).replaceAll("\\[|\\]|\\s", "");
+            uri += "&TaxType=" + replaceInvalidUriChars(TaxType);
         if (PurposeType != null)
-            uri += "&PurposeType=" + Arrays.toString(PurposeType).replaceAll("\\[|\\]|\\s", "");
+            uri += "&PurposeType=" + replaceInvalidUriChars(PurposeType);
         if (TaxRegIDYN != "" && TaxRegIDYN != null)
             uri += "&TaxRegIDYN=" + TaxRegIDYN;
         if (TaxRegIDType != "" && TaxRegIDType != null)

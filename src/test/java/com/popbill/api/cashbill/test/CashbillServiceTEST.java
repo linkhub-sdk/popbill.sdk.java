@@ -434,15 +434,15 @@ public class CashbillServiceTEST {
     public void search_TEST() throws PopbillException {
         String CorpNum = "1234567890";
         String DType = "T";
-        String SDate = "20220201";
-        String EDate = "20220203";
+        String SDate = "20241201";
+        String EDate = "20241231";
 
         String[] State = {"100", "2**", "3**", "4**"};
         String[] TradeType = {"N", "C"};
         String[] TradeUsage = {"P", "C"};
         String[] TradeOpt = {"N", "B", "T"};
         String[] TaxationType = {"T", "N"};
-        String QString = "0101112222";
+        String QString = "";
         String FranchiseTaxRegID = null;
 
         int Page = 1;

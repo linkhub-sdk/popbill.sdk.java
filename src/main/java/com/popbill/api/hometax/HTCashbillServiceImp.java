@@ -117,9 +117,9 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
         String uri = "/HomeTax/Cashbill/" + JobID + "?TradeUsage=";
 
         if (TradeUsage != null)
-            uri += Arrays.toString(TradeUsage == null ? new String[]{} : TradeUsage).replaceAll("\\[|\\]|\\s", "");
+            uri += replaceInvalidUriChars(TradeUsage);
         if (TradeType != null)
-            uri += "&TradeType=" + Arrays.toString(TradeType == null ? new String[]{} : TradeType).replaceAll("\\[|\\]|\\s", "");
+            uri += "&TradeType=" + replaceInvalidUriChars(TradeType);
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)
@@ -151,9 +151,9 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
         String uri = "/HomeTax/Cashbill/" + JobID + "/Summary" + "?TradeUsage=";
 
         if (TradeUsage != null)
-            uri += Arrays.toString(TradeUsage).replaceAll("\\[|\\]|\\s", "");
+            uri += replaceInvalidUriChars(TradeUsage);
         if (TradeType != null)
-            uri += "&TradeType=" + Arrays.toString(TradeType).replaceAll("\\[|\\]|\\s", "");
+            uri += "&TradeType=" + replaceInvalidUriChars(TradeType);
 
         return httpget(uri, CorpNum, UserID, HTCashbillSummary.class);
     }

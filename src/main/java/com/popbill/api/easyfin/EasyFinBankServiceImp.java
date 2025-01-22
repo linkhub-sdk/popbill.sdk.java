@@ -391,7 +391,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
         String uri = "/EasyFin/Bank/" + JobID + "?TradeType=";
 
         if (TradeType != null)
-            uri += Arrays.toString(TradeType).replaceAll("\\[|\\]|\\s", "");
+            uri += replaceInvalidUriChars(TradeType);
         if (SearchString != "" && SearchString != null) {
             try {
                 uri += "&SearchString=" + URLEncoder.encode(SearchString, "UTF-8");
@@ -436,7 +436,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
         String uri = "/EasyFin/Bank/" + JobID + "/Summary" + "?TradeType=";
 
         if (TradeType != null)
-        uri += Arrays.toString(TradeType).replaceAll("\\[|\\]|\\s", "");
+            uri += replaceInvalidUriChars(TradeType);
 
         if (SearchString != "" && SearchString != null) {
             try {

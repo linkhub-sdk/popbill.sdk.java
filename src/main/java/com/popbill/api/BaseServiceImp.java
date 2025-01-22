@@ -17,12 +17,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TimeZone;
+import java.util.*;
 import java.util.zip.GZIPInputStream;
 
 import com.google.gson.Gson;
@@ -1580,5 +1575,12 @@ public abstract class BaseServiceImp implements BaseService {
         return Result;
     }
 
+    protected String replaceInvalidUriChars(String[] array) {
+        return Arrays.toString(array).replaceAll("[^0-9A-Z*,]", "");
+    }
+
+    protected String replaceInvalidUriChars(int[] array) {
+        return Arrays.toString(array).replaceAll("[^0-9,]", "");
+    }
 
 }

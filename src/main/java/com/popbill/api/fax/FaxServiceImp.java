@@ -1462,7 +1462,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
         uri += "&EDate=" + EDate;
 
         if (State != null)
-            uri += "&State=" + Arrays.toString(State == null ? new String[]{} : State).replaceAll("\\[|\\]|\\s", "");
+            uri += "&State=" + replaceInvalidUriChars(State);
         if (ReserveYN != null)
             uri += "&ReserveYN=" + ReserveYN;
         if (SenderOnly != null)

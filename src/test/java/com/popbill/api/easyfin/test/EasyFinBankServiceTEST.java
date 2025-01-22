@@ -188,10 +188,10 @@ public class EasyFinBankServiceTEST {
     
     @Test
     public void requestJob() throws PopbillException {
-        String AccountNumber = "50396101006169";
-        String BankCode = "0071";
-        String SDate = "20221205";
-        String EDate = "20230103";
+        String AccountNumber = "";
+        String BankCode = "";
+        String SDate = "20241201";
+        String EDate = "20241231";
         String jobID = easyFinBankService.requestJob("1234567890", BankCode, AccountNumber, SDate, EDate);
         
         assertNotNull(jobID);

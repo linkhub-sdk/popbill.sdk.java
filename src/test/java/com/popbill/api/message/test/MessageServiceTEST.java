@@ -1735,10 +1735,10 @@ public class MessageServiceTEST {
     
     @Test
     public void search_TEST() throws PopbillException{
-        String SDate = "20220119";
-        String EDate = "20220218";
+        String SDate = "20241201";
+        String EDate = "20241231";
         String[] State = {"1","2","3","4"};
-        String[] Item = {"SMS", "LMS", "MMS"};
+        String[] Item = {"SMS","LMS","MMS"};
         Boolean ReserveYN = false;
         Boolean SenderYN = true;
         int Page = 1;

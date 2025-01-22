@@ -1381,15 +1381,15 @@ public class FaxServiceTEST {
     
     @Test
     public void search_TEST() throws PopbillException{
-        String SDate = "20220109";
-        String EDate = "20220208";
+        String SDate = "20241201";
+        String EDate = "20241231";
         String[] State = {"1","2","3","4"};
         Boolean ReserveYN = false;
         Boolean SenderOnlyYN = false;
         int Page = 1;
         int PerPage = 50;
         String Order = "D";
-        String QString = "수신자 상호";
+        String QString = "";
         FAXSearchResult response = faxService.search("1234567890", SDate, EDate, State, ReserveYN, SenderOnlyYN, Page, PerPage, Order, QString);
         
         assertNotNull(response);
