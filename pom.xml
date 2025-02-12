@@ -11,10 +11,6 @@
     <description>Popbill API SDK for Java</description>
     <url>http://www.popbill.com</url>
 
-    <properties>
-        <maven.test.skip>true</maven.test.skip>
-    </properties>
-
     <licenses>
         <license>
             <name>MIT License</name>
