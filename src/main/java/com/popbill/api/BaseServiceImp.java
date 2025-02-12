@@ -65,13 +65,13 @@ public abstract class BaseServiceImp implements BaseService {
     private boolean useLocalTimeYN;
     private String linkID;
     private String secretKey;
-    private Gson _gsonParser = new Gson();
+    private final Gson _gsonParser = new Gson();
 
     private String mleKeyID;
     private String mleKeyName;
     private String mlePublicKey;
 
-    private Map<String, Token> tokenTable = new HashMap<String, Token>();
+    private final Map<String, Token> tokenTable = new HashMap<String, Token>();
 
     public Map<String, String> getCustomHeader() {
         return customHeader;
@@ -210,7 +210,7 @@ public abstract class BaseServiceImp implements BaseService {
      * @param ServiceURL
      */
     public void setServiceURL(String ServiceURL) {
-        ServiceURL = ServiceURL;
+        this.ServiceURL = ServiceURL;
     }
 
     public void setProxyIP(String proxyIP) {
@@ -227,7 +227,7 @@ public abstract class BaseServiceImp implements BaseService {
      * @param TestServiceURL
      */
     public void setTestServiceURL(String TestServiceURL) {
-        TestServiceURL = TestServiceURL;
+        this.TestServiceURL = TestServiceURL;
     }
 
     protected String getSecretKey() {
