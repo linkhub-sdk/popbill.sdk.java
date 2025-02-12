@@ -640,22 +640,6 @@ public abstract class BaseServiceImp implements BaseService {
     }
 
     @Override
-    public Response deleteContact(String CorpNum, String ContactID, String UserID) throws PopbillException {
-        if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "사업자번호가 입력되지 않았습니다.");
-        if (ContactID == null || ContactID.isEmpty())
-            throw new PopbillException(-99999999, "담당자 아이디가 입력되지 않았습니다.");
-        if (UserID == null || UserID.isEmpty())
-            throw new PopbillException(-99999999, "팝빌회원 아이디가 입력되지 않았습니다.");
-
-        String uri = "/Contact/Delete";
-
-        uri += "?ContactID=" + ContactID;
-
-        return httppost(uri, CorpNum, null, UserID, Response.class);
-    }
-
-    @Override
     public Response quitMember(String CorpNum, String quitReason) throws PopbillException {
 
         return quitMember(CorpNum, quitReason, null);
