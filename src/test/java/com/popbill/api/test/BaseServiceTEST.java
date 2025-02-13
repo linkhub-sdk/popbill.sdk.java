@@ -426,5 +426,22 @@ public class BaseServiceTEST {
     	}
     	
     }
+
+    @Test
+    public void DeleteContactTest() throws PopbillException {
+        String CorpNum = "6798700433";
+        String ContactID = "";
+        String UserID = "testkorea";
+
+        try {
+            Response result = taxinvoiceService.deleteContact(CorpNum, ContactID, UserID);
+
+            System.out.println(result.getCode());
+            System.out.println(result.getMessage());
+        } catch (PopbillException e) {
+            System.out.println(e.getCode());
+            System.out.println(e.getMessage());
+        }
+    }
 }
 
