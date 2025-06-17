@@ -41,6 +41,13 @@ public class CashbillInfo {
     private String regDT;
     private String stateMemo;
 
+    private String email;
+    private String hp;
+    private String supplyCost;
+    private String tax;
+    private String serviceFee;
+    private String orderNumber;
+
     /**
      * 팝빌번호 확인
      *
@@ -283,4 +290,58 @@ public class CashbillInfo {
     public String getStateMemo() {
         return stateMemo;
     }
+
+    /**
+     * 구매자(고객) 이메일 확인
+     *
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * 구매자(고객) 휴대폰 확인
+     * @return the hp
+     */
+    public String getHp() {
+        return hp;
+    }
+
+    /**
+     * 공급가액 확인
+     *
+     * @return the supplyCost
+     */
+    public String getSupplyCost() {
+        return supplyCost;
+    }
+
+    /**
+     * 부가세 확인
+     *
+     * @return the tax
+     */
+    public String getTax() {
+        return tax;
+    }
+
+    /**
+     * 봉사료 확인
+     *
+     * @return the serviceFee
+     */
+    public String getServiceFee() {
+        return serviceFee;
+    }
+
+    /**
+     * 주문번호 확인
+     *
+     * @return the orderNumber
+     */
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
 }
