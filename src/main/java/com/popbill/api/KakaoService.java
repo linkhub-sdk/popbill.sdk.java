@@ -1441,6 +1441,124 @@ public interface KakaoService extends BaseService {
      */
     public String sendFMS(String CorpNum, String PlusFriendID, String SenderNum, String Content, String AltSubject, String AltContent, String AltSendType, KakaoReceiver[] Receivers, KakaoButton[] Buttons, String SndDT, Boolean AdsYN, File File, String ImageURL, String UserID, String RequestNum)
             throws PopbillException;
+
+
+    /**
+     * 친구톡 이미지 단건전송 (Binary)
+     *
+     * @param CorpNum
+     *            팝빌회원 사업자번호
+     * @param PlusFriendID
+     *            카카오톡 검색용 아이디
+     * @param SenderNum
+     *            발신번호
+     * @param Content
+     *            친구톡 내용
+     * @param AltContent
+     *            대체문자 내용
+     * @param AltSendType
+     *            대체문자 유형
+     * @param Buttons
+     *            버튼 목록
+     * @param ReceiverNum
+     *            수신번호
+     * @param ReceiverName
+     *            수신자명
+     * @param SndDT
+     *            예약일시
+     * @param AdsYN
+     *            광고 전송여부
+     * @param File
+     *            이미지 파일
+     * @param ImageURL
+     *            친구톡 이미지 링크 URL
+     * @param UserID
+     *            팝빌회원 아이디
+     * @param RequestNum
+     *            전송요청번호
+     * @return ReceiptNum 접수번호
+     * @throws PopbillException
+     */
+    public String sendFMSBinary(String CorpNum, String PlusFriendID, String SenderNum, String Content,
+                                String AltSubject, String AltContent, String AltSendType, KakaoButton[] Buttons,
+                                String ReceiverNum, String ReceiverName, String SndDT, Boolean AdsYN, AttachFile File,
+                                String ImageURL, String UserID, String RequestNum)
+            throws PopbillException;
+
+    /**
+     * 친구톡 이미지 개별내용 대량전송 (Binary)
+     *
+     * @param CorpNum
+     *            팝빌회원 사업자번호
+     * @param PlusFriendID
+     *            카카오톡 검색용 아이디
+     * @param SenderNum
+     *            발신번호
+     * @param AltSendType
+     *            대체문자 유형
+     * @param Receivers
+     *            동보수신자 배열
+     * @param Buttons
+     *            버튼 목록
+     * @param SndDT
+     *            예약일시
+     * @param AdsYN
+     *            광고 전송여부
+     * @param File
+     *            이미지 파일
+     * @param ImageURL
+     *            친구톡 이미지 링크 URL
+     * @param UserID
+     *            팝빌회원 아이디
+     * @param RequestNum
+     *            전송요청번호
+     * @return ReceiptNum 접수번호
+     * @throws PopbillException
+     */
+    public String sendFMSBinary(String CorpNum, String PlusFriendID, String SenderNum, String AltSendType,
+                                KakaoReceiver[] Receivers, KakaoButton[] Buttons, String SndDT, Boolean AdsYN,
+                                AttachFile File, String ImageURL, String UserID, String RequestNum)
+            throws PopbillException;
+
+    /**
+     * 친구톡 이미지 동일내용 대량전송 (Binary)
+     *
+     * @param CorpNum
+     *            팝빌회원 사업자번호
+     * @param PlusFriendID
+     *            카카오톡 검색용 아이디
+     * @param SenderNum
+     *            발신번호
+     * @param Content
+     *            친구톡 내용
+     * @param AltContent
+     *            대체문자 내용
+     * @param AltSendType
+     *            대체문자 유형
+     * @param Receivers
+     *            동보수신자 배열
+     * @param Buttons
+     *            버튼 목록
+     * @param SndDT
+     *            예약일시
+     * @param AdsYN
+     *            광고 전송여부
+     * @param File
+     *            이미지 파일
+     * @param ImageURL
+     *            친구톡 이미지 링크 URL
+     * @param UserID
+     *            팝빌회원 아이디
+     * @param RequestNum
+     *            전송요청번호
+     * @return ReceiptNum 접수번호
+     * @throws PopbillException
+     */
+    public String sendFMSBinary(String CorpNum, String PlusFriendID, String SenderNum, String Content,
+                                String AltSubject, String AltContent, String AltSendType, KakaoReceiver[] Receivers,
+                                KakaoButton[] Buttons, String SndDT, Boolean AdsYN, AttachFile File, String ImageURL,
+                                String UserID, String RequestNum)
+            throws PopbillException;
     
     /**
      * 예약전송 취소

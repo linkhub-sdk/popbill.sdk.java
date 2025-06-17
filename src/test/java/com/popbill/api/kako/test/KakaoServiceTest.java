@@ -3,8 +3,12 @@ package com.popbill.api.kako.test;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
+import com.popbill.api.AttachFile;
 import org.junit.Test;
 
 import com.popbill.api.ChargeInfo;
@@ -1493,6 +1497,182 @@ public class KakaoServiceTest {
                 receivers, btns, sndDT, adsYN, file, imageURL, "testkorea", "20180724_fms_19");
         
         assertNotNull(receiptNum);
+        System.out.println(receiptNum);
+    }
+
+    @Test
+    public void sendFMSBinary_single_TEST() throws PopbillException, FileNotFoundException {
+        String CorpNum = "1234567890";
+        String PlusFriendID = "@팝빌";
+        String SenderNum = "07043042993";
+        String Content = "TEST CONTENT";
+        String AltSubject = "";
+        String AltContent = "";
+        String AltSendType = "";
+
+        KakaoButton[] Buttons = new KakaoButton[2];
+        KakaoButton button = new KakaoButton();
+        button.setN("버튼명");
+        button.setT("WL");
+        button.setU1("http://www.popbill.com");
+        button.setU2("http://test.popbill.com");
+        Buttons[0] = button;
+
+        button = new KakaoButton();
+        button.setN("버튼명2");
+        button.setT("WL");
+        button.setU1("http://www.popbill.com");
+        button.setU2("http://test.popbill.com");
+        Buttons[1] = button;
+
+        String ReceiverNum = "010111222";
+        String ReceiverName = "GYUZERO";
+        String SndDT = "";
+        Boolean AdsYN = true;
+
+        File file = new File("/Users/gyuzero/Desktop/test.jpg");
+        InputStream inputStream = new FileInputStream(file);
+
+        AttachFile attachFile = new AttachFile();
+        attachFile.setFileName(file.getName());
+        attachFile.setFileData(inputStream);
+
+        String ImageURL = "http://test.popbill.com";
+
+        String UserID = "testkorea";
+        String RequestNum = "";
+
+        String receiptNum = kakaoService.sendFMSBinary(CorpNum, PlusFriendID, SenderNum, Content, AltSubject,
+                AltContent, AltSendType, Buttons, ReceiverNum, ReceiverName, SndDT, AdsYN, attachFile, ImageURL,
+                UserID, RequestNum);
+
+        assertNotNull(receiptNum);
+
+        System.out.println(receiptNum);
+    }
+
+    @Test
+    public void sendFMSBinary_multi_TEST() throws PopbillException, FileNotFoundException {
+        String CorpNum = "1234567890";
+        String PlusFriendID = "@팝빌";
+        String SenderNum = "07043042993";
+        String AltSendType = "";
+
+        KakaoReceiver[] Receivers = new KakaoReceiver[2];
+
+        KakaoReceiver Receiver = new KakaoReceiver();
+        Receiver.setReceiverNum("010111222");
+        Receiver.setReceiverName("09-1수신자명");
+        Receiver.setMessage("[테스트] 테스트 템플릿입니다요1");
+        Receiver.setAltMessage("대체문자 내용");
+        Receivers[0] = Receiver;
+
+        Receiver = new KakaoReceiver();
+        Receiver.setReceiverNum("010111222");
+        Receiver.setReceiverName("09-2수신자명");
+        Receiver.setMessage("[테스트] 테스트 템플릿입니다요2");
+        Receiver.setAltMessage("대체문자 내용");
+        Receivers[1] = Receiver;
+
+        KakaoButton[] Buttons = new KakaoButton[2];
+        KakaoButton button = new KakaoButton();
+        button.setN("버튼명");
+        button.setT("WL");
+        button.setU1("http://www.popbill.com");
+        button.setU2("http://test.popbill.com");
+        Buttons[0] = button;
+
+        button = new KakaoButton();
+        button.setN("버튼명2");
+        button.setT("WL");
+        button.setU1("http://www.popbill.com");
+        button.setU2("http://test.popbill.com");
+        Buttons[1] = button;
+
+        String SndDT = "";
+        Boolean AdsYN = true;
+
+        File file = new File("/Users/gyuzero/Desktop/test.jpg");
+        InputStream inputStream = new FileInputStream(file);
+
+        AttachFile attachFile = new AttachFile();
+        attachFile.setFileName(file.getName());
+        attachFile.setFileData(inputStream);
+
+        String ImageURL = "http://test.popbill.com";
+
+        String UserID = "testkorea";
+        String RequestNum = "";
+
+        String receiptNum = kakaoService.sendFMSBinary(CorpNum, PlusFriendID, SenderNum, AltSendType, Receivers,
+                Buttons, SndDT, AdsYN, attachFile, ImageURL, UserID, RequestNum);
+
+        assertNotNull(receiptNum);
+
+        System.out.println(receiptNum);
+    }
+
+    @Test
+    public void sendFMSBinary_same_TEST() throws PopbillException, FileNotFoundException {
+        String CorpNum = "1234567890";
+        String PlusFriendID = "@팝빌";
+        String SenderNum = "07043042993";
+        String Content = "TEST CONTENT";
+        String AltSubject = "";
+        String AltContent = "";
+        String AltSendType = "";
+
+        KakaoReceiver[] Receivers = new KakaoReceiver[2];
+
+        KakaoReceiver Receiver = new KakaoReceiver();
+        Receiver.setReceiverNum("010111222");
+        Receiver.setReceiverName("09-1수신자명");
+        Receiver.setMessage("[테스트] 테스트 템플릿입니다요1");
+        Receiver.setAltMessage("대체문자 내용");
+        Receivers[0] = Receiver;
+
+        Receiver = new KakaoReceiver();
+        Receiver.setReceiverNum("010111222");
+        Receiver.setReceiverName("09-2수신자명");
+        Receiver.setMessage("[테스트] 테스트 템플릿입니다요2");
+        Receiver.setAltMessage("대체문자 내용");
+        Receivers[1] = Receiver;
+
+        KakaoButton[] Buttons = new KakaoButton[2];
+        KakaoButton button = new KakaoButton();
+        button.setN("버튼명");
+        button.setT("WL");
+        button.setU1("http://www.popbill.com");
+        button.setU2("http://test.popbill.com");
+        Buttons[0] = button;
+
+        button = new KakaoButton();
+        button.setN("버튼명2");
+        button.setT("WL");
+        button.setU1("http://www.popbill.com");
+        button.setU2("http://test.popbill.com");
+        Buttons[1] = button;
+
+        String SndDT = "";
+        Boolean AdsYN = true;
+
+        File file = new File("/Users/gyuzero/Desktop/test.jpg");
+        InputStream inputStream = new FileInputStream(file);
+
+        AttachFile attachFile = new AttachFile();
+        attachFile.setFileName(file.getName());
+        attachFile.setFileData(inputStream);
+
+        String ImageURL = "http://test.popbill.com";
+
+        String UserID = "testkorea";
+        String RequestNum = "";
+
+        String receiptNum = kakaoService.sendFMSBinary(CorpNum, PlusFriendID, SenderNum, Content, AltSubject,
+                AltContent, AltSendType, Receivers, Buttons, SndDT, AdsYN, attachFile, ImageURL, UserID, RequestNum);
+
+        assertNotNull(receiptNum);
+
         System.out.println(receiptNum);
     }
     

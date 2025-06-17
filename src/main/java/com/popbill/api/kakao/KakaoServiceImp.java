@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.popbill.api.AttachFile;
 import com.popbill.api.BaseServiceImp;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.KakaoService;
@@ -608,6 +609,87 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
         } catch (FileNotFoundException e) {
             throw new PopbillException(-99999999, "전송할 파일을 찾을 수 없습니다.", e);
         }
+        uploadFiles.add(uf);
+
+        ReceiptResponse response = httppostFiles("/FMS", CorpNum, postData, uploadFiles, UserID, ReceiptResponse.class);
+
+        for (UploadFile f : uploadFiles) {
+            if (f.fileData != null)
+                try {
+                    f.fileData.close();
+                } catch (IOException e) {
+                }
+        }
+
+        return response.receiptNum;
+    }
+
+    @Override
+    public String sendFMSBinary(String CorpNum, String PlusFriendID, String SenderNum, String Content,
+                                String AltSubject, String AltContent, String AltSendType, KakaoButton[] Buttons,
+                                String ReceiverNum, String ReceiverName, String SndDT, Boolean AdsYN, AttachFile File,
+                                String ImageURL, String UserID, String RequestNum) throws PopbillException {
+
+        KakaoReceiver receiver = new KakaoReceiver();
+        receiver.setReceiverNum(ReceiverNum);
+        receiver.setReceiverName(ReceiverName);
+        receiver.setMessage(Content);
+        receiver.setAltSubject(AltSubject);
+        receiver.setAltMessage(AltContent);
+
+        return requestFMSBinary(CorpNum, PlusFriendID, SenderNum, null, null, null,
+                AltSendType, new KakaoReceiver[]{receiver}, Buttons, SndDT, AdsYN, File, ImageURL, UserID, RequestNum);
+    }
+
+    @Override
+    public String sendFMSBinary(String CorpNum, String PlusFriendID, String SenderNum, String AltSendType,
+                                KakaoReceiver[] Receivers, KakaoButton[] Buttons, String SndDT, Boolean AdsYN,
+                                AttachFile File, String ImageURL, String UserID, String RequestNum) throws PopbillException {
+
+        return requestFMSBinary(CorpNum, PlusFriendID, SenderNum, null, null, null,
+                AltSendType, Receivers, Buttons, SndDT, AdsYN, File, ImageURL, UserID, RequestNum);
+    }
+
+    @Override
+    public String sendFMSBinary(String CorpNum, String PlusFriendID, String SenderNum, String Content,
+                                String AltSubject, String AltContent, String AltSendType, KakaoReceiver[] Receivers,
+                                KakaoButton[] Buttons, String SndDT, Boolean AdsYN, AttachFile File, String ImageURL,
+                                String UserID, String RequestNum) throws PopbillException {
+
+        return requestFMSBinary(CorpNum, PlusFriendID, SenderNum, Content, AltSubject, AltContent, AltSendType,
+                Receivers, Buttons, SndDT, AdsYN, File, ImageURL, UserID, RequestNum);
+    }
+
+    private String requestFMSBinary(String CorpNum, String PlusFriendID, String SenderNum, String Content,
+                                    String AltSubject, String AltContent, String AltSendType, KakaoReceiver[] Receivers,
+                                    KakaoButton[] Buttons, String SndDT, Boolean AdsYN, AttachFile File, String ImageURL,
+                                    String UserID, String RequestNum) throws PopbillException {
+
+        if (File == null)
+            throw new PopbillException(-99999999, "전송 이미지 파일 정보가 입력되지 않았습니다.");
+
+        FTSSendRequest request = new FTSSendRequest();
+        request.plusFriendID = PlusFriendID;
+        request.snd = SenderNum;
+        request.content = Content;
+        request.altSubject = AltSubject;
+        request.altContent = AltContent;
+        request.altSendType = AltSendType;
+        request.msgs = Receivers;
+        request.btns = Buttons;
+        request.sndDT = SndDT;
+        request.adsYN = AdsYN;
+        request.imageURL = ImageURL;
+        request.requestNum = RequestNum;
+
+        String postData = toJsonString(request);
+
+        List<UploadFile> uploadFiles = new ArrayList<UploadFile>();
+
+        UploadFile uf = new UploadFile();
+        uf.fieldName = "file";
+        uf.fileName = File.getFileName();
+        uf.fileData = File.getFileData();
         uploadFiles.add(uf);
 
         ReceiptResponse response = httppostFiles("/FMS", CorpNum, postData, uploadFiles, UserID, ReceiptResponse.class);
