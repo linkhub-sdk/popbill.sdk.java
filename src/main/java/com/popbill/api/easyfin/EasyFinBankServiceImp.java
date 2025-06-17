@@ -11,6 +11,7 @@ import com.popbill.api.EasyFinBankService;
 import com.popbill.api.FlatRateState;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.util.ValidationUtils;
 
 public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBankService {
 
@@ -391,7 +392,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
         String uri = "/EasyFin/Bank/" + JobID + "?TradeType=";
 
         if (TradeType != null)
-            uri += replaceInvalidUriChars(TradeType);
+            uri += ValidationUtils.replaceInvalidUriChars(TradeType);
         if (SearchString != "" && SearchString != null) {
             try {
                 uri += "&SearchString=" + URLEncoder.encode(SearchString, "UTF-8");
@@ -436,7 +437,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
         String uri = "/EasyFin/Bank/" + JobID + "/Summary" + "?TradeType=";
 
         if (TradeType != null)
-            uri += replaceInvalidUriChars(TradeType);
+            uri += ValidationUtils.replaceInvalidUriChars(TradeType);
 
         if (SearchString != "" && SearchString != null) {
             try {

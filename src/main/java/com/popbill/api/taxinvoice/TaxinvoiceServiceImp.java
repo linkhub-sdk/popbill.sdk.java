@@ -25,6 +25,7 @@ import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.TaxinvoiceCertificate;
 import com.popbill.api.TaxinvoiceService;
+import com.popbill.api.util.ValidationUtils;
 import kr.co.linkhub.auth.Base64;
 
 import java.io.InputStream;
@@ -763,13 +764,13 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         uri += "&EDate=" + EDate;
 
         if (State != null)
-            uri += "&State=" + replaceInvalidUriChars(State);
+            uri += "&State=" + ValidationUtils.replaceInvalidUriChars(State);
         if (Type != null)
-            uri += "&Type=" + replaceInvalidUriChars(Type);
+            uri += "&Type=" + ValidationUtils.replaceInvalidUriChars(Type);
         if (TaxType != null)
-            uri += "&TaxType=" + replaceInvalidUriChars(TaxType);
+            uri += "&TaxType=" + ValidationUtils.replaceInvalidUriChars(TaxType);
         if (IssueType != null)
-            uri += "&IssueType=" + replaceInvalidUriChars(IssueType);
+            uri += "&IssueType=" + ValidationUtils.replaceInvalidUriChars(IssueType);
         if (LateOnly != null) {
             if (LateOnly) {
                 uri += "&LateOnly=1";
@@ -799,9 +800,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         if (InterOPYN != null && !InterOPYN.isEmpty())
             uri += "&InterOPYN=" + InterOPYN;
         if (RegType != null)
-            uri += "&RegType=" + replaceInvalidUriChars(RegType);
+            uri += "&RegType=" + ValidationUtils.replaceInvalidUriChars(RegType);
         if (CloseDownState != null)
-            uri += "&CloseDownState=" + replaceInvalidUriChars(CloseDownState);
+            uri += "&CloseDownState=" + ValidationUtils.replaceInvalidUriChars(CloseDownState);
         if (MgtKey != null && !MgtKey.isEmpty())
             uri += "&MgtKey=" + MgtKey;
 

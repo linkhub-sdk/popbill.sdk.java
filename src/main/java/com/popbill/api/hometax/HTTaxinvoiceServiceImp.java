@@ -14,6 +14,7 @@ import com.popbill.api.FlatRateState;
 import com.popbill.api.HTTaxinvoiceService;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.util.ValidationUtils;
 
 /**
  * Implementation of Popbill HomeTax Taxinvoice Service Interface
@@ -176,11 +177,11 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
         String uri = "/HomeTax/Taxinvoice/" + JobID + "?Type=";
 
         if (Type != null)
-            uri += replaceInvalidUriChars(Type);
+            uri += ValidationUtils.replaceInvalidUriChars(Type);
         if (TaxType != null)
-            uri += "&TaxType=" + replaceInvalidUriChars(TaxType);
+            uri += "&TaxType=" + ValidationUtils.replaceInvalidUriChars(TaxType);
         if (PurposeType != null)
-            uri += "&PurposeType=" + replaceInvalidUriChars(PurposeType);
+            uri += "&PurposeType=" + ValidationUtils.replaceInvalidUriChars(PurposeType);
         if (TaxRegIDYN != null && !TaxRegIDYN.isEmpty())
             uri += "&TaxRegIDYN=" + TaxRegIDYN;
         if (TaxRegIDType != null && !TaxRegIDType.isEmpty())
@@ -235,11 +236,11 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
         String uri = "/HomeTax/Taxinvoice/" + JobID + "/Summary" + "?Type=";
 
         if (Type != null)
-            uri += replaceInvalidUriChars(Type);
+            uri += ValidationUtils.replaceInvalidUriChars(Type);
         if (TaxType != null)
-            uri += "&TaxType=" + replaceInvalidUriChars(TaxType);
+            uri += "&TaxType=" + ValidationUtils.replaceInvalidUriChars(TaxType);
         if (PurposeType != null)
-            uri += "&PurposeType=" + replaceInvalidUriChars(PurposeType);
+            uri += "&PurposeType=" + ValidationUtils.replaceInvalidUriChars(PurposeType);
         if (TaxRegIDYN != "" && TaxRegIDYN != null)
             uri += "&TaxRegIDYN=" + TaxRegIDYN;
         if (TaxRegIDType != "" && TaxRegIDType != null)

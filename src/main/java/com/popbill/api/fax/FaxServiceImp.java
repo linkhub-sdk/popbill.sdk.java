@@ -19,6 +19,7 @@ import com.popbill.api.FaxService;
 import com.popbill.api.FaxUploadFile;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.util.ValidationUtils;
 
 /**
  * Implementation of Popbill FaxService Interface
@@ -1462,7 +1463,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
         uri += "&EDate=" + EDate;
 
         if (State != null)
-            uri += "&State=" + replaceInvalidUriChars(State);
+            uri += "&State=" + ValidationUtils.replaceInvalidUriChars(State);
         if (ReserveYN != null)
             uri += "&ReserveYN=" + ReserveYN;
         if (SenderOnly != null)

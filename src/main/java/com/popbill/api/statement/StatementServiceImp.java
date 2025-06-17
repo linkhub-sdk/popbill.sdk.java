@@ -15,6 +15,7 @@ import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.SMTIssueResponse;
 import com.popbill.api.StatementService;
+import com.popbill.api.util.ValidationUtils;
 
 /**
  * Implementation of Popbill StatemenService Interface
@@ -719,9 +720,9 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
         uri += "&EDate=" + EDate;
 
         if (State != null)
-            uri += "&State=" + replaceInvalidUriChars(State);
+            uri += "&State=" + ValidationUtils.replaceInvalidUriChars(State);
         if (ItemCode != null)
-            uri += "&ItemCode=" + replaceInvalidUriChars(ItemCode);
+            uri += "&ItemCode=" + ValidationUtils.replaceInvalidUriChars(ItemCode);
         if (QString != null && !QString.isEmpty()) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");

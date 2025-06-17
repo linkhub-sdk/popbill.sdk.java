@@ -1,5 +1,6 @@
 package com.popbill.api.util;
 
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class ValidationUtils {
@@ -34,6 +35,14 @@ public abstract class ValidationUtils {
     public static boolean isValidDateTime(String str) {
         if (str == null) return false;
         return str.matches(DATETIME_PATTERN);
+    }
+
+    public static String replaceInvalidUriChars(String[] array) {
+        return Arrays.toString(array).replaceAll("[^0-9A-Z*,]", "");
+    }
+
+    public static String replaceInvalidUriChars(int[] array) {
+        return Arrays.toString(array).replaceAll("[^0-9,]", "");
     }
 
 }

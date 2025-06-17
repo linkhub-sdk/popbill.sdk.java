@@ -19,6 +19,7 @@ import com.popbill.api.ChargeInfo;
 import com.popbill.api.MessageService;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.util.ValidationUtils;
 
 /**
  * Implementation of Popbill MessageService Interface
@@ -1316,10 +1317,10 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 
         String uri = "/Message/Search?SDate=" + SDate;
         uri += "&EDate=" + EDate;
-        uri += "&State=" + replaceInvalidUriChars(State);
+        uri += "&State=" + ValidationUtils.replaceInvalidUriChars(State);
 
         if (Item != null)
-            uri += "&Item=" + replaceInvalidUriChars(Item);
+            uri += "&Item=" + ValidationUtils.replaceInvalidUriChars(Item);
         if (ReserveYN != null)
             uri += "&ReserveYN=" + ReserveYN;
         if (SenderOnly != null)

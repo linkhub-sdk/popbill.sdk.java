@@ -16,6 +16,7 @@ import com.popbill.api.ChargeInfo;
 import com.popbill.api.KakaoService;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.util.ValidationUtils;
 
 public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
@@ -815,10 +816,10 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
         String uri = "/KakaoTalk/Search?SDate=" + SDate;
         uri += "&EDate=" + EDate;
-        uri += "&State=" + replaceInvalidUriChars(State);
+        uri += "&State=" + ValidationUtils.replaceInvalidUriChars(State);
 
         if (Item != null)
-            uri += "&Item=" + replaceInvalidUriChars(Item);
+            uri += "&Item=" + ValidationUtils.replaceInvalidUriChars(Item);
         if (ReserveYN != null && !ReserveYN.isEmpty())
             uri += "&ReserveYN=" + ReserveYN;
         if (SenderOnly != null)

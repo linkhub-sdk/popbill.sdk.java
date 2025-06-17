@@ -13,6 +13,7 @@ import com.popbill.api.EmailSendConfig;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.CBIssueResponse;
+import com.popbill.api.util.ValidationUtils;
 
 /**
  *  Implementation of Popbill CashbillService Interface
@@ -801,15 +802,15 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
         uri += "&EDate=" + EDate;
 
         if (State != null)
-            uri += "&State=" + replaceInvalidUriChars(State);
+            uri += "&State=" + ValidationUtils.replaceInvalidUriChars(State);
         if (TradeType != null)
-            uri += "&TradeType=" + replaceInvalidUriChars(TradeType);
+            uri += "&TradeType=" + ValidationUtils.replaceInvalidUriChars(TradeType);
         if (TradeUsage != null)
-            uri += "&TradeUsage=" + replaceInvalidUriChars(TradeUsage);
+            uri += "&TradeUsage=" + ValidationUtils.replaceInvalidUriChars(TradeUsage);
         if (TradeOpt != null)
-            uri += "&TradeOpt=" + replaceInvalidUriChars(TradeOpt);
+            uri += "&TradeOpt=" + ValidationUtils.replaceInvalidUriChars(TradeOpt);
         if (TaxationType != null)
-            uri += "&TaxationType=" + replaceInvalidUriChars(TaxationType);
+            uri += "&TaxationType=" + ValidationUtils.replaceInvalidUriChars(TaxationType);
         if (QString != null && !QString.isEmpty()) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");

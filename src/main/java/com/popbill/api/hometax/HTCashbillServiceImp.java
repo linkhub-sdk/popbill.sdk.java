@@ -12,6 +12,7 @@ import com.popbill.api.FlatRateState;
 import com.popbill.api.HTCashbillService;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.util.ValidationUtils;
 
 /**
  * Implementation of Popbill Hometax Cashbill Service Interface
@@ -117,9 +118,9 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
         String uri = "/HomeTax/Cashbill/" + JobID + "?TradeUsage=";
 
         if (TradeUsage != null)
-            uri += replaceInvalidUriChars(TradeUsage);
+            uri += ValidationUtils.replaceInvalidUriChars(TradeUsage);
         if (TradeType != null)
-            uri += "&TradeType=" + replaceInvalidUriChars(TradeType);
+            uri += "&TradeType=" + ValidationUtils.replaceInvalidUriChars(TradeType);
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)
@@ -151,9 +152,9 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
         String uri = "/HomeTax/Cashbill/" + JobID + "/Summary" + "?TradeUsage=";
 
         if (TradeUsage != null)
-            uri += replaceInvalidUriChars(TradeUsage);
+            uri += ValidationUtils.replaceInvalidUriChars(TradeUsage);
         if (TradeType != null)
-            uri += "&TradeType=" + replaceInvalidUriChars(TradeType);
+            uri += "&TradeType=" + ValidationUtils.replaceInvalidUriChars(TradeType);
 
         return httpget(uri, CorpNum, UserID, HTCashbillSummary.class);
     }

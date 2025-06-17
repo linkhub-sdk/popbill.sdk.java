@@ -1591,12 +1591,4 @@ public abstract class BaseServiceImp implements BaseService {
         return Result;
     }
 
-    protected String replaceInvalidUriChars(String[] array) {
-        return Arrays.toString(array).replaceAll("[^0-9A-Z*,]", "");
-    }
-
-    protected String replaceInvalidUriChars(int[] array) {
-        return Arrays.toString(array).replaceAll("[^0-9,]", "");
-    }
-
 }
