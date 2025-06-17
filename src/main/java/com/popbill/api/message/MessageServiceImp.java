@@ -1211,9 +1211,9 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      */
     @Override
     public MSGSearchResult search(String CorpNum, String SDate, String EDate, String[] State,
-                                  String[] Item, Boolean ReserveYN, Boolean SenderYN, Integer Page, Integer PerPage, String Order)
+                                  String[] Item, Boolean ReserveYN, Boolean SenderOnly, Integer Page, Integer PerPage, String Order)
             throws PopbillException {
-        return search(CorpNum, SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order,
+        return search(CorpNum, SDate, EDate, State, Item, ReserveYN, SenderOnly, Page, PerPage, Order,
                 null);
     }
 
@@ -1226,13 +1226,13 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      */
     @Override
     public MSGSearchResult search(String CorpNum, String SDate, String EDate, String[] State,
-                                  String[] Item, Boolean ReserveYN, Boolean SenderYN, Integer Page, Integer PerPage, String Order,
+                                  String[] Item, Boolean ReserveYN, Boolean SenderOnly, Integer Page, Integer PerPage, String Order,
                                   String QString) throws PopbillException {
-        return search(CorpNum, SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order, QString, null);
+        return search(CorpNum, SDate, EDate, State, Item, ReserveYN, SenderOnly, Page, PerPage, Order, QString, null);
     }
 
     @Override
-    public MSGSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, Boolean ReserveYN, Boolean SenderYN, Integer Page, Integer PerPage, String Order, String QString, String UserID) throws PopbillException {
+    public MSGSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, Boolean ReserveYN, Boolean SenderOnly, Integer Page, Integer PerPage, String Order, String QString, String UserID) throws PopbillException {
 
         if (SDate == null)
             throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
@@ -1249,8 +1249,8 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
             uri += "&Item=" + replaceInvalidUriChars(Item);
         if (ReserveYN != null)
             uri += "&ReserveYN=" + ReserveYN;
-        if (SenderYN != null)
-            uri += "&SenderOnly=" + SenderYN;
+        if (SenderOnly != null)
+            uri += "&SenderOnly=" + SenderOnly;
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)

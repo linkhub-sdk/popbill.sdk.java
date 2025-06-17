@@ -1617,7 +1617,7 @@ public interface KakaoService extends BaseService {
      *            검색대상
      * @param ReserveYN
      *            예약여부
-     * @param SenderYN
+     * @param SenderOnly
      *            개인조회여부
      * @param Page
      *            페이지 번호
@@ -1628,7 +1628,7 @@ public interface KakaoService extends BaseService {
      * @return 카카오톡 목록조회 결과 (see com.popbill.api.kakao.KakaoSearchResult)
      * @throws PopbillException
      */
-    public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderYN, Integer Page, Integer PerPage, String Order)
+    public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderOnly, Integer Page, Integer PerPage, String Order)
             throws PopbillException;
 
 
@@ -1647,7 +1647,7 @@ public interface KakaoService extends BaseService {
      *            검색대상
      * @param ReserveYN
      *            예약여부
-     * @param SenderYN
+     * @param SenderOnly
      *            개인조회여부
      * @param Page
      *            페이지 번호
@@ -1660,7 +1660,7 @@ public interface KakaoService extends BaseService {
      * @return 카카오톡 목록조회 결과 (see com.popbill.api.kakao.KakaoSearchResult)
      * @throws PopbillException
      */
-    public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderYN, Integer Page, Integer PerPage, String Order, String UserID)
+    public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderOnly, Integer Page, Integer PerPage, String Order, String UserID)
             throws PopbillException;
 
 
@@ -1679,7 +1679,7 @@ public interface KakaoService extends BaseService {
      *            검색대상
      * @param ReserveYN
      *            예약여부
-     * @param SenderYN
+     * @param SenderOnly
      *            개인조회여부
      * @param Page
      *            페이지 번호
@@ -1694,7 +1694,7 @@ public interface KakaoService extends BaseService {
      * @return 카카오톡 목록조회 결과 (see com.popbill.api.kakao.KakaoSearchResult)
      * @throws PopbillException
      */
-    public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderYN, Integer Page, Integer PerPage, String Order, String UserID, String QString)
+    public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderOnly, Integer Page, Integer PerPage, String Order, String UserID, String QString)
             throws PopbillException;
 
     /**

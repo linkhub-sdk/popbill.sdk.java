@@ -710,19 +710,19 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     }
 
     @Override
-    public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderYN,
+    public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderOnly,
                                     Integer Page, Integer PerPage, String Order) throws PopbillException {
-        return search(CorpNum, SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order, null);
+        return search(CorpNum, SDate, EDate, State, Item, ReserveYN, SenderOnly, Page, PerPage, Order, null);
     }
 
     @Override
-    public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderYN,
+    public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderOnly,
                                     Integer Page, Integer PerPage, String Order, String UserID) throws PopbillException {
-        return search(CorpNum, SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order, UserID, null);
+        return search(CorpNum, SDate, EDate, State, Item, ReserveYN, SenderOnly, Page, PerPage, Order, UserID, null);
     }
 
     @Override
-    public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderYN,
+    public KakaoSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, String ReserveYN, Boolean SenderOnly,
                                     Integer Page, Integer PerPage, String Order, String UserID, String QString) throws PopbillException {
         if (SDate == null)
             throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
@@ -739,8 +739,8 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
             uri += "&Item=" + replaceInvalidUriChars(Item);
         if (ReserveYN != null && !ReserveYN.isEmpty())
             uri += "&ReserveYN=" + ReserveYN;
-        if (SenderYN != null)
-            uri += "&SenderOnly=" + SenderYN;
+        if (SenderOnly != null)
+            uri += "&SenderOnly=" + SenderOnly;
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)

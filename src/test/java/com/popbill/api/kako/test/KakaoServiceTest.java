@@ -2008,13 +2008,13 @@ public class KakaoServiceTest {
         String[] State = {"0","1","2","3","4","5"};
         String[] Item = {"ATS","FTS","FMS"};
         String ReserveYN = "";
-        Boolean SenderYN = false;
+        Boolean SenderOnly = false;
         int Page = 1;
         int PerPage = 50;
         String Order = "D";
         String QString = "";
         
-        KakaoSearchResult result = kakaoService.search("1234567890", SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order, "testkorea", QString);
+        KakaoSearchResult result = kakaoService.search("1234567890", SDate, EDate, State, Item, ReserveYN, SenderOnly, Page, PerPage, Order, "testkorea", QString);
         
         assertNotNull(result);
         

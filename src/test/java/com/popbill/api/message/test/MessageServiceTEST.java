@@ -1740,13 +1740,13 @@ public class MessageServiceTEST {
         String[] State = {"1","2","3","4"};
         String[] Item = {"SMS","LMS","MMS"};
         Boolean ReserveYN = false;
-        Boolean SenderYN = true;
+        Boolean SenderOnly = true;
         int Page = 1;
         int PerPage = 50;
         String Order = "D";
         String QString = null;
         
-        MSGSearchResult response = messageService.search("1234567890", SDate, EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order, QString);
+        MSGSearchResult response = messageService.search("1234567890", SDate, EDate, State, Item, ReserveYN, SenderOnly, Page, PerPage, Order, QString);
         
         assertNotNull(response);
         

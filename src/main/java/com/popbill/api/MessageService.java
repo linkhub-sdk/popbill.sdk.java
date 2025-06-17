@@ -1652,7 +1652,7 @@ public interface MessageService extends BaseService {
      *          검색대상 배열, SMS-단문, LMS-장문 ,MMS-포토  
      * @param ReserveYN
      *          예약여부, true-예약전송조회, false-전체조회 
-     * @param SenderYN
+     * @param SenderOnly
      *          개인조회여부, true-개인조회, false-전체조회
      * @param Page
      *          페이지번호 
@@ -1664,7 +1664,7 @@ public interface MessageService extends BaseService {
      * @throws PopbillException
      */
     public MSGSearchResult search(String CorpNum, String SDate, String EDate, 
-            String[] State, String[] Item, Boolean ReserveYN, Boolean SenderYN, 
+            String[] State, String[] Item, Boolean ReserveYN, Boolean SenderOnly,
             Integer Page, Integer PerPage, String Order) throws PopbillException;
     
     /**
@@ -1682,7 +1682,7 @@ public interface MessageService extends BaseService {
      *          검색대상 배열, SMS-단문, LMS-장문 ,MMS-포토  
      * @param ReserveYN
      *          예약여부, true-예약전송조회, false-전체조회 
-     * @param SenderYN
+     * @param SenderOnly
      *          개인조회여부, true-개인조회, false-전체조회
      * @param Page
      *          페이지번호 
@@ -1696,7 +1696,7 @@ public interface MessageService extends BaseService {
      * @throws PopbillException
      */
     public MSGSearchResult search(String CorpNum, String SDate, String EDate, 
-            String[] State, String[] Item, Boolean ReserveYN, Boolean SenderYN, 
+            String[] State, String[] Item, Boolean ReserveYN, Boolean SenderOnly,
             Integer Page, Integer PerPage, String Order, String QString) throws PopbillException;
 
     /**
@@ -1714,7 +1714,7 @@ public interface MessageService extends BaseService {
      *          검색대상 배열, SMS-단문, LMS-장문 ,MMS-포토
      * @param ReserveYN
      *          예약여부, true-예약전송조회, false-전체조회
-     * @param SenderYN
+     * @param SenderOnly
      *          개인조회여부, true-개인조회, false-전체조회
      * @param Page
      *          페이지번호
@@ -1730,7 +1730,7 @@ public interface MessageService extends BaseService {
      * @throws PopbillException
      */
     public MSGSearchResult search(String CorpNum, String SDate, String EDate,
-            String[] State, String[] Item, Boolean ReserveYN, Boolean SenderYN,
+            String[] State, String[] Item, Boolean ReserveYN, Boolean SenderOnly,
             Integer Page, Integer PerPage, String Order, String QString, String UserID) throws PopbillException;
 
     /**
