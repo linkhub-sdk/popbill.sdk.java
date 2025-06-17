@@ -1096,6 +1096,72 @@ public interface MessageService extends BaseService {
             throws PopbillException;
 
     /**
+     * 멀티문자메시지 1건 전송 (Binary)
+     *
+     * @param CorpNum
+     *            팝빌회원 사업자번호
+     * @param Sender
+     *            발신자번호
+     * @param SenderName
+     *            발신자명
+     * @param Receiver
+     *            수신자번호
+     * @param ReceiverName
+     *            수신자명칭
+     * @param Subject
+     *            장문메시지 제목
+     * @param Content
+     *            장문메시지 내용 최대 2000Byte.
+     * @param File
+     *            전송파일 최대크기 300Kbyte
+     * @param ReserveDT
+     *            예약전송시 예약일시.
+     * @param UserID
+     *            팝빌회원 아이디
+     * @param AdsYN
+     *            광고문자 전송여부
+     * @param RequestNum
+     *            전송요청번호
+     * @return ReceiptNum 접수번호.
+     * @throws PopbillException
+     */
+    public String sendMMSBinary(String CorpNum, String Sender, String SenderName, String Receiver,
+                                String ReceiverName, String Subject, String Content, AttachFile File,
+                                Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum) throws PopbillException;
+
+    /**
+     * 멀티 문자메시지 다량 전송. 발신번호, 내용 동보전송. 1회 최대 1000건. (Binary)
+     *
+     * @param CorpNum
+     *            팝빌회원 사업자번호
+     * @param Sender
+     *            동보전송 발신번호
+     * @param SenderName
+     *            동보전송 발신자명
+     * @param Subject
+     *            동보전송 장문메시지 제목
+     * @param Content
+     *            동보전송 장문메시지 내용.
+     * @param Messages
+     *            메시지 배열. 수신자번호, 수신자명칭을 기재. 별도 발신번호와 내용 기재시 해당건만 개별전송.
+     * @param File
+     *            전송파일 최대크기 300Kbyte
+     * @param ReserveDT
+     *            예약일시
+     * @param AdsYN
+     *          광고문자 전송여부
+     * @param UserID
+     *            팝빌회원 아이디
+     * @param RequestNum
+     *            전송요청번호
+     * @return ReceiptNum 접수번호.
+     * @throws PopbillException
+     */
+    public String sendMMSBinary(String CorpNum, String Sender, String SenderName, String Subject, String Content,
+                                Message[] Messages, AttachFile File, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum)
+            throws PopbillException;
+
+    /**
      * 단/장문 문자메시지(메시지 길이에 따라 단문/장문을 선택하여 전송) 1건 전송
      * 
      * @param CorpNum

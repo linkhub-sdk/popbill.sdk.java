@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import com.popbill.api.AttachFile;
 import com.popbill.api.BaseServiceImp;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.MessageService;
@@ -1198,6 +1199,78 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 
         ReceiptResponse response =
                 httppost("/" + MsgType.name(), CorpNum, PostData, UserID, ReceiptResponse.class);
+
+        return response.receiptNum;
+    }
+
+    @Override
+    public String sendMMSBinary(String CorpNum, String Sender, String SenderName, String Receiver, String ReceiverName,
+                                String Subject, String Content, AttachFile File, Date ReserveDT, Boolean AdsYN,
+                                String UserID, String RequestNum) throws PopbillException {
+
+        Message message = new Message();
+
+        message.setSender(Sender);
+        message.setSenderName(SenderName);
+        message.setReceiver(Receiver);
+        message.setReceiverName(ReceiverName);
+        message.setContent(Content);
+        message.setSubject(Subject);
+
+        return sendMMSBinary(CorpNum, null, null, null, null,
+                new Message[]{message}, File, ReserveDT, AdsYN, UserID, RequestNum);
+    }
+
+    @Override
+    public String sendMMSBinary(String CorpNum, String Sender, String SenderName, String Subject, String Content,
+                                Message[] Messages, AttachFile File, Date ReserveDT, Boolean AdsYN, String UserID,
+                                String RequestNum) throws PopbillException {
+
+        if (File == null)
+            throw new PopbillException(-99999999, "전송할 파일의 정보가 입력되지 않았습니다.");
+
+        SendRequest request = new SendRequest();
+        request.snd = Sender;
+
+        request.content = Content;
+        request.subject = Subject;
+
+        if (SenderName != null)
+            request.sndnm = SenderName;
+
+        if (AdsYN) {
+            request.adsYN = true;
+        } else {
+            request.adsYN = false;
+        }
+
+        if (ReserveDT != null)
+            request.sndDT = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(ReserveDT);
+
+        request.msgs = Messages;
+
+        if (RequestNum != null)
+            request.requestNum = RequestNum;
+
+        String PostData = toJsonString(request);
+
+        List<UploadFile> uploadFiles = new ArrayList<UploadFile>();
+
+        UploadFile uf = new UploadFile();
+        uf.fieldName = "file";
+        uf.fileName = File.getFileName();
+        uf.fileData = File.getFileData();
+        uploadFiles.add(uf);
+
+        ReceiptResponse response = httppostFiles("/MMS", CorpNum, PostData, uploadFiles, UserID, ReceiptResponse.class);
+
+        for (UploadFile f : uploadFiles) {
+            if (f.fileData != null)
+                try {
+                    f.fileData.close();
+                } catch (IOException e) {
+                }
+        }
 
         return response.receiptNum;
     }

@@ -3,11 +3,15 @@ package com.popbill.api.message.test;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.popbill.api.AttachFile;
 import org.junit.Test;
 
 import com.popbill.api.ChargeInfo;
@@ -1868,6 +1872,60 @@ public class MessageServiceTEST {
         File file = new File("/Users/John/Documents/test.jpg");
         
         String receiptNum = messageService.sendMMS("1234567890", null, null, null, Messages, file, null, true, "testkorea");
+        assertNotNull(receiptNum);
+        System.out.println(receiptNum);
+    }
+
+    @Test
+    public void sendMMSBinary_Single_adsYN_TEST() throws PopbillException, FileNotFoundException {
+        File file = new File("/Users/gyuzero/Desktop/test.jpg");
+        InputStream inputStream = new FileInputStream(file);
+
+        AttachFile attachFile = new AttachFile();
+        attachFile.setFileName(file.getName());
+        attachFile.setFileData(inputStream);
+
+        String receiptNum = messageService.sendMMSBinary("1234567890", "07075103710", "발신자명",
+                "010111222", "수신자명", "메시지제목", "메시지내용", attachFile,
+                null, false, "testkorea", null);
+
+        assertNotNull(receiptNum);
+
+        System.out.println(receiptNum);
+    }
+
+    @Test
+    public void sendMMSBinary_multi_adsYN_TEST() throws PopbillException, FileNotFoundException {
+        Message[] Messages = new Message[2];
+
+        Message message = new Message();
+        message.setSender("07075103710");
+        message.setReceiver("010111222");
+        message.setReceiverName("수신자명1");
+        message.setSubject("JAVA MMS 멀티 메시지 제목");
+        message.setContent("");
+
+        Messages[0] = message;
+
+        Message message2 = new Message();
+        message2.setSender("07075103710");
+        message2.setReceiver("010111222");
+        message2.setReceiverName("수신자명2");
+        message2.setSubject("JAVA MMS 멀티 메시지 제목2");
+        message2.setContent("이런경우는");
+        Messages[1] = message2;
+
+        File file = new File("/Users/gyuzero/Desktop/test.jpg");
+        InputStream inputStream = new FileInputStream(file);
+
+        AttachFile attachFile = new AttachFile();
+        attachFile.setFileName(file.getName());
+        attachFile.setFileData(inputStream);
+
+        String receiptNum = messageService.sendMMSBinary("1234567890", "07075103710", "발신자명",
+                "메시지제목", "메시지내용", Messages, attachFile,
+                null, false, "testkorea", null);
+
         assertNotNull(receiptNum);
         System.out.println(receiptNum);
     }
