@@ -9,6 +9,7 @@ import com.popbill.api.BaseServiceImp;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.DepositorCheckInfo;
 import com.popbill.api.PopbillException;
+import com.popbill.api.util.ValidationUtils;
 
 /**
  * @author John
@@ -53,13 +54,19 @@ public class AccountCheckServiceImp extends BaseServiceImp implements AccountChe
     }
 
     @Override
-    public ChargeInfo getChargeInfo(String CorpNum, String serviceType, String UserID) throws PopbillException {
-        return httpget("/EasyFin/AccountCheck/ChargeInfo", CorpNum, UserID, ChargeInfo.class);
+    public ChargeInfo getChargeInfo(String CorpNum, String serviceType) throws PopbillException {
+        return getChargeInfo(CorpNum, serviceType, null);
     }
 
     @Override
-    public ChargeInfo getChargeInfo(String CorpNum, String serviceType) throws PopbillException {
-        return httpget("/EasyFin/AccountCheck/ChargeInfo?serviceType=" + serviceType, CorpNum, null, ChargeInfo.class);
+    public ChargeInfo getChargeInfo(String CorpNum, String serviceType, String UserID) throws PopbillException {
+
+        String uri = "/EasyFin/AccountCheck/ChargeInfo";
+
+        if (!ValidationUtils.isNullOrEmpty(serviceType))
+            uri += "?serviceType=" + serviceType;
+
+        return httpget(uri, CorpNum, UserID, ChargeInfo.class);
     }
 
     @Override
