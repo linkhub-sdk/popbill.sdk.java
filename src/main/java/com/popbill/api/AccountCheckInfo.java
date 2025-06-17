@@ -13,6 +13,7 @@ public class AccountCheckInfo implements Serializable {
     private String result;
     private String resultCode;
     private String resultMessage;
+    private String checkDT;
 
     public String getBankCode() {
         return bankCode;
@@ -40,5 +41,9 @@ public class AccountCheckInfo implements Serializable {
 
     public String getResultMessage() {
         return resultMessage;
+    }
+
+    public String getCheckDT() {
+        return checkDT;
     }
 }

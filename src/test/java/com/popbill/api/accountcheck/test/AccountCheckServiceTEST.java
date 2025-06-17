@@ -79,6 +79,7 @@ public class AccountCheckServiceTEST {
         System.out.println(state.getResult());
         System.out.println(state.getResultCode());
         System.out.println(state.getResultMessage());
+        System.out.println(state.getCheckDT());
 
     }
 
@@ -116,6 +117,7 @@ public class AccountCheckServiceTEST {
         System.out.println(state.getResult());
         System.out.println(state.getResultCode());
         System.out.println(state.getResultMessage());
+        System.out.println(state.getCheckDT());
 
     }
 

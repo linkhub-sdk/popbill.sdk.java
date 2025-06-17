@@ -14,6 +14,7 @@ public class DepositorCheckInfo implements Serializable {
     private String resultMessage;
     private String identityNum;
     private String identityNumType;
+    private String checkDT;
 
     public String getBankCode() {
         return bankCode;
@@ -49,5 +50,9 @@ public class DepositorCheckInfo implements Serializable {
 
     public String getIdentityNumType() {
         return identityNumType;
+    }
+
+    public String getCheckDT() {
+        return checkDT;
     }
 }
