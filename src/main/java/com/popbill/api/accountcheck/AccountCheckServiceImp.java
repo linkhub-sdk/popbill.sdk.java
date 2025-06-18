@@ -35,15 +35,14 @@ public class AccountCheckServiceImp extends BaseServiceImp implements AccountChe
 
     @Override
     public float getUnitCost(String CorpNum, String serviceType, String UserID) throws PopbillException {
-        UnitCostResponse response = null;
 
-        if(serviceType == null){
-            response = httpget("/EasyFin/AccountCheck/UnitCost", CorpNum, null,
-                    UnitCostResponse.class);
-        }else{
-            response = httpget("/EasyFin/AccountCheck/UnitCost?serviceType=" + serviceType, CorpNum, null,
-                    UnitCostResponse.class);
-        }
+        String uri = "/EasyFin/AccountCheck/UnitCost";
+
+        if (!ValidationUtils.isNullOrEmpty(serviceType))
+            uri += "?serviceType=" + serviceType;
+
+        UnitCostResponse response = httpget(uri, CorpNum, UserID, UnitCostResponse.class);
+
         return response.unitCost;
     }
 
