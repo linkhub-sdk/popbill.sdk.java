@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.popbill.api.AttachFile;
+import com.popbill.api.Attachment;
 import com.popbill.api.BaseServiceImp;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.KakaoService;
@@ -628,7 +628,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     @Override
     public String sendFMSBinary(String CorpNum, String PlusFriendID, String SenderNum, String Content,
                                 String AltSubject, String AltContent, String AltSendType, KakaoButton[] Buttons,
-                                String ReceiverNum, String ReceiverName, String SndDT, Boolean AdsYN, AttachFile File,
+                                String ReceiverNum, String ReceiverName, String SndDT, Boolean AdsYN, Attachment File,
                                 String ImageURL, String UserID, String RequestNum) throws PopbillException {
 
         KakaoReceiver receiver = new KakaoReceiver();
@@ -645,7 +645,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     @Override
     public String sendFMSBinary(String CorpNum, String PlusFriendID, String SenderNum, String AltSendType,
                                 KakaoReceiver[] Receivers, KakaoButton[] Buttons, String SndDT, Boolean AdsYN,
-                                AttachFile File, String ImageURL, String UserID, String RequestNum) throws PopbillException {
+                                Attachment File, String ImageURL, String UserID, String RequestNum) throws PopbillException {
 
         return requestFMSBinary(CorpNum, PlusFriendID, SenderNum, null, null, null,
                 AltSendType, Receivers, Buttons, SndDT, AdsYN, File, ImageURL, UserID, RequestNum);
@@ -654,7 +654,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     @Override
     public String sendFMSBinary(String CorpNum, String PlusFriendID, String SenderNum, String Content,
                                 String AltSubject, String AltContent, String AltSendType, KakaoReceiver[] Receivers,
-                                KakaoButton[] Buttons, String SndDT, Boolean AdsYN, AttachFile File, String ImageURL,
+                                KakaoButton[] Buttons, String SndDT, Boolean AdsYN, Attachment File, String ImageURL,
                                 String UserID, String RequestNum) throws PopbillException {
 
         return requestFMSBinary(CorpNum, PlusFriendID, SenderNum, Content, AltSubject, AltContent, AltSendType,
@@ -663,7 +663,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     private String requestFMSBinary(String CorpNum, String PlusFriendID, String SenderNum, String Content,
                                     String AltSubject, String AltContent, String AltSendType, KakaoReceiver[] Receivers,
-                                    KakaoButton[] Buttons, String SndDT, Boolean AdsYN, AttachFile File, String ImageURL,
+                                    KakaoButton[] Buttons, String SndDT, Boolean AdsYN, Attachment File, String ImageURL,
                                     String UserID, String RequestNum) throws PopbillException {
 
         if (File == null)

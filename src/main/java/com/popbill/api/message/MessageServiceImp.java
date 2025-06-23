@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import com.popbill.api.AttachFile;
+import com.popbill.api.Attachment;
 import com.popbill.api.BaseServiceImp;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.MessageService;
@@ -1206,7 +1206,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 
     @Override
     public String sendMMSBinary(String CorpNum, String Sender, String SenderName, String Receiver, String ReceiverName,
-                                String Subject, String Content, AttachFile File, Date ReserveDT, Boolean AdsYN,
+                                String Subject, String Content, Attachment File, Date ReserveDT, Boolean AdsYN,
                                 String UserID, String RequestNum) throws PopbillException {
 
         Message message = new Message();
@@ -1224,7 +1224,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 
     @Override
     public String sendMMSBinary(String CorpNum, String Sender, String SenderName, String Subject, String Content,
-                                Message[] Messages, AttachFile File, Date ReserveDT, Boolean AdsYN, String UserID,
+                                Message[] Messages, Attachment File, Date ReserveDT, Boolean AdsYN, String UserID,
                                 String RequestNum) throws PopbillException {
 
         if (File == null)

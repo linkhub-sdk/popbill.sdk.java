@@ -1126,7 +1126,7 @@ public interface MessageService extends BaseService {
      * @throws PopbillException
      */
     public String sendMMSBinary(String CorpNum, String Sender, String SenderName, String Receiver,
-                                String ReceiverName, String Subject, String Content, AttachFile File,
+                                String ReceiverName, String Subject, String Content, Attachment File,
                                 Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum) throws PopbillException;
 
     /**
@@ -1158,7 +1158,7 @@ public interface MessageService extends BaseService {
      * @throws PopbillException
      */
     public String sendMMSBinary(String CorpNum, String Sender, String SenderName, String Subject, String Content,
-                                Message[] Messages, AttachFile File, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum)
+                                Message[] Messages, Attachment File, Date ReserveDT, Boolean AdsYN, String UserID, String RequestNum)
             throws PopbillException;
 
     /**

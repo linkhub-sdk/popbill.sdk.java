@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import com.popbill.api.AttachFile;
+import com.popbill.api.Attachment;
 import org.junit.Test;
 
 import com.popbill.api.ChargeInfo;
@@ -1533,9 +1533,9 @@ public class KakaoServiceTest {
         File file = new File("/Users/gyuzero/Desktop/test.jpg");
         InputStream inputStream = new FileInputStream(file);
 
-        AttachFile attachFile = new AttachFile();
-        attachFile.setFileName(file.getName());
-        attachFile.setFileData(inputStream);
+        Attachment attachment = new Attachment();
+        attachment.setFileName(file.getName());
+        attachment.setFileData(inputStream);
 
         String ImageURL = "http://test.popbill.com";
 
@@ -1543,7 +1543,7 @@ public class KakaoServiceTest {
         String RequestNum = "";
 
         String receiptNum = kakaoService.sendFMSBinary(CorpNum, PlusFriendID, SenderNum, Content, AltSubject,
-                AltContent, AltSendType, Buttons, ReceiverNum, ReceiverName, SndDT, AdsYN, attachFile, ImageURL,
+                AltContent, AltSendType, Buttons, ReceiverNum, ReceiverName, SndDT, AdsYN, attachment, ImageURL,
                 UserID, RequestNum);
 
         assertNotNull(receiptNum);
@@ -1595,9 +1595,9 @@ public class KakaoServiceTest {
         File file = new File("/Users/gyuzero/Desktop/test.jpg");
         InputStream inputStream = new FileInputStream(file);
 
-        AttachFile attachFile = new AttachFile();
-        attachFile.setFileName(file.getName());
-        attachFile.setFileData(inputStream);
+        Attachment attachment = new Attachment();
+        attachment.setFileName(file.getName());
+        attachment.setFileData(inputStream);
 
         String ImageURL = "http://test.popbill.com";
 
@@ -1605,7 +1605,7 @@ public class KakaoServiceTest {
         String RequestNum = "";
 
         String receiptNum = kakaoService.sendFMSBinary(CorpNum, PlusFriendID, SenderNum, AltSendType, Receivers,
-                Buttons, SndDT, AdsYN, attachFile, ImageURL, UserID, RequestNum);
+                Buttons, SndDT, AdsYN, attachment, ImageURL, UserID, RequestNum);
 
         assertNotNull(receiptNum);
 
@@ -1659,9 +1659,9 @@ public class KakaoServiceTest {
         File file = new File("/Users/gyuzero/Desktop/test.jpg");
         InputStream inputStream = new FileInputStream(file);
 
-        AttachFile attachFile = new AttachFile();
-        attachFile.setFileName(file.getName());
-        attachFile.setFileData(inputStream);
+        Attachment attachment = new Attachment();
+        attachment.setFileName(file.getName());
+        attachment.setFileData(inputStream);
 
         String ImageURL = "http://test.popbill.com";
 
@@ -1669,7 +1669,7 @@ public class KakaoServiceTest {
         String RequestNum = "";
 
         String receiptNum = kakaoService.sendFMSBinary(CorpNum, PlusFriendID, SenderNum, Content, AltSubject,
-                AltContent, AltSendType, Receivers, Buttons, SndDT, AdsYN, attachFile, ImageURL, UserID, RequestNum);
+                AltContent, AltSendType, Receivers, Buttons, SndDT, AdsYN, attachment, ImageURL, UserID, RequestNum);
 
         assertNotNull(receiptNum);
 

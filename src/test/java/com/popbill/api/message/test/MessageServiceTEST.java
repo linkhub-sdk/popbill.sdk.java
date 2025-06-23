@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.popbill.api.AttachFile;
+import com.popbill.api.Attachment;
 import org.junit.Test;
 
 import com.popbill.api.ChargeInfo;
@@ -22,7 +22,6 @@ import com.popbill.api.message.AutoDeny;
 import com.popbill.api.message.AutoDenyNumberInfo;
 import com.popbill.api.message.MSGSearchResult;
 import com.popbill.api.message.Message;
-import com.popbill.api.message.MessageBriefInfo;
 import com.popbill.api.message.MessageServiceImp;
 import com.popbill.api.message.MessageType;
 import com.popbill.api.message.SentMessage;
@@ -1881,12 +1880,12 @@ public class MessageServiceTEST {
         File file = new File("/Users/gyuzero/Desktop/test.jpg");
         InputStream inputStream = new FileInputStream(file);
 
-        AttachFile attachFile = new AttachFile();
-        attachFile.setFileName(file.getName());
-        attachFile.setFileData(inputStream);
+        Attachment attachment = new Attachment();
+        attachment.setFileName(file.getName());
+        attachment.setFileData(inputStream);
 
         String receiptNum = messageService.sendMMSBinary("1234567890", "07075103710", "발신자명",
-                "010111222", "수신자명", "메시지제목", "메시지내용", attachFile,
+                "010111222", "수신자명", "메시지제목", "메시지내용", attachment,
                 null, false, "testkorea", null);
 
         assertNotNull(receiptNum);
@@ -1918,12 +1917,12 @@ public class MessageServiceTEST {
         File file = new File("/Users/gyuzero/Desktop/test.jpg");
         InputStream inputStream = new FileInputStream(file);
 
-        AttachFile attachFile = new AttachFile();
-        attachFile.setFileName(file.getName());
-        attachFile.setFileData(inputStream);
+        Attachment attachment = new Attachment();
+        attachment.setFileName(file.getName());
+        attachment.setFileData(inputStream);
 
         String receiptNum = messageService.sendMMSBinary("1234567890", "07075103710", "발신자명",
-                "메시지제목", "메시지내용", Messages, attachFile,
+                "메시지제목", "메시지내용", Messages, attachment,
                 null, false, "testkorea", null);
 
         assertNotNull(receiptNum);

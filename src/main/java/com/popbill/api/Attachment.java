@@ -2,7 +2,7 @@ package com.popbill.api;
 
 import java.io.InputStream;
 
-public class AttachFile {
+public class Attachment {
 
     private String fileName;
 

@@ -1481,7 +1481,7 @@ public interface KakaoService extends BaseService {
      */
     public String sendFMSBinary(String CorpNum, String PlusFriendID, String SenderNum, String Content,
                                 String AltSubject, String AltContent, String AltSendType, KakaoButton[] Buttons,
-                                String ReceiverNum, String ReceiverName, String SndDT, Boolean AdsYN, AttachFile File,
+                                String ReceiverNum, String ReceiverName, String SndDT, Boolean AdsYN, Attachment File,
                                 String ImageURL, String UserID, String RequestNum)
             throws PopbillException;
 
@@ -1517,7 +1517,7 @@ public interface KakaoService extends BaseService {
      */
     public String sendFMSBinary(String CorpNum, String PlusFriendID, String SenderNum, String AltSendType,
                                 KakaoReceiver[] Receivers, KakaoButton[] Buttons, String SndDT, Boolean AdsYN,
-                                AttachFile File, String ImageURL, String UserID, String RequestNum)
+                                Attachment File, String ImageURL, String UserID, String RequestNum)
             throws PopbillException;
 
     /**
@@ -1556,7 +1556,7 @@ public interface KakaoService extends BaseService {
      */
     public String sendFMSBinary(String CorpNum, String PlusFriendID, String SenderNum, String Content,
                                 String AltSubject, String AltContent, String AltSendType, KakaoReceiver[] Receivers,
-                                KakaoButton[] Buttons, String SndDT, Boolean AdsYN, AttachFile File, String ImageURL,
+                                KakaoButton[] Buttons, String SndDT, Boolean AdsYN, Attachment File, String ImageURL,
                                 String UserID, String RequestNum)
             throws PopbillException;
     
