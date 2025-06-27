@@ -72,13 +72,13 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 
     @Override
     public boolean checkMgtKeyInUse(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         try {
             StatementInfo info = httpget("/Statement/" + ItemCode + "/" + MgtKey, CorpNum, UserID, StatementInfo.class);
 
-            return (info.getItemKey() == null || info.getItemKey().isEmpty()) == false;
+            return !ValidationUtils.isNullOrEmpty(info.getItemKey());
 
         } catch (PopbillException PE) {
             if (PE.getCode() == -12000004)
@@ -120,7 +120,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response update(String CorpNum, int ItemCode, String MgtKey, Statement statement, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         String PostData = toJsonString(statement);
@@ -142,7 +142,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response delete(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return httppost("/Statement/" + ItemCode + "/" + MgtKey, CorpNum, null, UserID, "DELETE", Response.class);
@@ -169,7 +169,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response issue(String CorpNum, int ItemCode, String MgtKey, String Memo, String EmailSubject, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         MemoRequest request = new MemoRequest();
@@ -195,7 +195,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response cancel(String CorpNum, int ItemCode, String MgtKey, String Memo, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
         
         MemoRequest request = new MemoRequest();
@@ -220,7 +220,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response sendEmail(String CorpNum, int ItemCode, String MgtKey, String Receiver, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         ResendRequest request = new ResendRequest();
@@ -247,7 +247,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
     @Override
     public Response sendSMS(String CorpNum, int ItemCode, String MgtKey, String Sender, String Receiver, String Contents, String UserID)
             throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         ResendRequest request = new ResendRequest();
@@ -275,7 +275,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response sendFAX(String CorpNum, int ItemCode, String MgtKey, String Sender, String Receiver, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         ResendRequest request = new ResendRequest();
@@ -303,7 +303,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Statement getDetailInfo(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return httpget("/Statement/" + ItemCode + "/" + MgtKey + "?Detail", CorpNum, null, Statement.class);
@@ -315,13 +315,12 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public StatementInfo getInfo(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
-
         return getInfo(CorpNum, ItemCode, MgtKey, null);
     }
 
     @Override
     public StatementInfo getInfo(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return httpget("/Statement/" + ItemCode + "/" + MgtKey, CorpNum, UserID, StatementInfo.class);
@@ -338,8 +337,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 
     @Override
     public StatementInfo[] getInfos(String CorpNum, int ItemCode, String[] MgtKeyList, String UserID) throws PopbillException {
-        if (MgtKeyList == null)
-            throw new PopbillException(-99999999, "문서번호 배열이 입력되지 않았습니다.");
 
         String PostData = toJsonString(MgtKeyList);
 
@@ -357,7 +354,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 
     @Override
     public StatementLog[] getLogs(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return httpget("/Statement/" + ItemCode + "/" + MgtKey + "/Logs", CorpNum, UserID, StatementLog[].class);
@@ -378,7 +375,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String getPopUpURL(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         URLResponse response = httpget("/Statement/" + ItemCode + "/" + MgtKey + "?TG=POPUP", CorpNum, UserID, URLResponse.class);
@@ -388,13 +385,12 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 
     @Override
     public String getViewURL(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
-
         return getViewURL(CorpNum, ItemCode, MgtKey, null);
     }
 
     @Override
     public String getViewURL(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         URLResponse response = httpget("/Statement/" + ItemCode + "/" + MgtKey + "?TG=VIEW", CorpNum, UserID, URLResponse.class);
@@ -408,7 +404,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String getPrintURL(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
-
         return getPrintURL(CorpNum, ItemCode, MgtKey, null);
     }
 
@@ -417,7 +412,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String getPrintURL(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         URLResponse response = httpget("/Statement/" + ItemCode + "/" + MgtKey + "?TG=PRINT", CorpNum, UserID, URLResponse.class);
@@ -431,7 +426,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String getEPrintURL(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
-
         return getEPrintURL(CorpNum, ItemCode, MgtKey, null);
     }
 
@@ -440,7 +434,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String getEPrintURL(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         URLResponse response = httpget("/Statement/" + ItemCode + "/" + MgtKey + "?TG=EPRINT", CorpNum, UserID, URLResponse.class);
@@ -454,7 +448,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String getMailURL(String CorpNum, int ItemCode, String MgtKey) throws PopbillException {
-
         return getMailURL(CorpNum, ItemCode, MgtKey, null);
     }
 
@@ -463,7 +456,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String getMailURL(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         URLResponse response = httpget("/Statement/" + ItemCode + "/" + MgtKey + "?TG=MAIL", CorpNum, UserID, URLResponse.class);
@@ -477,7 +470,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String getMassPrintURL(String CorpNum, int ItemCode, String[] MgtKeyList) throws PopbillException {
-
         return getMassPrintURL(CorpNum, ItemCode, MgtKeyList, null);
     }
 
@@ -486,8 +478,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String getMassPrintURL(String CorpNum, int ItemCode, String[] MgtKeyList, String UserID) throws PopbillException {
-        if (MgtKeyList == null)
-            throw new PopbillException(-99999999, "문서번호배열이 입력되지 않았습니다.");
 
         String PostData = toJsonString(MgtKeyList);
 
@@ -523,12 +513,14 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
     @Override
     public Response attachFile(String CorpNum, int ItemCode, String MgtKey, String DisplayName, InputStream FileData, String UserID)
             throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
-        if (DisplayName == null || DisplayName.isEmpty())
-            throw new PopbillException(-99999999, "파일 표시명이 입력되지 않았습니다.");
+
+        if (ValidationUtils.isNullOrEmpty(DisplayName))
+            throw new PopbillException(-99999999, "파일명이 입력되지 않았습니다.");
+
         if (FileData == null)
-            throw new PopbillException(-99999999, "파일 스트림이 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "파일 데이터가 입력되지 않았습니다.");
 
         List<UploadFile> files = new ArrayList<BaseServiceImp.UploadFile>();
         UploadFile file = new UploadFile();
@@ -552,7 +544,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 
     @Override
     public AttachedFile[] getFiles(String CorpNum, int ItemCode, String MgtKey, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         return httpget("/Statement/" + ItemCode + "/" + MgtKey + "/Files", CorpNum, UserID, AttachedFile[].class);
@@ -572,13 +564,13 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response deleteFile(String CorpNum, int ItemCode, String MgtKey, String FileID, String UserID) throws PopbillException {
-        if (MgtKey == null || MgtKey.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
-        if (FileID == null || FileID.isEmpty())
-            throw new PopbillException(-99999999, "파일아이디가 입력되지 않았습니다.");
+
+        if (ValidationUtils.isNullOrEmpty(FileID))
+            throw new PopbillException(-99999999, "파일 식별번호가 입력되지 않았습니다.");
 
         return httppost("/Statement/" + ItemCode + "/" + MgtKey + "/Files/" + FileID, CorpNum, null, UserID, "DELETE", Response.class);
-
     }
 
     @Override
@@ -592,10 +584,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String FAXSend(String CorpNum, Statement statement, String sendNum, String receiveNum, String UserID) throws PopbillException {
-        if (sendNum == null || sendNum.isEmpty())
-            throw new PopbillException(-99999999, "발신번호가 입력되지 않았습니다.");
-        if (receiveNum == null || receiveNum.isEmpty())
-            throw new PopbillException(-99999999, "수신팩스번호가 입력되지 않았습니다.");
 
         statement.setSendNum(sendNum);
         statement.setReceiveNum(receiveNum);
@@ -640,8 +628,12 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
     public SMTIssueResponse registIssue(String CorpNum, Statement statement, String memo, String UserID, String emailSubject)
             throws PopbillException {
 
+        if (statement == null)
+            throw new PopbillException(-99999999, "전자명세서 정보가 입력되지 않았습니다.");
+
         if (memo != null)
             statement.setMemo(memo);
+
         if (emailSubject != null)
             statement.setEmailSubject(emailSubject);
 
@@ -662,6 +654,9 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 
     @Override
     public Response attachStatement(String CorpNum, int ItemCode, String MgtKey, int SubItemCode, String SubMgtKey, String UserID) throws PopbillException {
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
+
         DocRequest request = new DocRequest();
         request.ItemCode = SubItemCode;
         request.MgtKey = SubMgtKey;
@@ -683,6 +678,9 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 
     @Override
     public Response detachStatement(String CorpNum, int ItemCode, String MgtKey, int SubItemCode, String SubMgtKey, String UserID) throws PopbillException {
+        if (ValidationUtils.isNullOrEmpty(MgtKey))
+            throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
+
         DocRequest request = new DocRequest();
         request.ItemCode = SubItemCode;
         request.MgtKey = SubMgtKey;
@@ -708,32 +706,30 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 
     @Override
     public StmtSearchResult search(String CorpNum, String DType, String SDate, String EDate, String[] State, int[] ItemCode, String QString, Integer Page, Integer PerPage, String Order, String UserID) throws PopbillException {
-        if (DType == null || DType.isEmpty())
-            throw new PopbillException(-99999999, "검색일자유형이 입력되지 않았습니다.");
-        if (SDate == null || SDate.isEmpty())
-            throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
-        if (EDate == null || EDate.isEmpty())
-            throw new PopbillException(-99999999, "종료일자가 입력되지 않았습니다.");
-
         String uri = "/Statement/Search?DType=" + DType;
         uri += "&SDate=" + SDate;
         uri += "&EDate=" + EDate;
 
-        if (State != null)
+        if (!ValidationUtils.isNullOrEmpty(State))
             uri += "&State=" + ValidationUtils.replaceInvalidUriChars(State);
+
         if (ItemCode != null)
             uri += "&ItemCode=" + ValidationUtils.replaceInvalidUriChars(ItemCode);
-        if (QString != null && !QString.isEmpty()) {
+
+        if (!ValidationUtils.isNullOrEmpty(QString)) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");
             } catch (UnsupportedEncodingException e) {
-                throw new PopbillException(-99999999, "검색어(QString) 인코딩 오류");
+                throw new PopbillException(-99999999, "검색어 인코딩이 실패 되었습니다.");
             }
         }
+
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
+
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage=" + Integer.toString(PerPage);
+
         if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
 
@@ -771,11 +767,6 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN, String UserID) throws PopbillException {
-        if (SendYN == null)
-            throw new PopbillException(-99999999, "메일전송여부(SendYN)가 입력되지 않았습니다.");
-        if (EmailType == null || EmailType.isEmpty())
-            throw new PopbillException(-99999999, "메일전송유형(EmailType)이 입력되지 않았습니다.");
-
         return httppost("/Statement/EmailSendConfig?EmailType=" + EmailType + "&SendYN=" + String.valueOf(SendYN), CorpNum, null, UserID, "",
                 Response.class);
     }

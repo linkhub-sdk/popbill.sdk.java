@@ -67,6 +67,6 @@ public class BizInfoCheckServiceImp extends BaseServiceImp implements BizInfoChe
 
     @Override
     public ChargeInfo getChargeInfo(String CorpNum, String UserID) throws PopbillException {
-        return httpget("/BizInfo/ChargeInfo", CorpNum, null, ChargeInfo.class);
+        return httpget("/BizInfo/ChargeInfo", CorpNum, UserID, ChargeInfo.class);
     }
 }

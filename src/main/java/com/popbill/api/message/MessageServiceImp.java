@@ -44,7 +44,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
     @Override
     public float getUnitCost(String CorpNum, MessageType MsgType) throws PopbillException {
         if (MsgType == null)
-            throw new PopbillException(-99999999, "메시지 유형이 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문자 유형이 입력되지 않았습니다.");
 
         UnitCostResponse response = httpget("/Message/UnitCost?Type=" + MsgType.name(), CorpNum,
                 null, UnitCostResponse.class);
@@ -720,10 +720,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      */
     @Override
     public SentMessage[] getMessages(String CorpNum, String ReceiptNum) throws PopbillException {
-        if (ReceiptNum == null)
-            throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
-
-        return httpget("/Message/" + ReceiptNum, CorpNum, null, SentMessage[].class);
+        return getMessages(CorpNum, ReceiptNum, null);
     }
 
     /*
@@ -733,9 +730,8 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      * java.lang.String)
      */
     @Override
-    public SentMessage[] getMessages(String CorpNum, String ReceiptNum, String UserID)
-            throws PopbillException {
-        if (ReceiptNum == null)
+    public SentMessage[] getMessages(String CorpNum, String ReceiptNum, String UserID) throws PopbillException {
+        if (ValidationUtils.isNullOrEmpty(ReceiptNum))
             throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
 
         return httpget("/Message/" + ReceiptNum, CorpNum, UserID, SentMessage[].class);
@@ -748,10 +744,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      */
     @Override
     public SentMessage[] getMessagesRN(String CorpNum, String RequestNum) throws PopbillException {
-        if (RequestNum == null)
-            throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
-
-        return httpget("/Message/Get/" + RequestNum, CorpNum, null, SentMessage[].class);
+        return getMessagesRN(CorpNum, RequestNum, null);
     }
 
     /*
@@ -761,10 +754,9 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      * java.lang.String)
      */
     @Override
-    public SentMessage[] getMessagesRN(String CorpNum, String RequestNum, String UserID)
-            throws PopbillException {
-        if (RequestNum == null)
-            throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
+    public SentMessage[] getMessagesRN(String CorpNum, String RequestNum, String UserID) throws PopbillException {
+        if (ValidationUtils.isNullOrEmpty(RequestNum))
+            throw new PopbillException(-99999999, "요청번호가 입력되지 않았습니다.");
 
         return httpget("/Message/Get/" + RequestNum, CorpNum, UserID, SentMessage[].class);
     }
@@ -789,9 +781,6 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
     @Override
     public MessageBriefInfo[] getStates(String corpNum, String[] ReceiptNumList, String UserID)
             throws PopbillException {
-        if (ReceiptNumList == null || ReceiptNumList.length == 0)
-            throw new PopbillException(-99999999, "접수번호 목록이 입력되지 않았습니다.");
-
         String PostData = toJsonString(ReceiptNumList);
 
         return httppost("/Message/States", corpNum, PostData, UserID, MessageBriefInfo[].class);
@@ -814,9 +803,8 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      * java.lang.String)
      */
     @Override
-    public Response cancelReserve(String CorpNum, String ReceiptNum, String UserID)
-            throws PopbillException {
-        if (ReceiptNum == null)
+    public Response cancelReserve(String CorpNum, String ReceiptNum, String UserID) throws PopbillException {
+        if (ValidationUtils.isNullOrEmpty(ReceiptNum))
             throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
 
         return httpget("/Message/" + ReceiptNum + "/Cancel", CorpNum, UserID, Response.class);
@@ -839,10 +827,9 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      * java.lang.String)
      */
     @Override
-    public Response cancelReserveRN(String CorpNum, String RequestNum, String UserID)
-            throws PopbillException {
-        if (RequestNum == null)
-            throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
+    public Response cancelReserveRN(String CorpNum, String RequestNum, String UserID) throws PopbillException {
+        if (ValidationUtils.isNullOrEmpty(RequestNum))
+            throw new PopbillException(-99999999, "요청번호가 입력되지 않았습니다.");
 
         return httpget("/Message/Cancel/" + RequestNum, CorpNum, UserID, Response.class);
     }
@@ -940,8 +927,12 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
     public String sendMMS(String CorpNum, String Sender, String SenderName, String Subject,
                           String Content, Message[] Messages, File File, Date ReserveDT, Boolean AdsYN,
                           String UserID) throws PopbillException {
-        if (Messages == null || Messages.length == 0)
-            throw new PopbillException(-99999999, "전송할 메시지가 입력되지 않았습니다.");
+
+        if (ValidationUtils.isNullOrEmpty(Messages))
+            throw new PopbillException(-99999999, "문자 정보가 입력되지 않았습니다.");
+
+        if (File == null)
+            throw new PopbillException(-99999999, "이미지 파일이 입력되지 않았습니다.");
 
         SendRequest request = new SendRequest();
         request.snd = Sender;
@@ -1109,8 +1100,12 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
     public String sendMMS(String CorpNum, String Sender, String SenderName, String Subject,
                           String Content, Message[] Messages, File File, Date ReserveDT, Boolean AdsYN,
                           String UserID, String RequestNum) throws PopbillException {
-        if (Messages == null || Messages.length == 0)
-            throw new PopbillException(-99999999, "전송할 메시지가 입력되지 않았습니다.");
+
+        if (ValidationUtils.isNullOrEmpty(Messages))
+            throw new PopbillException(-99999999, "문자 정보가 입력되지 않았습니다.");
+
+        if (File == null)
+            throw new PopbillException(-99999999, "이미지 파일이 입력되지 않았습니다.");
 
         SendRequest request = new SendRequest();
         request.snd = Sender;
@@ -1167,12 +1162,10 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
                                String SenderName, String Subject, String Content, Message[] Messages, Date ReserveDT,
                                Boolean AdsYN, String UserID, String RequestNum) throws PopbillException {
         if (MsgType == null)
-            throw new PopbillException(-99999999, "메시지 유형이 입력되지 않았습니다.");
-        if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "회원 사업자번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "문자 유형이 입력되지 않았습니다.");
 
-        if (Messages == null || Messages.length == 0)
-            throw new PopbillException(-99999999, "전송할 메시지가 입력되지 않았습니다.");
+        if (ValidationUtils.isNullOrEmpty(Messages))
+            throw new PopbillException(-99999999, "문자 정보가 입력되지 않았습니다..");
 
         SendRequest request = new SendRequest();
         request.snd = Sender;
@@ -1226,6 +1219,9 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
     public String sendMMSBinary(String CorpNum, String Sender, String SenderName, String Subject, String Content,
                                 Message[] Messages, Attachment File, Date ReserveDT, Boolean AdsYN, String UserID,
                                 String RequestNum) throws PopbillException {
+
+        if (ValidationUtils.isNullOrEmpty(Messages))
+            throw new PopbillException(-99999999, "문자 정보가 입력되지 않았습니다.");
 
         if (File == null)
             throw new PopbillException(-99999999, "전송할 파일의 정보가 입력되지 않았습니다.");
@@ -1308,35 +1304,33 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
     @Override
     public MSGSearchResult search(String CorpNum, String SDate, String EDate, String[] State, String[] Item, Boolean ReserveYN, Boolean SenderOnly, Integer Page, Integer PerPage, String Order, String QString, String UserID) throws PopbillException {
 
-        if (SDate == null)
-            throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
-        if (EDate == null)
-            throw new PopbillException(-99999999, "종료일자가 입력되지 않았습니다.");
-        if (State == null || State.length == 0)
-            throw new PopbillException(-99999999, "전송상태가 입력되지 않았습니다.");
-
         String uri = "/Message/Search?SDate=" + SDate;
         uri += "&EDate=" + EDate;
         uri += "&State=" + ValidationUtils.replaceInvalidUriChars(State);
 
-        if (Item != null)
+        if (!ValidationUtils.isNullOrEmpty(Item))
             uri += "&Item=" + ValidationUtils.replaceInvalidUriChars(Item);
+
         if (ReserveYN != null)
             uri += "&ReserveYN=" + ReserveYN;
+
         if (SenderOnly != null)
             uri += "&SenderOnly=" + SenderOnly;
+
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
+
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage=" + Integer.toString(PerPage);
+
         if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
 
-        if (QString != null && !QString.isEmpty()) {
+        if (!ValidationUtils.isNullOrEmpty(QString)) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");
             } catch (UnsupportedEncodingException e) {
-                throw new PopbillException(-99999999, "검색어(QString) 인코딩 오류");
+                throw new PopbillException(-99999999, "검색어 인코딩이 실패 되었습니다.");
             }
         }
 
@@ -1393,8 +1387,10 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
 
     @Override
     public ChargeInfo getChargeInfo(String CorpNum, MessageType MsgType, String UserID) throws PopbillException {
-        return httpget("/Message/ChargeInfo?Type=" + MsgType.name(), CorpNum, UserID,
-                ChargeInfo.class);
+        if (MsgType == null)
+            throw new PopbillException(-99999999, "문자 유형이 입력되지 않았습니다.");
+
+        return httpget("/Message/ChargeInfo?Type=" + MsgType.name(), CorpNum, UserID, ChargeInfo.class);
     }
 
     /*
@@ -1461,12 +1457,11 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      * java.lang.String)
      */
     @Override
-    public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID)
-            throws PopbillException {
-        if (SenderNumber == null || SenderNumber.isEmpty())
+    public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException {
+        if (ValidationUtils.isNullOrEmpty(SenderNumber))
             throw new PopbillException(-99999999, "발신번호가 입력되지 않았습니다.");
-        return httpget("/Message/CheckSenderNumber/" + SenderNumber, CorpNum, UserID,
-                Response.class);
+
+        return httpget("/Message/CheckSenderNumber/" + SenderNumber, CorpNum, UserID, Response.class);
     }
 
     protected class SendRequest {
@@ -1492,32 +1487,27 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
     }
 
     @Override
-    public Response cancelReservebyRCV(String CorpNum, String ReceiptNum, String ReceiveNum,
-                                       String UserID) throws PopbillException {
-        if (ReceiptNum == null || ReceiptNum.isEmpty())
+    public Response cancelReservebyRCV(String CorpNum, String ReceiptNum, String ReceiveNum, String UserID)
+            throws PopbillException {
+        if (ValidationUtils.isNullOrEmpty(ReceiptNum))
             throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
-        if (ReceiveNum == null || ReceiveNum.isEmpty())
-            throw new PopbillException(-99999999, "수신번호가 입력되지 않았습니다.");
 
         String PostData = toJsonString(ReceiveNum);
 
-        return httppost("/Message/" + ReceiptNum + "/Cancel", CorpNum, PostData, UserID,
-                Response.class);
+        return httppost("/Message/" + ReceiptNum + "/Cancel", CorpNum, PostData, UserID, Response.class);
     }
 
     @Override
-    public Response cancelReserveRNbyRCV(String CorpNum, String RequestNum, String ReceiveNum)
-            throws PopbillException {
+    public Response cancelReserveRNbyRCV(String CorpNum, String RequestNum, String ReceiveNum) throws PopbillException {
         return cancelReserveRNbyRCV(CorpNum, RequestNum, ReceiveNum, null);
     }
 
     @Override
-    public Response cancelReserveRNbyRCV(String CorpNum, String RequestNum, String ReceiveNum,
-                                         String UserID) throws PopbillException {
-        if (RequestNum == null || RequestNum.isEmpty())
-            throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
-        if (ReceiveNum == null || ReceiveNum.isEmpty())
-            throw new PopbillException(-99999999, "수신번호가 입력되지 않았습니다.");
+    public Response cancelReserveRNbyRCV(String CorpNum, String RequestNum, String ReceiveNum, String UserID)
+            throws PopbillException {
+
+        if (ValidationUtils.isNullOrEmpty(RequestNum))
+            throw new PopbillException(-99999999, "요청번호가 입력되지 않았습니다.");
 
         String PostData = toJsonString(ReceiveNum);
 

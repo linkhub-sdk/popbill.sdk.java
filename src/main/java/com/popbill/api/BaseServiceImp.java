@@ -22,6 +22,7 @@ import java.util.zip.GZIPInputStream;
 
 import com.google.gson.Gson;
 
+import com.popbill.api.util.ValidationUtils;
 import kr.co.linkhub.auth.Base64;
 import kr.co.linkhub.auth.LinkhubException;
 import kr.co.linkhub.auth.MemberPointDetail;
@@ -308,9 +309,8 @@ public abstract class BaseServiceImp implements BaseService {
     }
 
     private String getSessionToken(String CorpNum, String ForwardIP) throws PopbillException {
-
-        if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "회원 사업자번호가 입력되지 않았습니다.");
+        if (ValidationUtils.isNullOrEmpty(CorpNum))
+            throw new PopbillException(-99999999, "팝빌회원 사업자번호가 입력되지 않았습니다.");
 
         Token token = null;
         Date UTCTime = null;
@@ -457,16 +457,22 @@ public abstract class BaseServiceImp implements BaseService {
     @Override
     public UseHistoryResult getUseHistory(String CorpNum, String SDate, String EDate, Integer Page, Integer PerPage, String Order, String UserID) throws PopbillException {
         String url = "/UseHistory";
-        if (SDate != null)
+
+        if (!ValidationUtils.isNullOrEmpty(SDate))
             url += "?SDate=" + SDate;
-        if (EDate != null)
+
+        if (!ValidationUtils.isNullOrEmpty(EDate))
             url += "&EDate=" + EDate;
+
         if (Page != null)
             url += "&Page=" + Page;
+
         if (PerPage != null)
             url += "&PerPage=" + PerPage;
-        if (Order != null && !Order.isEmpty())
+
+        if (!ValidationUtils.isNullOrEmpty(Order))
             url += "&Order=" + Order;
+
         return httpget(url, CorpNum, UserID, UseHistoryResult.class);
     }
 
@@ -478,14 +484,18 @@ public abstract class BaseServiceImp implements BaseService {
     @Override
     public PaymentHistoryResult getPaymentHistory(String CorpNum, String SDate, String EDate, Integer Page, Integer PerPage, String UserID) throws PopbillException {
         String url = "/PaymentHistory";
-        if (SDate != null)
+        if (!ValidationUtils.isNullOrEmpty(SDate))
             url += "?SDate=" + SDate;
-        if (EDate != null)
+
+        if (!ValidationUtils.isNullOrEmpty(EDate))
             url += "&EDate=" + EDate;
+
         if (Page != null)
             url += "&Page=" + Page;
+
         if (PerPage != null)
             url += "&PerPage=" + PerPage;
+
         return httpget(url, CorpNum, UserID, PaymentHistoryResult.class);
     }
 
@@ -497,10 +507,13 @@ public abstract class BaseServiceImp implements BaseService {
     @Override
     public RefundHistoryResult getRefundHistory(String CorpNum, Integer Page, Integer PerPage, String UserID) throws PopbillException {
         String url = "/RefundHistory";
+
         if (Page != null)
             url += "?Page=" + Page;
+
         if (PerPage != null)
             url += "&PerPage=" + PerPage;
+
         return httpget(url, CorpNum, UserID, RefundHistoryResult.class);
     }
 
@@ -522,9 +535,8 @@ public abstract class BaseServiceImp implements BaseService {
 
     @Override
     public RefundHistory getRefundInfo(String CorpNum, String RefundCode, String UserID) throws PopbillException {
-        if (RefundCode == null || RefundCode.isEmpty()) {
-            throw new PopbillException(-99999999, "조회할 환불코드가 입력되지 않았습니다.");
-        }
+        if (ValidationUtils.isNullOrEmpty(RefundCode))
+            throw new PopbillException(-99999999, "환불코드가 입력되지 않았습니다.");
 
         return httpget("/Refund/" + RefundCode, CorpNum, UserID, RefundHistory.class);
     }
@@ -560,6 +572,9 @@ public abstract class BaseServiceImp implements BaseService {
 
     @Override
     public PaymentHistory getSettleResult(String CorpNum, String SettleCode, String UserID) throws PopbillException {
+        if (ValidationUtils.isNullOrEmpty(SettleCode))
+            throw new PopbillException(-99999999, "정산코드가 입력되지 않았습니다.");
+
         return httpget("/Payment/" + SettleCode, CorpNum, null, PaymentHistory.class);
     }
 
@@ -641,13 +656,6 @@ public abstract class BaseServiceImp implements BaseService {
 
     @Override
     public Response deleteContact(String CorpNum, String ContactID, String UserID) throws PopbillException {
-        if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "사업자번호가 입력되지 않았습니다.");
-        if (ContactID == null || ContactID.isEmpty())
-            throw new PopbillException(-99999999, "담당자 아이디가 입력되지 않았습니다.");
-        if (UserID == null || UserID.isEmpty())
-            throw new PopbillException(-99999999, "팝빌회원 아이디가 입력되지 않았습니다.");
-
         String uri = "/Contact/Delete";
 
         uri += "?ContactID=" + ContactID;
@@ -663,10 +671,6 @@ public abstract class BaseServiceImp implements BaseService {
 
     @Override
     public Response quitMember(String CorpNum, String quitReason, String UserID) throws PopbillException {
-
-        if (quitReason == null || quitReason.isEmpty())
-            throw new PopbillException(-99999999, "탈퇴사유가 입력되지 않았습니다.");
-
         String postData = "{'quitReason' :" + "'" + quitReason + "'}";
         Response quitResponse = httppost("/QuitRequest", CorpNum, postData, UserID, Response.class);
 
@@ -1257,7 +1261,7 @@ public abstract class BaseServiceImp implements BaseService {
             throw new PopbillException(-99999999, "팝빌 API 서버 접속 실패", e);
         }
 
-        if (CorpNum != null && CorpNum.isEmpty() == false) {
+        if (!ValidationUtils.isNullOrEmpty(CorpNum)) {
             httpURLConnection.setRequestProperty("Authorization", "Bearer " + getSessionToken(CorpNum, null));
         }
 
@@ -1266,7 +1270,7 @@ public abstract class BaseServiceImp implements BaseService {
 
         httpURLConnection.setRequestProperty("x-pb-version".toLowerCase(), APIVersion);
 
-        if (UserID != null && UserID.isEmpty() == false) {
+        if (!ValidationUtils.isNullOrEmpty(UserID)) {
             httpURLConnection.setRequestProperty("x-pb-userid", UserID);
         }
 

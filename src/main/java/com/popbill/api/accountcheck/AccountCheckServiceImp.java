@@ -35,7 +35,6 @@ public class AccountCheckServiceImp extends BaseServiceImp implements AccountChe
 
     @Override
     public float getUnitCost(String CorpNum, String serviceType, String UserID) throws PopbillException {
-
         String uri = "/EasyFin/AccountCheck/UnitCost";
 
         if (!ValidationUtils.isNullOrEmpty(serviceType))
@@ -59,7 +58,6 @@ public class AccountCheckServiceImp extends BaseServiceImp implements AccountChe
 
     @Override
     public ChargeInfo getChargeInfo(String CorpNum, String serviceType, String UserID) throws PopbillException {
-
         String uri = "/EasyFin/AccountCheck/ChargeInfo";
 
         if (!ValidationUtils.isNullOrEmpty(serviceType))
@@ -77,15 +75,6 @@ public class AccountCheckServiceImp extends BaseServiceImp implements AccountChe
     @Override
     public AccountCheckInfo CheckAccountInfo(String CorpNum, String BankCode, String AccountNumber, String UserID)
             throws PopbillException {
-        if (BankCode == null || BankCode.isEmpty())
-            throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
-
-        if (BankCode.length() != 4)
-            throw new PopbillException(-99999999, "기관코드가 유효하지 않습니다.");
-
-        if (AccountNumber == null || AccountNumber.isEmpty())
-            throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
-
         String uri = "/EasyFin/AccountCheck";
 
         uri += "?c=" + BankCode;
@@ -103,27 +92,6 @@ public class AccountCheckServiceImp extends BaseServiceImp implements AccountChe
     @Override
     public DepositorCheckInfo CheckDepositorInfo(String CorpNum, String BankCode, String AccountNumber,
             String IdentityNumType, String IdentityNum, String UserID) throws PopbillException {
-        if (BankCode == null || BankCode.isEmpty())
-            throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
-
-        if (BankCode.length() != 4)
-            throw new PopbillException(-99999999, "기관코드가 유효하지 않습니다.");
-
-        if (AccountNumber == null || AccountNumber.isEmpty())
-            throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
-
-        if (IdentityNumType == null || IdentityNumType.isEmpty())
-            throw new PopbillException(-99999999, "등록번호 유형이 입력되지 않았습니다.");
-
-        if (false == IdentityNumType.matches("^[PB]$"))
-            throw new PopbillException(-99999999, "올바른 등록번호 유형이 아닙니다.");
-
-        if (IdentityNum == null || IdentityNum.isEmpty())
-            throw new PopbillException(-99999999, "등록번호가 입력되지 않았습니다.");
-
-        if (false == IdentityNum.matches("^\\d+$"))
-            throw new PopbillException(-99999999, "등록번호는 숫자만 입력합니다.");
-
         String uri = "/EasyFin/DepositorCheck";
 
         uri += "?c=" + BankCode;

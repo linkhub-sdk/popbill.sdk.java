@@ -52,11 +52,8 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      * @see com.popbill.api.HTCashbillService#requestJob(java.lang.String, com.popbill.api.hometaxcashbill.QueryType, java.lang.String, java.lang.String, java.lang.String)
      */
     public String requestJob(String CorpNum, QueryType queryType, String SDate, String EDate, String UserID) throws PopbillException {
-
-        if (SDate == null || SDate.isEmpty())
-            throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
-        if (EDate == null || EDate.isEmpty())
-            throw new PopbillException(-99999999, "종료일자가 입력되지 않았습니다.");
+        if (queryType == null)
+            throw new PopbillException(-99999999, "현금영수증 유형이 입력되지 않았습니다.");
 
         JobIDResponse response = httppost("/HomeTax/Cashbill/" + queryType.name() + "?SDate=" + SDate + "&EDate=" + EDate, CorpNum, null, UserID, JobIDResponse.class);
 
@@ -78,8 +75,8 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      */
     @Override
     public HTCashbillJobState getJobState(String CorpNum, String JobID, String UserID) throws PopbillException {
-        if (JobID.length() != 18)
-            throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
+        if (ValidationUtils.isNullOrEmpty(JobID))
+            throw new PopbillException(-99999999, "작업아이디가 입력되지 않았습니다.");
 
         return httpget("/HomeTax/Cashbill/" + JobID + "/State", CorpNum, UserID, HTCashbillJobState.class);
     }
@@ -112,19 +109,23 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 
     @Override
     public HTCashbillSearchResult search(String CorpNum, String JobID, String[] TradeUsage, String[] TradeType, Integer Page, Integer PerPage, String Order, String UserID) throws PopbillException {
-        if (JobID.length() != 18)
-            throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
+        if (ValidationUtils.isNullOrEmpty(JobID))
+            throw new PopbillException(-99999999, "작업아이디가 입력되지 않았습니다.");
 
         String uri = "/HomeTax/Cashbill/" + JobID + "?TradeUsage=";
 
-        if (TradeUsage != null)
+        if (!ValidationUtils.isNullOrEmpty(TradeUsage))
             uri += ValidationUtils.replaceInvalidUriChars(TradeUsage);
-        if (TradeType != null)
+
+        if (!ValidationUtils.isNullOrEmpty(TradeType))
             uri += "&TradeType=" + ValidationUtils.replaceInvalidUriChars(TradeType);
+
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
+
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage=" + Integer.toString(PerPage);
+
         if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
 
@@ -146,14 +147,15 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      */
     @Override
     public HTCashbillSummary summary(String CorpNum, String JobID, String[] TradeUsage, String[] TradeType, String UserID) throws PopbillException {
-        if (JobID.length() != 18)
-            throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
+        if (ValidationUtils.isNullOrEmpty(JobID))
+            throw new PopbillException(-99999999, "작업아이디가 입력되지 않았습니다.");
 
         String uri = "/HomeTax/Cashbill/" + JobID + "/Summary" + "?TradeUsage=";
 
-        if (TradeUsage != null)
+        if (!ValidationUtils.isNullOrEmpty(TradeUsage))
             uri += ValidationUtils.replaceInvalidUriChars(TradeUsage);
-        if (TradeType != null)
+
+        if (!ValidationUtils.isNullOrEmpty(TradeType))
             uri += "&TradeType=" + ValidationUtils.replaceInvalidUriChars(TradeType);
 
         return httpget(uri, CorpNum, UserID, HTCashbillSummary.class);
@@ -239,9 +241,6 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      * @see com.popbill.api.HTCashbillService#checkCertValidation(java.lang.String)
      */
     public Response checkCertValidation(String CorpNum) throws PopbillException {
-        if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "팝빌회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
-
         return httpget("/HomeTax/Cashbill/CertCheck", CorpNum, null, Response.class);
     }
 
@@ -250,13 +249,6 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      * @see com.popbill.api.HTCashbillService#registDeptUser(java.lang.String, java.lang.String, java.lang.String)
      */
     public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD) throws PopbillException {
-        if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "팝빌회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
-        if (DeptUserID == null || DeptUserID.isEmpty())
-            throw new PopbillException(-99999999, "홈택스 부서사용자 계정 아이디(DeptUserID)가 입력되지 않았습니다.");
-        if (DeptUserPWD == null || DeptUserPWD.isEmpty())
-            throw new PopbillException(-99999999, "홈택스 부서사용자 계정 비밀번호(DeptUserPWD)가 입력되지 않았습니다.");
-
         DeptRequest request = new DeptRequest();
         request.id = DeptUserID;
         request.pwd = DeptUserPWD;
@@ -272,9 +264,6 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      * @see com.popbill.api.HTCashbillService#checkDeptUser(java.lang.String, java.lang.String)
      */
     public Response checkDeptUser(String CorpNum) throws PopbillException {
-        if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "팝빌회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
-
         return httpget("/HomeTax/Cashbill/DeptUser", CorpNum, null, Response.class);
     }
 
@@ -283,9 +272,6 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      * @see com.popbill.api.HTCashbillService#checkLoginDeptUser(java.lang.String)
      */
     public Response checkLoginDeptUser(String CorpNum) throws PopbillException {
-        if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "팝빌회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
-
         return httpget("/HomeTax/Cashbill/DeptUser/Check", CorpNum, null, Response.class);
     }
 
@@ -294,9 +280,6 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      * @see com.popbill.api.HTCashbillService#deleteDeptUser(java.lang.String)
      */
     public Response deleteDeptUser(String CorpNum) throws PopbillException {
-        if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "팝빌회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
-
         return httppost("/HomeTax/Cashbill/DeptUser", CorpNum, null, null, "DELETE", Response.class);
     }
 

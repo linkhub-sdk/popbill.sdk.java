@@ -1017,14 +1017,9 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
     private String requestFax(String CorpNum, String SendNum, String SenderName, Receiver[] Receivers, File[] Files, Date ReserveDT, String UserID,
             Boolean AdsYN, String Title, String RequestNum) throws PopbillException {
-        if (SendNum == null || SendNum.isEmpty())
-            throw new PopbillException(-99999999, "발신번호가 입력되지 않았습니다.");
-        if (Receivers == null || Receivers.length == 0)
-            throw new PopbillException(-99999999, "수신처 정보가 입력되지 않았습니다.");
-        if (Files == null || Files.length == 0)
-            throw new PopbillException(-99999999, "발신파일 정보가 입력되지 않았습니다.");
-        if (Files.length > 20)
-            throw new PopbillException(-99999999, "동보발신 최대 파일갯수는 20개 입니다.");
+
+        if (ValidationUtils.isNullOrEmpty(Files))
+            throw new PopbillException(-99999999, "파일 목록이 입력되지 않았습니다.");
 
         SendRequest request = new SendRequest();
 
@@ -1086,14 +1081,9 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
     private String requestFaxBinary(String CorpNum, String SendNum, String SenderName, Receiver[] Receivers, FaxUploadFile[] Files, Date ReserveDT,
             String UserID, Boolean AdsYN, String Title, String RequestNum) throws PopbillException {
-        if (SendNum == null || SendNum.isEmpty())
-            throw new PopbillException(-99999999, "발신번호가 입력되지 않았습니다.");
-        if (Receivers == null || Receivers.length == 0)
-            throw new PopbillException(-99999999, "수신처 정보가 입력되지 않았습니다.");
-        if (Files == null || Files.length == 0)
-            throw new PopbillException(-99999999, "발신파일 정보가 입력되지 않았습니다.");
-        if (Files.length > 20)
-            throw new PopbillException(-99999999, "동보발신 최대 파일갯수는 20개 입니다.");
+
+        if (ValidationUtils.isNullOrEmpty(Files))
+            throw new PopbillException(-99999999, "파일 목록 입력되지 않았습니다.");
 
         SendRequest request = new SendRequest();
 
@@ -1247,10 +1237,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
     public String resendFAX(String CorpNum, String ReceiptNum, String SendNum, String SenderName, Receiver[] Receivers, Date ReserveDT, String UserID,
             String Title, String RequestNum) throws PopbillException {
 
-        if (ReceiptNum == null)
-            throw new PopbillException(-99999999, "팩스 접수번호(ReceiptNum)가 입력되지 않았습니다.");
-        if (ReceiptNum.length() != 18)
-            throw new PopbillException(-99999999, "접수번호가 올바르지 않았습니다.");
+        if (ValidationUtils.isNullOrEmpty(ReceiptNum))
+            throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
 
         SendRequest request = new SendRequest();
 
@@ -1310,11 +1298,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
     public String resendFAXRN(String CorpNum, String RequestNum, String SendNum, String SenderName, Receiver[] Receivers, Date ReserveDT,
             String UserID, String Title, String OrgRequestNum) throws PopbillException {
 
-        if (RequestNum == null)
-            throw new PopbillException(-99999999, "재전송 팩스의 전송요청번호(RequestNum)가 입력되지 않았습니다.");
-
-        if (OrgRequestNum == null)
-            throw new PopbillException(-99999999, "원본 팩스 전송시 할당한 전송요청번호(OrgRequestNum)가 입력되지 않았습니다.");
+        if (ValidationUtils.isNullOrEmpty(OrgRequestNum))
+            throw new PopbillException(-99999999, "원본 요청번호가 입력되지 않았습니다.");
 
         SendRequest request = new SendRequest();
 
@@ -1355,10 +1340,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
     @Override
     public FaxResult[] getFaxResult(String CorpNum, String ReceiptNum, String UserID) throws PopbillException {
-        if (ReceiptNum == null)
+        if (ValidationUtils.isNullOrEmpty(ReceiptNum))
             throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
-        if (ReceiptNum.length() != 18)
-            throw new PopbillException(-99999999, "접수번호가 올바르지 않았습니다.");
 
         return httpget("/FAX/" + ReceiptNum, CorpNum, UserID, FaxResult[].class);
     }
@@ -1375,9 +1358,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
     @Override
     public FaxResult[] getFaxResultRN(String CorpNum, String RequestNum, String UserID) throws PopbillException {
-
-        if (RequestNum == null)
-            throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
+        if (ValidationUtils.isNullOrEmpty(RequestNum))
+            throw new PopbillException(-99999999, "요청번호가 입력되지 않았습니다.");
 
         return httpget("/FAX/Get/" + RequestNum, CorpNum, UserID, FaxResult[].class);
     }
@@ -1399,10 +1381,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
      */
     @Override
     public Response cancelReserve(String CorpNum, String ReceiptNum, String UserID) throws PopbillException {
-        if (ReceiptNum == null)
+        if (ValidationUtils.isNullOrEmpty(ReceiptNum))
             throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
-        if (ReceiptNum.length() != 18)
-            throw new PopbillException(-99999999, "접수번호가 올바르지 않았습니다.");
 
         return httpget("/FAX/" + ReceiptNum + "/Cancel", CorpNum, UserID, Response.class);
     }
@@ -1424,8 +1404,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
      */
     @Override
     public Response cancelReserveRN(String CorpNum, String RequestNum, String UserID) throws PopbillException {
-        if (RequestNum == null)
-            throw new PopbillException(-99999999, "전송요청번호가 입력되지 않았습니다.");
+        if (ValidationUtils.isNullOrEmpty(RequestNum))
+            throw new PopbillException(-99999999, "요청번호가 입력되지 않았습니다.");
 
         return httpget("/FAX/Cancel/" + RequestNum, CorpNum, UserID, Response.class);
     }
@@ -1454,31 +1434,32 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
 
     @Override
     public FAXSearchResult search(String CorpNum, String SDate, String EDate, String[] State, Boolean ReserveYN, Boolean SenderOnly, Integer Page, Integer PerPage, String Order, String QString, String UserID) throws PopbillException {
-        if (SDate == null)
-            throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
-        if (EDate == null)
-            throw new PopbillException(-99999999, "종료일자가 입력되지 않았습니다.");
-
         String uri = "/FAX/Search?SDate=" + SDate;
         uri += "&EDate=" + EDate;
 
-        if (State != null)
+        if (!ValidationUtils.isNullOrEmpty(State))
             uri += "&State=" + ValidationUtils.replaceInvalidUriChars(State);
+
         if (ReserveYN != null)
             uri += "&ReserveYN=" + ReserveYN;
+
         if (SenderOnly != null)
             uri += "&SenderOnly=" + SenderOnly;
+
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
+
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage=" + Integer.toString(PerPage);
+
         if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
-        if (QString != null && !QString.isEmpty()) {
+
+        if (!ValidationUtils.isNullOrEmpty(QString)) {
             try {
                 uri += "&QString=" + URLEncoder.encode(QString, "UTF-8");
             } catch (UnsupportedEncodingException e) {
-                throw new PopbillException(-99999999, "검색어(QString) 인코딩 오류");
+                throw new PopbillException(-99999999, "검색어 인코딩이 실패 되었습니다.");
             }
         }
 
@@ -1544,10 +1525,8 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
      */
     @Override
     public String getPreviewURL(String CorpNum, String ReceiptNum, String UserID) throws PopbillException {
-        if (ReceiptNum == null || ReceiptNum.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(ReceiptNum))
             throw new PopbillException(-99999999, "접수번호가 입력되지 않았습니다.");
-        if (ReceiptNum.length() != 18)
-            throw new PopbillException(-99999999, "접수번호가 올바르지 않았습니다.");
 
         URLResponse response = httpget("/FAX/Preview/" + ReceiptNum, CorpNum, UserID, URLResponse.class);
 
@@ -1597,8 +1576,9 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
      */
     @Override
     public Response checkSenderNumber(String CorpNum, String SenderNumber, String UserID) throws PopbillException {
-        if (SenderNumber == null || SenderNumber.isEmpty())
+        if (ValidationUtils.isNullOrEmpty(SenderNumber))
             throw new PopbillException(-99999999, "발신번호가 입력되지 않았습니다.");
+
         return httpget("/FAX/CheckSenderNumber/"+SenderNumber, CorpNum, UserID, Response.class);
     }
 

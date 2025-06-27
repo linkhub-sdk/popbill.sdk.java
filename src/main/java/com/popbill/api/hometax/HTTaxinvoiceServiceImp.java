@@ -80,12 +80,8 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
     public String requestJob(String CorpNum, QueryType queryType, String DType, String SDate, String EDate, String UserID)
             throws PopbillException {
 
-        if (DType == null || DType.isEmpty())
-            throw new PopbillException(-99999999, "검색일자 유형이 입력되지 않았습니다.");
-        if (SDate == null || SDate.isEmpty())
-            throw new PopbillException(-99999999, "시작일자가 입력되지 않았습니다.");
-        if (EDate == null || EDate.isEmpty())
-            throw new PopbillException(-99999999, "종료일자가 입력되지 않았습니다.");
+        if (queryType == null)
+            throw new PopbillException(-99999999, "전자세금계산서 유형이 입력되지 않았습니다.");
 
         JobIDResponse response = httppost(
                 "/HomeTax/Taxinvoice/" + queryType.name() + "?DType=" + DType + "&SDate=" + SDate + "&EDate=" + EDate, CorpNum,
@@ -110,8 +106,8 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      */
     @Override
     public HTTaxinvoiceJobState getJobState(String CorpNum, String JobID, String UserID) throws PopbillException {
-        if (JobID.length() != 18)
-            throw new PopbillException(-99999999, "작업아이디가 올바르지 않았습니다.");
+        if (ValidationUtils.isNullOrEmpty(JobID))
+            throw new PopbillException(-99999999, "작업아이디가 입력되지 않았습니다.");
 
         return httpget("/HomeTax/Taxinvoice/" + JobID + "/State", CorpNum, UserID, HTTaxinvoiceJobState.class);
     }
@@ -171,34 +167,43 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
             String TaxRegIDYN, String TaxRegIDType, String TaxRegID, Integer Page, Integer PerPage, String Order, String UserID,
             String SearchString) throws PopbillException {
 
-        if (JobID.length() != 18)
-            throw new PopbillException(-99999999, "작업아이디가 올바르지 않습니다.");
+        if (ValidationUtils.isNullOrEmpty(JobID))
+            throw new PopbillException(-99999999, "작업아이디가 입력되지 않았습니다.");
 
         String uri = "/HomeTax/Taxinvoice/" + JobID + "?Type=";
 
-        if (Type != null)
+        if (!ValidationUtils.isNullOrEmpty(Type))
             uri += ValidationUtils.replaceInvalidUriChars(Type);
-        if (TaxType != null)
+
+        if (!ValidationUtils.isNullOrEmpty(TaxType))
             uri += "&TaxType=" + ValidationUtils.replaceInvalidUriChars(TaxType);
-        if (PurposeType != null)
+
+        if (!ValidationUtils.isNullOrEmpty(PurposeType))
             uri += "&PurposeType=" + ValidationUtils.replaceInvalidUriChars(PurposeType);
-        if (TaxRegIDYN != null && !TaxRegIDYN.isEmpty())
+
+        if (!ValidationUtils.isNullOrEmpty(TaxRegIDYN))
             uri += "&TaxRegIDYN=" + TaxRegIDYN;
-        if (TaxRegIDType != null && !TaxRegIDType.isEmpty())
+
+        if (!ValidationUtils.isNullOrEmpty(TaxRegIDType))
             uri += "&TaxRegIDType=" + TaxRegIDType;
-        if (TaxRegID != null && !TaxRegID.isEmpty())
+
+        if (!ValidationUtils.isNullOrEmpty(TaxRegID))
             uri += "&TaxRegID=" + TaxRegID;
+
         if (Page != null && Page > 0)
             uri += "&Page=" + Integer.toString(Page);
+
         if (PerPage != null && PerPage > 0 && PerPage <= 1000)
             uri += "&PerPage=" + Integer.toString(PerPage);
+
         if (Order != null && (Order.equals("D") || Order.equals("A")))
             uri += "&Order=" + Order;
-        if (SearchString != null && !SearchString.isEmpty()) {
+
+        if (!ValidationUtils.isNullOrEmpty(SearchString)) {
             try {
                 uri += "&SearchString=" + URLEncoder.encode(SearchString, "UTF-8");
             } catch (UnsupportedEncodingException e) {
-                throw new PopbillException(-99999999, "검색어(SearchString) 인코딩 오류");
+                throw new PopbillException(-99999999, "검색어 인코딩이 실패 되었습니다.");
             }
         }
 
@@ -230,28 +235,34 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
             String TaxRegIDYN, String TaxRegIDType, String TaxRegID, String UserID, String SearchString)
             throws PopbillException {
 
-        if (JobID.length() != 18)
-            throw new PopbillException(-99999999, "작업아이디가 올바르지 않았습니다.");
+        if (ValidationUtils.isNullOrEmpty(JobID))
+            throw new PopbillException(-99999999, "작업아이디가 입력되지 않았습니다.");
 
         String uri = "/HomeTax/Taxinvoice/" + JobID + "/Summary" + "?Type=";
 
-        if (Type != null)
+        if (!ValidationUtils.isNullOrEmpty(Type))
             uri += ValidationUtils.replaceInvalidUriChars(Type);
-        if (TaxType != null)
+
+        if (!ValidationUtils.isNullOrEmpty(TaxType))
             uri += "&TaxType=" + ValidationUtils.replaceInvalidUriChars(TaxType);
-        if (PurposeType != null)
+
+        if (!ValidationUtils.isNullOrEmpty(PurposeType))
             uri += "&PurposeType=" + ValidationUtils.replaceInvalidUriChars(PurposeType);
-        if (TaxRegIDYN != "" && TaxRegIDYN != null)
+
+        if (!ValidationUtils.isNullOrEmpty(TaxRegIDYN))
             uri += "&TaxRegIDYN=" + TaxRegIDYN;
-        if (TaxRegIDType != "" && TaxRegIDType != null)
+
+        if (!ValidationUtils.isNullOrEmpty(TaxRegIDType))
             uri += "&TaxRegIDType=" + TaxRegIDType;
-        if (TaxRegID != "" && TaxRegID != null)
+
+        if (!ValidationUtils.isNullOrEmpty(TaxRegID))
             uri += "&TaxRegID=" + TaxRegID;
-        if (SearchString != "" && SearchString != null) {
+
+        if (!ValidationUtils.isNullOrEmpty(SearchString)) {
             try {
                 uri += "&SearchString=" + URLEncoder.encode(SearchString, "UTF-8");
             } catch (UnsupportedEncodingException e) {
-                throw new PopbillException(-99999999, "검색어(SearchString) 인코딩 오류");
+                throw new PopbillException(-99999999, "검색어 인코딩이 실패 되었습니다.");
             }
         }
 
@@ -273,9 +284,8 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      */
     @Override
     public HTTaxinvoice getTaxinvoice(String CorpNum, String NTSConfirmNum, String UserID) throws PopbillException {
-
-        if (NTSConfirmNum.length() != 24)
-            throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
+        if (ValidationUtils.isNullOrEmpty(NTSConfirmNum))
+            throw new PopbillException(-99999999, "국세청승인번호가 입력되지 않았습니다.");
 
         return httpget("/HomeTax/Taxinvoice/" + NTSConfirmNum, CorpNum, UserID, HTTaxinvoice.class);
     }
@@ -295,8 +305,9 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      */
     @Override
     public HTTaxinvoiceXMLResponse getXML(String CorpNum, String NTSConfirmNum, String UserID) throws PopbillException {
-        if (NTSConfirmNum.length() != 24)
-            throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
+        if (ValidationUtils.isNullOrEmpty(NTSConfirmNum))
+            throw new PopbillException(-99999999, "국세청승인번호가 입력되지 않았습니다.");
+
         return httpget("/HomeTax/Taxinvoice/" + NTSConfirmNum + "?T=xml", CorpNum, UserID, HTTaxinvoiceXMLResponse.class);
     }
 
@@ -363,8 +374,8 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      */
     @Override
     public String getPopUpURL(String CorpNum, String NTSConfirmNum) throws PopbillException {
-        if (NTSConfirmNum.length() != 24)
-            throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
+        if (ValidationUtils.isNullOrEmpty(NTSConfirmNum))
+            throw new PopbillException(-99999999, "국세청승인번호가 입력되지 않았습니다.");
 
         URLResponse response = httpget("/HomeTax/Taxinvoice/" + NTSConfirmNum + "/PopUp", CorpNum, null, URLResponse.class);
 
@@ -377,8 +388,8 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      */
     @Override
     public String getPopUpURL(String CorpNum, String NTSConfirmNum, String UserID) throws PopbillException {
-        if (NTSConfirmNum.length() != 24)
-            throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
+        if (ValidationUtils.isNullOrEmpty(NTSConfirmNum))
+            throw new PopbillException(-99999999, "국세청승인번호가 입력되지 않았습니다.");
 
         URLResponse response = httpget("/HomeTax/Taxinvoice/" + NTSConfirmNum + "/PopUp", CorpNum, UserID, URLResponse.class);
 
@@ -387,17 +398,13 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 
     @Override
     public String getPrintURL(String CorpNum, String NTSConfirmNum) throws PopbillException {
-        if (NTSConfirmNum.length() != 24)
-            throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
-
-        URLResponse response = httpget("/HomeTax/Taxinvoice/" + NTSConfirmNum + "/Print", CorpNum, null, URLResponse.class);
-        return response.url;
+        return getPrintURL(CorpNum, NTSConfirmNum, null);
     }
 
     @Override
     public String getPrintURL(String CorpNum, String NTSConfirmNum, String UserID) throws PopbillException {
-        if (NTSConfirmNum.length() != 24)
-            throw new PopbillException(-99999999, "국세청승인번호가 올바르지 않았습니다.");
+        if (ValidationUtils.isNullOrEmpty(NTSConfirmNum))
+            throw new PopbillException(-99999999, "국세청승인번호가 입력되지 않았습니다.");
 
         URLResponse response = httpget("/HomeTax/Taxinvoice/" + NTSConfirmNum + "/Print", CorpNum, UserID, URLResponse.class);
         return response.url;
@@ -408,9 +415,6 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      * @see com.popbill.api.HTTaxinvoiceService#checkCertValidation(java.lang.String)
      */
     public Response checkCertValidation(String CorpNum) throws PopbillException {
-        if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "팝빌회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
-
         return httpget("/HomeTax/Taxinvoice/CertCheck", CorpNum, null, Response.class);
     }
 
@@ -424,13 +428,6 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 
     @Override
     public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String UserID) throws PopbillException {
-        if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "팝빌회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
-        if (DeptUserID == null || DeptUserID.isEmpty())
-            throw new PopbillException(-99999999, "홈택스 부서사용자 계정 아이디(deptUserID)가 입력되지 않았습니다.");
-        if (DeptUserPWD == null || DeptUserPWD.isEmpty())
-            throw new PopbillException(-99999999, "홈택스 부서사용자 계정 비밀번호(DeptUserPWD)가 입력되지 않았습니다.");
-
         DeptRequest request = new DeptRequest();
         request.id = DeptUserID;
         request.pwd = DeptUserPWD;
@@ -445,9 +442,6 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      * @see com.popbill.api.HTTaxinvoiceService#checkDeptUser(java.lang.String, java.lang.String)
      */
     public Response checkDeptUser(String CorpNum) throws PopbillException {
-        if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "팝빌회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
-
         return httpget("/HomeTax/Taxinvoice/DeptUser", CorpNum, null, Response.class);
     }
 
@@ -456,9 +450,6 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      * @see com.popbill.api.HTTaxinvoiceService#checkLoginDeptUser(java.lang.String)
      */
     public Response checkLoginDeptUser(String CorpNum) throws PopbillException {
-        if (CorpNum == null || CorpNum.isEmpty())
-            throw new PopbillException(-99999999, "팝빌회원 사업자번호(CorpNum)가 입력되지 않았습니다.");
-
         return httpget("/HomeTax/Taxinvoice/DeptUser/Check", CorpNum, null, Response.class);
     }
 
@@ -466,11 +457,8 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      * (non-Javadoc)
      * @see com.popbill.api.HTTaxinvoiceService#deleteDeptUser(java.lang.String)
      */
-    public Response deleteDeptUser(String corpNum) throws PopbillException {
-        if (corpNum == null || corpNum.isEmpty())
-            throw new PopbillException(-99999999, "팝빌회원 사업자번호(corpNum)가 입력되지 않았습니다.");
-
-        return httppost("/HomeTax/Taxinvoice/DeptUser", corpNum, null, null, "DELETE", Response.class);
+    public Response deleteDeptUser(String CorpNum) throws PopbillException {
+        return httppost("/HomeTax/Taxinvoice/DeptUser", CorpNum, null, null, "DELETE", Response.class);
     }
 
     protected class JobIDResponse {
