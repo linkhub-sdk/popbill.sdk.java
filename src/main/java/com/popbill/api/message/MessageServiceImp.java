@@ -1164,9 +1164,6 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
         if (MsgType == null)
             throw new PopbillException(-99999999, "문자 유형이 입력되지 않았습니다.");
 
-        if (ValidationUtils.isNullOrEmpty(Messages))
-            throw new PopbillException(-99999999, "문자 정보가 입력되지 않았습니다..");
-
         SendRequest request = new SendRequest();
         request.snd = Sender;
         request.content = Content;

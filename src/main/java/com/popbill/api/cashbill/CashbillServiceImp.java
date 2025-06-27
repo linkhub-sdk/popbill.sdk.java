@@ -302,11 +302,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 
     @Override
     public CashbillInfo[] getInfos(String CorpNum, String[] MgtKeyList, String UserID) throws PopbillException {
-        if (ValidationUtils.isNullOrEmpty(MgtKeyList))
-            throw new PopbillException(-99999999, "문서번호 목록이 입력되지 않았습니다.");
-
         String PostData = toJsonString(MgtKeyList);
-
         return httppost("/Cashbill/States", CorpNum, PostData, UserID, CashbillInfo[].class);
     }
 
