@@ -38,22 +38,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
-import com.popbill.api.AttachedFile;
-import com.popbill.api.BaseServiceImp;
-import com.popbill.api.BulkResponse;
-import com.popbill.api.ChargeInfo;
-import com.popbill.api.EmailSendConfig;
-import com.popbill.api.Encryptor;
-import com.popbill.api.IssueResponse;
-import com.popbill.api.PopbillException;
-import com.popbill.api.Response;
-import com.popbill.api.TaxinvoiceCertificate;
-import com.popbill.api.TaxinvoiceService;
-
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import kr.co.linkhub.auth.Base64;
 
 /**
  * Implementation of Popbill TaxinvoiceService Interface
