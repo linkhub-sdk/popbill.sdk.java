@@ -302,6 +302,9 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
 
     @Override
     public CashbillInfo[] getInfos(String CorpNum, String[] MgtKeyList, String UserID) throws PopbillException {
+        if (ValidationUtils.isNullOrEmpty(MgtKeyList))
+            throw new PopbillException(-99999999, "문서번호 목록이 입력되지 않았습니다.");
+
         String PostData = toJsonString(MgtKeyList);
         return httppost("/Cashbill/States", CorpNum, PostData, UserID, CashbillInfo[].class);
     }
@@ -428,6 +431,9 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
      */
     @Override
     public String getMassPrintURL(String CorpNum, String[] MgtKeyList, String UserID) throws PopbillException {
+        if (ValidationUtils.isNullOrEmpty(MgtKeyList))
+            throw new PopbillException(-99999999, "문서번호 목록이 입력되지 않았습니다.");
+
         String PostData = toJsonString(MgtKeyList);
         URLResponse response = httppost("/Cashbill/Prints", CorpNum, PostData, UserID, URLResponse.class);
         return response.url;
@@ -911,6 +917,9 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
     @Override
     public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN, String UserID)
             throws PopbillException {
+        if (SendYN == null)
+            throw new PopbillException(-99999999, "메일 전송 여부가 입력되지 않았습니다.");
+
         return httppost("/Cashbill/EmailSendConfig?EmailType=" + EmailType + "&SendYN=" + String.valueOf(SendYN),
                 CorpNum, null, UserID, "", Response.class);
     }

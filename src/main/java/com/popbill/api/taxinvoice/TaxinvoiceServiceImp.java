@@ -321,6 +321,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     @Override
     public Response register(String CorpNum, Taxinvoice Taxinvoice, String UserID, Boolean WriteSpecification) throws PopbillException {
 
+        if (Taxinvoice == null)
+            throw new PopbillException(-99999999, "전자세금계산서 정보가 입력되지 않았습니다.");
+
         String PostData = toJsonString(Taxinvoice);
 
         if (WriteSpecification != null && WriteSpecification) {
@@ -600,6 +603,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
     public TaxinvoiceInfo[] getInfos(String CorpNum, MgtKeyType KeyType, String[] MgtKeyList, String UserID) throws PopbillException {
         if (KeyType == null)
             throw new PopbillException(-99999999, "문서번호 유형이 입력되지 않았습니다.");
+
+        if (ValidationUtils.isNullOrEmpty(MgtKeyList))
+            throw new PopbillException(-99999999, "문서번호 목록이 입력되지 않았습니다.");
 
         String PostData = toJsonString(MgtKeyList);
 
@@ -972,6 +978,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
         if (KeyType == null)
             throw new PopbillException(-99999999, "문서번호 유형이 입력되지 않았습니다.");
 
+        if (ValidationUtils.isNullOrEmpty(MgtKeyList))
+            throw new PopbillException(-99999999, "문서번호 목록이 입력되지 않았습니다.");
+
         String PostData = toJsonString(MgtKeyList);
 
         URLResponse response = httppost("/Taxinvoice/" + KeyType.name() + "?Print", CorpNum, PostData, UserID, URLResponse.class);
@@ -1333,6 +1342,9 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN, String UserID) throws PopbillException {
+        if (SendYN == null)
+            throw new PopbillException(-99999999, "메일 전송 여부가 입력되지 않았습니다.");
+
         return httppost("/Taxinvoice/EmailSendConfig?EmailType=" + EmailType + "&SendYN=" + String.valueOf(SendYN), CorpNum, null, UserID, "",
                 Response.class);
     }

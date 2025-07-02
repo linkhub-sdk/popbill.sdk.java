@@ -337,6 +337,8 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
 
     @Override
     public StatementInfo[] getInfos(String CorpNum, int ItemCode, String[] MgtKeyList, String UserID) throws PopbillException {
+        if (ValidationUtils.isNullOrEmpty(MgtKeyList))
+            throw new PopbillException(-99999999, "문서번호 목록이 입력되지 않았습니다.");
 
         String PostData = toJsonString(MgtKeyList);
 
@@ -478,6 +480,8 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String getMassPrintURL(String CorpNum, int ItemCode, String[] MgtKeyList, String UserID) throws PopbillException {
+        if (ValidationUtils.isNullOrEmpty(MgtKeyList))
+            throw new PopbillException(-99999999, "문서번호 목록이 입력되지 않았습니다.");
 
         String PostData = toJsonString(MgtKeyList);
 
@@ -767,6 +771,9 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public Response updateEmailConfig(String CorpNum, String EmailType, Boolean SendYN, String UserID) throws PopbillException {
+        if (SendYN == null)
+            throw new PopbillException(-99999999, "메일 전송 여부가 입력되지 않았습니다.");
+
         return httppost("/Statement/EmailSendConfig?EmailType=" + EmailType + "&SendYN=" + String.valueOf(SendYN), CorpNum, null, UserID, "",
                 Response.class);
     }

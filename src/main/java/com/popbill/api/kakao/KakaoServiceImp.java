@@ -435,6 +435,9 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     public String sendFTS(String CorpNum, String plusFriendID, String senderNum, String content, String altSubject, String altContent, String altSendType,
                           KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, String UserID, String requestNum) throws PopbillException {
 
+        if (ValidationUtils.isNullOrEmpty(plusFriendID))
+            throw new PopbillException(-99999999, "검색용 아이디가 입력되지 않았습니다.");
+
         FTSSendRequest request = new FTSSendRequest();
         request.plusFriendID = plusFriendID;
         request.snd = senderNum;
@@ -575,6 +578,9 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
     public String sendFMS(String CorpNum, String plusFriendID, String senderNum, String content, String altSubject, String altContent,
                           String altSendType, KakaoReceiver[] Receivers, KakaoButton[] Buttons, String sndDT, Boolean adsYN, File file, String imageURL,
                           String UserID, String requestNum) throws PopbillException {
+
+        if (ValidationUtils.isNullOrEmpty(plusFriendID))
+            throw new PopbillException(-99999999, "검색용 아이디가 입력되지 않았습니다.");
 
         if (file == null)
             throw new PopbillException(-99999999, "이미지 파일이 입력되지 않았습니다.");
