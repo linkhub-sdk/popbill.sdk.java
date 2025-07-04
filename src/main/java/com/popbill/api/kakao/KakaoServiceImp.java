@@ -609,7 +609,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
         try {
             uf.fileData = new FileInputStream(file);
         } catch (FileNotFoundException e) {
-            throw new PopbillException(-99999999, "전송할 파일을 찾을 수 없습니다.", e);
+            throw new PopbillException(-99999999, "이미지 파일을 찾을 수 없습니다.", e);
         }
         uploadFiles.add(uf);
 

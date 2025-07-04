@@ -115,6 +115,12 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
     @Override
     public Response deleteBankAccount(String CorpNum, String BankCode, String AccountNumber, String UserID)
             throws PopbillException {
+        if (ValidationUtils.isNullOrEmpty(BankCode))
+            throw new PopbillException(-99999999, "기관코드가 입력되지 않았습니다.");
+
+        if (ValidationUtils.isNullOrEmpty(AccountNumber))
+            throw new PopbillException(-99999999, "계좌번호가 입력되지 않았습니다.");
+
         String uri = "/EasyFin/Bank/BankAccount/Delete";
 
         String PostData = "{'BankCode':" + BankCode + ", 'AccountNumber':" + AccountNumber + "}";

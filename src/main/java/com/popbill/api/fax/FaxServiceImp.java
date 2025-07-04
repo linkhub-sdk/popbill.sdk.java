@@ -1473,7 +1473,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
      */
     @Override
     public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
-        return httpget("/FAX/ChargeInfo", CorpNum, null, ChargeInfo.class);
+        return getChargeInfo(CorpNum, null, null);
     }
     
     

@@ -964,7 +964,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
         try {
             uf.fileData = new FileInputStream(File);
         } catch (FileNotFoundException e) {
-            throw new PopbillException(-99999999, "전송할 파일을 찾을 수 없습니다.", e);
+            throw new PopbillException(-99999999, "이미지 파일을 찾을 수 없습니다.", e);
         }
         uploadFiles.add(uf);
 
@@ -1225,7 +1225,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
             throw new PopbillException(-99999999, "문자 정보가 입력되지 않았습니다.");
 
         if (File == null)
-            throw new PopbillException(-99999999, "전송할 파일의 정보가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "이미지 파일이 입력되지 않았습니다.");
 
         SendRequest request = new SendRequest();
         request.snd = Sender;

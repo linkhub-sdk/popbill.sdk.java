@@ -588,6 +588,8 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public String FAXSend(String CorpNum, Statement statement, String sendNum, String receiveNum, String UserID) throws PopbillException {
+        if (statement == null)
+            throw new PopbillException(-99999999, "전자명세서 정보가 입력되지 않았습니다.");
 
         statement.setSendNum(sendNum);
         statement.setReceiveNum(receiveNum);
