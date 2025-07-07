@@ -1299,7 +1299,7 @@ public class FaxServiceImp extends BaseServiceImp implements FaxService {
             String UserID, String Title, String OrgRequestNum) throws PopbillException {
 
         if (ValidationUtils.isNullOrEmpty(OrgRequestNum))
-            throw new PopbillException(-99999999, "원본 요청번호가 입력되지 않았습니다.");
+            throw new PopbillException(-99999999, "원본 팩스 요청번호가 입력되지 않았습니다.");
 
         SendRequest request = new SendRequest();
 
