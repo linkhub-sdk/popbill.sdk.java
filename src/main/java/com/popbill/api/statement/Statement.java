@@ -22,6 +22,7 @@ public class Statement implements Serializable {
 
     private Short itemCode;
     private String mgtKey;
+    private String invoiceNum;
     private String formCode;
     private String writeDate;
     private String taxType;
@@ -119,6 +120,23 @@ public class Statement implements Serializable {
      */
     public void setMgtKey(String mgtKey) {
         this.mgtKey = mgtKey;
+    }
+
+    /**
+     * 팝빌 승인번호 확인
+     *
+     * @return
+     */
+    public String getInvoiceNum() {
+        return invoiceNum;
+    }
+
+    /**
+     * 팝빌 승인번호 설정
+     * @param invoiceNum
+     */
+    public void setInvoiceNum(String invoiceNum) {
+        this.invoiceNum = invoiceNum;
     }
 
     /**
