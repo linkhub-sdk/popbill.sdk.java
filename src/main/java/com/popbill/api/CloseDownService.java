@@ -19,6 +19,8 @@ public interface CloseDownService extends BaseService {
      */
     public float getUnitCost(String CorpNum) throws PopbillException;
 
+    public float getUnitCost(String CorpNum, String UserID) throws PopbillException;
+
     /**
      * 사업자등록상태조회
      * @param CorpNum

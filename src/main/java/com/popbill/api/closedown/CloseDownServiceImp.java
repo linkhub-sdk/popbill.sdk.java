@@ -30,8 +30,12 @@ public class CloseDownServiceImp extends BaseServiceImp implements CloseDownServ
      */
     @Override
     public float getUnitCost(String CorpNum) throws PopbillException {
-        UnitCostResponse response = httpget("/CloseDown/UnitCost", CorpNum, null, UnitCostResponse.class);
+        return getUnitCost(CorpNum, null);
+    }
 
+    @Override
+    public float getUnitCost(String CorpNum, String UserID) throws PopbillException {
+        UnitCostResponse response = httpget("/CloseDown/UnitCost", CorpNum, UserID, UnitCostResponse.class);
         return response.unitCost;
     }
 
