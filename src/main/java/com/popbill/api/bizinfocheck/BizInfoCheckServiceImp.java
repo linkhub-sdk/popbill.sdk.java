@@ -30,8 +30,12 @@ public class BizInfoCheckServiceImp extends BaseServiceImp implements BizInfoChe
      */
     @Override
     public float getUnitCost(String CorpNum) throws PopbillException {
-        UnitCostResponse response = httpget("/BizInfo/UnitCost", CorpNum, null, UnitCostResponse.class);
+        return getUnitCost(CorpNum, null);
+    }
 
+    @Override
+    public float getUnitCost(String CorpNum, String UserID) throws PopbillException {
+        UnitCostResponse response = httpget("/BizInfo/UnitCost", CorpNum, UserID, UnitCostResponse.class);
         return response.unitCost;
     }
 

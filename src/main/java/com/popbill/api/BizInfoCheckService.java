@@ -17,6 +17,8 @@ public interface BizInfoCheckService extends BaseService {
      */
     public float getUnitCost(String CorpNum) throws PopbillException;
 
+    float getUnitCost(String CorpNum, String UserID) throws PopbillException;
+
     /**
      * 기업정보 조회
      *
