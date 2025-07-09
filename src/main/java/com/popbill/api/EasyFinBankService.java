@@ -112,7 +112,7 @@ public interface EasyFinBankService extends BaseService{
      * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
      * @param BankCode 은행 기관코드
      * @param AccountNumber 계좌번호
-     * @param CloseType 정액제 해지 구분 ('일반', '중도')
+     * @param CloseType 정액제 해지 구분 ('일반')
      * @return
      * @throws PopbillException
      */
@@ -124,7 +124,7 @@ public interface EasyFinBankService extends BaseService{
      * @param CorpNum 팝빌회원 사업자번호 ('-' 제외)
      * @param BankCode 은행 기관코드
      * @param AccountNumber 계좌번호
-     * @param CloseType 정액제 해지 구분 ('일반', '중도')
+     * @param CloseType 정액제 해지 구분 ('일반')
      * @param UserID 팝빌회원 아이디
      * @return
      * @throws PopbillException

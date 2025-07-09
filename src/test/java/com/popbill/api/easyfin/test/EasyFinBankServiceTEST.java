@@ -75,7 +75,7 @@ public class EasyFinBankServiceTEST {
         
         String BankCode = "0020";
         String AccountNumber = "1002057875456";
-        String CloseType = "중도";
+        String CloseType = "일반";
         
         Response response = easyFinBankService.closeBankAccount("1234567890", BankCode, AccountNumber, CloseType);
         
