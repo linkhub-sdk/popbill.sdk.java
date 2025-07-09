@@ -52,7 +52,12 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
      */
     @Override
     public float getUnitCost(String CorpNum) throws PopbillException {
-        UnitCostResponse response = httpget("/Cashbill?cfg=UNITCOST", CorpNum,null, UnitCostResponse.class);
+        return getUnitCost(CorpNum, null);
+    }
+
+    @Override
+    public float getUnitCost(String CorpNum, String UserID) throws PopbillException {
+        UnitCostResponse response = httpget("/Cashbill?cfg=UNITCOST", CorpNum, UserID, UnitCostResponse.class);
         return response.unitCost;
     }
 

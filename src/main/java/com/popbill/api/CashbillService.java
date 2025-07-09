@@ -53,6 +53,8 @@ public interface CashbillService extends BaseService{
     public float getUnitCost(String CorpNum) 
             throws PopbillException;
 
+    float getUnitCost(String CorpNum, String UserID) throws PopbillException;
+
     /**
      * 문서번호 사용여부 확인
      * @param CorpNum
