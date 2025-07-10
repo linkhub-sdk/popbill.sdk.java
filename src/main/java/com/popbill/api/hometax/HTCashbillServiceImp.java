@@ -232,6 +232,11 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      */
     @Override
     public Date getCertificateExpireDate(String CorpNum) throws PopbillException {
+        return getCertificateExpireDate(CorpNum, null);
+    }
+
+    @Override
+    public Date getCertificateExpireDate(String CorpNum, String UserID) throws PopbillException {
         CertResponse response = httpget("/HomeTax/Cashbill/CertInfo", CorpNum, null, CertResponse.class);
 
         try {
@@ -246,7 +251,12 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      * @see com.popbill.api.HTCashbillService#checkCertValidation(java.lang.String)
      */
     public Response checkCertValidation(String CorpNum) throws PopbillException {
-        return httpget("/HomeTax/Cashbill/CertCheck", CorpNum, null, Response.class);
+        return checkCertValidation(CorpNum, null);
+    }
+
+    @Override
+    public Response checkCertValidation(String CorpNum, String UserID) throws PopbillException {
+        return httpget("/HomeTax/Cashbill/CertCheck", CorpNum, UserID, Response.class);
     }
 
     /*
@@ -273,6 +283,11 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      * @see com.popbill.api.HTCashbillService#checkDeptUser(java.lang.String, java.lang.String)
      */
     public Response checkDeptUser(String CorpNum) throws PopbillException {
+        return checkDeptUser(CorpNum, null);
+    }
+
+    @Override
+    public Response checkDeptUser(String CorpNum, String UserID) throws PopbillException {
         return httpget("/HomeTax/Cashbill/DeptUser", CorpNum, null, Response.class);
     }
 
@@ -281,7 +296,12 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      * @see com.popbill.api.HTCashbillService#checkLoginDeptUser(java.lang.String)
      */
     public Response checkLoginDeptUser(String CorpNum) throws PopbillException {
-        return httpget("/HomeTax/Cashbill/DeptUser/Check", CorpNum, null, Response.class);
+        return checkLoginDeptUser(CorpNum, null);
+    }
+
+    @Override
+    public Response checkLoginDeptUser(String CorpNum, String UserID) throws PopbillException {
+        return httpget("/HomeTax/Cashbill/DeptUser/Check", CorpNum, UserID, Response.class);
     }
 
     /*

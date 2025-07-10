@@ -51,8 +51,8 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
         if (MsgType == null)
             throw new PopbillException(-99999999, "문자 유형이 입력되지 않았습니다.");
 
-        UnitCostResponse response = httpget("/Message/UnitCost?Type=" + MsgType.name(), CorpNum,
-                UserID, UnitCostResponse.class);
+        UnitCostResponse response = httpget("/Message/UnitCost?Type=" + MsgType.name(), CorpNum, UserID,
+                UnitCostResponse.class);
 
         return response.unitCost;
     }

@@ -362,15 +362,18 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      */
     @Override
     public Date getCertificateExpireDate(String CorpNum) throws PopbillException {
+        return getCertificateExpireDate(CorpNum, null);
+    }
 
-        CertResponse response = httpget("/HomeTax/Taxinvoice/CertInfo", CorpNum, null, CertResponse.class);
+    @Override
+    public Date getCertificateExpireDate(String CorpNum, String UserID) throws PopbillException {
+        CertResponse response = httpget("/HomeTax/Taxinvoice/CertInfo", CorpNum, UserID, CertResponse.class);
 
         try {
             return new SimpleDateFormat("yyyyMMddHHmmss").parse(response.certificateExpiration);
         } catch (ParseException e) {
             throw new PopbillException(-99999999, "날자형식 포맷변환 실패[" + response.certificateExpiration + "]", e);
         }
-
     }
 
     /*
@@ -420,7 +423,12 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      * @see com.popbill.api.HTTaxinvoiceService#checkCertValidation(java.lang.String)
      */
     public Response checkCertValidation(String CorpNum) throws PopbillException {
-        return httpget("/HomeTax/Taxinvoice/CertCheck", CorpNum, null, Response.class);
+        return checkCertValidation(CorpNum, null);
+    }
+
+    @Override
+    public Response checkCertValidation(String CorpNum, String UserID) throws PopbillException {
+        return httpget("/HomeTax/Taxinvoice/CertCheck", CorpNum, UserID, Response.class);
     }
 
     /*
@@ -447,7 +455,12 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      * @see com.popbill.api.HTTaxinvoiceService#checkDeptUser(java.lang.String, java.lang.String)
      */
     public Response checkDeptUser(String CorpNum) throws PopbillException {
-        return httpget("/HomeTax/Taxinvoice/DeptUser", CorpNum, null, Response.class);
+        return checkDeptUser(CorpNum, null);
+    }
+
+    @Override
+    public Response checkDeptUser(String CorpNum, String UserID) throws PopbillException {
+        return httpget("/HomeTax/Taxinvoice/DeptUser", CorpNum, UserID, Response.class);
     }
 
     /*
@@ -455,7 +468,12 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      * @see com.popbill.api.HTTaxinvoiceService#checkLoginDeptUser(java.lang.String)
      */
     public Response checkLoginDeptUser(String CorpNum) throws PopbillException {
-        return httpget("/HomeTax/Taxinvoice/DeptUser/Check", CorpNum, null, Response.class);
+        return checkLoginDeptUser(CorpNum, null);
+    }
+
+    @Override
+    public Response checkLoginDeptUser(String CorpNum, String UserID) throws PopbillException {
+        return httpget("/HomeTax/Taxinvoice/DeptUser/Check", CorpNum, UserID, Response.class);
     }
 
     /*

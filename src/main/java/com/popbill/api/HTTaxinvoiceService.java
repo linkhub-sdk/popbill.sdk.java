@@ -431,6 +431,18 @@ public interface HTTaxinvoiceService extends BaseService{
      */
     public Date getCertificateExpireDate(String CorpNum)
             throws PopbillException;
+
+    /**
+     * 홈택스연계 공인인증서 만료일시 확인
+     *
+     * @param CorpNum
+     *          팝빌회원 사업자번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return 만료일시
+     * @throws PopbillException
+     */
+    public Date getCertificateExpireDate(String CorpNum, String UserID) throws PopbillException;
     
     /**
      * 홈택스 전자세금계산서 팝업 URL
@@ -495,6 +507,18 @@ public interface HTTaxinvoiceService extends BaseService{
      * @throws PopbillException
      */
     public Response checkCertValidation(String CorpNum) throws PopbillException;
+
+    /**
+     * 홈택스 공인인증서 로그인 테스트
+     *
+     * @param CorpNum
+     *          팝빌회원 사업자번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return Response
+     * @throws PopbillException
+     */
+    public Response checkCertValidation(String CorpNum, String UserID) throws PopbillException;
     
     /**
      * 부서사용자 계정등록
@@ -535,6 +559,18 @@ public interface HTTaxinvoiceService extends BaseService{
      * @throws PopbillException
      */
     public Response checkDeptUser(String CorpNum) throws PopbillException;
+
+    /**
+     * 부서사용자 등록정보 확인
+     *
+     * @param CorpNum
+     *          팝빌회원 사업자번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return Response
+     * @throws PopbillException
+     */
+    public Response checkDeptUser(String CorpNum, String UserID) throws PopbillException;
     
     /**
      * 부서사용자 로그인 테스트
@@ -545,6 +581,18 @@ public interface HTTaxinvoiceService extends BaseService{
      * @throws PopbillException
      */
     public Response checkLoginDeptUser(String CorpNum) throws PopbillException;
+
+    /**
+     * 부서사용자 로그인 테스트
+     *
+     * @param CorpNum
+     *          팝빌회원 사업자번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return Response
+     * @throws PopbillException
+     */
+    public Response checkLoginDeptUser(String CorpNum, String UserID) throws PopbillException;
     
     /**
      * 부서사용자 등록정보 삭제
