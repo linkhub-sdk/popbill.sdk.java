@@ -62,7 +62,26 @@ public interface StatementService extends BaseService{
      */
     public float getUnitCost(String CorpNum, int ItemCode) 
             throws PopbillException;
-    
+
+    /**
+     * 명세서 발행단가 확인
+     *
+     * @param CorpNum
+     *          팝빌회원 사업자번호
+     * @param ItemCode
+     *          명세서 코드
+     *          121 : 거래명세서
+     *          122 : 청구서
+     *          123 : 견적서
+     *          124 : 발주서
+     *          125 : 입금표
+     *          126 : 영수증
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return 단가(ex. 200.0)
+     * @throws PopbillException
+     */
+    public float getUnitCost(String CorpNum, int ItemCode, String UserID) throws PopbillException;
     
     /**
      * 문서번호 사용여부 확인

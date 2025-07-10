@@ -32,6 +32,21 @@ public interface MessageService extends BaseService {
      */
     public float getUnitCost(String CorpNum, MessageType MsgType)
             throws PopbillException;
+
+    /**
+     * 회원의 문자메시지 전송단가 확인
+     *
+     * @param CorpNum
+     *            팝빌회원 사업자번호
+     * @param MsgType
+     *            메시지 유형
+     * @param UserID
+     *            팝빌회원 아이디
+     * @return 단가 (ex. 11.0)
+     * @throws PopbillException
+     */
+    public float getUnitCost(String CorpNum, MessageType MsgType, String UserID)
+            throws PopbillException;
     
     /**
      * 팝빌 문자메시지 관련 URL 확인. 반환한 url은 30초이내에 브라우져에 표시하여야 함.

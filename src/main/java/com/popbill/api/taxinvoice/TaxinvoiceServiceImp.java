@@ -58,6 +58,11 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
      */
     @Override
     public boolean checkMgtKeyInUse(String CorpNum, MgtKeyType KeyType, String MgtKey) throws PopbillException {
+        return checkMgtKeyInUse(CorpNum, KeyType, MgtKey, null);
+    }
+
+    @Override
+    public boolean checkMgtKeyInUse(String CorpNum, MgtKeyType KeyType, String MgtKey, String UserID) throws PopbillException {
         if (KeyType == null)
             throw new PopbillException(-99999999, "문서번호 유형이 입력되지 않았습니다.");
 
@@ -65,7 +70,7 @@ public class TaxinvoiceServiceImp extends BaseServiceImp implements TaxinvoiceSe
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
         try {
-            TaxinvoiceInfo info = httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey, CorpNum, null, TaxinvoiceInfo.class);
+            TaxinvoiceInfo info = httpget("/Taxinvoice/" + KeyType.name() + "/" + MgtKey, CorpNum, UserID, TaxinvoiceInfo.class);
 
             return !ValidationUtils.isNullOrEmpty(info.getItemKey());
         } catch (PopbillException PE) {

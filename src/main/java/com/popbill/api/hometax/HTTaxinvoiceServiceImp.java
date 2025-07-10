@@ -58,7 +58,12 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      */
     @Override
     public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
-        return httpget("/HomeTax/Taxinvoice/ChargeInfo", CorpNum, null, ChargeInfo.class);
+        return getChargeInfo(CorpNum, null);
+    }
+
+    @Override
+    public ChargeInfo getChargeInfo(String CorpNum, String UserID) throws PopbillException {
+        return httpget("/HomeTax/Taxinvoice/ChargeInfo", CorpNum, UserID, ChargeInfo.class);
     }
 
     /*
@@ -458,7 +463,12 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
      * @see com.popbill.api.HTTaxinvoiceService#deleteDeptUser(java.lang.String)
      */
     public Response deleteDeptUser(String CorpNum) throws PopbillException {
-        return httppost("/HomeTax/Taxinvoice/DeptUser", CorpNum, null, null, "DELETE", Response.class);
+        return deleteDeptUser(CorpNum, null);
+    }
+
+    @Override
+    public Response deleteDeptUser(String CorpNum, String UserID) throws PopbillException {
+        return httppost("/HomeTax/Taxinvoice/DeptUser", CorpNum, null, UserID, "DELETE", Response.class);
     }
 
     protected class JobIDResponse {

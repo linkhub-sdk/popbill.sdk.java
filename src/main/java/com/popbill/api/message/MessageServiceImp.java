@@ -43,11 +43,16 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
      */
     @Override
     public float getUnitCost(String CorpNum, MessageType MsgType) throws PopbillException {
+        return getUnitCost(CorpNum, MsgType, null);
+    }
+
+    @Override
+    public float getUnitCost(String CorpNum, MessageType MsgType, String UserID) throws PopbillException {
         if (MsgType == null)
             throw new PopbillException(-99999999, "문자 유형이 입력되지 않았습니다.");
 
         UnitCostResponse response = httpget("/Message/UnitCost?Type=" + MsgType.name(), CorpNum,
-                null, UnitCostResponse.class);
+                UserID, UnitCostResponse.class);
 
         return response.unitCost;
     }

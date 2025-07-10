@@ -39,6 +39,18 @@ public interface HTCashbillService extends BaseService{
      * @throws PopbillException
      */
     public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException;
+
+    /**
+     * 과금정보 확인
+     *
+     * @param CorpNum
+     *          팝빌회원 사업자번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return 과금정보 (see. com.popbill.api.ChargeInfo)
+     * @throws PopbillException
+     */
+    public ChargeInfo getChargeInfo(String CorpNum, String UserID) throws PopbillException;
     
     /**
      * 수집 요청 
@@ -313,6 +325,22 @@ public interface HTCashbillService extends BaseService{
     public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD) throws PopbillException;
 
     /**
+     * 부서사용자 계정등록
+     *
+     * @param CorpNum
+     *          팝빌회원 사업자번호
+     * @param DeptUserID
+     *          홈택스 부서사용자 계정 아이디
+     * @param DeptUserPWD
+     *          홈택스 부서사용자 계정 비밀번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return Response
+     * @throws PopbillException
+     */
+    public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String UserID) throws PopbillException;
+
+    /**
      * 부서사용자 등록정보 확인
      * 
      * @param CorpNum
@@ -340,5 +368,15 @@ public interface HTCashbillService extends BaseService{
      * @return Response
      * @throws PopbillException
      */
-    public Response deleteDeptUser(String CorpNum) throws PopbillException; 
+    public Response deleteDeptUser(String CorpNum) throws PopbillException;
+
+    /**
+     * 부서사용자 등록정보 삭제
+     *
+     * @param CorpNum 팝빌회원 사업자번호
+     * @param UserID 팝빌회원 아이디
+     * @return Response
+     * @throws PopbillException
+     */
+    public Response deleteDeptUser(String CorpNum, String UserID) throws PopbillException;
 }

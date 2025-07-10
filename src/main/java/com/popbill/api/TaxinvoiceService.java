@@ -36,6 +36,23 @@ public interface TaxinvoiceService extends BaseService {
             MgtKeyType KeyType, String MgtKey) throws PopbillException;
 
     /**
+     * 문서번호 사용여부 확인.
+     *
+     * @param CorpNum
+     *            팝빌회원 사업자번호
+     * @param KeyType
+     *            세금계산서 유형
+     * @param MgtKey
+     *            문서번호
+     * @param UserID
+     *            팝빌회원 아이디
+     * @return 사용여부 true : 사용중 , false : 미사용중.
+     * @throws PopbillException
+     */
+    public boolean checkMgtKeyInUse(String CorpNum,
+                                    MgtKeyType KeyType, String MgtKey, String UserID) throws PopbillException;
+
+    /**
      * 세금계산서 즉시발행
      *
      * @param CorpNum

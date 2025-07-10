@@ -840,9 +840,7 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public String getSentListURL(String CorpNum, String UserID) throws PopbillException {
-
         URLResponse response = httpget("/KakaoTalk/?TG=BOX", CorpNum, UserID, URLResponse.class);
-
         return response.url;
     }
 
@@ -861,20 +859,29 @@ public class KakaoServiceImp extends BaseServiceImp implements KakaoService {
 
     @Override
     public float getUnitCost(String CorpNum, KakaoType kakaoType) throws PopbillException {
+        return getUnitCost(CorpNum, kakaoType, null);
+    }
+
+    @Override
+    public float getUnitCost(String CorpNum, KakaoType kakaoType, String UserID) throws PopbillException {
         if (kakaoType == null)
             throw new PopbillException(-99999999, "카카오톡 유형이 입력되지 않았습니다.");
 
-        UnitCostResponse response = httpget("/KakaoTalk/UnitCost?Type=" + kakaoType.name(), CorpNum, null, UnitCostResponse.class);
-
+        UnitCostResponse response = httpget("/KakaoTalk/UnitCost?Type=" + kakaoType.name(), CorpNum, UserID, UnitCostResponse.class);
         return response.unitCost;
     }
 
     @Override
     public ChargeInfo getChargeInfo(String CorpNum, KakaoType kakaoType) throws PopbillException {
+        return getChargeInfo(CorpNum, kakaoType, null);
+    }
+
+    @Override
+    public ChargeInfo getChargeInfo(String CorpNum, KakaoType kakaoType, String UserID) throws PopbillException {
         if (kakaoType == null)
             throw new PopbillException(-99999999, "카카오톡 유형이 입력되지 않았습니다.");
 
-        return httpget("/KakaoTalk/ChargeInfo?Type=" + kakaoType.name(), CorpNum, null, ChargeInfo.class);
+        return httpget("/KakaoTalk/ChargeInfo?Type=" + kakaoType.name(), CorpNum, UserID, ChargeInfo.class);
     }
 
     protected class ATSSendRequest {

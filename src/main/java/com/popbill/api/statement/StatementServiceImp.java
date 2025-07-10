@@ -56,9 +56,13 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
      */
     @Override
     public float getUnitCost(String CorpNum, int ItemCode) throws PopbillException {
+        return getUnitCost(CorpNum, ItemCode, null);
+    }
 
-        UnitCostResponse response = httpget("/Statement/" + ItemCode + "?cfg=UNITCOST", CorpNum, null, UnitCostResponse.class);
-
+    @Override
+    public float getUnitCost(String CorpNum, int ItemCode, String UserID) throws PopbillException {
+        UnitCostResponse response = httpget("/Statement/" + ItemCode + "?cfg=UNITCOST", CorpNum, UserID,
+                UnitCostResponse.class);
         return response.unitCost;
     }
 

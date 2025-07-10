@@ -35,7 +35,12 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      */
     @Override
     public ChargeInfo getChargeInfo(String CorpNum) throws PopbillException {
-        return httpget("/HomeTax/Cashbill/ChargeInfo", CorpNum, null, ChargeInfo.class);
+        return getChargeInfo(CorpNum, null);
+    }
+
+    @Override
+    public ChargeInfo getChargeInfo(String CorpNum, String UserID) throws PopbillException {
+        return httpget("/HomeTax/Cashbill/ChargeInfo", CorpNum, UserID, ChargeInfo.class);
     }
 
     /*
@@ -249,14 +254,18 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      * @see com.popbill.api.HTCashbillService#registDeptUser(java.lang.String, java.lang.String, java.lang.String)
      */
     public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD) throws PopbillException {
+        return registDeptUser(CorpNum, DeptUserID, DeptUserPWD, null);
+    }
+
+    @Override
+    public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String UserID) throws PopbillException {
         DeptRequest request = new DeptRequest();
         request.id = DeptUserID;
         request.pwd = DeptUserPWD;
 
         String PostData = toJsonString(request);
 
-        return httppost("/HomeTax/Cashbill/DeptUser", CorpNum, PostData, null, Response.class);
-
+        return httppost("/HomeTax/Cashbill/DeptUser", CorpNum, PostData, UserID, Response.class);
     }
 
     /*
@@ -280,7 +289,12 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      * @see com.popbill.api.HTCashbillService#deleteDeptUser(java.lang.String)
      */
     public Response deleteDeptUser(String CorpNum) throws PopbillException {
-        return httppost("/HomeTax/Cashbill/DeptUser", CorpNum, null, null, "DELETE", Response.class);
+        return deleteDeptUser(CorpNum, null);
+    }
+
+    @Override
+    public Response deleteDeptUser(String CorpNum, String UserID) throws PopbillException {
+        return httppost("/HomeTax/Cashbill/DeptUser", CorpNum, null, UserID, "DELETE", Response.class);
     }
 
     protected class JobIDResponse {

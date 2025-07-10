@@ -1827,13 +1827,14 @@ public interface KakaoService extends BaseService {
      */
     public String getSentListURL(String CorpNum, String UserID) throws PopbillException;
 
-    public String getURL(String CorpNum, String TOGO, String UserID)
-    throws PopbillException;
+    public String getURL(String CorpNum, String TOGO, String UserID) throws PopbillException;
 
-    public float getUnitCost(String CorpNum, KakaoType KakaoType) 
-    throws PopbillException;
+    public float getUnitCost(String CorpNum, KakaoType KakaoType) throws PopbillException;
 
-    public ChargeInfo getChargeInfo(String CorpNum, KakaoType kakaoType) 
-    throws PopbillException;
+    public float getUnitCost(String CorpNum, KakaoType kakaoType, String UserID) throws PopbillException;
+
+    public ChargeInfo getChargeInfo(String CorpNum, KakaoType kakaoType) throws PopbillException;
+
+    public ChargeInfo getChargeInfo(String CorpNum, KakaoType kakaoType, String UserID) throws PopbillException;
 
 }
