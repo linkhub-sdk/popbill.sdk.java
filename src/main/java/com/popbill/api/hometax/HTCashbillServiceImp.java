@@ -237,7 +237,7 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 
     @Override
     public Date getCertificateExpireDate(String CorpNum, String UserID) throws PopbillException {
-        CertResponse response = httpget("/HomeTax/Cashbill/CertInfo", CorpNum, null, CertResponse.class);
+        CertResponse response = httpget("/HomeTax/Cashbill/CertInfo", CorpNum, UserID, CertResponse.class);
 
         try {
             return new SimpleDateFormat("yyyyMMddHHmmss").parse(response.certificateExpiration);
@@ -288,7 +288,7 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
 
     @Override
     public Response checkDeptUser(String CorpNum, String UserID) throws PopbillException {
-        return httpget("/HomeTax/Cashbill/DeptUser", CorpNum, null, Response.class);
+        return httpget("/HomeTax/Cashbill/DeptUser", CorpNum, UserID, Response.class);
     }
 
     /*

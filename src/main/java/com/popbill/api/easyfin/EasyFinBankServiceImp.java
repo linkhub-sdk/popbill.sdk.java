@@ -476,7 +476,7 @@ public class EasyFinBankServiceImp extends BaseServiceImp implements EasyFinBank
 
     @Override
     public ChargeInfo getChargeInfo(String CorpNum, String UserID) throws PopbillException {
-        return httpget("/EasyFin/Bank/ChargeInfo", CorpNum, null, ChargeInfo.class);
+        return httpget("/EasyFin/Bank/ChargeInfo", CorpNum, UserID, ChargeInfo.class);
     }
 
     protected class JobIDResponse {

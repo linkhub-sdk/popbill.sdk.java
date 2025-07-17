@@ -310,7 +310,7 @@ public class StatementServiceImp extends BaseServiceImp implements StatementServ
         if (ValidationUtils.isNullOrEmpty(MgtKey))
             throw new PopbillException(-99999999, "문서번호가 입력되지 않았습니다.");
 
-        return httpget("/Statement/" + ItemCode + "/" + MgtKey + "?Detail", CorpNum, null, Statement.class);
+        return httpget("/Statement/" + ItemCode + "/" + MgtKey + "?Detail", CorpNum, UserID, Statement.class);
 
     }
 

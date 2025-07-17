@@ -865,7 +865,7 @@ public class CashbillServiceImp extends BaseServiceImp implements CashbillServic
             String Tax, String ServiceFee, String TotalAmount, String UserID) throws PopbillException {
 
         return revokeRegistIssue(CorpNum, MgtKey, OrgConfirmNum, OrgTradeDate, SMSSendYN, Memo,
-                IsPartCancel, CancelType, SupplyCost, Tax, ServiceFee, TotalAmount, null, null, null);
+                IsPartCancel, CancelType, SupplyCost, Tax, ServiceFee, TotalAmount, UserID, null, null);
     }
     
     @Override

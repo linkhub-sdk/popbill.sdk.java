@@ -1417,7 +1417,7 @@ public class MessageServiceImp extends BaseServiceImp implements MessageService 
     @Override
     public SenderNumber[] getSenderNumberList(String CorpNum, String UserID)
             throws PopbillException {
-        return httpget("/Message/SenderNumber", CorpNum, null, SenderNumber[].class);
+        return httpget("/Message/SenderNumber", CorpNum, UserID, SenderNumber[].class);
     }
 
     /*
