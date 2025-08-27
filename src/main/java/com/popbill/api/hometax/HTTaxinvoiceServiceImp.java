@@ -441,37 +441,15 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 
     @Override
     public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String UserID) throws PopbillException {
-        DeptRequest request = new DeptRequest();
-        request.id = DeptUserID;
-        request.pwd = DeptUserPWD;
-
-        String PostData = toJsonString(request);
-
-        return httppost("/HomeTax/Taxinvoice/DeptUser", CorpNum, PostData, UserID, Response.class);
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see com.popbill.api.HTTaxinvoiceService#registDeptAccount(java.lang.String, java.lang.String, java.lang.String)
-     */
-    public Response registDeptAccount(String CorpNum, String DeptAccountID, String DeptAccountPWD) throws PopbillException {
-        return registDeptAccount(CorpNum, DeptAccountID, DeptAccountPWD, null, null);
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see com.popbill.api.HTTaxinvoiceService#registDeptAccount(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
-     */
-    public Response registDeptAccount(String CorpNum, String DeptAccountID, String DeptAccountPWD, String DeptAccountNumber) throws PopbillException {
-        return registDeptAccount(CorpNum, DeptAccountID, DeptAccountPWD, DeptAccountNumber, null);
+        return registDeptUser(CorpNum, DeptUserID, DeptUserPWD, null, null);
     }
 
     @Override
-    public Response registDeptAccount(String CorpNum, String DeptAccountID, String DeptAccountPWD, String DeptAccountNumber, String UserID) throws PopbillException {
+    public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String DeptUserIdentity, String UserID) throws PopbillException {
         DeptRequest request = new DeptRequest();
-        request.id = DeptAccountID;
-        request.pwd = DeptAccountPWD;
-        request.secAuth = DeptAccountNumber;
+        request.id = DeptUserID;
+        request.pwd = DeptUserPWD;
+        request.secAuth = DeptUserIdentity;
 
         String PostData = toJsonString(request);
 

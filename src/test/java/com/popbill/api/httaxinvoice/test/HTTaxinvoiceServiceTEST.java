@@ -363,24 +363,13 @@ public class HTTaxinvoiceServiceTEST {
         String corpNum = "1234567890";
         String deptUserID = "test_id";
         String deptUserPWD = "test_pwd";
-        
-        Response response = hometaxTIService.registDeptUser(corpNum, deptUserID, deptUserPWD);
+        String deptUserIdentity = "";
+        String UserID = "testkorea";
+
+        Response response = hometaxTIService.registDeptUser(corpNum, deptUserID, deptUserPWD, deptUserIdentity, UserID);
         assertNotNull(response);
         
         System.out.println("["+response.getCode() +"] " + response.getMessage());        
-    }
-
-    @Test
-    public void registDeptAccount_TEST() throws PopbillException{
-        String corpNum = "1234567890";
-        String deptAccountID = "test_id";
-        String deptAccountPWD = "test_pwd";
-        String deptAccountNumber = "700101";
-
-        Response response = hometaxTIService.registDeptAccount(corpNum, deptAccountID, deptAccountPWD, deptAccountNumber);
-        assertNotNull(response);
-
-        System.out.println("[" + response.getCode() + "] " + response.getMessage());
     }
     
     @Test
