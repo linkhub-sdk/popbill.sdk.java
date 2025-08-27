@@ -264,14 +264,23 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
      * @see com.popbill.api.HTCashbillService#registDeptUser(java.lang.String, java.lang.String, java.lang.String)
      */
     public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD) throws PopbillException {
-        return registDeptUser(CorpNum, DeptUserID, DeptUserPWD, null);
+        return registDeptUser(CorpNum, DeptUserID, DeptUserPWD,null,null);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.popbill.api.HTTaxinvoiceService#registDeptUser(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+     */
+    public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String UserID) throws PopbillException {
+        return registDeptUser(CorpNum, DeptUserID, DeptUserPWD, null, UserID);
     }
 
     @Override
-    public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String UserID) throws PopbillException {
+    public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String IdentityNum, String UserID) throws PopbillException {
         DeptRequest request = new DeptRequest();
         request.id = DeptUserID;
         request.pwd = DeptUserPWD;
+        request.secAuth = IdentityNum;
 
         String PostData = toJsonString(request);
 
@@ -328,5 +337,6 @@ public class HTCashbillServiceImp extends BaseServiceImp implements HTCashbillSe
     protected class DeptRequest {
         public String id;
         public String pwd;
+        public String secAuth;
     }
 }

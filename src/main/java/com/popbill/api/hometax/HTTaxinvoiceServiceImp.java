@@ -439,7 +439,10 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
         return registDeptUser(CorpNum, DeptUserID, DeptUserPWD, null, null);
     }
 
-    @Override
+    /*
+     * (non-Javadoc)
+     * @see com.popbill.api.HTTaxinvoiceService#registDeptUser(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+     */
     public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String UserID) throws PopbillException {
         return registDeptUser(CorpNum, DeptUserID, DeptUserPWD, null, UserID);
     }

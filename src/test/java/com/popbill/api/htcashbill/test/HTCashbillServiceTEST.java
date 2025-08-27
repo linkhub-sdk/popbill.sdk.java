@@ -11,7 +11,7 @@ import java.util.Date;
 public class HTCashbillServiceTEST {
     private final String testLinkID = "TESTER";
     private final String testSecretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
-    
+
     private HTCashbillService htCashbillService;
     
     public HTCashbillServiceTEST() {
@@ -234,8 +234,10 @@ public class HTCashbillServiceTEST {
         String corpNum = "1234567890";
         String deptUserID = "test_id";
         String deptUserPWD = "test_user";
-        
-        Response response = htCashbillService.registDeptUser(corpNum, deptUserID, deptUserPWD);
+        String identityNum = "";
+        String userID = "testkorea";
+
+        Response response = htCashbillService.registDeptUser(corpNum, deptUserID, deptUserPWD, identityNum, userID);
         assertNotNull(response);
         
         System.out.println("["+response.getCode() +"] " + response.getMessage());        

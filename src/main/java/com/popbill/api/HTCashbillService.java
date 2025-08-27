@@ -335,34 +335,52 @@ public interface HTCashbillService extends BaseService{
     public Response checkCertValidation(String CorpNum, String UserID) throws PopbillException;
     
     /**
-     * 부서사용자 계정등록
+     * 홈택스 부서사용자 계정등록
      * 
      * @param CorpNum
      *          팝빌회원 사업자번호
      * @param DeptUserID
-     *          홈택스 부서사용자 계정 아이디
+     *          부서사용자 아이디
      * @param DeptUserPWD
-     *          홈택스 부서사용자 계정 비밀번호
+     *          부서사용자 비밀번호
      * @return Response
      * @throws PopbillException
      */
     public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD) throws PopbillException;
 
     /**
-     * 부서사용자 계정등록
+     * 홈택스 부서사용자 계정등록
      *
      * @param CorpNum
      *          팝빌회원 사업자번호
      * @param DeptUserID
-     *          홈택스 부서사용자 계정 아이디
+     *          부서사용자 아이디
      * @param DeptUserPWD
-     *          홈택스 부서사용자 계정 비밀번호
+     *          부서사용자 비밀번호
      * @param UserID
      *          팝빌회원 아이디
      * @return Response
      * @throws PopbillException
      */
     public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String UserID) throws PopbillException;
+
+    /**
+     * 홈택스 부서사용자 계정등록
+     *
+     * @param CorpNum
+     *          팝빌회원 사업자번호
+     * @param DeptUserID
+     *          부서사용자 아이디
+     * @param DeptUserPWD
+     *          부서사용자 비밀번호
+     * @param IdentityNum
+     *          부서사용자 대표자 주민번호
+     * @param UserID
+     *          팝빌회원 아이디
+     * @return Response
+     * @throws PopbillException
+     */
+    public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String IdentityNum, String UserID) throws PopbillException;
 
     /**
      * 부서사용자 등록정보 확인
