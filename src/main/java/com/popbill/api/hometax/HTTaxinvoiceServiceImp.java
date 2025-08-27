@@ -452,6 +452,34 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
 
     /*
      * (non-Javadoc)
+     * @see com.popbill.api.HTTaxinvoiceService#registDeptAccount(java.lang.String, java.lang.String, java.lang.String)
+     */
+    public Response registDeptAccount(String CorpNum, String DeptAccountID, String DeptAccountPWD) throws PopbillException {
+        return registDeptAccount(CorpNum, DeptAccountID, DeptAccountPWD, null, null);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.popbill.api.HTTaxinvoiceService#registDeptAccount(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+     */
+    public Response registDeptAccount(String CorpNum, String DeptAccountID, String DeptAccountPWD, String DeptAccountNumber) throws PopbillException {
+        return registDeptAccount(CorpNum, DeptAccountID, DeptAccountPWD, DeptAccountNumber, null);
+    }
+
+    @Override
+    public Response registDeptAccount(String CorpNum, String DeptAccountID, String DeptAccountPWD, String DeptAccountNumber, String UserID) throws PopbillException {
+        DeptRequest request = new DeptRequest();
+        request.id = DeptAccountID;
+        request.pwd = DeptAccountPWD;
+        request.secAuth = DeptAccountNumber;
+
+        String PostData = toJsonString(request);
+
+        return httppost("/HomeTax/Taxinvoice/DeptUser", CorpNum, PostData, UserID, Response.class);
+    }
+
+    /*
+     * (non-Javadoc)
      * @see com.popbill.api.HTTaxinvoiceService#checkDeptUser(java.lang.String, java.lang.String)
      */
     public Response checkDeptUser(String CorpNum) throws PopbillException {
@@ -500,6 +528,7 @@ public class HTTaxinvoiceServiceImp extends BaseServiceImp implements HTTaxinvoi
     protected class DeptRequest {
         public String id;
         public String pwd;
+        public String secAuth;
     }
 
 }

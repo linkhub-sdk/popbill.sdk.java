@@ -21,8 +21,11 @@ import com.popbill.api.hometax.QueryType;
 
 public class HTTaxinvoiceServiceTEST {
     
-    private final String testLinkID = "TESTER";
-    private final String testSecretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
+//    private final String testLinkID = "TESTER";
+//    private final String testSecretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
+
+    private final String testLinkID = "LINKHUB";
+    private final String testSecretKey = "434KOyypCriPZjt0GZBHuxp+M5HWTh6JtLR9qXM84ec=";
 
     private HTTaxinvoiceService hometaxTIService;
     
@@ -365,6 +368,19 @@ public class HTTaxinvoiceServiceTEST {
         assertNotNull(response);
         
         System.out.println("["+response.getCode() +"] " + response.getMessage());        
+    }
+
+    @Test
+    public void registDeptAccount_TEST() throws PopbillException{
+        String corpNum = "1234567890";
+        String deptAccountID = "test_id";
+        String deptAccountPWD = "test_pwd";
+        String deptAccountNumber = "700101";
+
+        Response response = hometaxTIService.registDeptAccount(corpNum, deptAccountID, deptAccountPWD, deptAccountNumber);
+        assertNotNull(response);
+
+        System.out.println("[" + response.getCode() + "] " + response.getMessage());
     }
     
     @Test
