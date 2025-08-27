@@ -559,14 +559,14 @@ public interface HTTaxinvoiceService extends BaseService{
      *          부서사용자 아이디
      * @param DeptUserPWD
      *          부서사용자 비밀번호
-     * @param DeptUserIdentity
+     * @param IdentityNum
      *          부서사용자 대표자 주민번호
      * @param UserID
      *          팝빌회원 아이디
      * @return Response
      * @throws PopbillException
      */
-    public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String DeptUserIdentity, String UserID) throws PopbillException;
+    public Response registDeptUser(String CorpNum, String DeptUserID, String DeptUserPWD, String IdentityNum, String UserID) throws PopbillException;
 
     /**
      * 부서사용자 등록정보 확인
